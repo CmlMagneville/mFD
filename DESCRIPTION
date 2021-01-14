@@ -31,7 +31,7 @@ Author: Sebastien Villeger [aut, cre],
     David Mouillot [aut]
 Maintainer: The package maintainer <sebastien.villeger@cnrs.fr>
 Description: A computation of functional traits-based distances between pairs of species for species gathered in assemblages allowing to build several functional spaces. The package allows to compute functional diversity indices assessing the distribution of species (and of their dominance) in a given functional space for each assemblage and the overlap between assemblages in a given functional space. Graphical outputs included. See the mFD website for more informations, documentation and examples.
-License: GPL-2 + file LICENSE
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
