@@ -1,0 +1,9 @@
+trait_name,trait_type,fuzzy_name
+Size,O,NA
+Plant,N,NA
+Climate,O,NA
+Seed,O,NA
+Sugar,Q,NA
+Use.raw,F,Use
+Use.pastry,F,Use
+Use.jam,F,Use
