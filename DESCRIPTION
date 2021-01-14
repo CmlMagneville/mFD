@@ -1,0 +1,69 @@
+Package: mFD
+Title: A computation of functional spaces and functional indices
+Version: 0.0.0.9000
+Authors@R: 
+    c(person("Sebastien", "Villeger", role = c("aut", "ths"),
+    email = "sebastien.villeger@cnrs.fr"),
+    person("Camille", "Magneville", role = c("aut", "cre"),
+    email = "camille.magneville@umontpellier.fr"),
+    person("Camille", "Albouy", role = "aut",
+    email = "albouycamille@gmail.com"),
+    person("Thomas", "Claverie", role = "aut",
+    email = "tclaverie@gmail.com"),
+    person("Arthur", "Escalas", role = "aut",
+    email = "arthur.escalas@umontpellier.fr"),
+    person("Fabien", "Leprieur", role = "aut",
+    email = "fabien.leprieur@umontpellier.fr"),
+    person("Nicolas", "Loiseau", role = "aut",
+    email = "nicolas.loiseau@umontpellier.fr"),
+    person("Eva", "Maire", role = "aut",
+    email = "emg.maire@umontpellier.fr"),
+    person("David", "Mouillot", role = "aut",
+    email = "david.mouillot@gmail.com"))
+Author: Sebastien Villeger [aut, cre],
+    Camille Magneville [aut, cre]
+    Camille Albouy [aut],
+    Thomas Claverie [aut],
+    Arthur Escalas [aut],
+    Fabien Leprieur [aut],
+    Nicolas Loiseau [aut],
+    Eva Maire [aut],
+    David Mouillot [aut]
+Maintainer: The package maintainer <sebastien.villeger@cnrs.fr>
+Description: A computation of functional traits-based distances between pairs of species for species gathered in assemblages allowing to build several functional spaces. The package allows to compute functional diversity indices assessing the distribution of species (and of their dominance) in a given functional space for each assemblage and the overlap between assemblages in a given functional space. Graphical outputs included. See the mFD website for more informations, documentation and examples.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    dplyr,
+    ggplot2,
+    patchwork,
+    stats,
+    FactoMineR,
+    Hmisc,
+    cluster,
+    rlist,
+    ape,
+    geometry,
+    plyr,
+    utils,
+    ade4,
+    dendextend,
+    grid,
+    ggrepel,
+    betapart,
+    gridExtra,
+    vegan,
+    reshape2,
+    rstatix,
+    tibble
+Depends: 
+    R (>= 2.10)
+Suggests: 
+    knitr,
+    rmarkdown,
+    tidyr,
+    stringr
+VignetteBuilder: knitr
