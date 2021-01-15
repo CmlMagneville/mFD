@@ -12,36 +12,36 @@
 #'   spaces based on deviation between species trait-based distance and distance
 #'   in functional spaces built using PCoA (and dendrogram).
 #'
-#' @param fspaces_plot a vector with names of functional spaces to consider.
+#' @param fspaces_plot a \bold{vector} with names of functional spaces to consider.
 #'   Should be a subset of the row names of
 #'   \code{fspaces_quality$quality_fspaces}. Maximum of 10 spaces allowed to keep decent
 #'   plot size.
 #'
-#' @param quality_metric a character string with the name of the quality metric
+#' @param quality_metric a \bold{character string} with the name of the quality metric
 #'   to illustrate. Should be one of the column names of
 #'   \code{fspaces_quality$quality_fspaces}. See help of \code{\link{quality.fspaces}}
 #'   for meaning of these names regarding type of deviation and scaling of
 #'   distance in functional space. Default: 'mad' (Mean absolute deviation).
 #'
-#' @param name_file a character string with name of file to save the figure
+#' @param name_file a \bold{character string} with name of file to save the figure
 #'   (without extension). Default: NULL which means plot is displayed.
 #'
-#' @param range_dist a vector with minimum and maximum values to display for
+#' @param range_dist a \bold{vector} with minimum and maximum values to display for
 #'   species pairwise distances (x-axis fo all panels and y-axes of top panel).
 #'   Default: NULL, which means range is 0 to maximum distance among all the
 #'   functional spaces to plot.
 #'
-#' @param range_dev a vector with minimum and maximum values to display for
+#' @param range_dev a \bold{vector} with minimum and maximum values to display for
 #'   deviation to trait-based distance (y-axis of middle panel). Default: NULL,
 #'   which means range is set to range of deviation among all the functional
 #'   spaces to plot.
 #'
-#' @param range_qdev a vector with minimum and maximum values to display for
+#' @param range_qdev a \bold{vector} with minimum and maximum values to display for
 #'   deviation to trait-based distance (y-axis of bottom panel). Default:NULL,
 #'   which means range is from 0 to the maximum of (transformed) deviation among
 #'   all the functional spaces to plot.
 #'
-#' @param gradient_deviation a vector of 3 colors for illustrating raw deviation
+#' @param gradient_deviation a \bold{vector} of 3 colors for illustrating raw deviation
 #'   with \code{\link[ggplot2]{scale_colour_gradient2}}. First value ('neg') is for the
 #'   lowest negative deviation, second value ('nul')is for null deviation and
 #'   third value ('pos') is for the highest positive deviation. Default gradient
@@ -51,7 +51,7 @@
 #'   illustrating transformed deviation used to compute quality metric with
 #'   \code{\link[ggplot2]{scale_colour_gradient2}} (default gradient is from yellow to red).
 #'
-#' @param x_lab a character string with title to display below X axis. Default
+#' @param x_lab a \bold{character string} with title to display below X axis. Default
 #'   is 'Trait-based distance'.
 #'
 #' @return a png file (resolution 300dpi) saved in the current working

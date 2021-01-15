@@ -204,7 +204,7 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 #' Computes summary helping you to picture assemblages. For this function to
 #' work, there must be no NA in your \code{assemblage_species} dataframe.
 #'
-#' @param asb_sp_w a matrix showing assemblages (rows) composition in
+#' @param asb_sp_w a \bold{matrix} showing assemblages (rows) composition in
 #'   species (columns).
 #'
 #' @return a species occurrences data.frame in each assemblage
