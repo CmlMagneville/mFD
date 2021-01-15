@@ -89,7 +89,7 @@ quality.fspaces.plot <- function(
   fspaces_quality, quality_metric, fspaces_plot,
   name_file = NULL,
   range_dist = NULL, range_dev = NULL, range_qdev = NULL,
-  gradient_deviation  =c(neg = "darkblue", nul = "grey80", pos = "darkred"),
+  gradient_deviation = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
   gradient_deviation_quality = c(low ="yellow", high = "red"),
   x_lab = "Trait-based distance") {
   
