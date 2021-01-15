@@ -3,4 +3,5 @@
 export(asb.sp.summary)
 export(funct.dist)
 export(quality.fspaces)
+export(quality.fspaces.plot)
 export(sp.tr.summary)

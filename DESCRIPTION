@@ -44,7 +44,9 @@ Imports:
     plyr,
     utils,
     ade4,
-    dendextend
+    dendextend,
+    ggplot2,
+    patchwork
 Depends: 
     R (>= 2.10)
 Suggests: 
