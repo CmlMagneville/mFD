@@ -82,6 +82,7 @@ Squared)
 Plot functional space quality with a chosen quality metric
 }
 \examples{
+library(patchwork)
 load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 sp_tr <- sp_tr[, -c(6:8)]
 load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
