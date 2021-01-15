@@ -38,32 +38,16 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
     dplyr,
-    ggplot2,
-    patchwork,
     stats,
-    FactoMineR,
-    Hmisc,
     cluster,
-    rlist,
     ape,
-    geometry,
     plyr,
     utils,
     ade4,
-    dendextend,
-    grid,
-    ggrepel,
-    betapart,
-    gridExtra,
-    vegan,
-    reshape2,
-    rstatix,
-    tibble
+    dendextend
 Depends: 
     R (>= 2.10)
 Suggests: 
     knitr,
-    rmarkdown,
-    tidyr,
-    stringr
+    rmarkdown
 VignetteBuilder: knitr
