@@ -7,7 +7,7 @@
 asb.sp.summary(asb_sp_w)
 }
 \arguments{
-\item{asb_sp_w}{a matrix showing assemblages (rows) composition in
+\item{asb_sp_w}{a \bold{matrix} showing assemblages (rows) composition in
 species (columns).}
 }
 \value{
