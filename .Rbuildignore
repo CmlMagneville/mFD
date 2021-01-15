@@ -3,3 +3,4 @@
 ^pkgdown$
 ^README\.Rmd$
 ^mFD\.Rproj$
+^\.Rproj\.user$
