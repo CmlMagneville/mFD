@@ -46,7 +46,10 @@ Imports:
     ade4,
     dendextend,
     ggplot2,
-    patchwork
+    patchwork,
+    Hmisc,
+    FactoMineR,
+    rlist
 Depends: 
     R (>= 2.10)
 Suggests: 
