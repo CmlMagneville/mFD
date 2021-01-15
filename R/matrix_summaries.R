@@ -215,7 +215,7 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 #'   a list gathering the names of species of each assemblage \code{sp_nm_asb}.
 #'
 #' @examples
-#' load(system.file("extdata", "asb_sp_w_fruits_df", package = "mFD"))
+#' load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
 #' asb_sp_w <- as.matrix(asb_sp_w)
 #' mFD::asb.sp.summary(asb_sp_w)
 #'

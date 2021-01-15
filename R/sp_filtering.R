@@ -32,7 +32,7 @@
 #' @examples
 #'  load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 #'  sp_tr <- sp_tr[, -c(6:8)]
-#'  load(system.file("extdata", "asb_sp_w_fruits_df", package = "mFD"))
+#'  load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
 #'  asb_sp_w <- as.matrix(asb_sp_w)
 #'  dist <- cluster::daisy(sp_tr, metric = "gower")
 #'  sp_faxes_coord <- data.frame(ape::pcoa(dist)$vectors)
