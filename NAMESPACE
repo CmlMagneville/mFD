@@ -2,4 +2,5 @@
 
 export(asb.sp.summary)
 export(funct.dist)
+export(quality.fspaces)
 export(sp.tr.summary)
