@@ -39,12 +39,12 @@ graphical outputs for the computed indices.}
 
 \item{betapart.step}{a \strong{logical value} indicating whether the computation
 progress tracking file "step.fbc.txt" should be created. Setting it to FALSE
-will speed up the function. Default is FALSE, and it is automatically turned
+will speed up the function. Default: betapart.step = FALSE, and it is automatically turned
 to FALSE when 'betapart.para' is TRUE.}
 
 \item{betapart.para}{a \strong{logical value} indicating whether internal
-parallelization should be used to compute pairwise dissimilarities. Default
-is FALSE.}
+parallelization should be used to compute pairwise dissimilarities. Default:
+betapart.para = FALSE.}
 
 \item{betapart.para.opt}{a \strong{list} with details about parallelization. Default
 value means those parameters are set according to computer specifications.
