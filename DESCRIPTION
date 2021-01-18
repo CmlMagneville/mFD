@@ -50,7 +50,8 @@ Imports:
     Hmisc,
     FactoMineR,
     rlist,
-    geometry
+    geometry,
+    betapart
 Depends: 
     R (>= 2.10)
 Suggests: 
