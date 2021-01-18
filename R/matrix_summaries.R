@@ -15,8 +15,8 @@
 #' \code{sp_tr} dataframe.
 #'
 #' @param tr_cat a \bold{dataframe} containing three columns for each trait (rows):
-#'   \itemize{ \item \strong{trait_name}: names of all traits as in \code{sp_tr}
-#'   data.frame \item \strong{trait_type}: category codes for each trait as
+#'   \itemize{ \item \bold{trait_name}: names of all traits as in \code{sp_tr}
+#'   data.frame \item \bold{trait_type}: category codes for each trait as
 #'   followed: \emph{N} for Nominal traits (factor variable), \emph{O} for
 #'   Ordinal traits (ordered variable), \emph{C} for Circular traits (integer
 #'   values), \emph{Q} for quantitative traits (numeric values) and
