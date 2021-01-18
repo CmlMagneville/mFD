@@ -12,11 +12,11 @@
 #' This function computes the distances of all species to a reference species.
 #' It is used in FSpe, FOri and FNND computation.
 #'
-#' @param sp_faxes_coord a \bold{matrix} of species coordinates in a chosen functional
+#' @param sp_faxes_coord a \strong{matrix} of species coordinates in a chosen functional
 #'   space. Species coordinates have been retrieved thanks to
 #'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#' @param ref_sp a \bold{character string} referring to the name of the reference
+#' @param ref_sp a \strong{character string} referring to the name of the reference
 #'   species
 #'
 #' @return a vector of species distances to the reference species \code{dist_refsp}
@@ -40,11 +40,11 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 #'
 #' This function is used in functional indices computation.
 #'
-#' @param sp_faxes_coord a \bold{matrix} of species coordinates in a chosen
+#' @param sp_faxes_coord a \strong{matrix} of species coordinates in a chosen
 #'   functional space. Species coordinates have been retrieved thanks to
 #'   \code{fspace.conttr} or \code{qual.funct.space}.
 #'
-#' @param ref_sp a \bold{character string} referring to the name of the reference
+#' @param ref_sp a \strong{character string} referring to the name of the reference
 #'   species
 #'
 #' @return a list containing the nearest neighbor identity \code{nn_id} and a
@@ -83,7 +83,7 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
 #' This function computes the MST linking species of a given assemblage and is
 #' used to compute FEve index.
 #'
-#' @param sp_faxes_coord_k a \bold{matrix} relating species coordinates for species
+#' @param sp_faxes_coord_k a \strong{matrix} relating species coordinates for species
 #'   present in a given assemblage
 #'
 #' @return a dist object summarizing the MST for all species of a given
@@ -109,15 +109,15 @@ mst.computation <- function(sp_faxes_coord_k) {
 #' using the Qhull (http://www.qhull.org/) library through the
 #' \code{geometry::convhulln} function.
 #'
-#' @param sp_faxes_coord a \bold{matrix} of species coordinates in a chosen functional
+#' @param sp_faxes_coord a \strong{matrix} of species coordinates in a chosen functional
 #'   space. Species coordinates have been retrieved thanks to
 #'   \code{fspace.conttr} or \code{qual.funct.space}.
 #'
-#' @param order_2D a \bold{logical value} defining whether vertices names are reordered
+#' @param order_2D a \strong{logical value} defining whether vertices names are reordered
 #' so that they define a convex polygon in 2D which is convenient for plotting.
 #' Default is FALSE, vertices ordered as in row names of 'sp_faxes_coord'
 #'
-#' @param check.input a \bold{logical value} defining whether inputs are checked before
+#' @param check.input a \strong{logical value} defining whether inputs are checked before
 #'   computation: species names must be put as row.names, there must be no NA
 #'   and species number must be superior to (axes number + 1). Default:
 #'   check.input = TRUE.

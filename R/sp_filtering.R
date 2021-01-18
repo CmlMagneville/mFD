@@ -14,14 +14,14 @@
 #' \code{alpha_FD_multidim} function to filter species and compute each
 #' functional indices for each community.
 #'
-#' @param asb_nm a \bold{string} object referring to the name of a given
+#' @param asb_nm a \strong{string} object referring to the name of a given
 #' community.
 #'
-#' @param sp_faxes_coord a \bold{matrix} of species coordinates in a chosen functional
+#' @param sp_faxes_coord a \strong{matrix} of species coordinates in a chosen functional
 #'   space. Species coordinates have been retrieved thanks to
 #'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#' @param asb_sp_w a \bold{matrix} linking weight of species (columns) and a set of
+#' @param asb_sp_w a \strong{matrix} linking weight of species (columns) and a set of
 #'   assemblages (rows).
 #'
 #' @return a vector containing names of species present in a given assemblage \code{sp_name_asb_k}, a

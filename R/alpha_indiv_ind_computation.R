@@ -16,17 +16,17 @@
 #' the same weight. The results of this function are used in FSpe, FOri and FNND
 #' computation.
 #'
-#' @param sp_faxes_coord_k a \bold{matrix} of species coordinates present in a given
+#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
 #'   coordinates have been retrieved thanks to \code{fspace.conttr} or
 #'   \code{\link{quality.fspaces}} and filtered thanks to \code{\link{sp.filter}}.
 #'
-#' @param asb_sp_relatw_k a \bold{matrix} containing species relative weight (columns)
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
@@ -83,22 +83,22 @@ fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #' by the maximum value possible given species pool (i.e. the most distant
 #' species pair have half of total weight) to standardize values.
 #'
-#' @param sp_faxes_coord_k a \bold{matrix} of species coordinates present in a given
+#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
 #'   coordinates have been retrieved thanks to \code{fspace.conttr} or
 #'   \code{qual.funct.space} and filtered thanks to \code{sp.filter}.
 #'
-#' @param asb_sp_relatw_k a \bold{matrix} containing species relative weight (columns)
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.
 #'
-#' @param fide_asb a \bold{matrix} containing functional identity values a given
+#' @param fide_asb a \strong{matrix} containing functional identity values a given
 #'   assemblage along the dimensions (columns). Can be retrieved after
 #'   \code{fide.computation} function and is compute if NULL. Default: fide_asb
 #'   = NULL.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
@@ -168,14 +168,14 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, fide_asb = NULL,
 #' This function computes the volume of functional space filled by species
 #' present in a given assemblage.
 #'
-#' @param sp_faxes_coord_k a \bold{matrix} of species coordinates present in a given
+#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
 #'   coordinates have been retrieved thanks to \code{fspace.conttr} or
 #'   \code{qual.funct.space} and filtered thanks to \code{sp.filter}.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix must not contain NA, its
 #'   rownames must be filled and the number of species should strictly be higher
@@ -248,21 +248,21 @@ fric.computation <- function(sp_faxes_coord_k, k, check.input = check.input) {
 #' \code{\link{alpha.fd.multidim}} to compute FDiv over multiple assemblages (and
 #' together with other FD indices) .
 #'
-#' @param sp_faxes_coord_k a \bold{matrix} with species coordinates for species present
+#' @param sp_faxes_coord_k a \strong{matrix} with species coordinates for species present
 #'   in a given assemblage along functional axes.
 #'
-#' @param asb_sp_relatw_k a \bold{matrix} containing species relative weight
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight
 #'   (columns) for a given assemblage.
 #'
-#' @param vert_nm a \bold{vector} with names of the species being vertices of the
+#' @param vert_nm a \strong{vector} with names of the species being vertices of the
 #'   convex hull (so should be a subset of colnames of \code{sp_faxes_coord_k}.
 #'   This vector can be provided through \code{\link{vertices}}) function or
 #'   retrieved after the \code{\link{fric.computation}} function. Default: vert_nm =
 #'   NULL.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled, they must
@@ -370,17 +370,17 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, 
 #' This function computes the regularity of distribution of species weights in
 #' the functional space.
 #'
-#' @param sp_faxes_coord_k a \bold{matrix} of species coordinates present in a given
+#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
 #'   coordinates have been retrieved thanks to \code{fspace.conttr} or
 #'   \code{qual.funct.space} and filtered thanks to \code{sp.filter}.
 #'
-#' @param asb_sp_relatw_k a \bold{matrix} containing species relative weight (columns)
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled, they must
@@ -486,17 +486,17 @@ feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #' pool (i.e. the most distant species pair have total weight) to standardize
 #' values.
 #'
-#' @param sp_faxes_coord_k a \bold{matrix} of species coordinates present in a given
+#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
 #'   coordinates have been retrieved thanks to \code{fspace.conttr} or
 #'   \code{qual_funct_space} and filtered thanks to \code{sp.filter}.
 #'
-#' @param asb_sp_relatw_k a \bold{matrix} containing species relative weight (columns)
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
@@ -558,17 +558,17 @@ fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #' possible given species pool (i.e. the most distant species pair have total
 #' weight) to standardize values.
 #'
-#' @param sp_faxes_coord_k a \bold{matrix} of species coordinates present in a given
+#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
 #'   coordinates have been retrieved thanks to \code{fspace.conttr} or
 #'   \code{qual_funct_space} and filtered thanks to \code{sp.filter}.
 #'
-#' @param asb_sp_relatw_k a \bold{matrix} containing species relative weight (columns)
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
@@ -649,15 +649,15 @@ fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #' neighbour possible in the global species pool (i.e. an assemblage hosting
 #' only the most original species).
 #'
-#' @param dist_nn_global_pool a \bold{vector} containing the minimal distance to the
+#' @param dist_nn_global_pool a \strong{vector} containing the minimal distance to the
 #'   nearest neighbor for each species of the global pool of species
 #'
-#' @param asb_sp_relatw_k a \bold{matrix} containing species relative weight
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight
 #'   (columns) for a given assemblage.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species*weight dataframe must not contain NA and its
 #'   rownames must be filled. Default: check.input = FALSE.
@@ -698,16 +698,16 @@ fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k, k,
 #' the global pool centroid (i.e. an assemblage hosting only the most
 #' specialized species).
 #'
-#' @param special_sp_global_pool a \bold{vector} containing the distance to the
+#' @param special_sp_global_pool a \strong{vector} containing the distance to the
 #'   centroid of the global pool of species for each species of the global pool
 #'   (it is called specialization).
 #'
-#' @param asb_sp_relatw_k a \bold{matrix} containing species relative weight
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight
 #'   (columns) for a given assemblage.
 #'
-#' @param k a \bold{character string} referring to the assemblage studied.
+#' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \bold{logical value} allowing to test or not the inputs.
+#' @param check.input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species*weight dataframe must not contain NA and its
 #'   rownames must be filled. Default: check.input = FALSE.

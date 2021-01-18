@@ -15,10 +15,10 @@
 #' data. For this function to work, there must be no NA in your \code{sp_tr}
 #' dataframe.
 #'
-#' @param sp_tr a \bold{dataframe} of traits values for each species. Here traits must
+#' @param sp_tr a \strong{dataframe} of traits values for each species. Here traits must
 #'   be \strong{continuous}
 #'
-#' @param std_method a \bold{character string} referring to the standardization method.
+#' @param std_method a \strong{character string} referring to the standardization method.
 #'   Possible values: \emph{range_min} (standardize by the minimal value of the
 #'   trait), \emph{range_max} (standardize by the minimal value of the trait),
 #'   \emph{center} (use the center transformation: \eqn{x'= x - mean(x)}),
@@ -86,19 +86,19 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #' \code{scale.conttr} function. Option makes it possible to compute correlation
 #' between traits.
 #'
-#' @param sp_tr a \bold{dataframe} of raw/standardized traits values for each species.
-#'   Here traits must be \bold{continuous}
+#' @param sp_tr a \strong{dataframe} of raw/standardized traits values for each species.
+#'   Here traits must be \strong{continuous}
 #'
-#' @param pca a \bold{logical value}, \code{TRUE} to compute PCA analysis, \code{FALSE}
+#' @param pca a \strong{logical value}, \code{TRUE} to compute PCA analysis, \code{FALSE}
 #'   to compute functional space with one trait for each dimension. Default:
 #'   TRUE
 #'
-#' @param nb_dim a \bold{numerical value} referring to the maximum number of dimensions
+#' @param nb_dim a \strong{numerical value} referring to the maximum number of dimensions
 #'   for multidimensional functional spaces. Final number of dimensions depends
 #'   on the number of positive eigenvalues obtained with PCA. High value for
 #'   nb_dim can increase computation time. Default: nbdim=7.
 #'
-#' @param compute_corr a \bold{string value} to compute Pearson correlation
+#' @param compute_corr a \strong{string value} to compute Pearson correlation
 #'   coefficients between traits \code{"pearson"}. You can choose not to compute
 #'   correlation coefficient by \code{"none"}
 #'

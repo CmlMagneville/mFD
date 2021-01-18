@@ -14,36 +14,36 @@
 #'convex hulls in a multidimensional space. For details about indices formulas
 #'see Villeger et al. 2013, Global Ecology and Biogeography (22:671-681).
 #'
-#'@param sp_faxes_coord a \bold{matrix} with coordinates of species (rows) on
+#'@param sp_faxes_coord a \strong{matrix} with coordinates of species (rows) on
 #'  functional axes (columns). Species coordinates have been retrieved thanks to
 #'  \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#'@param asb_sp_occ a \bold{matrix} with presence/absence (coded as 0/1)
+#'@param asb_sp_occ a \strong{matrix} with presence/absence (coded as 0/1)
 #'  of species (columns) in a set of assemblages (rows).
 #'
-#'@param check.input a \bold{logical value} defining whether inputs are checked before
+#'@param check.input a \strong{logical value} defining whether inputs are checked before
 #'  computation of indices. Possible error messages will thus may be more
 #'  understandable for the user than R error messages. Default: check.input =
 #'  TRUE.
 #'
-#'@param beta.family a \bold{character string} for the type of beta-diversity index to
+#'@param beta.family a \strong{character string} for the type of beta-diversity index to
 #'  use, 'Jaccard' (default) and/or 'Sorensen'
 #'
-#'@param store_details a \bold{logical value} indicating whether the user wants to
+#'@param store_details a \strong{logical value} indicating whether the user wants to
 #'  store details. Details are used in the graphical function
 #'  \code{beta.multidim.plot} and thus must be kept if the user want to have
 #'  graphical outputs for the computed indices.
 #'
-#'@param betapart.step a \bold{logical value} indicating whether the computation
+#'@param betapart.step a \strong{logical value} indicating whether the computation
 #'  progress tracking file "step.fbc.txt" should be created. Setting it to FALSE
 #'  will speed up the function. Default is FALSE, and it is automatically turned
 #'  to FALSE when 'betapart.para' is TRUE.
 #'
-#'@param betapart.para a \bold{logical value} indicating whether internal
+#'@param betapart.para a \strong{logical value} indicating whether internal
 #'  parallelization should be used to compute pairwise dissimilarities. Default
 #'  is FALSE.
 #'
-#'@param betapart.para.opt a \bold{list} with details about parallelization. Default
+#'@param betapart.para.opt a \strong{list} with details about parallelization. Default
 #'  value means those parameters are set according to computer specifications.
 #'  'nc' is number of cores (default = 4), 'type' is a character string with
 #'  code of method used (default PSOCK), 'LB' is a boolean specifying whether
@@ -63,13 +63,13 @@
 #'  Sorensen-like dissimilarity.
 #'  \item \emph{details_beta} list if \emph{store_details} is TRUE:
 #'  \emph{sp_faxes_coord} and \emph{asb_sp_occ} on which indices were computed (convenient for drawing
-#'  graphics) ; a \bold{asb_FRic_raw} vector with volume of
-#'  the convex hull shaping each assemblage ; a \bold{asb_FRic} vector with volume of
-#'  the convex hull shaping each assemblage ; a \bold{asb_vertices} a list of
+#'  graphics) ; a \strong{asb_FRic_raw} vector with volume of
+#'  the convex hull shaping each assemblage ; a \strong{asb_FRic} vector with volume of
+#'  the convex hull shaping each assemblage ; a \strong{asb_vertices} a list of
 #'  vectors (1 per assemblage) with names of species being vertices of the
 #'  convex hull }
 #'
-#'@section Notes: \bold{All assemblages should have a number of species strictly
+#'@section Notes: \strong{All assemblages should have a number of species strictly
 #'  higher than the number of functional axes}. Computing intersection of convex
 #'  hulls in space of >5 dimensions is yet impossible with most computers.
 #'  This function uses R libraries 'betapart' (>=1.5.2) for indices computation

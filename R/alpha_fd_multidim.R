@@ -12,28 +12,28 @@
 #'Compute a set of multidimensional space based indices of alpha functional
 #'diversity. The user can choose which functional indices to compute.
 #'
-#'@param sp_faxes_coord a \bold{matrix} of species coordinates in a chosen functional
+#'@param sp_faxes_coord a \strong{matrix} of species coordinates in a chosen functional
 #'  space. Species coordinates have been retrieved thanks to
 #'  \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#'@param asb_sp_w a \bold{matrix} linking weight of species (columns) and a set of
+#'@param asb_sp_w a \strong{matrix} linking weight of species (columns) and a set of
 #'  assemblages (rows).
 #'
-#'@param ind_vect a \bold{vector} of character string of the name of functional indices
-#'  to compute. \bold{Indices names must be written in lower case letters}.
+#'@param ind_vect a \strong{vector} of character string of the name of functional indices
+#'  to compute. \strong{Indices names must be written in lower case letters}.
 #'  Possible indices to compute are: "fide", fdis", "fmpd", "fnnd", "feve", "fric",
 #'  "fdiv", "fori" and "fspe". Default: all the indices are computed.
 #'
-#'@param scaling a \bold{logical value} indicating if scaling is to be done (TRUE) or
+#'@param scaling a \strong{logical value} indicating if scaling is to be done (TRUE) or
 #'  not (FALSE) on functional indices. Scaling is used to be able to compare
 #'  indices values between assemblages. Default: scaling = TRUE.
 #'
-#'@param check.input a \bold{logical value} defining whether inputs are checked before
+#'@param check.input a \strong{logical value} defining whether inputs are checked before
 #'  computation of indices. Possible error messages will thus may be more
 #'  understandable for the user than R error messages. Default: check.input =
 #'  TRUE.
 #'
-#'@param store_details a \bold{logical value} indicating whether the user want to store
+#'@param store_details a \strong{logical value} indicating whether the user want to store
 #'  details. Details are used in graphical functions and thus must be kept if
 #'  the user want to have graphical outputs for the computed indices.
 #'
@@ -42,25 +42,25 @@
 #'  \item \emph{functional_diversity_indices} matrix containing indices values
 #'  (columns) for each assemblage (rows)
 #'
-#'  \item \emph{details} list: a \bold{asb_sp_occ} data.frame of species
-#'  occurrences in each assemblage ; a \bold{asb_sp_relatw} matrix of
-#'  relative weight of species in each assemblage ; a \bold{sp_coord_all_asb}
+#'  \item \emph{details} list: a \strong{asb_sp_occ} data.frame of species
+#'  occurrences in each assemblage ; a \strong{asb_sp_relatw} matrix of
+#'  relative weight of species in each assemblage ; a \strong{sp_coord_all_asb}
 #'  list of matrices of species coordinates along functional axes for species
-#'  present in each assemblage ; a \bold{vert_nm_all_asb} list of vectors of
+#'  present in each assemblage ; a \strong{vert_nm_all_asb} list of vectors of
 #'  species names being vertices of the convex hull for each assemblage ; a
-#'  \bold{mst_all_asb} list of data.frames summarizing link between species in
+#'  \strong{mst_all_asb} list of data.frames summarizing link between species in
 #'  the minimum spanning tree of each assemblage ; a
-#'  \bold{grav_center_vert_coord_all_asb} list of vectors of coordinates of
+#'  \strong{grav_center_vert_coord_all_asb} list of vectors of coordinates of
 #'  the vertices gravity center for each assemblage ; a
-#'  \bold{mean_dtogravcenter_all_asb} list of vectors containing mean distance
+#'  \strong{mean_dtogravcenter_all_asb} list of vectors containing mean distance
 #'  to the species gravity center for each assemblage ; a
-#'  \bold{dist_gravcenter_global_pool} vector containing the distance of each
+#'  \strong{dist_gravcenter_global_pool} vector containing the distance of each
 #'  species to the gravity center of all species from the global pool ; a
-#'  \bold{dist_nn_global_pool} data.frame showing the distances of each
+#'  \strong{dist_nn_global_pool} data.frame showing the distances of each
 #'  species from the global pool to its nearest neighbor ; a
-#'  \bold{nm_nn_all_asb} data.frame containing the name of each nearest
+#'  \strong{nm_nn_all_asb} data.frame containing the name of each nearest
 #'  neighbor of each species present in a given assemblage ; a
-#'  \bold{dist_nn_all_asb} data.frame containing distance of each species
+#'  \strong{dist_nn_all_asb} data.frame containing distance of each species
 #'  present in a given assemblage to its nearest neighbor.}
 #'
 #'@examples

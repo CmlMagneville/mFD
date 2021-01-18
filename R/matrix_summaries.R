@@ -14,9 +14,9 @@
 #' your data. For this function to work, there must be no NA in your
 #' \code{sp_tr} dataframe.
 #'
-#' @param tr_cat a \bold{dataframe} containing three columns for each trait (rows):
-#'   \itemize{ \item \bold{trait_name}: names of all traits as in \code{sp_tr}
-#'   data.frame \item \bold{trait_type}: category codes for each trait as
+#' @param tr_cat a \strong{dataframe} containing three columns for each trait (rows):
+#'   \itemize{ \item \strong{trait_name}: names of all traits as in \code{sp_tr}
+#'   data.frame \item \strong{trait_type}: category codes for each trait as
 #'   followed: \emph{N} for Nominal traits (factor variable), \emph{O} for
 #'   Ordinal traits (ordered variable), \emph{C} for Circular traits (integer
 #'   values), \emph{Q} for quantitative traits (numeric values) and
@@ -24,7 +24,7 @@
 #'   several column). } An option is to add a fourth column with a numeric
 #'   vector of length n (traits number) to specify a weight for each trait.
 #'
-#' @param sp_tr a \bold{dataframe} of traits values (columns) for each species (rows)
+#' @param sp_tr a \strong{dataframe} of traits values (columns) for each species (rows)
 #'
 #' @return a table summarizing for each trait the number of species per modality
 #'   for non-continuous trait and min/max/mean/median/quartiles for continuous
@@ -204,7 +204,7 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 #' Computes summary helping you to picture assemblages. For this function to
 #' work, there must be no NA in your \code{assemblage_species} dataframe.
 #'
-#' @param asb_sp_w a \bold{matrix} showing assemblages (rows) composition in
+#' @param asb_sp_w a \strong{matrix} showing assemblages (rows) composition in
 #'   species (columns).
 #'
 #' @return a species occurrences data.frame in each assemblage
