@@ -56,19 +56,19 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe,
   # check inputs if asked:
   if(check.input == TRUE) {
     if (is.null(rownames(asb_sp_occ))) {
-      stop("Error: No row names provided in species*assemblage dataframe.
+      stop("Error: No row names provided in species*assemblage matrix.
              Please add assemblage names as column names.")
     }
     if (is.null(colnames(asb_sp_occ))) {
-      stop("Error: No column names provided in species*assemblage dataframe.
+      stop("Error: No column names provided in species*assemblage matrix.
              Please add species names as column names.")
     }
     if (any(is.na(asb_sp_occ))) {
-      stop("Error: The species*assemblage dataframe contains NA. Please check.")
+      stop("Error: The species*assemblage matrix contains NA. Please check.")
     }
     
     if (any((asb_sp_occ != 0 & asb_sp_occ != 1))) {
-      stop("Error: The species*assemblage occurrence dataframe should only contain 0 or 1. Please check.")
+      stop("Error: The species*assemblage occurrence matrix should only contain 0 or 1. Please check.")
     }
     
     if (any(! ind_nm %in% c("fred", "fored", "fvuln"))) {
@@ -81,8 +81,8 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe,
            Please check.")
     }
     
-    if (any(!(rownames(asb_sp_occ) %in% names(sp_to_fe$sp_fe)))) {
-      stop("Error: All species in species*assemblage occurence dataframe  should be in the input 'sp_to_fe'.
+    if (any(!(colnames(asb_sp_occ) %in% names(sp_to_fe$sp_fe)))) {
+      stop("Error: All species in species*assemblage occurence matrix  should be in the input 'sp_to_fe'.
           Please check that the function 'sp.to.fe' was applied on trait values of the same set of species.")
     }
     
