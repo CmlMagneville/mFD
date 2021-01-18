@@ -13,21 +13,21 @@ fdiv.computation(
 )
 }
 \arguments{
-\item{sp_faxes_coord_k}{a \bold{matrix} with species coordinates for species present
+\item{sp_faxes_coord_k}{a \strong{matrix} with species coordinates for species present
 in a given assemblage along functional axes.}
 
-\item{asb_sp_relatw_k}{a \bold{matrix} containing species relative weight
+\item{asb_sp_relatw_k}{a \strong{matrix} containing species relative weight
 (columns) for a given assemblage.}
 
-\item{vert_nm}{a \bold{vector} with names of the species being vertices of the
+\item{vert_nm}{a \strong{vector} with names of the species being vertices of the
 convex hull (so should be a subset of colnames of \code{sp_faxes_coord_k}.
 This vector can be provided through \code{\link{vertices}}) function or
 retrieved after the \code{\link{fric.computation}} function. Default: vert_nm =
 NULL.}
 
-\item{k}{a \bold{character string} referring to the assemblage studied.}
+\item{k}{a \strong{character string} referring to the assemblage studied.}
 
-\item{check.input}{a \bold{logical value} allowing to test or not the inputs.
+\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species coordinates matrix and species*weight
 dataframe must not contain NA, their rownames must be filled, they must

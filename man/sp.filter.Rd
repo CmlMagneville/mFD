@@ -7,14 +7,14 @@
 sp.filter(asb_nm, sp_faxes_coord, asb_sp_w)
 }
 \arguments{
-\item{asb_nm}{a \bold{string} object referring to the name of a given
+\item{asb_nm}{a \strong{string} object referring to the name of a given
 community.}
 
-\item{sp_faxes_coord}{a \bold{matrix} of species coordinates in a chosen functional
+\item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a chosen functional
 space. Species coordinates have been retrieved thanks to
 \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
-\item{asb_sp_w}{a \bold{matrix} linking weight of species (columns) and a set of
+\item{asb_sp_w}{a \strong{matrix} linking weight of species (columns) and a set of
 assemblages (rows).}
 }
 \value{

@@ -7,7 +7,7 @@
 mst.computation(sp_faxes_coord_k)
 }
 \arguments{
-\item{sp_faxes_coord_k}{a \bold{matrix} relating species coordinates for species
+\item{sp_faxes_coord_k}{a \strong{matrix} relating species coordinates for species
 present in a given assemblage}
 }
 \value{

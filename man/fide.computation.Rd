@@ -12,17 +12,17 @@ fide.computation(
 )
 }
 \arguments{
-\item{asb_sp_relatw_k}{a \bold{matrix} containing species relative weight (columns)
+\item{asb_sp_relatw_k}{a \strong{matrix} containing species relative weight (columns)
 for a given assemblage.}
 
-\item{sp_faxes_coord_k}{a \bold{matrix} of species coordinates present in a given
+\item{sp_faxes_coord_k}{a \strong{matrix} of species coordinates present in a given
 assemblage in a chosen functional space with only needed axes. Species
 coordinates have been retrieved thanks to \code{fspace.conttr} or
 \code{\link{quality.fspaces}} and filtered thanks to \code{\link{sp.filter}}.}
 
-\item{k}{a \bold{character string} referring to the assemblage studied.}
+\item{k}{a \strong{character string} referring to the assemblage studied.}
 
-\item{check.input}{a \bold{logical value} allowing to test or not the inputs.
+\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species coordinates matrix and species*weight
 dataframe must not contain NA, their rownames must be filled and they must

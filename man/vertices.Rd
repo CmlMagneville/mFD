@@ -8,15 +8,15 @@ assemblage in a multidimensional functional space.}
 vertices(sp_faxes_coord, order_2D = FALSE, check.input = FALSE)
 }
 \arguments{
-\item{sp_faxes_coord}{a \bold{matrix} of species coordinates in a chosen functional
+\item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a chosen functional
 space. Species coordinates have been retrieved thanks to
 \code{fspace.conttr} or \code{qual.funct.space}.}
 
-\item{order_2D}{a \bold{logical value} defining whether vertices names are reordered
+\item{order_2D}{a \strong{logical value} defining whether vertices names are reordered
 so that they define a convex polygon in 2D which is convenient for plotting.
 Default is FALSE, vertices ordered as in row names of 'sp_faxes_coord'}
 
-\item{check.input}{a \bold{logical value} defining whether inputs are checked before
+\item{check.input}{a \strong{logical value} defining whether inputs are checked before
 computation: species names must be put as row.names, there must be no NA
 and species number must be superior to (axes number + 1). Default:
 check.input = TRUE.}

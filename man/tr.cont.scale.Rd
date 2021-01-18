@@ -7,10 +7,10 @@
 tr.cont.scale(sp_tr, std_method = "scale_center")
 }
 \arguments{
-\item{sp_tr}{a \bold{dataframe} of traits values for each species. Here traits must
+\item{sp_tr}{a \strong{dataframe} of traits values for each species. Here traits must
 be \strong{continuous}}
 
-\item{std_method}{a \bold{character string} referring to the standardization method.
+\item{std_method}{a \strong{character string} referring to the standardization method.
 Possible values: \emph{range_min} (standardize by the minimal value of the
 trait), \emph{range_max} (standardize by the minimal value of the trait),
 \emph{center} (use the center transformation: \eqn{x'= x - mean(x)}),

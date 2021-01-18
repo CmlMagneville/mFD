@@ -12,16 +12,16 @@ fspe.computation(
 )
 }
 \arguments{
-\item{asb_sp_relatw_k}{a \bold{matrix} containing species relative weight
+\item{asb_sp_relatw_k}{a \strong{matrix} containing species relative weight
 (columns) for a given assemblage.}
 
-\item{special_sp_global_pool}{a \bold{vector} containing the distance to the
+\item{special_sp_global_pool}{a \strong{vector} containing the distance to the
 centroid of the global pool of species for each species of the global pool
 (it is called specialization).}
 
-\item{k}{a \bold{character string} referring to the assemblage studied.}
+\item{k}{a \strong{character string} referring to the assemblage studied.}
 
-\item{check.input}{a \bold{logical value} allowing to test or not the inputs.
+\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species*weight dataframe must not contain NA and its
 rownames must be filled. Default: check.input = FALSE.}

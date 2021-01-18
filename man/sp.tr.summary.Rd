@@ -7,9 +7,9 @@
 sp.tr.summary(tr_cat, sp_tr)
 }
 \arguments{
-\item{tr_cat}{a \bold{dataframe} containing three columns for each trait (rows):
-\itemize{ \item \bold{trait_name}: names of all traits as in \code{sp_tr}
-data.frame \item \bold{trait_type}: category codes for each trait as
+\item{tr_cat}{a \strong{dataframe} containing three columns for each trait (rows):
+\itemize{ \item \strong{trait_name}: names of all traits as in \code{sp_tr}
+data.frame \item \strong{trait_type}: category codes for each trait as
 followed: \emph{N} for Nominal traits (factor variable), \emph{O} for
 Ordinal traits (ordered variable), \emph{C} for Circular traits (integer
 values), \emph{Q} for quantitative traits (numeric values) and
@@ -17,7 +17,7 @@ values), \emph{Q} for quantitative traits (numeric values) and
 several column). } An option is to add a fourth column with a numeric
 vector of length n (traits number) to specify a weight for each trait.}
 
-\item{sp_tr}{a \bold{dataframe} of traits values (columns) for each species (rows)}
+\item{sp_tr}{a \strong{dataframe} of traits values (columns) for each species (rows)}
 }
 \value{
 a table summarizing for each trait the number of species per modality

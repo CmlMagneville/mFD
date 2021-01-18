@@ -7,19 +7,19 @@
 tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, compute_corr = "pearson")
 }
 \arguments{
-\item{sp_tr}{a \bold{dataframe} of raw/standardized traits values for each species.
-Here traits must be \bold{continuous}}
+\item{sp_tr}{a \strong{dataframe} of raw/standardized traits values for each species.
+Here traits must be \strong{continuous}}
 
-\item{pca}{a \bold{logical value}, \code{TRUE} to compute PCA analysis, \code{FALSE}
+\item{pca}{a \strong{logical value}, \code{TRUE} to compute PCA analysis, \code{FALSE}
 to compute functional space with one trait for each dimension. Default:
 TRUE}
 
-\item{nb_dim}{a \bold{numerical value} referring to the maximum number of dimensions
+\item{nb_dim}{a \strong{numerical value} referring to the maximum number of dimensions
 for multidimensional functional spaces. Final number of dimensions depends
 on the number of positive eigenvalues obtained with PCA. High value for
 nb_dim can increase computation time. Default: nbdim=7.}
 
-\item{compute_corr}{a \bold{string value} to compute Pearson correlation
+\item{compute_corr}{a \strong{string value} to compute Pearson correlation
 coefficients between traits \code{"pearson"}. You can choose not to compute
 correlation coefficient by \code{"none"}}
 }

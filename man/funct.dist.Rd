@@ -7,9 +7,9 @@
 funct.dist(sp_tr, tr_cat, dist_metric)
 }
 \arguments{
-\item{sp_tr}{a \bold{dataframe} of traits values (columns) for each species (rows)}
+\item{sp_tr}{a \strong{dataframe} of traits values (columns) for each species (rows)}
 
-\item{tr_cat}{a \bold{dataframe} containing three columns for each trait (rows):
+\item{tr_cat}{a \strong{dataframe} containing three columns for each trait (rows):
 \itemize{
 \item \strong{trait_name}: names of all traits as in \code{sp_tr} data.frame
 \item \strong{trait_type}: category codes for each trait as followed:

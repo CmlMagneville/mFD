@@ -13,20 +13,20 @@ quality.fspaces(
 )
 }
 \arguments{
-\item{sp_dist}{a \bold{dist object} with pairwise distance among all species (at
+\item{sp_dist}{a \strong{dist object} with pairwise distance among all species (at
 least 3 species needed). Functional distance matrix from trait values can
 be computed using \code{\link{funct.dist}} function.}
 
-\item{fdendro}{a \bold{character string} indicating the clustering algorithm to use
+\item{fdendro}{a \strong{character string} indicating the clustering algorithm to use
 to compute dendrogram. Should be one of the method recognized by
 \code{\link[stats]{hclust}} (e.g. 'average' for UPGMA). Default: fdendro = NULL (so
 no dendrogram computed).}
 
-\item{maxdim_pcoa}{a single \bold{numeric value} with maximum number of PCoA axes to
+\item{maxdim_pcoa}{a single \strong{numeric value} with maximum number of PCoA axes to
 consider to build multidimensional functional spaces. Default: maxdim_pcoa
 = 10. See note about number of axes actually considered.}
 
-\item{deviation_weighting}{a \bold{character string} referring to the method(s)
+\item{deviation_weighting}{a \strong{character string} referring to the method(s)
 used to weight the differences between species pairwise distance in the
 functional space and trait-based distance. \code{'absolute'} (default) means
 absolute differences are used to compute mean absolute deviation \emph{mad}
@@ -34,7 +34,7 @@ index; \code{'squared'} means squared differences are used to compute root of
 mean squared deviation \emph{rmsd} index.
 Both values could be provided to compare quality metrics.}
 
-\item{fdist_scaling}{a \bold{vector} with logical value(s) specifying whether
+\item{fdist_scaling}{a \strong{vector} with logical value(s) specifying whether
 distances in the functional space should be scaled before computing
 differences with trait-based distances. Scaling ensures that trait-based
 distances and distances in the functional space have the same maximum.

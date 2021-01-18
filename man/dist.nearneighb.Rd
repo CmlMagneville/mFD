@@ -8,11 +8,11 @@ space and the identity of the nearest neighbor}
 dist.nearneighb(sp_faxes_coord, ref_sp)
 }
 \arguments{
-\item{sp_faxes_coord}{a \bold{matrix} of species coordinates in a chosen
+\item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a chosen
 functional space. Species coordinates have been retrieved thanks to
 \code{fspace.conttr} or \code{qual.funct.space}.}
 
-\item{ref_sp}{a \bold{character string} referring to the name of the reference
+\item{ref_sp}{a \strong{character string} referring to the name of the reference
 species}
 }
 \value{
