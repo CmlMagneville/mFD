@@ -2,6 +2,7 @@
 
 export(alpha.fd.fe)
 export(alpha.fd.fe.plot)
+export(alpha.fd.hill)
 export(alpha.fd.multidim)
 export(alpha.multidim.plot)
 export(asb.sp.summary)
