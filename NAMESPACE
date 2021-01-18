@@ -2,6 +2,7 @@
 
 export(alpha.fd.multidim)
 export(asb.sp.summary)
+export(beta.fd.multidim)
 export(funct.dist)
 export(quality.fspaces)
 export(quality.fspaces.plot)
