@@ -149,6 +149,7 @@ Then, *mFD* package helps you to **summarize your data** using two distinct func
 ----
 
 
+
 # 2 - Gather species into Functional Entities
 
 The packages allows gathering species into **functional entities (FE)** *ie* **groups of species with same trait values when many species are described with a few categorical or ordinal traits**. It is particularly useful when using large data sets with "functionally similar" species.
