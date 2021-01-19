@@ -53,7 +53,9 @@ Imports:
     geometry,
     betapart,
     ggrepel,
-    rstatix
+    rstatix,
+    vegan,
+    reshape2
 Depends: 
     R (>= 2.10)
 Suggests: 
