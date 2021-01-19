@@ -54,6 +54,7 @@ asb_sp_w <- read.csv(system.file("extdata", "data_fruits_baskets_sp_w_asb.csv", 
 rownames(asb_sp_w) <- asb_sp_w$basket_id
 asb_sp_w <- asb_sp_w[, -1]
 knitr::kable(asb_sp_w[c(1:6), c(1:6)], caption = "Species x assemblages dataframe based on *fruits* dataset")
+asb_sp_w <- as.matrix(asb_sp_w)
 ```
 
 
@@ -65,3 +66,123 @@ knitr::include_graphics(system.file("extdata", "basic_framework.PNG", package = 
 ```
 
 ----
+
+
+# 1 - Know your data
+
+
+The first thing to do before starting analyses is knowing your data. To do so, you must be able to characterize traits you are using. That is why *mFD* package needs a dataframe summarizing trait type for each trait (*ie* each column of the *sp_tr* dataframe)
+
+  👉 the dataframe you need to build must be as followed with the same columns names (*fruits* dataset example)
+  
+
+```{r, echo = FALSE}
+library(knitr)
+sp_tr_cat <- read.csv(system.file("extdata", "data_fruits_baskets_tr_cat.csv", package = "mFD"))
+knitr::kable(head(sp_tr_cat), caption = "Traits types based on *fruits & baskets* dataset")
+```
+
+The **first column** contains **traits name**. The **second column** contains **traits type** following this code: 
+
+* N for nominal trait (factor variable)
+* O for ordinal traits (ordered variable)
+* C for circular traits (integer values)
+* Q for quantitative traits (numeric values)
+* F for fuzzy traits (described with several values defined in several columns in the *sp_tr* dataframe)
+
+The **third column** summarizes to which fuzzy trait belongs each column that refers to a fuzzy trait. Here the "Use" trait is a fuzzy one.
+
+  
+Then, *mFD* package helps you to **summarize your data** using two distinct functions:
+
+* summarize *sp_tr* dataframe using *sp.tr.summary* function. This function returns a list gathering several tables and lists:
+
+  * tables with summaries for non-fuzzy & fuzzy traits. **For non-fuzzy traits**, the table sums up the number of species having each category for ordinal, nominal and circular traits or minimum/first quartile/median/mean/third quartile/maximum for continuous traits. **For fuzzy traits**, the table sums up minimum/first quartile/median/mean/third quartile/maximum for each category of each fuzzy trait.
+    
+  * list gathering traits types for non-fuzzy traits
+    
+  * list gathering modalities of non-continuous and non-fuzzy traits
+
+ 
+    ```{r}
+    library(mFD)
+    sp_tr_summ <- sp.tr.summary(sp_tr_cat, sp_tr)
+    # summary for non-fuzzy traits:
+    sp_tr_summ$tr_summary_non_fuzzy_list
+    # summary for fuzzy traits:
+    sp_tr_summ$tr_summary_fuzzy_list
+    # list gathering traits types for non-fuzzy traits:
+    sp_tr_summ$tr_types
+    # list gathering modalities of non-continuous and non-fuzzy traits
+    sp_tr_summ$mod_list
+    ```
+    
+  
+* summarize *asb_sp_w* matrix using *asb.sp.summary* function. This function returns a list gathering a matrix, a list and several vectors:
+
+  * matrix of species occurrences
+  
+  * vector gathering species total biomass in all assemblages
+  
+  * vector gathering the total abundance/biomass per assemblage
+  
+  * vector gathering species richness per assemblage 
+  
+  * list gathering species names present in each assemblage
+
+    ```{r}
+    asb_sp_summ <- asb.sp.summary(asb_sp_w)
+    # species occurrences for the first 3 assemblages (fruits baskets):
+    head(asb_sp_summ$asb_sp_occ, 3)
+    asb_sp_occ <- asb_sp_summ$asb_sp_occ
+    # species total biomass in all assemblages:
+    asb_sp_summ$tot_ab_all_sp
+    # total biomass per assemblage:
+    asb_sp_summ$tot_ab_all_asb
+    # species richness per assemblage:
+    asb_sp_summ$sp_richn_all_asb
+    # names of species present in the first assemblage:
+    asb_sp_summ$sp_nm_asb[[1]]
+    ```
+
+
+----
+
+
+# 2 - Gather species into Functional Entities
+
+The packages allows gathering species into **functional entities (FE)** *ie* **groups of species with same trait values when many species are described with a few categorical or ordinal traits**. It is particularly useful when using large data sets with "functionally similar" species.
+
+To compute FE, data must carry **non-continuous traits** as FE are computed using non_continuous traits and there must be enough species with both similar and distinct traits values so that computed FE gather more than one species.
+
+In this tutorial, this function is not illustrated (FE for the *fruits dataset* have a single species) and thus functional diversity indices based on FE are not computed. You can have a look to the [Compute functional diversity indices based on Functional Entities] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/How_to_deal_with_Functional_Entities.html> for further analysis using FE.
+
+----
+
+
+# 3 - Compute functional traits-based distances between species (or FE if step 2 done)
+
+To build functional space in which functional indices are computed, functional traits-based distances between species must be calculated. To compute trait-based distances, the *funct.dist* function is used with the following arguments:
+
+```{r, results = "hide"}
+sp_dist <- funct.dist(sp_tr, sp_tr_cat, dist_metric = "kgower")
+```
+  * *sp_tr* is the species-trait dataframe
+  * *sp_tr_cat* is the dataframe summarizing trait type for each trait
+  * *dist_metric* is a character string referring to the metric used to compute distances 👉 The package allows the user to choose the metric used to compute functional distance. Three metrics are available and **the metric must be chosen based on traits data**:
+  
+    * **Euclidean distance** coded "euclidean": if **all traits are continuous**. If all traits are continuous, check the [Compute functional diversity indices based on only continuous traits" tutorial] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/Continuous_traits_framework.html>  which explains how to build a multidimensional space from traits through PCA analysis or directly (one trait =  one dimension).
+    * **Gower distance** coded "classical_gower": if **non-continuous traits**, this method allows traits weighting and distances are calculated using classic Gower distance from the *daisy* package.
+    * **Gower-fuzzy distance** coded "kgower": if **non-continuous & fuzzy traits**, this method can deal with fuzzy traits but no traits ponderation and distances are calculated as the square of Pavoine's generalization of Gower's metric with the *dist.ktab* function from *ade4* package.
+ 
+
+💡 If your data gathers a really high number of species and/or traits, this function might take time to run (and you might have memory issues)
+
+This function returns a dist object with traits-based distances between all pairs of species:
+```{r}
+sp_dist
+```
+
+----
+
+
