@@ -164,24 +164,6 @@ In this tutorial, this function is not illustrated (FE for the *fruits dataset* 
 
 To build functional space in which functional indices are computed, functional traits-based distances between species must be calculated. To compute trait-based distances, the *funct.dist* function is used with the following arguments:
 
-```{r, results = "hide"}
-sp_dist <- funct.dist(sp_tr, sp_tr_cat, dist_metric = "kgower")
-```
-  * *sp_tr* is the species-trait dataframe
-  * *sp_tr_cat* is the dataframe summarizing trait type for each trait
-  * *dist_metric* is a character string referring to the metric used to compute distances 👉 The package allows the user to choose the metric used to compute functional distance. Three metrics are available and **the metric must be chosen based on traits data**:
-  
-    * **Euclidean distance** coded "euclidean": if **all traits are continuous**. If all traits are continuous, check the [Compute functional diversity indices based on only continuous traits" tutorial] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/Continuous_traits_framework.html>  which explains how to build a multidimensional space from traits through PCA analysis or directly (one trait =  one dimension).
-    * **Gower distance** coded "classical_gower": if **non-continuous traits**, this method allows traits weighting and distances are calculated using classic Gower distance from the *daisy* package.
-    * **Gower-fuzzy distance** coded "kgower": if **non-continuous & fuzzy traits**, this method can deal with fuzzy traits but no traits ponderation and distances are calculated as the square of Pavoine's generalization of Gower's metric with the *dist.ktab* function from *ade4* package.
- 
-
-💡 If your data gathers a really high number of species and/or traits, this function might take time to run (and you might have memory issues)
-
-This function returns a dist object with traits-based distances between all pairs of species:
-```{r}
-sp_dist
-```
 
 ----
 
