@@ -1,0 +1,67 @@
+---
+title: "general_mFD_workflow"
+author: "Camille Magneville"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{general_mFD_workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+# About this tutorial 
+
+This tutorial explains the basic workflow to follow to compute functional diversity (FD) indices in a multidimensional space using *mFD* package. Other functions are available and their uses are illustrated in others tutorials.
+
+The data set used to illustrate this tutorial is *a fruit dataset* based on 25 types of fruits distributed in 10 fruits baskets. Each fruit is characterized by six traits values summarized in the following table:
+
+| Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
+|:------------:|:------------------:|:------------:|:-------------------:|:---------------:|:-----:|
+|Size          | Maximal diameter   |Ordinal       |5                    |0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20|cm|
+|Plant         | Growth form        |Categorical   |4                    |tree; schrub; vine; forb|NA|
+|Climate       | Climatic niche     |Ordinal       |3                    |temperate ; subtropical ; tropical|NA|
+|Seed          | Seed type          |Ordinal       |3                    |none ; pip ; pit| NA|
+|Sugar         | Sugar              |Continuous    |NA                   |NA                |g/kg|
+|Use           | Use as food        |Fuzzy         |3                    |raw ; pastry ; jam|%|
+
+Here fruits are **species** and baskets are **species assemblages**.
+
+----
+
+# Overview of the functional framework
+
+The use of the *mFD* package is based on two objects: 
+
+* a dataframe summarizing traits values for each species called *sp_tr* dataframe in this tutorial
+
+```{r, echo = FALSE}
+library(knitr)
+sp_tr <- read.csv(system.file("extdata", "data_fruits_baskets_sp_tr.csv", package = "mFD"))
+sp_tr$Plant <- as.factor(sp_tr$Plant)
+sp_tr$Size <- as.ordered(sp_tr$Size)
+sp_tr$Seed <- as.ordered(sp_tr$Seed)
+sp_tr$Climate <- as.ordered(sp_tr$Climate)
+rownames(sp_tr) <- sp_tr$species_id
+sp_tr <- sp_tr[, -1]
+knitr::kable(head(sp_tr), caption = "Species x traits dataframe based on *fruits* dataset")
+```
+
+* a matrix summarizing species assemblages, called *asb_sp_w* matrix in this tutorial. Weights in this matrix can be occurrence data, abundance, biomass, coverage... The studied example works with biomass and this matrix looks at it follows:
+```{r, echo = FALSE}
+library(knitr)
+asb_sp_w <- read.csv(system.file("extdata", "data_fruits_baskets_sp_w_asb.csv", package = "mFD"))
+rownames(asb_sp_w) <- asb_sp_w$basket_id
+asb_sp_w <- asb_sp_w[, -1]
+knitr::kable(asb_sp_w[c(1:6), c(1:6)], caption = "Species x assemblages dataframe based on *fruits* dataset")
+```
+
+
+Based on these two objects, the *mFD* package works as shown in the following figure. This tutorial will guide you through the main framework step by step.
+
+```{r, echo = FALSE, out.width = "600px", fig.cap = "Basic framework of the mFD package"}
+library(knitr)   
+knitr::include_graphics(system.file("extdata", "basic_framework.PNG", package = "mFD"))
+```
+
+----
