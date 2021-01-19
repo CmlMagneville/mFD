@@ -10,3 +10,90 @@ vignette: >
 
 ---
 
+
+
+# About this tutorial
+
+This tutorial explains the workflow to use to compute functional space based on continuous traits and it shows how to retrieve species coordinates and species functional distances in the functional space. 
+
+🧩 This tutorial uses a dataset from one of the 80 CESTES database (Jeliazkov & the CESTES consortium (2019)) based on Villeger et al (2012). This dataframe contains 45 fish species from the Terminos Lagoon (Gulf of Mexico) gathered into 36 sites considered as assemblages. Each species is described with 16 continuous morphological traits.
+
+When the dataset **only** gathers continuous traits, the functional space can be computed using one trait for one dimension or using Principal Component Analysis (PCA: convert correlations among samples into a 2D plot). 💡 Using a PCoA on continuous traits and euclidean distance is the same than using a PCA (clusters made by minimizing the linear distance (PCoA) are the same as those obtained by maximizing linear correlations (PCA)).
+
+
+----
+
+
+# 1 - Load dataset:
+
+
+The species traits dataframe has rows corresponding to species and columns corresponding to traits. The different traits are summed up in the following table:
+
+| Trait name | Trait signification              | 
+|:----------:|:--------------------------------:|
+| logM       | log(mass)                        |
+| Ogsf       | Oral gape surface                |
+| OgSh       | Oral gape shape                  |
+| OgPo       | Oral gape position               |
+| GrLg       | Gill raker length                |
+| GtLg       | Gut length                       |
+| EySz       | Eye size                         |
+| EyPo       | Eye position                     |
+| BdSh       | Body transversal shape           |
+| BdSf       | Body transversal surface         |
+| PfPo       | Pectoral fin position            |
+| PfSh       | Aspect ratio of the pectoral fin |
+| CpHt       | Caudal peduncle throttling       |
+| CfSh       | Aspect ratio of the caudal fin   |
+| FsRt       | Fins surface ratio               |
+| FsSf       | 	Fins surface to body size ratio |
+ 
+Here is the species-trait dataframe:
+
+```{r, echo = FALSE}
+library(knitr)
+sp_tr <- read.csv(system.file("extdata", "data_cestes_sp_tr.csv", package = "mFD"), dec = ",", sep = ":")
+rownames(sp_tr) <- sp_tr$Sp
+sp_tr <- sp_tr[, -1]
+knitr::kable(head(sp_tr), caption = "Species x traits dataframe based on *CESTES* dataset")
+```
+
+Here is the species-assemblage dataframe summarizing biomass recorded in a volume of 4500m^3 per site and per species: 
+
+```{r, echo = FALSE}
+library(knitr)
+asb_sp_w <- read.csv(system.file("extdata", "data_cestes_asb_sp_w.csv", package = "mFD"), dec = ",", sep = ":")
+rownames(asb_sp_w) <- paste0("site", sep = "_", asb_sp_w$Sites)
+asb_sp_w <- asb_sp_w[, -1]
+asb_sp_w$Urobatis_jamaicensis <- as.numeric(asb_sp_w$Urobatis_jamaicensis)
+# remove sites 12, 23, 35 because Fric can not be computed on it (for a clean example):
+asb_sp_w <- asb_sp_w[-c(11, 22, 33), ]
+knitr::kable(head(asb_sp_w), caption = "Species x assemblages dataframe based on *CESTES* dataset")
+```
+
+
+-----
+
+# 2 - Scale your traits data (or not)
+
+Before building the functional space, traits values can be standardized in several ways: standardization by the minimal/maximal value of the trait, center-transformation, scale transformation or scale-center transformation can be used.
+
+👉  Standardizing traits or not is a choice from the user, there is no "rule" to decide to standardize or not. Standardization allows to conserve distances proportions (*ie* if one species is twice as far from another species based on traits, then, in the multidimensional space, this species will still be twice as far from the other). 
+If there is no scaling, then distances in the multidimensional space are a raw representation of traits based distances.
+
+In this example, we consider scale-center transformation of our data using the *tr.cont.scale* function of the *mFD* package. This function uses as inputs:
+
+  * *sp_tr* the dataframe summarizing species traits
+  * *std_method* a character string referring to the method used for scaling
+
+For our example, this function works as follow:
+
+```{r}
+library(mFD)
+stand_sp_tr <- mFD::tr.cont.scale(sp_tr, std_method = "scale_center")
+```
+
+The dataframe *stand_sp_tr* now contains the standardized value of traits.
+
+
+----
