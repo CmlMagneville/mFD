@@ -41,9 +41,10 @@ library(mFD)
 # How to use the *mFD* package?
 
 To compute functional diversity indices, the user needs:
-    * a dataframe summarizing species traits (species in rows, traits in columns). The mFD package works with all kind of traits: quantitative, ordinal, nominal, circular and fuzzy-coded.
-    * a dataframe summarizing species gathering into assemblages (assemblages in rows, species in columns). All assemblages must at least contain one species.
-    * a dataframe summarizing traits category (first column with traits name, second column with traits type, third column with fuzzy name of fuzzy traits - if no fuzzy traits: NA).
+
+  * a dataframe summarizing species traits (species in rows, traits in columns). The mFD package works with all kind of traits: quantitative, ordinal, nominal, circular and fuzzy-coded.
+  * a matrix summarizing species gathering into assemblages (assemblages in rows, species in columns). All assemblages must at least contain one species.
+  * a dataframe summarizing traits category (first column with traits name, second column with traits type, third column with fuzzy name of fuzzy traits - if no fuzzy traits: NA).
 
 For a complete understanding of the functional workflow and the packages possibilities, please refer to the [General_mFD_workflow_vignette] <https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.html>.
 
