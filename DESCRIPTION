@@ -1,6 +1,6 @@
 Package: mFD
 Title: A computation of functional spaces and functional indices
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     c(person("Sebastien", "Villeger", role = c("aut", "ths"),
     email = "sebastien.villeger@cnrs.fr"),
