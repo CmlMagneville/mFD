@@ -40,9 +40,20 @@
 #' range measured on the sample. If x contains data from various types, then the
 #' option \code{"scaledBYsd"} is not suitable (a warning will appear if the option
 #' selected with that condition)."
+#' 
+#' @param stop_if_NA a \strong{logical value} to stop or not the process if the
+#'   \code{sp_tr} data frame contains NA. Functional measures are sensitive to
+#'   missing traits. For further explanations, see the Note section.
+#'   Default: stop_if_NA = TRUE
 #'
 #' @return a dist object containing distance between each pair of species
 #'
+#' @section Notes: If the \code{sp_tr} data frame contains NA you can either
+#'   chose to compute anyway functional distances (but keep in mind that
+#'   \strong{Functional measures are sensitive to missing traits!}) or you can
+#'   delete species with missing or extrapolate missing traits (see
+#'   \emph{Johnson et al. (2020)})
+#' 
 #' @examples
 #' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 #' sp_tr <- sp_tr[, -c(6:8)]
@@ -53,51 +64,18 @@
 #' @export
 
 
-funct.dist <- function(sp_tr, tr_cat, dist_metric) {
+funct.dist <- function(sp_tr, tr_cat, dist_metric, stop_if_NA = TRUE) {
   
-  if (any(is.na(sp_tr))==TRUE) {
+  if (any(is.na(sp_tr)) == TRUE) {
     
-    if(Sys.info()["sysname"]=="Windows") {
-      
-      if(utils::askYesNoWinDialog("The species*traits matrix contains NA, do you want
-                       to continue?
-                       (functional measures are sensitive to missing traits") == FALSE) {
-        
-        stop(
-          "you can delete species with missing or extrapolate
-        missing traits (Johnson et al. (2020))")
-        
-      } else {
-        
-        cat(
-          "Computing, friendly remember that functional measures
-        are sensitive to missing traits, you can delete species with missing
-        or extrapolate missing traits (Johnson et al. (2020))
-        ","\n")
-        
-      }
-      
-    } else{
-      
-      if(utils::askYesNo("The species*traits matrix contains NA, do you want
-                       to continue?
-                       (functional measures are sensitive to missing traits)") == FALSE) {
-        
-        stop(
-          "you can delete species with missing or extrapolate
-        missing traits (Johnson et al. (2020))")
-        
-      } else {
-        
-        cat(
-          "Computing, friendly remember that functional measures
-        are sensitive to missing traits, you can delete species with missing
-        or extrapolate missing traits (Johnson et al. (2020))
-        ","\n")
-        
-      }
+    if (stop_if_NA == TRUE) {
+      stop("Error: Species-traits dataframe contains NA. 
+      If you want to continue with missing traits (Be careful: Functional measures 
+      are sensitive to missing traits), set 'stop_if_NA' parameter to FALSE. 
+      Otherwise you can delete species with missing or extrapolate missing traits (Johnson et al. (2020)")
     }
-  } # end of checking no NA in traits values
+    
+  }
   
   if (! is.data.frame(sp_tr))  {
     stop("Error: Your species-traits data must be gathered in a matrix")
