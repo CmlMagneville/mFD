@@ -4,7 +4,7 @@
 \alias{funct.dist}
 \title{Compute functional distance between species}
 \usage{
-funct.dist(sp_tr, tr_cat, dist_metric, stop_if_NA = TRUE)
+funct.dist(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE)
 }
 \arguments{
 \item{sp_tr}{a \strong{dataframe} of traits values (columns) for each species (rows)}
@@ -37,6 +37,11 @@ range measured on the sample. If x contains data from various types, then the
 option \code{"scaledBYsd"} is not suitable (a warning will appear if the option
 selected with that condition)."}
 
+\item{scaling}{a \strong{character string} refering to the way traits must be
+scaled. There are three options: \code{scaledBYrange} (if traits must be scaled by range),
+\code{scaledBYsd} (if traits must be scaled by their standard deviation) or
+\code{noscale} (if traits do not have to be scaled).}
+
 \item{stop_if_NA}{a \strong{logical value} to stop or not the process if the
 \code{sp_tr} data frame contains NA. Functional measures are sensitive to
 missing traits. For further explanations, see the Note section.
@@ -62,6 +67,7 @@ load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 sp_tr <- sp_tr[, -c(6:8)]
 load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
 sp_tr_cat <- sp_tr_cat[-c(6:8), ]
-mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", stop_if_NA = TRUE)
+mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", 
+ scaling = 'noscale', stop_if_NA = TRUE)
 
 }
