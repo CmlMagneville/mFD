@@ -165,7 +165,7 @@ fe_nb_sp <- sp_to_fe$fe_nb_sp
 # 4 - Compute FEs coordinates, build functional space, compute & plot alpha and beta functional indices
 
 
-Then based on the dataframe containing the value of traits for each FE, the workflow is the same as the one listed in the <span style="color:MediumAquamarine;">**"mFD_general_workflow vignette**</span> to compute functional trait based distance, multidimensional functional space and associated plots and compute alpha and beta functional indices (step 3 till the end). It will thus not be summed up in this dataframe. 
+Then based on the dataframe containing the value of traits for each FE, the workflow is the same as the one listed in the [mFD_general_workflow] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm> to compute functional trait based distance, multidimensional functional space and associated plots and compute alpha and beta functional indices (step 3 till the end). It will thus not be summed up in this dataframe. 
 
 
 ----
@@ -175,6 +175,7 @@ Then based on the dataframe containing the value of traits for each FE, the work
 
 
 However, the *mFD* package allows to compute functional indices based on FEs following the *Mouillot et al (2013)* framework using the *alpha.fd.fe* function. It computes:
+
   * *Functional Redundancy* that reflects the average number of species per FE
   * *Functional Overredundancy* that reflects the proportion of species in excess in
 species-rich FE *ie* it represents the percentage of species that fill functional
@@ -191,6 +192,7 @@ mFD::alpha.fd.fe(asb_sp_occ, sp_to_fe,
 ```
 
 It takes as inputs:
+
   * *asb_sp_occ* the assemblages-species occurrence dataframe
   * *sp_to_fe* a list with details of species clustering into FE from **sp.to.fe**
   * *ind_nm* a vector referring to the indices to compute: *fred* for Functional Redundancy, *fored* for Functional Overredundancy and *fvuln* for Functional Vulnerability.
@@ -247,7 +249,7 @@ This function takes as inputs:
   * *fd_fe_values* a dataframe with the indices values for each assemblage retrieved through the *fe.fd.multidim* function
   * *fe_nb_sp* a vector containing the number of species per FE. It can retrieved through the *sp.to.fe* function
   * color and size arguments to personnalize the plot. To have more information about it, read the *alpha.fe.fd.plot* help file
-  * *check_input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
+  * *check.input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
   
 For the studied example, the plot looks as follow:
   
