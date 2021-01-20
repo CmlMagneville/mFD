@@ -4,7 +4,7 @@
 \alias{funct.dist}
 \title{Compute functional distance between species}
 \usage{
-funct.dist(sp_tr, tr_cat, dist_metric)
+funct.dist(sp_tr, tr_cat, dist_metric, stop_if_NA = TRUE)
 }
 \arguments{
 \item{sp_tr}{a \strong{dataframe} of traits values (columns) for each species (rows)}
@@ -36,6 +36,11 @@ normalized by the known range of the whole population instead of the observed
 range measured on the sample. If x contains data from various types, then the
 option \code{"scaledBYsd"} is not suitable (a warning will appear if the option
 selected with that condition)."}
+
+\item{stop_if_NA}{a \strong{logical value} to stop or not the process if the
+\code{sp_tr} data frame contains NA. Functional measures are sensitive to
+missing traits. For further explanations, see the Note section.
+Default: stop_if_NA = TRUE}
 }
 \value{
 a dist object containing distance between each pair of species
@@ -44,11 +49,19 @@ a dist object containing distance between each pair of species
 For a given combination of traits, this function returns the functional
 distance matrix between species
 }
+\section{Notes}{
+ If the \code{sp_tr} data frame contains NA you can either
+chose to compute anyway functional distances (but keep in mind that
+\strong{Functional measures are sensitive to missing traits!}) or you can
+delete species with missing or extrapolate missing traits (see
+\emph{Johnson et al. (2020)})
+}
+
 \examples{
 load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 sp_tr <- sp_tr[, -c(6:8)]
 load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
 sp_tr_cat <- sp_tr_cat[-c(6:8), ]
-mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower")
+mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", stop_if_NA = TRUE)
 
 }

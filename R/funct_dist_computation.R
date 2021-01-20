@@ -59,7 +59,7 @@
 #' sp_tr <- sp_tr[, -c(6:8)]
 #' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
 #' sp_tr_cat <- sp_tr_cat[-c(6:8), ]
-#' mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower")
+#' mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", stop_if_NA = TRUE)
 #'
 #' @export
 
