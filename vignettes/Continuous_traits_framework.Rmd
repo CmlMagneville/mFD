@@ -137,7 +137,7 @@ head(fspace$`species coordinates in functional space`)
 
   * a list object containing species distances in the functional space:
 ```{r}
-head(fspace$`species distance in functional space`)
+fspace$`species distance in functional space`
 ```
 
   * a correlation matrix containing correlation between traits and their associated pvalue:

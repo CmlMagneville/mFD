@@ -4,3 +4,5 @@
 ^README\.Rmd$
 ^mFD\.Rproj$
 ^\.Rproj\.user$
+^doc$
+^Meta$
