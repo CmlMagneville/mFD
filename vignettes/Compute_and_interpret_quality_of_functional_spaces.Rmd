@@ -62,7 +62,7 @@ colnames(sp_tr_cat) <- c("trait_name", "trait_type", "fuzzy_name")
 First, traits based distance between species should be computed. Here we use Gower distance.
 
 ```{r, echo = FALSE}
-dist_fruits <- mFD::funct.dist(sp_tr = sp_tr, tr_cat = sp_tr_cat, dist_metric = "classical_gower")
+dist_fruits <- mFD::funct.dist(sp_tr = sp_tr, tr_cat = sp_tr_cat, dist_metric = "classical_gower", scaling = 'noscale', stop_if_NA = TRUE)
 summary(dist_fruits)
 ```
 
@@ -152,6 +152,7 @@ dplyr::filter(sp.x %in% c("cherry","lime","lemon") & sp.y %in% c("cherry","lime"
 dplyr::select(sp.x, sp.y,tr,pcoa_4d,tree_average) %>%
 dplyr::mutate(across(where(is.numeric), round, 2))
 ```
+
 As expected given trait values, Gower distance between lime and lemon is 2.75 times lower than distance between each of them and cherry. Euclidean distances in the 4D space are very similar to those Gower distance, with only a slight overestimation. Meanwhile, on the UPGMA dendrogram, lime is as distant to lemon than to the cherry and lemon is even closer to the cherry than to the lime. This is an illustration of the usual bias of **dendrogram that overestimates distance between some pairs of species actually close to each other**.
 Now let's have look to the distance between pineapple and other fruits:
 

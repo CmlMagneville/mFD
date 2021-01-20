@@ -165,7 +165,7 @@ In this tutorial, this function is not illustrated (FE for the *fruits dataset* 
 To build functional space in which functional indices are computed, functional traits-based distances between species must be calculated. To compute trait-based distances, the *funct.dist* function is used with the following arguments:
 
 ```{r, results = "hide"}
-sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "kgower")
+sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "kgower", scaling = 'noscale', stop_if_NA = TRUE)
 ```
   * *sp_tr* is the species-trait dataframe
   * *sp_tr_cat* is the dataframe summarizing trait type for each trait
