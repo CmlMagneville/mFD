@@ -135,9 +135,10 @@ fspace$`mAD and mSD for each functional space`
 head(fspace$`species coordinates in functional space`)
 ```
 
-  * a list object containing species distances in the functional space:
+  * a dist object containing species distances in the functional space (here 5D space) for the first five species:
 ```{r}
-fspace$`species distance in functional space`
+dist_mat <- as.matrix(fspace$`species distance in functional space`$`5D`)
+dist_mat[c(1:5), c(1:5)]
 ```
 
   * a correlation matrix containing correlation between traits and their associated pvalue:
