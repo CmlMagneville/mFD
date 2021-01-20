@@ -41,6 +41,11 @@
 #' option \code{"scaledBYsd"} is not suitable (a warning will appear if the option
 #' selected with that condition)."
 #' 
+#' @param scaling a \strong{character string} refering to the way traits must be
+#'   scaled. There are three options: \code{scaledBYrange} (if traits must be scaled by range),
+#'   \code{scaledBYsd} (if traits must be scaled by their standard deviation) or
+#'   \code{noscale} (if traits do not have to be scaled). 
+#' 
 #' @param stop_if_NA a \strong{logical value} to stop or not the process if the
 #'   \code{sp_tr} data frame contains NA. Functional measures are sensitive to
 #'   missing traits. For further explanations, see the Note section.
@@ -59,12 +64,13 @@
 #' sp_tr <- sp_tr[, -c(6:8)]
 #' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
 #' sp_tr_cat <- sp_tr_cat[-c(6:8), ]
-#' mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", stop_if_NA = TRUE)
+#' mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", 
+#'  scaling = 'noscale', stop_if_NA = TRUE)
 #'
 #' @export
 
 
-funct.dist <- function(sp_tr, tr_cat, dist_metric, stop_if_NA = TRUE) {
+funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
   
   if (any(is.na(sp_tr)) == TRUE) {
     
@@ -108,10 +114,12 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, stop_if_NA = TRUE) {
              traits*category data.frame. Please check.")
   }
   
-  if(ncol(tr_cat) == 4)  cat("tr_cat has 4 columns, if you use classical_gower
+  if (ncol(tr_cat) == 4) {
+    cat("tr_cat has 4 columns, if you use classical_gower
                              traits will be weighted", "\n") # end of checking weight information
+  } 
   
-  if(dist_metric == "classical_gower") {
+  if (dist_metric == "classical_gower") {
     
     if(ncol(tr_cat) == 4) {
       ktab_dist <- cluster::daisy(sp_tr, "gower", weights = tr_cat$weight)
@@ -223,23 +231,18 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, stop_if_NA = TRUE) {
     ktab_list <- ade4::ktab.list.df(all_trait)
     
     
-    # Compute the final distance using the retained categories
-    switch(utils::menu(c("Quantitative variables must be scaled by their range : scaledBYrange",
-                         
-                         "Quantitative variables must be scaled by their standard deviation :scaledBYsd",
-                         
-                         "Quantitative variables should not be scaled : noscale"),
-                       
-                       title="Do you want to scale quantitative varibles ?") + 1,
-           cat("Nothing done\n"),
-           
-           ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),option = "scaledBYrange"),
-           
-           ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),option = "scaledBYsd"),
-           
-           ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),option = "noscale")) #End of the choice of the method to scale
+    # Compute the final distance using the retained categories:
+    
+    if (scaling == "scaledBYrange") {
+      ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),option = "scaledBYrange")
+    }
+    if (scaling == "scaledBYsd") {
+      ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),option = "scaledBYsd")
+    }
+    if (scaling == "noscale") {
+      ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),option = "noscale")
+    }
   }
-  
   # if some species have a functional distance equal to 0, tell the user that it
   # could be a god idea to gather species into FEs:
   
@@ -248,6 +251,4 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, stop_if_NA = TRUE) {
   }
   
   return(ktab_dist)
-  
 }
-
