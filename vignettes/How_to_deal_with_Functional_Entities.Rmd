@@ -1,0 +1,267 @@
+---
+title: "How_to_deal_with_Functional_Entities"
+author: "Camille Magneville"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How_to_deal_with_Functional_Entities}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+
+---
+
+# 1 - Why Functional Entities (FEs)?
+
+The packages allows gathering species into **functional entities (FEs)** *ie* **groups of species with same trait values when many species are described with a few categorical or ordinal traits**. It is particularly useful when using large data sets with "functionally similar" species. Working with FEs is also interesting to understand the links between functional diversity and ecological processes as redundant species that are supposed to have similar ecological roles are clustered in this method.
+
+To compute FEs, data must carry **non-continuous traits** as FEs are computed using non_continuous traits and there must be enough species with both similar and distinct traits values so that computed FEs gather more than one species.
+
+
+----
+
+
+# 2 - Tutorial's data
+
+This tutorial uses the *fruits dataset* based on 25 types of fruits distributed in 10 fruits baskets. Each fruit is characterized by 6 traits values summarized in the following table:
+
+| Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
+|:------------:|:------------------:|:------------:|:-------------------:|:---------------:|:-----:|
+|Size          | Maximal diameter   |Ordinal       |5                    |small ; medium ; large |cm|
+|Plant         | Growth form        |Categorical   |4                    |tree ; not tree |NA|
+|Climate       | Climatic niche     |Ordinal       |3                    |temperate ; tropical|NA|
+|Seed          | Seed type          |Ordinal       |3                    |none ; pip ; pit| NA|
+
+
+Here fruits are **species** and baskets are **species assemblages**.
+
+💡 *This dataset is changed compared to the one used in the mFD general workflow vignette to only keep ordinal and categorical traits and categories are restrained to 2 or 3 per traits to have less unique combination values*
+
+The following dataframe and matrix are needed: 
+
+  * Here is the dataframe summarizing traits values for each species called *sp_tr* dataframe in this tutorial:
+
+```{r, echo = FALSE}
+library(knitr)
+sp_tr <- read.csv(system.file("extdata", "data_fruits_baskets_sp_tr.csv", package = "mFD"))
+sp_tr$Plant <- as.factor(sp_tr$Plant)
+sp_tr$Size <- as.ordered(sp_tr$Size)
+sp_tr$Seed <- as.ordered(sp_tr$Seed)
+sp_tr$Climate <- as.ordered(sp_tr$Climate)
+rownames(sp_tr) <- sp_tr$species_id
+sp_tr <- sp_tr[, -1]
+
+# only keep the first 4 traits to illustrate FEs:
+sp_tr <- sp_tr[, c(1:4)]
+
+# Decrease the number of modalities per trait for convenience (to have less unique combinations of trait values):
+
+# size grouped into only 3 categories:
+sp_tr[, "Size"] <- as.character(sp_tr[ , "Size"])
+sp_tr[which(sp_tr[ , "Size"] %in% c("0-1cm", "1-3cm", "3-5cm")), "Size"] <- "small"
+sp_tr[which(sp_tr[, "Size"] == "5-10cm"), "Size"] <- "medium"
+sp_tr[which(sp_tr[, "Size"] == "10-20cm"), "Size"] <- "large"
+sp_tr[, "Size"] <- factor(sp_tr[, "Size"], levels = c("small", "medium", "large"),
+                          ordered = TRUE)
+
+# Plant type grouped into only 2 categories:
+sp_tr[, "Plant"] <- as.character(sp_tr[, "Plant"])
+sp_tr[which(sp_tr[, "Plant"] != "tree"), "Plant"] <- "Not_tree"
+sp_tr[, "Plant"] <- factor(sp_tr[, "Plant"], levels = c("Not_tree", "tree"), 
+                           ordered = TRUE)
+
+# Plant Origin grouped into only 2 categories:
+sp_tr[, "Climate"] <- as.character(sp_tr[, "Climate"])
+sp_tr[which(sp_tr[, "Climate"] != "temperate"), "Climate"] <- "tropical"
+sp_tr[, "Climate"] <- factor(sp_tr[, "Climate"], levels = c("temperate", "tropical"),
+                            ordered = TRUE)
+
+knitr::kable(head(sp_tr), caption = "Species x traits dataframe based on *fruits* dataset")
+```
+
+   * Here is the matrix summarizing assemblages:
+   
+```{r, echo = FALSE}
+library(knitr)
+asb_sp_w <- read.csv(system.file("extdata", "data_fruits_baskets_sp_w_asb.csv", package = "mFD"))
+rownames(asb_sp_w) <- asb_sp_w$basket_id
+asb_sp_w <- asb_sp_w[, -1]
+knitr::kable(asb_sp_w[c(1:6), c(1:6)], caption = "Species x assemblages dataframe based on *fruits* dataset")
+asb_sp_w <- as.matrix(asb_sp_w)
+```
+
+  * Here is the dataframe summarizing traits categories: The **first column** contains **traits name**. The **second column** contains **traits type** following this code: 
+
+    * N for nominal trait (factor variable)
+    * O for ordinal traits (ordered variable)
+    * C for circular traits (integer values)
+    * Q for quantitative traits (numeric values)
+    * F for fuzzy traits (described with several values defined in several columns in the *sp_tr* dataframe)
+
+The **third column** summarizes to which fuzzy trait belongs each column that refers to a fuzzy trait. Here there is no fuzzy traits, thus the column only contains NA.
+
+```{r, echo = FALSE}
+library(knitr)
+tr_cat <- read.csv(system.file("extdata", "data_fruits_baskets_tr_cat.csv", package = "mFD"))
+# only keeps traits 1 - 4:
+tr_cat <- tr_cat[c(1:4), ]
+knitr::kable(head(tr_cat), caption = "Traits types based on *fruits & baskets* dataset")
+```
+
+
+```{r}
+asb_sp_summ <- mFD::asb.sp.summary(asb_sp_w)
+# species occurrences for the first 3 assemblages (fruits baskets):
+head(asb_sp_summ$asb_sp_occ, 3)
+asb_sp_occ <- asb_sp_summ$asb_sp_occ
+```
+
+
+----
+
+# 3 - Gather species into FEs
+
+The *mFD* package allows the user to gather species into FEs using the *sp.to.fe* function. It uses the following arguments:
+
+```{r, results = "hide", eval = FALSE}
+mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) 
+```
+
+  * *sp_tr* the dataframe of species traits
+  * *sp_tr_cat* the dataframe summarizing traits categories
+  * *fe_nm_type* is a character string referring to the way FEs should be named: they can be named after their decreasing rank in term of number of species (*i.e. fe_1 is the one gathering most species*) (*fe_rank*) or they can be named after names of traits
+  * *check_input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
+  
+Let's use this function with the *fruits dataset*:
+```{r}
+sp_to_fe <- mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) 
+```
+
+This function returns:
+
+  * a vector containing FEs names:
+```{r}
+sp_to_fe$fe_nm
+```
+
+  * a vector containing for each species, the FE it belongs to:
+```{r}
+sp_fe <- sp_to_fe$sp_fe
+```
+
+  * a dataframe containing for FEs, the values of traits for each FE:
+```{r}
+fe_tr <- sp_to_fe$fe_tr
+```
+
+  * a vector containing the number of species per FE:
+```{r}
+fe_nb_sp <- sp_to_fe$fe_nb_sp
+```
+
+  * a detailed list containing vectors or list with supplementary information about FEs
+  
+----
+
+# 4 - Compute FEs coordinates, build functional space, compute & plot alpha and beta functional indices
+
+
+Then based on the dataframe containing the value of traits for each FE, the workflow is the same as the one listed in the <span style="color:MediumAquamarine;">**"mFD_general_workflow vignette**</span> to compute functional trait based distance, multidimensional functional space and associated plots and compute alpha and beta functional indices (step 3 till the end). It will thus not be summed up in this dataframe. 
+
+
+----
+
+
+# 4' - Compute FEs based indices 
+
+
+However, the *mFD* package allows to compute functional indices based on FEs following the *Mouillot et al (2013)* framework using the *alpha.fd.fe* function. It computes:
+  * *Functional Redundancy* that reflects the average number of species per FE
+  * *Functional Overredundancy* that reflects the proportion of species in excess in
+species-rich FE *ie* it represents the percentage of species that fill functional
+entities above the mean level of functional redundancy
+  * *Functional Vulnerability* that reflects the proportion of FE with only one species
+  
+The *alpha.fd.fe* function is used as follow:
+
+```{r, results = "hide", eval = FALSE}
+mFD::alpha.fd.fe(asb_sp_occ, sp_to_fe,
+                       ind_nm = c("fred", "fored", "fvuln"),
+                       check.input = TRUE,
+                       store_details = TRUE) 
+```
+
+It takes as inputs:
+  * *asb_sp_occ* the assemblages-species occurrence dataframe
+  * *sp_to_fe* a list with details of species clustering into FE from **sp.to.fe**
+  * *ind_nm* a vector referring to the indices to compute: *fred* for Functional Redundancy, *fored* for Functional Overredundancy and *fvuln* for Functional Vulnerability.
+  * *check_input* is a logical value reflecting whether inputs should be checked
+  or not. Possible error messages will thus be more understandable for the user
+  than R error messages 💡 Recommendation: set it as TRUE
+  * *store_details*  is a logical value indicating whether the user wants to
+  store details. Details are used in graphical functions and thus must be kept
+  if the user want to have graphical outputs for the computed indices.
+
+💡 For this step, species do not have to be gathered into FEs, the gathering is coded within the *alpha.fd.fe* function
+  
+Let's apply this function with the *fruits* dataset:
+```{r}
+alpha_fd_fe <- mFD::alpha.fd.fe(asb_sp_occ, sp_to_fe,
+                       ind_nm = c("fred", "fored", "fvuln"),
+                       check.input = TRUE,
+                       store_details = TRUE) 
+```
+
+This function returns a dataframe of indices values for each assemblage:
+```{r}
+alpha_fd_fe
+```
+
+
+----
+
+# 5 - Plot functional indices based on FEs
+
+
+Then, it is possible to have a graphical representation of FE based indices for a given assemblage using the *alpha.fe.fd.plot* function:
+
+```{r, results = FALSE, eval = FALSE}
+mFD::alpha.fd.fe.plot(alpha_fd_fe,
+                 plot_asb_nm = c("basket_1"),
+                 plot_ind_nm = c("fred", "fored", "fvuln"),
+                 name_file = NULL,
+                 color_fill_fored = "darkolivegreen2",
+                 color_line_fred = "darkolivegreen4",
+                 color_fill_bar = "grey80",
+                 color_fill_fvuln = "lightcoral",
+                 color_arrow_fvuln = "indianred4",
+                 size_line_fred = 1.5,
+                 size_arrow_fvuln = 1,
+                 check.input = TRUE)
+```
+
+This function takes as inputs:
+
+  * *asb_vect* a vector containing the name of the assemblage to plot
+  * *ind_vect* a vector containing the names of the indices to plot. FOred and FRed are computed together using the 'red' character string and FVuln is computed by using the "fvuln" character string
+  * *sp_fe* a vector containing for each species, the FE it belongs to. It is retrieved through the *sp.to.fe* function
+  * *fd_fe_values* a dataframe with the indices values for each assemblage retrieved through the *fe.fd.multidim* function
+  * *fe_nb_sp* a vector containing the number of species per FE. It can retrieved through the *sp.to.fe* function
+  * color and size arguments to personnalize the plot. To have more information about it, read the *alpha.fe.fd.plot* help file
+  * *check_input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
+  
+For the studied example, the plot looks as follow:
+  
+``` {r, fig.height = 7, fig.width = 7, fig.align = "center"}
+mFD::alpha.fd.fe.plot(alpha_fd_fe,
+                 plot_asb_nm = c("basket_1"),
+                 plot_ind_nm = c("fred", "fored", "fvuln"),
+                 name_file = NULL,
+                 color_fill_fored = "darkolivegreen2",
+                 color_line_fred = "darkolivegreen4",
+                 color_fill_bar = "grey80",
+                 color_fill_fvuln = "lightcoral",
+                 color_arrow_fvuln = "indianred4",
+                 size_line_fred = 1.5,
+                 size_arrow_fvuln = 1,
+                 check.input = TRUE)
+```
