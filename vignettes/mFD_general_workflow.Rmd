@@ -165,7 +165,7 @@ In this tutorial, this function is not illustrated (FE for the *fruits dataset* 
 To build functional space in which functional indices are computed, functional traits-based distances between species must be calculated. To compute trait-based distances, the *funct.dist* function is used with the following arguments:
 
 ```{r, results = "hide"}
-sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "kgower", scaling = 'noscale', stop_if_NA = TRUE)
+sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "kgower", scaling = 'scaledBYrange', stop_if_NA = TRUE)
 ```
   * *sp_tr* is the species-trait dataframe
   * *sp_tr_cat* is the dataframe summarizing trait type for each trait
@@ -174,7 +174,7 @@ sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "kgower", scaling = '
     * **Euclidean distance** coded "euclidean": if **all traits are continuous**. If all traits are continuous, check the [Compute functional diversity indices based on only continuous traits" tutorial] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/Continuous_traits_framework.html> which explains how to build a multidimensional space from traits through PCA analysis or directly (one trait =  one dimension).
     * **Gower distance** coded "classical_gower": if **non-continuous traits**, this method allows traits weighting and distances are calculated using classic Gower distance from the *daisy* package.
     * **Gower-fuzzy distance** coded "kgower": if **non-continuous & fuzzy traits**, this method can deal with fuzzy traits but no traits ponderation and distances are calculated as the square of Pavoine's generalization of Gower's metric with the *dist.ktab* function from *ade4* package.
- 
+  * *scaling* is a character string referring to the way the user wants to scale traits based on the *dist.ktab* function of the *ade4* package.👉  Scaling traits or not is a choice from the user, there is no "rule" to decide to scale or not. Scaling allows to conserve distances proportions (*ie* if one species is twice as far from another species based on traits, then, in the multidimensional space, this species will still be twice as far from the other). If there is no scaling, then distances in the multidimensional space are a raw representation of traits based distances. The user can either chose to scale by range **scaleBYrange**, by standard deviation **scaleBYsd** or not to scale **noscale**. If *sp_tr* contains traits from different types, scaling by standard deviation is not suitable and an *ade4* warning message will appear.
 
 💡 If your data gathers a really high number of species and/or traits, this function might take time to run (and you might have memory issues)
 
@@ -235,7 +235,7 @@ It is possible to illustrate the quality of PCoA-based multidimensional spaces a
 ```{r,  fig.show = 'hide', results = "hide"}
 library(patchwork)
  mFD::quality.fspaces.plot(fspaces_quality, quality_metric = "mad",
-                      fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d"),
+                      fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d", "pcoa_6d"),
              name_file = NULL, range_dist = NULL, range_dev = NULL, range_qdev = NULL,
              gradient_deviation  = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
              gradient_deviation_quality = c(low ="yellow", high = "red"),
@@ -257,10 +257,10 @@ The output of this function is a figure with three panels (in rows) per space (i
   * on the second row, the y-axis shows the raw deviation of species distances in the functional space compared to trait-based distances. Thus,the raw deviation reflects the distance to the 1:1 line.
   * on the third row, the y-axis shows the absolute or squared deviation of the ("scaled") distance in the functional space. It is the deviation that is taken into account for computing the quality metric.
   
-```{r, fig.height = 8, fig.width = 8, fig.align = "center"}
+```{r, fig.height = 12, fig.width = 12, fig.align = "center"}
 library(patchwork)
 mFD::quality.fspaces.plot(fspaces_quality, quality_metric = "mad",
-                   fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d"),
+                   fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d", "pcoa_6d"),
          name_file = NULL, range_dist = NULL, range_dev = NULL, range_qdev = NULL,
             gradient_deviation  = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
             gradient_deviation_quality = c(low ="yellow", high = "red"),
@@ -289,7 +289,7 @@ This function allows to plot with many possibilities to change colors/shapes of 
 sp_faxes_coord <- fspaces_quality$details_fspaces$sp_pc_coord
 ```
    
-  * *faxes* is a vector containing names of axes to plot. If setted to NULL, the first four functional axes will be plotted.
+  * *faxes* is a vector containing names of axes to plot. If set to NULL, the first four functional axes will be plotted.
   * *faxes_nm* is a vector containing labels of *faxes* (following faxes vector rank). If NULL, labels follow *faxes* vector names
   * *range_faxes_lim* is a vector to complete if the user wants to set specific limits for functional axes. If *range_faxes_lim*  c(NA, NA), the range is computed according to the range of values among all axes.
   * *convex_pool* is a TRUE/FALSE value used to draw or not the 2D convex-hull filled by the global pool of species
@@ -300,7 +300,8 @@ sp_faxes_coord <- fspaces_quality$details_fspaces$sp_pc_coord
 
 Here are the plots for the *fruits baskets* example for the first four PCoA axis:
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center"}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center"}
+
 mFD::funct.space.plot(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")], faxes = NULL, name_file = NULL,
                              faxes_nm = NULL, range_faxes_lim = c(NA, NA),
                              color_bg = "grey95",
@@ -348,6 +349,7 @@ The *fruits baskets* example does not allow to compute FEs, thus FD indices base
 The *alpha.fd.multidim* function allow computing many alpha FD indices:
 
 ```{r, results = "hide"}
+
 alpha_fd_indices <- mFD::alpha.fd.multidim(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")], asb_sp_w, ind_vect = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"), scaling = TRUE, check.input = TRUE, store_details = TRUE)
 ```
 
@@ -457,8 +459,7 @@ As you can see, this function has a lot of arguments: most of them are graphical
   * *check.input* is a recurrent argument in the *mFD* package. It defines whether inputs should be checked before computation or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
   
 Then, using these arguments, here are the output plots for the *fruits-baskets* dataset:
-
-  * FRic representation: the blue shape reflects the convex-hull of the studied assemblage and the white shape reflects the convex-hull of the global pool of species:
+* FRic representation: the blue shape reflects the convex-hull of the studied assemblage and the white shape reflects the convex-hull of the global pool of species:
 ```{r, fig.align = "center", warning = FALSE}
 plots_alpha[[1]]
 ```
@@ -492,8 +493,7 @@ plots_alpha[[6]]
 ```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
 plots_alpha[[7]]
 ```
-
-
+ 
 
 ## 6 c - Functional diversity beta indices based on multidimensional space
 
