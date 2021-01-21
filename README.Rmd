@@ -57,4 +57,4 @@ To cite package `mFD` in publications use:
  
  
 # Contributions
-SV, NL, EM, FL and CM wrote the functions. SV, NL and CM wrote function documentations. SV and CM wrote tutorials.
+SV, NL, EM, FL, CA and CM wrote the functions. SV, NL and CM wrote function documentations. SV and CM wrote tutorials. 
