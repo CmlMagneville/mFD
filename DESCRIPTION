@@ -1,67 +1,100 @@
 Package: mFD
-Title: A computation of functional spaces and functional indices
-Version: 1.0.0
+Title: A Computation of Functional Spaces and Functional Indices
+Version: 0.0.0.9000
 Authors@R: 
-    c(person("Sebastien", "Villeger", role = c("aut", "ths"),
-    email = "sebastien.villeger@cnrs.fr"),
-    person("Camille", "Magneville", role = c("aut", "cre"),
-    email = "camille.magneville@umontpellier.fr"),
-    person("Camille", "Albouy", role = "aut",
-    email = "albouycamille@gmail.com"),
-    person("Thomas", "Claverie", role = "aut",
-    email = "tclaverie@gmail.com"),
-    person("Arthur", "Escalas", role = "aut",
-    email = "arthur.escalas@umontpellier.fr"),
-    person("Fabien", "Leprieur", role = "aut",
-    email = "fabien.leprieur@umontpellier.fr"),
-    person("Nicolas", "Loiseau", role = "aut",
-    email = "nicolas.loiseau@umontpellier.fr"),
-    person("Eva", "Maire", role = "aut",
-    email = "emg.maire@umontpellier.fr"),
-    person("David", "Mouillot", role = "aut",
-    email = "david.mouillot@gmail.com"))
-Author: Sebastien Villeger [aut, cre],
-    Camille Magneville [aut, cre]
-    Camille Albouy [aut],
-    Thomas Claverie [aut],
-    Arthur Escalas [aut],
-    Fabien Leprieur [aut],
-    Nicolas Loiseau [aut],
-    Eva Maire [aut],
-    David Mouillot [aut]
-Maintainer: The package maintainer <sebastien.villeger@cnrs.fr>
-Description: A computation of functional traits-based distances between pairs of species for species gathered in assemblages allowing to build several functional spaces. The package allows to compute functional diversity indices assessing the distribution of species (and of their dominance) in a given functional space for each assemblage and the overlap between assemblages in a given functional space. Graphical outputs included. See the mFD website for more informations, documentation and examples.
+    c(
+        person(
+            given  = "Sebastien", 
+            family = "Villeger", 
+            email  = "sebastien.villeger@cnrs.fr",
+            role   = c("aut", "ths")),
+        person(
+            given  = "Camille", 
+            family = "Magneville", 
+            email  = "camille.magneville@umontpellier.fr",
+            role   = c("aut", "cre")),
+        person(
+            given  = "Camille", 
+            family = "Albouy", 
+            email  = "albouycamille@gmail.comr",
+            role   = "aut"),
+        person(
+            given  = "Thomas", 
+            family = "Claverie", 
+            email  = "tclaverie@gmail.com",
+            role   = "aut"),
+        person(
+            given  = "Arthur", 
+            family = "Escalas", 
+            email  = "arthur.escalas@umontpellier.fr",
+            role   = "aut"),
+         person(
+            given  = "Fabien", 
+            family = "Leprieur", 
+            email  = "fabien.leprieur@umontpellier.fr",
+            role   = "aut"),           
+         person(
+            given  = "Nicolas", 
+            family = "Loiseau", 
+            email  = "nicolas.loiseau@umontpellier.fr",
+            role   = "aut"),  
+         person(
+            given  = "Eva", 
+            family = "Maire", 
+            email  = "emg.maire@umontpellier.fr",
+            role   = "aut"),  
+         person(
+            given  = "David", 
+            family = "Mouillot", 
+            email  = "david.mouillot@gmail.com",
+            role   = "aut"),
+         person(
+            given   = "Nicolas", 
+            family  = "Casajus", 
+            email   = "nicolas.casajus@fondationbiodiversite.fr",
+            role    = c("ctb", "rev"),
+            comment = c(ORCID = "0000-0002-5537-5294")))
+Description: A computation of functional traits-based distances between pairs of 
+    species for species gathered in assemblages allowing to build several 
+    functional spaces. The package allows to compute functional diversity 
+    indices assessing the distribution of species (and of their dominance) in a 
+    given functional space for each assemblage and the overlap between 
+    assemblages in a given functional space. Graphical outputs included. See the 
+    mFD website for more informations, documentation and examples.
+URL: https://github.com/{{gh_pseudo}}/{{gh_repo}}
+BugReports: https://github.com/{{gh_pseudo}}/{{gh_repo}}/issues
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
-Imports: 
-    dplyr,
-    stats,
-    cluster,
-    ape,
-    plyr,
-    utils,
-    ade4,
-    dendextend,
-    ggplot2,
-    patchwork,
-    Hmisc,
-    FactoMineR,
-    rlist,
-    geometry,
-    betapart,
-    ggrepel,
-    rstatix,
-    vegan,
-    reshape2
 Depends: 
     R (>= 2.10)
+Imports: 
+    ade4,
+    ape,
+    betapart,
+    cluster,
+    dendextend,
+    dplyr,
+    FactoMineR,
+    geometry,
+    ggplot2,
+    ggrepel,
+    Hmisc,
+    patchwork,
+    plyr,
+    reshape2,
+    rlist,
+    rstatix,
+    stats,
+    utils,
+    vegan
 Suggests: 
     knitr,
     rmarkdown,
     stringr,
+    testthat,
     tibble,
     tidyr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
