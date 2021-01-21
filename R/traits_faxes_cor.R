@@ -1,6 +1,6 @@
 # Function to test relationship between traits and axes of a functional space
 #
-# Authors: Nicolas Loiseau and Sebastien Villeger
+# Authors: Nicolas Loiseau and Sébastien Villéger
 #
 # ------------------------------------------------------------------------------
 #' Compute relationship between all traits and all axes of the functional space.
