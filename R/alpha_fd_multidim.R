@@ -170,7 +170,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
   nm_nn_all_asb <- NULL
   dist_nn_asb_list <- NULL
   grav_center_global_pool <- NULL
-  
+  centroid_global_pool <- NULL
   
   ## build matrices and vectors to store values to compute indices or ...
   # ... get outputs (used in graphical functions):
