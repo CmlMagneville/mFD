@@ -11,8 +11,7 @@ tr.cont.scale(sp_tr, std_method = "scale_center")
 be \strong{continuous}}
 
 \item{std_method}{a \strong{character string} referring to the standardization method.
-Possible values: \emph{range_min} (standardize by the minimal value of the
-trait), \emph{range_max} (standardize by the minimal value of the trait),
+Possible values: \emph{range} (standardize by the range),
 \emph{center} (use the center transformation: \eqn{x'= x - mean(x)}),
 \emph{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}})
 or \emph{scale_center} (use the scale-center transformation: \eqn{x' =

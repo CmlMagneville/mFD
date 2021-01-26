@@ -4,7 +4,13 @@
 \alias{tr.cont.fspace}
 \title{Build functional space}
 \usage{
-tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, compute_corr = "pearson")
+tr.cont.fspace(
+  sp_tr,
+  pca = TRUE,
+  nb_dim = 7,
+  scaling = "scale_center",
+  compute_corr = "pearson"
+)
 }
 \arguments{
 \item{sp_tr}{a \strong{dataframe} of raw/standardized traits values for each species.
@@ -18,6 +24,12 @@ TRUE}
 for multidimensional functional spaces. Final number of dimensions depends
 on the number of positive eigenvalues obtained with PCA. High value for
 nb_dim can increase computation time. Default: nbdim=7.}
+
+\item{scaling}{a \strong{string value} to compute or not scaling of traits
+using the \code{\link{tr.cont.scale}} function. Possible options are
+standardizing by the range \code{range}, center standardization
+\code{center}, scale standardization \code{scale}, scale center
+standardization \code{scale_center} or no scaling \code{no_scale}. Default : scale =}
 
 \item{compute_corr}{a \strong{string value} to compute Pearson correlation
 coefficients between traits \code{"pearson"}. You can choose not to compute
@@ -39,7 +51,7 @@ between traits.
 }
 \examples{
 load(system.file("extdata", "sp_tr_cestes_df", package = "mFD"))
-stand_sp_tr <- mFD::tr.cont.scale(sp_tr, std_method = "scale_center")
-mFD::tr.cont.fspace(stand_sp_tr, pca = TRUE, nb_dim = 7, compute_corr = "pearson")
+mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
+ compute_corr = "pearson")
 
 }

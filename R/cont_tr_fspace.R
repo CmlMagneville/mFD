@@ -19,8 +19,7 @@
 #'   be \strong{continuous}
 #'
 #' @param std_method a \strong{character string} referring to the standardization method.
-#'   Possible values: \emph{range_min} (standardize by the minimal value of the
-#'   trait), \emph{range_max} (standardize by the minimal value of the trait),
+#'   Possible values: \emph{range} (standardize by the range),
 #'   \emph{center} (use the center transformation: \eqn{x'= x - mean(x)}),
 #'   \emph{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}})
 #'   or \emph{scale_center} (use the scale-center transformation: \eqn{x' =
@@ -49,13 +48,9 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
     stop("Error: NA in traits table. Analysis will not go through.")
   }
   
-  # for minimum standardization:
-  if (std_method == "range_min"){
-    sp_tr <- apply(sp_tr, 2, function (x) x / min(x))
-  }
-  # for maximum standardization:
-  if (std_method == "range_max"){
-    sp_tr <- apply(sp_tr, 2, function (x) x / max(x))
+  # for range standardization:
+  if (std_method == "range"){
+    sp_tr <- apply(sp_tr, 2, function (x) (x - min(x))/(max(x) - min(x)))
   }
   # for center standardization:
   if (std_method == "center"){
@@ -97,6 +92,12 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'   for multidimensional functional spaces. Final number of dimensions depends
 #'   on the number of positive eigenvalues obtained with PCA. High value for
 #'   nb_dim can increase computation time. Default: nbdim=7.
+#'   
+#' @param scaling a \strong{string value} to compute or not scaling of traits
+#'   using the \code{\link{tr.cont.scale}} function. Possible options are
+#'   standardizing by the range \code{range}, center standardization
+#'   \code{center}, scale standardization \code{scale}, scale center
+#'   standardization \code{scale_center} or no scaling \code{no_scale}. Default : scale = 
 #'
 #' @param compute_corr a \strong{string value} to compute Pearson correlation
 #'   coefficients between traits \code{"pearson"}. You can choose not to compute
@@ -108,13 +109,13 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'
 #' @examples
 #' load(system.file("extdata", "sp_tr_cestes_df", package = "mFD"))
-#' stand_sp_tr <- mFD::tr.cont.scale(sp_tr, std_method = "scale_center")
-#' mFD::tr.cont.fspace(stand_sp_tr, pca = TRUE, nb_dim = 7, compute_corr = "pearson")
+#' mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
+#'  compute_corr = "pearson")
 #'
 #' @export
 
 
-tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
+tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
                            compute_corr = "pearson") {
   
   
@@ -124,11 +125,13 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
   if (any(is.na(sp_tr))) {
     stop("Error: There must be no NA in traits table.")
   }
-  if (ncol(sp_tr) < 3) {
-    stop("Error: There must be at least 3 traits in 'sp_tr'.")
-  }
-  if (nrow(sp_tr) < 3) {
-    stop("Error: There must be at least 3 species in 'sp_tr'.")
+  if (pca == TRUE) {
+    if (ncol(sp_tr) < 3) {
+      stop("Error: There must be at least 3 traits in 'sp_tr'.")
+    }
+    if (nrow(sp_tr) < 3) {
+      stop("Error: There must be at least 3 species in 'sp_tr'.")
+    }
   }
   if (nb_dim < 2) {
     stop("Error: Number of dimensions must be higher than 1.")
@@ -161,14 +164,18 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
     corr_tr <- Hmisc::rcorr(sp_tr2, type = "pearson")
   }
   
-  
+  # scale if needed: 
+  if (scaling != c("no_scale")) {
+    sp_tr <- mFD::tr.cont.scale(sp_tr, std_method = scaling)
+  }
+
   if (pca == TRUE) {
     # compute functional dissimilarity matrix used for computing quality of...
     # ... functional spaces:
     sp_dist_init <- cluster::daisy(sp_tr, metric = "euclidean")
     
     # compute PCA analysis:
-    pca_analysis <- FactoMineR::PCA(sp_tr, ncp = nb_dim, graph = FALSE)
+    pca_analysis <- FactoMineR::PCA(sp_tr, ncp = nb_dim, graph = FALSE, scale.unit = FALSE)
     sp_faxes_coord <- pca_analysis$ind$coord
     sp_faxes_coord <- as.data.frame(sp_faxes_coord)
     # restrict the number of column to nb_dim:
