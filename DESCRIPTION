@@ -8,7 +8,7 @@ Authors@R:
             family = "Villeger", 
             email  = "sebastien.villeger@cnrs.fr",
             role   = c("aut", "ths"),
-	    comment = c(ORCID = "0000-0002-2362-7178"))),
+	    comment = c(ORCID = "0000-0002-2362-7178")),
         person(
             given  = "Camille", 
             family = "Magneville", 
