@@ -72,39 +72,16 @@ knitr::kable(head(asb_sp_w), caption = "Species x assemblages dataframe based on
 ```
 
 
------
-
-# 2 - Scale your traits data (or not)
-
-Before building the functional space, traits values can be standardized in several ways: standardization by the minimal/maximal value of the trait, center-transformation, scale transformation or scale-center transformation can be used.
-
-👉  Standardizing traits or not is a choice from the user, there is no "rule" to decide to standardize or not. Standardization allows to conserve distances proportions (*ie* if one species is twice as far from another species based on traits, then, in the multidimensional space, this species will still be twice as far from the other). 
-If there is no scaling, then distances in the multidimensional space are a raw representation of traits based distances.
-
-In this example, we consider scale-center transformation of our data using the *tr.cont.scale* function of the *mFD* package. This function uses as inputs:
-
-  * *sp_tr* the dataframe summarizing species traits
-  * *std_method* a character string referring to the method used for scaling
-
-For our example, this function works as follow:
-
-```{r}
-stand_sp_tr <- mFD::tr.cont.scale(sp_tr, std_method = "scale_center")
-```
-
-The dataframe *stand_sp_tr* now contains the standardized value of traits.
-
-
 ----
 
 
-
-# 3 - Compute the functional space
+# 2 - Compute the functional space
 
 Based on the species-trait dataframe or the species-standardized traits dataframe, the *mFD* package allows to build a functional space based on a PCA or using each trait as a dimension. The function used to computed functional space with continuous traits is called *fspace.conttr* and is used as follow:
 
 ```{r, results = "hide"}
-mFD::tr.cont.fspace(stand_sp_tr, pca = TRUE, nb_dim = 7, compute_corr = "pearson")
+mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
+                           compute_corr = "pearson")
 ```
 
 It takes as inputs: 
@@ -112,12 +89,16 @@ It takes as inputs:
   * the *sp_tr* dataframe with standardized traits or not
   * a *pca* argument that must be set to TRUE if the user wants to compute a PCA or to FALSE if the user wants to use each trait as a dimension to construct the multidimensional space
   * a *nb_dim* argument referring to the maximum number of dimensions for multidimensional functional spaces. Final number of dimensions depends on the number of positive eigenvalues obtained with PCA is the user sets *pca = TRUE* or the number of traits used if the user sets *pca = FALSE*. 💡 High value for *nb_dim* can increase computation time.
+  * a *scaling* argument allowing traits values to be standardized. They can be standardized in several ways: standardization by the range value of the trait, center-transformation, scale transformation or scale-center transformation can be used. The user can also chose not to standardize traits values.
+👉  Standardizing traits or not is a choice from the user, there is no "rule" to decide to standardize or not. Standardization allows to conserve distances proportions (*ie* if one species is twice as far from another species based on traits, then, in the multidimensional space, this species will still be twice as far from the other). 
+If there is no scaling, then distances in the multidimensional space are a raw representation of traits based distances.
   * a *compute_corr* argument which refers to a string value to compute Pearson correlation coefficients between traits using *"pearson"* or not using *"none*.
   
 In this example, we will compute a PCA based on a maximum number of 7 dimensions and get Pearson's correlation coefficients: 
  
 ```{r, results = "hide"}
-fspace <- mFD::tr.cont.fspace(stand_sp_tr, pca = TRUE, nb_dim = 7, compute_corr = "pearson")
+fspace <- mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
+                           compute_corr = "pearson")
 ```
 
 If the PCA is computed, the output contains:
