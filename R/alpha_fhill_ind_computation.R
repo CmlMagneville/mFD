@@ -9,7 +9,9 @@
 
 #'Compute functional alpha diversity indices based on Hill numbers
 #' applied to distance between species following the framework from Chao et al.
-#' 2019, Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343)
+#' 2019, Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343).
+#' FD is computed applying the special case where function 'f' in equation 3c
+#' is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1. 
 #'
 #'@param asb_sp_w a \strong{matrix} with weight of species (columns) in a set of
 #'  assemblages (rows). Rows and columns should have names. NA are not allowed.
@@ -163,6 +165,13 @@ alpha.fd.hill <- function(asb_sp_w,
   
   if( tau == "min") {
     tau_dist <- min(sp_dist)
+    
+    # special case of null distance outside diagonal
+    if (tau_dist == 0) {
+      tau_dist<- min(sp_dist[sp_dist != 0])
+      cat("Warning: some species has null functional distance,
+          'tau' was set to the minimum non-null distance")
+    }
   }
   
   if( tau == "mean") {
