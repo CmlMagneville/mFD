@@ -2,9 +2,11 @@
 % Please edit documentation in R/beta_fhill_ind_computation.R
 \name{beta.fd.hill}
 \alias{beta.fd.hill}
-\title{Compute functional beta-diversity indices based on Hill numbers
-applied to distance between species following the framework from Chao et al.
-2019, Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343)}
+\title{Compute functional beta-diversity indices based on Hill numbers applied to
+distance between species following the framework from Chao et al. 2019,
+Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343). FD is computed
+applying the special case where function 'f' in equation 3c is
+linear: f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.}
 \usage{
 beta.fd.hill(
   asb_sp_w,
@@ -58,14 +60,18 @@ of assemblages (rows) and values of q (columns)
 }
 }
 \description{
-Compute functional beta-diversity indices based on Hill numbers
-applied to distance between species following the framework from Chao et al.
-2019, Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343)
+Compute functional beta-diversity indices based on Hill numbers applied to
+distance between species following the framework from Chao et al. 2019,
+Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343). FD is computed
+applying the special case where function 'f' in equation 3c is
+linear: f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 }
 \note{
 when q=1 Jaccard-like and Sorensen-like beta-diversity are identical.
 FD computed with tau='min' is equivalent to Hill number taxonomic beta
-diversity.
+diversity. If tau='min' and there are species with null distance, tau is
+set to the minimum non-null value and a warning message is displayed.
+Indices values are stored as \emph{dist} objects to optimize memory.
 }
 \examples{
 load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
