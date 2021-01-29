@@ -68,7 +68,7 @@ asb_sp_w <- asb_sp_w[, -1]
 asb_sp_w$Urobatis_jamaicensis <- as.numeric(asb_sp_w$Urobatis_jamaicensis)
 # remove sites 12, 23, 35 because Fric can not be computed on it (for a clean example):
 asb_sp_w <- asb_sp_w[-c(11, 22, 33), ]
-knitr::kable(head(asb_sp_w), caption = "Species x assemblages dataframe based on *CESTES* dataset")
+knitr::kable(asb_sp_w[c(1:7), c(1:6)], caption = "Species x assemblages dataframe based on *CESTES* dataset for the first six species and first seven sites")
 ```
 
 
