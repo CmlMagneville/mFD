@@ -67,7 +67,7 @@
 #'  species) is illustrated with bars of these vulnerable FE filled with
 #'  'color_fill_fvuln' and the double-head arrow highlighting their number.
 #' FE-based indices values on top of the plot. if \code{name_file} is provided,
-#'  plot saved as a 300dpi png file in working directory.
+#'  plot saved as a 300dpi png file in the working directory.
 #'
 #'@examples
 #' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))

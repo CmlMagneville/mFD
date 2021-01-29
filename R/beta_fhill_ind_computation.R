@@ -51,7 +51,7 @@
 #'  of assemblages (rows) and values of q (columns)
 #'  }
 #'  }
-#
+#'
 #'@note when q=1 Jaccard-like and Sorensen-like beta-diversity are identical.
 #' FD computed with tau='min' is equivalent to Hill number taxonomic beta
 #' diversity. If tau='min' and there are species with null distance, tau is

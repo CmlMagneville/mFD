@@ -71,7 +71,7 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 # ------------------------------------------------------------------------------
 
 
-#' Build functional space
+#' Build functional space based on continuous traits only
 #'
 #' Compute functional space based on continuous standardized traits or
 #' continuous raw traits matrix. User can either choose to compute functional

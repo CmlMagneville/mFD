@@ -9,7 +9,7 @@
 #'
 #' Compute a Principal Coordinates Analysis (PCoA) using functional distance
 #' between species. Then the function evaluates the quality of spaces
-#' built using increasing number of Principal components. Quality is evaluated
+#' built using an increasing number of Principal components. Quality is evaluated
 #' as the (absolute or squared) deviation between trait-based distance (input)
 #' and distance in the PCoA-based space (raw Euclidean distance or scaled
 #' distance according to its maximum value and maximum of trait-based distance).
@@ -49,7 +49,7 @@
 #'   \item \code{$quality_fspaces}: a dataframe with quality metric(s) for each
 #'   functional space. Functional spaces are named as 'pcoa_.d'
 #'   and if required 'tree_clustering method'. Quality metrics are named after
-#'   deviation_weighting ('mad' for 'absolute' and and 'rmsd' for 'squarred')
+#'   deviation_weighting ('mad' for 'absolute' and and 'rmsd' for 'squared')
 #'   and if fdist_scaling is TRUE with suffix '_scaled'.
 #'
 #'   \item \code{$details_trdist} a list with 2 elements:
