@@ -26,7 +26,7 @@ in functional spaces built using PCoA (and dendrogram).}
 \item{quality_metric}{a \strong{character string} with the name of the quality metric
 to illustrate. Should be one of the column names of
 \code{fspaces_quality$quality_fspaces}. See help of \code{\link{quality.fspaces}}
-for meaning of these names regarding type of deviation and scaling of
+for the meaning of these names regarding type of deviation and scaling of
 distance in functional space. Default: 'mad' (Mean absolute deviation).}
 
 \item{fspaces_plot}{a \strong{vector} with names of functional spaces to consider.
@@ -38,7 +38,7 @@ plot size.}
 (without extension). Default: NULL which means plot is displayed.}
 
 \item{range_dist}{a \strong{vector} with minimum and maximum values to display for
-species pairwise distances (x-axis fo all panels and y-axes of top panel).
+species pairwise distances (x-axis for all panels and y-axes of top panel).
 Default: NULL, which means range is 0 to maximum distance among all the
 functional spaces to plot.}
 
@@ -53,9 +53,9 @@ which means range is from 0 to the maximum of (transformed) deviation among
 all the functional spaces to plot.}
 
 \item{gradient_deviation}{a \strong{vector} of 3 colors for illustrating raw deviation
-with \code{\link[ggplot2]{scale_colour_gradient2}}. First value ('neg') is for the
-lowest negative deviation, second value ('nul')is for null deviation and
-third value ('pos') is for the highest positive deviation. Default gradient
+with \code{\link[ggplot2]{scale_colour_gradient2}}. The first value ('neg') is for the
+lowest negative deviation, the second value ('nul')is for null deviation and
+the third value ('pos') is for the highest positive deviation. Default gradient
 is from darkblue to grey to red.}
 
 \item{gradient_deviation_quality}{2 colors (named 'low' and 'high') for
@@ -72,7 +72,7 @@ panels : - top row shows trait-based distance between species vs.
 space-based distance. - middle row shows trait-based distance vs. deviation
 between space-based and trait-based distances - bottom row shows
 trait-based distance between species vs. transformed deviation used to
-compute the quality metric All plots have same X axis. All plots on a given
+compute the quality metric All plots have the same X axis. All plots on a given
 row have the same Y axis and color palette. Type of distance in functional
 space (Euclidean in PCoA, Cophenetic on tree) are abbreviated, as well as
 type of transformation of distance (scaling) and of deviation (Absolute or
