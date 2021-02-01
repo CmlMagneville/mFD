@@ -5,17 +5,19 @@ author:
 date: "`r Sys.Date()`"
 output:
   md_document:
-    variant: markdown_github
+    variant: gfm
     toc: true
     toc_depth: 1
 ---
 
+mFD <img src="man/figures/mFDsticker.png" height="120" align="right" alt = "mFD sticker"/>
+=========================================================
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/package=mFD)
+[![R-CMD-check](https://github.com/CmlMagneville/mFD_shared/workflows/R-CMD-check/badge.svg)](https://github.com/CmlMagneville/mFD_shared/actions)
 <!-- badges: end -->
 
-<img src = "man/figures/mFDsticker.png" width = 120 alt = "mFD sticker"/>
 
 
 # Introduction
@@ -54,7 +56,7 @@ For a complete understanding of the functional workflow and the packages possibi
 To cite package `mFD` in publications use:
 
  ADD CITATION HERE
- 
- 
+
+
 # Contributions
-SV, NL, EM, FL, CA and CM wrote the functions. SV, NL and CM wrote function documentations. SV and CM wrote tutorials. 
+SV, NL, EM, FL, CA and CM wrote the functions. SV, NL and CM wrote function documentations. SV and CM wrote tutorials.
