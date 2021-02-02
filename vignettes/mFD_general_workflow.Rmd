@@ -12,9 +12,9 @@ vignette: >
 
 # About this tutorial 
 
-This tutorial explains the basic workflow to follow to compute functional diversity (FD) indices in a multidimensional space using *mFD* package. Other functions are available and their uses are illustrated in others tutorials.
+This tutorial describes the basic workflow showing how to compute step by step functional diversity (FD) indices in a multidimensional space using *mFD* package. Other functions are available and their uses are illustrated in others tutorials.
 
-The data set used to illustrate this tutorial is *a fruit dataset* based on 25 types of fruits distributed in 10 fruits baskets. Each fruit is characterized by six traits values summarized in the following table:
+The data set used to illustrate this tutorial is *a fruit dataset* based on 25 types of fruits (*i.e.* species) distributed in 10 fruits baskets (*i.e.* assemblages). Each fruit is characterized by six traits values summarized in the following table:
 
 | Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
 |:------------:|:------------------:|:------------:|:-------------------:|:---------------:|:-----:|
@@ -25,7 +25,6 @@ The data set used to illustrate this tutorial is *a fruit dataset* based on 25 t
 |Sugar         | Sugar              |Continuous    |NA                   |NA                |g/kg|
 |Use           | Use as food        |Fuzzy         |3                    |raw ; pastry ; jam|%|
 
-Here fruits are **species** and baskets are **species assemblages**.
 
 ----
 
@@ -70,13 +69,14 @@ knitr::include_graphics(system.file("extdata", "basic_framework.PNG", package = 
 
 # 1 - Know your data
 
+## 1.1 - What types of traits am I using?
 
-The first thing to do before starting analyses is knowing your data. To do so, you must be able to characterize traits you are using. That is why *mFD* package needs a dataframe summarizing trait type for each trait (*ie* each column of the *sp_tr* dataframe)
+The first thing to do before starting analyses is to know your data. To do so, you must be able to characterize the traits you are using (*i.e.* tell the package what type of traits you are using). That is why *mFD* package needs a dataframe summarizing trait type for each trait (*ie* each column of the *sp_tr* dataframe)
 
-  👉 the dataframe you need to build must be as followed with the same columns names (*fruits* dataset example)
+  👉 you need to a dataframe with the same columns names as the below example (fruits dataset example)
   
 
-```{r, echo = FALSE}
+```{r}
 library(knitr)
 sp_tr_cat <- read.csv(system.file("extdata", "data_fruits_baskets_tr_cat.csv", package = "mFD"))
 knitr::kable(head(sp_tr_cat), caption = "Traits types based on *fruits & baskets* dataset")
@@ -91,11 +91,13 @@ The **first column** contains **traits name**. The **second column** contains **
 * F for fuzzy traits (described with several values defined in several columns in the *sp_tr* dataframe)
 
 The **third column** summarizes to which fuzzy trait belongs each column that refers to a fuzzy trait. Here the "Use" trait is a fuzzy one.
+ 
+ 
+## 1.2 - Summarize my traits
 
   
 Then, *mFD* package helps you to **summarize your data** using two distinct functions:
-
-* summarize *sp_tr* dataframe using *sp.tr.summary* function. This function returns a list gathering several tables and lists:
+ \textcolor{aquamarine3}{sp.tr.summary} function summarizes the *sp_tr* dataframe and returns a list gathering several tables and lists:
 
   * tables with summaries for non-fuzzy & fuzzy traits. **For non-fuzzy traits**, the table sums up the number of species having each category for ordinal, nominal and circular traits or minimum/first quartile/median/mean/third quartile/maximum for continuous traits. **For fuzzy traits**, the table sums up minimum/first quartile/median/mean/third quartile/maximum for each category of each fuzzy trait.
     
@@ -103,9 +105,11 @@ Then, *mFD* package helps you to **summarize your data** using two distinct func
     
   * list gathering modalities of non-continuous and non-fuzzy traits
 
- 
-    ```{r}
+    ```{r, echo = FALSE}
     library(mFD)
+    ```
+    
+    ```{r}
     sp_tr_summ <- sp.tr.summary(sp_tr_cat, sp_tr)
     # summary for non-fuzzy traits:
     sp_tr_summ$tr_summary_non_fuzzy_list
@@ -117,8 +121,11 @@ Then, *mFD* package helps you to **summarize your data** using two distinct func
     sp_tr_summ$mod_list
     ```
     
+
+## 1.3 - Summarize my assemblages  
   
-* summarize *asb_sp_w* matrix using *asb.sp.summary* function. This function returns a list gathering a matrix, a list and several vectors:
+  
+The second function helping you to summarize your data in the *mFD* package is \textcolor{aquamarine3}{asb.sp.summary}. It summarizes the *asb_sp_w* matrix and returns a list gathering a matrix, a list and several vectors:
 
   * matrix of species occurrences
   
@@ -151,7 +158,8 @@ Then, *mFD* package helps you to **summarize your data** using two distinct func
 
 # 2 - Gather species into Functional Entities
 
-The packages allows gathering species into **functional entities (FE)** *ie* **groups of species with same trait values when many species are described with a few categorical or ordinal traits**. It is particularly useful when using large data sets with "functionally similar" species.
+
+If you have many species described  by few categorical and ordinal traits only, then you might want to group them into FE, *i.e* **groups of species with same trait values when many species are described with a few categorical or ordinal traits**. It is particularly useful when using large data sets with "functionally similar" species.
 
 To compute FE, data must carry **non-continuous traits** as FE are computed using non_continuous traits and there must be enough species with both similar and distinct traits values so that computed FE gather more than one species.
 
@@ -160,21 +168,23 @@ In this tutorial, this function is not illustrated (FE for the *fruits dataset* 
 ----
 
 
-# 3 - Compute functional traits-based distances between species (or FE if step 2 done)
+# 3 - Compute distances between species (or FE if step 2 done) based on functional traits
 
-To build functional space in which functional indices are computed, functional traits-based distances between species must be calculated. To compute trait-based distances, the *funct.dist* function is used with the following arguments:
+The next step toward the computation of functional diversity indices is to estimate functional traits-based distances between species in order to build the functional space in which indices will be computed. 
+
+To compute trait-based distances, we will use the \textcolor{aquamarine3}{funct.dist} function which includes the following arguments:
 
 ```{r, results = "hide"}
 sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "kgower", scaling = 'scaledBYrange', stop_if_NA = TRUE)
 ```
   * *sp_tr* is the species-trait dataframe
   * *sp_tr_cat* is the dataframe summarizing trait type for each trait
-  * *dist_metric* is a character string referring to the metric used to compute distances 👉 The package allows the user to choose the metric used to compute functional distance. Three metrics are available and **the metric must be chosen based on traits data**:
+  * *dist_metric* is a character string referring to the metric used to compute distances 👉 *mFD* allows you to choose the metric used to compute functional distance. Three metrics are available and **the choice depends on your traits data**:
   
-    * **Euclidean distance** coded "euclidean": if **all traits are continuous**. If all traits are continuous, check the [Compute functional diversity indices based on only continuous traits" tutorial] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/Continuous_traits_framework.html> which explains how to build a multidimensional space from traits through PCA analysis or directly (one trait =  one dimension).
-    * **Gower distance** coded "classical_gower": if **non-continuous traits**, this method allows traits weighting and distances are calculated using classic Gower distance from the *daisy* package.
-    * **Gower-fuzzy distance** coded "kgower": if **non-continuous & fuzzy traits**, this method can deal with fuzzy traits but no traits ponderation and distances are calculated as the square of Pavoine's generalization of Gower's metric with the *dist.ktab* function from *ade4* package.
-  * *scaling* is a character string referring to the way the user wants to scale traits based on the *dist.ktab* function of the *ade4* package.👉  Scaling traits or not is a choice from the user, there is no "rule" to decide to scale or not. Scaling allows to conserve distances proportions (*ie* if one species is twice as far from another species based on traits, then, in the multidimensional space, this species will still be twice as far from the other). If there is no scaling, then distances in the multidimensional space are a raw representation of traits based distances. The user can either chose to scale by range **scaleBYrange**, by standard deviation **scaleBYsd** or not to scale **noscale**. If *sp_tr* contains traits from different types, scaling by standard deviation is not suitable and an *ade4* warning message will appear.
+    * if **all traits are continuous** use **Euclidean distance** (dist_metric = "euclidean") and check the ["Compute functional diversity indices based on only continuous traits" tutorial] <https://github.com/CmlMagneville/mFD/docs/articles/Continuous_traits_framework.html> which explains how to build a multidimensional space from traits through PCA analysis or considering directly each trait as a dimension.
+    * if you have **non-continuous traits**, then use the **Gower distance** (dist_metric = "classical_gower") as this method allows traits weighting. This method is implemented as the classic Gower distance from the *daisy* package.
+    * if you have **non-continuous & fuzzy traits**, then use the **Gower-fuzzy distance** (dist_metric = "kgower"). This method can deal with fuzzy traits but no traits ponderatio. Distances are calculated as the square of Pavoine's generalization of Gower's metric with the *dist.ktab* function from *ade4* package.
+  * *scaling* is a character string referring to the way the user wants to scale traits based on the *dist.ktab* function of the *ade4* package.👉  Scaling traits or not is your choice, there is no "rule" to decide to scale or not. Scaling allows to conserve distances proportions (*ie* if one species is twice as far from another species based on traits, then, in the multidimensional space, this species will still be twice as far from the other). If there is no scaling, then distances in the multidimensional space are a raw representation of traits based distances. The user can either chose to scale by range **scaleBYrange**, by standard deviation **scaleBYsd** or not to scale **noscale**. If *sp_tr* contains traits from different types, scaling by standard deviation is not suitable and an *ade4* warning message will appear.
 
 💡 If your data gathers a really high number of species and/or traits, this function might take time to run (and you might have memory issues)
 
@@ -189,33 +199,32 @@ sp_dist
 
 # 4 - Compute functional space & their quality
 
-## 4 a - Compute multimensional space and their quality
+## 4 a - Compute multimensional functional spaces and assess their quality
 
 
-In order to compute multidimensional space on which most functional indices are computed, a PCoA (and if required a functional dendrogram) is computed.
-The package then, evaluates the quality of PCoA-based multidimensional spaces according to the deviation between trait-based distances and distances in the functional space (extension of *Maire et al, 2015* framework)
+In order to generate a multidimensional space in which most functional indices are computed, we will perform a PCoA using the trait-based distances (and if required a functional dendrogram) is computed.
+*mFD* evaluates the quality of PCoA-based multidimensional spaces according to the deviation between trait-based distances and distances in the functional space (extension of *Maire et al, 2015* framework <https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299>)
 
 
-The function *quality.fspaces*  is used for this analysis and required following inputs:
+For that, we will use the \textcolor{aquamarine3}{qualityfspaces} function that requires the following inputs:
 
 ```{r, results = "hide"}
  fspaces_quality <- mFD::quality.fspaces(sp_dist, maxdim_pcoa = 10, deviation_weighting = "absolute", fdist_scaling = FALSE, fdendro = "average")
 ```
 
 
-  * *sp_dist* is the dist object with pairwise distance between species as computed in **step 3**
+  * *sp_dist* is the dist object with pairwise trait-based distance between species as computed in **step 3**
   * *maxdim_pcoa* is the maximum number of PCoA axes to consider to build multidimensional spaces. Actually, the maximum number of dimensions considered to assess the quality of functional spaces can be lower than *maxdim_pcoa* as it depends on the number of PCoA axes with positive eigenvalues
   * *deviation_weighting* refers to the method(s) used to weight the difference between species pairwise distances in the functional space and trait-based distances.
-  👉 the user has to chose:
-      * *absolute* means that absolute differences are used to compute the **mean absolute deviation (mad)**. It reflects the actual magnitude of errors that affect distances, hence FD metrics.
-      * *squared* means that squared differences are used to compute the **root of mean square deviation (rmsd)**. It reflects the potential risk associated with a few species pairs being strongly misplaced in the functional space. It is built based on the original **msd** from *Maire et al, 2015* (and is equivalent to the square-root of the **msd**).
-      * c("absolute", "squared") can be used to compute both quality metrics.
+  👉 you have to choose between:
+      * *absolute*: absolute differences are used to compute the **mean absolute deviation (mad)** with deviation_weighting = "absolute" It reflects the actual magnitude of errors that affect distances, hence FD metrics.
+      * *squared*: squared differences are used to compute the **root of mean square deviation (rmsd)** with deviation_weighting = "squared". It reflects the potential risk associated with a few species pairs being strongly misplaced in the functional space. It is built based on the original **msd** from *Maire et al, 2015* (and is equivalent to the square-root of the **msd**).
+      * Both quality metrics can be used with deviation_weighting = "c("absolute", "squared")".
 
   * *fdist_scaling* specifies whether distances in the functional space should be scaled before computing differences with trait-based distances. Scaling ensures that trait-based distances and distances in the functional space have the same maximum. Scaling distances implies that the quality of the functional space accounts for congruence in distances rather than the equality. 
-  * *fdendro* specifies the clustering algorithm to compute a functional dendrogram. NA means no dendrogram computed. The chosen algorithm must be one of the method recognized by the *hclust* function from *stats* package. Dendrograms quality is studied in the <span style="color: MediumAquamarine;">**"Dendrograms & functional spaces quality" tutorial**</span>. Before computing a dendrogram, please read this tutorial.
+  * *fdendro* specifies the clustering algorithm to compute a functional dendrogram. NA means no dendrogram computed. The chosen algorithm must be one of the method recognized by the *hclust* function from *stats* package. You should read the ["Compute and interpret quality of functional space" tutorial] <https://github.com/CmlMagneville/mFD/docs/articles/Compute_and_interpret_quality_of_functional_spaces.html>
  
-  
-This function returns a list of dataframes & sublists:
+This function returns a list varous objects:
 
   * a dataframe gathering for each space (in rows), values of quality metric(s) (in columns)
   
@@ -225,15 +234,18 @@ This function returns a list of dataframes & sublists:
 
   * lists with details required for other tasks in **step 4** to plot functional space quality and in **step 5** to plot functional space
   
-💡 The lower the quality metric is, the better the quality of your space is. Here, thanks to mad value, we can see that the 5D space is the best one. That is why the following of this tutorial will use this multidimensional space.
+💡 The space with the best quality has the lowest quality metric. Here, thanks to mad value, we can see that the 5D space is the best one. That is why the following of this tutorial will use this multidimensional space.
 
 
-## 4 b - Illustrate functional spaces quality
+## 4 b - Illustrate the quality of the selected functional spaces
 
-It is possible to illustrate the quality of PCoA-based multidimensional spaces according to deviation between trait-based distances and distances in the functional space using *quality.fspace.plot* function with the following arguments:
+In *mFD*, it is possible to illustrate the quality of PCoA-based multidimensional spaces according to deviation between trait-based distances and distances in the functional space. For that, we use the \textcolor{aquamarine3}{quality.fspace.plot} function with the following arguments:
+
+```{r, echo = FALSE, warning = FALSE}
+library(patchwork)
+```
 
 ```{r,  fig.show = 'hide', results = "hide"}
-library(patchwork)
  mFD::quality.fspaces.plot(fspaces_quality, quality_metric = "mad",
                       fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d", "pcoa_6d"),
              name_file = NULL, range_dist = NULL, range_dev = NULL, range_qdev = NULL,
@@ -244,14 +256,14 @@ library(patchwork)
 
 
   * *fspaces_quality* is the output of the *quality.fspaces* function (**step 4a**)
-  * *quality_metric* refers to the quality metric used
-  * *fspaces_plot* refers to the names of spaces for which quality has to be illustrated (up to 10)
+  * *quality_metric* refers to the quality metric used. 
+  * *fspaces_plot* refers to the names of spaces for which quality has to be illustrated (up to 10). Names are those used in the output of \textcolor{aquamarine3}{quality.fspaces} function showing the values of the quality metric. 
   * *name_file* refers to the name of file to save (without extension) if the user wants to save the figure. If the user only wants the plot to be displayed, then *name_file* = NULL
   * *range_dist*, *range_dev*, *range_qdev* are parameters to set ranges of panel axes (check function help for further informations)
   * *gradient_deviation* and *gradient_deviation_quality* are parameters to set points colors (check function help for further information)
   * *xlab* is a parameter to set x-axis label
 
-The output of this function is a figure with three panels (in rows) per space (in columns). Each column represents a functional space, the value of the quality metric is written on the top of each column. The x-axis of all panels represents trait-based distances. The y-axis is different for each row:
+This function generates a figure with three panels (in rows) for each selected functional space (in columns). Each column represents a functional space, the value of the quality metric is written on the top of each column. The x-axis of all panels represents trait-based distances. The y-axis is different for each row:
 
   * on the first (top) row, the y-axis represents species functional distances in the multidimensional space. Thus, the closer species are to the 1:1 line, the better distances in the functional space fit trait-based ones.
   * on the second row, the y-axis shows the raw deviation of species distances in the functional space compared to trait-based distances. Thus,the raw deviation reflects the distance to the 1:1 line.
@@ -268,7 +280,7 @@ mFD::quality.fspaces.plot(fspaces_quality, quality_metric = "mad",
 ```
 
 
-Here we can see on the top row that horizontal lines for the dendrogram, meaning that different trait-based distances have then the same cophenetic distance on the dendrogram. For the 2D space, on the top row there are a lot of points below the 1:1 lines, meaning that distances are over estimated in this multidimensional space. Looking at panels, we can see that the 5D space is the one with the closest points to the 1:1 line on the top row, and with the closest points to the x-axis for the two last rows, which reflects a better quality compared to other functional spaces / dendrogram. It is consistent with the metric quality values obtained in **step 4a**.
+Here we can see on the top row that, for the dendrogram, species pairs arrange in horizontal lines, meaning that different trait-based distances have then the same cophenetic distance on the dendrogram. For the 2D space, on the top row there are a lot of points below the 1:1 lines, meaning that distances are over estimated in this multidimensional space. Looking at panels, we can see that the 5D space is the one in which points are the closest to the 1:1 line on the top row, and the closest to the x-axis for the two bottom rows, which reflects a better quality compared to other functional spaces / dendrogram. It is consistent with the metric quality values obtained in **step 4a**.
 
 
 ----
