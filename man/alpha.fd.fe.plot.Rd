@@ -80,7 +80,7 @@ average) is illustrated with top part of these bars filled with
 species) is illustrated with bars of these vulnerable FE filled with
 'color_fill_fvuln' and the double-head arrow highlighting their number.
 FE-based indices values on top of the plot. if \code{name_file} is provided,
-plot saved as a 300dpi png file in working directory.
+plot saved as a 300dpi png file in the working directory.
 }
 \description{
 Illustrate functional diversity indices based on functional entities

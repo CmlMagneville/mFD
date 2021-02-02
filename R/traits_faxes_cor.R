@@ -8,7 +8,6 @@
 #' Option allows to plot trait-axis relationships with scatterplot and boxplot 
 #' for continuous and non-continuous traits, respectively.
 #'
-#'
 #' @param sp_tr a data frame containing species as rows and traits as columns.
 #'
 #' @param sp_faxes_coord a matrix of species coordinates in a multidimensional

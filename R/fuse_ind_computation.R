@@ -7,6 +7,9 @@
 #
 #
 #' Compute FUSE (Functionally Unique, Specialized and Endangered)
+#' 
+#' This index takes into account species functional uniqueness (also called
+#' Functional Originality), species specialisation and species IUCN status
 #'
 #' @param sp_dist a dist object provided by the daisy() of the cluster
 #' package or dist.ktab() of the ade4 package
@@ -24,7 +27,7 @@
 #'   each status, see Mooers et al.(2008) for example with DD = NA, LC = 0, NT = 0.1,
 #'   VU = 0.4, EN = 0.666, CR = 0.999)
 #'
-#' @param standGE boolean value to standardize the GE values (TRUE or FALSE)
+#' @param standGE a logical value to standardize the GE values (TRUE or FALSE)
 #'
 #' @return a dataframe with species in rows and the different metrics in
 #'   columns. The metrics are: \itemize{
@@ -132,7 +135,7 @@ fuse <- function(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = F) {
   Fdistinct <- apply(dist_sp, 1, mean)
   
   # Uniqueness calculation
-  uni_res <- get_indicator(sp_dist = as.matrix(sp_dist), nb_NN = nb_NN)
+  uni_res <- get.indicator(sp_dist = as.matrix(sp_dist), nb_NN = nb_NN)
   uniqu <- uni_res$Average_uniqueness[, "Mean"]
   
   if (standGE == TRUE) {
@@ -167,13 +170,13 @@ fuse <- function(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = F) {
 #'
 
 
-get_indicator <- function(sp_dist, nb_NN){
+get.indicator <- function(sp_dist, nb_NN){
   
   w <- reshape2::melt(sp_dist)
   s <- split(w, f = w[, 2])
   
   Res <- lapply(s, function(x) {
-    get_dist_func(nb_NN = nb_NN, data = x)})
+    get.dist.func(nb_NN = nb_NN, data = x)})
   Res_mean_sd <- do.call(rbind, lapply(1:length(Res), function(i){
     Res[[i]][[1]]}))
   NN <- lapply(1:length(Res), function(i){Res[[i]][[2]]})
@@ -195,7 +198,7 @@ get_indicator <- function(sp_dist, nb_NN){
 #'  species and all of these neighbors
 #'
 
-get_dist_func <- function(nb_NN, data){
+get.dist.func <- function(nb_NN, data){
   
   data <- data[order(data[, 3], decreasing = F), ]
   data <- data[-1, ]

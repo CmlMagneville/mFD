@@ -2,7 +2,7 @@
 % Please edit documentation in R/cont_tr_fspace.R
 \name{tr.cont.fspace}
 \alias{tr.cont.fspace}
-\title{Build functional space}
+\title{Build functional space based on continuous traits only}
 \usage{
 tr.cont.fspace(
   sp_tr,

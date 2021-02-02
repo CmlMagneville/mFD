@@ -119,6 +119,13 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
                              traits will be weighted", "\n") # end of checking weight information
   } 
   
+  if(any(! dist_metric %in% c("euclidean", "classical_gower", "kgower") ) ) {
+    stop(paste("Error: dist_metric should be: 'euclidean', 'classical_gower' 
+               or 'kgower'"))
+  }
+  
+  
+  
   if (dist_metric == "classical_gower") {
     
     if(ncol(tr_cat) == 4) {

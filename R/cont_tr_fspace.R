@@ -117,10 +117,7 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 
 tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
                            compute_corr = "pearson") {
-  
-  
-  readline("If you want to standardize traits values, use scale.conttr
-           function before fspace.conttr one \n(Press enter to continue)")
+
   
   if (any(is.na(sp_tr))) {
     stop("Error: There must be no NA in traits table.")

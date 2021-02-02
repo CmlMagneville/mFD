@@ -7,6 +7,8 @@
 # ------------------------------------------------------------------------------
 
 
+#'Compute functional beta-diversity indices based on Hill numbers 
+#'
 #'Compute functional beta-diversity indices based on Hill numbers applied to
 #'distance between species following the framework from Chao et al. 2019,
 #'Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343). FD is computed
