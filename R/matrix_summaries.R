@@ -231,14 +231,14 @@ asb.sp.summary <- function(asb_sp_w) {
     stop(
       "Error: No column names provided in asb_sp_w matrix.
       Analysis will not go through,
-      please add assemblages names as column names"
+      please add species names as column names"
     )
   }
   if (is.null(rownames(asb_sp_w))) {
     stop(
       "Error: No row names provided in asb_sp_w matrix.
       Analysis will not go through,
-      please add species names as row names"
+      please add assemblages names as row names"
     )
   }
   if (is.null(asb_sp_w)) {
