@@ -7,6 +7,9 @@
 #
 #
 #' Compute FUSE (Functionally Unique, Specialized and Endangered)
+#' 
+#' This index takes into account species functional uniqueness (also called
+#' Functional Originality), species specialisation and species IUCN status
 #'
 #' @param sp_dist a dist object provided by the daisy() of the cluster
 #' package or dist.ktab() of the ade4 package
@@ -24,7 +27,7 @@
 #'   each status, see Mooers et al.(2008) for example with DD = NA, LC = 0, NT = 0.1,
 #'   VU = 0.4, EN = 0.666, CR = 0.999)
 #'
-#' @param standGE boolean value to standardize the GE values (TRUE or FALSE)
+#' @param standGE a logical value to standardize the GE values (TRUE or FALSE)
 #'
 #' @return a dataframe with species in rows and the different metrics in
 #'   columns. The metrics are: \itemize{

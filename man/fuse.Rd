@@ -23,7 +23,7 @@ NT = 1, VU = 2, EN = 3, CR = 4) or the IUCN extinction probability associated wi
 each status, see Mooers et al.(2008) for example with DD = NA, LC = 0, NT = 0.1,
 VU = 0.4, EN = 0.666, CR = 0.999)}
 
-\item{standGE}{boolean value to standardize the GE values (TRUE or FALSE)}
+\item{standGE}{a logical value to standardize the GE values (TRUE or FALSE)}
 }
 \value{
 a dataframe with species in rows and the different metrics in
@@ -40,7 +40,8 @@ Mouillot et al. 2013 and Griffin et al. 2020)
 }
 }
 \description{
-Compute FUSE (Functionally Unique, Specialized and Endangered)
+This index takes into account species functional uniqueness (also called
+Functional Originality), species specialisation and species IUCN status
 }
 \examples{
 sp_tr <- read.csv(system.file("extdata", "data_traits_MMA_ursus.csv", package = "mFD"),
