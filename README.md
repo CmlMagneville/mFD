@@ -5,7 +5,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/package=mFD)
 [![R-CMD-check](https://github.com/CmlMagneville/mFD_shared/workflows/R-CMD-check/badge.svg)](https://github.com/CmlMagneville/mFD_shared/actions)
-[![Website](https://img.shields.io/badge/Website-visit-blue?style=flat&logo=html5)](https://github.com/CmlMagneville/mFD_shared/docs/index.html)
+[![Website](https://img.shields.io/badge/Website-visit-blue?style=flat&logo=html5)](https://cmlmagneville.github.io/mFD_shared/index.html)
 <!-- badges: end -->
 
 ## Introduction
@@ -53,7 +53,7 @@ To compute functional diversity indices, the user needs:
 
 For a complete understanding of the functional workflow and the packages
 possibilities, please refer to the
-[General\_mFD\_workflow\_vignette](https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.html).
+[General\_mFD\_workflow\_vignette](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html).
 
 ## Citation
 
