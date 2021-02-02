@@ -2,12 +2,7 @@
 % Please edit documentation in R/traits_faxes_cor.R
 \name{traits.faxes.cor}
 \alias{traits.faxes.cor}
-\title{Compute relationship between all traits and all axes of the functional space.
-For continuous trait a linear model is computed and r2 and p-value are
-returned. For other types of traits, a Kruskal-Wallis test is computed and
-eta2 statistics is returned.
-Option allows to plot trait-axis relationships with scatterplot and boxplot
-for continuous and non-continuous traits, respectively.}
+\title{Correlation between Traits and Axes}
 \usage{
 traits.faxes.cor(
   sp_tr,
@@ -20,49 +15,54 @@ traits.faxes.cor(
 )
 }
 \arguments{
-\item{sp_tr}{a \strong{dataframe} containing species as rows and traits as columns.}
+\item{sp_tr}{a data frame containing species as rows and traits as columns.}
 
-\item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a multidimensional
-functional space. Species coordinates have been retrieved thanks to
-\code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
+\item{sp_faxes_coord}{a matrix of species coordinates in a multidimensional
+functional space. Species coordinates have been retrieved
+thanks to \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
-\item{tr_nm}{a \strong{vector} gathering the names of traits (as in \code{sp_tr}) to consider.}
+\item{tr_nm}{a vector gathering the names of traits (as in \code{sp_tr}) to
+consider. If \code{NULL} all traits are considered.}
 
-\item{faxes_nm}{a \strong{vector} gathering the names of PCoA axes (as in \code{sp_faxes_coord}) to
-consider.}
+\item{faxes_nm}{a vector gathering the names of PCoA axes (as in
+\code{sp_faxes_coord}) to consider.}
 
-\item{plot}{a \strong{logical value} indicating whether plot illustrating relations
-between trait and axes should be drawn. \strong{You can only plot
-relationships for up to 10 traits and/or 10 axes}.}
+\item{plot}{a logical value indicating whether plot illustrating relations
+between trait and axes should be drawn. \strong{You can only plot relationships
+for up to 10 traits and/or 10 axes}.}
 
-\item{name_file}{a \strong{character string} with name of file to save the plot
-as a 300dpi jpeg file. Default is 'NULL' which means plot is displayed. If
-plot is FALSE, this input is ignored.}
+\item{name_file}{the file name (without extension) to save the plot as a 300
+dpi JPEG file. Default is \code{NULL} which means plot is only displayed. If
+\code{plot = FALSE} this argument is ignored.}
 
-\item{color_signif}{a \strong{R color name or an hexadecimal code} referring to the
-colour of points when relationships between the trait and the axis is
-significant. Default is dark blue.}
+\item{color_signif}{an R color name or an hexadecimal code referring to
+the color of points when relationships between the trait and the axis is
+significant. Default is \verb{dark blue}.}
 }
 \value{
-a table with for each combination of trait and axis (rows),
-name of test performed, and corresponding statistics and p-value.
-If plot == TRUE a multi-panel figure with traits as columns and axes as rows.
-When relationships between trait and axis is significant the points are
-colored, else they remain grayish.
+A data frame with for each combination of trait and axis (rows), the
+name of the test performed, and the corresponding statistics and p-value.
+If \code{plot = TRUE} a multi-panel figure with traits as columns and axes as
+rows is also plotted. When relationships between trait and axis is
+significant the points are colored, else they remain grayish.
 }
 \description{
 Compute relationship between all traits and all axes of the functional space.
 For continuous trait a linear model is computed and r2 and p-value are
 returned. For other types of traits, a Kruskal-Wallis test is computed and
 eta2 statistics is returned.
+}
+\details{
 Option allows to plot trait-axis relationships with scatterplot and boxplot
 for continuous and non-continuous traits, respectively.
 }
 \examples{
 load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 load(system.file("extdata", "sp_faxes_coord_fruits", package = "mFD"))
-traits.faxes.cor(sp_tr, sp_faxes_coord, tr_nm = NULL, faxes_nm = NULL,
- plot = FALSE, name_file = NULL,
- color_signif = "darkblue")
 
+traits.faxes.cor(sp_tr, sp_faxes_coord, tr_nm = NULL, faxes_nm = NULL,
+                 plot = FALSE, name_file = NULL, color_signif = "darkblue")
+}
+\author{
+Nicolas Loiseau & Sebastien Villeger
 }
