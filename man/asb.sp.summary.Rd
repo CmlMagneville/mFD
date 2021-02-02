@@ -2,29 +2,35 @@
 % Please edit documentation in R/matrix_summaries.R
 \name{asb.sp.summary}
 \alias{asb.sp.summary}
-\title{Summarize assemblage*species dataframe}
+\title{Summarize Assemblage x Species Data Frame}
 \usage{
 asb.sp.summary(asb_sp_w)
 }
 \arguments{
-\item{asb_sp_w}{a \strong{matrix} showing assemblages (rows) composition in
-species (columns).}
+\item{asb_sp_w}{a matrix showing assemblages (rows) composition in species
+(columns). Note that species names \strong{must be} the names of rows.}
 }
 \value{
-a species occurrences data.frame in each assemblage
-\code{asb_sp_w_occ}. Use the Data Viewer to see it ; a vector gathering
-species biomass/abundance per species \code{tot_ab_all_sp} ; a vector
-gathering total abundance/biomass per assemblage \code{tot_ab_all_asb} ; a
-vector gathering species richness per assemblage \code{sp_richn_all_asb} ;
-a list gathering the names of species of each assemblage \code{sp_nm_asb}.
+A list with:
+\item{asb_sp_w_occ}{a data frame with species occurrences in each
+assemblage.}
+\item{tot_ab_all_sp}{a vector gathering species biomass/abundance per
+species.}
+\item{tot_ab_all_asb}{a vector gathering total abundance/biomass per
+assemblage.}
+\item{sp_richn_all_asb}{a vector gathering species richness per
+assemblage.}
+\item{sp_nm_asb}{a list gathering the names of species of each assemblage.}
 }
 \description{
-Computes summary helping you to picture assemblages. For this function to
-work, there must be no NA in your \code{assemblage_species} dataframe.
+This function computes a summary helping you to picture assemblages. For this
+function to work, there must be no NA in your \code{asb_sp_w} data frame.
 }
 \examples{
 load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
 asb_sp_w <- as.matrix(asb_sp_w)
 mFD::asb.sp.summary(asb_sp_w)
-
+}
+\author{
+Camille Magneville & Sebastien Villeger
 }
