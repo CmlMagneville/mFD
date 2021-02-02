@@ -72,19 +72,17 @@
 
 funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
   
-  if (any(is.na(sp_tr)) == TRUE) {
-    
-    if (stop_if_NA == TRUE) {
-      stop("Error: Species-traits dataframe contains NA. 
-      If you want to continue with missing traits (Be careful: Functional measures 
-      are sensitive to missing traits), set 'stop_if_NA' parameter to FALSE. 
-      Otherwise you can delete species with missing or extrapolate missing traits (Johnson et al. (2020)")
-    }
-    
+  if (any(is.na(sp_tr)) && stop_if_NA) {
+
+    stop(paste("Species x traits data frame contains NA. If you want to ",
+               "continue with missing traits (Be careful: Functional measures", 
+               "are sensitive to missing traits), set 'stop_if_NA' parameter",
+               "to FALSE. Otherwise you can delete species with missing or ",
+               "extrapolate missing traits (Johnson et al. (2020)."))
   }
   
-  if (! is.data.frame(sp_tr))  {
-    stop("Error: Your species-traits data must be gathered in a matrix")
+  if (!is.data.frame(sp_tr)) {
+    stop("Species x traits data must be gathered in a matrix.")
   }
   
   if (is.null(colnames(sp_tr))) {
