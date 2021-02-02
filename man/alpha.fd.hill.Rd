@@ -2,11 +2,7 @@
 % Please edit documentation in R/alpha_fhill_ind_computation.R
 \name{alpha.fd.hill}
 \alias{alpha.fd.hill}
-\title{Compute functional alpha diversity indices based on Hill numbers
-applied to distance between species following the framework from Chao et al.
-2019, Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343).
-FD is computed applying the special case where function 'f' in equation 3c
-is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.}
+\title{Compute functional alpha diversity indices based on Hill numbers}
 \usage{
 alpha.fd.hill(
   asb_sp_w,
@@ -57,11 +53,11 @@ assemblages
 }
 }
 \description{
-Compute functional alpha diversity indices based on Hill numbers
-applied to distance between species following the framework from Chao et al.
-2019, Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343).
-FD is computed applying the special case where function 'f' in equation 3c
-is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
+Compute functional alpha diversity applied to distance between species
+following the framework from Chao et al.2019, Ecological Monographs
+(89:e01343), DOI: 10.1002/ecm.1343). FD is computed applying the special case
+where function 'f' in equation 3c is linear:f(dij(tau)) = dij(tau)/tau, hence
+f(0) = 0 and f(tau) = 1.
 }
 \note{
 FD computed with q=2 and tau = 'max' is equivalent to the Rao's quadratic

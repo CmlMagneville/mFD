@@ -2,12 +2,7 @@
 % Please edit documentation in R/traits_faxes_cor.R
 \name{traits.faxes.cor}
 \alias{traits.faxes.cor}
-\title{Compute relationship between all traits and all axes of the functional space.
-For continuous trait a linear model is computed and r2 and p-value are
-returned. For other types of traits, a Kruskal-Wallis test is computed and
-eta2 statistics is returned.
-Option allows to plot trait-axis relationships with scatterplot and boxplot
-for continuous and non-continuous traits, respectively.}
+\title{Compute relationship between all traits and all axes of the functional space.}
 \usage{
 traits.faxes.cor(
   sp_tr,
@@ -51,7 +46,6 @@ When relationships between trait and axis is significant the points are
 colored, else they remain grayish.
 }
 \description{
-Compute relationship between all traits and all axes of the functional space.
 For continuous trait a linear model is computed and r2 and p-value are
 returned. For other types of traits, a Kruskal-Wallis test is computed and
 eta2 statistics is returned.
