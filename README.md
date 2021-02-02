@@ -9,8 +9,8 @@ status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/pa
 
 ## Introduction
 
-The `{mFD}` package provides a **“user friendly” interface** to compute
-a **global assessment of functional diversity** by gathering computation
+The `mFD` package provides a **“user friendly” interface** to compute a
+**global assessment of functional diversity** by gathering computation
 of alpha, beta functional indices. As no package before, it guides the
 user through functional analysis with one function per action to
 complete, several arguments that can be changed and allows personalized
@@ -19,13 +19,13 @@ guide the user through the functional workflow.
 
 ## Installation
 
-The `{mFD}` package can be installed through CRAN as follow:
+The `mFD` package can be installed through CRAN as follow:
 
 ``` r
 ## Coming soon
 ```
 
-or for the latest development version, the `{mFD}` Github repository can
+or for the latest development version, the `mFD` Github repository can
 be used:
 
 ``` r
@@ -34,12 +34,12 @@ remotes::install_github("CmlMagneville/mFD", force = TRUE)
 library(mFD)
 ```
 
-## How to use the `{mFD}` package?
+## How to use the `mFD` package?
 
 To compute functional diversity indices, the user needs:
 
 -   a data frame summarizing species traits (species in rows, traits in
-    columns). The `{mFD}` package works with all kind of traits:
+    columns). The `mFD` package works with all kind of traits:
     quantitative, ordinal, nominal, circular and fuzzy-coded.
 
 -   a matrix summarizing species gathering into assemblages (assemblages

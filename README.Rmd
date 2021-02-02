@@ -21,7 +21,7 @@ mFD <img src="man/figures/mFDsticker.png" height="120" align="right" alt = "mFD 
 
 ## Introduction
 
-The `{mFD}` package provides a **"user friendly" interface** to compute a 
+The `mFD` package provides a **"user friendly" interface** to compute a 
 **global assessment of functional diversity** by gathering computation of alpha, 
 beta functional indices. As no package before, it guides the user through 
 functional analysis with one function per action to complete, several arguments 
@@ -32,12 +32,12 @@ workflow.
 
 ## Installation
 
-The `{mFD}` package can be installed through CRAN as follow:
+The `mFD` package can be installed through CRAN as follow:
 ```{r, eval = FALSE}
 ## Coming soon
 ```
 
-or for the latest development version, the `{mFD}` Github repository can be used:
+or for the latest development version, the `mFD` Github repository can be used:
 
 ```{r, eval = FALSE}
 library(remotes)
@@ -46,12 +46,12 @@ library(mFD)
 ```
 
 
-## How to use the `{mFD}` package?
+## How to use the `mFD` package?
 
 To compute functional diversity indices, the user needs:
 
 - a data frame summarizing species traits (species in rows, traits in columns). 
-The `{mFD}` package works with all kind of traits: quantitative, ordinal, nominal, 
+The `mFD` package works with all kind of traits: quantitative, ordinal, nominal, 
 circular and fuzzy-coded.
 
 - a matrix summarizing species gathering into assemblages (assemblages in rows, 
