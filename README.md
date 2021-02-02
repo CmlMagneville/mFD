@@ -5,7 +5,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/package=mFD)
 [![R-CMD-check](https://github.com/CmlMagneville/mFD_shared/workflows/R-CMD-check/badge.svg)](https://github.com/CmlMagneville/mFD_shared/actions)
-[![Website](https://img.shields.io/badge/Website-go-yellow?style=flat&logo=html5)](https://github.com/CmlMagneville/mFD_shared/docs/index.html)
+[![Website](https://img.shields.io/badge/Website-visit-blue?style=flat&logo=html5)](https://github.com/CmlMagneville/mFD_shared/docs/index.html)
 <!-- badges: end -->
 
 ## Introduction
