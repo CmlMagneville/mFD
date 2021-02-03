@@ -2,72 +2,87 @@
 % Please edit documentation in R/funct_dist_computation.R
 \name{funct.dist}
 \alias{funct.dist}
-\title{Compute functional distance between species}
+\title{Compute Functional Distance between Species}
 \usage{
 funct.dist(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE)
 }
 \arguments{
-\item{sp_tr}{a \strong{dataframe} of traits values (columns) for each species (rows)}
+\item{sp_tr}{a data frame of traits values (columns) for each species (rows).}
 
-\item{tr_cat}{a \strong{dataframe} containing three columns for each trait (rows):
+\item{tr_cat}{a data frame containing three columns for each trait (rows):
 \itemize{
-\item \strong{trait_name}: names of all traits as in \code{sp_tr} data.frame
-\item \strong{trait_type}: category codes for each trait as followed:
-\emph{N} for Nominal traits (factor variable), \emph{O} for Ordinal traits
-(ordered variable), \emph{C} for Circular traits (integer values), \emph{Q}
+\item \strong{trait_name}: the name of all traits as in \code{sp_tr} data
+frame;
+\item \strong{trait_type}: the category code for each trait as followed:
+\code{N} for Nominal traits (factor variable), \code{O} for Ordinal traits
+(ordered variable), \code{C} for Circular traits (integer values), \code{Q}
 for quantitative traits (numeric values) that is allowed \strong{only} if
-there are at least 2 species with the same value and \emph{F} for fuzzy
-traits (described with several values defined with several column).
+there are at least 2 species with the same value, and \code{F} for fuzzy
+traits (i.e. described with several values defined with several column);
+\item \strong{fuzzy_name}: name of fuzzy-coded trait to which 'sub-trait'
+belongs (if trait is not fuzzy, ignored so could be trait name or NA).
 }
+
 An option is to add a fourth column with a numeric vector of length n
-(traits number) to specify a weight for each trait. The name of the fourth
-column has to be 'weight'.}
+(traits number) to specify a weight for each trait.}
 
-\item{dist_metric}{if euclidean, use euclidean distance,
-classical_gower: use classical gower distance \emph{(J. C. (1971))}
-kgower: gower distance modified by Pavoine \emph{Pavoine, S. et al (2009)}
-Based on the \code{\link[ade4]{dist.ktab}} function: "If kgower
-is chosen user have several choice to scale quantitative variables A string
-that can have three values: either \code{"scaledBYrange"} if the quantitative
-variables must be scaled by their range, or \code{"scaledBYsd"} if they must be
-scaled by their standard deviation, or \code{"noscale"} if they should not be
-scaled. This last option can be useful if the values have already been
-normalized by the known range of the whole population instead of the observed
-range measured on the sample. If x contains data from various types, then the
-option \code{"scaledBYsd"} is not suitable (a warning will appear if the option
-selected with that condition)."}
+\item{dist_metric}{the distance to be computed:
+\code{euclidean}, the Euclidean distance,
+\code{classical_gower}, the Classical Gower distance as defined by Gower (1971),
+or \code{kgower}, the Gower distance modified by Pavoine \emph{et al.} (2009).
 
-\item{scaling}{a \strong{character string} refering to the way traits must be
-scaled. There are three options: \code{scaledBYrange} (if traits must be scaled by range),
-\code{scaledBYsd} (if traits must be scaled by their standard deviation) or
+Based on the \code{\link[ade4]{dist.ktab}} function: "\emph{If \code{kgower} is
+chosen user have several choice to scale quantitative variables A string
+that can have three values: either \code{scaledBYrange} if the quantitative
+variables must be scaled by their range, or \code{scaledBYsd} if they must
+be scaled by their standard deviation, or \code{noscale} if they should not
+be scaled. This last option can be useful if the values have already been
+normalized by the known range of the whole population instead of the
+observed range measured on the sample. If x contains data from various
+types, then the option \code{scaledBYsd} is not suitable (a warning will
+appear if the option selected with that condition)"}.}
+
+\item{scaling}{a character string referring to the way traits must be scaled.
+There are three options:
+\code{scaledBYrange} (if traits must be scaled byrange),
+\code{scaledBYsd} (if traits must be scaled by their standard deviation), or
 \code{noscale} (if traits do not have to be scaled).}
 
-\item{stop_if_NA}{a \strong{logical value} to stop or not the process if the
+\item{stop_if_NA}{a logical value to stop or not the process if the
 \code{sp_tr} data frame contains NA. Functional measures are sensitive to
 missing traits. For further explanations, see the Note section.
-Default: stop_if_NA = TRUE}
+Default is \code{TRUE}.}
 }
 \value{
-a dist object containing distance between each pair of species
+A \code{dist} object containing distance between each pair of species.
 }
 \description{
 For a given combination of traits, this function returns the functional
-distance matrix between species
+distance matrix between species.
 }
-\section{Notes}{
- If the \code{sp_tr} data frame contains NA you can either
+\note{
+If the \code{sp_tr} data frame contains \code{NA} you can either
 chose to compute anyway functional distances (but keep in mind that
 \strong{Functional measures are sensitive to missing traits!}) or you can
 delete species with missing or extrapolate missing traits (see
-\emph{Johnson et al. (2020)})
+Johnson \emph{et al.} (2020)).
 }
-
 \examples{
 load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-sp_tr <- sp_tr[, -c(6:8)]
+sp_tr <- sp_tr[ , -c(6:8)]
+
 load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
 sp_tr_cat <- sp_tr_cat[-c(6:8), ]
-mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", 
- scaling = 'noscale', stop_if_NA = TRUE)
 
+mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", 
+                scaling = "noscale", stop_if_NA = TRUE)
+}
+\references{
+Gower, J.C. (1971) A general coefficient of similarity and some of its
+properties. \emph{Biometrics}, \strong{27}, 857-871.\cr
+Johnson \emph{et al.} (2020) \strong{\{\{ ADD THE COMPLETE REFERENCE \}\}}\cr
+Pavoine \emph{et al.} (2009) \strong{\{\{ ADD THE COMPLETE REFERENCE \}\}}
+}
+\author{
+Nicolas Loiseau & Sébastien Villéger
 }
