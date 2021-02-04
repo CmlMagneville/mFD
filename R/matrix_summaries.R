@@ -269,7 +269,7 @@ asb.sp.summary <- function(asb_sp_w) {
   
   if (any(rownames(asb_sp_w) == 1:nrow(asb_sp_w))) {
     stop(paste("No row names provided in 'asb_sp_w' matrix. Analysis will not", 
-               "go through. Please add species names as row names."))
+               "go through. Please add assemblages names as row names."))
   }
   
   if (any(is.na(asb_sp_w))) {
