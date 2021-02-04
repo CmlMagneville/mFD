@@ -1,10 +1,10 @@
 ---
-title: "How_to_deal_with_Functional_Entities"
+title: "How to Deal With Functional Entities"
 author: "Camille Magneville"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{How_to_deal_with_Functional_Entities}
+  %\VignetteIndexEntry{How to Deal With Functional Entities}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 
