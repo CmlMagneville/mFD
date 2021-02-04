@@ -288,14 +288,15 @@ Here we can see on the top row that, for the dendrogram, species pairs arrange i
 # 5 - Plot chosen functional space
 
 
-Then, the package allows the user to plot a given functional space and the position of species in all 2-dimensions spaces made by pairs of axes.
+Then, *mFD* allows you to plot a given multidimensional functional space and the position of species in all 2-dimensions spaces made by pairs of axes.
 
-👉 based on the precedent step, the user has to chose on which dimensions the analysis must be computed
+👉 based on the precedent step, you have to chose which dimensions of the selected functional space must be used
 
-Plotting functional space is done using the *funct.space.plot*.
+Plotting functional space is done using the \textcolor{aquamarine3}{funct.space.plot}
 
 This function allows to plot with many possibilities to change colors/shapes of each plotted element. Here are listed the main arguments:
-  * *sp_faxes_coord* is a matrix of species coordinates taken from the outputs of the *quality.fspace* function **with columns representing axes on which functional space must be computed**. For instance, in this tutorial, functional space will be plotted for 4 dimensions and 10 dimensions (*cf* the two examples below). The whole *sp_faxes_coord* can be retrieved through the output of the *quality_fspace* function:
+
+  * *sp_faxes_coord* is a matrix of species coordinates taken from the outputs of the *quality.fspace* function **with columns representing axes on which functional space must be computed**. For instance, in this tutorial, we will plot the functional space for 4 and 10 dimensions (*cf* the two examples below). The whole *sp_faxes_coord* can be retrieved through the output of the *quality_fspace* function:
   
 ```{r, results = "hide"}
 sp_faxes_coord <- fspaces_quality$details_fspaces$sp_pc_coord
@@ -314,7 +315,7 @@ Here are the plots for the *fruits baskets* example for the first four PCoA axis
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center"}
 
-mFD::funct.space.plot(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")], faxes = NULL, name_file = NULL,
+big_plot <- mFD::funct.space.plot(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")], faxes = NULL, name_file = NULL,
                              faxes_nm = NULL, range_faxes_lim = c(NA, NA),
                              color_bg = "grey95",
                              color_sp = "darkgreen", fill_sp = "white",  shape_sp = 21, size_sp = 1,
@@ -322,14 +323,15 @@ mFD::funct.space.plot(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")], faxes = N
                              plot_vertices = TRUE, color_vert = "blueviolet", fill_vert = "blueviolet", shape_vert = 23, size_vert = 1,
                              plot_sp_nm = NULL, nm_size = 3, nm_color = "black", nm_fontface = "plain",
                              check.input = TRUE) 
+big_plot[[7]]
 ```
 
-Here, the convex-hull of the global pool is plotted in white and axis have the same range to get rid of bias based on different axis scales. 
+Here, the convex-hull of the global species pool is plotted in white and axis have the same range to get rid of bias based on different axis scales. 
 
 Here are the plots for the *fruits baskets* example for the ten PCoA axis:
 
 ```{r, fig.height = 7, fig.width = 7, fig.align = "center"}
-mFD::funct.space.plot(sp_faxes_coord, faxes = NULL, name_file = NULL,
+big_plot <- mFD::funct.space.plot(sp_faxes_coord, faxes = NULL, name_file = NULL,
                              faxes_nm = NULL, range_faxes_lim = c(NA, NA),
                              color_bg = "grey95",
                              color_sp = "darkgreen", fill_sp = "white",  shape_sp = 21, size_sp = 1,
@@ -337,6 +339,7 @@ mFD::funct.space.plot(sp_faxes_coord, faxes = NULL, name_file = NULL,
                              plot_vertices = TRUE, color_vert = "blueviolet", fill_vert = "blueviolet", shape_vert = 23, size_vert = 1,
                              plot_sp_nm = NULL, nm_size = 3, nm_color = "black", nm_fontface = "plain",
                              check.input = TRUE) 
+big_plot[[7]]
 ```
 
 Here, all the species are vertices compared with the last example with only four dimensions. 
@@ -345,20 +348,20 @@ Here, all the species are vertices compared with the last example with only four
 ----
 
 
-# 6 - Compute & illustrate functional diversity indices & plot them
+# 6 - Compute functional diversity indices & plot them
 
 
 ## 6 a - Functional diversity indices based on Functional Entities
 
-The package allows the user to compute FD indices based on Functional Entities (FEs). Computed indices are **Functional Redundancy (FRed)**, **Functional OverRedundancy (FORed)** and **Functional Vulnerability (FVuln)** (*Mouillot et al, 2014*).
-The *fruits baskets* example does not allow to compute FEs, thus FD indices based on FEs can not be compute. Check the <span style="color: MediumAquamarine;">**"Compute functional diversity indices based on Functional Entities" tutorial**</span> to see how to compute them.
+The package allows the user to compute FD indices based on Functional Entities (FEs). Computed indices are **Functional Redundancy (FRed)**, **Functional OverRedundancy (FORed)** and **Functional Vulnerability (FVuln)** ([Mouillot et al, 2014] <https://www.pnas.org/content/111/38/13757.short>).
+The *fruits baskets* example does not allow to compute FEs, thus FD indices based on FEs can not be compute. Check the ["Compute functional diversity indices based on Functional Entities" tutorial]<https://cmlmagneville.github.io/mFD_shared/articles/Compute_and_interpret_quality_of_functional_spaces.html> to see how to compute them.
 
 
 
 ## 6 b - Functional alpha diversity indices in a multidimensional space
 
 
-The *alpha.fd.multidim* function allow computing many alpha FD indices:
+The \textcolor{aquamarine3}{alpha.fd.multidim} function allows computing many alpha FD indices:
 
 ```{r, results = "hide"}
 
@@ -370,6 +373,8 @@ The arguments and their use are listed below:
   * *sp_faxes_coord* is the species coordinates matrix 💡 It is not the species dataframe that is the raw output of the *quality.fspace* function (**step 4**), as it gathers **only** axis of the functional space the use has chosen based on **step 4**
   * *asb_sp_w* is the dataframe linking species and assemblages they belong to (summarized in **step 1**)
   * *ind_vect* is a vector with names of diversity functional indices to compute. FD indices computed in the *mFD* package can be (explanations based on *Mouillot et al, 2013*):
+💡 Use lowercase letters to enter FD indices names
+
     * **Functional Dispersion = FDis**: the biomass weighted deviation of species traits values from the center of the functional space filled by the assemblage *ie* the biomass-weighted mean distance to the biomass-weighted mean trait values of the assemblage
     * **Functional Richness = FRic**: the proportion of functional space filled by species of the studied assemblage, *ie* the volume inside the convex-hull shaping species. To compute FRic *the number of species must be at least higher than (the number of functional axis + 1)
     * **Functional Divergence = FDiv**: the proportion of the biomass supported by the species with the most extreme functional traits *ie* the ones located close to the edge of the convex-hull filled by the assemblage
@@ -384,9 +389,9 @@ The arguments and their use are listed below:
   * *check.input* is a recurrent argument in the *mFD* package. It defines whether inputs should be checked before computation or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
   * *store_details* is used if the user wants to store information that are used in graphical functions. If the user wants to plot FD indices, then *store_details* must be set to TRUE
 
-💡 Use lowercase letters to enter FD indices names
 
 The function has two main outputs:
+
   * a dataframe gathering indices values in each assemblage (for FIde values, there are as many columns as there are axes to the studied functional space). 
 
 ```{r}
@@ -394,12 +399,13 @@ fd_ind_values <- alpha_fd_indices$functional_diversity_indices
 fd_ind_values
 ```
 
-  * a list of dataframes ad sublists gathering informations such as coordinates of centrois, distances and identity of the nearest neighbour, distances to the centroid *etc*... The user does not have to directly use it but it will be useful if FD indices are then plotted. It can be retrieved through:
+  * a list of dataframes ad sublists gathering informations such as coordinates of centroids, distances and identity of the nearest neighbour, distances to the centroid *etc*... You do not have to directly use it but it will be useful if you want to plot FD indices. It can be retrieved through:
+  
 ```{r, results = "hide"}
 details_list <- alpha_fd_indices$details
 ```
 
-Then, the user can plot functional indices using the *alpha.multidim.plot* function as follows:
+Then, you can plot functional indices using the \textcolor{aquamarine3}{alpha.multidim.plot} function as follows:
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
 plots_alpha <- mFD::alpha.multidim.plot(sp_faxes_coord, asb_sp_w,
                           ind_vect = c("fdis",
@@ -456,19 +462,19 @@ plots_alpha <- mFD::alpha.multidim.plot(sp_faxes_coord, asb_sp_w,
 
 As you can see, this function has a lot of arguments: most of them are graphical arguments allowing the user to chose colors, shapes, sizes, scales... This tutorial only presents main arguments. To learn about the use of graphical arguments, check the function help file. The main arguments of this function are listed below:
 
-  * *sp_faxes_coord* is the species coordinates matrix 💡 It is not the species dataframe that is the raw output of the *quality.fspace* function (**step 4**), as it gathers **only** axis of the functional space the use has chosen based on **step 4**
+  * *sp_faxes_coord* is the species coordinates matrix 💡 This dataframe gathers **only** axis of the functional space you have chosen based on **step 4** (it is not the species dataframe that is the raw output of the \textcolor{aquamarine3}{quality.fspace} function (**step 4**))
   * *asb_sp_w* is the dataframe linking species and assemblages they belong to (summarized in **step 1**)
-  * *ind_vect* is a vector gathering FD indices to plot. Plots are available for FDis, FEve, FRic, FDiv, FOri, FSpe and FNND.
-  * *details_list* is the output of the *alpha.fd.multidim* function 
+  * *ind_vect* is a vector gathering FD indices to plot. Plots are available for fdis, feve, fric, fdiv, fori, fspe and fnnd.
+  * *details_list* is the output of the \textcolor{aquamarine3}{alpha.fd.multidim} function 
   * *asb_vect* is used as the user can plot one or two assemblages FD indices in the same plot. By using this argument, the user choose which assemblage(s) should be plotted by entering its/their name(s)
-  * *fd_ind_values* is the output of the *alpha.fd.multidim* function
+  * *fd_ind_values* is the output of the \textcolor{aquamarine3}{alpha.fd.multidim} function
   * *faxes* is a vector containing names of axes to plot 💡 You can only plot from two to four axes labels for graphical reasons
   * *faxes_nm* is a vector with axes labels if the user ants different axes lables than *faxes* ones
   * *range_faxes_lim* is a vector with minimum and maximum values for axes. If *range_faxes_lim = c(NA, NA)*, the range is computed according to the range of values among all axes, all axes having thus the same range  💡To have a fair representation of species positions in all plots, all axes must have the same range
   * *convex_pool* is an argument used to plot or not the convex hull filled by the global pool of species
   * *plot_sp_nm* is a vector containing species names to plot. If *plot_sp_nm = NULL*, then no name is plotted
   * size, color, fill and shape arguments for each component of the graphs *ie* species of the global pool, species of the studied assemblage(s), vertices, centroids and segments. 
-  * *check.input* is a recurrent argument in the *mFD* package. It defines whether inputs should be checked before computation or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
+  * *check.input* is a recurrent argument in *mFD*. It defines whether inputs should be checked before computation or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
   
 Then, using these arguments, here are the output plots for the *fruits-baskets* dataset:
 * FRic representation: the blue shape reflects the convex-hull of the studied assemblage and the white shape reflects the convex-hull of the global pool of species:
@@ -507,13 +513,13 @@ plots_alpha[[7]]
 ```
  
 
-## 6 c - Functional diversity beta indices based on multidimensional space
+## 6 c - Functional beta diversity indices based on multidimensional space
 
-The *mFD* package allows the user to compute beta indices for each assemblages pair following the *Villéger et al (2013)* workflow using the *beta.fd.multidim* function. 
+*mFD* package allows you to compute beta diversity indices for each assemblage pairs following [Villéger et al (2013)] <https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12021>. For that we will use the \textcolor{aquamarine3}{beta.fd.multidim} function. 
 
-👉 This function can compute two types of beta diversity indices, either Jaccard or Sorensen. 
+👉 This function can compute two types of functional beta diversity indices, either Jaccard or Sorensen. 
 
-In this example, we will use Jaccard index. For each assemblages pair, the chosen dissimilarity index is decomposed into two components: nestedness and turnover. 💡 The turnover component is the highest if no functional traits combination is shared between the two assemblages. The nestedness component is the highest if one assemblage hosts a small subset of the functional strategies present in the other.
+In this example, we will use Jaccard index. For each assemblages pair, the chosen dissimilarity index is decomposed into two components: nestedness and turnover. 💡 The turnover component is the highest if there is no shared traits combination between the two assemblages. The nestedness component is the highest if one assemblage hosts a small subset of the functional strategies present in the other.
 
 The *beta.fd.multidim* function has the main following arguments: 
 
