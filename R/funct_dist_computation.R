@@ -60,8 +60,11 @@
 #' @references 
 #'   Gower, J.C. (1971) A general coefficient of similarity and some of its 
 #'   properties. _Biometrics_, **27**, 857-871.\cr
-#'   Johnson _et al._ (2020) __\{\{ ADD THE COMPLETE REFERENCE \}\}__\cr
-#'   Pavoine _et al._ (2009) __\{\{ ADD THE COMPLETE REFERENCE \}\}__
+#'   Johnson _et al._ (2020) Handling missing values in trait data. 
+#'   _Global Ecology and Biogeography_, **30**, 51-62.\cr
+#'   Pavoine _et al._ (2009) On the challenge of treating various types of 
+#'   variables: application for improving the measurement of functional 
+#'   diversity, _Oikos_, **118**, 391-402
 #' 
 #' @author Nicolas Loiseau & Sébastien Villéger
 #'
@@ -195,9 +198,9 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
       fuzz_cat <- table(tr_cat[tr_cat$trait_type == "F", ]$fuzzy_name)
       
       # Order the trait names based on the order of the categories
-      fuzz_names_ordered <- unlist(lapply(names(fuzz_cat), function(x) {
+      fuzz_names_ordered <- as.character(unlist(lapply(names(fuzz_cat), function(x) {
         tr_cat$trait_name[tr_cat$fuzzy_name == x & !is.na(tr_cat$fuzzy_name)]
-      }))
+      })))
       
       # Reorder the traits according to the names
       fuzz_trait <- fuzz_trait[ , fuzz_names_ordered]
