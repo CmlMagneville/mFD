@@ -90,6 +90,11 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
     stop(paste("Trait names differ between species x traits data frame and",
                "traits x category data frame. Please check."))
   }
+  
+  if (any(! tr_cat$trait_type %in% c("N","O","C","Q","F") ) ) {
+    stop("Error: Trait type in traits*category should be among 'N','O','C','Q','F'.
+            Please check type of all traits.")
+  }
  
    
   ## Check for Nominal Traits ----
