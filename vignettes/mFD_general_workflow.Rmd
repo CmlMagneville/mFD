@@ -256,7 +256,14 @@ library(patchwork)
 
 
   * *fspaces_quality* is the output of the *quality.fspaces* function (**step 4a**)
-  * *quality_metric* refers to the quality metric used. 
+  * *quality_metric* refers to the quality metric used in the \textcolor{aquamarine3}{quality.fspaces} function. It is a combination of *deviation_weighting* and *fdist_scaling* parameters. *quality_metric* can either be:
+      * *mad* for *deviation_weighting = "absolute"* and *fdist_scaling = FALSE*: it 
+      
+      
+      
+      
+      
+      
   * *fspaces_plot* refers to the names of spaces for which quality has to be illustrated (up to 10). Names are those used in the output of \textcolor{aquamarine3}{quality.fspaces} function showing the values of the quality metric. 
   * *name_file* refers to the name of file to save (without extension) if the user wants to save the figure. If the user only wants the plot to be displayed, then *name_file* = NULL
   * *range_dist*, *range_dev*, *range_qdev* are parameters to set ranges of panel axes (check function help for further informations)
