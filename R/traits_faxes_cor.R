@@ -1,135 +1,128 @@
-# Function to test relationship between traits and axes of a functional space
-#
-# Authors: Nicolas Loiseau and Sébastien Villéger
-#
-# ------------------------------------------------------------------------------
-#' Compute relationship between all traits and all axes of the functional space.
+#' Correlation between Traits and Axes
 #' 
-#' For continuous trait a linear model is computed and r2 and p-value are
-#' returned. For other types of traits, a Kruskal-Wallis test is computed and
+#' Compute relationship between all traits and all axes of the functional space. 
+#' For continuous trait a linear model is computed and r2 and p-value are 
+#' returned. For other types of traits, a Kruskal-Wallis test is computed and  
 #' eta2 statistics is returned.
-#' Option allows to plot trait-axis relationships with scatterplot and boxplot
+#' 
+#' Option allows to plot trait-axis relationships with scatterplot and boxplot 
 #' for continuous and non-continuous traits, respectively.
 #'
-#'@param sp_tr a \strong{dataframe} containing species as rows and traits as columns.
+#' @param sp_tr a data frame containing species as rows and traits as columns.
 #'
-#'@param sp_faxes_coord  a \strong{matrix} of species coordinates in a multidimensional
-#'  functional space. Species coordinates have been retrieved thanks to
-#'  \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
+#' @param sp_faxes_coord a matrix of species coordinates in a multidimensional
+#'   functional space. Species coordinates have been retrieved 
+#'   thanks to \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#'@param tr_nm a \strong{vector} gathering the names of traits (as in \code{sp_tr}) to consider.
+#' @param tr_nm a vector gathering the names of traits (as in `sp_tr`) to 
+#'   consider. If `NULL` all traits are considered.
 #'
-#'@param faxes_nm a \strong{vector} gathering the names of PCoA axes (as in \code{sp_faxes_coord}) to
-#' consider.
+#' @param faxes_nm a vector gathering the names of PCoA axes (as in 
+#'   `sp_faxes_coord`) to consider.
 #'
-#'@param plot a \strong{logical value} indicating whether plot illustrating relations
-#' between trait and axes should be drawn. \strong{You can only plot
-#' relationships for up to 10 traits and/or 10 axes}.
+#' @param plot a logical value indicating whether plot illustrating relations
+#'   between trait and axes should be drawn. **You can only plot relationships 
+#'   for up to 10 traits and/or 10 axes**.
 #'
-#'@param name_file a \strong{character string} with name of file to save the plot
-#' as a 300dpi jpeg file. Default is 'NULL' which means plot is displayed. If
-#'  plot is FALSE, this input is ignored.
+#' @param name_file the file name (without extension) to save the plot as a 300 
+#'   dpi JPEG file. Default is `NULL` which means plot is only displayed. If 
+#'   `plot = FALSE` this argument is ignored.
 #'
-#'@param color_signif a \strong{R color name or an hexadecimal code} referring to the
-#' colour of points when relationships between the trait and the axis is
-#' significant. Default is dark blue.
+#' @param color_signif an R color name or an hexadecimal code referring to 
+#'   the color of points when relationships between the trait and the axis is
+#'   significant. Default is `dark blue`.
 #'
-#'@return a table with for each combination of trait and axis (rows),
-#' name of test performed, and corresponding statistics and p-value.
-#' If plot == TRUE a multi-panel figure with traits as columns and axes as rows.
-#' When relationships between trait and axis is significant the points are
-#'  colored, else they remain grayish.
+#' @return A data frame with for each combination of trait and axis (rows), the  
+#'   name of the test performed, and the corresponding statistics and p-value. 
+#'   If `plot = TRUE` a multi-panel figure with traits as columns and axes as 
+#'   rows is also plotted. When relationships between trait and axis is 
+#'   significant the points are colored, else they remain grayish.
 #'
-#'@examples
+#' @author Nicolas Loiseau & Sebastien Villeger
+#'
+#' @export
+#' 
+#' @importFrom ggplot2 ggplot aes xlab ylab theme_bw geom_point geom_boxplot 
+#'   geom_jitter ggsave
+#' @importFrom patchwork plot_annotation
+#' @importFrom rstatix kruskal_effsize
+#' @importFrom stats lm summary.lm kruskal.test
+#' 
+#' @examples
 #' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 #' load(system.file("extdata", "sp_faxes_coord_fruits", package = "mFD"))
-#' traits.faxes.cor(sp_tr, sp_faxes_coord, tr_nm = NULL, faxes_nm = NULL,
-#'  plot = FALSE, name_file = NULL,
-#'  color_signif = "darkblue")
 #'
-#'@export
+#' traits.faxes.cor(sp_tr, sp_faxes_coord, tr_nm = NULL, faxes_nm = NULL,
+#'                  plot = FALSE, name_file = NULL, color_signif = "darkblue")
 
-traits.faxes.cor <- function(sp_tr, sp_faxes_coord,
-                             tr_nm = NULL, faxes_nm = NULL,
-                             plot = FALSE, name_file = NULL,
+traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL, 
+                             faxes_nm = NULL, plot = FALSE, name_file = NULL,
                              color_signif = "darkblue") {
   
   
-  ## Check inputs ####
+  ## Check inputs ----
   
   if (any(is.na(sp_tr))) {
-    stop("Error: The species*traits dataframe contains NA. Please check.")
+    stop("The species x traits data frame contains NA. Please check.")
   }
   
   if (any(is.na(sp_faxes_coord))) {
-    stop("Error: The species*coordinates matrix contains NA. Please check.")
+    stop("The species x coordinates matrix contains NA. Please check.")
   }
   
-  if (is.null(rownames(sp_tr))) {
-    stop("Error: No row names provided in species*traits dataframe.
-           Please add species names as row names.")
+  if (any(rownames(sp_tr) == 1:nrow(sp_tr))) {
+    stop(paste("No row names provided in species x traits data frame. Please", 
+               "add species names as row names."))
+  }
+
+  if (any(rownames(sp_faxes_coord) == 1:nrow(sp_faxes_coord))) {
+    stop(paste("No row names provided in species x coordinates matrix. Please", 
+               "add species names as row names."))
   }
   
-  if (is.null(colnames(sp_tr))) {
-    stop("Error: No column names provided in species*traits dataframe.
-           Please add traits names as column names.")
+  if (!identical(sort(rownames(sp_tr)), sort(rownames(sp_faxes_coord)))) {
+    stop("Species names mismatch between 'sp_tr' and 'sp_faxes_coord'.")
   }
   
-  if (is.null(rownames(sp_faxes_coord))) {
-    stop("Error: No row names provided in species*coordinates matrix.
-           Please add species names as row names.")
-  }
+  # If not provided, getting 'tr_nm' and 'faxes_nm' else checking
   
-  if (is.null(colnames(sp_faxes_coord))) {
-    stop("Error: No column names provided in species*coordinates matrix.
-           Please add axes names as column names.")
-  }
-  
-  if (!identical( rownames(sp_tr), rownames(sp_faxes_coord) ) ) {
-    stop(paste("Error: Mismatch between species names in 'sp_tr' and
-                 'sp_faxes_coord' ."))
-  }
-  
-  # if not provided, getting tr_nm and faxes_nm else checking:
-  
-  if (is.null(tr_nm)){
+  if (is.null(tr_nm)) {
     tr_nm <- names(sp_tr)
-  }
-  else {
-    if (any(! tr_nm %in% names(sp_tr))) {
-      stop(paste("Error: Trait names should be as in 'sp_tr'"))
+  } else {
+    if (any(!(tr_nm %in% names(sp_tr)))) {
+      stop("Trait names should be as in 'sp_tr'.")
     }
   }
   
   if (is.null(faxes_nm)){
     faxes_nm <- colnames(sp_faxes_coord)
   } else {
-    if (any(! faxes_nm %in% colnames(sp_faxes_coord))) {
-      stop(paste("Error: axes names should be as in 'sp_tr'"))
+    if (any(!(faxes_nm %in% colnames(sp_faxes_coord)))) {
+      stop("Axes names should be as in 'sp_tr'.")
     }
   }
   
   
-  ## preparing ####
-  
-  # combinations trait*axes:
-  res <- as.data.frame(matrix(NA, length(tr_nm)*length(faxes_nm), 6 ,
-                              dimnames = list(NULL, c("trait", "axis",
-                                                      "test", "stat",
-                                                      "value", "p.value"))))
-  
-  # if needed, checking number of plots to draw:
-  if (plot == TRUE) {
+  # If needed, checking number of plots to draw
+  if (plot) {
     
-    # checking number of traits and axes did not exceed limits for graphics:
     if (length(faxes_nm) > 10) {
-      stop(paste("Error: Number of axes to plot should be < 11"))
+      stop("Number of axes to plot should be < 11.")
     }
     
     if (length(tr_nm) > 10) {
-      stop(paste("Error: Number of traits to plot should be < 11"))
+      stop("Number of traits to plot should be < 11.")
     }
-  } # end of if plot
+  }
+  
+  
+  ## Preparing ----
+  
+  # combinations trait*axes:
+  res <- as.data.frame(matrix(NA, length(tr_nm) * length(faxes_nm), 6 ,
+                              dimnames = list(NULL, c("trait", "axis", "test", 
+                                                      "stat", "value", "p.value"
+                                                      ))))
   
   
   # flag for moving down combinations of traits and axes:
@@ -143,25 +136,24 @@ traits.faxes.cor <- function(sp_tr, sp_faxes_coord,
       flag <- flag + 1
       
       # data:
-      trait <- NULL
-      axis <- NULL
-      data_ij <- data.frame(trait = sp_tr[, i],
-                            axis = sp_faxes_coord[, j])
+      trait   <- NULL
+      axis    <- NULL
+      data_ij <- data.frame("trait" = sp_tr[ , i], 
+                            "axis"  = sp_faxes_coord[ , j])
       
       # if trait is continuous Linear Model ----
-      if (is.numeric(data_ij$trait) == TRUE) {
+      if (is.numeric(data_ij$trait)) {
         
         # test
         test_ij <- "Linear Model"
         
-        lm_ij <- summary(stats::lm(data_ij[, "trait"] ~ data_ij[, "axis"]))
+        lm_ij <- summary(stats::lm(trait ~ axis, data = data_ij))
         
         res[flag, c("trait", "axis", "test", "stat")] <- c(i, j, test_ij, "r2")
         res[flag, c("value", "p.value")] <- c(round(lm_ij$r.squared, 3),
-                                              round(lm_ij$coefficients[2, 4], 4))
-      }
-      
-      else {
+                                              round(lm_ij$coefficients[2, 4], 
+                                                    4))
+      } else {
         
         # if trait is not continuous Kruskal Wallis test  ----
         
@@ -171,114 +163,108 @@ traits.faxes.cor <- function(sp_tr, sp_faxes_coord,
         
         kw_ij_eta2 <- rstatix::kruskal_effsize(data = data_ij, axis ~ trait)
         
-        res[flag, c("trait", "axis", "test", "stat")] <- c(i, j, test_ij, "eta2")
+        res[flag, c("trait", "axis", "test", "stat")] <- c(i, j, test_ij, 
+                                                           "eta2")
         res[flag, c("value", "p.value")] <- c(round(kw_ij_eta2$effsize, 3),
                                               round(kw_ij$p.value, 4))
-      } # end if not numeric
+      }
       
       # plotting if needed ----
       
-      if (plot == TRUE) {
+      if (plot) {
         
-        # X axis has trait names only for last Faxes = bottom row:
+        # X axis has trait names only for last Faxes (bottom row)
+        x_lab_ij <- NULL
         if (j == faxes_nm[length(faxes_nm)]) {
           x_lab_ij <- i
         }
-        else {
-          x_lab_ij <- NULL
-        }
         
-        # y axis will have Faxes names only for first trait (left column):
+        # Y axis will have Faxes names only for first trait (left column)
+        y_lab_ij <- NULL
         if (i == tr_nm[1]) {
           y_lab_ij <- j
-        } else {
-          y_lab_ij <- NULL
         }
         
-        # main color according to significance of relationship:
-        if (res[flag, c("p.value")] < 0.05) {
+        # Main color according to significance of relationship:
+        if (res[flag, "p.value"] < 0.05) {
           col_cor <- color_signif
-        }
-        else {
+        } else {
           col_cor <- "gray90"
         }
         
-        # empty plot:
+        # Empty plot
         gg_ij <- ggplot2::ggplot(data_ij, ggplot2::aes(trait, axis)) +
-          ggplot2::xlab(x_lab_ij) + ggplot2::ylab(y_lab_ij) +
+          ggplot2::xlab(x_lab_ij) + 
+          ggplot2::ylab(y_lab_ij) +
           ggplot2::theme_bw()
         
         # if continuous trait, adding points:
-        if (res[flag, c("stat")] == "r2") {
+        if (res[flag, "stat"] == "r2") {
+          
           gg_ij <- gg_ij + ggplot2::geom_point(size = 2, col = col_cor)
-        }
-        else {
+          
+        } else {
+          
           # if ordinal or categorical trait violin plot + jittered points:
           gg_ij <- gg_ij + ggplot2::geom_boxplot(colour = col_cor) +
-            ggplot2::geom_jitter(colour = col_cor,
-                                 width = 0.3, size = 1.5)
+            ggplot2::geom_jitter(colour = col_cor, width = 0.3, size = 1.5)
         }
         
         # if not first panel merging down with previous one(s):
         if (j == faxes_nm[1]) {
           col_j <- gg_ij
-        }
-        else {
+        } else {
           col_j <- col_j / gg_ij
         }
-        
       } # end of if plot
-      
-      
     } # end of j
     
     # merging plots if needed:
-    if(plot == TRUE) {
+    if (plot) {
       # if not first trait, merging with other side by side:
       if (i == tr_nm[1]) {
         tr_faxes_plot <- col_j
-      }
-      else {
+      } else {
         tr_faxes_plot <- tr_faxes_plot | col_j
       }
     } # end of if plot
-    
   } # end of i
   
-  #### returning outputs ####
   
-  # default = only table with statistics:
-  if (plot == FALSE) {
-    return(tr_faxes_stat = res)
-  }
-  else {
+  ## Function Return ----
+  
+  if (!plot) {
+    
+    return("tr_faxes_stat" = res)    # default
+  
+  } else {
+    
     # if plot to be returned:
     # adding title and legend to plot:
-    tr_faxes_plot <- tr_faxes_plot + patchwork::plot_annotation(
-      title = "Relation between Traits and PCoA axes",
-      caption = "made with mFD package")
+    tr_faxes_plot <- tr_faxes_plot + 
+      patchwork::plot_annotation(title = "Relation between traits and PCoA axes",
+                                 caption = "Made with mFD package")
     
     # displaying or saving:
-    if (is.null(name_file) == TRUE ){
+    if (is.null(name_file)){
+      
       # table with statistics and plot:
-      return(list(tr_faxes_stat = res, tr_faxes_plot = tr_faxes_plot))
-    }
-    else {
+      return(list("tr_faxes_stat" = res, "tr_faxes_plot" = tr_faxes_plot))
+    
+    } else {
+      
       # saving plot as a 300dpi jepg file:
-      ggplot2::ggsave(filename = paste0(name_file, ".", "jpeg"),
-                      plot = tr_faxes_plot,
-                      device = "jpeg",
-                      width = length(tr_nm)*3,
-                      height = length(faxes_nm)*2.33,
-                      units = "in",
-                      dpi = 300 )
+      ggplot2::ggsave(filename = paste0(name_file, ".jpeg"),
+                      plot     = tr_faxes_plot,
+                      device   = "jpeg",
+                      width    = length(tr_nm) * 3,
+                      height   = length(faxes_nm) * 2.33,
+                      units    = "in",
+                      dpi      = 300)
       
       # and returning table with statistics
-      return(tr_faxes_stat = res)
+      return("tr_faxes_stat" = res)
       
     } # end of if jpeg
-    
   } # end of if plot
-  
 } # end of function
-

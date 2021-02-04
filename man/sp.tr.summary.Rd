@@ -2,38 +2,58 @@
 % Please edit documentation in R/matrix_summaries.R
 \name{sp.tr.summary}
 \alias{sp.tr.summary}
-\title{Summarize species*traits dataframe}
+\title{Summarize Species x Traits Data Frame}
 \usage{
 sp.tr.summary(tr_cat, sp_tr)
 }
 \arguments{
-\item{tr_cat}{a \strong{dataframe} containing three columns for each trait (rows):
-\itemize{ \item \strong{trait_name}: names of all traits as in \code{sp_tr}
-data.frame \item \strong{trait_type}: category codes for each trait as
-followed: \emph{N} for Nominal traits (factor variable), \emph{O} for
-Ordinal traits (ordered variable), \emph{C} for Circular traits (integer
-values), \emph{Q} for quantitative traits (numeric values) and
-\emph{F} for fuzzy traits (described with several values defined with
-several column). } An option is to add a fourth column with a numeric
-vector of length n (traits number) to specify a weight for each trait.}
+\item{tr_cat}{a data frame containing three columns for each trait (rows):
+\itemize{
+\item \strong{trait_name}: the name of all traits as in \code{sp_tr} data
+frame;
+\item \strong{trait_type}: the category code for each trait as followed:
+\code{N} for Nominal traits (factor variable), \code{O} for Ordinal traits
+(ordered variable), \code{C} for Circular traits (integer values), \code{Q}
+for quantitative traits (numeric values), and \code{F} for
+fuzzy traits (i.e. described with several values defined with several
+column);
+\item \strong{fuzzy_name}: name of fuzzy-coded trait to which 'sub-trait'
+belongs (if trait is not fuzzy, ignored so could be trait name or NA).
+}
 
-\item{sp_tr}{a \strong{dataframe} of traits values (columns) for each species (rows)}
+An option is to add a fourth column with a numeric vector of length n
+(traits number) to specify a weight for each trait.}
+
+\item{sp_tr}{a data frame of traits values (columns) for each species (rows).
+Note that species names \strong{must be} specified in the row names.}
 }
 \value{
-a table summarizing for each trait the number of species per modality
-for non-continuous trait and min/max/mean/median/quartiles for continuous
-traits \code{tr_summary_list} ; a list containing traits type
-\code{tr_types} ; a list containing modalities for each non continuous
-trait \code{non_conttr_mod_list}
+If there is no fuzzy-coded trait, a three-elements list with:
+\item{tr_summary_list}{a table summarizing for each trait the
+number of species per modality for non-continuous trait and min, max,
+mean, median, and quartiles for continuous traits.}
+\item{tr_types}{a list containing traits type.}
+\item{non_conttr_mod_list}{a list containing modalities for non-continuous
+trait.}
+
+If there is fuzzy-coded trait, a four-elements list with:
+\item{tr_summary_non_fuzzy_list}{a table summarizing for each trait the
+number of species per modality for non-continuous trait and min, max,
+mean, median, and quartiles for continuous traits.}
+\item{tr_summary_fuzzy_list}{\strong{MISSING DESCRIPTION}}
+\item{tr_types}{a list containing traits type.}
+\item{mod_list}{a list containing modalities for non-continuous trait.}
 }
 \description{
-Computes summary data helping to choose the type of analysis you can do with
-your data. For this function to work, there must be no NA in your
-\code{sp_tr} dataframe.
+This function computes a summary data helping to choose the type of analysis
+you can do with your data. For this function to work, there must be no NA in
+your \code{sp_tr} data frame.
 }
 \examples{
- load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
- load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
- mFD::sp.tr.summary(sp_tr_cat, sp_tr)
-
+load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
+load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
+mFD::sp.tr.summary(sp_tr_cat, sp_tr)
+}
+\author{
+Camille Magneville & Sebastien Villeger
 }
