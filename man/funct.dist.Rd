@@ -44,7 +44,7 @@ appear if the option selected with that condition)"}.}
 
 \item{scaling}{a character string referring to the way traits must be scaled.
 There are three options:
-\code{scaledBYrange} (if traits must be scaled byrange),
+\code{scaledBYrange} (if traits must be scaled by range),
 \code{scaledBYsd} (if traits must be scaled by their standard deviation), or
 \code{noscale} (if traits do not have to be scaled).}
 

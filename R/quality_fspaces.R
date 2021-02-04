@@ -94,18 +94,22 @@
 #'
 #' @examples
 #' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-#' sp_tr <- sp_tr[, -c(6:8)]
+#' sp_tr <- sp_tr[ , -c(6:8)]
+#' 
 #' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
 #' sp_tr_cat <- sp_tr_cat[-c(6:8), ]
-#' sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower")
+#' 
+#' sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower",
+#'                             scaling = "noscale")
 #' quality.fspaces(sp_dist, maxdim_pcoa = 10, deviation_weighting = "absolute", 
-#'  fdist_scaling = FALSE, fdendro = "average")
+#'                 fdist_scaling = FALSE, fdendro = "average")
 #'
 #' @export
 
 
 quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
-                            deviation_weighting = "absolute", fdist_scaling = FALSE) {
+                            deviation_weighting = "absolute", 
+                            fdist_scaling = FALSE) {
   
   # check inputs #
   

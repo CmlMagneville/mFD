@@ -72,7 +72,8 @@
 #' sp_tr <- sp_tr[, -c(6:8)]
 #' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
 #' sp_tr_cat <- sp_tr_cat[-c(6:8), ]
-#' sp_trdist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower")
+#' sp_trdist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower",
+#' scaling = "noscale")
 #' fspaces_quality <- mFD::quality.fspaces(sp_trdist, maxdim_pcoa = 10,
 #'  deviation_weighting = "absolute", fdist_scaling = FALSE, fdendro = "average")
 #' mFD::quality.fspaces.plot(fspaces_quality, quality_metric = "mad",

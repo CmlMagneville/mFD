@@ -40,7 +40,7 @@
 #' 
 #' @param scaling a character string referring to the way traits must be scaled. 
 #'   There are three options: 
-#'   `scaledBYrange` (if traits must be scaled byrange),
+#'   `scaledBYrange` (if traits must be scaled by range),
 #'   `scaledBYsd` (if traits must be scaled by their standard deviation), or
 #'   `noscale` (if traits do not have to be scaled). 
 #' 
@@ -92,40 +92,31 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
          "extrapolate missing traits (Johnson et al. (2020).")
   }
   
-  if (!is.data.frame(sp_tr)) {
-    stop("Species x traits data must be gathered in a matrix.")
-  }
-  
-  if (any(rownames(sp_tr) == 1:nrow(sp_tr))) {
-    stop(paste("No row names provided in traits data frame. Analysis will",
-               "not go through, please add species names as row names."))
-  }
-  
-  if (any(is.na(tr_cat$trait_type))) {
-    stop("Trait type in traits x category data frame contains NA. Please ",
-         "check and specify type of all traits.")
-  }
-  
-  tr_nm <- names(sp_tr)
-  
-  if (any(tr_nm != tr_cat$trait_name)) {
-    stop("Trait names differ between species x traits data frame and ",
-         "traits x category data frame. Please check.")
-  }
-  
-  if (any(!(tr_cat$trait_type %in% c("N", "O", "C", "Q", "F")))) {
-    stop("Trait type in traits x category should be among 'N', 'O', 'C', 'Q', ",
-         "'F'. Please check type of all traits.")
-  }
+  check.sp.tr(sp_tr, tr_cat, stop_if_NA)
   
   if (ncol(tr_cat) == 4) {
-    cat("tr_cat has 4 columns, if you use classical_gower traits will be",
+    cat("tr_cat has 4 columns, if you use 'classical_gower' traits will be",
         "weighted.\n")
-  } 
+  }
+  
+  if (missing(dist_metric)) {
+    stop("Argument 'dist_metric' is mandatory and should be 'euclidean', ", 
+         "'classical_gower', or 'kgower'.")
+  }
   
   if (any(!(dist_metric %in% c("euclidean", "classical_gower", "kgower")))) {
     stop("Argument 'dist_metric' should be 'euclidean', 'classical_gower', ", 
          "or 'kgower'.")
+  }
+  
+  if (missing(scaling)) {
+    stop("Argument 'scaling' is mandatory and should be 'scaledBYrange', ", 
+         "'scaledBYsd', or 'noscale'.")
+  }
+  
+  if (any(!(scaling %in% c("scaledBYrange", "scaledBYsd", "noscale")))) {
+    stop("Argument 'dist_metric' should be 'scaledBYrange', 'scaledBYsd', ", 
+         "or 'noscale'.")
   }
   
   
@@ -141,7 +132,6 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
       
       ktab_dist <- cluster::daisy(sp_tr, "gower")
     }
-    
   }
   
   if (dist_metric == "euclidean") {
@@ -156,10 +146,10 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
   
   if (dist_metric == "kgower") {
     
-    # Need to prepare functional trait in function of their nature
+    # Need to prepare functional trait in function of their nature...
+
     
-    
-    # Quantitative traits
+    # ... Quantitative traits
     
     quant_trait <- NULL
     
@@ -169,7 +159,7 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     }
     
     
-    # Ordinal Traits
+    # ... Ordinal Traits
     
     ord_trait <- NULL
     
@@ -179,7 +169,7 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     }
     
     
-    # Circular traits
+    # ... Circular traits
     
     circ_trait <- NULL
     
@@ -191,8 +181,7 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     }
     
     
-    # Fuzzy traits 
-    # (basically several categories that are considered a single trait)
+    # ... Fuzzy traits
     
     fuzz_trait <- NULL
     
@@ -219,7 +208,7 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     }
     
     
-    # Binary traits
+    # ... Binary traits
     
     bin_trait <- NULL
     
@@ -231,7 +220,7 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     }
     
     
-    # Nominal traits
+    # ... Nominal traits
     
     nom_trait <- NULL
     
