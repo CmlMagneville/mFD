@@ -55,120 +55,39 @@
 sp.tr.summary <- function(tr_cat, sp_tr) {
   
   
+  ## Check Inputs ----
+  
+  check.sp.tr(sp_tr, tr_cat, stop_if_NA = TRUE)
+  
+  
   ## Retrieve Traits Informations ----
   ## (fuzzy-coded traits are modified thereafter)
   
-  sp_nb   <- nrow(sp_tr)            # species number
-  tr_nm   <- names(sp_tr)           # traits names
-  tr_nb   <- length(tr_nm)          # traits number
-  tr_type <- c(tr_cat$trait_type)   # traits type
+  # sp_nb   <- nrow(sp_tr)            # species number
+  # tr_nm   <- names(sp_tr)           # traits names
+  # tr_nb   <- length(tr_nm)          # traits number
+  tr_type <- c(tr_cat$"trait_type")   # traits type
   
-  names(tr_type) <- tr_nm
-
-   
-  ## Check Inputs ----
+  names(tr_type) <- names(sp_tr)
   
-  if (!is.data.frame(sp_tr)) {
-    stop("Your species x traits data must be gathered in a data frame.")
-  }
-  
-  if (any(rownames(sp_tr) == 1:nrow(sp_tr))) {
-    stop(paste("No row names provided in traits data frame. Analysis will",
-               "not go through, please add species names as row names."))
-  }
-  
-  if (any(is.na(sp_tr))) {
-    stop("There must be no NA in traits data.")
-  }
-  
-  if (any(is.na(tr_cat$trait_type))) {
-    stop(paste("Trait type in traits x category data frame contains NA. Please",
-               "check and specify type of all traits."))
-  }
-  
-  if (any(sort(tr_nm) != sort(tr_cat$trait_name))) {
-    stop(paste("Trait names differ between species x traits data frame and",
-               "traits x category data frame. Please check."))
-  }
- 
-   
-  ## Check for Nominal Traits ----
-  
-  if ("N" %in% tr_cat$trait_type) {
-    for (k in tr_cat$trait_name[which(tr_cat$trait_type == "N")]) {
-      if (!is.factor(sp_tr[ , k])) {
-        stop(paste0("Trait '", k, "'is supposed to be nominal but is not ", 
-                    "described with a 'factor' variable."))
-      }
-    }
-  }
+  check.nominal(tr_cat, sp_tr)
+  check.ordinal(tr_cat, sp_tr)
+  check.circular(tr_cat, sp_tr)
+  check.continuous(tr_cat, sp_tr)
+  check.fuzzy(tr_cat, sp_tr)
   
   
-  ## Check that Ordinal Traits have ordered categories ----
+  ## Transform Fuzzy-coded Traits ----
   
-  if ("O" %in% tr_cat$trait_type) {
-    for (k in tr_cat$trait_name[which(tr_cat$trait_type == "O")]) {
-      if (!is.ordered(sp_tr[ , k])) {
-        stop(paste0("Trait '", k, "'is supposed to be ordinal but is not ", 
-                    "described with an 'ordered' variable."))
-      }
-    }
-  }
-  
-  
-  ## Check that Circular Traits are coded with integer ----
-  
-  if ("C" %in% tr_cat$trait_type) {
-    for (k in tr_cat$trait_name[which(tr_cat$trait_type == "C")]) {
-      if (!is.integer(sp_tr[ , k])) {
-        stop(paste0("Trait '", k, "'is supposed to be circular but is not ", 
-                    "described with an 'integer' variable."))
-      }
-    }
-  }
-  
-  
-  ## Check that Continuous Trait have NON-Unique Values ----
-  
-  if ("Q" %in% tr_cat$trait_type) {
-    for (k in tr_cat$trait_name[which(tr_cat$trait_type == "Q")]) {
-      if (!is.numeric(sp_tr[ , k])) {
-        stop(paste0("Trait '", k, "'is supposed to be continuous but is not ", 
-                    "described with a 'numeric' variable."))
-      }
-    }
-  }
-  
-  
-  ## Check Fuzzy-coded Traits ----
-  
-  if ("F" %in% tr_cat$trait_type) {
+  if ("F" %in% tr_cat$"trait_type") {
     
     # retrieve names of fuzzy-coded traits:
-    nm_fuzzy <- unique(stats::na.omit(tr_cat$fuzzy_name))
-    
-    # Check that fuzzy traits are described with more than one variable:
-    for (k in nm_fuzzy) {
-      # get the names of variables for fuzzy trait k:
-      var_k <- tr_cat$trait_name[which(tr_cat$fuzzy_name == k)]
-      
-      # Check that there are at least 2 columns per fuzzy coded trait:
-      if (length(var_k) < 2) {
-        stop(paste0("Fuzzy-coded trait '", k, "' is described with a single ", 
-                    "variable. Consider changing its type to 'nominal'."))
-      }
-      
-      # Check that variables are continuous:
-      if (!any(apply(sp_tr[ , var_k ], 2, is.numeric))) {
-        stop(paste0("Fuzzy-coded trait '", k, "' is not described with ",
-                    "'numeric' variables"))
-      }
-    }
+    nm_fuzzy <- unique(stats::na.omit(tr_cat$"fuzzy_name"))
     
     # Update names, type and number of traits
-    tr_nm   <- c(tr_cat$trait_name[tr_cat$trait_type != "F"], nm_fuzzy)
+    tr_nm   <- c(tr_cat$"trait_name"[tr_cat$"trait_type" != "F"], nm_fuzzy)
     tr_nb   <- length(tr_nm)
-    tr_type <- c(tr_cat$trait_type[tr_cat$trait_type != "F"],
+    tr_type <- c(tr_cat$"trait_type"[tr_cat$"trait_type" != "F"],
                  rep("F", length(nm_fuzzy)))
     names(tr_type) <- tr_nm
   }
@@ -185,7 +104,7 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
     tr_types <- sapply(sp_tr, class)
     
     # List containing modalities for non continuous traits
-    sp_non_conttr <- sp_tr[, lapply(sp_tr, is.numeric) == FALSE]
+    sp_non_conttr <- sp_tr[ , lapply(sp_tr, function(x) !is.numeric(x))]
     non_conttr_modalities_list <- lapply(sp_non_conttr, unique)
     
     return(list("tr_summary_list"     = tr_summary_list, 
@@ -195,21 +114,21 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
   } else {                            # fuzzy coded traits
 
     # Table with traits summary for non fuzzy traits
-    tr_summary_list <- summary(sp_tr[ , tr_cat$trait_name[
-      which(tr_cat$trait_type != "F")], ])
+    tr_summary_list <- summary(sp_tr[ , tr_cat$"trait_name"[
+      which(tr_cat$"trait_type" != "F")], ])
     
     # Vector containing traits type for non fuzzy traits
-    tr_types <- sapply(sp_tr[ , tr_cat$trait_name[
-      which(tr_cat$trait_type != "F")], ], class)
+    tr_types <- sapply(sp_tr[ , tr_cat$"trait_name"[
+      which(tr_cat$"trait_type" != "F")], ], class)
     
     # List containing modalities for non continuous traits
-    sp_non_conttr <- sp_tr[ , tr_cat$trait_name[
-      which(tr_cat$trait_type != "F" & tr_cat$trait_type != "Q")], ]
+    sp_non_conttr <- sp_tr[ , tr_cat$"trait_name"[
+      which(tr_cat$"trait_type" != "F" & tr_cat$"trait_type" != "Q")], ]
     mod_list <- lapply(sp_non_conttr, unique)
     
     # For fuzzy traits
-    tr_summary_fuzzy_list <- summary(sp_tr[ , tr_cat$trait_name[
-      which(tr_cat$trait_type == "F")], ])
+    tr_summary_fuzzy_list <- summary(sp_tr[ , tr_cat$"trait_name"[
+      which(tr_cat$"trait_type" == "F")], ])
     
     return(list("tr_summary_non_fuzzy_list" = tr_summary_list,
                 "tr_summary_fuzzy_list"     = tr_summary_fuzzy_list,
@@ -253,29 +172,8 @@ asb.sp.summary <- function(asb_sp_w) {
   
   ## Check Input ----
   
-  if (!is.matrix(asb_sp_w)) {
-    stop("The argument 'asb_sp_w' must be a matrix.")
-  }
+  check.asb.sp.w(asb_sp_w)
   
-  if (!(is.numeric(asb_sp_w))) {
-    stop(paste("The 'asp_sp_w' matrix must only contain numeric values. Please",
-               "convert values."))
-  }
-  
-  if (any(rownames(asb_sp_w) == 1:nrow(asb_sp_w))) {
-    stop(paste("No row names provided in 'asb_sp_w' matrix. Analysis will not", 
-               "go through. Please add species names as row names."))
-  }
-  
-  if (any(is.na(asb_sp_w))) {
-    stop("The 'asb_sp_w' matrix contains NA. Analysis will not go through.")
-  }
-
-  
-  if (any(asb_sp_w < 0)) {
-    stop(paste("The species x weight matrix should not contain negative values.",
-               "Please check."))
-  }
   
   # Convert matrix to data frame
   asb_sp_w <- as.data.frame(asb_sp_w)
@@ -303,19 +201,6 @@ asb.sp.summary <- function(asb_sp_w) {
     data2 <- data[which(apply(data, 2, max) == TRUE)]
     rownames(data2) <- rownames(asb_sp_w_occ[i, ])
     L[[i]] <- as.vector(data2)
-  }
-  
-  
-  ## Function Warnings ----
-  
-  # Add a warning if some species do not belong to any assemblage
-  if (min(apply(asb_sp_w, 2, sum)) == 0) {
-    warning("Some species are absent from all assemblages.")
-  }
-  
-  # Add a warning if some asb do not contain species
-  if (min(apply(asb_sp_w, 1, sum)) == 0) {
-    warning("Some assemblages do not contain species.")
   }
   
   

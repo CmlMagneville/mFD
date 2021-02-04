@@ -1,10 +1,10 @@
 ---
-title: "Continuous_traits_framework"
+title: "Continuous Traits Framework"
 author: "Camille Magneville"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Continuous_traits_framework}
+  %\VignetteIndexEntry{Continuous Traits Framework}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 

@@ -1,10 +1,10 @@
 ---
-title: "Compute_and_interpret_quality_of_functional_spaces"
+title: "Compute and Interpret Quality of Functional Spaces"
 author: "Sébastien Villéger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Compute_and_interpret_quality_of_functional_spaces}
+  %\VignetteIndexEntry{Compute and Interpret Quality of Functional Spaces}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---

@@ -101,10 +101,6 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
                "not go through, please add species names as row names."))
   }
   
-  if (any(is.na(sp_tr))) {
-    stop("There must be no NA in traits data frame.")
-  }
-  
   if (any(is.na(tr_cat$trait_type))) {
     stop("Trait type in traits x category data frame contains NA. Please ",
          "check and specify type of all traits.")
@@ -115,6 +111,11 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
   if (any(tr_nm != tr_cat$trait_name)) {
     stop("Trait names differ between species x traits data frame and ",
          "traits x category data frame. Please check.")
+  }
+  
+  if (any(!(tr_cat$trait_type %in% c("N", "O", "C", "Q", "F")))) {
+    stop("Trait type in traits x category should be among 'N', 'O', 'C', 'Q', ",
+         "'F'. Please check type of all traits.")
   }
   
   if (ncol(tr_cat) == 4) {
