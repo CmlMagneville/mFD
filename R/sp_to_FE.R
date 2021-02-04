@@ -142,6 +142,11 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
              Please check and specify type of all traits.")
   }
   
+  if (any(! tr_cat$trait_type %in% c("N","O","C","Q","F") ) ) {
+    stop("Error: Trait type in traits*category should be among 'N','O','C','Q','F'.
+            Please check type of all traits.")
+  }
+  
   # check nominal traits:
   if ("N" %in% tr_cat$trait_type) {
     for (k in tr_cat$trait_name[which(tr_cat$trait_type == "N")]) {
@@ -316,7 +321,7 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
   names(fe_nb_sp) <- fe_codes
   
   # return a warning if all species are different (i.e. only 1 sp per FE):
-  if (min(fe_nb_sp == 1)) {
+  if (max(fe_nb_sp) == 1) {
     warning("Warning: all Functional Entities have a single species")
   }
   
@@ -411,7 +416,7 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
   # ... which all had the same order as fe_codes (based on fe_nb_sp):
   names(fe_nb_sp_ord) <- fe_nm
   names(fe_codes_ord) <- fe_nm
-  rownames(fe_trait) <- fe_nm
+  rownames(fe_trait_ord) <- fe_nm
   
   # replace FEs codes in sp_fe by proper FE names:
   sp_fe_ord <- sp_fe
