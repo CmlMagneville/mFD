@@ -1,7 +1,7 @@
-#' @title Species assemblages matrix for fruits baskets example
-#' @description A matrix gathering 25 fruits species into 10 fruits baskets.
-#'   Each number in the matrix is fruits abundance. This matrix is used in most
-#'   mFD tutorials and diverse mFD functions examples.
+#' @title Matrix gathering fruits species into fruits baskets for use in mFD 
+#' @description A matrix linking 25 fruits species (columns) and the fruits
+#'   basket(s) they belong to (rows). Values represent fruits abundances in each
+#'   basket.
 #'   
 #' @format A matrix with 10 rows and 25 columns
 #' \describe{
