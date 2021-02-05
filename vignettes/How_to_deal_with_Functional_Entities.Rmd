@@ -38,55 +38,43 @@ Here fruits are **species** and baskets are **species assemblages**.
 
 The following dataframe and matrix are needed: 
 
-  * Here is the dataframe summarizing traits values for each species called *sp_tr* dataframe in this tutorial:
+  * Here is the dataframe summarizing traits values for each species called *sp_tr_fruits* dataframe in this tutorial:
 
 ```{r, echo = FALSE}
-library(knitr)
-sp_tr <- read.csv(system.file("extdata", "data_fruits_baskets_sp_tr.csv", package = "mFD"))
-sp_tr$Plant <- as.factor(sp_tr$Plant)
-sp_tr$Size <- as.ordered(sp_tr$Size)
-sp_tr$Seed <- as.ordered(sp_tr$Seed)
-sp_tr$Climate <- as.ordered(sp_tr$Climate)
-rownames(sp_tr) <- sp_tr$species_id
-sp_tr <- sp_tr[, -1]
+data("sp_tr_fruits", package = "mFD")
 
-# only keep the first 4 traits to illustrate FEs:
-sp_tr <- sp_tr[, c(1:4)]
+sp_tr_fruits <- sp_tr_fruits[, c(1:4)]      # only keep the first 4 traits to illustrate FEs
 
 # Decrease the number of modalities per trait for convenience (to have less unique combinations of trait values):
 
 # size grouped into only 3 categories:
-sp_tr[, "Size"] <- as.character(sp_tr[ , "Size"])
-sp_tr[which(sp_tr[ , "Size"] %in% c("0-1cm", "1-3cm", "3-5cm")), "Size"] <- "small"
-sp_tr[which(sp_tr[, "Size"] == "5-10cm"), "Size"] <- "medium"
-sp_tr[which(sp_tr[, "Size"] == "10-20cm"), "Size"] <- "large"
-sp_tr[, "Size"] <- factor(sp_tr[, "Size"], levels = c("small", "medium", "large"),
+sp_tr_fruits[, "Size"] <- as.character(sp_tr_fruits[ , "Size"])
+sp_tr_fruits[which(sp_tr_fruits[ , "Size"] %in% c("0-1cm", "1-3cm", "3-5cm")), "Size"] <- "small"
+sp_tr_fruits[which(sp_tr_fruits[, "Size"] == "5-10cm"), "Size"] <- "medium"
+sp_tr_fruits[which(sp_tr_fruits[, "Size"] == "10-20cm"), "Size"] <- "large"
+sp_tr_fruits[, "Size"] <- factor(sp_tr_fruits[, "Size"], levels = c("small", "medium", "large"),
                           ordered = TRUE)
 
 # Plant type grouped into only 2 categories:
-sp_tr[, "Plant"] <- as.character(sp_tr[, "Plant"])
-sp_tr[which(sp_tr[, "Plant"] != "tree"), "Plant"] <- "Not_tree"
-sp_tr[, "Plant"] <- factor(sp_tr[, "Plant"], levels = c("Not_tree", "tree"), 
+sp_tr_fruits[, "Plant"] <- as.character(sp_tr_fruits[, "Plant"])
+sp_tr_fruits[which(sp_tr_fruits[, "Plant"] != "tree"), "Plant"] <- "Not_tree"
+sp_tr_fruits[, "Plant"] <- factor(sp_tr_fruits[, "Plant"], levels = c("Not_tree", "tree"), 
                            ordered = TRUE)
 
 # Plant Origin grouped into only 2 categories:
-sp_tr[, "Climate"] <- as.character(sp_tr[, "Climate"])
-sp_tr[which(sp_tr[, "Climate"] != "temperate"), "Climate"] <- "tropical"
-sp_tr[, "Climate"] <- factor(sp_tr[, "Climate"], levels = c("temperate", "tropical"),
+sp_tr_fruits[, "Climate"] <- as.character(sp_tr_fruits[, "Climate"])
+sp_tr_fruits[which(sp_tr_fruits[, "Climate"] != "temperate"), "Climate"] <- "tropical"
+sp_tr_fruits[, "Climate"] <- factor(sp_tr_fruits[, "Climate"], levels = c("temperate", "tropical"),
                             ordered = TRUE)
 
-knitr::kable(head(sp_tr), caption = "Species x traits dataframe based on *fruits* dataset")
+knitr::kable(head(sp_tr_fruits), caption = "Species x traits dataframe based on *fruits* dataset")
 ```
 
    * Here is the matrix summarizing assemblages:
    
 ```{r, echo = FALSE}
-library(knitr)
-asb_sp_w <- read.csv(system.file("extdata", "data_fruits_baskets_sp_w_asb.csv", package = "mFD"))
-rownames(asb_sp_w) <- asb_sp_w$basket_id
-asb_sp_w <- asb_sp_w[, -1]
-knitr::kable(asb_sp_w[c(1:6), c(1:6)], caption = "Species x assemblages dataframe based on *fruits* dataset")
-asb_sp_w <- as.matrix(asb_sp_w)
+data("asb_sp_w_fruits", package = "mFD")
+knitr::kable(as.data.frame(asb_sp_w_fruits[c(1:6), c(1:6)]), caption = "Species x assemblages dataframe based on *fruits* dataset")
 ```
 
   * Here is the dataframe summarizing traits categories: The **first column** contains **traits name**. The **second column** contains **traits type** following this code: 
@@ -95,7 +83,7 @@ asb_sp_w <- as.matrix(asb_sp_w)
     * O for ordinal traits (ordered variable)
     * C for circular traits (integer values)
     * Q for quantitative traits (numeric values)
-    * F for fuzzy traits (described with several values defined in several columns in the *sp_tr* dataframe)
+    * F for fuzzy traits (described with several values defined in several columns in the *sp_tr_fruits* dataframe)
 
 The **third column** summarizes to which fuzzy trait belongs each column that refers to a fuzzy trait. Here there is no fuzzy traits, thus the column only contains NA.
 
@@ -109,10 +97,10 @@ knitr::kable(head(tr_cat), caption = "Traits types based on *fruits & baskets* d
 
 
 ```{r}
-asb_sp_summ <- mFD::asb.sp.summary(asb_sp_w)
+asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w_fruits)
 # species occurrences for the first 3 assemblages (fruits baskets):
-head(asb_sp_summ$asb_sp_occ, 3)
-asb_sp_occ <- asb_sp_summ$asb_sp_occ
+head(asb_sp_fruits_summ$asb_sp_occ, 3)
+asb_sp_fruits_occ <- asb_sp_fruits_summ$asb_sp_occ
 ```
 
 
@@ -123,7 +111,7 @@ asb_sp_occ <- asb_sp_summ$asb_sp_occ
 The *mFD* package allows the user to gather species into FEs using the *sp.to.fe* function. It uses the following arguments:
 
 ```{r, results = "hide", eval = FALSE}
-mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) 
+mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) 
 ```
 
   * *sp_tr* the dataframe of species traits
@@ -133,29 +121,29 @@ mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
   
 Let's use this function with the *fruits dataset*:
 ```{r}
-sp_to_fe <- mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) 
+sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) 
 ```
 
 This function returns:
 
   * a vector containing FEs names:
 ```{r}
-sp_to_fe$fe_nm
+sp_to_fe_fruits$fe_nm
 ```
 
   * a vector containing for each species, the FE it belongs to:
 ```{r}
-sp_fe <- sp_to_fe$sp_fe
+sp_fe <- sp_to_fe_fruits$sp_fe
 ```
 
   * a dataframe containing for FEs, the values of traits for each FE:
 ```{r}
-fe_tr <- sp_to_fe$fe_tr
+fe_tr <- sp_to_fe_fruits$fe_tr
 ```
 
   * a vector containing the number of species per FE:
 ```{r}
-fe_nb_sp <- sp_to_fe$fe_nb_sp
+fe_nb_sp <- sp_to_fe_fruits$fe_nb_sp
 ```
 
   * a detailed list containing vectors or list with supplementary information about FEs
@@ -185,7 +173,7 @@ entities above the mean level of functional redundancy
 The *alpha.fd.fe* function is used as follow:
 
 ```{r, results = "hide", eval = FALSE}
-mFD::alpha.fd.fe(asb_sp_occ, sp_to_fe,
+mFD::alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
                        ind_nm = c("fred", "fored", "fvuln"),
                        check.input = TRUE,
                        store_details = TRUE) 
@@ -207,7 +195,7 @@ It takes as inputs:
   
 Let's apply this function with the *fruits* dataset:
 ```{r}
-alpha_fd_fe <- mFD::alpha.fd.fe(asb_sp_occ, sp_to_fe,
+alpha_fd_fe_fruits <- mFD::alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
                        ind_nm = c("fred", "fored", "fvuln"),
                        check.input = TRUE,
                        store_details = TRUE) 
@@ -215,7 +203,7 @@ alpha_fd_fe <- mFD::alpha.fd.fe(asb_sp_occ, sp_to_fe,
 
 This function returns a dataframe of indices values for each assemblage:
 ```{r}
-alpha_fd_fe
+alpha_fd_fe_fruits
 ```
 
 
@@ -227,7 +215,7 @@ alpha_fd_fe
 Then, it is possible to have a graphical representation of FE based indices for a given assemblage using the *alpha.fe.fd.plot* function:
 
 ```{r, results = FALSE, eval = FALSE}
-mFD::alpha.fd.fe.plot(alpha_fd_fe,
+mFD::alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits,
                  plot_asb_nm = c("basket_1"),
                  plot_ind_nm = c("fred", "fored", "fvuln"),
                  name_file = NULL,
@@ -254,7 +242,7 @@ This function takes as inputs:
 For the studied example, the plot looks as follow:
   
 ``` {r, fig.height = 7, fig.width = 7, fig.align = "center"}
-mFD::alpha.fd.fe.plot(alpha_fd_fe,
+mFD::alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits,
                  plot_asb_nm = c("basket_1"),
                  plot_ind_nm = c("fred", "fored", "fvuln"),
                  name_file = NULL,
