@@ -295,11 +295,11 @@ which includes the following arguments:
 **USAGE**
 
 ```{r, results = "hide"}
-sp_dist <- mFD::funct.dist(sp_tr       = sp_tr_fruits,             # Species x Traits data frame
-                           tr_cat      = sp_tr_cat,         # Traits informations
-                           dist_metric = "kgower",          # Distance metric
-                           scaling     = "scaledBYrange",   # Scaling method
-                           stop_if_NA  = TRUE)
+sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,             # Species x Traits data frame
+                           tr_cat       = sp_tr_cat,         # Traits informations
+                           dist_metric  = "kgower",          # Distance metric
+                           scaling      = "scaledBYrange",   # Scaling method
+                           stop_if_NA   = TRUE)
 ```
 
 
@@ -332,7 +332,7 @@ This function returns a `dist` object with traits-based distances between all pa
 
 
 ```{r}
-sp_dist                                                     # Output of the function mFD::funct.dist()
+sp_dist_fruits                                                   # Output of the function mFD::funct.dist()
 ```
 
 
@@ -360,7 +360,7 @@ For that, we will use the `mFD::quality.fspaces()` function:
 **USAGE**
 
 ```{r, results = "hide"}
- fspaces_quality <- mFD::quality.fspaces(sp_dist             = sp_dist,
+ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist             = sp_dist_fruits,
                                          maxdim_pcoa         = 10,
                                          deviation_weighting = "absolute",
                                          fdist_scaling       = FALSE,
@@ -408,7 +408,7 @@ This function returns a list various objects:
 * a data frame gathering for each space (in rows), values of quality metric(s) (in columns)
 
 ```{r}
-fspaces_quality$"quality_fspaces"                # Quality metrics of spaces
+fspaces_quality_fruits$"quality_fspaces"                # Quality metrics of spaces
 ```
 
 <br />
@@ -438,7 +438,7 @@ function with the following arguments:
 **USAGE**
 
 ```{r,  fig.show = 'hide', results = "hide"}
-mFD::quality.fspaces.plot(fspaces_quality            = fspaces_quality,
+mFD::quality.fspaces.plot(fspaces_quality            = fspaces_quality_fruits,
                           quality_metric             = "mad",
                           fspaces_plot               = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d", "pcoa_6d"),
                           name_file                  = NULL,
@@ -486,7 +486,7 @@ into account for computing the quality metric.
 <br />
 
 ```{r, fig.height = 7, fig.width = 12, fig.align = "center"}
-mFD::quality.fspaces.plot(fspaces_quality            = fspaces_quality,
+mFD::quality.fspaces.plot(fspaces_quality            = fspaces_quality_fruits,
                           quality_metric             = "mad",
                           fspaces_plot               = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d", "pcoa_6d"),
                           name_file                  = NULL,
@@ -532,7 +532,7 @@ The whole `sp_faxes_coord` can be retrieved through the output of the
 `mFD::quality.fspaces()` function:
 
 ```{r, results = "hide"}
-sp_faxes_coord <- fspaces_quality$"details_fspaces"$"sp_pc_coord"
+sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 ```
 
 * `faxes` is a vector containing names of axes to plot. If set to `NULL`, the
@@ -574,7 +574,7 @@ same range to get rid of bias based on different axis scales.
 
 ```{r, fig.height = 7, fig.width = 7, fig.align = "center"}
 
-big_plot <- mFD::funct.space.plot(sp_faxes_coord[ , c("PC1", "PC2", "PC3", "PC4")],
+big_plot <- mFD::funct.space.plot(sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
                                   faxes           = NULL,
                                   name_file       = NULL,
                                   faxes_nm        = NULL,
@@ -613,7 +613,7 @@ Here are the plots for the **fruits & baskets** dataset for the ten PCoA axis:
 
 ```{r, fig.height = 7, fig.width = 7, fig.align = "center"}
 
-big_plot <- mFD::funct.space.plot(sp_faxes_coord,
+big_plot <- mFD::funct.space.plot(sp_faxes_coord_fruits,
                                   faxes           = NULL,
                                   name_file       = NULL,
                                   faxes_nm        = NULL,
@@ -677,7 +677,7 @@ The `mFD::alpha.fd.multidim()` function allows computing many alpha FD indices:
 
 ```{r, results = "hide"}
 
-alpha_fd_indices <- mFD::alpha.fd.multidim(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")],
+alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
                                            asb_sp_w      = asb_sp_w_fruits,
                                            ind_vect      = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
                                            scaling       = TRUE,
@@ -756,8 +756,8 @@ The function has two main outputs:
 there are as many columns as there are axes to the studied functional space).
 
 ```{r}
-fd_ind_values <- alpha_fd_indices$"functional_diversity_indices"
-fd_ind_values
+fd_ind_values_fruits <- alpha_fd_indices_fruits$"functional_diversity_indices"
+fd_ind_values_fruits
 ```
 
 <br />
@@ -768,7 +768,7 @@ centroid, etc. The user does not have to directly use it but it will be useful
 if FD indices are then plotted. It can be retrieved through:
 
 ```{r, results = "hide"}
-details_list <- alpha_fd_indices$"details"
+details_list_fruits <- alpha_fd_indices_fruits$"details"
 ```
 
 <br />
@@ -781,12 +781,12 @@ function as follows:
 **USAGE**
 
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
-plots_alpha <- mFD::alpha.multidim.plot(sp_faxes_coord,
+plots_alpha <- mFD::alpha.multidim.plot(sp_faxes_coord_fruits,
                                         asb_sp_w_fruits,
                                         ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
-                                        details_list          = details_list,
+                                        details_list          = details_list_fruits,
                                         asb_vect              = "basket_1",
-                                        fd_ind_values         = fd_ind_values,
+                                        fd_ind_values         = fd_ind_values_fruits,
                                         faxes                 = NULL,
                                         faxes_nm              = NULL,
                                         range_faxes_lim       = c(NA, NA),
@@ -990,7 +990,7 @@ The `mFD::beta.fd.multidim()` function has the main following arguments:
 **USAGE**
 
 ```{r, results = "hide", message=FALSE}
-beta_fd_indices <- mFD::beta.fd.multidim(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")],
+beta_fd_indices_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
                                          asb_sp_occ = asb_sp_fruits_occ,
                                          check.input   = TRUE,
                                          beta.family   = c("Jaccard"),
@@ -1034,7 +1034,7 @@ function
 * a data frame with beta indices values for each pair of assemblages:
 
 ```{r}
-head(beta_fd_indices$"pairasb_fbd_indices", 10)
+head(beta_fd_indices_fruits$"pairasb_fbd_indices", 10)
 ```
 
 <br />
@@ -1043,7 +1043,7 @@ head(beta_fd_indices$"pairasb_fbd_indices", 10)
 retrieved through the `details_beta` list:
 
 ```{r}
-beta_fd_indices$"details"$"asb_FRic_raw"
+beta_fd_indices_fruits$"details"$"asb_FRic_raw"
 ```
 
 <br />
@@ -1052,7 +1052,7 @@ beta_fd_indices$"details"$"asb_FRic_raw"
 the `details_beta` list:
 
 ```{r}
-beta_fd_indices$"details"$"asb_FRic"
+beta_fd_indices_fruits$"details"$"asb_FRic"
 ```
 
 <br />
@@ -1061,7 +1061,7 @@ beta_fd_indices$"details"$"asb_FRic"
 for each assemblage retrieved through the `details_beta` list:
 
 ```{r}
-beta_fd_indices$"details"$"asb_vertices"
+beta_fd_indices_fruits$"details"$"asb_vertices"
 ```
 
 <br />
@@ -1085,7 +1085,7 @@ graphical options. Arguments are listed below:
 **USAGE**
 
 ```{r, results = "hide"}
-beta_plot <- mFD::beta.multidim.plot(output_beta.fd.multidim = beta_fd_indices,
+beta_plot_fruits <- mFD::beta.multidim.plot(output_beta.fd.multidim = beta_fd_indices_fruits,
                                      plot_asb_nm = c("basket_1", "basket_3"),
                                      beta.family = c("Jaccard"),
                                      plot_sp_nm  = c("apple", "cherry", "lemon"),
@@ -1156,7 +1156,7 @@ available. For more information about them, read the function help file.
 Then, the function returns this kind of plot:
 
 ```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
-beta_plot
+beta_plot_fruits
 ```
 
 For each assemblage, the associated convex hull is plotted in a different colour
