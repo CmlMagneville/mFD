@@ -27,9 +27,10 @@ This function computes a summary helping you to picture assemblages. For this
 function to work, there must be no NA in your \code{asb_sp_w} data frame.
 }
 \examples{
-load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
-asb_sp_w <- as.matrix(asb_sp_w)
-mFD::asb.sp.summary(asb_sp_w)
+# Load Assemblages * Species matrix:
+data("asb_sp_w_fruits", package = "mFD")
+# Compute Assemblages summary:
+mFD::asb.sp.summary(asb_sp_w_fruits)
 }
 \author{
 Camille Magneville & Sebastien Villeger

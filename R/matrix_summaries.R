@@ -47,9 +47,12 @@
 #' @importFrom stats na.omit
 #'
 #' @examples
-#' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-#' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-#' mFD::sp.tr.summary(sp_tr_cat, sp_tr)
+#' # Load Species*Traits data:
+#' data("sp_tr_fruits", package = "mFD")
+#' # Load Traits categories dataframe:
+#' data("sp_tr_cat_fruits", package = "mFD")
+#' # Compute Species*Traits data summary:
+#' mFD::sp.tr.summary(sp_tr_cat = sp_tr_cat_fruits, sp_tr = sp_tr_fruits)
 
 
 sp.tr.summary <- function(tr_cat, sp_tr) {
@@ -162,9 +165,10 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 #' @export
 #'
 #' @examples
-#' load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
-#' asb_sp_w <- as.matrix(asb_sp_w)
-#' mFD::asb.sp.summary(asb_sp_w)
+#' # Load Assemblages * Species matrix:
+#' data("asb_sp_w_fruits", package = "mFD")
+#' # Compute Assemblages summary:
+#' mFD::asb.sp.summary(asb_sp_w_fruits)
 
 asb.sp.summary <- function(asb_sp_w) {
 
