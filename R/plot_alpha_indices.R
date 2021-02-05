@@ -707,7 +707,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       }
       
       # retrieve mst information for the studied assemblage:
-      mst_asb_k <- eval(parse(text = paste0('mst_list$mst', sep = '_', asb_k)))
+      mst_asb_k <- eval(parse(text = paste0("mst_list[['mst", sep = '_', asb_k, 
+                                            "']]")))
       mst_asb_k <- as.matrix(mst_asb_k)
       mst_asb_k <- as.data.frame(mst_asb_k)
       
