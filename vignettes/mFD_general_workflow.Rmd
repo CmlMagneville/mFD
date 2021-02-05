@@ -46,29 +46,20 @@ following table:
 
 The use of the `mFD` package is based on two objects:
 
-* a **data frame** summarizing traits values for each species called `sp_tr` in
+* a **data frame** summarizing traits values for each species called `sp_tr_fruits` in
 this tutorial
 
 
 
 ```{r, echo = FALSE}
-sp_tr <- read.csv(system.file("extdata", "data_fruits_baskets_sp_tr.csv",
-                              package = "mFD"))
-sp_tr$Plant     <- as.factor(sp_tr$Plant)
-sp_tr$Size      <- as.ordered(sp_tr$Size)
-sp_tr$Seed      <- as.ordered(sp_tr$Seed)
-sp_tr$Climate   <- as.ordered(sp_tr$Climate)
-rownames(sp_tr) <- sp_tr$species_id
-
-sp_tr <- sp_tr[ , -1]
-
-knitr::kable(head(sp_tr),
+data("sp_tr_fruits", package = "mFD")
+knitr::kable(head(sp_tr_fruits),
              caption = "Species x traits data frame based on the **fruits** dataset")
 ```
 
 <br />
 
-* a **matrix** summarizing species assemblages called `asb_sp_w` in this
+* a **matrix** summarizing species assemblages called `asb_sp_w_fruits` in this
 tutorial. Weights in this matrix can be occurrence data, abundance, biomass,
 coverage, etc. The studied example works with biomass and this matrix looks at
 it follows:
@@ -76,16 +67,10 @@ it follows:
 
 
 ```{r, echo = FALSE}
-asb_sp_w <- read.csv(system.file("extdata", "data_fruits_baskets_sp_w_asb.csv",
-                                 package = "mFD"))
-rownames(asb_sp_w) <- asb_sp_w$basket_id
-
-asb_sp_w <- asb_sp_w[ , -1]
-
-knitr::kable(asb_sp_w[c(1:6), c(1:6)], centering = TRUE,
+data("asb_sp_w_fruits", package = "mFD")
+knitr::kable(as.data.frame(asb_sp_w_fruits[c(1:6), c(1:6)]), centering = TRUE,
              caption = "Species x assemblages matrix based on the **fruits** dataset")
 
-asb_sp_w <- as.matrix(asb_sp_w)
 ```
 
 <br />
@@ -115,7 +100,7 @@ The first thing to do before starting analyses is to know your data. To do so,
 you must be able to characterize the traits you are using (*i.e.* tell the
 package what type of traits you are using). That is why `mFD` package needs a
 data frame summarizing trait type for each trait (*i.e.* each column of the
-`sp_tr` data frame).
+`sp_tr_fruits` data frame).
 
 👉 You need to a data frame with the same columns names as the below example:
 
@@ -136,7 +121,7 @@ The **first column** contains **traits name**. The **second column** contains
 * **C**: circular traits (integer values)
 * **Q**: quantitative traits (numeric values)
 * **F**: fuzzy traits (described with several values defined in several columns
-in the `sp_tr` data frame)
+in the `sp_tr_fruits` data frame)
 
 The **third column** summarizes to which fuzzy trait belongs each column that
 refers to a fuzzy trait. Here the "Use" trait is a fuzzy one.
@@ -150,7 +135,7 @@ refers to a fuzzy trait. Here the "Use" trait is a fuzzy one.
 The `mFD` package helps you to **summarize your data** using two distinct
 functions: `mFD::sp.tr.summary()`  and `mFD::asb.sp.summary()`.
 
-The function `mFD::sp.tr.summary()` summarizes the `sp_tr` data frame and
+The function `mFD::sp.tr.summary()` summarizes the `sp_tr_fruits` data frame and
 returns a list gathering several tables and lists:
 
 * tables with summaries for non-fuzzy & fuzzy traits. **For non-fuzzy traits**,
@@ -169,32 +154,32 @@ each fuzzy trait.
 **USAGE**
 
 ```{r}
-sp_tr_summ <- mFD::sp.tr.summary(tr_cat = sp_tr_cat,    # Traits informations
-                                 sp_tr  = sp_tr)        # Species x Traits data frame
+sp_tr_fruits_summ <- mFD::sp.tr.summary(tr_cat = sp_tr_cat,    # Traits informations
+                                 sp_tr  = sp_tr_fruits)        # Species x Traits data frame
 ```
 
 <br />
 
 ```{r}
-sp_tr_summ$"tr_summary_non_fuzzy_list"    # Summary for non-fuzzy traits
+sp_tr_fruits_summ$"tr_summary_non_fuzzy_list"    # Summary for non-fuzzy traits
 ```
 
 <br />
 
 ```{r}
-sp_tr_summ$"tr_summary_fuzzy_list"        # Summary for fuzzy traits
+sp_tr_fruits_summ$"tr_summary_fuzzy_list"        # Summary for fuzzy traits
 ```
 
 <br />
 
 ```{r}
-sp_tr_summ$"tr_types"                     # Traits types for non-fuzzy traits
+sp_tr_fruits_summ$"tr_types"                     # Traits types for non-fuzzy traits
 ```
 
 <br />
 
 ```{r}
-sp_tr_summ$"mod_list"                     # Traits types for non-continuous and non-fuzzy traits
+sp_tr_fruits_summ$"mod_list"                     # Traits types for non-continuous and non-fuzzy traits
 ```
 
 
@@ -205,7 +190,7 @@ sp_tr_summ$"mod_list"                     # Traits types for non-continuous and 
 <br />
 
 The second function helping you to summarize your data in the `mFD` package is
-`mFD::asb.sp.summary()`. It summarizes the `asb_sp_w` matrix and returns a list
+`mFD::asb.sp.summary()`. It summarizes the `asb_sp_w_fruits` matrix and returns a list
 gathering a matrix, a list and several vectors:
 
 * a matrix of species occurrences
@@ -223,43 +208,43 @@ gathering a matrix, a list and several vectors:
 **USAGE**
 
 ```{r}
-asb_sp_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w)     # Assemblages x Species data frame
+asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits)     # Assemblages x Species data frame
 ```
 
 <br />
 
 ```{r}
-head(asb_sp_summ$"asb_sp_occ", 3)        # Species occurrences for the first 3 assemblages
+head(asb_sp_fruits_summ$"asb_sp_occ", 3)        # Species occurrences for the first 3 assemblages
 ```
 
 <br />
 
 ```{r}
-asb_sp_summ$"tot_ab_all_sp"              # Species total biomass in all assemblages
+asb_sp_fruits_summ$"tot_ab_all_sp"              # Species total biomass in all assemblages
 ```
 
 <br />
 
 ```{r}
-asb_sp_summ$"tot_ab_all_asb"             # Total biomass per assemblage
+asb_sp_fruits_summ$"tot_ab_all_asb"             # Total biomass per assemblage
 ```
 
 <br />
 
 ```{r}
-asb_sp_summ$"sp_richn_all_asb"           # Species richness per assemblage
+asb_sp_fruits_summ$"sp_richn_all_asb"           # Species richness per assemblage
 ```
 
 <br />
 
 ```{r}
-asb_sp_summ$"sp_nm_asb"[[1]]             # Names of species present in the first assemblage
+asb_sp_fruits_summ$"sp_nm_asb"[[1]]             # Names of species present in the first assemblage
 ```
 
 <br />
 
 ```{r, echo=FALSE}
-asb_sp_occ <- asb_sp_summ$"asb_sp_occ"
+asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 ```
 
 
@@ -310,7 +295,7 @@ which includes the following arguments:
 **USAGE**
 
 ```{r, results = "hide"}
-sp_dist <- mFD::funct.dist(sp_tr       = sp_tr,             # Species x Traits data frame
+sp_dist <- mFD::funct.dist(sp_tr       = sp_tr_fruits,             # Species x Traits data frame
                            tr_cat      = sp_tr_cat,         # Traits informations
                            dist_metric = "kgower",          # Distance metric
                            scaling     = "scaledBYrange",   # Scaling method
@@ -693,7 +678,7 @@ The `mFD::alpha.fd.multidim()` function allows computing many alpha FD indices:
 ```{r, results = "hide"}
 
 alpha_fd_indices <- mFD::alpha.fd.multidim(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")],
-                                           asb_sp_w      = asb_sp_w,
+                                           asb_sp_w      = asb_sp_w_fruits,
                                            ind_vect      = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
                                            scaling       = TRUE,
                                            check.input   = TRUE,
@@ -797,7 +782,7 @@ function as follows:
 
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
 plots_alpha <- mFD::alpha.multidim.plot(sp_faxes_coord,
-                                        asb_sp_w,
+                                        asb_sp_w_fruits,
                                         ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
                                         details_list          = details_list,
                                         asb_vect              = "basket_1",
@@ -1006,7 +991,7 @@ The `mFD::beta.fd.multidim()` function has the main following arguments:
 
 ```{r, results = "hide", message=FALSE}
 beta_fd_indices <- mFD::beta.fd.multidim(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")],
-                                         asb_sp_occ,
+                                         asb_sp_occ = asb_sp_fruits_occ,
                                          check.input   = TRUE,
                                          beta.family   = c("Jaccard"),
                                          store_details = TRUE)
