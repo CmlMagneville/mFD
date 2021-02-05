@@ -30,13 +30,26 @@
 #'   containing relative weight of species present in a given assemblage \code{asb_sp_relatw_k}.
 #'
 #' @examples
-#'  load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-#'  sp_tr <- sp_tr[, -c(6:8)]
-#'  load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
-#'  asb_sp_w <- as.matrix(asb_sp_w)
-#'  dist <- cluster::daisy(sp_tr, metric = "gower")
-#'  sp_faxes_coord <- data.frame(ape::pcoa(dist)$vectors)
-#'  sp.filter(asb_nm = "basket_1", sp_faxes_coord, asb_sp_w)
+#'  # Load Species*Traits dataframe:
+#' data("sp_tr_fruits", package = "mFD")
+#' # Load Assemblages*Species dataframe:      
+#' data("asb_sp_w_fruits", package = "mFD")   
+#' # Compute functional distance 
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
+#'  tr_cat       = sp_tr_cat_fruits,   
+#'  dist_metric  = "kgower",         
+#'  scaling      = "scaledBYrange",  
+#'  stop_if_NA   = TRUE)
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+#'  maxdim_pcoa         = 10,
+#'  deviation_weighting = "absolute",
+#'  fdist_scaling       = FALSE,
+#'  fdendro             = "average")
+#' # Retrieve species coordinates matrix:
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+#' # Filter species of basket_1 assemblage:
+#' sp.filter(asb_nm = "basket_1", sp_faxes_coord_fruits, asb_sp_w_fruits)
 #'
 #'@export
 
