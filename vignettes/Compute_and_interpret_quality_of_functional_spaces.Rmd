@@ -32,26 +32,19 @@ The data set used to illustrate this tutorial is *a fruit data set* based on 25 
 The dataframe gathering species traits, looks as follow:
 
 ```{r, echo = FALSE}
-library(knitr)
-sp_tr <- read.csv(system.file("extdata", "data_fruits_baskets_sp_tr.csv", package = "mFD"))
-sp_tr$Plant <- as.factor(sp_tr$Plant)
-sp_tr$Size <- as.ordered(sp_tr$Size)
-sp_tr$Seed <- as.ordered(sp_tr$Seed)
-sp_tr$Climate <- as.ordered(sp_tr$Climate)
-rownames(sp_tr) <- sp_tr$species_id
-sp_tr <- sp_tr[, -1]
+data("sp_tr_fruits", package = "mFD")
 # remove non-fuzzy traits:
-sp_tr <- sp_tr[1:5]
-knitr::kable(head(sp_tr), caption = "Species x traits dataframe based on *fruits* dataset")
+sp_tr_fruits <- sp_tr_fruits[1:5]
+knitr::kable(head(sp_tr_fruits), caption = "Species x traits dataframe based on *fruits* dataset")
 ```
 
 Thus, this data set contains 5 traits: 3 ordinal (Size, Climate, Seed), 1 categorical (Plant type), 1 continuous (sugar content):
 ```{r, echo = FALSE}
-summary(sp_tr)
+summary(sp_tr_fruits)
 ```
 These traits are summed up in the following dataframe (always the same format, see [mFD_general_workflow] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.html> for details):
 ```{r, echo = FALSE}
-sp_tr_cat <- data.frame(names(sp_tr), c("O","N","O","O","Q"), c(NA, NA, NA, NA, NA))
+sp_tr_cat <- data.frame(names(sp_tr_fruits), c("O","N","O","O","Q"), c(NA, NA, NA, NA, NA))
 colnames(sp_tr_cat) <- c("trait_name", "trait_type", "fuzzy_name")
 ```
 
@@ -62,7 +55,7 @@ colnames(sp_tr_cat) <- c("trait_name", "trait_type", "fuzzy_name")
 First, traits based distance between species should be computed. Here we use Gower distance.
 
 ```{r, echo = FALSE}
-dist_fruits <- mFD::funct.dist(sp_tr = sp_tr, tr_cat = sp_tr_cat, dist_metric = "classical_gower", scaling = 'noscale', stop_if_NA = TRUE)
+dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits, tr_cat = sp_tr_cat, dist_metric = "classical_gower", scaling = 'noscale', stop_if_NA = TRUE)
 summary(dist_fruits)
 ```
 
@@ -75,7 +68,7 @@ We can now have a look to the Gower distances between blackberry and 3 other fru
 ex_blackberry <- c("blackberry","currant","cherry","banana")
 
 round(as.matrix(dist_fruits)[ex_blackberry,ex_blackberry],2)
-sp_tr[ex_blackberry,]
+sp_tr_fruits[ex_blackberry,]
 ```
 
 The observed differences in values are intuitive:
@@ -140,7 +133,7 @@ The main bias in 2D and 3D space is that some species pairs are closer than expe
 
 For instance, let's consider the 3 fruits: lemon, lime and cherry:
 ```{r, echo = FALSE}
-sp_tr[c("cherry","lime","lemon"), ]
+sp_tr_fruits[c("cherry","lime","lemon"), ]
 ```
 The 2 Citrus fruits have similar trait values and differ from the cherry.
 Now let's have a look to their pairwise distances: Gower distance on trait values, Euclidean distance in the 4 dimensions PCoA space and cophenetic distance on the UPGMA dendrogram
