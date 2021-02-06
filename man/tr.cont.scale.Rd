@@ -2,32 +2,39 @@
 % Please edit documentation in R/cont_tr_fspace.R
 \name{tr.cont.scale}
 \alias{tr.cont.scale}
-\title{Scale continuous traits}
+\title{Scale Continuous Traits}
 \usage{
 tr.cont.scale(sp_tr, std_method = "scale_center")
 }
 \arguments{
-\item{sp_tr}{a \strong{dataframe} of traits values for each species. Here traits must
-be \strong{continuous}}
+\item{sp_tr}{a data frame of traits values (columns) for each species (rows).
+Note that species names \strong{must be} specified in the row names and traits
+must be \strong{continuous}.}
 
-\item{std_method}{a \strong{character string} referring to the standardization method.
-Possible values: \emph{range} (standardize by the range),
-\emph{center} (use the center transformation: \eqn{x'= x - mean(x)}),
-\emph{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}})
-or \emph{scale_center} (use the scale-center transformation: \eqn{x' =
-  \frac{x - mean(x)}{sd(x)}}). Default is \emph{scale_center}.}
+\item{std_method}{a character string referring to the standardization method.
+Possible values:
+\code{range} (standardize by the range),
+\code{center} (use the center transformation: \eqn{x' = x - mean(x)}),
+\code{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}}), or
+\code{scale_center} (use the scale-center transformation:
+\eqn{x' = \frac{x - mean(x)}{sd(x)}}).
+Default is \code{scale_center}.}
 }
 \value{
-a dataframe of standardized trait values for each species \code{sp_tr}
+A data frame of standardized trait values (columns) for each species
+(rows).
 }
 \description{
-Standardize continuous traits. Can be useful before computing functional
-space. You will have to choose which standardized method to use based on your
-data. For this function to work, there must be no NA in your \code{sp_tr}
-dataframe.
+This function standardizes continuous traits. It can be useful before
+computing functional space. You will have to choose which standardized method
+to use based on your data. For this function to work, there must be no NA in
+your \code{sp_tr} data frame.
 }
 \examples{
 load(system.file("extdata", "sp_tr_cestes_df", package = "mFD"))
-mFD::tr.cont.scale(sp_tr, std_method = "scale_center")
 
+mFD::tr.cont.scale(sp_tr, std_method = "scale_center")
+}
+\author{
+Camille Magneville & Sébastien Villéger
 }
