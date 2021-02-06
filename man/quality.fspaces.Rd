@@ -105,7 +105,7 @@ originally suggested in \emph{Maire et al. 2015}.
 # Load Species x Traits Data
 data("sp_tr_fruits", package = "mFD")
 
-# Load Traits x Categories dataframe
+# Load Traits x Categories Data
 data("sp_tr_cat_fruits", package = "mFD")
 
 # Compute Functional Distance
@@ -123,5 +123,8 @@ fspaces_quality_fruits <- mFD::quality.fspaces(
   deviation_weighting = "absolute",
   fdist_scaling       = FALSE,
   fdendro             = "average")
+  
+# Retrieve Species Coordinates
+sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 }
