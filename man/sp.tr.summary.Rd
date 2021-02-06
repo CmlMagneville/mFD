@@ -52,7 +52,8 @@ your \code{sp_tr} data frame.
 \examples{
 load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-mFD::sp.tr.summary(sp_tr_cat, sp_tr)
+
+mFD::sp.tr.summary(tr_cat = sp_tr_cat, sp_tr = sp_tr)
 }
 \author{
 Camille Magneville & Sebastien Villeger

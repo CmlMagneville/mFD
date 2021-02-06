@@ -62,23 +62,18 @@ traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL,
   
   ## Check inputs ----
   
-  if (any(is.na(sp_tr))) {
-    stop("The species x traits data frame contains NA. Please check.")
+  if (missing(sp_tr)) {
+    stop("Argument 'sp_tr' is mandatory.")
   }
   
-  if (any(is.na(sp_faxes_coord))) {
-    stop("The species x coordinates matrix contains NA. Please check.")
+  if (missing(sp_faxes_coord)) {
+    stop("Argument 'sp_faxes_coord' is mandatory.")
   }
   
-  if (any(rownames(sp_tr) == 1:nrow(sp_tr))) {
-    stop(paste("No row names provided in species x traits data frame. Please", 
-               "add species names as row names."))
-  }
+  check.sp.tr(sp_tr)
+  
+  check.sp.faxes.coord(sp_faxes_coord)
 
-  if (any(rownames(sp_faxes_coord) == 1:nrow(sp_faxes_coord))) {
-    stop(paste("No row names provided in species x coordinates matrix. Please", 
-               "add species names as row names."))
-  }
   
   if (!identical(sort(rownames(sp_tr)), sort(rownames(sp_faxes_coord)))) {
     stop("Species names mismatch between 'sp_tr' and 'sp_faxes_coord'.")

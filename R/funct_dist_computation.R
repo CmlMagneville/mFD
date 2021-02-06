@@ -102,25 +102,10 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
         "weighted.\n")
   }
   
-  if (missing(dist_metric)) {
-    stop("Argument 'dist_metric' is mandatory and should be 'euclidean', ", 
-         "'classical_gower', or 'kgower'.")
-  }
+  dist_metric <- match.arg(dist_metric, c("euclidean", "classical_gower", 
+                                          "kgower"))
   
-  if (any(!(dist_metric %in% c("euclidean", "classical_gower", "kgower")))) {
-    stop("Argument 'dist_metric' should be 'euclidean', 'classical_gower', ", 
-         "or 'kgower'.")
-  }
-  
-  if (missing(scaling)) {
-    stop("Argument 'scaling' is mandatory and should be 'scaledBYrange', ", 
-         "'scaledBYsd', or 'noscale'.")
-  }
-  
-  if (any(!(scaling %in% c("scaledBYrange", "scaledBYsd", "noscale")))) {
-    stop("Argument 'dist_metric' should be 'scaledBYrange', 'scaledBYsd', ", 
-         "or 'noscale'.")
-  }
+  scaling <- match.arg(scaling, c("scaledBYrange", "scaledBYsd", "noscale")) 
   
   
   ## Compute Distances ----
@@ -129,7 +114,7 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     
     if (ncol(tr_cat) == 4) {
       
-      ktab_dist <- cluster::daisy(sp_tr, "gower", weights = tr_cat$weight)
+      ktab_dist <- cluster::daisy(sp_tr, "gower", weights = tr_cat$"weight")
       
     } else {
       
@@ -156,8 +141,8 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     
     quant_trait <- NULL
     
-    if (any(tr_cat$trait_type == "Q")) {
-      quant_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "Q"],
+    if (any(tr_cat$"trait_type" == "Q")) {
+      quant_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "Q"],
                             drop = FALSE]
     }
     
@@ -166,8 +151,8 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     
     ord_trait <- NULL
     
-    if (any(tr_cat$trait_type == "O")) {
-      ord_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "O"],
+    if (any(tr_cat$"trait_type" == "O")) {
+      ord_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "O"],
                           drop = FALSE]
     }
     
@@ -176,8 +161,8 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     
     circ_trait <- NULL
     
-    if (any(tr_cat$trait_type == "C")) {
-      circ_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "C"],
+    if (any(tr_cat$"trait_type" == "C")) {
+      circ_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "C"],
                            drop = FALSE]
       
       circ_trait <- ade4::prep.circular(circ_trait, 1, 12)
@@ -188,19 +173,22 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     
     fuzz_trait <- NULL
     
-    if (any(tr_cat$trait_type == "F")) {
+    if (any(tr_cat$"trait_type" == "F")) {
       
       # Select the fuzzy traits
-      fuzz_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "F"],
+      fuzz_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "F"],
                            drop = FALSE]
       
       # Count the number of fuzzy categories
-      fuzz_cat <- table(tr_cat[tr_cat$trait_type == "F", ]$fuzzy_name)
+      fuzz_cat <- table(tr_cat[tr_cat$"trait_type" == "F", ]$"fuzzy_name")
       
       # Order the trait names based on the order of the categories
-      fuzz_names_ordered <- as.character(unlist(lapply(names(fuzz_cat), function(x) {
-        tr_cat$trait_name[tr_cat$fuzzy_name == x & !is.na(tr_cat$fuzzy_name)]
-      })))
+      fuzz_names_ordered <- unlist(lapply(names(fuzz_cat), function(x) {
+        tr_cat$"trait_name"[tr_cat$"fuzzy_name" == x & 
+                            !is.na(tr_cat$"fuzzy_name")]
+      }))
+
+      fuzz_names_ordered <- as.character(fuzz_names_ordered)        # R (< 4.0)
       
       # Reorder the traits according to the names
       fuzz_trait <- fuzz_trait[ , fuzz_names_ordered]
@@ -215,8 +203,8 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     
     bin_trait <- NULL
     
-    if (any(tr_cat$trait_type == "B")) {
-      bin_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "B"], 
+    if (any(tr_cat$"trait_type" == "B")) {
+      bin_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "B"], 
                           drop = FALSE]
       
       bin_trait <- ade4::prep.binary(bin_trait, col.blocks = ncol(bin_trait))
@@ -227,14 +215,14 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     
     nom_trait <- NULL
     
-    if (any(tr_cat$trait_type == "N")) {
-      nom_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "N"], 
+    if (any(tr_cat$"trait_type" == "N")) {
+      nom_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "N"], 
                           drop = FALSE]
     }
     
     # Combine all traits
     all_trait <- list("Q" = quant_trait, "O" = ord_trait, "F" = fuzz_trait,
-                      "B" = bin_trait, "N" = nom_trait, "C" = circ_trait)
+                      "B" = bin_trait,   "N" = nom_trait, "C" = circ_trait)
     
     # Remove NULL data frames
     not_null  <- unlist(lapply(all_trait, function(x) {

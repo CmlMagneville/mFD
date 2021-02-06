@@ -29,7 +29,8 @@ function to work, there must be no NA in your \code{asb_sp_w} data frame.
 \examples{
 load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
 asb_sp_w <- as.matrix(asb_sp_w)
-mFD::asb.sp.summary(asb_sp_w)
+
+mFD::asb.sp.summary(asb_sp_w = asb_sp_w)
 }
 \author{
 Camille Magneville & Sebastien Villeger

@@ -49,7 +49,8 @@
 #' @examples
 #' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
 #' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-#' mFD::sp.tr.summary(sp_tr_cat, sp_tr)
+#' 
+#' mFD::sp.tr.summary(tr_cat = sp_tr_cat, sp_tr = sp_tr)
 
 
 sp.tr.summary <- function(tr_cat, sp_tr) {
@@ -59,21 +60,20 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 
   check.sp.tr(sp_tr, tr_cat, stop_if_NA = TRUE)
 
+  
+  ## Checks Traits Formats ----
+  
   check.nominal(tr_cat, sp_tr)
   check.ordinal(tr_cat, sp_tr)
   check.circular(tr_cat, sp_tr)
   check.continuous(tr_cat, sp_tr)
   check.fuzzy(tr_cat, sp_tr)
 
+  
   ## Retrieve Traits Informations ----
-  ## (fuzzy-coded traits are modified thereafter)
 
-  # sp_nb   <- nrow(sp_tr)            # species number
-  # tr_nm   <- names(sp_tr)           # traits names
-  # tr_nb   <- length(tr_nm)          # traits number
-  tr_type <- c(tr_cat$"trait_type")   # traits type
-
-  names(tr_type) <- names(sp_tr)
+  tr_type        <- tr_cat$"trait_type"
+  names(tr_type) <- tr_cat$"trait_name"
 
 
   ## Transform Fuzzy-coded Traits ----
@@ -164,7 +164,8 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 #' @examples
 #' load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
 #' asb_sp_w <- as.matrix(asb_sp_w)
-#' mFD::asb.sp.summary(asb_sp_w)
+#' 
+#' mFD::asb.sp.summary(asb_sp_w = asb_sp_w)
 
 asb.sp.summary <- function(asb_sp_w) {
 

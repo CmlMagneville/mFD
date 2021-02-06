@@ -1,7 +1,11 @@
-# Helpers to Check Functions Inputs
+# Helpers Functions to Check {mFD} Functions Inputs
 # 
 #' @importFrom stats na.omit
 #' @keywords internal
+
+
+
+## Traits x Categories Data Frame ----
 
 check.tr.cat <- function(tr_cat) {
   
@@ -9,16 +13,24 @@ check.tr.cat <- function(tr_cat) {
     stop("Traits x category data must be gathered in a data frame.")
   }
   
-  if (ncol(tr_cat) < 3) {
-    stop("Traits x category data frame must have 3 (or 4) columns.")
+  if (ncol(tr_cat) < 2) {
+    stop("Traits x category data frame must have at least 2 columns.")
   }
   
-  valid_names  <- c("trait_name", "trait_type", "fuzzy_name")
-  valid_traits <- c("N", "O", "C", "Q", "F")
+  if (ncol(tr_cat) == 2) {
+    valid_names  <- c("trait_name", "trait_type")
+    if (!identical(colnames(tr_cat), valid_names)) {
+      stop("The 2 columns of the traits x category data frame must be ",
+           "'trait_name', and 'trait_type' in this exact order.")
+    }
+  }
   
-  if (!identical(colnames(tr_cat)[1:3], valid_names)) {
-    stop("The 3 first columns of the traits x category data frame must be ",
-         "'trait_name', 'trait_type', and 'fuzzy_name' in this exact order.")
+  if (ncol(tr_cat) > 2) {
+    valid_names  <- c("trait_name", "trait_type", "fuzzy_name")
+    if (!identical(colnames(tr_cat), valid_names)) {
+      stop("The 3 first columns of the traits x category data frame must be ",
+           "'trait_name', 'trait_type', and 'fuzzy_name' in this exact order.")
+    }
   }
   
   if (any(is.na(tr_cat$"trait_type"))) {
@@ -26,13 +38,28 @@ check.tr.cat <- function(tr_cat) {
          "check and specify type of all traits.")
   }
   
+  valid_traits <- c("N", "O", "C", "Q", "F")
+  
   if (any(!(tr_cat$"trait_type" %in% valid_traits))) {
     stop("Trait type in traits x category should be among 'N', 'O', 'C', 'Q', ",
          "'F'. Please check type of all traits.")
   }
+  
+  if (any(tr_cat$"trait_type" == "F")) {
+    
+    if (any(is.na(tr_cat[which(tr_cat$"trait_type" == "F"), "fuzzy_name"]))) {
+      stop("Missing trait names in 'fuzzy_name' for fuzzy traits.")
+    }
+    
+    if (any(table(tr_cat[which(tr_cat$"trait_type" == "F"), "fuzzy_name"]) < 2)) {
+      stop("Fuzzy traits need to have at least two categories.")
+    }
+  }
 }
 
 
+
+## Species x Traits Data Frame ----
 
 check.sp.tr <- function(sp_tr, tr_cat = NULL, stop_if_NA = TRUE) {
   
@@ -46,7 +73,7 @@ check.sp.tr <- function(sp_tr, tr_cat = NULL, stop_if_NA = TRUE) {
   
   if (any(sort(rownames(sp_tr)) == 1:nrow(sp_tr))) {
     stop("No row names provided in the species x traits data frame. Analysis ",
-         "will not go through, please add species names as row names.")
+         "will not go through. Please add species names as row names.")
   }
   
   if (stop_if_NA) {
@@ -74,6 +101,68 @@ check.sp.tr <- function(sp_tr, tr_cat = NULL, stop_if_NA = TRUE) {
 
 
 
+## Assemblages x Species Matrix ----
+
+check.asb.sp.w <- function(asb_sp_w) { 
+  
+  if (!is.matrix(asb_sp_w)) {
+    stop("The argument 'asb_sp_w' must be a matrix.")
+  }
+  
+  if (!(is.numeric(asb_sp_w))) {
+    stop("The 'asp_sp_w' matrix must only contain numeric values. Please ", 
+         "convert values.")
+  }
+  
+  if (any(sort(rownames(asb_sp_w)) == 1:nrow(asb_sp_w))) {
+    stop("No row names provided in 'asb_sp_w' matrix. Analysis will not go ", 
+         "through. Please add assemblages names as row names.")
+  }
+  
+  if (any(is.na(asb_sp_w))) {
+    stop("The 'asb_sp_w' matrix contains NA. Analysis will not go through.")
+  }
+  
+  
+  if (any(asb_sp_w < 0)) {
+    stop("The species x weight matrix should not contain negative values. ",
+         "Please check.")
+  }
+  
+  
+  if (min(apply(asb_sp_w, 2, sum)) == 0) {
+    warning("Some species are absent from all assemblages.")
+  }
+  
+  if (min(apply(asb_sp_w, 1, sum)) == 0) {
+    warning("Some assemblages do not contain species.")
+  }
+}
+
+
+
+## Species Coordinates on Axes ----
+
+check.sp.faxes.coord <- function(sp_faxes_coord) {
+  
+  if (!is.matrix(sp_faxes_coord)) {
+    stop("The species x coordinates data must be a matrix.")  
+  }
+  
+  if (any(is.na(sp_faxes_coord))) {
+    stop("The species x coordinates matrix contains NA. Please check.")
+  }
+  
+  if (any(sort(rownames(sp_faxes_coord)) == 1:nrow(sp_faxes_coord))) {
+    stop("No row names provided in the species x coordinates matrix. Please ", 
+         "add species names as row names.")
+  }
+}
+
+
+
+## Nominal Traits ----
+
 check.nominal <- function(tr_cat, sp_tr) {
   
   if ("N" %in% tr_cat$"trait_type") {
@@ -87,6 +176,8 @@ check.nominal <- function(tr_cat, sp_tr) {
 }
 
 
+
+## Ordinal Traits ----
 
 check.ordinal <- function(tr_cat, sp_tr) {
   
@@ -102,6 +193,8 @@ check.ordinal <- function(tr_cat, sp_tr) {
 
 
 
+## Circular Traits ----
+
 check.circular <- function(tr_cat, sp_tr) {
   
   if ("C" %in% tr_cat$"trait_type") {
@@ -116,6 +209,8 @@ check.circular <- function(tr_cat, sp_tr) {
 
 
 
+## Continuous Traits ----
+
 check.continuous <- function(tr_cat, sp_tr) {
   
   if ("Q" %in% tr_cat$"trait_type") {
@@ -129,6 +224,8 @@ check.continuous <- function(tr_cat, sp_tr) {
 }
 
 
+
+## Fuzzy Traits ----
 
 check.fuzzy <- function(tr_cat, sp_tr) {
   
@@ -155,45 +252,17 @@ check.fuzzy <- function(tr_cat, sp_tr) {
 
 
 
-check.asb.sp.w <- function(asb_sp_w) { 
-  
-  if (!is.matrix(asb_sp_w)) {
-    stop("The argument 'asb_sp_w' must be a matrix.")
-  }
-  
-  if (!(is.numeric(asb_sp_w))) {
-    stop("The 'asp_sp_w' matrix must only contain numeric values. Please ", 
-         "convert values.")
-  }
-  
-  if (any(sort(rownames(asb_sp_w)) == 1:nrow(asb_sp_w))) {
-    stop("No row names provided in 'asb_sp_w' matrix. Analysis will not go ", 
-         "through. Please add assemblages names as row names.")
-  }
-  
-  if (any(is.na(asb_sp_w))) {
-    stop("The 'asb_sp_w' matrix contains NA. Analysis will not go through.")
-  }
-  
-  
-  if (any(asb_sp_w < 0)) {
-    stop("The species x weight matrix should not contain negative values.",
-         "Please check.")
-  }
-  
-  
-  if (min(apply(asb_sp_w, 2, sum)) == 0) {
-    warning("Some species are absent from all assemblages.")
-  }
-  
-  if (min(apply(asb_sp_w, 1, sum)) == 0) {
-    warning("Some assemblages do not contain species.")
-  }
+## ... ----
+
+check.asb.sp.tr <- function() { 
+  invisible(NULL)
 }
 
 
 
-check.asb.sp.tr <- function() { }
+## ... ----
 
-check.sp.coord <- function() { }
+check.asb.sp.w.occ <- function() {
+  invisible(NULL)
+}
 
