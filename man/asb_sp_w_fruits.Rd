@@ -3,7 +3,7 @@
 \docType{data}
 \name{asb_sp_w_fruits}
 \alias{asb_sp_w_fruits}
-\title{Species assemblages matrix for fruits baskets example}
+\title{Matrix gathering fruits species into fruits baskets for use in mFD}
 \format{
 A matrix with 10 rows and 25 columns
 \describe{
@@ -15,8 +15,8 @@ A matrix with 10 rows and 25 columns
 asb_sp_w_fruits
 }
 \description{
-A matrix gathering 25 fruits species into 10 fruits baskets.
-Each number in the matrix is fruits abundance. This matrix is used in most
-mFD tutorials and diverse mFD functions examples.
+A matrix linking 25 fruits species (columns) and the fruits
+basket(s) they belong to (rows). Values represent fruits abundances in each
+basket.
 }
 \keyword{datasets}

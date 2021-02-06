@@ -102,15 +102,26 @@ fdist_scaling = TRUE is equivalent to the square-root of the 'mSD'
 originally suggested in \emph{Maire et al. 2015}.
 }
 \examples{
-load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-sp_tr <- sp_tr[ , -c(6:8)]
+# Load Species x Traits Data
+data("sp_tr_fruits", package = "mFD")
 
-load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-sp_tr_cat <- sp_tr_cat[-c(6:8), ]
+# Load Traits x Categories dataframe
+data("sp_tr_cat_fruits", package = "mFD")
 
-sp_dist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower",
-                            scaling = "noscale")
-quality.fspaces(sp_dist, maxdim_pcoa = 10, deviation_weighting = "absolute", 
-                fdist_scaling = FALSE, fdendro = "average")
+# Compute Functional Distance
+sp_dist_fruits <- mFD::funct.dist(
+  sp_tr       = sp_tr_fruits,
+  tr_cat      = sp_tr_cat_fruits,
+  dist_metric = "kgower",
+  scaling     = "scaledBYrange",
+  stop_if_NA  = TRUE)
+
+# Compute Functional Spaces Quality (to retrieve species coordinates)
+fspaces_quality_fruits <- mFD::quality.fspaces(
+  sp_dist             = sp_dist_fruits,
+  maxdim_pcoa         = 10,
+  deviation_weighting = "absolute",
+  fdist_scaling       = FALSE,
+  fdendro             = "average")
 
 }

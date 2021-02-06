@@ -68,14 +68,23 @@ delete species with missing or extrapolate missing traits (see
 Johnson \emph{et al.} (2020)).
 }
 \examples{
-load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-sp_tr <- sp_tr[ , -c(6:8)]
+# Load Species x Traits data
+data("sp_tr_fruits", package = "mFD")
 
-load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-sp_tr_cat <- sp_tr_cat[-c(6:8), ]
+# Load Traits x Categories data
+data("sp_tr_cat_fruits", package = "mFD")
 
-mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", 
-                scaling = "noscale", stop_if_NA = TRUE)
+# Remove fuzzy traits for this example
+sp_tr_fruits     <- sp_tr_fruits[ , -c(6:8)]
+sp_tr_cat_fruits <- sp_tr_cat_fruits[-c(6:8), ]
+
+# Compute Functional Distance
+mFD::funct.dist(
+  sp_tr       = sp_tr_fruits, 
+  tr_cat      = sp_tr_cat_fruits, 
+  dist_metric = "classical_gower", 
+  scaling     = "noscale", 
+  stop_if_NA  = TRUE)
 }
 \references{
 Gower, J.C. (1971) A general coefficient of similarity and some of its

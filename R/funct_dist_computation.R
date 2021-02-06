@@ -73,14 +73,23 @@
 #' @importFrom cluster daisy
 #' 
 #' @examples
-#' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-#' sp_tr <- sp_tr[ , -c(6:8)]
+#' # Load Species x Traits data
+#' data("sp_tr_fruits", package = "mFD")
+#'
+#' # Load Traits x Categories data
+#' data("sp_tr_cat_fruits", package = "mFD")
 #' 
-#' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-#' sp_tr_cat <- sp_tr_cat[-c(6:8), ]
+#' # Remove fuzzy traits for this example
+#' sp_tr_fruits     <- sp_tr_fruits[ , -c(6:8)]
+#' sp_tr_cat_fruits <- sp_tr_cat_fruits[-c(6:8), ]
 #' 
-#' mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower", 
-#'                 scaling = "noscale", stop_if_NA = TRUE)
+#' # Compute Functional Distance
+#' mFD::funct.dist(
+#'   sp_tr       = sp_tr_fruits, 
+#'   tr_cat      = sp_tr_cat_fruits, 
+#'   dist_metric = "classical_gower", 
+#'   scaling     = "noscale", 
+#'   stop_if_NA  = TRUE)
 
 funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
   

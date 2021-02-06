@@ -38,11 +38,16 @@
 #'  assemblage.}
 #'
 #'@examples
-#' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-#' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-#' sp_tr <- sp_tr[, -5]
-#' sp_tr_cat <- sp_tr_cat[-5, ]
-#' mFD::sp.to.fe(sp_tr, sp_tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
+#' # Load Species*Traits dataframe:
+#' data("sp_tr_fruits", package = "mFD")
+#' # Load Traits categories dataframe:
+#' data("sp_tr_cat_fruits", package = "mFD")
+#' # Remove continuous trait:
+#' sp_tr_fruits <- sp_tr_fruits[, -5]
+#' sp_tr_cat_fruits <- sp_tr_cat_fruits[-5, ]
+#' # Compute gathering species into FEs:
+#' mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = sp_tr_cat_fruits, 
+#'  fe_nm_type = "fe_rank", check.input = TRUE)
 #'
 #'
 #'@export
