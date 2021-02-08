@@ -42,12 +42,21 @@
 #' data("sp_tr_fruits", package = "mFD")
 #' # Load Traits categories dataframe:
 #' data("sp_tr_cat_fruits", package = "mFD")
+#' # Load Assemblages*Species matrix:
+#' data("asb_sp_w_fruits", package = "mFD")
 #' # Remove continuous trait:
 #' sp_tr_fruits <- sp_tr_fruits[, -5]
 #' sp_tr_cat_fruits <- sp_tr_cat_fruits[-5, ]
 #' # Compute gathering species into FEs:
-#' mFD::sp.to.fe(sp_tr = sp_tr_fruits, sp_tr_cat = sp_tr_cat_fruits, 
+#' sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = sp_tr_cat_fruits, 
 #'  fe_nm_type = "fe_rank", check.input = TRUE)
+#' # Get the occurrence dataframe:
+#' asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits) 
+#' asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
+#' # Compute alpha fd indices:
+#' alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
+#'  ind_nm = c("fred", "fored", "fvuln"),
+#'  check.input = TRUE, store_details = TRUE)
 #'
 #'
 #'@export

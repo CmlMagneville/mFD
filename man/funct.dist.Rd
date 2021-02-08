@@ -76,7 +76,7 @@ data("sp_tr_cat_fruits", package = "mFD")
 sp_tr_fruits <- sp_tr_fruits[ , -c(6:8)]
 sp_tr_cat_fruits <- sp_tr_cat_fruits[-c(6:8), ]
 # Compute functional distance:
-mFD::funct.dist(sp_tr = sp_tr_fruits, sp_tr_cat = sp_tr_cat_fruits, 
+mFD::funct.dist(sp_tr = sp_tr_fruits, tr_cat = sp_tr_cat_fruits, 
                 dist_metric = "classical_gower", 
                 scaling = "noscale", stop_if_NA = TRUE)
 }

@@ -55,7 +55,7 @@ data("sp_tr_fruits", package = "mFD")
 # Load Traits categories dataframe:
 data("sp_tr_cat_fruits", package = "mFD")
 # Compute Species*Traits data summary:
-mFD::sp.tr.summary(sp_tr_cat = sp_tr_cat_fruits, sp_tr = sp_tr_fruits)
+mFD::sp.tr.summary(tr_cat = sp_tr_cat_fruits, sp_tr = sp_tr_fruits)
 }
 \author{
 Camille Magneville & Sebastien Villeger
