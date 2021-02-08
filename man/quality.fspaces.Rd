@@ -105,10 +105,12 @@ originally suggested in \emph{Maire et al. 2015}.
 # Load Species*Traits dataframe:
 data("sp_tr_fruits", package = "mFD")
 # Load Assemblages*Species dataframe:      
-data("asb_sp_w_fruits", package = "mFD")   
+data("asb_sp_w_fruits", package = "mFD") 
+#' # Load Traits categories dataframe:
+data("tr_cat_fruits", package = "mFD")  
 # Compute functional distance 
 sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
- tr_cat       = sp_tr_cat_fruits,   
+ tr_cat       = tr_cat_fruits,   
  dist_metric  = "kgower",         
  scaling      = "scaledBYrange",  
  stop_if_NA   = TRUE)
