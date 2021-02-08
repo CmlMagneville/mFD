@@ -118,5 +118,6 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
  deviation_weighting = "absolute",
  fdist_scaling       = FALSE,
  fdendro             = "average")
+fspaces_quality_fruits
 
 }

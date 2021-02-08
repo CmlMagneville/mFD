@@ -109,6 +109,7 @@
 #'  deviation_weighting = "absolute",
 #'  fdist_scaling       = FALSE,
 #'  fdendro             = "average")
+#' fspaces_quality_fruits
 #'
 #' @export
 
