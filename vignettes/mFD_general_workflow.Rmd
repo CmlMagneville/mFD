@@ -107,8 +107,8 @@ data frame summarizing trait type for each trait (*i.e.* each column of the
 
 
 ```{r, echo = FALSE}
-sp_tr_cat <- read.csv(system.file("extdata", "data_fruits_baskets_tr_cat.csv", package = "mFD"))
-knitr::kable(head(sp_tr_cat), caption = "Traits types based on **fruits & baskets** dataset")
+data("sp_tr_cat_fruits", package = "mFD")
+knitr::kable(head(sp_tr_cat_fruits), caption = "Traits types based on **fruits & baskets** dataset")
 ```
 
 
@@ -154,7 +154,7 @@ each fuzzy trait.
 **USAGE**
 
 ```{r}
-sp_tr_fruits_summ <- mFD::sp.tr.summary(tr_cat = sp_tr_cat,    # Traits informations
+sp_tr_fruits_summ <- mFD::sp.tr.summary(tr_cat = sp_tr_cat_fruits,    # Traits informations
                                  sp_tr  = sp_tr_fruits)        # Species x Traits data frame
 ```
 
@@ -296,7 +296,7 @@ which includes the following arguments:
 
 ```{r, results = "hide"}
 sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,             # Species x Traits data frame
-                           tr_cat       = sp_tr_cat,         # Traits informations
+                           tr_cat       = sp_tr_cat_fruits,         # Traits informations
                            dist_metric  = "kgower",          # Distance metric
                            scaling      = "scaledBYrange",   # Scaling method
                            stop_if_NA   = TRUE)
@@ -305,7 +305,7 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,             # Species x 
 
 * `sp_tr` is the species x trait data frame
 
-* `sp_tr_cat` is the data frame summarizing trait type for each trait
+* `tr_cat` is the data frame summarizing trait type for each trait
 
 * `dist_metric` is a character string referring to the metric used to compute
 distances. Three metrics are available and **the choice depends on your traits data**:
