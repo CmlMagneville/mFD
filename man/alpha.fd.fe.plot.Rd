@@ -89,17 +89,3 @@ Entities (FE) and of indices from Mouillot et al 2014. \strong{To plot
 functional indices, functional indices values must have been retrieve through
 the use of the alpha.fd.fe function}
 }
-\examples{
-load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-sp_tr <- sp_tr[, c(1:4)]
-load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-sp_tr_cat <- sp_tr_cat[c(1:4), ]
-load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
-asb_sp_w <- as.matrix(asb_sp_w)
-asb_sp_summ <- mFD::asb.sp.summary(asb_sp_w)
-asb_sp_occ <- asb_sp_summ$asb_sp_occ
-sp_to_fe <- mFD::sp.to.fe(sp_tr, sp_tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
-mFD::alpha.fd.fe(asb_sp_occ, sp_to_fe, ind_nm = c("fred", "fored", "fvuln"),
- check.input = TRUE, store_details = TRUE)
-
-}

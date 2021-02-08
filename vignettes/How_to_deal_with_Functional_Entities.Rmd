@@ -88,11 +88,10 @@ knitr::kable(as.data.frame(asb_sp_w_fruits[c(1:6), c(1:6)]), caption = "Species 
 The **third column** summarizes to which fuzzy trait belongs each column that refers to a fuzzy trait. Here there is no fuzzy traits, thus the column only contains NA.
 
 ```{r, echo = FALSE}
-library(knitr)
-tr_cat <- read.csv(system.file("extdata", "data_fruits_baskets_tr_cat.csv", package = "mFD"))
+data("tr_cat_fruits", package = "mFD")
 # only keeps traits 1 - 4:
-tr_cat <- tr_cat[c(1:4), ]
-knitr::kable(head(tr_cat), caption = "Traits types based on *fruits & baskets* dataset")
+tr_cat_fruits <- tr_cat_fruits[c(1:4), ]
+knitr::kable(head(tr_cat_fruits), caption = "Traits types based on *fruits & baskets* dataset")
 ```
 
 
@@ -111,17 +110,17 @@ asb_sp_fruits_occ <- asb_sp_fruits_summ$asb_sp_occ
 The *mFD* package allows the user to gather species into FEs using the *sp.to.fe* function. It uses the following arguments:
 
 ```{r, results = "hide", eval = FALSE}
-mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) 
+mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, fe_nm_type = "fe_rank", check.input = TRUE) 
 ```
 
   * *sp_tr* the dataframe of species traits
-  * *sp_tr_cat* the dataframe summarizing traits categories
+  * *tr_cat* the dataframe summarizing traits categories
   * *fe_nm_type* is a character string referring to the way FEs should be named: they can be named after their decreasing rank in term of number of species (*i.e. fe_1 is the one gathering most species*) (*fe_rank*) or they can be named after names of traits
   * *check_input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
   
 Let's use this function with the *fruits dataset*:
 ```{r}
-sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) 
+sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, fe_nm_type = "fe_rank", check.input = TRUE) 
 ```
 
 This function returns:

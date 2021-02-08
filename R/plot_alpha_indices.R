@@ -238,22 +238,46 @@
 #'  per functional indice containing plots for combinations of up to four axes.
 #'
 #'@examples
-#' load(system.file("extdata", "sp_faxes_coord_fruits", package = "mFD"))
-#' load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
-#' asb_sp_w <- as.matrix(asb_sp_w)
-#' alpha_fd_indices <- mFD::alpha.fd.multidim(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")],
-#' asb_sp_w, ind_vect = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
-#' scaling = TRUE, check.input = TRUE, store_details = TRUE)
-#' fd_ind_values <- alpha_fd_indices$functional_diversity_indices
-#' details_list <- alpha_fd_indices$details
-#' mFD::alpha.multidim.plot(sp_faxes_coord, asb_sp_w,
+#'# Load Species*Traits dataframe:
+#' data("sp_tr_fruits", package = "mFD")
+#' # Load Assemblages*Species dataframe:      
+#' data("asb_sp_w_fruits", package = "mFD") 
+#' Load Traits categories dataframe:
+#' data("tr_cat_fruits", package = "mFD")  
+#' # Compute functional distance 
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
+#'  tr_cat       = tr_cat_fruits,   
+#'  dist_metric  = "kgower",         
+#'  scaling      = "scaledBYrange",  
+#'  stop_if_NA   = TRUE)
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+#'  maxdim_pcoa         = 10,
+#'  deviation_weighting = "absolute",
+#'  fdist_scaling       = FALSE,
+#'  fdendro             = "average")
+#' # Retrieve species coordinates matrix:
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+#' # Compute alpha diversity indices:
+#' alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
+#'  sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'  asb_sp_w_fruits, ind_vect = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
+#'  scaling = TRUE, check.input = TRUE, store_details = TRUE)
+#' # Retrieve alpha diversity indices table:
+#' fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
+#' fd_ind_values_fruits
+#' # Retrieve a list of details needed for plots:
+#' details_list_fruits <- alpha_fd_indices_fruits$details
+#' # Compute the plots:
+#' mFD::alpha.multidim.plot(sp_faxes_coord = sp_faxes_coord_fruits, 
+#'  asb_sp_w = asb_sp_w_fruits,
 #'  ind_vect = c("fdis",
 #'              "fnnd", "feve",
 #'              "fric", "fdiv",
 #'              "fori", "fspe"),
-#'  details_list,
+#'  details_list = details_list_fruits,
 #'  asb_vect = c("basket_1"),
-#'  fd_ind_values,
+#'  fd_ind_values = fd_ind_values_fruits,
 #'  faxes = NULL, faxes_nm = NULL,
 #'  range_faxes_lim = c(NA, NA),
 #'  color_bg = "grey95",

@@ -82,20 +82,31 @@ Squared)
 Plot functional space quality with a chosen quality metric
 }
 \examples{
-library(patchwork)
-load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-sp_tr <- sp_tr[, -c(6:8)]
-load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-sp_tr_cat <- sp_tr_cat[-c(6:8), ]
-sp_trdist <- mFD::funct.dist(sp_tr, sp_tr_cat, dist_metric = "classical_gower",
-scaling = "noscale")
-fspaces_quality <- mFD::quality.fspaces(sp_trdist, maxdim_pcoa = 10,
- deviation_weighting = "absolute", fdist_scaling = FALSE, fdendro = "average")
-mFD::quality.fspaces.plot(fspaces_quality, quality_metric = "mad",
- fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d"),
- name_file = NULL, range_dist = NULL, range_dev = NULL, range_qdev = NULL,
- gradient_deviation  = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
- gradient_deviation_quality = c(low ="yellow", high = "red"),
- x_lab = "Trait-based distance")
+# Load Species*Traits dataframe:
+data("sp_tr_fruits", package = "mFD")
+# Load Assemblages*Species dataframe:      
+data("asb_sp_w_fruits", package = "mFD")
+Load Traits categories dataframe:
+data("tr_cat_fruits", package = "mFD")   
+# Compute functional distance 
+sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
+ tr_cat       = tr_cat_fruits,   
+ dist_metric  = "kgower",         
+ scaling      = "scaledBYrange",  
+ stop_if_NA   = TRUE)
+# Compute functional spaces quality to retrieve species coordinates matrix:
+fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+ maxdim_pcoa         = 10,
+ deviation_weighting = "absolute",
+ fdist_scaling       = FALSE,
+ fdendro             = "average")
+ # Illustarte the quality of functional spaces:
+ mFD::quality.fspaces.plot(fspaces_quality = fspaces_quality_fruits, 
+  quality_metric = "mad",
+  fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d"),
+  name_file = NULL, range_dist = NULL, range_dev = NULL, range_qdev = NULL,
+  gradient_deviation  = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
+  gradient_deviation_quality = c(low ="yellow", high = "red"),
+  x_lab = "Trait-based distance")
 
 }

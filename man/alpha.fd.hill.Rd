@@ -69,18 +69,12 @@ FD is computed applying the special case where function 'f' in equation 3c
 is linear:f(dij(tau)) = dij(tau)/tau, hence f(0)=0 and f(tau)=1.
 }
 \examples{
-# Load Species*Traits dataframe:
-data("sp_tr_fruits", package = "mFD")
-# Load Assemblages*Species dataframe:      
-data("asb_sp_w_fruits", package = "mFD")   
-# Compute functional distance 
-sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
- tr_cat       = sp_tr_cat_fruits,   
- dist_metric  = "kgower",         
- scaling      = "scaledBYrange",  
- stop_if_NA   = TRUE)
-# Compute alpha functional hill indices:
-alpha.fd.hill(asb_sp_w = asb_sp_w_fruits, sp_dist = sp_dist_fruits, q = c(0, 1, 2),
+load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
+sp_tr <- sp_tr[, -c(6:8)]
+load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
+asb_sp_w <- as.matrix(asb_sp_w)
+sp_dist <- cluster::daisy(sp_tr, metric = "gower")
+alpha.fd.hill(asb_sp_w, sp_dist, q = c(0, 1, 2),
  tau = "mean", check.input = TRUE, store.details = TRUE)
 
 
