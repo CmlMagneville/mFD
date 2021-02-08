@@ -124,33 +124,51 @@ diversity indices should have been computed using the} \code{\link{beta.fd.multi
 \strong{function}.
 }
 \examples{
-load(system.file("extdata", "sp_faxes_coord_fruits", package = "mFD"))
-load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
-asb_sp_w <- as.matrix(asb_sp_w)
-asb_sp_summ <- mFD::asb.sp.summary(asb_sp_w)
-asb_sp_occ <- asb_sp_summ$asb_sp_occ
-output_beta.fd.multidim <- mFD::beta.fd.multidim(sp_faxes_coord[, 
- c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ,
+# Load Species*Traits dataframe:
+data("sp_tr_fruits", package = "mFD")
+# Load Assemblages*Species dataframe:      
+data("asb_sp_w_fruits", package = "mFD")   
+# Compute functional distance 
+sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
+ tr_cat       = sp_tr_cat_fruits,   
+ dist_metric  = "kgower",         
+ scaling      = "scaledBYrange",  
+ stop_if_NA   = TRUE)
+# Compute functional spaces quality to retrieve species coordinates matrix:
+fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+ maxdim_pcoa         = 10,
+ deviation_weighting = "absolute",
+ fdist_scaling       = FALSE,
+ fdendro             = "average")
+# Retrieve species coordinates matrix:
+sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+ # Get the occurrence dataframe:
+asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits) 
+asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
+# Compute beta diversity indices:
+beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
+ c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ = asb_sp_fruits_occ,
  check.input = TRUE,
  beta.family = c("Jaccard"),
  store_details = TRUE)
-beta.multidim.plot(output_beta.fd.multidim,
-plot_asb_nm = c("basket_1", "basket_3"),
-beta.family = c("Jaccard"),
-plot_sp_nm = c("apple", "cherry", "lemon"),
-faxes = paste0("PC", 1:4),
-name_file = NULL,
-faxes_nm = NULL, range_faxes = c(NA, NA),
-color_bg = "grey95",
-shape_sp = c("pool"=3, asb1=22, asb2=21),
-size_sp = c("pool"=0.8, asb1=1, asb2=1),
-color_sp = c("pool"="grey50", asb1="blue", asb2= "red"),
-fill_sp = c("pool"= NA, asb1 ="white", asb2 = "white"),
-fill_vert = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-color_ch = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red"),
-alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-nm_size = 3, nm_color = "black", nm_fontface = "plain",
-check.input = TRUE) 
+# Compute beta fd plots:
+beta.multidim.plot(output_beta.fd.multidim = beta_fd_fruits,
+ plot_asb_nm = c("basket_1", "basket_3"),
+ beta.family = c("Jaccard"),
+ plot_sp_nm = c("apple", "cherry", "lemon"),
+ faxes = paste0("PC", 1:4),
+ name_file = NULL,
+ faxes_nm = NULL, range_faxes = c(NA, NA),
+ color_bg = "grey95",
+ shape_sp = c("pool"=3, asb1=22, asb2=21),
+ size_sp = c("pool"=0.8, asb1=1, asb2=1),
+ color_sp = c("pool"="grey50", asb1="blue", asb2= "red"),
+ fill_sp = c("pool"= NA, asb1 ="white", asb2 = "white"),
+ fill_vert = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+ color_ch = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+ fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red"),
+ alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
+ nm_size = 3, nm_color = "black", nm_fontface = "plain",
+ check.input = TRUE) 
 
 }
