@@ -90,7 +90,7 @@
 #'  ind_nm = c("fred", "fored", "fvuln"),
 #'  check.input = TRUE, store_details = TRUE)
 #' # Plot fd fe indices: 
-#' alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits, plot_asb_nm = c("basket_1),
+#' alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits, plot_asb_nm = c("basket_1"),
 #'  plot_ind_nm = c("fred", "fored", "fvuln"),
 #'  name_file = NULL,
 #'  color_fill_fored = "darkolivegreen2",
