@@ -70,17 +70,37 @@
 #'  plot saved as a 300dpi png file in the working directory.
 #'
 #'@examples
-#' load(system.file("extdata", "sp_tr_fruits_df", package = "mFD"))
-#' sp_tr <- sp_tr[, c(1:4)]
-#' load(system.file("extdata", "sp_tr_cat_fruits_df", package = "mFD"))
-#' sp_tr_cat <- sp_tr_cat[c(1:4), ]
-#' load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
-#' asb_sp_w <- as.matrix(asb_sp_w)
-#' asb_sp_summ <- mFD::asb.sp.summary(asb_sp_w)
-#' asb_sp_occ <- asb_sp_summ$asb_sp_occ
-#' sp_to_fe <- mFD::sp.to.fe(sp_tr, sp_tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
-#' mFD::alpha.fd.fe(asb_sp_occ, sp_to_fe, ind_nm = c("fred", "fored", "fvuln"),
+#' # Load Species*Traits dataframe:
+#' data("sp_tr_fruits", package = "mFD")
+#' # Load Traits categories dataframe:
+#' data("sp_tr_cat_fruits", package = "mFD")
+#' # Load Assemblages*Species matrix:
+#' data("asb_sp_w_fruits", package = "mFD")
+#' # Remove continuous trait:
+#' sp_tr_fruits <- sp_tr_fruits[, -5]
+#' sp_tr_cat_fruits <- sp_tr_cat_fruits[-5, ]
+#' # Compute gathering species into FEs:
+#' sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = sp_tr_cat_fruits, 
+#'  fe_nm_type = "fe_rank", check.input = TRUE)
+#' # Get the occurrence dataframe:
+#' asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits) 
+#' asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
+#' # Compute alpha fd indices:
+#' alpha_fd_fe_fruits <- alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
+#'  ind_nm = c("fred", "fored", "fvuln"),
 #'  check.input = TRUE, store_details = TRUE)
+#' # Plot fd fe indices: 
+#' alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits, plot_asb_nm = c("basket_1),
+#'  plot_ind_nm = c("fred", "fored", "fvuln"),
+#'  name_file = NULL,
+#'  color_fill_fored = "darkolivegreen2",
+#'  color_line_fred = "darkolivegreen4",
+#'  color_fill_bar = "grey80",
+#'  color_fill_fvuln = "lightcoral",
+#'  color_arrow_fvuln = "indianred4",
+#'  size_line_fred = 1.5,
+#'  size_arrow_fvuln = 1,
+#'  check.input = TRUE) 
 #'
 #'@export
 
