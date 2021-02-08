@@ -88,13 +88,30 @@ and 'dendextend' for formatting values in a dataframe.
 }
 
 \examples{
-load(system.file("extdata", "sp_faxes_coord_fruits", package = "mFD"))
-load(system.file("extdata", "asb_sp_w_fruits", package = "mFD"))
-asb_sp_w <- as.matrix(asb_sp_w)
-asb_sp_summ <- mFD::asb.sp.summary(asb_sp_w)
-asb_sp_occ <- asb_sp_summ$asb_sp_occ
-beta_fd_indices <- mFD::beta.fd.multidim(sp_faxes_coord[, 
- c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ,
+ # Load Species*Traits dataframe:
+data("sp_tr_fruits", package = "mFD")
+# Load Assemblages*Species dataframe:      
+data("asb_sp_w_fruits", package = "mFD")   
+# Compute functional distance 
+sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
+ tr_cat       = sp_tr_cat_fruits,   
+ dist_metric  = "kgower",         
+ scaling      = "scaledBYrange",  
+ stop_if_NA   = TRUE)
+# Compute functional spaces quality to retrieve species coordinates matrix:
+fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+ maxdim_pcoa         = 10,
+ deviation_weighting = "absolute",
+ fdist_scaling       = FALSE,
+ fdendro             = "average")
+# Retrieve species coordinates matrix:
+sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+ # Get the occurrence dataframe:
+asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits) 
+asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
+# Compute beta diversity indices:
+beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
+ c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ = asb_sp_fruits_occ,
  check.input = TRUE,
  beta.family = c("Jaccard"),
  store_details = TRUE)
