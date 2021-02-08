@@ -151,7 +151,7 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 #'   (columns). Note that species names **must be** the names of rows.
 #'
 #' @return A list with:
-#'   \item{asb_sp_w_occ}{a data frame with species occurrences in each
+#'   \item{asb_sp_w_occ}{a matrix with species occurrences in each
 #'   assemblage.}
 #'   \item{tot_ab_all_sp}{a vector gathering species biomass/abundance per
 #'   species.}
@@ -178,10 +178,6 @@ asb.sp.summary <- function(asb_sp_w) {
   ## Check Input ----
 
   check.asb.sp.w(asb_sp_w)
-
-
-  # Convert matrix to data frame
-  asb_sp_w <- as.data.frame(asb_sp_w)
 
   # Species occurrence data frame
   asb_sp_w_occ <- replace(asb_sp_w, asb_sp_w != 0, 1)
