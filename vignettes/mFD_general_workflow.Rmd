@@ -107,8 +107,8 @@ data frame summarizing trait type for each trait (*i.e.* each column of the
 
 
 ```{r, echo = FALSE}
-data("sp_tr_cat_fruits", package = "mFD")
-knitr::kable(head(sp_tr_cat_fruits), caption = "Traits types based on **fruits & baskets** dataset")
+data("tr_cat_fruits", package = "mFD")
+knitr::kable(head(tr_cat_fruits), caption = "Traits types based on **fruits & baskets** dataset")
 ```
 
 
@@ -154,7 +154,7 @@ each fuzzy trait.
 **USAGE**
 
 ```{r}
-sp_tr_fruits_summ <- mFD::sp.tr.summary(tr_cat = sp_tr_cat_fruits,    # Traits informations
+sp_tr_fruits_summ <- mFD::sp.tr.summary(tr_cat = tr_cat_fruits,    # Traits informations
                                  sp_tr  = sp_tr_fruits)        # Species x Traits data frame
 ```
 
@@ -296,7 +296,7 @@ which includes the following arguments:
 
 ```{r, results = "hide"}
 sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,             # Species x Traits data frame
-                           tr_cat       = sp_tr_cat_fruits,         # Traits informations
+                           tr_cat       = tr_cat_fruits,         # Traits informations
                            dist_metric  = "kgower",          # Distance metric
                            scaling      = "scaledBYrange",   # Scaling method
                            stop_if_NA   = TRUE)
