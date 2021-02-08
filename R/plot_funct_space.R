@@ -110,9 +110,27 @@
 #'  the figure.
 #'
 #'@examples
-#' load(system.file("extdata", "sp_faxes_coord_fruits", package = "mFD"))
-#' mFD::funct.space.plot(sp_faxes_coord[, c("PC1", "PC2", "PC3", "PC4")], 
-#' faxes = NULL, name_file = NULL,
+#' # Load Species*Traits dataframe:
+#' data("sp_tr_fruits", package = "mFD")
+#' # Load Assemblages*Species dataframe:      
+#' data("asb_sp_w_fruits", package = "mFD")   
+#' # Compute functional distance 
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
+#'  tr_cat       = sp_tr_cat_fruits,   
+#'  dist_metric  = "kgower",         
+#'  scaling      = "scaledBYrange",  
+#'  stop_if_NA   = TRUE)
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+#'  maxdim_pcoa         = 10,
+#'  deviation_weighting = "absolute",
+#'  fdist_scaling       = FALSE,
+#'  fdendro             = "average")
+#' # Retrieve species coordinates matrix:
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+#' # Plot functional spaces:
+#' mFD::funct.space.plot(sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")], 
+#'  faxes = NULL, name_file = NULL,
 #'  faxes_nm = NULL, range_faxes_lim = c(NA, NA),
 #'  color_bg = "grey95",
 #'  color_sp = "darkgreen", fill_sp = "white",  shape_sp = 21, size_sp = 1,
