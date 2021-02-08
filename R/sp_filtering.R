@@ -30,11 +30,11 @@
 #'   containing relative weight of species present in a given assemblage \code{asb_sp_relatw_k}.
 #'
 #' @examples
-#'  # Load Species*Traits dataframe:
+#' # Load Species*Traits dataframe:
 #' data("sp_tr_fruits", package = "mFD")
 #' # Load Assemblages*Species dataframe:      
 #' data("asb_sp_w_fruits", package = "mFD") 
-#' Load Traits categories dataframe:
+#' # Load Traits categories dataframe:
 #' data("tr_cat_fruits", package = "mFD")  
 #' # Compute functional distance 
 #' sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         

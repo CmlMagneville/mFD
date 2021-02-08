@@ -77,16 +77,16 @@
 #' data("sp_tr_fruits", package = "mFD")
 #'
 #' # Load Traits x Categories data
-#' data("sp_tr_cat_fruits", package = "mFD")
+#' data("tr_cat_fruits", package = "mFD")
 #' 
 #' # Remove fuzzy traits for this example
 #' sp_tr_fruits     <- sp_tr_fruits[ , -c(6:8)]
-#' sp_tr_cat_fruits <- sp_tr_cat_fruits[-c(6:8), ]
+#' tr_cat_fruits <- tr_cat_fruits[-c(6:8), ]
 #' 
 #' # Compute Functional Distance
 #' mFD::funct.dist(
 #'   sp_tr       = sp_tr_fruits, 
-#'   tr_cat      = sp_tr_cat_fruits, 
+#'   tr_cat      = tr_cat_fruits, 
 #'   dist_metric = "classical_gower", 
 #'   scaling     = "noscale", 
 #'   stop_if_NA  = TRUE)

@@ -54,10 +54,10 @@ your \code{sp_tr} data frame.
 data("sp_tr_fruits", package = "mFD")
 
 # Load Traits x Categories data
-data("sp_tr_cat_fruits", package = "mFD")
+data("tr_cat_fruits", package = "mFD")
 
 # Summarize Species x Traits data
-mFD::sp.tr.summary(tr_cat = sp_tr_cat_fruits, sp_tr = sp_tr_fruits)
+mFD::sp.tr.summary(tr_cat = tr_cat_fruits, sp_tr = sp_tr_fruits)
 }
 \author{
 Camille Magneville & Sebastien Villeger
