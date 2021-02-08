@@ -12,7 +12,7 @@ asb.sp.summary(asb_sp_w)
 }
 \value{
 A list with:
-\item{asb_sp_w_occ}{a data frame with species occurrences in each
+\item{asb_sp_w_occ}{a matrix with species occurrences in each
 assemblage.}
 \item{tot_ab_all_sp}{a vector gathering species biomass/abundance per
 species.}
