@@ -183,10 +183,10 @@ asb.sp.summary <- function(asb_sp_w) {
   asb_sp_w_occ <- replace(asb_sp_w, asb_sp_w != 0, 1)
 
   # Vector containing the number of occurrences of each species
-  nbocc_sp <- apply(asb_sp_w, 2, sum)
+  nbocc_sp <- apply(as.data.frame(asb_sp_w), 2, sum)
 
   # Vector containing total abundance/biomass per assemblage
-  asb_totab <- apply(asb_sp_w, 1, sum)
+  asb_totab <- apply(as.data.frame(asb_sp_w), 1, sum)
 
   # Vector containing species richness of each assemblage
   asb_sp_wrichn <- apply(asb_sp_w_occ, 1, sum)
@@ -199,7 +199,7 @@ asb.sp.summary <- function(asb_sp_w) {
   for (i in 1:nrow(asb_sp_w_occ)) {
 
     data  <- asb_sp_w_occ[i, ]
-    data2 <- data[which(apply(data, 2, max) == TRUE)]
+    data2 <- data[which(apply(as.data.frame(data), 2, max) == TRUE)]
     rownames(data2) <- rownames(asb_sp_w_occ[i, ])
     L[[i]] <- as.vector(data2)
   }
@@ -207,7 +207,7 @@ asb.sp.summary <- function(asb_sp_w) {
 
   ## Function Return ----
 
-  list("asb_sp_occ"       = asb_sp_w_occ,
+  list("asb_sp_occ"       = as.matrix(asb_sp_w_occ),
        "tot_ab_all_sp"    = nbocc_sp,
        "tot_ab_all_asb"   = asb_totab,
        "sp_richn_all_asb" = asb_sp_wrichn,
