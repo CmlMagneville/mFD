@@ -44,7 +44,7 @@ appear if the option selected with that condition)"}.}
 
 \item{scaling}{a character string referring to the way traits must be scaled.
 There are three options:
-\code{scaledBYrange} (if traits must be scaled byrange),
+\code{scaledBYrange} (if traits must be scaled by range),
 \code{scaledBYsd} (if traits must be scaled by their standard deviation), or
 \code{noscale} (if traits do not have to be scaled).}
 
@@ -68,23 +68,32 @@ delete species with missing or extrapolate missing traits (see
 Johnson \emph{et al.} (2020)).
 }
 \examples{
-# Load Species*Traits data:
+# Load Species x Traits data
 data("sp_tr_fruits", package = "mFD")
-# Load Traits categories dataframe:
-data(" tr_cat_fruits", package = "mFD")
-# Remove fuzzy traits for this example:
-sp_tr_fruits <- sp_tr_fruits[ , -c(6:8)]
-tr_cat_fruits <- tr_cat_fruits[-c(6:8), ]
-# Compute functional distance:
-mFD::funct.dist(sp_tr = sp_tr_fruits, tr_cat =  tr_cat_fruits, 
-                dist_metric = "classical_gower", 
-                scaling = "noscale", stop_if_NA = TRUE)
+
+# Load Traits x Categories data
+data("sp_tr_cat_fruits", package = "mFD")
+
+# Remove fuzzy traits for this example
+sp_tr_fruits     <- sp_tr_fruits[ , -c(6:8)]
+sp_tr_cat_fruits <- sp_tr_cat_fruits[-c(6:8), ]
+
+# Compute Functional Distance
+mFD::funct.dist(
+  sp_tr       = sp_tr_fruits, 
+  tr_cat      = sp_tr_cat_fruits, 
+  dist_metric = "classical_gower", 
+  scaling     = "noscale", 
+  stop_if_NA  = TRUE)
 }
 \references{
 Gower, J.C. (1971) A general coefficient of similarity and some of its
 properties. \emph{Biometrics}, \strong{27}, 857-871.\cr
-Johnson \emph{et al.} (2020) \strong{\{\{ ADD THE COMPLETE REFERENCE \}\}}\cr
-Pavoine \emph{et al.} (2009) \strong{\{\{ ADD THE COMPLETE REFERENCE \}\}}
+Johnson \emph{et al.} (2020) Handling missing values in trait data.
+\emph{Global Ecology and Biogeography}, \strong{30}, 51-62.\cr
+Pavoine \emph{et al.} (2009) On the challenge of treating various types of
+variables: application for improving the measurement of functional
+diversity, \emph{Oikos}, \strong{118}, 391-402
 }
 \author{
 Nicolas Loiseau & Sébastien Villéger

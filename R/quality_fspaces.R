@@ -93,34 +93,40 @@
 #'   originally suggested in \emph{Maire et al. 2015}.
 #'
 #' @examples
-#' # Load Species*Traits dataframe:
+#' # Load Species x Traits Data
 #' data("sp_tr_fruits", package = "mFD")
-#' # Load Assemblages*Species dataframe:      
-#' data("asb_sp_w_fruits", package = "mFD") 
-#' #' # Load Traits categories dataframe:
-#' data("tr_cat_fruits", package = "mFD")  
-#' # Compute functional distance 
-#' sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
-#'  tr_cat       = tr_cat_fruits,   
-#'  dist_metric  = "kgower",         
-#'  scaling      = "scaledBYrange",  
-#'  stop_if_NA   = TRUE)
-#' # Compute functional spaces quality to retrieve species coordinates matrix:
-#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
-#'  maxdim_pcoa         = 10,
-#'  deviation_weighting = "absolute",
-#'  fdist_scaling       = FALSE,
-#'  fdendro             = "average")
-#' fspaces_quality_fruits
+#'
+#' # Load Traits x Categories Data
+#' data("sp_tr_cat_fruits", package = "mFD")
+#'
+#' # Compute Functional Distance
+#' sp_dist_fruits <- mFD::funct.dist(
+#'   sp_tr       = sp_tr_fruits,
+#'   tr_cat      = sp_tr_cat_fruits,
+#'   dist_metric = "kgower",
+#'   scaling     = "scaledBYrange",
+#'   stop_if_NA  = TRUE)
+#'
+#' # Compute Functional Spaces Quality (to retrieve species coordinates)
+#' fspaces_quality_fruits <- mFD::quality.fspaces(
+#'   sp_dist             = sp_dist_fruits,
+#'   maxdim_pcoa         = 10,
+#'   deviation_weighting = "absolute",
+#'   fdist_scaling       = FALSE,
+#'   fdendro             = "average")
+#'   
+#' # Retrieve Species Coordinates
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 #'
 #' @export
 
 
 quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
-                            deviation_weighting = "absolute", fdist_scaling = FALSE) {
-  
+                            deviation_weighting = "absolute",
+                            fdist_scaling = FALSE) {
+
   # check inputs #
-  
+
   # check distance object:
   if ( ! dendextend::is.dist(sp_dist)) {
     stop("Error: Trait-based distance between species should be
@@ -138,41 +144,41 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
   if (any(is.na(sp_dist))) {
     stop("Error: NA are not allowed in 'sp_dist'.")
   }
-  
+
   # check that the maximum number of axes to keep after PCoA:
   if (maxdim_pcoa < 1) {
     stop("Error: the number of pcoa axes must be higher than 0.")
   }
-  
+
   # check that the name of quality metric is correct:
   if ( any( ! deviation_weighting %in% c("absolute", "squarred") ) ) {
     stop("Error: input 'deviation_weighting' should be 'absolute' and/or 'squarred'.")
   }
-  
+
   # check that the scaled_metric input is logical:
   if ( any (! is.logical(fdist_scaling) ) ) {
     stop("Error: input 'fdist_scaling' should be TRUE and/or FALSE.")
   }
-  
-  
+
+
   # summary of input = trait-based distance between species ####
-  
+
   # species names from input distance matrix
   sp_nm <- labels(sp_dist)
-  
+
   # compute min, max, mean, standard deviation of distances
   trdist_summary <- c(min = min(sp_dist), max = max(sp_dist),
                       mean = mean(sp_dist), sd = stats::sd(sp_dist))
-  
+
   # checking whether it is Euclidean
   trdist_euclidean <- ade4::is.euclid(sp_dist)
-  
+
   # storing  summary of inputs
   details_trdist <- list(trdist_summary = trdist_summary,
                          trdist_euclidean = trdist_euclidean)
-  
+
   # Computing functional spaces  #
-  
+
   # computing PCoA ----
   pcoa_trdist <- ape::pcoa(sp_dist)
   # number of dimensions to keep given the input from user and number of PC...
@@ -182,22 +188,22 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
   sp_pc_coord <- pcoa_trdist$vectors[, 1:nbdim]
   colnames(sp_pc_coord) <- paste("PC", 1:nbdim, sep = "")
   ## check not run: any( rownames(sp_pc_coord)!= sp_nm)
-  
+
   # storing details about PCoA:
   details_fspaces<-list (sp_pc_coord = sp_pc_coord,
                          pc_eigenvalues = pcoa_trdist$values[1:nbdim, ])
-  
+
   # vector with names of all spaces from PCoA:
   fspaces_nm <- paste0("pcoa_", 1:nbdim, "d")
-  
+
   # turning dist object with trait-based ditance in a 3-variables dataframe ...
   # ...with 1 row for each pair of species (names in the 2 first columns):
   df_distsp <- dendextend::dist_long(sp_dist)
   names(df_distsp) <- c("sp.x", "sp.y", "tr")
-  
+
   # computing distance between species on increasing number of PCoA axes....
   #... and adding these pairwise distance ot the distance dataframe:
-  
+
   # loop on number of axes kept
   for (k in 1:nbdim) {
     # computing Euclidean distance between species
@@ -206,7 +212,7 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
     df_distsp[, paste0("pcoa_", k, "d")] <-
       dendextend::dist_long(dist_k_dim)$distance
   }
-  
+
   # if needed, computing quality of dendrogram ----
   # if no dendrogram, null output:
   fdendro_hclust <- NULL
@@ -230,57 +236,57 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
     df_distsp[, paste0("tree_", fdendro)] <-
       dendextend::dist_long(dist_fdendro)$distance
   }
-  
+
   # storing distances in functional spaces
   details_fspaces$pairsp_fspaces_dist <- df_distsp
-  
-  
+
+
   # computing quality of all functional spaces ####
-  
+
   # dataframe to store quality metrics of all spaces
   q_fspaces <- data.frame(fspaces_nm, row.names = fspaces_nm)
-  
-  
+
+
   # if required on raw distances in the functional spaces ----
   if (FALSE %in% fdist_scaling) {
-    
+
     # compute deviation between distance in each functional space and ...
     # ... trait-based distance, and storing in a list:
     dev_distsp <- data.frame (df_distsp[, c("sp.x", "sp.y")],
                               df_distsp[,fspaces_nm ] - df_distsp[, "tr"])
     details_deviation <- list(dev_distsp = dev_distsp)
-    
+
     # if required based on absolute deviation
     if ("absolute" %in% deviation_weighting) {
-      
+
       # compute absolute deviation and storing:
       abs_dev_distsp <- data.frame (dev_distsp[, c("sp.x", "sp.y")],
                                     abs(dev_distsp[, fspaces_nm]))
       details_deviation$abs_dev_distsp <- abs_dev_distsp
-      
+
       # mean absolute deviation:
       q_fspaces[fspaces_nm, "mad"] <- apply(abs_dev_distsp[, fspaces_nm],
                                             2, mean)
     }
-    
+
     # if required based on squared deviation:
     if ("squarred" %in% deviation_weighting) {
-      
+
       # compute squared deviation and storing:
       sqr_dev_distsp <- data.frame(dev_distsp[, c("sp.x", "sp.y")],
                                     (dev_distsp[, fspaces_nm])^2)
       details_deviation$sqr_dev_distsp <- sqr_dev_distsp
-      
+
       # root of mean squared deviation:
       q_fspaces[fspaces_nm, "rmsd"] <- sqrt(apply(sqr_dev_distsp[, fspaces_nm],
                                                  2, mean))
     }
-    
+
   }
-  
+
   # if required, computing metrics on scaled distances in the functional spaces----
   if (TRUE %in% fdist_scaling) {
-    
+
     # scaling distance in each functional space according to maximum distance...
     # ... in the functional space and maxium trait-based distance :
     df_distsp_scaled <- data.frame (
@@ -289,40 +295,40 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
             function(x) {x / max(x) * max(df_distsp[, "tr"])})
     )
     details_fspaces$pairsp_fspaces_dist_scaled <- df_distsp_scaled
-    
+
     # compute deviation between scaled distance and trait-based distance:
     dev_distsp_scaled <- data.frame(df_distsp_scaled[, c("sp.x", "sp.y")],
                                      df_distsp_scaled[, fspaces_nm] - df_distsp_scaled[, "tr"])
     details_deviation$dev_distsp_scaled <-  dev_distsp_scaled
-    
+
     # if required based on absolute deviation
     if ("absolute" %in% deviation_weighting ) {
-      
+
       # compute absolute deviation and storing:
       abs_dev_distsp_scaled <- data.frame (dev_distsp_scaled[, c("sp.x", "sp.y")],
                                            abs(dev_distsp_scaled[, fspaces_nm]))
       details_deviation$abs_dev_distsp_scaled <- abs_dev_distsp_scaled
-      
+
       # mean absolute deviation:
       q_fspaces[fspaces_nm, "mad_scaled"] <- apply(abs_dev_distsp_scaled[, fspaces_nm],
                                                   2, mean)
     }
-    
+
     # if required based on squared deviation:
     if ("squarred" %in% deviation_weighting) {
-      
+
       # compute squared deviation and storing:
       sqr_dev_distsp_scaled <- data.frame (dev_distsp_scaled[, c("sp.x", "sp.y")],
                                            (dev_distsp_scaled[, fspaces_nm])^2)
       details_deviation$sqr_dev_distsp_scaled <- sqr_dev_distsp_scaled
-      
+
       # root of mean squared deviation:
       q_fspaces[fspaces_nm, "rmsd_scaled"] <- sqrt(apply(sqr_dev_distsp_scaled[, fspaces_nm],
                                                         2, mean))
     }
-    
+
   }
-  
+
   quality_fspaces <- as.matrix(q_fspaces)
   quality_fspaces <-  quality_fspaces[, -1, drop = FALSE]
   quality_fspaces <-  as.data.frame(quality_fspaces)
@@ -330,18 +336,17 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
     quality_fspaces[, i] <- as.numeric(quality_fspaces[, i])
   }
   colnames(quality_fspaces) <- colnames(q_fspaces)[-1]
-  
-  
+
+
   # grouping and returning results:
   return_list <- list(quality_fspaces =  quality_fspaces,
                       details_trdist = details_trdist,
                       details_fspaces = details_fspaces,
                       details_deviation = details_deviation)
-  
+
   if (min(sp_dist) == 0) {
     warning("Functional distance between some species is equal to 0 (explains the Warning message 1). You can choose to gather species into Functional Entities gathering species with similar traits values")
   }
-  
+
   return(return_list)
 } # end of function
-

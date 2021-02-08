@@ -47,12 +47,14 @@
 #' @importFrom stats na.omit
 #'
 #' @examples
-#' # Load Species*Traits data:
+#' # Load Species x Traits data
 #' data("sp_tr_fruits", package = "mFD")
-#' # Load Traits categories dataframe:
-#' data("tr_cat_fruits", package = "mFD")
-#' # Compute Species*Traits data summary:
-#' mFD::sp.tr.summary(tr_cat = tr_cat_fruits, sp_tr = sp_tr_fruits)
+#'
+#' # Load Traits x Categories data
+#' data("sp_tr_cat_fruits", package = "mFD")
+#'
+#' # Summarize Species x Traits data
+#' mFD::sp.tr.summary(tr_cat = sp_tr_cat_fruits, sp_tr = sp_tr_fruits)
 
 
 sp.tr.summary <- function(tr_cat, sp_tr) {
@@ -62,21 +64,20 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 
   check.sp.tr(sp_tr, tr_cat, stop_if_NA = TRUE)
 
+
+  ## Checks Traits Formats ----
+
   check.nominal(tr_cat, sp_tr)
   check.ordinal(tr_cat, sp_tr)
   check.circular(tr_cat, sp_tr)
   check.continuous(tr_cat, sp_tr)
   check.fuzzy(tr_cat, sp_tr)
 
+
   ## Retrieve Traits Informations ----
-  ## (fuzzy-coded traits are modified thereafter)
 
-  # sp_nb   <- nrow(sp_tr)            # species number
-  # tr_nm   <- names(sp_tr)           # traits names
-  # tr_nb   <- length(tr_nm)          # traits number
-  tr_type <- c(tr_cat$"trait_type")   # traits type
-
-  names(tr_type) <- names(sp_tr)
+  tr_type        <- tr_cat$"trait_type"
+  names(tr_type) <- tr_cat$"trait_name"
 
 
   ## Transform Fuzzy-coded Traits ----
@@ -165,10 +166,11 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 #' @export
 #'
 #' @examples
-#' # Load Assemblages * Species matrix:
+#' # Load Assemblages x Species Matrix
 #' data("asb_sp_w_fruits", package = "mFD")
-#' # Compute Assemblages summary:
-#' mFD::asb.sp.summary(asb_sp_w_fruits)
+#' 
+#' # Summarize Assemblages Data
+#' mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits)
 
 asb.sp.summary <- function(asb_sp_w) {
 

@@ -50,12 +50,14 @@ you can do with your data. For this function to work, there must be no NA in
 your \code{sp_tr} data frame.
 }
 \examples{
-# Load Species*Traits data:
+# Load Species x Traits data
 data("sp_tr_fruits", package = "mFD")
-# Load Traits categories dataframe:
-data("tr_cat_fruits", package = "mFD")
-# Compute Species*Traits data summary:
-mFD::sp.tr.summary(tr_cat = tr_cat_fruits, sp_tr = sp_tr_fruits)
+
+# Load Traits x Categories data
+data("sp_tr_cat_fruits", package = "mFD")
+
+# Summarize Species x Traits data
+mFD::sp.tr.summary(tr_cat = sp_tr_cat_fruits, sp_tr = sp_tr_fruits)
 }
 \author{
 Camille Magneville & Sebastien Villeger

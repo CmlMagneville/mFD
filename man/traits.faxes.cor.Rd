@@ -57,26 +57,36 @@ Option allows to plot trait-axis relationships with scatterplot and boxplot
 for continuous and non-continuous traits, respectively.
 }
 \examples{
-# Load Species*Traits data:
+# Load Species x Traits Data
 data("sp_tr_fruits", package = "mFD")
-# Compute functional distance:
-sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
- tr_cat       = sp_tr_cat_fruits,   
- dist_metric  = "kgower",         
- scaling      = "scaledBYrange",  
- stop_if_NA   = TRUE)
-# Compute functional spaces quality to retrieve species coordinates matrix:
-fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
- maxdim_pcoa         = 10,
- deviation_weighting = "absolute",
- fdist_scaling       = FALSE,
- fdendro             = "average")
-# Retrieve species coordinates matrix:
-sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
-# Compute correlation between traits and functional axes:
-traits.faxes.cor(sp_tr = sp_tr_fruits, sp_faxes_coord = sp_faxes_coord_fruits, 
-                 tr_nm = NULL, faxes_nm = NULL,
-                 plot = FALSE, name_file = NULL, color_signif = "darkblue")
+
+# Compute Functional Distance
+sp_dist_fruits <- mFD::funct.dist(
+  sp_tr       = sp_tr_fruits,         
+  tr_cat      = sp_tr_cat_fruits,   
+  dist_metric = "kgower",         
+  scaling     = "scaledBYrange",  
+  stop_if_NA  = TRUE)
+  
+# Compute Functional Spaces Quality (to retrieve species coordinates)
+fspaces_quality_fruits <- mFD::quality.fspaces(
+  sp_dist             = sp_dist_fruits, 
+  maxdim_pcoa         = 10,
+  deviation_weighting = "absolute",
+  fdist_scaling       = FALSE,
+  fdendro             = "average")
+  
+# Retrieve Species Coordinates
+sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+
+# Compute Correlation between Traits and Functional Axes
+mFD::traits.faxes.cor(
+  sp_tr          = sp_tr_fruits, 
+  sp_faxes_coord = sp_faxes_coord_fruits, 
+  tr_nm          = NULL, 
+  faxes_nm       = NULL,
+  name_file      = NULL, 
+  color_signif   = "darkblue")
 }
 \author{
 Nicolas Loiseau & Sebastien Villeger

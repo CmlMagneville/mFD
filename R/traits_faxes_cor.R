@@ -49,26 +49,37 @@
 #' @importFrom stats lm summary.lm kruskal.test
 #' 
 #' @examples
-#' # Load Species*Traits data:
+#' # Load Species x Traits Data
 #' data("sp_tr_fruits", package = "mFD")
-#' # Compute functional distance:
-#' sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
-#'  tr_cat       = sp_tr_cat_fruits,   
-#'  dist_metric  = "kgower",         
-#'  scaling      = "scaledBYrange",  
-#'  stop_if_NA   = TRUE)
-#' # Compute functional spaces quality to retrieve species coordinates matrix:
-#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
-#'  maxdim_pcoa         = 10,
-#'  deviation_weighting = "absolute",
-#'  fdist_scaling       = FALSE,
-#'  fdendro             = "average")
-#' # Retrieve species coordinates matrix:
-#' sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
-#' # Compute correlation between traits and functional axes:
-#' traits.faxes.cor(sp_tr = sp_tr_fruits, sp_faxes_coord = sp_faxes_coord_fruits, 
-#'                  tr_nm = NULL, faxes_nm = NULL,
-#'                  plot = FALSE, name_file = NULL, color_signif = "darkblue")
+#' 
+#' # Compute Functional Distance
+#' sp_dist_fruits <- mFD::funct.dist(
+#'   sp_tr       = sp_tr_fruits,         
+#'   tr_cat      = sp_tr_cat_fruits,   
+#'   dist_metric = "kgower",         
+#'   scaling     = "scaledBYrange",  
+#'   stop_if_NA  = TRUE)
+#'   
+#' # Compute Functional Spaces Quality (to retrieve species coordinates)
+#' fspaces_quality_fruits <- mFD::quality.fspaces(
+#'   sp_dist             = sp_dist_fruits, 
+#'   maxdim_pcoa         = 10,
+#'   deviation_weighting = "absolute",
+#'   fdist_scaling       = FALSE,
+#'   fdendro             = "average")
+#'   
+#' # Retrieve Species Coordinates
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#' 
+#' # Compute Correlation between Traits and Functional Axes
+#' mFD::traits.faxes.cor(
+#'   sp_tr          = sp_tr_fruits, 
+#'   sp_faxes_coord = sp_faxes_coord_fruits, 
+#'   tr_nm          = NULL, 
+#'   faxes_nm       = NULL,
+#'   name_file      = NULL, 
+#'   color_signif   = "darkblue")
+
 
 traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL, 
                              faxes_nm = NULL, plot = FALSE, name_file = NULL,
@@ -77,23 +88,18 @@ traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL,
   
   ## Check inputs ----
   
-  if (any(is.na(sp_tr))) {
-    stop("The species x traits data frame contains NA. Please check.")
+  if (missing(sp_tr)) {
+    stop("Argument 'sp_tr' is mandatory.")
   }
   
-  if (any(is.na(sp_faxes_coord))) {
-    stop("The species x coordinates matrix contains NA. Please check.")
+  if (missing(sp_faxes_coord)) {
+    stop("Argument 'sp_faxes_coord' is mandatory.")
   }
   
-  if (any(rownames(sp_tr) == 1:nrow(sp_tr))) {
-    stop(paste("No row names provided in species x traits data frame. Please", 
-               "add species names as row names."))
-  }
+  check.sp.tr(sp_tr)
+  
+  check.sp.faxes.coord(sp_faxes_coord)
 
-  if (any(rownames(sp_faxes_coord) == 1:nrow(sp_faxes_coord))) {
-    stop(paste("No row names provided in species x coordinates matrix. Please", 
-               "add species names as row names."))
-  }
   
   if (!identical(sort(rownames(sp_tr)), sort(rownames(sp_faxes_coord)))) {
     stop("Species names mismatch between 'sp_tr' and 'sp_faxes_coord'.")

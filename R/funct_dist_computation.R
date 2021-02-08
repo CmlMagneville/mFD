@@ -40,7 +40,7 @@
 #' 
 #' @param scaling a character string referring to the way traits must be scaled. 
 #'   There are three options: 
-#'   `scaledBYrange` (if traits must be scaled byrange),
+#'   `scaledBYrange` (if traits must be scaled by range),
 #'   `scaledBYsd` (if traits must be scaled by their standard deviation), or
 #'   `noscale` (if traits do not have to be scaled). 
 #' 
@@ -60,8 +60,11 @@
 #' @references 
 #'   Gower, J.C. (1971) A general coefficient of similarity and some of its 
 #'   properties. _Biometrics_, **27**, 857-871.\cr
-#'   Johnson _et al._ (2020) __\{\{ ADD THE COMPLETE REFERENCE \}\}__\cr
-#'   Pavoine _et al._ (2009) __\{\{ ADD THE COMPLETE REFERENCE \}\}__
+#'   Johnson _et al._ (2020) Handling missing values in trait data. 
+#'   _Global Ecology and Biogeography_, **30**, 51-62.\cr
+#'   Pavoine _et al._ (2009) On the challenge of treating various types of 
+#'   variables: application for improving the measurement of functional 
+#'   diversity, _Oikos_, **118**, 391-402
 #' 
 #' @author Nicolas Loiseau & Sébastien Villéger
 #'
@@ -70,17 +73,23 @@
 #' @importFrom cluster daisy
 #' 
 #' @examples
-#' # Load Species*Traits data:
+#' # Load Species x Traits data
 #' data("sp_tr_fruits", package = "mFD")
-#' # Load Traits categories dataframe:
-#' data(" tr_cat_fruits", package = "mFD")
-#' # Remove fuzzy traits for this example:
-#' sp_tr_fruits <- sp_tr_fruits[ , -c(6:8)]
-#' tr_cat_fruits <- tr_cat_fruits[-c(6:8), ]
-#' # Compute functional distance:
-#' mFD::funct.dist(sp_tr = sp_tr_fruits, tr_cat =  tr_cat_fruits, 
-#'                 dist_metric = "classical_gower", 
-#'                 scaling = "noscale", stop_if_NA = TRUE)
+#'
+#' # Load Traits x Categories data
+#' data("sp_tr_cat_fruits", package = "mFD")
+#' 
+#' # Remove fuzzy traits for this example
+#' sp_tr_fruits     <- sp_tr_fruits[ , -c(6:8)]
+#' sp_tr_cat_fruits <- sp_tr_cat_fruits[-c(6:8), ]
+#' 
+#' # Compute Functional Distance
+#' mFD::funct.dist(
+#'   sp_tr       = sp_tr_fruits, 
+#'   tr_cat      = sp_tr_cat_fruits, 
+#'   dist_metric = "classical_gower", 
+#'   scaling     = "noscale", 
+#'   stop_if_NA  = TRUE)
 
 funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
   
@@ -95,41 +104,17 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
          "extrapolate missing traits (Johnson et al. (2020).")
   }
   
-  if (!is.data.frame(sp_tr)) {
-    stop("Species x traits data must be gathered in a matrix.")
-  }
-  
-  if (any(rownames(sp_tr) == 1:nrow(sp_tr))) {
-    stop(paste("No row names provided in traits data frame. Analysis will",
-               "not go through, please add species names as row names."))
-  }
-  
-  if (any(is.na(tr_cat$trait_type))) {
-    stop("Trait type in traits x category data frame contains NA. Please ",
-         "check and specify type of all traits.")
-  }
-  
-  tr_nm <- names(sp_tr)
-  
-  if (any(tr_nm != tr_cat$trait_name)) {
-    stop("Trait names differ between species x traits data frame and ",
-         "traits x category data frame. Please check.")
-  }
-  
-  if (any(!(tr_cat$trait_type %in% c("N", "O", "C", "Q", "F")))) {
-    stop("Trait type in traits x category should be among 'N', 'O', 'C', 'Q', ",
-         "'F'. Please check type of all traits.")
-  }
+  check.sp.tr(sp_tr, tr_cat, stop_if_NA)
   
   if (ncol(tr_cat) == 4) {
-    cat("tr_cat has 4 columns, if you use classical_gower traits will be",
+    cat("tr_cat has 4 columns, if you use 'classical_gower' traits will be",
         "weighted.\n")
-  } 
-  
-  if (any(!(dist_metric %in% c("euclidean", "classical_gower", "kgower")))) {
-    stop("Argument 'dist_metric' should be 'euclidean', 'classical_gower', ", 
-         "or 'kgower'.")
   }
+  
+  dist_metric <- match.arg(dist_metric, c("euclidean", "classical_gower", 
+                                          "kgower"))
+  
+  scaling <- match.arg(scaling, c("scaledBYrange", "scaledBYsd", "noscale")) 
   
   
   ## Compute Distances ----
@@ -138,13 +123,12 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     
     if (ncol(tr_cat) == 4) {
       
-      ktab_dist <- cluster::daisy(sp_tr, "gower", weights = tr_cat$weight)
+      ktab_dist <- cluster::daisy(sp_tr, "gower", weights = tr_cat$"weight")
       
     } else {
       
       ktab_dist <- cluster::daisy(sp_tr, "gower")
     }
-    
   }
   
   if (dist_metric == "euclidean") {
@@ -159,59 +143,61 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
   
   if (dist_metric == "kgower") {
     
-    # Need to prepare functional trait in function of their nature
+    # Need to prepare functional trait in function of their nature...
+
     
-    
-    # Quantitative traits
+    # ... Quantitative traits
     
     quant_trait <- NULL
     
-    if (any(tr_cat$trait_type == "Q")) {
-      quant_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "Q"],
+    if (any(tr_cat$"trait_type" == "Q")) {
+      quant_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "Q"],
                             drop = FALSE]
     }
     
     
-    # Ordinal Traits
+    # ... Ordinal Traits
     
     ord_trait <- NULL
     
-    if (any(tr_cat$trait_type == "O")) {
-      ord_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "O"],
+    if (any(tr_cat$"trait_type" == "O")) {
+      ord_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "O"],
                           drop = FALSE]
     }
     
     
-    # Circular traits
+    # ... Circular traits
     
     circ_trait <- NULL
     
-    if (any(tr_cat$trait_type == "C")) {
-      circ_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "C"],
+    if (any(tr_cat$"trait_type" == "C")) {
+      circ_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "C"],
                            drop = FALSE]
       
       circ_trait <- ade4::prep.circular(circ_trait, 1, 12)
     }
     
     
-    # Fuzzy traits 
-    # (basically several categories that are considered a single trait)
+    # ... Fuzzy traits
     
     fuzz_trait <- NULL
     
-    if (any(tr_cat$trait_type == "F")) {
+    if (any(tr_cat$"trait_type" == "F")) {
       
       # Select the fuzzy traits
-      fuzz_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "F"],
+      fuzz_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "F"],
                            drop = FALSE]
       
       # Count the number of fuzzy categories
-      fuzz_cat <- table(tr_cat[tr_cat$trait_type == "F", ]$fuzzy_name)
+      fuzz_cat <- table(tr_cat[tr_cat$"trait_type" == "F", ]$"fuzzy_name")
       
       # Order the trait names based on the order of the categories
       fuzz_names_ordered <- unlist(lapply(names(fuzz_cat), function(x) {
-        tr_cat$trait_name[tr_cat$fuzzy_name == x & !is.na(tr_cat$fuzzy_name)]
+        tr_cat$"trait_name"[tr_cat$"fuzzy_name" == x & 
+                            !is.na(tr_cat$"fuzzy_name")]
       }))
+
+      fuzz_names_ordered <- as.character(fuzz_names_ordered)        # R (< 4.0)
       
       # Reorder the traits according to the names
       fuzz_trait <- fuzz_trait[ , fuzz_names_ordered]
@@ -222,30 +208,30 @@ funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
     }
     
     
-    # Binary traits
+    # ... Binary traits
     
     bin_trait <- NULL
     
-    if (any(tr_cat$trait_type == "B")) {
-      bin_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "B"], 
+    if (any(tr_cat$"trait_type" == "B")) {
+      bin_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "B"], 
                           drop = FALSE]
       
       bin_trait <- ade4::prep.binary(bin_trait, col.blocks = ncol(bin_trait))
     }
     
     
-    # Nominal traits
+    # ... Nominal traits
     
     nom_trait <- NULL
     
-    if (any(tr_cat$trait_type == "N")) {
-      nom_trait <- sp_tr[ , tr_cat$trait_name[tr_cat$trait_type == "N"], 
+    if (any(tr_cat$"trait_type" == "N")) {
+      nom_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "N"], 
                           drop = FALSE]
     }
     
     # Combine all traits
     all_trait <- list("Q" = quant_trait, "O" = ord_trait, "F" = fuzz_trait,
-                      "B" = bin_trait, "N" = nom_trait, "C" = circ_trait)
+                      "B" = bin_trait,   "N" = nom_trait, "C" = circ_trait)
     
     # Remove NULL data frames
     not_null  <- unlist(lapply(all_trait, function(x) {
