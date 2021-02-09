@@ -119,6 +119,7 @@
 #'   size_arrow_fvuln  = 1,
 #'   check.input       = TRUE) 
 
+
 alpha.fd.fe.plot <- function(alpha_fd_fe,
                              plot_asb_nm,
                              plot_ind_nm = c("fred", "fored", "fvuln"),

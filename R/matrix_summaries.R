@@ -51,10 +51,10 @@
 #' data("sp_tr_fruits", package = "mFD")
 #'
 #' # Load Traits x Categories data
-#' data("sp_tr_cat_fruits", package = "mFD")
+#' data("tr_cat_fruits", package = "mFD")
 #'
 #' # Summarize Species x Traits data
-#' mFD::sp.tr.summary(tr_cat = sp_tr_cat_fruits, sp_tr = sp_tr_fruits)
+#' mFD::sp.tr.summary(tr_cat = tr_cat_fruits, sp_tr = sp_tr_fruits)
 
 
 sp.tr.summary <- function(tr_cat, sp_tr) {
@@ -183,10 +183,10 @@ asb.sp.summary <- function(asb_sp_w) {
   asb_sp_w_occ <- replace(asb_sp_w, asb_sp_w != 0, 1)
 
   # Vector containing the number of occurrences of each species
-  nbocc_sp <- apply(asb_sp_w, 2, sum)
+  nbocc_sp <- apply(as.data.frame(asb_sp_w), 2, sum)
 
   # Vector containing total abundance/biomass per assemblage
-  asb_totab <- apply(asb_sp_w, 1, sum)
+  asb_totab <- apply(as.data.frame(asb_sp_w), 1, sum)
 
   # Vector containing species richness of each assemblage
   asb_sp_wrichn <- apply(asb_sp_w_occ, 1, sum)
@@ -212,7 +212,7 @@ asb.sp.summary <- function(asb_sp_w) {
 
   ## Function Return ----
 
-  list("asb_sp_occ"       = asb_sp_w_occ,
+  list("asb_sp_occ"       = as.matrix(asb_sp_w_occ),
        "tot_ab_all_sp"    = nbocc_sp,
        "tot_ab_all_asb"   = asb_totab,
        "sp_richn_all_asb" = asb_sp_wrichn,

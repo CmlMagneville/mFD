@@ -111,6 +111,8 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe,
     
   }
   
+  # change occ matrix as a df:
+  asb_sp_occ <- as.data.frame(asb_sp_occ)
   
   # names of assemblages and of FE in the pool
   nmasb <- rownames(asb_sp_occ)
