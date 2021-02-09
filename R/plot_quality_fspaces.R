@@ -93,6 +93,12 @@
 #'   gradient_deviation  = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
 #'   gradient_deviation_quality = c(low ="yellow", high = "red"),
 #'   x_lab = "Trait-based distance")
+#'   
+#' @importFrom ggplot2 scale_colour_gradient2 scale_colour_gradient aes labs guides
+#' @importFrom ggplot2 margin element_text ggsave geom_hline theme ggplot
+#' @importFrom ggplot2 scale_x_continuous scale_y_continuous geom_point theme_bw
+#' @importFrom ggplot2 expansion
+#' @importFrom patchwork plot_annotation 
 #'
 #' @export
 

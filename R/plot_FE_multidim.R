@@ -118,6 +118,12 @@
 #'   size_line_fred    = 1.5,
 #'   size_arrow_fvuln  = 1,
 #'   check_input       = TRUE) 
+#'   
+#' @importFrom ggplot2 geom_segment geom_hline geom_bar ggsave ggplot xlab ylab
+#' @importFrom ggplot2 theme aes element_line element_text element_rect
+#' @importFrom grid arrow unit
+#' @importFrom patchwork plot_annotation
+#' @importFrom stats reorder
 
 
 alpha.fd.fe.plot <- function(alpha_fd_fe,

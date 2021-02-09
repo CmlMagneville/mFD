@@ -81,6 +81,8 @@
 #'   stringsAsFactors = FALSE)
 #' mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "tr_val")
 #' mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank")
+#' 
+#' @importFrom stats na.omit
 #'
 #' @export
 

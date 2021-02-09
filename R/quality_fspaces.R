@@ -117,6 +117,11 @@
 #'   
 #' # Retrieve Species Coordinates
 #' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#' 
+#' @importFrom dendextend is.dist dist_long
+#' @importFrom stats sd dist hclust cophenetic
+#' @importFrom ade4 is.euclid
+#' @importFrom ape pcoa
 #'
 #' @export
 

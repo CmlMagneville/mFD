@@ -141,6 +141,14 @@
 #'   shape_vert = 23, size_vert = 1,
 #'  plot_sp_nm = NULL, nm_size = 3, nm_color = "black", nm_fontface = "plain",
 #'  check_input = TRUE)
+#'  
+#'@importFrom ggplot2 aes aes_string coord_fixed theme theme_void ggsave 
+#'@importFrom ggplot2 ggplot xlab ylab element_rect element_blank geom_text
+#'@importFrom ggplot2 geom_polygon geom_point geom_rect scale_x_continuous scale_y_continuous 
+#'@importFrom ggplot2 scale_color_manual scale_fill_manual scale_shape_manual scale_size_manual
+#'@importFrom ggrepel geom_text_repel
+#'@importFrom grid arrow unit
+#'@importFrom patchwork plot_layout plot_annotation plot_spacer
 #'
 #'@export
 

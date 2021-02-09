@@ -172,5 +172,5 @@ beta.multidim.plot(output_beta_fd_multidim = beta_fd_fruits,
  alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
  nm_size = 3, nm_color = "black", nm_fontface = "plain",
  check_input = TRUE) 
-
+ 
 }

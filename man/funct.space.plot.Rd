@@ -167,5 +167,5 @@ mFD::funct.space.plot(sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   shape_vert = 23, size_vert = 1,
  plot_sp_nm = NULL, nm_size = 3, nm_color = "black", nm_fontface = "plain",
  check_input = TRUE)
-
+ 
 }

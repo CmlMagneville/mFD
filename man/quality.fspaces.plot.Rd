@@ -108,5 +108,5 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
   gradient_deviation  = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
   gradient_deviation_quality = c(low ="yellow", high = "red"),
   x_lab = "Trait-based distance")
-
+  
 }
