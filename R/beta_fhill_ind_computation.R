@@ -31,12 +31,12 @@
 #'@param beta_type a \strong{character string} with name of framework used for computing
 #' beta-diversity, either 'Jaccard' (default) or 'Sorensen'.
 #'
-#'@param check.input a \strong{logical value} defining whether inputs are checked before
+#'@param check_input a \strong{logical value} defining whether inputs are checked before
 #'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check.input =
+#'  understandable for the user than R error messages. Default: check_input =
 #'  TRUE.
 #'
-#'@param store.details a \strong{logical value} indicating whether the user want to store
+#'@param details_returned a \strong{logical value} indicating whether the user want to store
 #' values used for computing indices (see list below)
 #'
 #'@return a list with: \itemize{
@@ -45,7 +45,7 @@
 #'  (names in 2 first columns, as in \strong{asb_sp_w}) and beta-diversity
 #'  for each value of q in other column(s)
 #'
-#'  \item if \strong{store.details} turned to TRUE a list \emph{details} with
+#'  \item if \strong{details_returned} turned to TRUE a list \emph{details} with
 #'  \itemize{
 #'  \item \emph{asb_FDalpha} a dataframe with mean alpha diversity of each pair
 #'  of assemblages (rows) and values of q (columns)
@@ -74,7 +74,7 @@
 #' # Compute beta functional hill indices:
 #' beta.fd.hill(asb_sp_w = asb_sp_w_fruits, sp_dist = sp_dist_fruits, 
 #'  q = c(0,1,2), tau = "mean",
-#'  beta_type = "Jaccard", check.input = TRUE, store.details = TRUE)
+#'  beta_type = "Jaccard", check_input = TRUE, details_returned = TRUE)
 #'
 #'@export
 
@@ -83,8 +83,8 @@ beta.fd.hill <- function(asb_sp_w,
                          q = c(0,1,2),
                          tau = "mean",
                          beta_type = "Jaccard",
-                         check.input = TRUE,
-                         store.details = TRUE) {
+                         check_input = TRUE,
+                         details_returned = TRUE) {
 
 
 
@@ -96,8 +96,8 @@ beta.fd.hill <- function(asb_sp_w,
   }
 
 
-  ## check inputs if required #####
-  if (check.input == TRUE) {
+  ## check_inputs if required #####
+  if (check_input == TRUE) {
 
     if (any(is.na(sp_dist))) {
       stop("Error: The species distances matrix contains NA. Please check.")
@@ -352,7 +352,7 @@ beta.fd.hill <- function(asb_sp_w,
   # returning outputs
   res <- beta_fd_q
 
-  if (store.details == TRUE) {
+  if (details_returned == TRUE) {
     res <- list(beta_fd_q = beta_fd_q,
               details = list(malpha_fd_q = malpha_fd_q, gamma_fd_q = gamma_fd_q))
   }

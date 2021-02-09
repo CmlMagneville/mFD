@@ -57,7 +57,7 @@ alpha.multidim.plot(
   plot_ch = TRUE,
   fontface_nm = "plain",
   name_file = NULL,
-  check.input = TRUE
+  check_input = TRUE
 )
 }
 \arguments{
@@ -274,9 +274,9 @@ plot_ch = TRUE.}
 If several plots are to be saved (for several indices), then files are
 named as follow "name_file1", "name_file2"...}
 
-\item{check.input}{a \strong{logical value} defining whether inputs are checked before
+\item{check_input}{a \strong{logical value} defining whether inputs are checked before
 computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check.input =
+understandable for the user than R error messages. Default: check_input =
 TRUE.}
 }
 \value{
@@ -313,7 +313,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
  sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
  asb_sp_w_fruits, ind_vect = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
- scaling = TRUE, check.input = TRUE, store_details = TRUE)
+ scaling = TRUE, check_input = TRUE, details_returned = TRUE)
 # Retrieve alpha diversity indices table:
 fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 fd_ind_values_fruits
@@ -371,7 +371,7 @@ mFD::alpha.multidim.plot(sp_faxes_coord = sp_faxes_coord_fruits,
  plot_ch = TRUE,
  fontface_nm = "plain",
  name_file = NULL,
- check.input = TRUE)
+ check_input = TRUE)
 
 
 }

@@ -9,7 +9,7 @@ fdis.computation(
   sp_faxes_coord_k,
   fide_asb = NULL,
   k,
-  check.input = check.input
+  check_input = check_input
 )
 }
 \arguments{
@@ -28,11 +28,11 @@ assemblage along the dimensions (columns). Can be retrieved after
 
 \item{k}{a \strong{character string} referring to the assemblage studied.}
 
-\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species coordinates matrix and species*weight
 dataframe must not contain NA, their rownames must be filled and they must
-have similar names values. Default: check.input = FALSE.}
+have similar names values. Default: check_input = FALSE.}
 }
 \value{
 a matrix containing functional dispersion for a given assemblage.

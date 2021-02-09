@@ -32,9 +32,9 @@
 #' and of trait values for each FE, \emph{see details below}).
 #' Default: fe_nm_type = "fe_rank".
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
-#'   than R error messages. Default: check.input = TRUE.
+#'   than R error messages. Default: check_input = TRUE.
 #'
 #' @note fe_nm_type = 'tr_val' is allowed \strong{only} if: \itemize{ \item
 #'   there are less than 7 traits \item none of them is fuzzy-coded (so that
@@ -84,7 +84,7 @@
 #'
 #' @export
 
-sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE) {
+sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check_input = TRUE) {
   
   
   # define key parameters used in the function:
@@ -104,7 +104,7 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
   names(tr_type) <- tr_nm
   
   
-  ## check inputs:
+  ## check_inputs:
   
   if (sp_nb < 2) {
     stop("Error: There must be at least 2 species in species*traits

@@ -26,11 +26,11 @@
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
-#'   have similar names values. Default: check.input = FALSE.
+#'   have similar names values. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional identity values for a given assemblage
 #'   along the dimensions (columns). Number of dimensions is fixed to the number
@@ -38,9 +38,9 @@
 #'
 
 fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
-                             check.input = check.input) {
-  # check inputs if required:
-  if (check.input == TRUE) {
+                             check_input = check_input) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
       stop("Error: The species*coordinates matrix contains NA. Please check.")
     }
@@ -98,20 +98,20 @@ fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
-#'   have similar names values. Default: check.input = FALSE.
+#'   have similar names values. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional dispersion for a given assemblage.
 #'
 
 
 fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, fide_asb = NULL, k,
-                             check.input = check.input) {
-  # check inputs if required:
-  if (check.input == TRUE) {
+                             check_input = check_input) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
       stop("Error: The species*coordinates matrix contains NA. Please check.")
     }
@@ -175,11 +175,11 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, fide_asb = NULL,
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix must not contain NA, its
 #'   rownames must be filled and the number of species should strictly be higher
-#'   than the number of axes to compute the convex hull. Default: check.input =
+#'   than the number of axes to compute the convex hull. Default: check_input =
 #'   FALSE.
 #'
 #' @return a list containing: \strong{$fric} a vector with fric value for a
@@ -192,10 +192,10 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, fide_asb = NULL,
 #'   values using volume by species pool.
 #'
 
-fric.computation <- function(sp_faxes_coord_k, k, check.input = check.input) {
+fric.computation <- function(sp_faxes_coord_k, k, check_input = check_input) {
   
-  # check inputs if required:
-  if (check.input == TRUE) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
       stop("Error: The species*coordinates matrix contains NA. Please check.")
     }
@@ -262,14 +262,14 @@ fric.computation <- function(sp_faxes_coord_k, k, check.input = check.input) {
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled, they must
 #'   have similar names values, species acting as vertices must be contained in
 #'   the species coordinates matrix and  the number of species should strictly
 #'   be higher than number of axes for computing the convex hull. Default:
-#'   check.input = FALSE.
+#'   check_input = FALSE.
 #'
 #' @return a list with \strong{$fdiv} a single value vector ; \strong{$details}
 #'   a list with $vertices_nm a vector containing names of the species being
@@ -280,10 +280,10 @@ fric.computation <- function(sp_faxes_coord_k, k, check.input = check.input) {
 
 
 fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, k,
-                             check.input = check.input) {
+                             check_input = check_input) {
   
-  # check inputs if required:
-  if (check.input == TRUE) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
       stop("Error: The species*coordinates matrix contains NA. Please check.")
     }
@@ -325,7 +325,7 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, 
   # if vertices names are not provided, compute vertices:
   if (is.null(vert_nm)) {
     # computes vertices names:
-    vert_nm <- vertices(sp_faxes_coord_k, check.input = FALSE)
+    vert_nm <- vertices(sp_faxes_coord_k, check_input = FALSE)
   }
   # compute fdiv values if vertices have been computed (no coplanearity pbs):
   
@@ -380,25 +380,25 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, 
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled, they must
 #'   have similar names values, and the number of species in the assemblage must
-#'   be higher than three to compute feve. Default: check.input = FALSE.
+#'   be higher than three to compute feve. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional evenness for a given assemblage.
 #'
 
 
 feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
-                             check.input = check.input) {
+                             check_input = check_input) {
   
   # get the number of species present in the assemblage:
   sp_nb_asb_k <- nrow(sp_faxes_coord_k)
   
-  # check inputs if required:
-  if (check.input == TRUE) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
       stop("Error: The species*coordinates matrix contains NA. Please check.")
     }
@@ -496,11 +496,11 @@ feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
-#'   have similar names values. Default: check.input = FALSE.
+#'   have similar names values. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional mean pairwise distance for a given
 #'   assemblage.
@@ -508,9 +508,9 @@ feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 
 
 fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
-                             check.input = check.input) {
-  # check inputs if required:
-  if (check.input == TRUE) {
+                             check_input = check_input) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
       stop("Error: The species*coordinates matrix contains NA. Please check.")
     }
@@ -568,11 +568,11 @@ fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
-#'   have similar names values. Default: check.input = FALSE.
+#'   have similar names values. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional mean nearest neighbor distance for a
 #'   given assemblage.
@@ -580,9 +580,9 @@ fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 
 
 fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
-                             check.input = check.input) {
-  # check inputs if required:
-  if (check.input == TRUE) {
+                             check_input = check_input) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
       stop("Error: The species*coordinates matrix contains NA. Please check.")
     }
@@ -657,18 +657,18 @@ fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species*weight dataframe must not contain NA and its
-#'   rownames must be filled. Default: check.input = FALSE.
+#'   rownames must be filled. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional originality for a given assemblage.
 #'
 
 fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k, k,
-                             check.input = check.input) {
-  # check inputs if required:
-  if (check.input == TRUE) {
+                             check_input = check_input) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(asb_sp_relatw_k))) {
       stop("Error: The species*weights dataframe contains NA. Please check.")
     }
@@ -707,18 +707,18 @@ fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k, k,
 #'
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species*weight dataframe must not contain NA and its
-#'   rownames must be filled. Default: check.input = FALSE.
+#'   rownames must be filled. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional specialization for a given assemblage.
 #'
 
 fspe.computation <- function(asb_sp_relatw_k, special_sp_global_pool, k,
-                             check.input = check.input) {
-  # check inputs if required:
-  if (check.input == TRUE) {
+                             check_input = check_input) {
+  # check_inputs if required:
+  if (check_input == TRUE) {
     if (any(is.na(asb_sp_relatw_k))) {
       stop("Error: The species*weights dataframe contains NA. Please check.")
     }

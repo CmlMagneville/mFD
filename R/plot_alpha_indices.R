@@ -229,9 +229,9 @@
 #'  If several plots are to be saved (for several indices), then files are
 #'  named as follow "name_file1", "name_file2"...
 #'
-#'@param check.input a \strong{logical value} defining whether inputs are checked before
+#'@param check_input a \strong{logical value} defining whether inputs are checked before
 #'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check.input =
+#'  understandable for the user than R error messages. Default: check_input =
 #'  TRUE.
 #'
 #'@return for the given assemblage, return a list of one \code{patchwork} figure
@@ -262,7 +262,7 @@
 #' alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
 #'  sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'  asb_sp_w_fruits, ind_vect = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
-#'  scaling = TRUE, check.input = TRUE, store_details = TRUE)
+#'  scaling = TRUE, check_input = TRUE, details_returned = TRUE)
 #' # Retrieve alpha diversity indices table:
 #' fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 #' fd_ind_values_fruits
@@ -320,7 +320,7 @@
 #'  plot_ch = TRUE,
 #'  fontface_nm = "plain",
 #'  name_file = NULL,
-#'  check.input = TRUE)
+#'  check_input = TRUE)
 #'
 #'
 #'@export
@@ -376,7 +376,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                                 plot_ch = TRUE,
                                 fontface_nm = "plain",
                                 name_file = NULL,
-                                check.input = TRUE) {
+                                check_input = TRUE) {
   
   
   #### Retrieve all the needed elements from details_list ####
@@ -391,7 +391,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   
   #### Check inputs relative to this function (funct.space.plot, already done) ####
   
-  if (check.input == TRUE) {
+  if (check_input == TRUE) {
     
     # check that functional indices have the right names:
     for (ind in ind_vect) {
@@ -509,7 +509,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                                          plot_vertices = FALSE, color_vert = color_vert, fill_vert = fill_vert,
                                          shape_vert = shape_vert, size_vert = size_vert,
                                          plot_sp_nm = plot_sp_nm, nm_size = size_sp_nm, nm_color = color_sp_nm, nm_fontface = fontface_nm,
-                                         check.input = check.input)
+                                         check_input = check_input)
   
   
   #### Retrieve information, create df and format data for the 1st asb ####
@@ -593,7 +593,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
     # retrieve vertices names of asb_k along the 2 dimensions to be plotted ...
     # ... before all indices and not just for FRic because needed if vertices number ...
     # ... is to show in graphs caption for all indices:
-    vert_nm_asb_k <- vertices(sp_faxes_coord_k[, c(faxes_nm[[1]], faxes_nm[[2]])], check.input = TRUE)
+    vert_nm_asb_k <- vertices(sp_faxes_coord_k[, c(faxes_nm[[1]], faxes_nm[[2]])], check_input = TRUE)
     
     # retrieve coordinates of species of asb_k along the 2 plotted dimensions:
     vert_sp_faxes_coord_k <- sp_faxes_coord_k[which(rownames(sp_faxes_coord_k) %in% vert_nm_asb_k),
@@ -1114,7 +1114,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       # retrieve vertices names of asb_k along the 2 dimensions to be plotted ...
       # ... before all indices and not just for FRic because needed if vertices number ...
       # ... is to show in graphs caption for all indices:
-      vert_nm_asb_k <- vertices(sp_faxes_coord_k[, c(faxes_nm[[1]], faxes_nm[[2]])], check.input = TRUE)
+      vert_nm_asb_k <- vertices(sp_faxes_coord_k[, c(faxes_nm[[1]], faxes_nm[[2]])], check_input = TRUE)
       
       # retrieve coordinates of species of asb_k along the 2 plotted dimensions:
       vert_sp_faxes_coord_k <- sp_faxes_coord_k[which(rownames(sp_faxes_coord_k) %in% vert_nm_asb_k),

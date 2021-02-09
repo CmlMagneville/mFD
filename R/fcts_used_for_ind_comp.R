@@ -117,19 +117,19 @@ mst.computation <- function(sp_faxes_coord_k) {
 #' so that they define a convex polygon in 2D which is convenient for plotting.
 #' Default is FALSE, vertices ordered as in row names of 'sp_faxes_coord'
 #'
-#' @param check.input a \strong{logical value} defining whether inputs are checked before
+#' @param check_input a \strong{logical value} defining whether inputs are checked before
 #'   computation: species names must be put as row.names, there must be no NA
 #'   and species number must be superior to (axes number + 1). Default:
-#'   check.input = TRUE.
+#'   check_input = TRUE.
 #'
 #' @return a vector containing names of species being vertices \code{vert_nm}
 #'
 #'
 
-vertices <- function(sp_faxes_coord, order_2D = FALSE, check.input = FALSE) {
+vertices <- function(sp_faxes_coord, order_2D = FALSE, check_input = FALSE) {
   
   # checking input if required:
-  if (check.input == TRUE) {
+  if (check_input == TRUE) {
     if (is.null(rownames(sp_faxes_coord))) {
       stop("Error: No row names provided in species*coordinates matrix.
            Please add species names as row names.")

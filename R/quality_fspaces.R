@@ -125,7 +125,7 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
                             deviation_weighting = "absolute",
                             fdist_scaling = FALSE) {
 
-  # check inputs #
+  # check_inputs #
 
   # check distance object:
   if ( ! dendextend::is.dist(sp_dist)) {

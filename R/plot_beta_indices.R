@@ -14,19 +14,19 @@
 #'diversity indices should have been computed using the} \code{\link{beta.fd.multidim}}
 #'\strong{function}.
 #'
-#'@param output_beta.fd.multidim the list returned by \code{\link{beta.fd.multidim}}
-#'  when its input 'store_details ' is TRUE'. Thus, even if this function will
+#'@param output_beta_fd_multidim the list returned by \code{\link{beta.fd.multidim}}
+#'  when its input 'details_returned ' is TRUE'. Thus, even if this function will
 #'  illustrate functional beta-diversity for a single pair of assemblages, plots
 #'  will be scaled according to all assemblages for which indices were computed.
 #'
 #'@param plot_asb_nm a \strong{vector} with names of the 2 assemblages for which
 #'  functional beta-diversity will be illustrated.
 #'
-#'@param beta.family a \strong{character string} for the type of beta-diversity index for
+#'@param beta_family a \strong{character string} for the type of beta-diversity index for
 #'  which values will be printed, 'Jaccard' (default) and/or 'Sorensen'.
 #'
 #'@param faxes a \strong{vector} with names of axes to plot (as columns names in
-#'  \code{output_beta.fd.multidim$details$input$sp_faxes_coord} ). \strong{You
+#'  \code{output_beta_fd_multidim$details$input$sp_faxes_coord} ). \strong{You
 #'  can only plot from 2 to 4 axes for graphical reasons}. Default: faxes = NULL
 #'  (the four first axes will be plotted).
 #'
@@ -90,10 +90,10 @@
 #'@param nm_fontface a \strong{character string} for font of species labels (e.g.
 #'  "italic", "bold"). Default is 'plain'.
 #'
-#'@param check.input a \strong{logical value} defining whether key inputs (i.e. not
+#'@param check_input a \strong{logical value} defining whether key inputs (i.e. not
 #'  aesthetics settings) are checked before plotting computation of indices.
 #'  Possible error messages will thus may be more understandable for the user
-#'  than R error messages. Default: check.input = TRUE.
+#'  than R error messages. Default: check_input = TRUE.
 #'
 #'@return for the given pair of assemblages, returns a \code{patchwork} figure
 #'  with overlap between convex hulls projected in 2-dimensional spaces. Values
@@ -127,13 +127,13 @@
 #' # Compute beta diversity indices:
 #' beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
 #'  c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ = asb_sp_fruits_occ,
-#'  check.input = TRUE,
-#'  beta.family = c("Jaccard"),
-#'  store_details = TRUE)
+#'  check_input = TRUE,
+#'  beta_family = c("Jaccard"),
+#'  details_returned = TRUE)
 #' # Compute beta fd plots:
-#' beta.multidim.plot(output_beta.fd.multidim = beta_fd_fruits,
+#' beta.multidim.plot(output_beta_fd_multidim = beta_fd_fruits,
 #'  plot_asb_nm = c("basket_1", "basket_3"),
-#'  beta.family = c("Jaccard"),
+#'  beta_family = c("Jaccard"),
 #'  plot_sp_nm = c("apple", "cherry", "lemon"),
 #'  faxes = paste0("PC", 1:4),
 #'  name_file = NULL,
@@ -148,14 +148,14 @@
 #'  fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red"),
 #'  alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
 #'  nm_size = 3, nm_color = "black", nm_fontface = "plain",
-#'  check.input = TRUE) 
+#'  check_input = TRUE) 
 #'
 #'@export
 
 
-beta.multidim.plot <- function(output_beta.fd.multidim,
+beta.multidim.plot <- function(output_beta_fd_multidim,
                                plot_asb_nm,
-                               beta.family,
+                               beta_family,
                                plot_sp_nm = NULL,
                                faxes = NULL,
                                name_file = NULL,
@@ -170,28 +170,28 @@ beta.multidim.plot <- function(output_beta.fd.multidim,
                                fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red"),
                                alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
                                nm_size = 3, nm_color = "black", nm_fontface = "plain",
-                               check.input = TRUE) {
+                               check_input = TRUE) {
   
   
   ## extracting dataset from inputs ####
   
   # basic check of the core input
-  if(any (names(output_beta.fd.multidim) != c("pairasb_fbd_indices", "details"))) {
-    stop("Error: 'output_beta.fd.multidim' does not have elements of an output
+  if(any (names(output_beta_fd_multidim) != c("pairasb_fbd_indices", "details"))) {
+    stop("Error: 'output_beta_fd_multidim' does not have elements of an output
       from 'beta.fd.multidim' function. Please check.")
   }
   
   # species occurrences and position in the functional space
-  sp_faxes_coord <-output_beta.fd.multidim$details$inputs$sp_faxes_coord
-  asb_sp_occ <- output_beta.fd.multidim$details$inputs$asb_sp_occ
+  sp_faxes_coord <-output_beta_fd_multidim$details$inputs$sp_faxes_coord
+  asb_sp_occ <- output_beta_fd_multidim$details$inputs$asb_sp_occ
   
   # indices values
-  beta_fd <- output_beta.fd.multidim$pairasb_fbd_indices
+  beta_fd <- output_beta_fd_multidim$pairasb_fbd_indices
   beta_nm <- names(beta_fd)
   
   
-  ## check inputs if asked: ####
-  if (check.input == TRUE) {
+  ## check_inputs if asked: ####
+  if (check_input == TRUE) {
     
     
     if (length(plot_asb_nm) != 2) {
@@ -225,13 +225,13 @@ beta.multidim.plot <- function(output_beta.fd.multidim,
     
     if (any(! plot_asb_nm %in% row.names(asb_sp_occ))) {
       stop("Error: assemblages names in 'plot_asb_nm' can not be found in
-           'output_beta.fd.multidim'. Please check multidimensional functional
+           'output_beta_fd_multidim'. Please check multidimensional functional
             beta-diversity has been computed on these assemblages.")
     }
     
-    if (any(! tolower(substr(beta.family,1,3)) %in% substr(beta_nm,1,3))) {
+    if (any(! tolower(substr(beta_family,1,3)) %in% substr(beta_nm,1,3))) {
       stop("Error: some functional beta-diversity indices are not present in
-           'output_beta.fd.multidim' input. Please check indices family.")
+           'output_beta_fd_multidim' input. Please check indices family.")
     }
     
   }# end of checking inputs
@@ -279,7 +279,7 @@ beta.multidim.plot <- function(output_beta.fd.multidim,
   
   # computing convex hull of the species pool and its vertices if required
   if (! is.null(fill_ch["pool"])) {
-    vert_pool_nm <- vertices(sp_faxes_coord, check.input = TRUE)
+    vert_pool_nm <- vertices(sp_faxes_coord, check_input = TRUE)
     vert_pool_coord <- sp_faxes_coord[vert_pool_nm, ]
   }
   
@@ -291,8 +291,8 @@ beta.multidim.plot <- function(output_beta.fd.multidim,
   sp_asb2 <- names(asb_sp_occ[, which(asb_sp_occ[plot_asb_nm[2], ] == 1)])
   
   # vertices of each assemblage in the n-dimensional space
-  vert_asb1 <- output_beta.fd.multidim$details$asb_vertices[[plot_asb_nm[1]]]
-  vert_asb2 <- output_beta.fd.multidim$details$asb_vertices[[plot_asb_nm[2]]]
+  vert_asb1 <- output_beta_fd_multidim$details$asb_vertices[[plot_asb_nm[1]]]
+  vert_asb2 <- output_beta_fd_multidim$details$asb_vertices[[plot_asb_nm[2]]]
   
   
   
@@ -325,7 +325,7 @@ beta.multidim.plot <- function(output_beta.fd.multidim,
       
       # vertices in 2D ordered for plotting
       vert_pool_xy <- vertices(sp_faxes_coord_plot[, c(x,y)], order_2D=TRUE,
-                               check.input = TRUE )
+                               check_input = TRUE )
       
       # plotting
       plot_k <- plot_k +
@@ -347,9 +347,9 @@ beta.multidim.plot <- function(output_beta.fd.multidim,
     
     # computing 2D convex hulls for the 2 assemblages
     vert_asb1_xy <- vertices(sp_faxes_coord_plot[sp_asb1, c(x,y)], order_2D = TRUE,
-                             check.input = TRUE )
+                             check_input = TRUE )
     vert_asb2_xy <- vertices(sp_faxes_coord_plot[sp_asb2, c(x,y)], order_2D = TRUE,
-                             check.input = TRUE )
+                             check_input = TRUE )
     
     # plotting convex hulls
     plot_k <- plot_k +
@@ -432,7 +432,7 @@ beta.multidim.plot <- function(output_beta.fd.multidim,
       size = 3, hjust = 0.5, fontface = "bold")
   
   # values of Jaccard indices if any
-  if ("Jaccard" %in% beta.family ) {
+  if ("Jaccard" %in% beta_family ) {
     
     betajac_asb1_asb2 <- as.numeric(signif(beta_fd[
       which(beta_fd$asb.1 == plot_asb_nm[1] & beta_fd$asb.2 == plot_asb_nm[2]),
@@ -451,7 +451,7 @@ beta.multidim.plot <- function(output_beta.fd.multidim,
   }
   
   # values of Sorensen indices if any
-  if ("Sorensen" %in% beta.family) {
+  if ("Sorensen" %in% beta_family) {
     
     betasor_asb1_asb2 <- as.numeric( signif(beta_fd[
       which(beta_fd$asb.1 == plot_asb_nm[1] & beta_fd$asb.2 == plot_asb_nm[2]),

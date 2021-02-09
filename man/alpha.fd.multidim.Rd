@@ -9,8 +9,8 @@ alpha.fd.multidim(
   asb_sp_w,
   ind_vect = c("fide", "fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
   scaling = TRUE,
-  check.input = TRUE,
-  store_details = TRUE
+  check_input = TRUE,
+  details_returned = TRUE
 )
 }
 \arguments{
@@ -30,12 +30,12 @@ Possible indices to compute are: "fide", fdis", "fmpd", "fnnd", "feve", "fric",
 not (FALSE) on functional indices. Scaling is used to be able to compare
 indices values between assemblages. Default: scaling = TRUE.}
 
-\item{check.input}{a \strong{logical value} defining whether inputs are checked before
+\item{check_input}{a \strong{logical value} defining whether inputs are checked before
 computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check.input =
+understandable for the user than R error messages. Default: check_input =
 TRUE.}
 
-\item{store_details}{a \strong{logical value} indicating whether the user want to store
+\item{details_returned}{a \strong{logical value} indicating whether the user want to store
 details. Details are used in graphical functions and thus must be kept if
 the user want to have graphical outputs for the computed indices.}
 }
@@ -95,7 +95,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
  sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
  asb_sp_w_fruits, ind_vect = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
- scaling = TRUE, check.input = TRUE, store_details = TRUE)
+ scaling = TRUE, check_input = TRUE, details_returned = TRUE)
 # Retrieve alpha diversity indices table:
 fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 fd_ind_values_fruits

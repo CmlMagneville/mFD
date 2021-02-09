@@ -6,9 +6,9 @@
 multidimensional space}
 \usage{
 beta.multidim.plot(
-  output_beta.fd.multidim,
+  output_beta_fd_multidim,
   plot_asb_nm,
-  beta.family,
+  beta_family,
   plot_sp_nm = NULL,
   faxes = NULL,
   name_file = NULL,
@@ -26,26 +26,26 @@ beta.multidim.plot(
   nm_size = 3,
   nm_color = "black",
   nm_fontface = "plain",
-  check.input = TRUE
+  check_input = TRUE
 )
 }
 \arguments{
-\item{output_beta.fd.multidim}{the list returned by \code{\link{beta.fd.multidim}}
-when its input 'store_details ' is TRUE'. Thus, even if this function will
+\item{output_beta_fd_multidim}{the list returned by \code{\link{beta.fd.multidim}}
+when its input 'details_returned ' is TRUE'. Thus, even if this function will
 illustrate functional beta-diversity for a single pair of assemblages, plots
 will be scaled according to all assemblages for which indices were computed.}
 
 \item{plot_asb_nm}{a \strong{vector} with names of the 2 assemblages for which
 functional beta-diversity will be illustrated.}
 
-\item{beta.family}{a \strong{character string} for the type of beta-diversity index for
+\item{beta_family}{a \strong{character string} for the type of beta-diversity index for
 which values will be printed, 'Jaccard' (default) and/or 'Sorensen'.}
 
 \item{plot_sp_nm}{a \strong{vector} containing species names that are to be plotted.
 Default: plot_nm_sp = NULL (no name plotted).}
 
 \item{faxes}{a \strong{vector} with names of axes to plot (as columns names in
-\code{output_beta.fd.multidim$details$input$sp_faxes_coord} ). \strong{You
+\code{output_beta_fd_multidim$details$input$sp_faxes_coord} ). \strong{You
 can only plot from 2 to 4 axes for graphical reasons}. Default: faxes = NULL
 (the four first axes will be plotted).}
 
@@ -106,10 +106,10 @@ of species label. Default is black.}
 \item{nm_fontface}{a \strong{character string} for font of species labels (e.g.
 "italic", "bold"). Default is 'plain'.}
 
-\item{check.input}{a \strong{logical value} defining whether key inputs (i.e. not
+\item{check_input}{a \strong{logical value} defining whether key inputs (i.e. not
 aesthetics settings) are checked before plotting computation of indices.
 Possible error messages will thus may be more understandable for the user
-than R error messages. Default: check.input = TRUE.}
+than R error messages. Default: check_input = TRUE.}
 }
 \value{
 for the given pair of assemblages, returns a \code{patchwork} figure
@@ -150,13 +150,13 @@ asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 # Compute beta diversity indices:
 beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
  c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ = asb_sp_fruits_occ,
- check.input = TRUE,
- beta.family = c("Jaccard"),
- store_details = TRUE)
+ check_input = TRUE,
+ beta_family = c("Jaccard"),
+ details_returned = TRUE)
 # Compute beta fd plots:
-beta.multidim.plot(output_beta.fd.multidim = beta_fd_fruits,
+beta.multidim.plot(output_beta_fd_multidim = beta_fd_fruits,
  plot_asb_nm = c("basket_1", "basket_3"),
- beta.family = c("Jaccard"),
+ beta_family = c("Jaccard"),
  plot_sp_nm = c("apple", "cherry", "lemon"),
  faxes = paste0("PC", 1:4),
  name_file = NULL,
@@ -171,6 +171,6 @@ beta.multidim.plot(output_beta.fd.multidim = beta_fd_fruits,
  fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red"),
  alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
  nm_size = 3, nm_color = "black", nm_fontface = "plain",
- check.input = TRUE) 
+ check_input = TRUE) 
 
 }

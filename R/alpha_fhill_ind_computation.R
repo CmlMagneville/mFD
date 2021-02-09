@@ -28,12 +28,12 @@
 #' 'functionally indistinct set of species'. Could be qet to 'mean' (default),
 #' 'min' or 'max'.
 #'
-#'@param check.input a \strong{logical value} defining whether inputs are checked before
+#'@param check_input a \strong{logical value} defining whether inputs are checked before
 #'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check.input =
+#'  understandable for the user than R error messages. Default: check_input =
 #'  TRUE.
 #'
-#'@param store.details a \strong{logical value} indicating whether the user want to store
+#'@param details_returned a \strong{logical value} indicating whether the user want to store
 #' values used for computing indices (see list below)
 #'
 #'@return a list with: \itemize{
@@ -44,7 +44,7 @@
 #'  \item \emph{tau_dist} the threshold value applied to distance between
 #'  species to compute diversity according to function provided in \strong{tau}
 #'
-#'  \item if \strong{store.details} turned to TRUE a list \emph{details} with
+#'  \item if \strong{details_returned} turned to TRUE a list \emph{details} with
 #'  \itemize{
 #'  \item \emph{asb_totw} a vector with total weight of each assemblage
 #'  \item \emph{asb_sp_relw} a matrix with relative weight of species in
@@ -73,7 +73,7 @@
 #'  stop_if_NA   = TRUE)
 #' # Compute alpha fd hill indices:
 #' alpha.fd.hill(asb_sp_w = asb_sp_w_fruits, sp_dist = sp_dist_fruits, q = c(0, 1, 2),
-#'  tau = "mean", check.input = TRUE, store.details = TRUE)
+#'  tau = "mean", check_input = TRUE, details_returned = TRUE)
 #'
 #'@export
 
@@ -81,8 +81,8 @@ alpha.fd.hill <- function(asb_sp_w,
                           sp_dist,
                           q = c(0, 1, 2),
                           tau = "mean",
-                          check.input = TRUE,
-                          store.details = TRUE) {
+                          check_input = TRUE,
+                          details_returned = TRUE) {
   
   
   ####  distance between species stored in a matrix  ####
@@ -93,8 +93,8 @@ alpha.fd.hill <- function(asb_sp_w,
     sp_sp_dist <- as.matrix(sp_sp_dist)
   }
   
-  ## check inputs if required #####
-  if (check.input == TRUE) {
+  ## check_inputs if required #####
+  if (check_input == TRUE) {
     
     if (is.matrix(asb_sp_w) == FALSE) {
       stop("Error: 'asb_sp_w' must be a matrix")
@@ -243,7 +243,7 @@ alpha.fd.hill <- function(asb_sp_w,
   res <- asb_FD_Hill
   
   # details if required
-  if (store.details == TRUE) {
+  if (details_returned == TRUE) {
     res <- list(asb_FD_Hill = asb_FD_Hill,
                 tau_dist = tau_dist,
                 details= list( asb_totw = asb_totw,

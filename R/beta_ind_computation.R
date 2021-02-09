@@ -21,29 +21,29 @@
 #'@param asb_sp_occ a \strong{matrix} with presence/absence (coded as 0/1)
 #'  of species (columns) in a set of assemblages (rows).
 #'
-#'@param check.input a \strong{logical value} defining whether inputs are checked before
+#'@param check_input a \strong{logical value} defining whether inputs are checked before
 #'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check.input =
+#'  understandable for the user than R error messages. Default: check_input =
 #'  TRUE.
 #'
-#'@param beta.family a \strong{character string} for the type of beta-diversity index to
+#'@param beta_family a \strong{character string} for the type of beta-diversity index to
 #'  use, 'Jaccard' (default) and/or 'Sorensen'
 #'
-#'@param store_details a \strong{logical value} indicating whether the user wants to
-#'  store details. Details are used in the graphical function
+#'@param details_returned a \strong{logical value} indicating whether the user wants to
+#'  details_returned. Details are used in the graphical function
 #'  \code{beta.multidim.plot} and thus must be kept if the user want to have
 #'  graphical outputs for the computed indices.
 #'
-#'@param betapart.step a \strong{logical value} indicating whether the computation
+#'@param betapart_step a \strong{logical value} indicating whether the computation
 #'  progress tracking file "step.fbc.txt" should be created. Setting it to FALSE
-#'  will speed up the function. Default: betapart.step = FALSE, and it is automatically turned
-#'  to FALSE when 'betapart.para' is TRUE.
+#'  will speed up the function. Default: betapart_step = FALSE, and it is automatically turned
+#'  to FALSE when 'betapart_para' is TRUE.
 #'
-#'@param betapart.para a \strong{logical value} indicating whether internal
+#'@param betapart_para a \strong{logical value} indicating whether internal
 #'  parallelization should be used to compute pairwise dissimilarities. Default:
-#'  betapart.para = FALSE.
+#'  betapart_para = FALSE.
 #'
-#'@param betapart.para.opt a \strong{list} with details about parallelization. Default
+#'@param betapart_para_opt a \strong{list} with details about parallelization. Default
 #'  value means those parameters are set according to computer specifications.
 #'  'nc' is number of cores (default = 4), 'type' is a character string with
 #'  code of method used (default PSOCK), 'LB' is a boolean specifying whether
@@ -61,7 +61,7 @@
 #'  names are preceded by the abbreviation of the type of indices used, 'jac'
 #'  for decomposition of Jaccard-like functional dissimilarity and 'sor' for
 #'  Sorensen-like dissimilarity.
-#'  \item \emph{details_beta} list if \emph{store_details} is TRUE:
+#'  \item \emph{details_beta} list if \emph{details_returned} is TRUE:
 #'  \emph{sp_faxes_coord} and \emph{asb_sp_occ} on which indices were computed (convenient for drawing
 #'  graphics) ; a \strong{asb_FRic_raw} vector with volume of
 #'  the convex hull shaping each assemblage ; a \strong{asb_FRic} vector with volume of
@@ -102,26 +102,26 @@
 #' # Compute beta diversity indices:
 #' beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
 #'  c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ = asb_sp_fruits_occ,
-#'  check.input = TRUE,
-#'  beta.family = c("Jaccard"),
-#'  store_details = TRUE)
+#'  check_input = TRUE,
+#'  beta_family = c("Jaccard"),
+#'  details_returned = TRUE)
 #'
 #'@export
 
 
 beta.fd.multidim <- function(sp_faxes_coord,
                              asb_sp_occ,
-                             check.input = TRUE,
-                             beta.family = "Jaccard",
-                             store_details = TRUE,
-                             betapart.step = FALSE,
-                             betapart.para = FALSE,
-                             betapart.para.opt = betapart::beta.para.control()) {
+                             check_input = TRUE,
+                             beta_family = "Jaccard",
+                             details_returned = TRUE,
+                             betapart_step = FALSE,
+                             betapart_para = FALSE,
+                             betapart_para_opt = betapart::beta.para.control()) {
   
   
   
-  ## check input if asked:
-  if (check.input == TRUE) {
+  ## check_input if asked:
+  if (check_input == TRUE) {
     
     if (!is.matrix(sp_faxes_coord)) {
       stop("Error: species coordinates on functional axes should be provided as
@@ -173,7 +173,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
                    Consider keeping only five dimensions"))
     }
     
-    if(any(! beta.family %in% c("Jaccard", "Sorensen"))) {
+    if(any(! beta_family %in% c("Jaccard", "Sorensen"))) {
       stop(paste("Error: beta diversity index should be 'Jaccard' and/or
                    'Sorensen'. Please check."))
     }
@@ -200,14 +200,14 @@ beta.fd.multidim <- function(sp_faxes_coord,
                                                         traits = sp_faxes_coord,
                                                         multi = FALSE,
                                                         return.details = TRUE,
-                                                        fbc.step = betapart.step,
-                                                        parallel = betapart.para,
-                                                        opt.parallel = betapart.para.opt)
+                                                        fbc.step = betapart_step,
+                                                        parallel = betapart_para,
+                                                        opt.parallel = betapart_para_opt)
   
   
   # computing functional beta diversity indices for all pairs of assemblages
   # according to the type of index (indices) selected
-  if("Jaccard" %in% beta.family) {
+  if("Jaccard" %in% beta_family) {
     F_beta_jac <- betapart::functional.beta.pair(F_betapart_core, index.family = "jaccard")
     
     # indices values in a dataframe where rows are pairs of assemblages
@@ -225,7 +225,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
     
   }
   
-  if( "Sorensen" %in% beta.family) {
+  if( "Sorensen" %in% beta_family) {
     F_beta_sor <- betapart::functional.beta.pair(F_betapart_core, index.family = "sorensen")
     
     # indices values in a dataframe where rows are pairs of assemblages
@@ -244,7 +244,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
   }
   
   # if both families of indices should be returned
-  if(("Sorensen" %in% beta.family) & ("Jaccard" %in% beta.family)) {
+  if(("Sorensen" %in% beta_family) & ("Jaccard" %in% beta_family)) {
     pairasb_fbd_indices <- cbind.data.frame(
       F_beta_jac_df[, c("asb.1", "asb.2","jac_diss", "jac_turn", "jac_nest")],
       F_beta_sor_df[, c( "sor_diss", "sor_turn", "sor_nest")])
@@ -266,7 +266,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
   
   
   ## results to return
-  if(store_details == TRUE) {
+  if(details_returned == TRUE) {
     return_list <- list(pairasb_fbd_indices = pairasb_fbd_indices,
                         details = list(inputs=list(sp_faxes_coord = sp_faxes_coord,
                                                    asb_sp_occ = asb_sp_occ),

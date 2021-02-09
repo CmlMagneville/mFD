@@ -8,7 +8,7 @@ fmpd.computation(
   asb_sp_relatw_k,
   sp_faxes_coord_k,
   k,
-  check.input = check.input
+  check_input = check_input
 )
 }
 \arguments{
@@ -22,11 +22,11 @@ coordinates have been retrieved thanks to \code{fspace.conttr} or
 
 \item{k}{a \strong{character string} referring to the assemblage studied.}
 
-\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species coordinates matrix and species*weight
 dataframe must not contain NA, their rownames must be filled and they must
-have similar names values. Default: check.input = FALSE.}
+have similar names values. Default: check_input = FALSE.}
 }
 \value{
 a matrix containing functional mean pairwise distance for a given

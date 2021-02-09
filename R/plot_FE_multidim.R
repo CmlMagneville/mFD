@@ -13,7 +13,7 @@
 #' the use of the alpha.fd.fe function}
 #'
 #' @param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} applied on
-#'  assemblage of interest with \code{store.details = TRUE}.
+#'  assemblage of interest with \code{details_returned = TRUE}.
 #'
 #' @param plot_asb_nm a \strong{vector} containing the name of the assemblage to plot.
 #'
@@ -54,9 +54,9 @@
 #'  showing the proportion of FEs containing only one species. Default:
 #'  size_arrow_fvuln = 1.
 #'
-#' @param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'  Possible error messages will thus may be more understandable for the user
-#'  than R error messages. Default: check.input = TRUE.
+#'  than R error messages. Default: check_input = TRUE.
 #'
 #' @return a \code{patchwork} object with a barplot of number of species per FE.
 #'  Indices names provided in 'plot_ind_nm' are illustrated. Func. Redundancy
@@ -90,7 +90,7 @@
 #'   sp_tr       = sp_tr_fruits, 
 #'   tr_cat      = tr_cat_fruits, 
 #'   fe_nm_type  = "fe_rank", 
-#'   check.input = TRUE)
+#'   check_input = TRUE)
 #'  
 #' # Get the occurrence matrix
 #' asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits) 
@@ -101,8 +101,8 @@
 #'   asb_sp_occ  = asb_sp_fruits_occ, 
 #'   sp_to_fe    = sp_to_fe_fruits,
 #'   ind_nm      = c("fred", "fored", "fvuln"),
-#'   check.input = TRUE, 
-#'   store_details = TRUE)
+#'   check_input = TRUE, 
+#'   details_returned = TRUE)
 #'   
 #' # Plot fd fe indices
 #' mFD::alpha.fd.fe.plot(
@@ -117,7 +117,7 @@
 #'   color_arrow_fvuln = "indianred4",
 #'   size_line_fred    = 1.5,
 #'   size_arrow_fvuln  = 1,
-#'   check.input       = TRUE) 
+#'   check_input       = TRUE) 
 
 
 alpha.fd.fe.plot <- function(alpha_fd_fe,
@@ -131,15 +131,15 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
                              color_arrow_fvuln = "indianred4",
                              size_line_fred = 1.5,
                              size_arrow_fvuln = 1,
-                             check.input = TRUE) {
+                             check_input = TRUE) {
   
   
-  # if asked to check inputs:
-  if (check.input == TRUE) {
+  # if asked to check_inputs:
+  if (check_input == TRUE) {
     
     if (any(!names(alpha_fd_fe) %in% c("asb_fdfe", "details_fdfe") ) )
       stop("Error: Input 'alpha_fd_fe' shoudl be output from function 'alpha.fd.fe'.
-            applied with store.details=TRUE. Please check.")
+            applied with details_returned=TRUE. Please check.")
     
     
     # check name(s) of indice(s) to plot:

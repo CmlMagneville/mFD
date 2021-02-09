@@ -92,9 +92,9 @@
 #'@param nm_fontface a \strong{character string} for font of species labels (e.g.
 #'  "italic", "bold"). Default: nm_fontface = 'plain'.
 #'
-#'@param check.input a \strong{logical value} defining whether inputs are checked before
+#'@param check_input a \strong{logical value} defining whether inputs are checked before
 #'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check.input =
+#'  understandable for the user than R error messages. Default: check_input =
 #'  TRUE.
 #'
 #'@return a list containing \code{ggplot2} objects that were built before
@@ -140,7 +140,7 @@
 #'  plot_vertices = TRUE, color_vert = "blueviolet", fill_vert = "blueviolet",
 #'   shape_vert = 23, size_vert = 1,
 #'  plot_sp_nm = NULL, nm_size = 3, nm_color = "black", nm_fontface = "plain",
-#'  check.input = TRUE)
+#'  check_input = TRUE)
 #'
 #'@export
 
@@ -152,10 +152,10 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
                              plot_ch = TRUE,  color_ch = "black", fill_ch = "white", alpha_ch = 0.3,
                              plot_vertices = TRUE, color_vert = "blueviolet", fill_vert = "blueviolet", shape_vert = 23, size_vert = 1,
                              plot_sp_nm = NULL, nm_size = 3, nm_color = "black", nm_fontface = "plain",
-                             check.input = TRUE) {
+                             check_input = TRUE) {
   
-  ## check inputs if asked: ####
-  if (check.input == TRUE) {
+  ## check_inputs if asked: ####
+  if (check_input == TRUE) {
     
     if(! is.matrix(sp_faxes_coord)){
       stop("Error: 'sp_faxes_coord' must be a matrix. Please change its class.")
@@ -244,7 +244,7 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
   if (plot_ch == TRUE | plot_vertices == TRUE) {
     
     # names and coordinates of vertices of the convex hull of all species
-    vert_nm <- vertices(sp_faxes_coord, check.input = TRUE)
+    vert_nm <- vertices(sp_faxes_coord, check_input = TRUE)
     vert_coord <- sp_faxes_coord[vert_nm, ]
     
     # if vertices to be shown, adding a binary variable to sp_faxes_coord
@@ -290,7 +290,7 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
     if (plot_ch == TRUE) {
       
       # vertices in 2D(= subset of the vertices in n dimensions)
-      vert_nm_xy <- vertices(sp_coord_plot[, c(x,y)], check.input = TRUE)
+      vert_nm_xy <- vertices(sp_coord_plot[, c(x,y)], check_input = TRUE)
       vert_coord_xy <- sp_coord_plot[vert_nm_xy, c(x, y)]
       
       # sorting vertices clockwise for plotting as a polygon later
