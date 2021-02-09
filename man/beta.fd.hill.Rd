@@ -71,17 +71,17 @@ Indices values are stored as \emph{dist} objects to optimize memory.
 }
 \examples{
 # Load Species*Traits dataframe:
-data("sp_tr_fruits", package = "mFD")
+data("fruits_traits", package = "mFD")
 # Load Assemblages*Species dataframe:      
-data("asb_sp_w_fruits", package = "mFD")   
+data("baskets_fruits_weights", package = "mFD")   
 # Compute functional distance 
-sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
- tr_cat       = tr_cat_fruits,   
+sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,         
+ tr_cat       = fruits_traits_cat,   
  dist_metric  = "kgower",         
  scaling      = "scaledBYrange",  
  stop_if_NA   = TRUE)
 # Compute beta functional hill indices:
-beta.fd.hill(asb_sp_w = asb_sp_w_fruits, sp_dist = sp_dist_fruits, 
+beta.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
  q = c(0,1,2), tau = "mean",
  beta_type = "Jaccard", check_input = TRUE, details_returned = TRUE)
 

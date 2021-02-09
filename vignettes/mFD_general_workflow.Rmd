@@ -46,20 +46,20 @@ following table:
 
 The use of the `mFD` package is based on two objects:
 
-* a **data frame** summarizing traits values for each species called `sp_tr_fruits` in
+* a **data frame** summarizing traits values for each species called `fruits_traits` in
 this tutorial
 
 
 
 ```{r, echo = FALSE}
-data("sp_tr_fruits", package = "mFD")
-knitr::kable(head(sp_tr_fruits),
+data("fruits_traits", package = "mFD")
+knitr::kable(head(fruits_traits),
              caption = "Species x traits data frame based on the **fruits** dataset")
 ```
 
 <br />
 
-* a **matrix** summarizing species assemblages called `asb_sp_w_fruits` in this
+* a **matrix** summarizing species assemblages called `baskets_fruits_weights` in this
 tutorial. Weights in this matrix can be occurrence data, abundance, biomass,
 coverage, etc. The studied example works with biomass and this matrix looks at
 it follows:
@@ -67,8 +67,8 @@ it follows:
 
 
 ```{r, echo = FALSE}
-data("asb_sp_w_fruits", package = "mFD")
-knitr::kable(as.data.frame(asb_sp_w_fruits[c(1:6), c(1:6)]), centering = TRUE,
+data("baskets_fruits_weights", package = "mFD")
+knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), centering = TRUE,
              caption = "Species x assemblages matrix based on the **fruits** dataset")
 
 ```
@@ -100,15 +100,15 @@ The first thing to do before starting analyses is to know your data. To do so,
 you must be able to characterize the traits you are using (*i.e.* tell the
 package what type of traits you are using). That is why `mFD` package needs a
 data frame summarizing trait type for each trait (*i.e.* each column of the
-`sp_tr_fruits` data frame).
+`fruits_traits` data frame).
 
 👉 You need to a data frame with the same columns names as the below example:
 
 
 
 ```{r, echo = FALSE}
-data("tr_cat_fruits", package = "mFD")
-knitr::kable(head(tr_cat_fruits), caption = "Traits types based on **fruits & baskets** dataset")
+data("fruits_traits_cat", package = "mFD")
+knitr::kable(head(fruits_traits_cat), caption = "Traits types based on **fruits & baskets** dataset")
 ```
 
 
@@ -121,7 +121,7 @@ The **first column** contains **traits name**. The **second column** contains
 * **C**: circular traits (integer values)
 * **Q**: quantitative traits (numeric values)
 * **F**: fuzzy traits (described with several values defined in several columns
-in the `sp_tr_fruits` data frame)
+in the `fruits_traits` data frame)
 
 The **third column** summarizes to which fuzzy trait belongs each column that
 refers to a fuzzy trait. Here the "Use" trait is a fuzzy one.
@@ -135,7 +135,7 @@ refers to a fuzzy trait. Here the "Use" trait is a fuzzy one.
 The `mFD` package helps you to **summarize your data** using two distinct
 functions: `mFD::sp.tr.summary()`  and `mFD::asb.sp.summary()`.
 
-The function `mFD::sp.tr.summary()` summarizes the `sp_tr_fruits` data frame and
+The function `mFD::sp.tr.summary()` summarizes the `fruits_traits` data frame and
 returns a list gathering several tables and lists:
 
 * tables with summaries for non-fuzzy & fuzzy traits. **For non-fuzzy traits**,
@@ -154,32 +154,32 @@ each fuzzy trait.
 **USAGE**
 
 ```{r}
-sp_tr_fruits_summ <- mFD::sp.tr.summary(tr_cat = tr_cat_fruits,    # Traits informations
-                                 sp_tr  = sp_tr_fruits)        # Species x Traits data frame
+fruits_traits_summ <- mFD::sp.tr.summary(tr_cat = fruits_traits_cat,    # Traits informations
+                                 sp_tr  = fruits_traits)        # Species x Traits data frame
 ```
 
 <br />
 
 ```{r}
-sp_tr_fruits_summ$"tr_summary_non_fuzzy_list"    # Summary for non-fuzzy traits
+fruits_traits_summ$"tr_summary_non_fuzzy_list"    # Summary for non-fuzzy traits
 ```
 
 <br />
 
 ```{r}
-sp_tr_fruits_summ$"tr_summary_fuzzy_list"        # Summary for fuzzy traits
+fruits_traits_summ$"tr_summary_fuzzy_list"        # Summary for fuzzy traits
 ```
 
 <br />
 
 ```{r}
-sp_tr_fruits_summ$"tr_types"                     # Traits types for non-fuzzy traits
+fruits_traits_summ$"tr_types"                     # Traits types for non-fuzzy traits
 ```
 
 <br />
 
 ```{r}
-sp_tr_fruits_summ$"mod_list"                     # Traits types for non-continuous and non-fuzzy traits
+fruits_traits_summ$"mod_list"                     # Traits types for non-continuous and non-fuzzy traits
 ```
 
 
@@ -190,7 +190,7 @@ sp_tr_fruits_summ$"mod_list"                     # Traits types for non-continuo
 <br />
 
 The second function helping you to summarize your data in the `mFD` package is
-`mFD::asb.sp.summary()`. It summarizes the `asb_sp_w_fruits` matrix and returns a list
+`mFD::asb.sp.summary()`. It summarizes the `baskets_fruits_weights` matrix and returns a list
 gathering a matrix, a list and several vectors:
 
 * a matrix of species occurrences
@@ -208,7 +208,7 @@ gathering a matrix, a list and several vectors:
 **USAGE**
 
 ```{r}
-asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits)     # Assemblages x Species data frame
+asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)     # Assemblages x Species data frame
 ```
 
 <br />
@@ -295,8 +295,8 @@ which includes the following arguments:
 **USAGE**
 
 ```{r, results = "hide"}
-sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,             # Species x Traits data frame
-                           tr_cat       = tr_cat_fruits,         # Traits informations
+sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,             # Species x Traits data frame
+                           tr_cat       = fruits_traits_cat,         # Traits informations
                            dist_metric  = "kgower",          # Distance metric
                            scaling      = "scaledBYrange",   # Scaling method
                            stop_if_NA   = TRUE)
@@ -678,7 +678,7 @@ The `mFD::alpha.fd.multidim()` function allows computing many alpha FD indices:
 ```{r, results = "hide"}
 
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
-                                           asb_sp_w      = asb_sp_w_fruits,
+                                           asb_sp_w      = baskets_fruits_weights,
                                            ind_vect      = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
                                            scaling       = TRUE,
                                            check_input   = TRUE,
@@ -782,7 +782,7 @@ function as follows:
 
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
 plots_alpha <- mFD::alpha.multidim.plot(sp_faxes_coord_fruits,
-                                        asb_sp_w_fruits,
+                                        baskets_fruits_weights,
                                         ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
                                         details_list          = details_list_fruits,
                                         asb_vect              = "basket_1",

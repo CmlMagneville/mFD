@@ -20,18 +20,18 @@
 #'   jam use (fuzzy trait) of the fruit}
 #' }
 #'
-#' @seealso `tr_cat_fruits`, `asb_sp_w_fruits`
+#' @seealso `fruits_traits_cat`, `baskets_fruits_weights`
 #' 
 #' @examples 
 #' # Load Species x Traits Data Frame
-#' data("sp_tr_fruits", package = "mFD")
-#' sp_tr_fruits
+#' data("fruits_traits", package = "mFD")
+#' fruits_traits
 #' 
 #' # Load Traits Information
-#' data("tr_cat_fruits", package = "mFD")
-#' tr_cat_fruits
+#' data("fruits_traits_cat", package = "mFD")
+#' fruits_traits_cat
 #' 
 #' # Summarize Species x Traits Data
-#' mFD::sp.tr.summary(tr_cat = tr_cat_fruits, sp_tr = sp_tr_fruits)
+#' mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
 
-"sp_tr_fruits"
+"fruits_traits"
