@@ -137,14 +137,14 @@ species along pairs of axes.
 }
 \examples{
 # Load Species*Traits dataframe:
-data("sp_tr_fruits", package = "mFD")
+data("fruits_traits", package = "mFD")
 # Load Assemblages*Species dataframe:      
-data("asb_sp_w_fruits", package = "mFD")   
+data("baskets_fruits_weights", package = "mFD")   
 # Load Traits categories dataframe:
-data("tr_cat_fruits", package = "mFD")
+data("fruits_traits_cat", package = "mFD")
 # Compute functional distance 
-sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
- tr_cat       = tr_cat_fruits,   
+sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,         
+ tr_cat       = fruits_traits_cat,   
  dist_metric  = "kgower",         
  scaling      = "scaledBYrange",  
  stop_if_NA   = TRUE)

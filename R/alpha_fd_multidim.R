@@ -65,35 +65,48 @@
 #'
 #'@examples
 #' # Load Species*Traits dataframe:
-#' data("sp_tr_fruits", package = "mFD")
+#' data("fruits_traits", package = "mFD")
+#' 
 #' # Load Assemblages*Species dataframe:      
-#' data("asb_sp_w_fruits", package = "mFD")
+#' data("baskets_fruits_weights", package = "mFD")
+#' 
 #' # Load Traits categories dataframe:
-#' data("tr_cat_fruits", package = "mFD")   
+#' data("fruits_traits_cat", package = "mFD")  
+#'  
 #' # Compute functional distance 
-#' sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
-#'  tr_cat       = tr_cat_fruits,   
-#'  dist_metric  = "kgower",         
-#'  scaling      = "scaledBYrange",  
-#'  stop_if_NA   = TRUE)
+#' sp_dist_fruits <- mFD::funct.dist(
+#'   sp_tr        = fruits_traits,         
+#'   tr_cat       = fruits_traits_cat,   
+#'   dist_metric  = "kgower",         
+#'   scaling      = "scaledBYrange",  
+#'   stop_if_NA   = TRUE)
+#'  
 #' # Compute functional spaces quality to retrieve species coordinates matrix:
-#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
-#'  maxdim_pcoa         = 10,
-#'  deviation_weighting = "absolute",
-#'  fdist_scaling       = FALSE,
-#'  fdendro             = "average")
+#' fspaces_quality_fruits <- mFD::quality.fspaces(
+#'   sp_dist             = sp_dist_fruits, 
+#'   maxdim_pcoa         = 10,
+#'   deviation_weighting = "absolute",
+#'   fdist_scaling       = FALSE,
+#'   fdendro             = "average")
+#'   
 #' # Retrieve species coordinates matrix:
-#' sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
-#' # Compute alpha diversity indices:
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#' 
+#' # Compute alpha diversity indices
 #' alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'  sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
-#'  asb_sp_w_fruits, ind_vect = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
-#'  scaling = TRUE, check_input = TRUE, details_returned = TRUE)
-#' # Retrieve alpha diversity indices table:
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+#'   asb_sp_w         = baskets_fruits_weights, 
+#'   ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", 
+#'                        "fori", "fspe"),
+#'   scaling          = TRUE, 
+#'   check_input      = TRUE, 
+#'   details_returned = TRUE)
+#'   
+#' # Retrieve alpha diversity indices table
 #' fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 #' fd_ind_values_fruits
 #'
-#'@export
+#' @export
 
 
 alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,

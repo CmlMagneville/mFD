@@ -103,15 +103,15 @@ originally suggested in \emph{Maire et al. 2015}.
 }
 \examples{
 # Load Species x Traits Data
-data("sp_tr_fruits", package = "mFD")
+data("fruits_traits", package = "mFD")
 
 # Load Traits x Categories Data
-data("tr_cat_fruits", package = "mFD")
+data("fruits_traits_cat", package = "mFD")
 
 # Compute Functional Distance
 sp_dist_fruits <- mFD::funct.dist(
-  sp_tr       = sp_tr_fruits,
-  tr_cat      = tr_cat_fruits,
+  sp_tr       = fruits_traits,
+  tr_cat      = fruits_traits_cat,
   dist_metric = "kgower",
   scaling     = "scaledBYrange",
   stop_if_NA  = TRUE)

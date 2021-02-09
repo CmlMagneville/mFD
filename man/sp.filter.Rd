@@ -31,14 +31,14 @@ functional indices for each community.
 }
 \examples{
 # Load Species*Traits dataframe:
-data("sp_tr_fruits", package = "mFD")
+data("fruits_traits", package = "mFD")
 # Load Assemblages*Species dataframe:      
-data("asb_sp_w_fruits", package = "mFD") 
+data("baskets_fruits_weights", package = "mFD") 
 # Load Traits categories dataframe:
-data("tr_cat_fruits", package = "mFD")  
+data("fruits_traits_cat", package = "mFD")  
 # Compute functional distance 
-sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,         
- tr_cat       = tr_cat_fruits,   
+sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,         
+ tr_cat       = fruits_traits_cat,   
  dist_metric  = "kgower",         
  scaling      = "scaledBYrange",  
  stop_if_NA   = TRUE)
@@ -51,6 +51,6 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
 # Retrieve species coordinates matrix:
 sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 # Filter species of basket_1 assemblage:
-sp.filter(asb_nm = "basket_1", sp_faxes_coord_fruits, asb_sp_w_fruits)
+sp.filter(asb_nm = "basket_1", sp_faxes_coord_fruits, baskets_fruits_weights)
 
 }

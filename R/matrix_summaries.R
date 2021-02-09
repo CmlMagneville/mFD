@@ -48,13 +48,13 @@
 #'
 #' @examples
 #' # Load Species x Traits data
-#' data("sp_tr_fruits", package = "mFD")
+#' data("fruits_traits", package = "mFD")
 #'
 #' # Load Traits x Categories data
-#' data("tr_cat_fruits", package = "mFD")
+#' data("fruits_traits_cat", package = "mFD")
 #'
 #' # Summarize Species x Traits data
-#' mFD::sp.tr.summary(tr_cat = tr_cat_fruits, sp_tr = sp_tr_fruits)
+#' mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
 
 
 sp.tr.summary <- function(tr_cat, sp_tr) {
@@ -167,10 +167,10 @@ sp.tr.summary <- function(tr_cat, sp_tr) {
 #'
 #' @examples
 #' # Load Assemblages x Species Matrix
-#' data("asb_sp_w_fruits", package = "mFD")
+#' data("baskets_fruits_weights", package = "mFD")
 #' 
 #' # Summarize Assemblages Data
-#' mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits)
+#' mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 
 asb.sp.summary <- function(asb_sp_w) {
 

@@ -4,14 +4,14 @@
 #'   
 #' @format A matrix of integers with 10 rows (baskets) and 25 columns (species).
 #' 
-#' @seealso `sp_tr_fruits`, `tr_cat_fruits`
+#' @seealso `fruits_traits`, `fruits_traits_cat`
 #' 
 #' @examples 
 #' # Load Assemblages x Species Matrix
-#' data("asb_sp_w_fruits", package = "mFD")
-#' asb_sp_w_fruits[1:5, 1:5]
+#' data("baskets_fruits_weights", package = "mFD")
+#' baskets_fruits_weights[1:5, 1:5]
 #' 
 #' # Summarize Assemblages Data
-#' mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits)
+#' mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 
-"asb_sp_w_fruits"
+"baskets_fruits_weights"

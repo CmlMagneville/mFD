@@ -1,7 +1,7 @@
 #' Fruits Traits Informations
 #' 
 #' This dataset summarizes information about the 6 traits used in the 
-#' `sp_tr_fruits` dataset.
+#' `fruits_traits` dataset.
 #'   
 #' @format A data frame with 8 rows (traits) and the following three columns:
 #' \describe{
@@ -17,20 +17,20 @@
 #' @note If your dataset does not contain fuzzy trait, the column `fuzzy_name`
 #' can be ignored but the first two columns are mandatory.
 #' 
-#' Traits in this dataset correspond to columns (traits) of the `sp_tr_fruits`
+#' Traits in this dataset correspond to columns (traits) of the `fruits_traits`
 #' dataset.
 #'
-#' @seealso `sp_tr_fruits`, `asb_sp_w_fruits`
+#' @seealso `fruits_traits`, `baskets_fruits_weights`
 #' 
 #' @examples 
 #' # Load Traits Information
-#' data("tr_cat_fruits", package = "mFD")
-#' tr_cat_fruits
+#' data("fruits_traits_cat", package = "mFD")
+#' fruits_traits_cat
 #' 
 #' # Load Species x Traits Data Frame
-#' data("sp_tr_fruits", package = "mFD")
+#' data("fruits_traits", package = "mFD")
 #' 
 #' # Summarize Species x Traits Data
-#' mFD::sp.tr.summary(tr_cat = tr_cat_fruits, sp_tr = sp_tr_fruits)
+#' mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
 
-"tr_cat_fruits"
+"fruits_traits_cat"
