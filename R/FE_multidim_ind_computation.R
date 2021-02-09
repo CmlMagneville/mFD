@@ -46,7 +46,7 @@
 #' data("asb_sp_w_fruits", package = "mFD")
 #' # Remove continuous trait:
 #' sp_tr_fruits <- sp_tr_fruits[, -5]
-#' sp_tr_cat_fruits <- tr_cat_fruits[-5, ]
+#' tr_cat_fruits <- tr_cat_fruits[-5, ]
 #' # Compute gathering species into FEs:
 #' sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, 
 #'  fe_nm_type = "fe_rank", check.input = TRUE)
