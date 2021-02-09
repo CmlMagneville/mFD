@@ -198,10 +198,15 @@ asb.sp.summary <- function(asb_sp_w) {
 
   for (i in 1:nrow(asb_sp_w_occ)) {
 
-    data  <- asb_sp_w_occ[i, ]
-    data2 <- data[which(apply(data, 2, max) == TRUE)]
-    rownames(data2) <- rownames(asb_sp_w_occ[i, ])
-    L[[i]] <- as.vector(data2)
+    data <- asb_sp_w_occ[i, , drop = FALSE]
+    asb_name <- rownames(data)
+    
+    data <- data[ , which(apply(data, 2, max) == TRUE)]
+    sp_names <- names(data)
+    
+    L[[i]] <- as.vector(data)
+    names(L)[i]   <- asb_name
+    names(L[[i]]) <- sp_names
   }
 
 
