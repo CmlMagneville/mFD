@@ -9,8 +9,8 @@ alpha.fd.hill(
   sp_dist,
   q = c(0, 1, 2),
   tau = "mean",
-  check.input = TRUE,
-  store.details = TRUE
+  check_input = TRUE,
+  details_returned = TRUE
 )
 }
 \arguments{
@@ -27,12 +27,12 @@ matrix (i.e. among all pairs of species) to get the threshold used to define
 'functionally indistinct set of species'. Could be qet to 'mean' (default),
 'min' or 'max'.}
 
-\item{check.input}{a \strong{logical value} defining whether inputs are checked before
+\item{check_input}{a \strong{logical value} defining whether inputs are checked before
 computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check.input =
+understandable for the user than R error messages. Default: check_input =
 TRUE.}
 
-\item{store.details}{a \strong{logical value} indicating whether the user want to store
+\item{details_returned}{a \strong{logical value} indicating whether the user want to store
 values used for computing indices (see list below)}
 }
 \value{
@@ -44,7 +44,7 @@ q (columns, named as 'FD_qx') for each assemblage (rows, named as in
 \item \emph{tau_dist} the threshold value applied to distance between
 species to compute diversity according to function provided in \strong{tau}
 
-\item if \strong{store.details} turned to TRUE a list \emph{details} with
+\item if \strong{details_returned} turned to TRUE a list \emph{details} with
 \itemize{
 \item \emph{asb_totw} a vector with total weight of each assemblage
 \item \emph{asb_sp_relw} a matrix with relative weight of species in
@@ -81,6 +81,6 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,
  stop_if_NA   = TRUE)
 # Compute alpha fd hill indices:
 alpha.fd.hill(asb_sp_w = asb_sp_w_fruits, sp_dist = sp_dist_fruits, q = c(0, 1, 2),
- tau = "mean", check.input = TRUE, store.details = TRUE)
+ tau = "mean", check_input = TRUE, details_returned = TRUE)
 
 }

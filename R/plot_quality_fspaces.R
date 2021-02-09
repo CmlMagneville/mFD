@@ -106,7 +106,7 @@ quality.fspaces.plot <- function(
   x_lab = "Trait-based distance") {
   
   
-  #### check inputs  ####
+  #### check_inputs  ####
   
   
   # check core input with data from quality_fspaces:

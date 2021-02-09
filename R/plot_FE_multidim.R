@@ -12,53 +12,53 @@
 #' functional indices, functional indices values must have been retrieve through
 #' the use of the alpha.fd.fe function}
 #'
-#'@param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} applied on
-#'  assemblage of interest with \code{store.details = TRUE}.
+#' @param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} applied on
+#'  assemblage of interest with \code{details_returned = TRUE}.
 #'
-#'@param plot_asb_nm a \strong{vector} containing the name of the assemblage to plot.
+#' @param plot_asb_nm a \strong{vector} containing the name of the assemblage to plot.
 #'
-#'@param name_file a \strong{character string} with name of file to save the figure
+#' @param name_file a \strong{character string} with name of file to save the figure
 #'  (without extension). Default is 'NULL' which means plot is displayed.
 #'
-#'@param plot_ind_nm a \strong{vector} containing the names of the indices to plot. It
+#' @param plot_ind_nm a \strong{vector} containing the names of the indices to plot. It
 #'  can be \code{'fred'} to plot functional redundancy (FRed), \code{'fored'} to
 #'  plot functional over-redundancy (FOred) and/or \code{'fvuln'} to plot
 #'  functional vulnerability (FVuln). Default is all 3 indices.
 #'
-#'@param color_fill_fored a \strong{R color name or an hexadecimal code} referring to the
+#' @param color_fill_fored a \strong{R color name or an hexadecimal code} referring to the
 #'  color used to fill the part of barplots that contain species in excess in
-#'  species-rich FEs. It refers to the FORed value. Default:color_fill_fored =
-#'  "darkolivegreen2".
+#'  species-rich FEs. It refers to the FORed value. Default:
+#'  color_fill_fored = "darkolivegreen2".
 #'
-#'@param color_line_fred a \strong{R color name or an hexadecimal code} referring to the
+#' @param color_line_fred a \strong{R color name or an hexadecimal code} referring to the
 #'  color used to draw the horizontal line referring to the FRed value.
 #'  Default:color_line_fred = "darkolivegreen4".
 #'
-#'@param color_fill_bar a \strong{R color name or an hexadecimal code} referring to the
+#' @param color_fill_bar a \strong{R color name or an hexadecimal code} referring to the
 #'  color used to draw barplots. Default: color_fill_bar = "grey80".
 #'
-#'@param color_fill_fvuln a \strong{R color name or an hexadecimal code} referring to the
+#' @param color_fill_fvuln a \strong{R color name or an hexadecimal code} referring to the
 #'  color used to fill barplots containing only one species. It refers to the
 #'  FVuln value. Default: color_fill_fvuln = "lightcoral".
 #'
-#'@param color_arrow_fvuln  a \strong{R color name or an hexadecimal code} referring to
+#' @param color_arrow_fvuln  a \strong{R color name or an hexadecimal code} referring to
 #'  the color used to draw the horizontal arrow showing the proportion of FEs
 #'  containing only one species. It refers to the FVuln value. If there is only
 #'  one FE containing one species, the arrow will be a point. Default:
 #'  color_arrow_fvuln = "indianred4".
 #'
-#'@param size_line_fred a \strong{numeric value} referring to the size of the horizontal
+#' @param size_line_fred a \strong{numeric value} referring to the size of the horizontal
 #'  linerefering to the FRed value. Default: size_line_fred = 1.5.
 #'
-#'@param size_arrow_fvuln a \strong{numeric value} referring to the size of the arrow
+#' @param size_arrow_fvuln a \strong{numeric value} referring to the size of the arrow
 #'  showing the proportion of FEs containing only one species. Default:
 #'  size_arrow_fvuln = 1.
 #'
-#'@param check.input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a \strong{logical value} allowing to test or not the inputs.
 #'  Possible error messages will thus may be more understandable for the user
-#'  than R error messages. Default: check.input = TRUE.
+#'  than R error messages. Default: check_input = TRUE.
 #'
-#'@return a \code{patchwork} object with a barplot of number of species per FE.
+#' @return a \code{patchwork} object with a barplot of number of species per FE.
 #'  Indices names provided in 'plot_ind_nm' are illustrated. Func. Redundancy
 #'  (average number of species per FE) is illustrated with a horizontal line.
 #'  Funct. Over-redundancy (proportion of species in excess in FE richer than
@@ -66,43 +66,59 @@
 #'  'color_fill_fored'. Functional vulnerability (proportion of Fe with a single
 #'  species) is illustrated with bars of these vulnerable FE filled with
 #'  'color_fill_fvuln' and the double-head arrow highlighting their number.
-#' FE-based indices values on top of the plot. if \code{name_file} is provided,
+#'  FE-based indices values on top of the plot. if \code{name_file} is provided,
 #'  plot saved as a 300dpi png file in the working directory.
 #'
-#'@examples
-#' # Load Species*Traits dataframe:
+#' @export
+#'
+#' @examples
+#' # Load Species*Traits dataframe
 #' data("sp_tr_fruits", package = "mFD")
-#' # Load Traits categories dataframe:
+#' 
+#' # Load Traits categories dataframe
 #' data("tr_cat_fruits", package = "mFD")
-#' # Load Assemblages*Species matrix:
+#' 
+#' # Load Assemblages*Species matrix
 #' data("asb_sp_w_fruits", package = "mFD")
-#' # Remove continuous trait:
-#' sp_tr_fruits <- sp_tr_fruits[, -5]
+#' 
+#' # Remove continuous trait
+#' sp_tr_fruits  <- sp_tr_fruits[ , -5]
 #' tr_cat_fruits <- tr_cat_fruits[-5, ]
-#' # Compute gathering species into FEs:
-#' sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, 
-#'  fe_nm_type = "fe_rank", check.input = TRUE)
-#' # Get the occurrence matrix:
+#' 
+#' # Compute gathering species into FEs
+#' sp_to_fe_fruits <- mFD::sp.to.fe(
+#'   sp_tr       = sp_tr_fruits, 
+#'   tr_cat      = tr_cat_fruits, 
+#'   fe_nm_type  = "fe_rank", 
+#'   check_input = TRUE)
+#'  
+#' # Get the occurrence matrix
 #' asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits) 
 #' asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
-#' # Compute alpha fd indices:
-#' alpha_fd_fe_fruits <- alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
-#'  ind_nm = c("fred", "fored", "fvuln"),
-#'  check.input = TRUE, store_details = TRUE)
-#' # Plot fd fe indices: 
-#' alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits, plot_asb_nm = c("basket_1"),
-#'  plot_ind_nm = c("fred", "fored", "fvuln"),
-#'  name_file = NULL,
-#'  color_fill_fored = "darkolivegreen2",
-#'  color_line_fred = "darkolivegreen4",
-#'  color_fill_bar = "grey80",
-#'  color_fill_fvuln = "lightcoral",
-#'  color_arrow_fvuln = "indianred4",
-#'  size_line_fred = 1.5,
-#'  size_arrow_fvuln = 1,
-#'  check.input = TRUE) 
-#'
-#'@export
+#' 
+#' # Compute alpha fd indices
+#' alpha_fd_fe_fruits <- mFD::alpha.fd.fe(
+#'   asb_sp_occ  = asb_sp_fruits_occ, 
+#'   sp_to_fe    = sp_to_fe_fruits,
+#'   ind_nm      = c("fred", "fored", "fvuln"),
+#'   check_input = TRUE, 
+#'   details_returned = TRUE)
+#'   
+#' # Plot fd fe indices
+#' mFD::alpha.fd.fe.plot(
+#'   alpha_fd_fe       = alpha_fd_fe_fruits, 
+#'   plot_asb_nm       = c("basket_1"), 
+#'   plot_ind_nm       = c("fred", "fored", "fvuln"),
+#'   name_file         = NULL,
+#'   color_fill_fored  = "darkolivegreen2",
+#'   color_line_fred   = "darkolivegreen4",
+#'   color_fill_bar    = "grey80",
+#'   color_fill_fvuln  = "lightcoral",
+#'   color_arrow_fvuln = "indianred4",
+#'   size_line_fred    = 1.5,
+#'   size_arrow_fvuln  = 1,
+#'   check_input       = TRUE) 
+
 
 alpha.fd.fe.plot <- function(alpha_fd_fe,
                              plot_asb_nm,
@@ -115,15 +131,15 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
                              color_arrow_fvuln = "indianred4",
                              size_line_fred = 1.5,
                              size_arrow_fvuln = 1,
-                             check.input = TRUE) {
+                             check_input = TRUE) {
   
   
-  # if asked to check inputs:
-  if (check.input == TRUE) {
+  # if asked to check_inputs:
+  if (check_input == TRUE) {
     
     if (any(!names(alpha_fd_fe) %in% c("asb_fdfe", "details_fdfe") ) )
       stop("Error: Input 'alpha_fd_fe' shoudl be output from function 'alpha.fd.fe'.
-            applied with store.details=TRUE. Please check.")
+            applied with details_returned=TRUE. Please check.")
     
     
     # check name(s) of indice(s) to plot:

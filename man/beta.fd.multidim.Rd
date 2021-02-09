@@ -8,12 +8,12 @@ multidimensional space.}
 beta.fd.multidim(
   sp_faxes_coord,
   asb_sp_occ,
-  check.input = TRUE,
-  beta.family = "Jaccard",
-  store_details = TRUE,
-  betapart.step = FALSE,
-  betapart.para = FALSE,
-  betapart.para.opt = betapart::beta.para.control()
+  check_input = TRUE,
+  beta_family = "Jaccard",
+  details_returned = TRUE,
+  betapart_step = FALSE,
+  betapart_para = FALSE,
+  betapart_para_opt = betapart::beta.para.control()
 )
 }
 \arguments{
@@ -24,29 +24,29 @@ functional axes (columns). Species coordinates have been retrieved thanks to
 \item{asb_sp_occ}{a \strong{matrix} with presence/absence (coded as 0/1)
 of species (columns) in a set of assemblages (rows).}
 
-\item{check.input}{a \strong{logical value} defining whether inputs are checked before
+\item{check_input}{a \strong{logical value} defining whether inputs are checked before
 computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check.input =
+understandable for the user than R error messages. Default: check_input =
 TRUE.}
 
-\item{beta.family}{a \strong{character string} for the type of beta-diversity index to
+\item{beta_family}{a \strong{character string} for the type of beta-diversity index to
 use, 'Jaccard' (default) and/or 'Sorensen'}
 
-\item{store_details}{a \strong{logical value} indicating whether the user wants to
-store details. Details are used in the graphical function
+\item{details_returned}{a \strong{logical value} indicating whether the user wants to
+details_returned. Details are used in the graphical function
 \code{beta.multidim.plot} and thus must be kept if the user want to have
 graphical outputs for the computed indices.}
 
-\item{betapart.step}{a \strong{logical value} indicating whether the computation
+\item{betapart_step}{a \strong{logical value} indicating whether the computation
 progress tracking file "step.fbc.txt" should be created. Setting it to FALSE
-will speed up the function. Default: betapart.step = FALSE, and it is automatically turned
-to FALSE when 'betapart.para' is TRUE.}
+will speed up the function. Default: betapart_step = FALSE, and it is automatically turned
+to FALSE when 'betapart_para' is TRUE.}
 
-\item{betapart.para}{a \strong{logical value} indicating whether internal
+\item{betapart_para}{a \strong{logical value} indicating whether internal
 parallelization should be used to compute pairwise dissimilarities. Default:
-betapart.para = FALSE.}
+betapart_para = FALSE.}
 
-\item{betapart.para.opt}{a \strong{list} with details about parallelization. Default
+\item{betapart_para_opt}{a \strong{list} with details about parallelization. Default
 value means those parameters are set according to computer specifications.
 'nc' is number of cores (default = 4), 'type' is a character string with
 code of method used (default PSOCK), 'LB' is a boolean specifying whether
@@ -65,7 +65,7 @@ nestedness-resultant component, i.e. F_diss = F_turn + F_nest. Those indices
 names are preceded by the abbreviation of the type of indices used, 'jac'
 for decomposition of Jaccard-like functional dissimilarity and 'sor' for
 Sorensen-like dissimilarity.
-\item \emph{details_beta} list if \emph{store_details} is TRUE:
+\item \emph{details_beta} list if \emph{details_returned} is TRUE:
 \emph{sp_faxes_coord} and \emph{asb_sp_occ} on which indices were computed (convenient for drawing
 graphics) ; a \strong{asb_FRic_raw} vector with volume of
 the convex hull shaping each assemblage ; a \strong{asb_FRic} vector with volume of
@@ -114,8 +114,8 @@ asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 # Compute beta diversity indices:
 beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
  c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ = asb_sp_fruits_occ,
- check.input = TRUE,
- beta.family = c("Jaccard"),
- store_details = TRUE)
+ check_input = TRUE,
+ beta_family = c("Jaccard"),
+ details_returned = TRUE)
 
 }

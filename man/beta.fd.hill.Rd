@@ -10,8 +10,8 @@ beta.fd.hill(
   q = c(0, 1, 2),
   tau = "mean",
   beta_type = "Jaccard",
-  check.input = TRUE,
-  store.details = TRUE
+  check_input = TRUE,
+  details_returned = TRUE
 )
 }
 \arguments{
@@ -31,12 +31,12 @@ matrix (i.e. among all pairs of species) to get the threshold used to define
 \item{beta_type}{a \strong{character string} with name of framework used for computing
 beta-diversity, either 'Jaccard' (default) or 'Sorensen'.}
 
-\item{check.input}{a \strong{logical value} defining whether inputs are checked before
+\item{check_input}{a \strong{logical value} defining whether inputs are checked before
 computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check.input =
+understandable for the user than R error messages. Default: check_input =
 TRUE.}
 
-\item{store.details}{a \strong{logical value} indicating whether the user want to store
+\item{details_returned}{a \strong{logical value} indicating whether the user want to store
 values used for computing indices (see list below)}
 }
 \value{
@@ -46,7 +46,7 @@ a list with: \itemize{
 (names in 2 first columns, as in \strong{asb_sp_w}) and beta-diversity
 for each value of q in other column(s)
 
-\item if \strong{store.details} turned to TRUE a list \emph{details} with
+\item if \strong{details_returned} turned to TRUE a list \emph{details} with
 \itemize{
 \item \emph{asb_FDalpha} a dataframe with mean alpha diversity of each pair
 of assemblages (rows) and values of q (columns)
@@ -83,6 +83,6 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr = sp_tr_fruits,
 # Compute beta functional hill indices:
 beta.fd.hill(asb_sp_w = asb_sp_w_fruits, sp_dist = sp_dist_fruits, 
  q = c(0,1,2), tau = "mean",
- beta_type = "Jaccard", check.input = TRUE, store.details = TRUE)
+ beta_type = "Jaccard", check_input = TRUE, details_returned = TRUE)
 
 }

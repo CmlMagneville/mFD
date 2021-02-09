@@ -8,7 +8,7 @@ fori.computation(
   dist_nn_global_pool,
   asb_sp_relatw_k,
   k,
-  check.input = check.input
+  check_input = check_input
 )
 }
 \arguments{
@@ -20,10 +20,10 @@ nearest neighbor for each species of the global pool of species}
 
 \item{k}{a \strong{character string} referring to the assemblage studied.}
 
-\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species*weight dataframe must not contain NA and its
-rownames must be filled. Default: check.input = FALSE.}
+rownames must be filled. Default: check_input = FALSE.}
 }
 \value{
 a matrix containing functional originality for a given assemblage.

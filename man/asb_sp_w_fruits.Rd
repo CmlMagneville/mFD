@@ -3,20 +3,25 @@
 \docType{data}
 \name{asb_sp_w_fruits}
 \alias{asb_sp_w_fruits}
-\title{Matrix gathering fruits species into fruits baskets for use in mFD}
+\title{Baskets Composition in Fruits Species}
 \format{
-A matrix with 10 rows and 25 columns
-\describe{
-\item{asb}{10 fruits baskets}
-\item{sp}{25 fruits species}
-}
+A matrix of integers with 10 rows (baskets) and 25 columns (species).
 }
 \usage{
 asb_sp_w_fruits
 }
 \description{
-A matrix linking 25 fruits species (columns) and the fruits
-basket(s) they belong to (rows). Values represent fruits abundances in each
-basket.
+This dataset represents the abundance of 25 fruits species in 10 baskets.
+}
+\examples{
+# Load Assemblages x Species Matrix
+data("asb_sp_w_fruits", package = "mFD")
+asb_sp_w_fruits[1:5, 1:5]
+
+# Summarize Assemblages Data
+mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits)
+}
+\seealso{
+\code{sp_tr_fruits}, \code{tr_cat_fruits}
 }
 \keyword{datasets}

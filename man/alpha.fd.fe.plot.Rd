@@ -20,12 +20,12 @@ alpha.fd.fe.plot(
   color_arrow_fvuln = "indianred4",
   size_line_fred = 1.5,
   size_arrow_fvuln = 1,
-  check.input = TRUE
+  check_input = TRUE
 )
 }
 \arguments{
 \item{alpha_fd_fe}{output from the function \code{\link{alpha.fd.fe}} applied on
-assemblage of interest with \code{store.details = TRUE}.}
+assemblage of interest with \code{details_returned = TRUE}.}
 
 \item{plot_asb_nm}{a \strong{vector} containing the name of the assemblage to plot.}
 
@@ -39,8 +39,8 @@ functional vulnerability (FVuln). Default is all 3 indices.}
 
 \item{color_fill_fored}{a \strong{R color name or an hexadecimal code} referring to the
 color used to fill the part of barplots that contain species in excess in
-species-rich FEs. It refers to the FORed value. Default:color_fill_fored =
-"darkolivegreen2".}
+species-rich FEs. It refers to the FORed value. Default:
+color_fill_fored = "darkolivegreen2".}
 
 \item{color_line_fred}{a \strong{R color name or an hexadecimal code} referring to the
 color used to draw the horizontal line referring to the FRed value.
@@ -66,9 +66,9 @@ linerefering to the FRed value. Default: size_line_fred = 1.5.}
 showing the proportion of FEs containing only one species. Default:
 size_arrow_fvuln = 1.}
 
-\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
-than R error messages. Default: check.input = TRUE.}
+than R error messages. Default: check_input = TRUE.}
 }
 \value{
 a \code{patchwork} object with a barplot of number of species per FE.
@@ -90,36 +90,50 @@ functional indices, functional indices values must have been retrieve through
 the use of the alpha.fd.fe function}
 }
 \examples{
-# Load Species*Traits dataframe:
+# Load Species*Traits dataframe
 data("sp_tr_fruits", package = "mFD")
-# Load Traits categories dataframe:
+
+# Load Traits categories dataframe
 data("tr_cat_fruits", package = "mFD")
-# Load Assemblages*Species matrix:
+
+# Load Assemblages*Species matrix
 data("asb_sp_w_fruits", package = "mFD")
-# Remove continuous trait:
-sp_tr_fruits <- sp_tr_fruits[, -5]
+
+# Remove continuous trait
+sp_tr_fruits  <- sp_tr_fruits[ , -5]
 tr_cat_fruits <- tr_cat_fruits[-5, ]
-# Compute gathering species into FEs:
-sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, 
- fe_nm_type = "fe_rank", check.input = TRUE)
-# Get the occurrence matrix:
+
+# Compute gathering species into FEs
+sp_to_fe_fruits <- mFD::sp.to.fe(
+  sp_tr       = sp_tr_fruits, 
+  tr_cat      = tr_cat_fruits, 
+  fe_nm_type  = "fe_rank", 
+  check_input = TRUE)
+ 
+# Get the occurrence matrix
 asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits) 
 asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
-# Compute alpha fd indices:
-alpha_fd_fe_fruits <- alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
- ind_nm = c("fred", "fored", "fvuln"),
- check.input = TRUE, store_details = TRUE)
-# Plot fd fe indices: 
-alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits, plot_asb_nm = c("basket_1"),
- plot_ind_nm = c("fred", "fored", "fvuln"),
- name_file = NULL,
- color_fill_fored = "darkolivegreen2",
- color_line_fred = "darkolivegreen4",
- color_fill_bar = "grey80",
- color_fill_fvuln = "lightcoral",
- color_arrow_fvuln = "indianred4",
- size_line_fred = 1.5,
- size_arrow_fvuln = 1,
- check.input = TRUE) 
 
+# Compute alpha fd indices
+alpha_fd_fe_fruits <- mFD::alpha.fd.fe(
+  asb_sp_occ  = asb_sp_fruits_occ, 
+  sp_to_fe    = sp_to_fe_fruits,
+  ind_nm      = c("fred", "fored", "fvuln"),
+  check_input = TRUE, 
+  details_returned = TRUE)
+  
+# Plot fd fe indices
+mFD::alpha.fd.fe.plot(
+  alpha_fd_fe       = alpha_fd_fe_fruits, 
+  plot_asb_nm       = c("basket_1"), 
+  plot_ind_nm       = c("fred", "fored", "fvuln"),
+  name_file         = NULL,
+  color_fill_fored  = "darkolivegreen2",
+  color_line_fred   = "darkolivegreen4",
+  color_fill_bar    = "grey80",
+  color_fill_fvuln  = "lightcoral",
+  color_arrow_fvuln = "indianred4",
+  size_line_fred    = 1.5,
+  size_arrow_fvuln  = 1,
+  check_input       = TRUE) 
 }

@@ -9,8 +9,8 @@ alpha.fd.fe(
   asb_sp_occ,
   sp_to_fe,
   ind_nm = c("fred", "fored", "fvuln"),
-  check.input = TRUE,
-  store_details = TRUE
+  check_input = TRUE,
+  details_returned = TRUE
 )
 }
 \arguments{
@@ -26,19 +26,19 @@ diversity indices to compute among "fred", "fored" and "fvuln".
 \bold{Indices names must be written in lower case letters}. Default: all
 the indices are computed.}
 
-\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
-than R error messages. Default: check.input = TRUE.}
+than R error messages. Default: check_input = TRUE.}
 
-\item{store_details}{a \strong{logical value} indicating whether the user wants to
-store details. Details are used in graphical functions and thus must be kept
+\item{details_returned}{a \strong{logical value} indicating whether the user wants to
+details_returned. Details are used in graphical functions and thus must be kept
 if the user want to have graphical outputs for the computed indices.}
 }
 \value{
 \itemize{ \item \emph{asb_fdfe} a matrix containing for each
 assemblage (rows), values of functional diversity indices (same names than
 in 'ind_nm') as well as the number of species ('nb_sp') and the number of FE
-(nb_fe). \item if \emph{store_details} is TRUE, \item \emph{details_fdfe} a
+(nb_fe). \item if \emph{details_returned} is TRUE, \item \emph{details_fdfe} a
 list with \emph{asb_fe_nbsp} a matrix with number of species per FE in each
 assemblage.}
 }
@@ -58,14 +58,14 @@ sp_tr_fruits <- sp_tr_fruits[, -5]
 tr_cat_fruits <- tr_cat_fruits[-5, ]
 # Compute gathering species into FEs:
 sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, 
- fe_nm_type = "fe_rank", check.input = TRUE)
+ fe_nm_type = "fe_rank", check_input = TRUE)
 # Get the occurrence dataframe:
 asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = asb_sp_w_fruits) 
 asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 # Compute alpha fd indices:
 alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
  ind_nm = c("fred", "fored", "fvuln"),
- check.input = TRUE, store_details = TRUE)
+ check_input = TRUE, details_returned = TRUE)
 
 
 }

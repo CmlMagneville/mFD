@@ -14,13 +14,13 @@ asb.sp.summary(asb_sp_w)
 A list with:
 \item{asb_sp_w_occ}{a matrix with species occurrences in each
 assemblage.}
-\item{tot_ab_all_sp}{a vector gathering species biomass/abundance per
+\item{sp_tot_w}{a vector gathering species biomass/abundance per
 species.}
-\item{tot_ab_all_asb}{a vector gathering total abundance/biomass per
+\item{asb_tot_w}{a vector gathering total abundance/biomass per
 assemblage.}
-\item{sp_richn_all_asb}{a vector gathering species richness per
+\item{asb_sp_richn}{a vector gathering species richness per
 assemblage.}
-\item{sp_nm_asb}{a list gathering the names of species of each assemblage.}
+\item{asb_sp_nm}{a list gathering the names of species of each assemblage.}
 }
 \description{
 This function computes a summary helping you to picture assemblages. For this

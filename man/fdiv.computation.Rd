@@ -9,7 +9,7 @@ fdiv.computation(
   asb_sp_relatw_k,
   vert_nm = NULL,
   k,
-  check.input = check.input
+  check_input = check_input
 )
 }
 \arguments{
@@ -27,14 +27,14 @@ NULL.}
 
 \item{k}{a \strong{character string} referring to the assemblage studied.}
 
-\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species coordinates matrix and species*weight
 dataframe must not contain NA, their rownames must be filled, they must
 have similar names values, species acting as vertices must be contained in
 the species coordinates matrix and  the number of species should strictly
 be higher than number of axes for computing the convex hull. Default:
-check.input = FALSE.}
+check_input = FALSE.}
 }
 \value{
 a list with \strong{$fdiv} a single value vector ; \strong{$details}

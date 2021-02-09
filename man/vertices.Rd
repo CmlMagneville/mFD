@@ -5,7 +5,7 @@
 \title{Compute vertices of the minimal convex hull shaping species from a single
 assemblage in a multidimensional functional space.}
 \usage{
-vertices(sp_faxes_coord, order_2D = FALSE, check.input = FALSE)
+vertices(sp_faxes_coord, order_2D = FALSE, check_input = FALSE)
 }
 \arguments{
 \item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a chosen functional
@@ -16,10 +16,10 @@ space. Species coordinates have been retrieved thanks to
 so that they define a convex polygon in 2D which is convenient for plotting.
 Default is FALSE, vertices ordered as in row names of 'sp_faxes_coord'}
 
-\item{check.input}{a \strong{logical value} defining whether inputs are checked before
+\item{check_input}{a \strong{logical value} defining whether inputs are checked before
 computation: species names must be put as row.names, there must be no NA
 and species number must be superior to (axes number + 1). Default:
-check.input = TRUE.}
+check_input = TRUE.}
 }
 \value{
 a vector containing names of species being vertices \code{vert_nm}

@@ -4,7 +4,7 @@
 \alias{sp.to.fe}
 \title{Compute functional entities composition based on a species*traits matrix}
 \usage{
-sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check.input = TRUE)
+sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check_input = TRUE)
 }
 \arguments{
 \item{sp_tr}{a \strong{dataframe} with values of traits (columns) for a set of
@@ -30,9 +30,9 @@ most species) and \emph{"tr_val"} (FE are named after names of traits
 and of trait values for each FE, \emph{see details below}).
 Default: fe_nm_type = "fe_rank".}
 
-\item{check.input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
-than R error messages. Default: check.input = TRUE.}
+than R error messages. Default: check_input = TRUE.}
 }
 \value{
 a list of objects containing: \itemize{

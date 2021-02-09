@@ -110,7 +110,7 @@ asb_sp_fruits_occ <- asb_sp_fruits_summ$asb_sp_occ
 The *mFD* package allows the user to gather species into FEs using the *sp.to.fe* function. It uses the following arguments:
 
 ```{r, results = "hide", eval = FALSE}
-mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, fe_nm_type = "fe_rank", check.input = TRUE) 
+mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, fe_nm_type = "fe_rank", check_input = TRUE) 
 ```
 
   * *sp_tr* the dataframe of species traits
@@ -120,7 +120,7 @@ mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, fe_nm_type = "fe_ran
   
 Let's use this function with the *fruits dataset*:
 ```{r}
-sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, fe_nm_type = "fe_rank", check.input = TRUE) 
+sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = sp_tr_fruits, tr_cat = tr_cat_fruits, fe_nm_type = "fe_rank", check_input = TRUE) 
 ```
 
 This function returns:
@@ -174,8 +174,8 @@ The *alpha.fd.fe* function is used as follow:
 ```{r, results = "hide", eval = FALSE}
 mFD::alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
                        ind_nm = c("fred", "fored", "fvuln"),
-                       check.input = TRUE,
-                       store_details = TRUE) 
+                       check_input = TRUE,
+                       details_returned = TRUE) 
 ```
 
 It takes as inputs:
@@ -186,8 +186,8 @@ It takes as inputs:
   * *check_input* is a logical value reflecting whether inputs should be checked
   or not. Possible error messages will thus be more understandable for the user
   than R error messages 💡 Recommendation: set it as TRUE
-  * *store_details*  is a logical value indicating whether the user wants to
-  store details. Details are used in graphical functions and thus must be kept
+  * *details_returned*  is a logical value indicating whether the user wants to
+  details_returned. Details are used in graphical functions and thus must be kept
   if the user want to have graphical outputs for the computed indices.
 
 💡 For this step, species do not have to be gathered into FEs, the gathering is coded within the *alpha.fd.fe* function
@@ -196,8 +196,8 @@ Let's apply this function with the *fruits* dataset:
 ```{r}
 alpha_fd_fe_fruits <- mFD::alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
                        ind_nm = c("fred", "fored", "fvuln"),
-                       check.input = TRUE,
-                       store_details = TRUE) 
+                       check_input = TRUE,
+                       details_returned = TRUE) 
 ```
 
 This function returns a dataframe of indices values for each assemblage:
@@ -225,7 +225,7 @@ mFD::alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits,
                  color_arrow_fvuln = "indianred4",
                  size_line_fred = 1.5,
                  size_arrow_fvuln = 1,
-                 check.input = TRUE)
+                 check_input = TRUE)
 ```
 
 This function takes as inputs:
@@ -236,7 +236,7 @@ This function takes as inputs:
   * *fd_fe_values* a dataframe with the indices values for each assemblage retrieved through the *fe.fd.multidim* function
   * *fe_nb_sp* a vector containing the number of species per FE. It can retrieved through the *sp.to.fe* function
   * color and size arguments to personnalize the plot. To have more information about it, read the *alpha.fe.fd.plot* help file
-  * *check.input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
+  * *check_input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
   
 For the studied example, the plot looks as follow:
   
@@ -252,5 +252,5 @@ mFD::alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits,
                  color_arrow_fvuln = "indianred4",
                  size_line_fred = 1.5,
                  size_arrow_fvuln = 1,
-                 check.input = TRUE)
+                 check_input = TRUE)
 ```

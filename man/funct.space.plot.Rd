@@ -28,7 +28,7 @@ funct.space.plot(
   nm_size = 3,
   nm_color = "black",
   nm_fontface = "plain",
-  check.input = TRUE
+  check_input = TRUE
 )
 }
 \arguments{
@@ -113,9 +113,9 @@ of species label. Default: nm_color = 'black'.}
 \item{nm_fontface}{a \strong{character string} for font of species labels (e.g.
 "italic", "bold"). Default: nm_fontface = 'plain'.}
 
-\item{check.input}{a \strong{logical value} defining whether inputs are checked before
+\item{check_input}{a \strong{logical value} defining whether inputs are checked before
 computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check.input =
+understandable for the user than R error messages. Default: check_input =
 TRUE.}
 }
 \value{
@@ -166,6 +166,6 @@ mFD::funct.space.plot(sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
  plot_vertices = TRUE, color_vert = "blueviolet", fill_vert = "blueviolet",
   shape_vert = 23, size_vert = 1,
  plot_sp_nm = NULL, nm_size = 3, nm_color = "black", nm_fontface = "plain",
- check.input = TRUE)
+ check_input = TRUE)
 
 }
