@@ -87,5 +87,5 @@ dec=",", sep=";", header=TRUE,row.names=1, na.strings="NA")
  FUSE_res3 <- mFD::fuse(sp_dist = sp_dist_tr, sp_faxes_coord = as.matrix(sp_faxes_coord), 
   nb_NN = 5, GE = sp_tr$IUCN_100,
  standGE = TRUE)
-
+ 
 }

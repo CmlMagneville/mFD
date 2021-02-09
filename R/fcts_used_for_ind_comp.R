@@ -20,6 +20,8 @@
 #'   species
 #'
 #' @return a vector of species distances to the reference species \code{dist_refsp}
+#' 
+#' @importFrom stats dist
 #'
 
 dist.point <- function(sp_faxes_coord, ref_sp) {
@@ -50,6 +52,8 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 #' @return a list containing the nearest neighbor identity \code{nn_id} and a
 #'   list of the distance of the reference point to its nearest neighbor
 #'   \code{nn_ref_sp_dist}.
+#'   
+#' @importFrom stats dist
 
 
 dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
@@ -88,6 +92,9 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
 #'
 #' @return a dist object summarizing the MST for all species of a given
 #'   assemblage \code{mst_asb_k}
+#'   
+#' @importFrom stats dist as.dist
+#' @importFrom ape mst
 #'
 
 mst.computation <- function(sp_faxes_coord_k) {
@@ -124,7 +131,7 @@ mst.computation <- function(sp_faxes_coord_k) {
 #'
 #' @return a vector containing names of species being vertices \code{vert_nm}
 #'
-#'
+#'@importFrom geometry convhulln
 
 vertices <- function(sp_faxes_coord, order_2D = FALSE, check_input = FALSE) {
   

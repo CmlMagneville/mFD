@@ -76,6 +76,9 @@
 #'  q = c(0,1,2), tau = "mean",
 #'  beta_type = "Jaccard", check_input = TRUE, details_returned = TRUE)
 #'
+#'@importFrom utils combn
+#'@importFrom stats dist
+#'
 #'@export
 
 beta.fd.hill <- function(asb_sp_w,

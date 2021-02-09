@@ -378,5 +378,4 @@ mFD::alpha.multidim.plot(sp_faxes_coord = sp_faxes_coord_fruits,
  name_file = NULL,
  check_input = TRUE)
 
-
 }

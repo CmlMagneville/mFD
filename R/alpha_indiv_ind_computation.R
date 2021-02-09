@@ -191,6 +191,7 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, fide_asb = NULL,
 #'   based on axes units. See \code{\link{alpha.fd.multidim}} for option to scale
 #'   values using volume by species pool.
 #'
+#' @importFrom geometry convhulln
 
 fric.computation <- function(sp_faxes_coord_k, k, check_input = check_input) {
   
@@ -389,6 +390,8 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, 
 #'
 #' @return a matrix containing functional evenness for a given assemblage.
 #'
+#' @importFrom stats dist as.dist
+#' @importFrom dendextend dist_long
 
 
 feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
@@ -504,6 +507,8 @@ feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #'
 #' @return a matrix containing functional mean pairwise distance for a given
 #'   assemblage.
+#'   
+#' @importFrom stats dist
 #'
 
 

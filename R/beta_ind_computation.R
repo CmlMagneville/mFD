@@ -105,6 +105,10 @@
 #'  check_input = TRUE,
 #'  beta_family = c("Jaccard"),
 #'  details_returned = TRUE)
+#'  
+#'@importFrom betapart beta.para.control functional.beta.pair functional.betapart.core
+#'@importFrom dendextend dist_long
+#'@importFrom geometry convhulln
 #'
 #'@export
 

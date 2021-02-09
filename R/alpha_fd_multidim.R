@@ -106,6 +106,9 @@
 #' fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 #' fd_ind_values_fruits
 #'
+#' @importFrom stats dist
+#' @importFrom geometry convhulln
+#' 
 #' @export
 
 

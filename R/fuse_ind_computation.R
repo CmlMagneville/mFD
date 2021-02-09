@@ -86,6 +86,9 @@
 #'  FUSE_res3 <- mFD::fuse(sp_dist = sp_dist_tr, sp_faxes_coord = as.matrix(sp_faxes_coord), 
 #'   nb_NN = 5, GE = sp_tr$IUCN_100,
 #'  standGE = TRUE)
+#'  
+#'@importFrom vegan decostand
+#'@importFrom stats setNames
 #'
 #'@export
 
@@ -167,7 +170,8 @@ fuse <- function(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = F) {
 #'
 #' @param nb_NN a numerical value giving the number of nearest neighbor to
 #'   consider
-#'
+#'   
+#' @importFrom reshape2 melt
 
 
 get.indicator <- function(sp_dist, nb_NN){

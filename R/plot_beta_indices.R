@@ -149,6 +149,15 @@
 #'  alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
 #'  nm_size = 3, nm_color = "black", nm_fontface = "plain",
 #'  check_input = TRUE) 
+#'  
+#'@importFrom ggplot2 aes aes_string xlab ylab element_blank element_rect
+#'@importFrom ggplot2 coord_fixed theme theme_void geom_rect geom_text 
+#'@importFrom ggplot2 geom_point geom_polygon scale_x_continuous scale_y_continuous
+#'@importFrom ggplot2 ggplot ggsave
+#'@importFrom grid arrow unit
+#'@importFrom utils combn
+#'@importFrom ggrepel geom_text_repel
+#'@importFrom patchwork plot_layout plot_annotation plot_spacer
 #'
 #'@export
 

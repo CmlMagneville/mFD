@@ -117,5 +117,5 @@ beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[,
  check_input = TRUE,
  beta_family = c("Jaccard"),
  details_returned = TRUE)
-
+ 
 }
