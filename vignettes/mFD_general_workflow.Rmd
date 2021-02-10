@@ -102,7 +102,7 @@ package what type of traits you are using). That is why `mFD` package needs a
 data frame summarizing trait type for each trait (*i.e.* each column of the
 `fruits_traits` data frame).
 
-👉 You need to a data frame with the same columns names as the below example:
+👉 You need to set up a data frame with the same columns names as the below example:
 
 
 
