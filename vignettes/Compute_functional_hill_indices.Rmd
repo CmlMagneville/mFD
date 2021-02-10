@@ -1,0 +1,17 @@
+---
+title: "Compute Functional Hill Indices"
+author: "Sébastien Villéger"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compute Functional Hill Indices}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+# About this tutorial
+
+<br />
+
+This tutorial explains how to compute the family of indices presented in [Chao _et al._ (2019)] (https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343)
