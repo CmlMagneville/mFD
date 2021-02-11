@@ -121,7 +121,7 @@ mst.computation <- function(sp_faxes_coord_k) {
 #'
 #' @param sp_faxes_coord a matrix of species coordinates in a chosen functional
 #'   space. Species coordinates have been retrieved thanks to
-#'   \code{fspace.conttr} or \code{\link{qual.funct.space}}.
+#'   \code{fspace.conttr} or \code{\link{quality.fspaces}}.
 #'
 #' @param order_2D a logical value defining whether vertices names are reordered
 #' so that they define a convex polygon in 2D which is convenient for plotting.
