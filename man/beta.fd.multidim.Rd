@@ -38,7 +38,7 @@ details_returned. Details are used in the graphical function
 graphical outputs for the computed indices.}
 
 \item{betapart_step}{a \strong{logical value} indicating whether the computation
-progress tracking file "step.fbc.txt" should be created. Setting it to FALSE
+progress tracking file 'step.fbc.txt' should be created. Setting it to FALSE
 will speed up the function. Default: betapart_step = FALSE, and it is automatically turned
 to FALSE when 'betapart_para' is TRUE.}
 
@@ -77,7 +77,7 @@ convex hull }
 Computes a set of indices of pairwise functional beta-diversity (dissimilarity
 and its turnover and nestedness-resultant components) based on overlap between
 convex hulls in a multidimensional space. For details about indices formulas
-see Villeger et al. 2013, Global Ecology and Biogeography (22:671-681).
+see Villéger \emph{et al.} (2013).
 }
 \section{Notes}{
  \strong{All assemblages should have a number of species strictly
@@ -89,33 +89,41 @@ and 'dendextend' for formatting values in a dataframe.
 
 \examples{
  # Load Species*Traits dataframe:
-data("fruits_traits", package = "mFD")
+data('fruits_traits', package = 'mFD')
 # Load Assemblages*Species dataframe:      
-data("baskets_fruits_weights", package = "mFD") 
+data('baskets_fruits_weights', package = 'mFD') 
 # Load Traits categories dataframe:
-data("fruits_traits_cat", package = "mFD")  
+data('fruits_traits_cat', package = 'mFD')  
 # Compute functional distance 
 sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,         
  tr_cat       = fruits_traits_cat,   
- dist_metric  = "kgower",         
- scaling      = "scaledBYrange",  
+ dist_metric  = 'kgower',         
+ scaling      = 'scaledBYrange',  
  stop_if_NA   = TRUE)
 # Compute functional spaces quality to retrieve species coordinates matrix:
 fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
  maxdim_pcoa         = 10,
- deviation_weighting = "absolute",
+ deviation_weighting = 'absolute',
  fdist_scaling       = FALSE,
- fdendro             = "average")
+ fdendro             = 'average')
 # Retrieve species coordinates matrix:
-sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+sp_faxes_coord_fruits <- fspaces_quality_fruits$'details_fspaces'$'sp_pc_coord'
  # Get the occurrence dataframe:
 asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
-asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
+asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
 # Compute beta diversity indices:
 beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
- c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ = asb_sp_fruits_occ,
+ c('PC1', 'PC2', 'PC3', 'PC4')], asb_sp_occ = asb_sp_fruits_occ,
  check_input = TRUE,
- beta_family = c("Jaccard"),
+ beta_family = c('Jaccard'),
  details_returned = TRUE)
  
+}
+\references{
+Villéger \emph{et al.} (2013) Decomposing functional β‐diversity reveals that
+low functional β‐diversity is driven by low functional turnover in European
+fish assemblages. \emph{Global Ecology and Biogeography}, \strong{22}, 671-681. \cr
+}
+\author{
+Sébastien Villéger and Camille Magneville
 }
