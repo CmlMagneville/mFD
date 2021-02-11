@@ -327,7 +327,7 @@
 #'  name_file = NULL,
 #'  check_input = TRUE)
 #'
-#'@importFom ggplot2 aes_ geom_hline geom_vline geom_segment geom_rect geom_point
+#'@importFrom ggplot2 aes_ geom_hline geom_vline geom_segment geom_rect geom_point
 #'@importFrom ggplot2 geom_polygon scale_size scale_x_continuous scale_y_continuous
 #'@importFrom ggplot2 theme theme_void ggplot ggsave
 #'@importFrom grid arrow unit
