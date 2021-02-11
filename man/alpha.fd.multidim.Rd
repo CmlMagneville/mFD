@@ -23,8 +23,8 @@ assemblages (rows).}
 
 \item{ind_vect}{a \strong{vector} of character string of the name of functional indices
 to compute. \strong{Indices names must be written in lower case letters}.
-Possible indices to compute are: "fide", fdis", "fmpd", "fnnd", "feve", "fric",
-"fdiv", "fori" and "fspe". Default: all the indices are computed.}
+Possible indices to compute are: 'fide', fdis', 'fmpd', 'fnnd', 'feve', 'fric',
+'fdiv', 'fori' and 'fspe'. Default: all the indices are computed.}
 
 \item{scaling}{a \strong{logical value} indicating if scaling is to be done (TRUE) or
 not (FALSE) on functional indices. Scaling is used to be able to compare
@@ -67,44 +67,44 @@ neighbor of each species present in a given assemblage ; a
 present in a given assemblage to its nearest neighbor.}
 }
 \description{
-Compute a set of multidimensional space based indices of alpha functional
+This function computes a set of multidimensional space based indices of alpha functional
 diversity. The user can choose which functional indices to compute.
 }
 \examples{
 # Load Species*Traits dataframe:
-data("fruits_traits", package = "mFD")
+data('fruits_traits', package = 'mFD')
 
 # Load Assemblages*Species dataframe:      
-data("baskets_fruits_weights", package = "mFD")
+data('baskets_fruits_weights', package = 'mFD')
 
 # Load Traits categories dataframe:
-data("fruits_traits_cat", package = "mFD")  
+data('fruits_traits_cat', package = 'mFD')  
  
 # Compute functional distance 
 sp_dist_fruits <- mFD::funct.dist(
   sp_tr        = fruits_traits,         
   tr_cat       = fruits_traits_cat,   
-  dist_metric  = "kgower",         
-  scaling      = "scaledBYrange",  
+  dist_metric  = 'kgower',         
+  scaling      = 'scaledBYrange',  
   stop_if_NA   = TRUE)
  
 # Compute functional spaces quality to retrieve species coordinates matrix:
 fspaces_quality_fruits <- mFD::quality.fspaces(
   sp_dist             = sp_dist_fruits, 
   maxdim_pcoa         = 10,
-  deviation_weighting = "absolute",
+  deviation_weighting = 'absolute',
   fdist_scaling       = FALSE,
-  fdendro             = "average")
+  fdendro             = 'average')
   
 # Retrieve species coordinates matrix:
 sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 # Compute alpha diversity indices
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord   = sp_faxes_coord_fruits[ , c('PC1', 'PC2', 'PC3', 'PC4')],
   asb_sp_w         = baskets_fruits_weights, 
-  ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", 
-                       "fori", "fspe"),
+  ind_vect         = c('fdis', 'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 
+                       'fori', 'fspe'),
   scaling          = TRUE, 
   check_input      = TRUE, 
   details_returned = TRUE)
@@ -113,4 +113,7 @@ alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
 fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 fd_ind_values_fruits
 
+}
+\author{
+Camille Magneville & Sebastien Villeger
 }
