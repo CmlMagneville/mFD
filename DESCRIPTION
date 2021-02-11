@@ -4,60 +4,60 @@ Version: 0.0.0.9000
 Authors@R:
     c(
         person(
-            given   = "Sebastien",
-            family  = "Villeger",
-            email   = "sebastien.villeger@cnrs.fr",
-            role    = c("aut", "ths"),
-            comment = c(ORCID = "0000-0002-2362-7178")),
-        person(
             given   = "Camille",
             family  = "Magneville",
             email   = "camille.magneville@umontpellier.fr",
             role    = c("aut", "cre"),
             comment = c(ORCID = "0000-0003-0489-3822")),
+	person(
+            given   = "Sebastien",
+            family  = "Villeger",
+            email   = "sebastien.villeger@cnrs.fr",
+            role    = c("aut"),
+            comment = c(ORCID = "0000-0002-2362-7178")),
         person(
             given   = "Nicolas",
             family  = "Loiseau",
             email   = "nicolas.loiseau@umontpellier.fr",
             role    = "aut",
             comment = c(ORCID = "0000-0002-2469-1980")),
-        person(
+	person(
+            given   = "Camille",
+            family  = "Albouy",
+            email   = "albouycamille@gmail.comr",
+            role    = "aut",
+            comment = c(ORCID = "0000-0003-1629-2389")),
+	person(
+            given   = "Thomas",
+            family  = "Claverie",
+            email   = "tclaverie@gmail.com",
+            role    = "aut",
+            comment = c(ORCID = "0000-0002-6258-4991")),
+	person(
+            given   = "Arthur",
+            family  = "Escalas",
+            email   = "arthur.escalas@umontpellier.fr",
+            role    = "aut",
+            comment = c(ORCID = "0000-0002-6450-5716")),
+	person(
             given   = "Fabien",
             family  = "Leprieur",
             email   = "fabien.leprieur@umontpellier.fr",
             role    = "aut",
             comment = c(ORCID = "0000-0001-6869-342X")),
         person(
-            given   = "Arthur",
-            family  = "Escalas",
-            email   = "arthur.escalas@umontpellier.fr",
-            role    = "aut",
-            comment = c(ORCID = "0000-0002-6450-5716")),
-        person(
-            given   = "Camille",
-            family  = "Albouy",
-            email   = "albouycamille@gmail.comr",
-            role    = "aut",
-            comment = c(ORCID = "0000-0003-1629-2389")),
-        person(
             given   = "Eva",
             family  = "Maire",
             email   = "emg.maire@umontpellier.fr",
             role    = "aut",
             comment = c(ORCID = "0000-0002-1032-3394")),
-        person(
-            given   = "Thomas",
-            family  = "Claverie",
-            email   = "tclaverie@gmail.com",
-            role    = "aut",
-            comment = c(ORCID = "0000-0002-6258-4991")),
          person(
             given   = "David",
             family  = "Mouillot",
             email   = "david.mouillot@gmail.com",
             role    = "aut",
             comment = c(ORCID = "0000-0003-0402-2605")),
-         person(
+	person(
             given   = "Nicolas",
             family  = "Casajus",
             email   = "nicolas.casajus@fondationbiodiversite.fr",
