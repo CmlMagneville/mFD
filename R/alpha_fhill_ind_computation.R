@@ -1,10 +1,9 @@
 #' Compute functional alpha diversity indices based on Hill numbers
 #'
 #' Compute functional alpha diversity applied to distance between species
-#' following the framework from Chao et al.2019, Ecological Monographs
-#' (89:e01343), DOI: 10.1002/ecm.1343). FD is computed applying the special case
-#' where function 'f' in equation 3c is linear:f(dij(tau)) = dij(tau)/tau, hence
-#' f(0) = 0 and f(tau) = 1.
+#' following the framework from Chao _et al._(2019). FD is computed applying the
+#' special case where function 'f' in equation 3c is linear:f(dij(tau)) =
+#' dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 #'
 #' @param asb_sp_w a \strong{matrix} with weight of species (columns) in a set of
 #'  assemblages (rows). Rows and columns should have names. NA are not allowed.
@@ -43,7 +42,7 @@
 #'  }
 #'  }
 #'  
-#' @author Sébastien Villéger
+#' @author Sébastien Villéger and Camille Magneville
 #'
 #' @note FD computed with q=2 and tau = 'max' is equivalent to the Rao's quadratic
 #'  entropy from Ricotta & Szeidl (2009, J Theor Biol).
@@ -67,6 +66,11 @@
 #' # Compute alpha fd hill indices:
 #' alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, q = c(0, 1, 2),
 #'  tau = 'mean', check_input = TRUE, details_returned = TRUE)
+#'  
+#'@references 
+#'   Chao _et al._ (2019) An attribute‐diversity approach to functional
+#'   diversity, functional beta diversity, and related (dis)similarity measures.
+#'   _Ecological Monographs_, **89**.\cr
 #'
 #'@export
 

@@ -54,10 +54,9 @@ assemblages
 }
 \description{
 Compute functional alpha diversity applied to distance between species
-following the framework from Chao et al.2019, Ecological Monographs
-(89:e01343), DOI: 10.1002/ecm.1343). FD is computed applying the special case
-where function 'f' in equation 3c is linear:f(dij(tau)) = dij(tau)/tau, hence
-f(0) = 0 and f(tau) = 1.
+following the framework from Chao \emph{et al.}(2019). FD is computed applying the
+special case where function 'f' in equation 3c is linear:f(dij(tau)) =
+dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 }
 \note{
 FD computed with q=2 and tau = 'max' is equivalent to the Rao's quadratic
@@ -82,8 +81,13 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,
 # Compute alpha fd hill indices:
 alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, q = c(0, 1, 2),
  tau = 'mean', check_input = TRUE, details_returned = TRUE)
-
+ 
+}
+\references{
+Chao \emph{et al.} (2019) An attribute‐diversity approach to functional
+diversity, functional beta diversity, and related (dis)similarity measures.
+\emph{Ecological Monographs}, \strong{89}.\cr
 }
 \author{
-Sébastien Villéger
+Sébastien Villéger and Camille Magneville
 }
