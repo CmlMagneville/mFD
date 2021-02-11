@@ -36,3 +36,6 @@ present given assemblage. FSpe value can be scaled by the maximum distance to
 the global pool centroid (i.e. an assemblage hosting only the most
 specialized species).
 }
+\author{
+Camille Magneville and Sébastien Villéger
+}

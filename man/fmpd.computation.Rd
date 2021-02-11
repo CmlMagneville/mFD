@@ -38,3 +38,6 @@ species. FMPD value can be scaled by the maximum value possible given species
 pool (i.e. the most distant species pair have total weight) to standardize
 values.
 }
+\author{
+Camille Magneville and Sébastien Villéger
+}

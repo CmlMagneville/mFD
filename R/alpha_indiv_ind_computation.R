@@ -1,12 +1,3 @@
-# Functions to compute alpha functional indices
-#
-# Authors: Camille Magneville & Sébastien Villéger
-#
-#
-
-# ------------------------------------------------------------------------------
-
-
 #' Compute functional identity
 #'
 #' This function computes the weighted average position along each axis. FIde is
@@ -35,10 +26,12 @@
 #' @return a matrix containing functional identity values for a given assemblage
 #'   along the dimensions (columns). Number of dimensions is fixed to the number
 #'   of dimensions in \code{sp_faxes_coord} data.frame.
-#'
+#'   
+#' @author Camille Magneville and Sébastien Villéger
 
-fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
-                             check_input = check_input) {
+
+fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, 
+                             k, check_input = check_input) {
   # check_inputs if required:
   if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
@@ -55,15 +48,14 @@ fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
       stop("Error: No row names provided in species*weights dataframe.
            Please add assemblages names as row names.")
     }
-    if (sum(colnames(asb_sp_relatw_k) %in%
-            rownames(sp_faxes_coord_k)) != nrow(sp_faxes_coord_k)) {
+    if (sum(colnames(asb_sp_relatw_k) %in% rownames(sp_faxes_coord_k)) != 
+        nrow(sp_faxes_coord_k)) {
       stop(paste("Error: Mismatch between names in 'relat_sp_w_asb_k'
                  and 'sp_faxes_coord_k'. Please check."))
     }
     if (round(sum(asb_sp_relatw_k), 10) != 1) {
-      stop(paste0(
-        "Error: the sum of relative weights is not equal to one for",
-        k, sep = ""))
+      stop(paste0("Error: the sum of relative weights is not equal to one for", 
+                  k, sep = ""))
     }
   }
   fide_asb_k <- asb_sp_relatw_k %*% sp_faxes_coord_k
@@ -105,11 +97,13 @@ fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #'   have similar names values. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional dispersion for a given assemblage.
-#'
+#' 
+#' @author Camille Magneville and Sébastien Villéger
 
 
-fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, fide_asb = NULL, k,
-                             check_input = check_input) {
+
+fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, 
+                             fide_asb = NULL, k, check_input = check_input) {
   # check_inputs if required:
   if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
@@ -126,35 +120,34 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, fide_asb = NULL,
       stop("Error: No row names provided in species*weights dataframe.
            Please add assemblages names as row names.")
     }
-    if (sum(colnames(asb_sp_relatw_k) %in%
-            rownames(sp_faxes_coord_k)) != nrow(sp_faxes_coord_k)) {
+    if (sum(colnames(asb_sp_relatw_k) %in% rownames(sp_faxes_coord_k)) != 
+        nrow(sp_faxes_coord_k)) {
       stop(paste("Error: Mismatch between names in 'relat_sp_w_asb_k'
                  and 'sp_faxes_coord_k'. Please check."))
     }
     if (round(sum(asb_sp_relatw_k), 10) != 1) {
-      stop(paste0(
-        "Error: the sum of relative weights is not equal to one for",
-        k, sep = " "))
+      stop(paste0("Error: the sum of relative weights is not equal to one for", 
+                  k, sep = " "))
     }
   }
   # compute fide if NULL:
   if (is.null(fide_asb)) {
     fide_asb_k <- asb_sp_relatw_k %*% sp_faxes_coord_k
     # compute distance to the centroid to compute fdis:
-    dist_centr_k <- apply(
-      sp_faxes_coord_k, 1, function(x) { (sum((x - fide_asb_k)^2))^0.5 } )
+    dist_centr_k <- apply(sp_faxes_coord_k, 1, 
+                          function(x) {
+                            (sum((x - fide_asb_k)^2))^0.5
+                          })
     # compute fdis value:
     fdis_asb_k <- (asb_sp_relatw_k %*% dist_centr_k)
     return(fdis_asb_k)
   }
   if (!is.null(fide_asb)) {
     # compute distance to the centroid to compute fdis:
-    dist_centr_k <- apply(
-      sp_faxes_coord_k, 1,
-      function(x) {
-        (sum((x - fide_asb[k, colnames(sp_faxes_coord_k)])^2))^0.5
-      }
-    )
+    dist_centr_k <- apply(sp_faxes_coord_k, 1, 
+                          function(x) {
+                            (sum((x - fide_asb[k, colnames(sp_faxes_coord_k)])^2))^0.5
+                          })
     # compute fdis value:
     fdis_asb_k <- (asb_sp_relatw_k %*% dist_centr_k)
     return(fdis_asb_k)
@@ -185,8 +178,10 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, fide_asb = NULL,
 #' @return a list containing: \strong{$fric} a vector with fric value for a
 #'   given assemblage and \strong{vertices_nm} a vector containing names of the
 #'   species being vertices (species are ordered as in row names of input)
+#'   
+#' @author Camille Magneville and Sébastien Villéger
 #'
-#' @note Computation with qconvex algorithm is led using option "Tv" so result
+#' @note Computation with qconvex algorithm is led using option 'Tv' so result
 #'   are verified for structure, convexity, and point inclusion. FRic value is
 #'   based on axes units. See \code{\link{alpha.fd.multidim}} for option to scale
 #'   values using volume by species pool.
@@ -206,26 +201,33 @@ fric.computation <- function(sp_faxes_coord_k, k, check_input = check_input) {
     }
     if (nrow(sp_faxes_coord_k) < ncol(sp_faxes_coord_k)) {
       stop("Error: Number of species should strictly be higher than the number
-           of axes to compute the convex hull. Problem for assemblage", k)
+           of axes to compute the convex hull. Problem for assemblage", 
+           k)
     }
   }
   
-  # applying convhulln function to compute convexhull...
-  # ... with options = 'FA', to compute the general area of the functional hull,
-  # if convex hulln can not be computed (coplanearity), takes the value: NA
-  conv_fa_k <- tryCatch(geometry::convhulln(sp_faxes_coord_k, option = "FA"),
-                        error = function(err){"NA"})
+  # applying convhulln function to compute
+  # convexhull...  ... with options = 'FA', to
+  # compute the general area of the functional hull,
+  # if convex hulln can not be computed
+  # (coplanearity), takes the value: NA
+  conv_fa_k <- tryCatch(geometry::convhulln(sp_faxes_coord_k, 
+                                            option = "FA"), error = function(err) {
+                                              "NA"
+                                            })
   
-  # extracting unique names of vertices from the matrix with identity of ...
-  # ... species for each facet if vertices have been computed (no coplanearity pbs):
-  # ... and get the raw fric value:
-  if (! is.character(conv_fa_k)) {
-    vert_nm_k <- row.names(sp_faxes_coord_k)[sort(unique(
-      as.vector((conv_fa_k$hull))))]
+  # extracting unique names of vertices from the
+  # matrix with identity of ...  ... species for each
+  # facet if vertices have been computed (no
+  # coplanearity pbs): ... and get the raw fric
+  # value:
+  if (!is.character(conv_fa_k)) {
+    vert_nm_k <- row.names(sp_faxes_coord_k)[sort(unique(as.vector((conv_fa_k$hull))))]
     fric <- conv_fa_k$vol
   }
   
-  # if vertices have not been computed (coplanearity pbs):
+  # if vertices have not been computed (coplanearity
+  # pbs):
   if (is.character(conv_fa_k)) {
     vert_nm_k <- NA
     fric <- NA
@@ -278,10 +280,11 @@ fric.computation <- function(sp_faxes_coord_k, k, check_input = check_input) {
 #'   gravity ; \strong{$mean_dtoB} a single value with average distance of
 #'   species to center of gravity of vertices.
 #'
+#' @author Camille Magneville and Sébastien Villéger
 
 
-fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, k,
-                             check_input = check_input) {
+fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, 
+                             vert_nm = NULL, k, check_input = check_input) {
   
   # check_inputs if required:
   if (check_input == TRUE) {
@@ -299,13 +302,14 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, 
       stop("Error: No row names provided in species*weights dataframe.
            Please add assemblages names as row names.")
     }
-    if (sum(colnames(asb_sp_relatw_k) %in%
-            rownames(sp_faxes_coord_k)) != nrow(sp_faxes_coord_k)) {
+    if (sum(colnames(asb_sp_relatw_k) %in% rownames(sp_faxes_coord_k)) != 
+        nrow(sp_faxes_coord_k)) {
       stop(paste("Error: mismatch between names in 'asb_sp_relatw_k'
                  and 'sp_faxes_coord_k'."))
     }
     if (!is.null(vert_nm)) {
-      if (any((vert_nm %in% row.names(sp_faxes_coord_k) == FALSE))) {
+      if (any((vert_nm %in% row.names(sp_faxes_coord_k) == 
+               FALSE))) {
         stop("Error: Names of the vertices are not all present in species
              coordinates matrix. Please check.")
       }
@@ -317,48 +321,54 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, 
       }
     }
     if (round(sum(asb_sp_relatw_k), 10) != 1) {
-      stop(paste0(
-        "Error: the sum of relative weights is not equal to one for",
-        k, sep=""))
+      stop(paste0("Error: the sum of relative weights is not equal to one for", 
+                  k, sep = ""))
     }
   }
   
-  # if vertices names are not provided, compute vertices:
+  # if vertices names are not provided, compute
+  # vertices:
   if (is.null(vert_nm)) {
     # computes vertices names:
     vert_nm <- vertices(sp_faxes_coord_k, check_input = FALSE)
   }
-  # compute fdiv values if vertices have been computed (no coplanearity pbs):
+  # compute fdiv values if vertices have been
+  # computed (no coplanearity pbs):
   
   if (is.character(vert_nm)) {
-    # get the coordinates of the vertices center of gravity (named B):
-    B_coord <- apply(sp_faxes_coord_k[vert_nm, ], 2, mean)
-    # compute the euclidean distance of all species to B:
+    # get the coordinates of the vertices center of
+    # gravity (named B):
+    B_coord <- apply(sp_faxes_coord_k[vert_nm, 
+    ], 2, mean)
+    # compute the euclidean distance of all species to
+    # B:
     dtoB <- apply(sp_faxes_coord_k, 1, function(x) {
       (sum((x - B_coord)^2))^0.5
     })
     # compute mean of distances to B:
     mean_dtoB <- mean(dtoB)
-    # compute deviation of species distances to B to their mean:
+    # compute deviation of species distances to B to
+    # their mean:
     dev_dtoB <- dtoB - mean_dtoB
     # computes the weighted mean of raw deviations:
     ab_dev <- asb_sp_relatw_k * dev_dtoB
     # compute the weighted mean of absolute deviations:
-    ab_absdev<- asb_sp_relatw_k * abs(dev_dtoB)
+    ab_absdev <- asb_sp_relatw_k * abs(dev_dtoB)
     # computing fdiv index:
-    fdiv_asb_k <- (sum(ab_dev) + mean_dtoB) / (sum(ab_absdev) + mean_dtoB)
+    fdiv_asb_k <- (sum(ab_dev) + mean_dtoB)/(sum(ab_absdev) + 
+                                               mean_dtoB)
   }
   
-  # if vertices have not been computed (coplanearity pb):
-  if (! is.character(vert_nm)) {
+  # if vertices have not been computed (coplanearity
+  # pb):
+  if (!is.character(vert_nm)) {
     fdiv_asb_k <- NA
     B_coord <- NA
     mean_dtoB <- NA
   }
   
-  return_list <- list(fdiv = fdiv_asb_k, details = list(vertices_nm = vert_nm,
-                                                        B_coord = B_coord,
-                                                        mean_dtoB = mean_dtoB))
+  return_list <- list(fdiv = fdiv_asb_k, details = list(vertices_nm = vert_nm, 
+                                                        B_coord = B_coord, mean_dtoB = mean_dtoB))
   return(return_list)
 }
 
@@ -389,15 +399,18 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k, vert_nm = NULL, 
 #'   be higher than three to compute feve. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional evenness for a given assemblage.
+#' 
+#' @author Camille Magneville and Sébastien Villéger
 #'
 #' @importFrom stats dist as.dist
 #' @importFrom dendextend dist_long
 
 
-feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
-                             check_input = check_input) {
+feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, 
+                             k, check_input = check_input) {
   
-  # get the number of species present in the assemblage:
+  # get the number of species present in the
+  # assemblage:
   sp_nb_asb_k <- nrow(sp_faxes_coord_k)
   
   # check_inputs if required:
@@ -416,65 +429,76 @@ feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
       stop("Error: No row names provided in species*weights dataframe.
            Please add assemblages names as row names.")
     }
-    if (sum(colnames(asb_sp_relatw_k) %in%
-            rownames(sp_faxes_coord_k)) != nrow(sp_faxes_coord_k)) {
+    if (sum(colnames(asb_sp_relatw_k) %in% rownames(sp_faxes_coord_k)) != 
+        nrow(sp_faxes_coord_k)) {
       stop(paste("Error: mismatch between names in 'relat_sp_w_asb_k'
                  and 'sp_faxes_coord_k'."))
     }
     if (sp_nb_asb_k < 3) {
       stop(paste0("Error: there must be at least 3 species in the assemblage to compute feve.
-                  here assemblage", sep = " ",  k, sep = " ", "contains less than 3 species."))
+                  here assemblage", 
+                  sep = " ", k, sep = " ", "contains less than 3 species."))
     }
     if (round(sum(asb_sp_relatw_k), 10) != 1) {
-      stop(paste0(
-        "Error: the sum of relative weights is not equal to one for",
-        k, sep=""))
+      stop(paste0("Error: the sum of relative weights is not equal to one for", 
+                  k, sep = ""))
     }
   }
   
-  # compute distances between species to calculate weighted evenness indice:
-  sp_dist_asb_k <- stats::dist(sp_faxes_coord_k, method = "euclidian")
+  # compute distances between species to calculate
+  # weighted evenness indice:
+  sp_dist_asb_k <- stats::dist(sp_faxes_coord_k, 
+                               method = "euclidian")
   
-  # compute a dist object summarizing the mst for species:
+  # compute a dist object summarizing the mst for
+  # species:
   mst_asb_k <- mst.computation(sp_faxes_coord_k)
   
-  # compute a dist_long object that can be useful to return:
+  # compute a dist_long object that can be useful to
+  # return:
   mst_asb_k_2 <- dendextend::dist_long(sp_dist_asb_k)
   names(mst_asb_k_2) <- c("sp.x", "sp.y", "feve_mst")
-  mst_asb_k_2 <- mst_asb_k_2[which(mst_asb_k_2$feve_mst != 0), ]
+  mst_asb_k_2 <- mst_asb_k_2[which(mst_asb_k_2$feve_mst != 
+                                     0), ]
   
   # compute the pairwise cumulative abundances:
   cum_ab_asb_k <- matrix(0, nrow = sp_nb_asb_k, ncol = sp_nb_asb_k)
   for (i in (1:sp_nb_asb_k)) {
     for (j in (1:sp_nb_asb_k)) {
-      cum_ab_asb_k[i, j] <- asb_sp_relatw_k[i] + asb_sp_relatw_k[j]
+      cum_ab_asb_k[i, j] <- asb_sp_relatw_k[i] + 
+        asb_sp_relatw_k[j]
     }
   }
   cum_ab_asb_k <- stats::as.dist(cum_ab_asb_k)
   
-  # compute the weighted evenness index for the (number of species - 1)...
-  # ... segments linking species:
+  # compute the weighted evenness index for the
+  # (number of species - 1)...  ... segments linking
+  # species:
   ew_asb_k <- rep(0, sp_nb_asb_k - 1)
   ind <- 1
-  for (m in (1:((sp_nb_asb_k - 1) * sp_nb_asb_k / 2))) {
+  for (m in (1:((sp_nb_asb_k - 1) * sp_nb_asb_k/2))) {
     if (mst_asb_k[m] != 0) {
-      ew_asb_k[ind] <- sp_dist_asb_k[m] / (cum_ab_asb_k[m])
+      ew_asb_k[ind] <- sp_dist_asb_k[m]/(cum_ab_asb_k[m])
       ind <- ind + 1
     }
   }
   
-  # compute the minimum between partial weighted evenness (pew) index and ...
-  # ... 1/(number of species - 1):
+  # compute the minimum between partial weighted
+  # evenness (pew) index and ...  ... 1/(number of
+  # species - 1):
   min_pew_asb_k <- rep(0, sp_nb_asb_k - 1)
-  comp_value <- 1 / (sp_nb_asb_k - 1)
+  comp_value <- 1/(sp_nb_asb_k - 1)
   for (l in (1:(sp_nb_asb_k - 1))) {
-    min_pew_asb_k[l] <- min((ew_asb_k[l] / sum(ew_asb_k)), comp_value)
+    min_pew_asb_k[l] <- min((ew_asb_k[l]/sum(ew_asb_k)), 
+                            comp_value)
   }
   
   # compute feve value:
-  feve_asb_k <- round(((sum(min_pew_asb_k)) - comp_value) / (1 - comp_value), 6)
+  feve_asb_k <- round(((sum(min_pew_asb_k)) - comp_value)/(1 - 
+                                                             comp_value), 6)
   
-  return_list <- list(feve = feve_asb_k, mst = mst_asb_k, mst_2 = mst_asb_k_2)
+  return_list <- list(feve = feve_asb_k, mst = mst_asb_k, 
+                      mst_2 = mst_asb_k_2)
   return(return_list)
 }
 
@@ -508,12 +532,14 @@ feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #' @return a matrix containing functional mean pairwise distance for a given
 #'   assemblage.
 #'   
+#' @author Camille Magneville and Sébastien Villéger
+#'   
 #' @importFrom stats dist
 #'
 
 
-fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
-                             check_input = check_input) {
+fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, 
+                             k, check_input = check_input) {
   # check_inputs if required:
   if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
@@ -530,22 +556,23 @@ fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
       stop("Error: No row names provided in species*weights dataframe.
            Please add assemblages names as row names.")
     }
-    if (sum(colnames(asb_sp_relatw_k) %in%
-            rownames(sp_faxes_coord_k)) != nrow(sp_faxes_coord_k)) {
+    if (sum(colnames(asb_sp_relatw_k) %in% rownames(sp_faxes_coord_k)) != 
+        nrow(sp_faxes_coord_k)) {
       stop(paste("Error: mismatch between names in 'asb_sp_relatw_k' and
                  'sp_faxes_coord_k'."))
     }
     if (round(sum(asb_sp_relatw_k), 10) != 1) {
-      stop(paste0(
-        "Error: the sum of relative weights is not equal to one for",
-        k, sep=""))
+      stop(paste0("Error: the sum of relative weights is not equal to one for", 
+                  k, sep = ""))
     }
   }
-  # compute mean distance between species of a given community to...
-  # ... compute fmpd value:
-  dist_sp_asb_k <- as.matrix(stats::dist(sp_faxes_coord_k, method = "euclidean"))
+  # compute mean distance between species of a given
+  # community to...  ... compute fmpd value:
+  dist_sp_asb_k <- as.matrix(stats::dist(sp_faxes_coord_k, 
+                                         method = "euclidean"))
   dist_sp_asb_k[which(dist_sp_asb_k == 0)] <- NA
-  mean_dist_sp_asb_k <- apply(dist_sp_asb_k, 1, mean, na.rm = TRUE)
+  mean_dist_sp_asb_k <- apply(dist_sp_asb_k, 1, mean, 
+                              na.rm = TRUE)
   # compute fmpd value for a given assemblage:
   fmpd_asb_k <- (asb_sp_relatw_k %*% mean_dist_sp_asb_k)
   return(fmpd_asb_k)
@@ -582,10 +609,11 @@ fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #' @return a matrix containing functional mean nearest neighbor distance for a
 #'   given assemblage.
 #'
+#' @author Camille Magneville and Sébastien Villéger
 
 
-fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
-                             check_input = check_input) {
+fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, 
+                             k, check_input = check_input) {
   # check_inputs if required:
   if (check_input == TRUE) {
     if (any(is.na(sp_faxes_coord_k))) {
@@ -602,30 +630,33 @@ fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
       stop("Error: No row names provided in species*weights dataframe.
            Please add assemblages names as row names.")
     }
-    if (sum(colnames(asb_sp_relatw_k) %in%
-            rownames(sp_faxes_coord_k)) != nrow(sp_faxes_coord_k)) {
+    if (sum(colnames(asb_sp_relatw_k) %in% rownames(sp_faxes_coord_k)) != 
+        nrow(sp_faxes_coord_k)) {
       stop(paste("Error: mismatch between names in 'asb_sp_relatw_k'
                  and 'sp_faxes_coord_k'."))
     }
     if (round(sum(asb_sp_relatw_k), 10) != 1) {
-      stop(paste0("Error: the sum of relative weights is not equal to one for",
-                  k, sep=""))
+      stop(paste0("Error: the sum of relative weights is not equal to one for", 
+                  k, sep = ""))
     }
   }
   
-  # create a list to store distance to the nn for each species of...
-  # ...the assemblage:
+  # create a list to store distance to the nn for
+  # each species of...  ...the assemblage:
   dist_nn_k <- list()
   
-  # create a list to store the identity of the nn for each species of...
-  # ...the assemblage:
+  # create a list to store the identity of the nn for
+  # each species of...  ...the assemblage:
   nm_nn_k <- list()
   
-  # compute distance to the nearest neighbor in a given assemblage to...
-  # ... compute fnnd value and compute name of the nearest neighbor to return:
+  # compute distance to the nearest neighbor in a
+  # given assemblage to...  ... compute fnnd value
+  # and compute name of the nearest neighbor to
+  # return:
   for (i in (1:nrow(sp_faxes_coord_k))) {
     ref_sp <- rownames(sp_faxes_coord_k)[i]
-    dist_nn_sp_asb_k <- dist.nearneighb(sp_faxes_coord_k, ref_sp)
+    dist_nn_sp_asb_k <- dist.nearneighb(sp_faxes_coord_k, 
+                                        ref_sp)
     dist_nn_k[ref_sp] <- dist_nn_sp_asb_k$`distance of the reference species to its nearest neighbour`
     nms <- list(dist_nn_sp_asb_k$`nearest neighbour identity`)
     names(nms) <- ref_sp
@@ -636,9 +667,8 @@ fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
   fnnd_asb_k <- (asb_sp_relatw_k %*% unlist(dist_nn_k))
   
   # get the return list of outputs:
-  return_list <- list(fnnd = fnnd_asb_k,
-                      details = list(nm_nn_k = nm_nn_k,
-                                     dist_nn_k = dist_nn_k))
+  return_list <- list(fnnd = fnnd_asb_k, details = list(nm_nn_k = nm_nn_k, 
+                                                        dist_nn_k = dist_nn_k))
   
   return(return_list)
 }
@@ -669,9 +699,11 @@ fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k, k,
 #'
 #' @return a matrix containing functional originality for a given assemblage.
 #'
+#' @author Camille Magneville and Sébastien Villéger
 
-fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k, k,
-                             check_input = check_input) {
+
+fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k, 
+                             k, check_input = check_input) {
   # check_inputs if required:
   if (check_input == TRUE) {
     if (any(is.na(asb_sp_relatw_k))) {
@@ -682,8 +714,8 @@ fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k, k,
            Please add assemblages names as row names.")
     }
     if (round(sum(asb_sp_relatw_k), 10) != 1) {
-      stop(paste0("Error: the sum of relative weights is not equal to one for",
-                  k, sep=""))
+      stop(paste0("Error: the sum of relative weights is not equal to one for", 
+                  k, sep = ""))
     }
   }
   nm_sp_asb_k <- colnames(asb_sp_relatw_k)
@@ -719,9 +751,11 @@ fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k, k,
 #'
 #' @return a matrix containing functional specialization for a given assemblage.
 #'
+#' @author Camille Magneville and Sébastien Villéger
 
-fspe.computation <- function(asb_sp_relatw_k, special_sp_global_pool, k,
-                             check_input = check_input) {
+
+fspe.computation <- function(asb_sp_relatw_k, special_sp_global_pool, 
+                             k, check_input = check_input) {
   # check_inputs if required:
   if (check_input == TRUE) {
     if (any(is.na(asb_sp_relatw_k))) {
@@ -732,8 +766,8 @@ fspe.computation <- function(asb_sp_relatw_k, special_sp_global_pool, k,
            Please add assemblages names as row names.")
     }
     if (round(sum(asb_sp_relatw_k), 10) != 1) {
-      stop(paste0("Error: the sum of relative weights is not equal to one for",
-                  k, sep=""))
+      stop(paste0("Error: the sum of relative weights is not equal to one for", 
+                  k, sep = ""))
     }
   }
   nm_sp_asb_k <- colnames(asb_sp_relatw_k)

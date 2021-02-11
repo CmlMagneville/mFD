@@ -31,8 +31,11 @@ This function computes the volume of functional space filled by species
 present in a given assemblage.
 }
 \note{
-Computation with qconvex algorithm is led using option "Tv" so result
+Computation with qconvex algorithm is led using option 'Tv' so result
 are verified for structure, convexity, and point inclusion. FRic value is
 based on axes units. See \code{\link{alpha.fd.multidim}} for option to scale
 values using volume by species pool.
+}
+\author{
+Camille Magneville and Sébastien Villéger
 }

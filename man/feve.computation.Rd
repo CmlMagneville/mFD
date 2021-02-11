@@ -36,3 +36,6 @@ a matrix containing functional evenness for a given assemblage.
 This function computes the regularity of distribution of species weights in
 the functional space.
 }
+\author{
+Camille Magneville and Sébastien Villéger
+}

@@ -34,3 +34,6 @@ species pool. FOri value can be scaled by the maximum distance to the nearest
 neighbour possible in the global species pool (i.e. an assemblage hosting
 only the most original species).
 }
+\author{
+Camille Magneville and Sébastien Villéger
+}

@@ -41,3 +41,6 @@ kg for biomass). In the special case where 'weight' is filled with only 0/1
 the same weight. The results of this function are used in FSpe, FOri and FNND
 computation.
 }
+\author{
+Camille Magneville and Sébastien Villéger
+}

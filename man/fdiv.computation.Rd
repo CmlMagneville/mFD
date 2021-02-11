@@ -52,3 +52,6 @@ FDiv is scaled between 0 and 1. For details about FDiv index see
 \code{\link{alpha.fd.multidim}} to compute FDiv over multiple assemblages (and
 together with other FD indices) .
 }
+\author{
+Camille Magneville and Sébastien Villéger
+}
