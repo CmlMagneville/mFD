@@ -57,9 +57,8 @@ of assemblages (rows) and values of q (columns)
 }
 \description{
 Compute functional beta-diversity indices based on Hill numbers applied to
-distance between species following the framework from Chao et al. 2019,
-Ecological Monographs (89:e01343), DOI: 10.1002/ecm.1343). FD is computed
-applying the special case where function 'f' in equation 3c is
+distance between species following the framework from Chao \emph{et al.} (2019).
+FD is computed applying the special case where function 'f' in equation 3c is
 linear: f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 }
 \note{
@@ -71,18 +70,26 @@ Indices values are stored as \emph{dist} objects to optimize memory.
 }
 \examples{
 # Load Species*Traits dataframe:
-data("fruits_traits", package = "mFD")
+data('fruits_traits', package = 'mFD')
 # Load Assemblages*Species dataframe:      
-data("baskets_fruits_weights", package = "mFD")   
+data('baskets_fruits_weights', package = 'mFD')   
 # Compute functional distance 
 sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,         
  tr_cat       = fruits_traits_cat,   
- dist_metric  = "kgower",         
- scaling      = "scaledBYrange",  
+ dist_metric  = 'kgower',         
+ scaling      = 'scaledBYrange',  
  stop_if_NA   = TRUE)
 # Compute beta functional hill indices:
 beta.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
- q = c(0,1,2), tau = "mean",
- beta_type = "Jaccard", check_input = TRUE, details_returned = TRUE)
-
+ q = c(0,1,2), tau = 'mean',
+ beta_type = 'Jaccard', check_input = TRUE, details_returned = TRUE)
+ 
+}
+\references{
+Chao \emph{et al.} (2019) An attribute‐diversity approach to functional
+diversity, functional beta diversity, and related (dis)similarity measures.
+\emph{Ecological Monographs}, \strong{89}.\cr
+}
+\author{
+Sébastien Villéger and Camille Magneville
 }
