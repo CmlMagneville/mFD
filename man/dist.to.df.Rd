@@ -33,3 +33,6 @@ dist.to.df(list(dA = dist_A))
 dist.to.df(list(d1 = dist_A, d2 = dist_B, d3 = dist_C))
 
 }
+\author{
+Sébastien Villéger
+}

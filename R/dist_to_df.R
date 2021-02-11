@@ -1,11 +1,3 @@
-# Function to turn distance object(s) into a single dataframe
-#
-# Authors:  Sébastien Villéger
-#
-#
-# ------------------------------------------------------------------------------
-
-
 #' Function to merge distance object(s) into a single dataframe
 #' which rows are pairs of elements and column(s) distance metric(s)
 #'
@@ -18,6 +10,8 @@
 #' @return a dataframe which first and second columns (names `x1` and `x2`)
 #' contain names of the 2 sets involved in each pair, and with one column for
 #' each dist object (named after its name in \code{list_dist}.
+#' 
+#' @author Sébastien Villéger
 #' 
 #' @importFrom dendextend dist_long
 #' 
@@ -49,37 +43,42 @@ dist.to.df <- function(list_dist) {
   
   # checking list contains only dist objects:
   if (any(unlist(lapply(list_dist, class)) != "dist")) {
-    stop ("Error: input 'list_dist' should contain only 'dist' object
+    stop("Error: input 'list_dist' should contain only 'dist' object
               Correct using 'as.dist()' if necessary")
   }
   
   # checking all dist objects have names:
   if (is.null(dist_nm) | any(nchar(dist_nm) == 0)) {
-    stop ("Error: some of dist objects in 'list_dist' do not all have a name.
+    stop("Error: some of dist objects in 'list_dist' do not all have a name.
        Name all dist objects within the list (e.g. with distance metric).")
   }
   
   # checking 1st dist objects has labels:
-  if (is.null(dist1_labels) | any(nchar(dist1_labels) == 0)) {
-    stop ("Error: first dist object in 'list_dist' does not have labels.
+  if (is.null(dist1_labels) | any(nchar(dist1_labels) == 
+                                  0)) {
+    stop("Error: first dist object in 'list_dist' does not have labels.
        Provide row names as character strings for the sets*variables matrix
        before computing distance")
   }
   
   
-  #### reference for pairs of sets is first object of list ####
+  #### reference for pairs of sets is first object of
+  #### list ####
   
   # applying dist_long:
   df_dist <- dendextend::dist_long(list_dist[[1]])
   
   # reversing and renaming order of columns:
-  df_dist <- data.frame(df_dist$cols, df_dist$rows, df_dist$distance)
+  df_dist <- data.frame(df_dist$cols, df_dist$rows, 
+                        df_dist$distance)
   names(df_dist) <- c("x1", "x2", dist_nm[1])
   
   
-  #### if other dist object, binding values with first ones as new column(s) ####
+  #### if other dist object, binding values with first
+  #### ones as new column(s) ####
   
-  if (dist_nb > 1) {
+  if (dist_nb > 1) 
+  {
     
     # loop on dist objects:
     for (k in 2:length(list_dist)) {
@@ -90,25 +89,29 @@ dist.to.df <- function(list_dist) {
       k_labels <- labels(list_dist[[k_nm]])
       
       # checking same labels than first dist object:
-      if (is.null(k_labels) | any(dist1_labels != k_labels)) {
-        stop (paste0("Error: element ", k_nm, " does not have the same labels
-      than first dist object ", dist_nm[1], ".Check labels of inputs.") )
+      if (is.null(k_labels) | any(dist1_labels != 
+                                  k_labels)) {
+        stop(paste0("Error: element ", k_nm, 
+                    " does not have the same labels
+      than first dist object ", 
+                    dist_nm[1], ".Check labels of inputs."))
       }
       
       # applying dist_long:
       df_k <- dendextend::dist_long(list_dist[[k_nm]])
       
-      # merging with first dataframe as variable with dist object name:
+      # merging with first dataframe as variable with
+      # dist object name:
       df_dist[[k_nm]] <- df_k$distance
       
-    } # end of k
+    }  # end of k
     
     
-  } # end of if at least 2 dist objects
+  }  # end of if at least 2 dist objects
   
   
   # output:
   return(df_dist)
   
   
-} # end of function
+}  # end of function
