@@ -163,7 +163,7 @@ beta.fd.hill <- function(asb_sp_w,
 
   #  preliminary operations ####
 
-  # ensuring species are in the same order in  (asb_sp_w)]
+  # ensuring species are in the same order in (asb_sp_w)
 
   # names and number of assemblages
   asb_sp_w <- as.matrix(asb_sp_w)
@@ -232,7 +232,7 @@ beta.fd.hill <- function(asb_sp_w,
 
 
   # combinations of assemblages
-  asb_pairs <- t (utils::combn(asb_nm, 2))
+  asb_pairs <- t(utils::combn(asb_nm, 2))
   asb_pairs_nb <- nrow(asb_pairs)
   colnames(asb_pairs) <- paste0("asb.", 1:2)
 
@@ -240,7 +240,7 @@ beta.fd.hill <- function(asb_sp_w,
   for (x in 1:asb_pairs_nb) {
 
     # names of assemblages in the pair x:
-    asb_nm_x<-asb_pairs[x,]
+    asb_nm_x <- asb_pairs[x, ]
 
 
     # computing core variables for the pair of assemblages ----
@@ -248,7 +248,7 @@ beta.fd.hill <- function(asb_sp_w,
 
     # weights of species (rows) in the 2 assemblages (columns)
     # (nik, bottom right p16)
-    x_nik <- t(asb_sp_w[asb_pairs[x, ], ])
+    x_nik <- t(asb_sp_w[asb_nm_x, ])
 
     # total weight of species in the 2 assemblages
     x_npp <- sum(x_nik)
@@ -321,14 +321,14 @@ beta.fd.hill <- function(asb_sp_w,
 
 
     # q=2 ----
-    if (2 %in% q)
-    {
+    if (2 %in% q) {
+      
       # alpha diversity (eq 7a) with special case of 0^0=0
       # hence sum of species attribute contribution depends on their occurrence
       x_malpha_q2 <- 0.5 / (sum(x_sp_vip * ((x_sp_aik / x_npp)^2)))
 
       # gamma diversity (eq 6a)
-      x_gamma_q2 <-1 / (sum(x_sp_vip * ((x_sp_aip / x_npp)^2)))
+      x_gamma_q2 <- 1 / (sum(x_sp_vip * ((x_sp_aip / x_npp)^2)))
 
       # beta Jaccard or Sorensen
       if (beta_type == "Sorensen") {
