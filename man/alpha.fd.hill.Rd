@@ -70,17 +70,20 @@ is linear:f(dij(tau)) = dij(tau)/tau, hence f(0)=0 and f(tau)=1.
 }
 \examples{
 # Load Species*Traits dataframe:
-data("fruits_traits", package = "mFD")
+data('fruits_traits', package = 'mFD')
 # Load Assemblages*Species dataframe:      
-data("baskets_fruits_weights", package = "mFD")   
+data('baskets_fruits_weights', package = 'mFD')   
 # Compute functional distance 
 sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,         
  tr_cat       = fruits_traits_cat,   
- dist_metric  = "kgower",         
- scaling      = "scaledBYrange",  
+ dist_metric  = 'kgower',         
+ scaling      = 'scaledBYrange',  
  stop_if_NA   = TRUE)
 # Compute alpha fd hill indices:
 alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, q = c(0, 1, 2),
- tau = "mean", check_input = TRUE, details_returned = TRUE)
+ tau = 'mean', check_input = TRUE, details_returned = TRUE)
 
+}
+\author{
+Sébastien Villéger
 }
