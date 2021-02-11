@@ -8,15 +8,15 @@ assemblage in a multidimensional functional space.}
 vertices(sp_faxes_coord, order_2D = FALSE, check_input = FALSE)
 }
 \arguments{
-\item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a chosen functional
+\item{sp_faxes_coord}{a matrix of species coordinates in a chosen functional
 space. Species coordinates have been retrieved thanks to
-\code{fspace.conttr} or \code{qual.funct.space}.}
+\code{fspace.conttr} or \code{\link{qual.funct.space}}.}
 
-\item{order_2D}{a \strong{logical value} defining whether vertices names are reordered
+\item{order_2D}{a logical value defining whether vertices names are reordered
 so that they define a convex polygon in 2D which is convenient for plotting.
 Default is FALSE, vertices ordered as in row names of 'sp_faxes_coord'}
 
-\item{check_input}{a \strong{logical value} defining whether inputs are checked before
+\item{check_input}{a logical value defining whether inputs are checked before
 computation: species names must be put as row.names, there must be no NA
 and species number must be superior to (axes number + 1). Default:
 check_input = TRUE.}
@@ -26,7 +26,9 @@ a vector containing names of species being vertices \code{vert_nm}
 }
 \description{
 This function identifies species that are vertices of the minimal convex hull
-enclosing a community in a multidimensional functional space. This function is
-using the Qhull (http://www.qhull.org/) library through the
-\code{geometry::convhulln} function.
+enclosing a community in a multidimensional functional space. This function
+is using the \code{\link[geometry]{convhulln}} function.
+}
+\author{
+Camille Magneville and Sébastien Villéger
 }

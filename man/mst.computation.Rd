@@ -7,7 +7,7 @@
 mst.computation(sp_faxes_coord_k)
 }
 \arguments{
-\item{sp_faxes_coord_k}{a \strong{matrix} relating species coordinates for species
+\item{sp_faxes_coord_k}{a matrix relating species coordinates for species
 present in a given assemblage}
 }
 \value{
@@ -17,4 +17,7 @@ assemblage \code{mst_asb_k}
 \description{
 This function computes the MST linking species of a given assemblage and is
 used to compute FEve index.
+}
+\author{
+Camille Magneville and Sébastien Villéger
 }

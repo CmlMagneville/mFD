@@ -7,11 +7,11 @@
 dist.point(sp_faxes_coord, ref_sp)
 }
 \arguments{
-\item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a chosen functional
+\item{sp_faxes_coord}{a matrix of species coordinates in a chosen functional
 space. Species coordinates have been retrieved thanks to
 \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
-\item{ref_sp}{a \strong{character string} referring to the name of the reference
+\item{ref_sp}{a character string referring to the name of the reference
 species}
 }
 \value{
@@ -20,4 +20,7 @@ a vector of species distances to the reference species \code{dist_refsp}
 \description{
 This function computes the distances of all species to a reference species.
 It is used in FSpe, FOri and FNND computation.
+}
+\author{
+Camille Magneville and Sébastien Villéger
 }
