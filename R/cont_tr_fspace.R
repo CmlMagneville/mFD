@@ -137,7 +137,7 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
     stop("Species x traits data frame must contain only numerical variables.")
   }
   
-  scaling <- match.arg(scaling, c("range", "center", "scale", "scale_center"))
+  scaling <- match.arg(scaling, c("range", "center", "scale", "scale_center", "no_scale"))
   
   compute_corr <- match.arg(compute_corr, c("pearson", "none"))
   
