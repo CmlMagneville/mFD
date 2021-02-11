@@ -27,13 +27,13 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Sebastien Villeger \email{sebastien.villeger@cnrs.fr} (\href{https://orcid.org/0000-0002-2362-7178}{ORCID}) [thesis advisor]
+  \item Sebastien Villeger \email{sebastien.villeger@cnrs.fr} (\href{https://orcid.org/0000-0002-2362-7178}{ORCID})
   \item Nicolas Loiseau \email{nicolas.loiseau@umontpellier.fr} (\href{https://orcid.org/0000-0002-2469-1980}{ORCID})
-  \item Fabien Leprieur \email{fabien.leprieur@umontpellier.fr} (\href{https://orcid.org/0000-0001-6869-342X}{ORCID})
-  \item Arthur Escalas \email{arthur.escalas@umontpellier.fr} (\href{https://orcid.org/0000-0002-6450-5716}{ORCID})
   \item Camille Albouy \email{albouycamille@gmail.comr} (\href{https://orcid.org/0000-0003-1629-2389}{ORCID})
-  \item Eva Maire \email{emg.maire@umontpellier.fr} (\href{https://orcid.org/0000-0002-1032-3394}{ORCID})
   \item Thomas Claverie \email{tclaverie@gmail.com} (\href{https://orcid.org/0000-0002-6258-4991}{ORCID})
+  \item Arthur Escalas \email{arthur.escalas@umontpellier.fr} (\href{https://orcid.org/0000-0002-6450-5716}{ORCID})
+  \item Fabien Leprieur \email{fabien.leprieur@umontpellier.fr} (\href{https://orcid.org/0000-0001-6869-342X}{ORCID})
+  \item Eva Maire \email{emg.maire@umontpellier.fr} (\href{https://orcid.org/0000-0002-1032-3394}{ORCID})
   \item David Mouillot \email{david.mouillot@gmail.com} (\href{https://orcid.org/0000-0003-0402-2605}{ORCID})
 }
 
