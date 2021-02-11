@@ -31,9 +31,9 @@ to use based on your data. For this function to work, there must be no NA in
 your \code{sp_tr} data frame.
 }
 \examples{
-load(system.file("extdata", "sp_tr_cestes_df", package = "mFD"))
+load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 
-mFD::tr.cont.scale(sp_tr, std_method = "scale_center")
+mFD::tr.cont.scale(sp_tr, std_method = 'scale_center')
 }
 \author{
 Camille Magneville & Sébastien Villéger

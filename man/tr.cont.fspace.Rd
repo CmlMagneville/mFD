@@ -37,7 +37,7 @@ on the number of positive eigenvalues obtained with the PCA. High value for
 Default is \code{scale_center}.}
 
 \item{compute_corr}{a string value to compute Pearson correlation
-coefficients between traits (\code{compute_corr = "pearson"}). You can choose
+coefficients between traits (\code{compute_corr = 'pearson'}). You can choose
 not to compute correlation coefficient by setting \code{compute_corr} to \code{none}.}
 }
 \value{
@@ -55,10 +55,10 @@ you want to center, scale or standardize by any mean your data, please use
 correlation between traits.
 }
 \examples{
-load(system.file("extdata", "sp_tr_cestes_df", package = "mFD"))
+load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 
-mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
-                    compute_corr = "pearson")
+mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = 'scale_center',
+                    compute_corr = 'pearson')
 }
 \author{
 Camille Magneville & Sébastien Villéger

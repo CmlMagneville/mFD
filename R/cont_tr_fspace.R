@@ -27,9 +27,9 @@
 #' @importFrom stats sd
 #' 
 #' @examples
-#' load(system.file("extdata", "sp_tr_cestes_df", package = "mFD"))
+#' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
-#' mFD::tr.cont.scale(sp_tr, std_method = "scale_center")
+#' mFD::tr.cont.scale(sp_tr, std_method = 'scale_center')
 
 
 tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
@@ -42,14 +42,15 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
     stop("Species x traits data frame must contain only numerical variables.")
   }
   
-  std_method <- match.arg(std_method, c("range", "center", "scale", 
-                                        "scale_center"))
+  std_method <- match.arg(std_method, c("range", 
+                                        "center", "scale", "scale_center"))
   
   
   ## Standardization ----
   
   if (std_method == "range") {
-    sp_tr <- apply(sp_tr, 2, function(x) (x - min(x)) / (max(x) - min(x)))
+    sp_tr <- apply(sp_tr, 2, function(x) (x - min(x))/(max(x) - 
+                                                         min(x)))
   }
   
   if (std_method == "center") {
@@ -57,11 +58,11 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
   }
   
   if (std_method == "scale") {
-    sp_tr <- apply(sp_tr, 2, function(x) x / stats::sd(x))
+    sp_tr <- apply(sp_tr, 2, function(x) x/stats::sd(x))
   }
   
   if (std_method == "scale_center") {
-    sp_tr <- apply(sp_tr, 2, function(x) (x - mean(x) / stats::sd(x)))
+    sp_tr <- apply(sp_tr, 2, function(x) (x - mean(x)/stats::sd(x)))
   }
   
   return(sp_tr)
@@ -103,7 +104,7 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'   Default is `scale_center`.
 #'
 #' @param compute_corr a string value to compute Pearson correlation
-#'   coefficients between traits (`compute_corr = "pearson"`). You can choose 
+#'   coefficients between traits (`compute_corr = 'pearson'`). You can choose 
 #'   not to compute correlation coefficient by setting `compute_corr` to `none`.
 #'
 #' @return A list with a data frame containing species coordinates on each 
@@ -119,10 +120,10 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #' @importFrom stats dist
 #' 
 #' @examples
-#' load(system.file("extdata", "sp_tr_cestes_df", package = "mFD"))
+#' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
-#' mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
-#'                     compute_corr = "pearson")
+#' mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = 'scale_center',
+#'                     compute_corr = 'pearson')
 
 
 tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7, 
@@ -137,9 +138,11 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
     stop("Species x traits data frame must contain only numerical variables.")
   }
   
-  scaling <- match.arg(scaling, c("range", "center", "scale", "scale_center", "no_scale"))
+  scaling <- match.arg(scaling, c("range", "center", 
+                                  "scale", "scale_center", "no_scale"))
   
-  compute_corr <- match.arg(compute_corr, c("pearson", "none"))
+  compute_corr <- match.arg(compute_corr, c("pearson", 
+                                            "none"))
   
   
   if (pca) {
@@ -164,22 +167,24 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
   
   ## Functions Definition ----
   
-  compute_corr_coef <- function(sp_tr) { # Compute Correlation Matrix
+  compute_corr_coef <- function(sp_tr) {
+    # Compute Correlation Matrix
     
     if (nrow(sp_tr) <= 4) {
-      stop("If you want to compute correlation matrix you must have more than ",
+      stop("If you want to compute correlation matrix you must have more than ", 
            "4 observations.")
     }
     
     Hmisc::rcorr(as.matrix(sp_tr), type = "pearson")
   }
   
-  deviation_dist <- function(sp_dist_init, sp_dist_multidim) { # mSD and mAD
+  deviation_dist <- function(sp_dist_init, sp_dist_multidim) {
+    # mSD and mAD
     
     deviation_dist <- sp_dist_multidim - sp_dist_init
     
-    c("mAD" = mean(abs(deviation_dist), 6), 
-      "mSD" = mean(((deviation_dist) ^ 2), 6))
+    c(mAD = mean(abs(deviation_dist), 6), mSD = mean(((deviation_dist)^2), 
+                                                     6))
   }
   
   
@@ -192,89 +197,96 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
   
   if (pca) {
     
-    # compute functional dissimilarity matrix used for computing quality of...
-    # ... functional spaces:
+    # compute functional dissimilarity matrix used for
+    # computing quality of...  ... functional spaces:
     sp_dist_init <- cluster::daisy(sp_tr, metric = "euclidean")
     
     # compute PCA analysis:
-    pca_analysis <- FactoMineR::PCA(sp_tr, ncp = nb_dim, graph = FALSE, 
-                                    scale.unit = FALSE)
+    pca_analysis <- FactoMineR::PCA(sp_tr, ncp = nb_dim, 
+                                    graph = FALSE, scale.unit = FALSE)
     
-    sp_faxes_coord <- as.data.frame(pca_analysis$"ind"$"coord")
-
+    sp_faxes_coord <- as.data.frame(pca_analysis$ind$coord)
+    
     # restrict the number of column to nb_dim:
     if (ncol(sp_faxes_coord) > nb_dim) {
-      sp_faxes_coord <- sp_faxes_coord[ , 1:nb_dim]
+      sp_faxes_coord <- sp_faxes_coord[, 1:nb_dim]
     }
     
     
     # matrix to store quality results:
-    quality_nbdim <- matrix(NA, nb_dim - 1, 2,
-                            dimnames = list(paste0(2:nb_dim, "D"),
+    quality_nbdim <- matrix(NA, nb_dim - 1, 2, 
+                            dimnames = list(paste0(2:nb_dim, "D"), 
                                             c("mAD", "mSD")))
     
     sp_dist_multidim <- list()
     
     for (i in 2:nb_dim) {
       
-      sp_dist_multidim2 <- stats::dist(sp_faxes_coord[ , 1:i], 
-                                       method = "euclidean")
-      quality_nbdim[paste0(i, "D"),
-                    c("mAD", "mSD")] <- deviation_dist(sp_dist_init,
-                                                       sp_dist_multidim2)
+      sp_dist_multidim2 <- stats::dist(sp_faxes_coord[, 
+                                                      1:i], method = "euclidean")
+      quality_nbdim[paste0(i, "D"), c("mAD", 
+                                      "mSD")] <- deviation_dist(sp_dist_init, 
+                                                                sp_dist_multidim2)
       
       sp_dist_multidim[[i - 1]] <- sp_dist_multidim2
-      names(sp_dist_multidim)[i - 1] <- paste0(i, "D")
+      names(sp_dist_multidim)[i - 1] <- paste0(i, 
+                                               "D")
     }
     
-      
+    
     if (compute_corr == "pearson") {
       
       corr_tr_coeff <- compute_corr_coef(sp_tr)
       
-      return_list1  <- list(quality_nbdim, as.matrix(sp_faxes_coord), 
-                            sp_dist_multidim, corr_tr_coeff)
+      return_list1 <- list(quality_nbdim, as.matrix(sp_faxes_coord), 
+                           sp_dist_multidim, corr_tr_coeff)
       
-      names(return_list1) <- c("mAD and mSD for each functional space",
-                               "species coordinates in functional space",
-                               "species distance in functional space",
+      names(return_list1) <- c("mAD and mSD for each functional space", 
+                               "species coordinates in functional space", 
+                               "species distance in functional space", 
                                "correlation coefficients between traits
                                and their associated pvalue")
       return(return_list1)
-    
-    } else { # no Pearson correlation
       
-      return_list1 <- list(quality_nbdim, sp_faxes_coord, sp_dist_multidim)
+    } else {
+      # no Pearson correlation
       
-      names(return_list1) <- c("mAD and mSD for each functional space",
-                               "species coordinates in functional space",
+      return_list1 <- list(quality_nbdim, sp_faxes_coord, 
+                           sp_dist_multidim)
+      
+      names(return_list1) <- c("mAD and mSD for each functional space", 
+                               "species coordinates in functional space", 
                                "species distance in functional space")
       return(return_list1)
     }
-  
-  } else { # no PCA
     
-    # compute distance matrix between species for computing ...
-    # ... multidimensional space:
-    sp_dist_init   <- cluster::daisy(sp_tr, metric = "euclidean")
+  } else {
+    # no PCA
+    
+    # compute distance matrix between species for
+    # computing ...  ... multidimensional space:
+    sp_dist_init <- cluster::daisy(sp_tr, metric = "euclidean")
     sp_faxes_coord <- sp_tr
     
     if (compute_corr == "pearson") {
       
       corr_tr_coeff <- compute_corr_coef(sp_tr)
-      return_list2  <- list(sp_faxes_coord, sp_dist_init, corr_tr_coeff)
+      return_list2 <- list(sp_faxes_coord, sp_dist_init, 
+                           corr_tr_coeff)
       
-      names(return_list2) <- c("species coordinates in functional space",
-                               "species distances in functional space",
-                               paste("correlation coefficients between traits",
+      names(return_list2) <- c("species coordinates in functional space", 
+                               "species distances in functional space", 
+                               paste("correlation coefficients between traits", 
                                      "and their associated pvalue"))
       return(return_list2)
-    
-    } else { # no Pearson correlation
       
-      return_list2 <- list(as.matrix(sp_faxes_coord), sp_dist_init)
+    } else {
+      # no Pearson correlation
       
-      names(return_list2) <- c("species coordinates in functional space",
+      return_list2 <- list(as.matrix(sp_faxes_coord), 
+                           sp_dist_init)
+      
+      names(return_list2) <- c("species coordinates in functional space", 
                                "species distances in functional space")
       return(return_list2)
     }
