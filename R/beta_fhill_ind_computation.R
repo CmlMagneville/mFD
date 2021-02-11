@@ -5,31 +5,31 @@
 #' FD is computed applying the special case where function 'f' in equation 3c is
 #' linear: f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 #'
-#'@param asb_sp_w a \strong{matrix} with weight of species (columns) in a set of
+#' @param asb_sp_w a \strong{matrix} with weight of species (columns) in a set of
 #'  assemblages (rows). Rows and columns should have names. NA are not allowed.
 #'
-#'@param sp_dist a \strong{matrix or dist object} with distance between species. Species
-#' names should be provided and match those in 'asb_sp_w'. NA are not allowed.
+#' @param sp_dist a \strong{matrix or dist object} with distance between species. Species
+#'  names should be provided and match those in 'asb_sp_w'. NA are not allowed.
 #'
-#'@param q a \strong{vector} containing values referring to the order of diversity to use
+#' @param q a \strong{vector} containing values referring to the order of diversity to use
 #'
-#'@param tau a \strong{character string} with name of function to apply to distance
-#' matrix (i.e. among all pairs of species) to get the threshold used to define
-#' 'functionally indistinct set of species'. Could be qet to 'mean' (default),
-#' 'min' or 'max'.
+#' @param tau a \strong{character string} with name of function to apply to distance
+#'  matrix (i.e. among all pairs of species) to get the threshold used to define
+#'  'functionally indistinct set of species'. Could be qet to 'mean' (default),
+#'  'min' or 'max'.
 #'
-#'@param beta_type a \strong{character string} with name of framework used for computing
-#' beta-diversity, either 'Jaccard' (default) or 'Sorensen'.
+#' @param beta_type a \strong{character string} with name of framework used for computing
+#'  beta-diversity, either 'Jaccard' (default) or 'Sorensen'.
 #'
-#'@param check_input a \strong{logical value} defining whether inputs are checked before
+#' @param check_input a \strong{logical value} defining whether inputs are checked before
 #'  computation of indices. Possible error messages will thus may be more
 #'  understandable for the user than R error messages. Default: check_input =
 #'  TRUE.
 #'
-#'@param details_returned a \strong{logical value} indicating whether the user want to store
-#' values used for computing indices (see list below)
+#' @param details_returned a \strong{logical value} indicating whether the user want to store
+#'  values used for computing indices (see list below)
 #'
-#'@return a list with: \itemize{
+#' @return a list with: \itemize{
 #'
 #'  \item \emph{asb_FDbeta} a dataframe with a row for each pair of assemblages
 #'  (names in 2 first columns, as in \strong{asb_sp_w}) and beta-diversity
@@ -52,7 +52,7 @@
 #' set to the minimum non-null value and a warning message is displayed.
 #' Indices values are stored as \emph{dist} objects to optimize memory.
 #'
-#'@examples
+#' @examples
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' # Load Assemblages*Species dataframe:      
@@ -68,15 +68,15 @@
 #'  q = c(0,1,2), tau = 'mean',
 #'  beta_type = 'Jaccard', check_input = TRUE, details_returned = TRUE)
 #'  
-#'@references 
+#' @references 
 #'   Chao _et al._ (2019) An attribute‐diversity approach to functional
 #'   diversity, functional beta diversity, and related (dis)similarity measures.
 #'   _Ecological Monographs_, **89**.\cr
 #'
-#'@importFrom utils combn
-#'@importFrom stats dist
+#' @importFrom utils combn
+#' @importFrom stats dist
 #'
-#'@export
+#' @export
 
 beta.fd.hill <- function(asb_sp_w, sp_dist, q = c(0, 1, 2), 
                          tau = "mean", beta_type = "Jaccard", 
