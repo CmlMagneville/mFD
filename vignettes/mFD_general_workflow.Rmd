@@ -511,7 +511,60 @@ the metric quality values obtained in **step 4.1**.
 
 <br />
 
-# 5. Plot chosen functional space
+
+# 5. Test correlation between functional axes and traits
+
+`mFD` allows to test for correlations between traits and functional axes and then illustrate possible correlations. For continuous traits, a linear model is computed and r2 and associated p-value are returned. For non-continuous traits, a Kruskal-Wallis test is computed and eta2 statistic is returned. The function `mFD::traits.faxes.cor` allows to test and plot correlation and needs the following arguments:
+
+* `sp_tr` is the species x trait data frame
+* `sp_faxes_coord` is a matrix of species coordinates taken from the outputs of
+the `mFD::quality.fspaces()` function **with columns representing axes on which
+functional space must be computed**. For instance, in this tutorial, we will plot
+the functional space for 4 and 10 dimensions (*cf.* the two examples below).
+The whole `sp_faxes_coord` can be retrieved through the output of the
+`mFD::quality.fspaces()` function:
+<br />
+
+
+```{r, results = "hide"}
+sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+```
+<br />
+
+* `plot` is a logical value indicating whether correlations should be illustrated or not. If this option is set to `TRUE`, traits-axis relationships are plotted through scatterplot for continuous traits and boxplot for non-continuous traits.
+
+
+`mFD::traits.faxes.cor` works as follows:
+<br />
+
+**USAGE**
+
+```{r, results = "hide"}
+fruits_tr_faxes <- mFD::traits.faxes.cor(sp_tr = fruits_traits, 
+                                    sp_faxes_coord = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3",                                          "PC4")], plot = TRUE)
+```
+<br />
+We can print only traits with significant effect on position along one of the axis and look at the plots:
+
+<br />
+
+
+```{r, fig.height = 7, fig.width = 12, fig.align = "center"}
+# Print traits with significant effect:
+fruits_tr_faxes$tr_faxes_stat[which(fruits_tr_faxes$tr_faxes_stat$p.value < 0.05), ]
+
+# Return plots:
+fruits_tr_faxes$tr_faxes_plot
+```
+
+<br />
+
+We can thus see that `PC1` is mostly driven by Size (large fruits on the right) and Plant Type (forb & shrub on the left vs tree & vine on the right), with weaker influence Climate (eta2 < 0.25) and Use of fruits (r2 < 0.4). Then, `PC2` is mostly driven by Plant type (vine on the left, shrubs on the right) and use as jam (high on the right). `PC3` is driven by Climate (tropical on the right), Seed (pit on the right) and Sugar Content (high on the right). And finally `PC4` is driven by only one trait: Plant Type with forbs on the left and vines on the right.
+
+<br />
+
+
+# 6. Plot chosen functional space
 
 <br />
 
@@ -647,11 +700,11 @@ Here, all the species are vertices compared with the last example with only four
 <br />
 
 
-# 6. Compute functional diversity indices & plot them
+# 7. Compute functional diversity indices & plot them
 
 <br />
 
-## 6.1. Functional diversity indices based on Functional Entities
+## 7.1. Functional diversity indices based on Functional Entities
 
 <br />
 
@@ -664,7 +717,7 @@ based on FEs can not be compute. Check the [Compute functional diversity indices
 
 <br />
 
-## 6.2. Functional alpha diversity indices in a multidimensional space
+## 7.2. Functional alpha diversity indices in a multidimensional space
 
 <br />
 
@@ -960,7 +1013,7 @@ plots_alpha[[7]]
 
 <br />
 
-## 6.3. Functional beta diversity indices based on multidimensional space
+## 7.3. Functional beta diversity indices based on multidimensional space
 
 <br />
 
