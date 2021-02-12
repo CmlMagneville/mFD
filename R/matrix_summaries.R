@@ -53,95 +53,107 @@
 #'
 #' @examples
 #' # Load Species x Traits data
-#' data("fruits_traits", package = "mFD")
+#' data('fruits_traits', package = 'mFD')
 #'
 #' # Load Traits x Categories data
-#' data("fruits_traits_cat", package = "mFD")
+#' data('fruits_traits_cat', package = 'mFD')
 #'
 #' # Summarize Species x Traits data
 #' mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
 
 
-sp.tr.summary <- function(tr_cat, sp_tr, stop_if_NA = TRUE) {
-
-
+sp.tr.summary <- function(tr_cat, sp_tr, 
+                          stop_if_NA = TRUE) {
+  
+  
   ## Check Inputs ----
-
+  
   check.sp.tr(sp_tr, tr_cat, stop_if_NA = TRUE)
-
-
+  
+  
   ## Checks Traits Formats ----
-
+  
   check.nominal(tr_cat, sp_tr)
   check.ordinal(tr_cat, sp_tr)
   check.circular(tr_cat, sp_tr)
   check.continuous(tr_cat, sp_tr)
   check.fuzzy(tr_cat, sp_tr)
-
-
+  
+  
   ## Retrieve Traits Informations ----
-
-  tr_type        <- tr_cat$"trait_type"
-  names(tr_type) <- tr_cat$"trait_name"
-
-
+  
+  tr_type <- tr_cat$trait_type
+  names(tr_type) <- tr_cat$trait_name
+  
+  
   ## Transform Fuzzy-coded Traits ----
-
-  if ("F" %in% tr_cat$"trait_type") {
-
+  
+  if ("F" %in% tr_cat$trait_type) {
+    
     # retrieve names of fuzzy-coded traits:
-    nm_fuzzy <- unique(stats::na.omit(tr_cat$"fuzzy_name"))
-
+    nm_fuzzy <- unique(stats::na.omit(tr_cat$fuzzy_name))
+    
     # Update names, type and number of traits
-    tr_nm   <- c(tr_cat$"trait_name"[tr_cat$"trait_type" != "F"], nm_fuzzy)
-    tr_nb   <- length(tr_nm)
-    tr_type <- c(tr_cat$"trait_type"[tr_cat$"trait_type" != "F"],
-                 rep("F", length(nm_fuzzy)))
+    tr_nm <- c(tr_cat$trait_name[tr_cat$trait_type != 
+                                   "F"], nm_fuzzy)
+    tr_nb <- length(tr_nm)
+    tr_type <- c(tr_cat$trait_type[tr_cat$trait_type != 
+                                     "F"], rep("F", length(nm_fuzzy)))
     names(tr_type) <- tr_nm
   }
-
-
-  ## Function Return  ----
-
-  if (!("F" %in% tr_type)) {          # no fuzzy traits
-
+  
+  
+  ## Function Return ----
+  
+  if (!("F" %in% tr_type)) {
+    # no fuzzy traits
+    
     # Table with traits summary
     tr_summary_list <- summary(sp_tr)
-
+    
     # Vector containing traits types
     tr_types <- sapply(sp_tr, class)
-
-    # List containing modalities for non continuous traits
-    sp_non_conttr <- sp_tr[ , lapply(sp_tr, function(x) !is.numeric(x))]
-    non_conttr_modalities_list <- lapply(sp_non_conttr, unique)
-
-    return(list("tr_summary_list"     = tr_summary_list,
-                "tr_types"            = tr_types,
-                "non_conttr_mod_list" = non_conttr_modalities_list))
-
-  } else {                            # fuzzy coded traits
-
-    # Table with traits summary for non fuzzy traits
-    tr_summary_list <- summary(sp_tr[ , tr_cat$"trait_name"[
-      which(tr_cat$"trait_type" != "F")], ])
-
-    # Vector containing traits type for non fuzzy traits
-    tr_types <- sapply(sp_tr[ , tr_cat$"trait_name"[
-      which(tr_cat$"trait_type" != "F")], ], class)
-
-    # List containing modalities for non continuous traits
-    sp_non_conttr <- sp_tr[ , tr_cat$"trait_name"[
-      which(tr_cat$"trait_type" != "F" & tr_cat$"trait_type" != "Q")], ]
-    mod_list <- lapply(sp_non_conttr, unique)
-
+    
+    # List containing modalities for non
+    # continuous traits
+    sp_non_conttr <- sp_tr[, lapply(sp_tr, 
+                                    function(x) !is.numeric(x))]
+    non_conttr_modalities_list <- lapply(sp_non_conttr, 
+                                         unique)
+    
+    return(list(tr_summary_list = tr_summary_list, 
+                tr_types = tr_types, 
+                non_conttr_mod_list = non_conttr_modalities_list))
+    
+  } else {
+    # fuzzy coded traits
+    
+    # Table with traits summary for non fuzzy
+    # traits
+    tr_summary_list <- summary(sp_tr[, 
+                                  tr_cat$trait_name[which(tr_cat$trait_type != 
+                                                               "F")], ])
+    
+    # Vector containing traits type for non
+    # fuzzy traits
+    tr_types <- sapply(sp_tr[, tr_cat$trait_name[which(tr_cat$trait_type != 
+                                                         "F")], ], class)
+    
+    # List containing modalities for non
+    # continuous traits
+    sp_non_conttr <- sp_tr[, tr_cat$trait_name[which(tr_cat$trait_type != 
+                                            "F" & tr_cat$trait_type != "Q")], ]
+    mod_list <- lapply(sp_non_conttr, 
+                       unique)
+    
     # For fuzzy traits
-    tr_summary_fuzzy_list <- summary(sp_tr[ , tr_cat$"trait_name"[
-      which(tr_cat$"trait_type" == "F")], ])
-
-    return(list("tr_summary_non_fuzzy_list" = tr_summary_list,
-                "tr_summary_fuzzy_list"     = tr_summary_fuzzy_list,
-                "tr_types"                  = tr_types,
-                "mod_list"                  = mod_list))
+    tr_summary_fuzzy_list <- summary(sp_tr[, 
+                                  tr_cat$trait_name[which(tr_cat$trait_type == 
+                                                                     "F")], ])
+    
+    return(list(tr_summary_non_fuzzy_list = tr_summary_list, 
+                tr_summary_fuzzy_list = tr_summary_fuzzy_list, 
+                tr_types = tr_types, mod_list = mod_list))
   }
 }
 
@@ -172,54 +184,61 @@ sp.tr.summary <- function(tr_cat, sp_tr, stop_if_NA = TRUE) {
 #'
 #' @examples
 #' # Load Assemblages x Species Matrix
-#' data("baskets_fruits_weights", package = "mFD")
+#' data('baskets_fruits_weights', package = 'mFD')
 #' 
 #' # Summarize Assemblages Data
 #' mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 
 asb.sp.summary <- function(asb_sp_w) {
-
-
+  
+  
   ## Check Input ----
-
+  
   check.asb.sp.w(asb_sp_w)
-
+  
   # Species occurrence data frame
-  asb_sp_w_occ <- replace(asb_sp_w, asb_sp_w != 0, 1)
-
-  # Vector containing the number of occurrences of each species
-  nbocc_sp <- apply(as.data.frame(asb_sp_w), 2, sum)
-
-  # Vector containing total abundance/biomass per assemblage
-  asb_totab <- apply(as.data.frame(asb_sp_w), 1, sum)
-
-  # Vector containing species richness of each assemblage
-  asb_sp_wrichn <- apply(asb_sp_w_occ, 1, sum)
-
-
-  # Construction of a list containing vectors with species names for each...
+  asb_sp_w_occ <- replace(asb_sp_w, asb_sp_w != 
+                            0, 1)
+  
+  # Vector containing the number of
+  # occurrences of each species
+  nbocc_sp <- apply(as.data.frame(asb_sp_w), 
+                    2, sum)
+  
+  # Vector containing total
+  # abundance/biomass per assemblage
+  asb_totab <- apply(as.data.frame(asb_sp_w), 
+                     1, sum)
+  
+  # Vector containing species richness of
+  # each assemblage
+  asb_sp_wrichn <- apply(asb_sp_w_occ, 
+                         1, sum)
+  
+  
+  # Construction of a list containing
+  # vectors with species names for each...
   # ... assemblage
   L <- list()
-
+  
   for (i in 1:nrow(asb_sp_w_occ)) {
-
+    
     data <- asb_sp_w_occ[i, , drop = FALSE]
     asb_name <- rownames(data)
     
-    data <- data[ , which(apply(data, 2, max) == TRUE)]
+    data <- data[, which(apply(data, 
+                               2, max) == TRUE)]
     sp_names <- names(data)
     
     L[[i]] <- as.vector(data)
-    names(L)[i]   <- asb_name
+    names(L)[i] <- asb_name
     names(L[[i]]) <- sp_names
   }
-
-
+  
+  
   ## Function Return ----
-
-  list("asb_sp_occ"       = as.matrix(asb_sp_w_occ),
-       "sp_tot_w"    = nbocc_sp,
-       "asb_tot_w"   = asb_totab,
-       "asb_sp_richn" = asb_sp_wrichn,
-       "asb_sp_nm"        = L)
+  
+  list(asb_sp_occ = as.matrix(asb_sp_w_occ), 
+       sp_tot_w = nbocc_sp, asb_tot_w = asb_totab, 
+       asb_sp_richn = asb_sp_wrichn, asb_sp_nm = L)
 }
