@@ -25,13 +25,21 @@ check.tr.cat <- function(tr_cat) {
     }
   }
   
-  if (ncol(tr_cat) > 2) {
+  if (ncol(tr_cat) == 3) {
     valid_names  <- c("trait_name", "trait_type", "fuzzy_name")
     if (!identical(colnames(tr_cat), valid_names)) {
       stop("The 3 first columns of the traits x category data frame must be ",
            "'trait_name', 'trait_type', and 'fuzzy_name' in this exact order.")
     }
+  } 
+  if (ncol(tr_cat) > 3) {
+    valid_names  <- c("trait_name", "trait_type", "fuzzy_name","trait_weigth")
+    if (!identical(colnames(tr_cat), valid_names)) {
+      stop("The 3 first columns of the traits x category data frame must be ",
+           "'trait_name', 'trait_type', and 'fuzzy_name' in this exact order.")
+    }
   }
+  
   
   if (any(is.na(tr_cat$"trait_type"))) {
     stop("Trait type in traits x category data frame contains NA. Please ",
