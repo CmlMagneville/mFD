@@ -47,6 +47,11 @@ dist.to.df <- function(list_dist) {
               Correct using 'as.dist()' if necessary")
   }
   
+  # checking input is a list
+  if ( ! is.list(list_dist) ) {
+    stop("Error: input 'list_dist' should be a list (even when only one dist object is provided)")
+  }
+  
   
   # checking all dist objects have names:
   if (is.null(dist_nm) | any(nchar(dist_nm) == 0)) {
