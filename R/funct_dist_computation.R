@@ -64,7 +64,7 @@
 #'   _Global Ecology and Biogeography_, **30**, 51-62.\cr
 #'   Pavoine _et al._ (2009) On the challenge of treating various types of 
 #'   variables: application for improving the measurement of functional 
-#'   diversity, _Oikos_, **118**, 391-402
+#'   diversity, _Oikos_, **118**, 391-402. \cr
 #' 
 #' @author Nicolas Loiseau & Sébastien Villéger
 #'
