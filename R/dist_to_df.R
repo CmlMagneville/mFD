@@ -42,9 +42,17 @@ dist.to.df <- function(list_dist) {
   #### checking inputs #####
   
   # checking list contains only dist objects:
-  if (any(unlist(lapply(list_dist, class)) != "dist")) {
-    stop("Error: input 'list_dist' should contain only 'dist' object
+  if (length(list_dist) > 1) {
+    if (any(unlist(lapply(list_dist, class)) != "dist")) {
+      stop("Error: input 'list_dist' should contain only 'dist' object
               Correct using 'as.dist()' if necessary")
+    }
+  }
+  if (length(list_dist) == 1) {
+    if (class(list_dist[[1]]) != "dist") {
+      stop("Error: input 'list_dist' should contain only 'dist' object
+              Correct using 'as.dist()' if necessary")
+    }
   }
   
   # checking all dist objects have names:
