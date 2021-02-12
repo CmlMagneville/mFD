@@ -215,8 +215,8 @@ Now we can compute functional beta-diversity of order `q = 2` (with `tau = "mean
 baskets_betaq2 <- mFD::beta.fd.hill(asb_sp_w = baskets_fruits_relw, sp_dist = fruits_gower, 
                              q = 2, tau = "mean", beta_type = "Jaccard")
 
-# Then use the mFD::dist.to.df function to ease visualizing results:
-#round(mFD::dist.to.df(baskets_betaq2$beta_fd_q$q2), 2)
+# Then use the mFD::dist.to.df function to ease visualizing result
+mFD::dist.to.df(list_dist = list(FDq2 = baskets_betaq2$beta_fd_q$q2))
 ```
 
 We can see that *basket 1* is similar (beta < 0.1) to *baskets 2,3,4,5,10* and that it is the most dissimilar to *basket 8 (beta > 0.5)*. *Baskets 4 and 5* are highly dissimilar (beta > 0.8) to *basket 8*.
