@@ -4,7 +4,7 @@
 \alias{sp.tr.summary}
 \title{Summarize Species x Traits Data Frame}
 \usage{
-sp.tr.summary(tr_cat, sp_tr)
+sp.tr.summary(tr_cat, sp_tr, stop_if_NA = TRUE)
 }
 \arguments{
 \item{tr_cat}{a data frame containing three columns for each trait (rows):
@@ -26,6 +26,11 @@ An option is to add a fourth column with a numeric vector of length n
 
 \item{sp_tr}{a data frame of traits values (columns) for each species (rows).
 Note that species names \strong{must be} specified in the row names.}
+
+\item{stop_if_NA}{a logical value indicating whether the process should stop
+if there is some NA in the \code{sp_tr} dataframe. If you continue with
+functional analysis, we remind you that functional measures, are
+sensitive to missing traits}
 }
 \value{
 If there is no fuzzy-coded trait, a three-elements list with:

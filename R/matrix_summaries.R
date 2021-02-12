@@ -23,6 +23,11 @@
 #'
 #' @param sp_tr a data frame of traits values (columns) for each species (rows).
 #'   Note that species names **must be** specified in the row names.
+#'   
+#' @param stop_if_NA a logical value indicating whether the process should stop
+#'   if there is some NA in the `sp_tr` dataframe. If you continue with
+#'   functional analysis, we remind you that functional measures, are
+#'   sensitive to missing traits
 #'
 #' @return
 #'   If there is no fuzzy-coded trait, a three-elements list with:
@@ -57,7 +62,7 @@
 #' mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
 
 
-sp.tr.summary <- function(tr_cat, sp_tr) {
+sp.tr.summary <- function(tr_cat, sp_tr, stop_if_NA = TRUE) {
 
 
   ## Check Inputs ----

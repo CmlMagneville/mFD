@@ -155,7 +155,7 @@ each fuzzy trait.
 
 ```{r}
 fruits_traits_summ <- mFD::sp.tr.summary(tr_cat = fruits_traits_cat,    # Traits informations
-                                 sp_tr  = fruits_traits)        # Species x Traits data frame
+                                 sp_tr  = fruits_traits, stop_if_NA = TRUE)   # Species x Traits data frame
 ```
 
 <br />
