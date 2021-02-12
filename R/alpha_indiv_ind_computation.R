@@ -9,7 +9,7 @@
 #'
 #' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a
 #'   given assemblage in a chosen functional space with only needed axes.
-#'   Species coordinates have been retrieved thanks to \code{fspace.conttr} or
+#'   Species coordinates have been retrieved thanks to \code{tr.cont.fspace} or
 #'   \code{\link{quality.fspaces}} and filtered thanks to
 #'   \code{\link{sp.filter}}.
 #'
@@ -79,8 +79,8 @@ fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #' @param sp_faxes_coord_k a matrix of species coordinates present in a
 #'   given assemblage in a chosen functional space with only needed axes.
 #'   Species coordinates have been retrieved thanks to
-#'   \code{\link{fspace.conttr}} or \code{\link{quality.fspaces}} and filtered
-#'   thanks to \code{\link{sp.filter}.
+#'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}} and filtered
+#'   thanks to \code{\link{sp.filter}}.
 #'   
 #' @param asb_sp_relatw_k a matrix containing species relative weight
 #'   (columns) for a given assemblage.
@@ -166,7 +166,7 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #'
 #' @param sp_faxes_coord_k a matrix of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
-#'   coordinates have been retrieved thanks to \code{\link{fspace.conttr}} or
+#'   coordinates have been retrieved thanks to \code{\link{tr.cont.fspace}} or
 #'   \code{qual.funct.space} and filtered thanks to \code{\link{sp.filter}}.
 #'
 #' @param k a character string referring to the assemblage studied.
@@ -386,8 +386,8 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
 #'
 #' @param sp_faxes_coord_k a matrix of species coordinates present in a
 #'   given assemblage in a chosen functional space with only needed axes.
-#'   Species coordinates have been retrieved thanks to \code{\link{fspace.conttr}} or
-#'   \code{qual.funct.space} and filtered thanks to \code{\link{sp.filter}}.
+#'   Species coordinates have been retrieved thanks to \code{\link{tr.cont.fspace}} or
+#'   \code{\link{quality.fspaces}} and filtered thanks to \code{\link{sp.filter}}.
 #'
 #' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.
@@ -518,8 +518,8 @@ feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #'
 #' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
-#'   coordinates have been retrieved thanks to \code{fspace.conttr} or
-#'   \code{qual_funct_space} and filtered thanks to \code{sp.filter}.
+#'   coordinates have been retrieved thanks to \code{\link{tr.cont.fspace}} or
+#'   \code{\link{quality.fspaces}} and filtered thanks to \code{sp.filter}.
 #'
 #' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.
@@ -595,8 +595,8 @@ fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #'
 #' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
-#'   coordinates have been retrieved thanks to \code{fspace.conttr} or
-#'   \code{qual_funct_space} and filtered thanks to \code{sp.filter}.
+#'   coordinates have been retrieved thanks to \code{\link{tr.cont.fspace}} or
+#'   \code{\link{quality.fspaces}} and filtered thanks to \code{\link{sp.filter}}.
 #'
 #' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.
@@ -658,8 +658,7 @@ fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
   # return:
   for (i in (1:nrow(sp_faxes_coord_k))) {
     ref_sp <- rownames(sp_faxes_coord_k)[i]
-    dist_nn_sp_asb_k <- dist.nearneighb(sp_faxes_coord_k, 
-                                        ref_sp)
+    dist_nn_sp_asb_k <- dist.nearneighb(sp_faxes_coord_k, ref_sp)
     dist_nn_k[ref_sp] <- dist_nn_sp_asb_k$`distance of the reference species to its nearest neighbour`
     nms <- list(dist_nn_sp_asb_k$`nearest neighbour identity`)
     names(nms) <- ref_sp

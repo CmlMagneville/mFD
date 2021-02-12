@@ -13,21 +13,21 @@ fdiv.computation(
 )
 }
 \arguments{
-\item{sp_faxes_coord_k}{a \strong{matrix} with species coordinates for species present
+\item{sp_faxes_coord_k}{a matrix with species coordinates for species present
 in a given assemblage along functional axes.}
 
-\item{asb_sp_relatw_k}{a \strong{matrix} containing species relative weight
+\item{asb_sp_relatw_k}{a matrix containing species relative weight
 (columns) for a given assemblage.}
 
-\item{vert_nm}{a \strong{vector} with names of the species being vertices of the
+\item{vert_nm}{a vector with names of the species being vertices of the
 convex hull (so should be a subset of colnames of \code{sp_faxes_coord_k}.
-This vector can be provided through \code{\link{vertices}}) function or
-retrieved after the \code{\link{fric.computation}} function. Default: vert_nm =
+This vector can be provided through \code{vertices}) function or
+retrieved after the \code{fric.computation} function. Default: vert_nm =
 NULL.}
 
-\item{k}{a \strong{character string} referring to the assemblage studied.}
+\item{k}{a character string referring to the assemblage studied.}
 
-\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a logical value allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species coordinates matrix and species*weight
 dataframe must not contain NA, their rownames must be filled, they must
@@ -47,10 +47,9 @@ species to center of gravity of vertices.
 This function to compute Functional Divergence (FDiv) index for one
 assemblage. FDiv indice accounts for deviation of biomass to the center of
 gravity of the vertices shaping the convex hull (see \code{\link{vertices}}).
-FDiv is scaled between 0 and 1. For details about FDiv index see
-\emph{Villeger et al. 2008 (https://doi.org/10.1890/07-1206.1)} Use
-\code{\link{alpha.fd.multidim}} to compute FDiv over multiple assemblages (and
-together with other FD indices) .
+FDiv is scaled between 0 and 1. For details about FDiv index see Villeger \emph{et
+al.} 2008. Use \code{\link{alpha.fd.multidim}} to compute FDiv over multiple
+assemblages (and together with other FD indices) .
 }
 \author{
 Camille Magneville and Sébastien Villéger

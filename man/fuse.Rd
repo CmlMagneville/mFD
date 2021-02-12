@@ -18,10 +18,10 @@ axes are in column.}
 \item{nb_NN}{a numerical value giving the number of nearest neighbor to
 consider. Default: nb_NN = 5}
 
-\item{GE}{a numerical vector giving the IUCN status rank (DD = NA, LC = 0,
-NT = 1, VU = 2, EN = 3, CR = 4) or the IUCN extinction probability associated with
-each status, see Mooers et al.(2008) for example with DD = NA, LC = 0, NT = 0.1,
-VU = 0.4, EN = 0.666, CR = 0.999)}
+\item{GE}{a numerical vector giving the IUCN status rank (DD = NA, LC = 0, NT
+= 1, VU = 2, EN = 3, CR = 4) or the IUCN extinction probability associated
+with each status, see Mooers et al.(2008) for example with DD = NA, LC = 0,
+NT = 0.1, VU = 0.4, EN = 0.666, CR = 0.999)}
 
 \item{standGE}{a logical value to standardize the GE values (TRUE or FALSE)}
 }
@@ -44,8 +44,9 @@ This index takes into account species functional uniqueness (also called
 Functional Originality), species specialisation and species IUCN status
 }
 \examples{
-sp_tr <- read.csv(system.file("extdata", "data_traits_MMA_ursus.csv", package = "mFD"),
-dec=",", sep=";", header=TRUE,row.names=1, na.strings="NA")
+sp_tr <- read.csv(system.file('extdata', 'data_traits_MMA_ursus.csv', 
+ package = 'mFD'),
+dec=',', sep=';', header=TRUE,row.names=1, na.strings='NA')
 # Trait compilation and ordination:
  dimorphism <- ordered(sp_tr$dimorphism)
  breeding_site   <- ordered(sp_tr$breeding_site)
@@ -60,32 +61,53 @@ dec=",", sep=";", header=TRUE,row.names=1, na.strings="NA")
   female_sexual_maturity = sp_tr$female_sexual_maturity, 
   weaning = sp_tr$weaning,
   gestation = sp_tr$gestation, inter_litter = sp_tr$inter_litter,
-  breeding_site = sp_tr$breeding_site, social_group = sp_tr$social_group_mean,
-  social_behavior = sp_tr$social_behavior, weight_max = sp_tr$adult_weight_max,
+  breeding_site = sp_tr$breeding_site, 
+  social_group = sp_tr$social_group_mean,
+  social_behavior = sp_tr$social_behavior, 
+  weight_max = sp_tr$adult_weight_max,
   dimorphism = sp_tr$dimorphism)
  rownames(sp_tr_end) <- rownames(sp_tr)
 # Function weigthing vector:
- v <- c(0.25, 0.25, 0.25, 0.25, 0.20, 0.20, 0.20, 0.20, 0.20, 0.5, 0.5, 0.5, 0.5)
+ v <- c(0.25, 0.25, 0.25, 0.25, 0.20, 0.20, 0.20, 0.20, 0.20, 0.5, 
+   0.5, 0.5, 0.5)
 # Gower distance calculation:
  sp_tr_end$main_diet <- as.factor(sp_tr_end$main_diet)
  sp_tr_end$foraging_water_depth <- as.factor(sp_tr_end$foraging_water_depth)
  sp_tr_end$foraging_location <- as.factor(sp_tr_end$foraging_location)
  sp_tr_end$breeding_site <- as.factor(sp_tr_end$breeding_site)
  sp_tr_end$social_behavior <- as.factor(sp_tr_end$social_behavior)
- sp_dist_tr <- cluster::daisy(sp_tr_end, metric = c("gower"), 
+ sp_dist_tr <- cluster::daisy(sp_tr_end, metric = c('gower'), 
   type = list(symm = c(4)), weights = v)
 # Principal coordinate analyses
  Pcoa <- ade4::dudi.pco(ade4::quasieuclid(sp_dist_tr), scann = FALSE, nf = 40)
  sp_faxes_coord <- Pcoa$li[1:40]
 # FUSE calculation:
- FUSE_res <- mFD::fuse(sp_dist = sp_dist_tr, sp_faxes_coord = as.matrix(sp_faxes_coord), 
+ FUSE_res <- mFD::fuse(sp_dist = sp_dist_tr, 
+  sp_faxes_coord = as.matrix(sp_faxes_coord), 
   nb_NN = 5, GE = sp_tr$IUCN_num,
   standGE = TRUE)
- FUSE_res2 <- mFD::fuse(sp_dist = sp_dist_tr, sp_faxes_coord = as.matrix(sp_faxes_coord), 
+ FUSE_res2 <- mFD::fuse(sp_dist = sp_dist_tr, 
+  sp_faxes_coord = as.matrix(sp_faxes_coord), 
   nb_NN = 5,GE = sp_tr$IUCN_50,
   standGE = TRUE)
- FUSE_res3 <- mFD::fuse(sp_dist = sp_dist_tr, sp_faxes_coord = as.matrix(sp_faxes_coord), 
+ FUSE_res3 <- mFD::fuse(sp_dist = sp_dist_tr, 
+  sp_faxes_coord = as.matrix(sp_faxes_coord), 
   nb_NN = 5, GE = sp_tr$IUCN_100,
  standGE = TRUE)
  
+}
+\references{
+\preformatted{Griffin _et al._ (2020) Functionally unique, specialised, and 
+endangered (FUSE) species: towards integrated metrics for the 
+conservation prioritisation toolbox. _Biorxiv_ \\cr
+Mouillot _et al._ (2013) Rare Species Support Vulnerable Functions 
+in High-Diversity Ecosystems. _Plos Biology_ \\cr
+Pimiento _et al._ (2020) Functional diversity of marine 
+megafauna in the Anthropocene. _Science Advances_ **6** \\cr
+Violle _et al._ (2007) Let the concept of trait be functional! _Oikos_
+**116**, 882-892 \\cr
+}
+}
+\author{
+Fabien Leprieur et Camille Albouy
 }

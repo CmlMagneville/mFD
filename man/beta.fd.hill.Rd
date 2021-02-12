@@ -15,29 +15,32 @@ beta.fd.hill(
 )
 }
 \arguments{
-\item{asb_sp_w}{a \strong{matrix} with weight of species (columns) in a set of
-assemblages (rows). Rows and columns should have names. NA are not allowed.}
+\item{asb_sp_w}{a \strong{matrix} with weight of species (columns) in a set
+of assemblages (rows). Rows and columns should have names. NA are not
+allowed.}
 
-\item{sp_dist}{a \strong{matrix or dist object} with distance between species. Species
-names should be provided and match those in 'asb_sp_w'. NA are not allowed.}
+\item{sp_dist}{a \strong{matrix or dist object} with distance between
+species. Species names should be provided and match those in 'asb_sp_w'. NA
+are not allowed.}
 
-\item{q}{a \strong{vector} containing values referring to the order of diversity to use}
+\item{q}{a \strong{vector} containing values referring to the order of
+diversity to use}
 
-\item{tau}{a \strong{character string} with name of function to apply to distance
-matrix (i.e. among all pairs of species) to get the threshold used to define
-'functionally indistinct set of species'. Could be qet to 'mean' (default),
-'min' or 'max'.}
+\item{tau}{a \strong{character string} with name of function to apply to
+distance matrix (i.e. among all pairs of species) to get the threshold used
+to define 'functionally indistinct set of species'. Could be qet to 'mean'
+(default), 'min' or 'max'.}
 
-\item{beta_type}{a \strong{character string} with name of framework used for computing
-beta-diversity, either 'Jaccard' (default) or 'Sorensen'.}
+\item{beta_type}{a \strong{character string} with name of framework used for
+computing beta-diversity, either 'Jaccard' (default) or 'Sorensen'.}
 
-\item{check_input}{a \strong{logical value} defining whether inputs are checked before
-computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check_input =
-TRUE.}
+\item{check_input}{a \strong{logical value} defining whether inputs are
+checked before computation of indices. Possible error messages will thus
+may be more understandable for the user than R error messages. Default:
+check_input = TRUE.}
 
-\item{details_returned}{a \strong{logical value} indicating whether the user want to store
-values used for computing indices (see list below)}
+\item{details_returned}{a \strong{logical value} indicating whether the user
+want to store values used for computing indices (see list below)}
 }
 \value{
 a list with: \itemize{
@@ -86,7 +89,7 @@ beta.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits,
  
 }
 \references{
-Chao \emph{et al.} (2019) An attribute‐diversity approach to functional
+Chao \emph{et al.} (2019) An attribute-diversity approach to functional
 diversity, functional beta diversity, and related (dis)similarity measures.
 \emph{Ecological Monographs}, \strong{89}.\cr
 }

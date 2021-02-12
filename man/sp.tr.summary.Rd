@@ -56,10 +56,10 @@ your \code{sp_tr} data frame.
 }
 \examples{
 # Load Species x Traits data
-data("fruits_traits", package = "mFD")
+data('fruits_traits', package = 'mFD')
 
 # Load Traits x Categories data
-data("fruits_traits_cat", package = "mFD")
+data('fruits_traits_cat', package = 'mFD')
 
 # Summarize Species x Traits data
 mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)

@@ -77,8 +77,7 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
                                                      as.vector(nn_id[1]))]
   return_list <- list(nn_id, nn_ref_sp_dist)
   names(return_list) <- c("nearest neighbour identity", 
-                          "distance of the reference species to its nearest 
-                          neighbour")
+                          "distance of the reference species to its nearest neighbour")
   return(return_list)
 }
 

@@ -8,8 +8,8 @@ which rows are pairs of elements and column(s) distance metric(s)}
 dist.to.df(list_dist)
 }
 \arguments{
-\item{list_dist}{a list of dist object(s). All dist objects should have a name
-(e.g. name of distance metric) and the same labels (i.e. names of sets
+\item{list_dist}{a list of dist object(s). All dist objects should have a
+name (e.g. name of distance metric) and the same labels (i.e. names of sets
 between which distance was computed).}
 }
 \value{
@@ -22,9 +22,12 @@ This functions stands on the \code{\link[dendextend]{dist_long}} function
 }
 \examples{
 # Create dist objects: 
-dist_A <- round(dist(matrix(runif(1:100), 5, 2, dimnames = list(letters[1:5], NULL))), 2)
-dist_B <- round(dist(matrix(runif(1:100), 5, 2, dimnames = list(letters[1:5], NULL))), 2)
-dist_C <- round(dist(matrix(runif(1:100), 5, 2, dimnames = list(letters[1:5], NULL))), 2)
+dist_A <- round(dist(matrix(runif(1:100), 5, 2, 
+                      dimnames = list(letters[1:5], NULL))), 2)
+dist_B <- round(dist(matrix(runif(1:100), 5, 2, 
+                      dimnames = list(letters[1:5], NULL))), 2)
+dist_C <- round(dist(matrix(runif(1:100), 5, 2, 
+                      dimnames = list(letters[1:5], NULL))), 2)
 
 # First example with only 1 distance:
 dist.to.df(list(dA = dist_A))

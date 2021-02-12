@@ -24,67 +24,69 @@ functional axes (columns). Species coordinates have been retrieved thanks to
 \item{asb_sp_occ}{a \strong{matrix} with presence/absence (coded as 0/1)
 of species (columns) in a set of assemblages (rows).}
 
-\item{check_input}{a \strong{logical value} defining whether inputs are checked before
-computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check_input =
-TRUE.}
+\item{check_input}{a \strong{logical value} defining whether inputs are
+checked before computation of indices. Possible error messages will thus
+may be more understandable for the user than R error messages. Default:
+check_input = TRUE.}
 
-\item{beta_family}{a \strong{character string} for the type of beta-diversity index to
-use, 'Jaccard' (default) and/or 'Sorensen'}
+\item{beta_family}{a \strong{character string} for the type of beta-diversity
+index to use, 'Jaccard' (default) and/or 'Sorensen'}
 
-\item{details_returned}{a \strong{logical value} indicating whether the user wants to
-details_returned. Details are used in the graphical function
+\item{details_returned}{a \strong{logical value} indicating whether the user
+wants to details_returned. Details are used in the graphical function
 \code{beta.multidim.plot} and thus must be kept if the user want to have
 graphical outputs for the computed indices.}
 
-\item{betapart_step}{a \strong{logical value} indicating whether the computation
-progress tracking file 'step.fbc.txt' should be created. Setting it to FALSE
-will speed up the function. Default: betapart_step = FALSE, and it is automatically turned
-to FALSE when 'betapart_para' is TRUE.}
+\item{betapart_step}{a \strong{logical value} indicating whether the
+computation progress tracking file 'step.fbc.txt' should be created.
+Setting it to FALSE will speed up the function. Default: betapart_step =
+FALSE, and it is automatically turned to FALSE when 'betapart_para' is
+TRUE.}
 
 \item{betapart_para}{a \strong{logical value} indicating whether internal
 parallelization should be used to compute pairwise dissimilarities. Default:
 betapart_para = FALSE.}
 
-\item{betapart_para_opt}{a \strong{list} with details about parallelization. Default
-value means those parameters are set according to computer specifications.
-'nc' is number of cores (default = 4), 'type' is a character string with
-code of method used (default PSOCK), 'LB' is a boolean specifying whether
-load-balancing is applied (default is TRUE) and 'size' is a numeric value
-for number of tasks performed at each time (default is 1). See help of
+\item{betapart_para_opt}{a \strong{list} with details about parallelization.
+Default value means those parameters are set according to computer
+specifications. 'nc' is number of cores (default = 4), 'type' is a
+character string with code of method used (default PSOCK), 'LB' is a
+boolean specifying whether load-balancing is applied (default is TRUE) and
+'size' is a numeric value for number of tasks performed at each time
+(default is 1). See help of
 \code{\link[betapart]{functional.betapart.core}} for more details.}
 }
 \value{
-a list with: \itemize{
-\item inputs a list with \item \emph{pairasb_fbd_indices} a dataframe with for all pairs of
-assemblages (rows) names of the assemblages in the 2 first columns and
-columns with beta functional diversity indices following the additive
-decomposition of Villéger et al 2013 : 'F_diss': functional dissimilarity
-index, 'F_turn': its turnover component, and 'F_nest': its
-nestedness-resultant component, i.e. F_diss = F_turn + F_nest. Those indices
-names are preceded by the abbreviation of the type of indices used, 'jac'
-for decomposition of Jaccard-like functional dissimilarity and 'sor' for
-Sorensen-like dissimilarity.
+a list with: \itemize{ \item inputs a list with \item
+\emph{pairasb_fbd_indices} a dataframe with for all pairs of assemblages
+(rows) names of the assemblages in the 2 first columns and columns with
+beta functional diversity indices following the additive decomposition of
+Villéger et al 2013 : 'F_diss': functional dissimilarity index, 'F_turn':
+its turnover component, and 'F_nest': its nestedness-resultant component,
+i.e. F_diss = F_turn + F_nest. Those indices names are preceded by the
+abbreviation of the type of indices used, 'jac' for decomposition of
+Jaccard-like functional dissimilarity and 'sor' for Sorensen-like
+dissimilarity.
 \item \emph{details_beta} list if \emph{details_returned} is TRUE:
-\emph{sp_faxes_coord} and \emph{asb_sp_occ} on which indices were computed (convenient for drawing
-graphics) ; a \strong{asb_FRic_raw} vector with volume of
-the convex hull shaping each assemblage ; a \strong{asb_FRic} vector with volume of
-the convex hull shaping each assemblage ; a \strong{asb_vertices} a list of
-vectors (1 per assemblage) with names of species being vertices of the
-convex hull }
+\emph{sp_faxes_coord} and \emph{asb_sp_occ} on which indices were computed
+(convenient for drawing graphics) ; a \strong{asb_FRic_raw} vector with
+volume of the convex hull shaping each assemblage ; a \strong{asb_FRic}
+vector with volume of the convex hull shaping each assemblage ; a
+\strong{asb_vertices} a list of vectors (1 per assemblage) with names of
+species being vertices of the convex hull }
 }
 \description{
-Computes a set of indices of pairwise functional beta-diversity (dissimilarity
-and its turnover and nestedness-resultant components) based on overlap between
-convex hulls in a multidimensional space. For details about indices formulas
-see Villéger \emph{et al.} (2013).
+Computes a set of indices of pairwise functional beta-diversity
+(dissimilarity and its turnover and nestedness-resultant components) based on
+overlap between convex hulls in a multidimensional space. For details about
+indices formulas see Villéger \emph{et al.} (2013).
 }
 \section{Notes}{
- \strong{All assemblages should have a number of species strictly
-higher than the number of functional axes}. Computing intersection of convex
-hulls in space of >5 dimensions is yet impossible with most computers.
-This function uses R libraries 'betapart' (>=1.5.2) for indices computation
-and 'dendextend' for formatting values in a dataframe.
+ \strong{All assemblages should have a number of species
+strictly higher than the number of functional axes}. Computing intersection
+of convex hulls in space of >5 dimensions is yet impossible with most
+computers. This function uses R libraries 'betapart' (>=1.5.2) for indices
+computation and 'dendextend' for formatting values in a dataframe.
 }
 
 \examples{
@@ -120,8 +122,8 @@ beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[,
  
 }
 \references{
-Villéger \emph{et al.} (2013) Decomposing functional β‐diversity reveals that
-low functional β‐diversity is driven by low functional turnover in European
+Villéger \emph{et al.} (2013) Decomposing functional ß-diversity reveals that
+low functional ß-diversity is driven by low functional turnover in European
 fish assemblages. \emph{Global Ecology and Biogeography}, \strong{22}, 671-681. \cr
 }
 \author{

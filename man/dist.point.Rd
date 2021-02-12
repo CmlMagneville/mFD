@@ -15,7 +15,8 @@ space. Species coordinates have been retrieved thanks to
 species}
 }
 \value{
-a vector of species distances to the reference species \code{dist_refsp}
+a vector of species distances to the reference species
+\code{dist_refsp}
 }
 \description{
 This function computes the distances of all species to a reference species.

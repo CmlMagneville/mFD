@@ -2,8 +2,8 @@
 % Please edit documentation in R/FE_multidim_ind_computation.R
 \name{alpha.fd.fe}
 \alias{alpha.fd.fe}
-\title{Compute the set of indices based on number of species in functional entities (FEs)
-following Mouillot et al (2014)}
+\title{Compute the set of indices based on number of species in functional entities
+(FEs) following Mouillot et al (2014)}
 \usage{
 alpha.fd.fe(
   asb_sp_occ,
@@ -14,58 +14,62 @@ alpha.fd.fe(
 )
 }
 \arguments{
-\item{asb_sp_occ}{a \strong{matrix} linking occurrences (coded as 0/1) of species
-(columns) in a set of assemblages (rows). Warning: \strong{An assemblage
-must contain at least one species}.}
+\item{asb_sp_occ}{a \strong{matrix} linking occurrences (coded as 0/1) of
+species (columns) in a set of assemblages (rows). Warning: \strong{An
+assemblage must contain at least one species}.}
 
-\item{sp_to_fe}{a \strong{list} with details of species clustering into FE from
-\code{sp.to.fe}.}
+\item{sp_to_fe}{a \strong{list} with details of species clustering into FE
+from \code{sp.to.fe}.}
 
-\item{ind_nm}{a \strong{vector} of character strings with the names of functional
-diversity indices to compute among "fred", "fored" and "fvuln".
+\item{ind_nm}{a \strong{vector} of character strings with the names of
+functional diversity indices to compute among 'fred', 'fored' and 'fvuln'.
 \bold{Indices names must be written in lower case letters}. Default: all
 the indices are computed.}
 
-\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
-Possible error messages will thus may be more understandable for the user
-than R error messages. Default: check_input = TRUE.}
+\item{check_input}{a \strong{logical value} allowing to test or not the
+inputs. Possible error messages will thus may be more understandable for
+the user than R error messages. Default: check_input = TRUE.}
 
-\item{details_returned}{a \strong{logical value} indicating whether the user wants to
-details_returned. Details are used in graphical functions and thus must be kept
-if the user want to have graphical outputs for the computed indices.}
+\item{details_returned}{a \strong{logical value} indicating whether the user
+wants to details_returned. Details are used in graphical functions and thus
+must be kept if the user want to have graphical outputs for the computed
+indices.}
 }
 \value{
 \itemize{ \item \emph{asb_fdfe} a matrix containing for each
 assemblage (rows), values of functional diversity indices (same names than
-in 'ind_nm') as well as the number of species ('nb_sp') and the number of FE
-(nb_fe). \item if \emph{details_returned} is TRUE, \item \emph{details_fdfe} a
-list with \emph{asb_fe_nbsp} a matrix with number of species per FE in each
-assemblage.}
+in 'ind_nm') as well as the number of species ('nb_sp') and the number of
+FE (nb_fe). \item if \emph{details_returned} is TRUE, \item
+\emph{details_fdfe} a list with \emph{asb_fe_nbsp} a matrix with number of
+species per FE in each assemblage.}
 }
 \description{
-Compute the set of indices based on number of species in functional entities (FEs)
-following Mouillot et al (2014)
+Compute the set of indices based on number of species in functional entities
+(FEs) following Mouillot et al (2014)
 }
 \examples{
 # Load Species*Traits dataframe:
-data("fruits_traits", package = "mFD")
+data('fruits_traits', package = 'mFD')
 # Load Traits categories dataframe:
-data("fruits_traits_cat", package = "mFD")
+data('fruits_traits_cat', package = 'mFD')
 # Load Assemblages*Species matrix:
-data("baskets_fruits_weights", package = "mFD")
+data('baskets_fruits_weights', package = 'mFD')
 # Remove continuous trait:
 fruits_traits <- fruits_traits[, -5]
 fruits_traits_cat <- fruits_traits_cat[-5, ]
 # Compute gathering species into FEs:
-sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = fruits_traits, tr_cat = fruits_traits_cat, 
- fe_nm_type = "fe_rank", check_input = TRUE)
+sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = fruits_traits, 
+ tr_cat = fruits_traits_cat, 
+ fe_nm_type = 'fe_rank', check_input = TRUE)
 # Get the occurrence dataframe:
 asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
-asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
+asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
 # Compute alpha fd indices:
 alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
- ind_nm = c("fred", "fored", "fvuln"),
+ ind_nm = c('fred', 'fored', 'fvuln'),
  check_input = TRUE, details_returned = TRUE)
 
-
+}
+\author{
+Camille Magneville
 }

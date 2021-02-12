@@ -573,8 +573,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     if ("fnnd" %in% ind_vect) {
       # check relative weights sum equals to 1:
       if (check_input == TRUE) {
-        if (round(sum(asb_sp_relatw_k), 10) != 
-            1) {
+        if (round(sum(asb_sp_relatw_k), 10) != 1) {
           stop(paste0("Error: the sum of relative weights is not equal 
                       to one for", 
                       k, sep = ""))
@@ -592,8 +591,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
           ref_sp <- rownames(sp_faxes_coord)[i]
           dist_nn_sp <- dist.nearneighb(sp_faxes_coord, 
                                         ref_sp)
-          dist_nn[ref_sp] <- dist_nn_sp$`distance of the reference species 
-                                          to its nearest neighbour`
+          dist_nn[ref_sp] <- dist_nn_sp$`distance of the reference species to its nearest neighbour`
         }
         fnnd_value <- fnnd$fnnd
         fnnd_value <- fnnd_value/(max(unlist(dist_nn), 

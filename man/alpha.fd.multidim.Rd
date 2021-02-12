@@ -14,30 +14,32 @@ alpha.fd.multidim(
 )
 }
 \arguments{
-\item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a chosen functional
-space. Species coordinates have been retrieved thanks to
+\item{sp_faxes_coord}{a \strong{matrix} of species coordinates in a chosen
+functional space. Species coordinates have been retrieved thanks to
 \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
-\item{asb_sp_w}{a \strong{matrix} linking weight of species (columns) and a set of
-assemblages (rows).}
+\item{asb_sp_w}{a \strong{matrix} linking weight of species (columns) and a
+set of assemblages (rows).}
 
-\item{ind_vect}{a \strong{vector} of character string of the name of functional indices
-to compute. \strong{Indices names must be written in lower case letters}.
-Possible indices to compute are: 'fide', fdis', 'fmpd', 'fnnd', 'feve', 'fric',
-'fdiv', 'fori' and 'fspe'. Default: all the indices are computed.}
+\item{ind_vect}{a \strong{vector} of character string of the name of
+functional indices to compute. \strong{Indices names must be written in
+lower case letters}. Possible indices to compute are: 'fide', fdis',
+'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 'fori' and 'fspe'. Default: all the
+indices are computed.}
 
-\item{scaling}{a \strong{logical value} indicating if scaling is to be done (TRUE) or
-not (FALSE) on functional indices. Scaling is used to be able to compare
-indices values between assemblages. Default: scaling = TRUE.}
+\item{scaling}{a \strong{logical value} indicating if scaling is to be done
+(TRUE) or not (FALSE) on functional indices. Scaling is used to be able to
+compare indices values between assemblages. Default: scaling = TRUE.}
 
-\item{check_input}{a \strong{logical value} defining whether inputs are checked before
-computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check_input =
-TRUE.}
+\item{check_input}{a \strong{logical value} defining whether inputs are
+checked before computation of indices. Possible error messages will thus
+may be more understandable for the user than R error messages. Default:
+check_input = TRUE.}
 
-\item{details_returned}{a \strong{logical value} indicating whether the user want to store
-details. Details are used in graphical functions and thus must be kept if
-the user want to have graphical outputs for the computed indices.}
+\item{details_returned}{a \strong{logical value} indicating whether the user
+want to store details. Details are used in graphical functions and thus
+must be kept if the user want to have graphical outputs for the computed
+indices.}
 }
 \value{
 a list with: \itemize{
@@ -67,8 +69,9 @@ neighbor of each species present in a given assemblage ; a
 present in a given assemblage to its nearest neighbor.}
 }
 \description{
-This function computes a set of multidimensional space based indices of alpha functional
-diversity. The user can choose which functional indices to compute.
+This function computes a set of multidimensional space based indices of alpha
+functional diversity. The user can choose which functional indices to
+compute.
 }
 \examples{
 # Load Species*Traits dataframe:

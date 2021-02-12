@@ -28,7 +28,7 @@ function to work, there must be no NA in your \code{asb_sp_w} data frame.
 }
 \examples{
 # Load Assemblages x Species Matrix
-data("baskets_fruits_weights", package = "mFD")
+data('baskets_fruits_weights', package = 'mFD')
 
 # Summarize Assemblages Data
 mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)

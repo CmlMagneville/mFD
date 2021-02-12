@@ -16,3 +16,6 @@ consider}
 \description{
 Compute the nearest neighbors for all considered species for FUSE computation
 }
+\author{
+Fabien Leprieur et Camille Albouy
+}

@@ -68,7 +68,7 @@ sp.tr.summary <- function(tr_cat, sp_tr,
   
   ## Check Inputs ----
   
-  check.sp.tr(sp_tr, tr_cat, stop_if_NA = TRUE)
+  check.sp.tr(sp_tr, tr_cat, stop_if_NA = stop_if_NA)
   
   
   ## Checks Traits Formats ----

@@ -7,11 +7,15 @@
 get.dist.func(nb_NN, data)
 }
 \arguments{
-\item{nb_NN}{a numerical value giving the number of nearest neighbor to consider}
+\item{nb_NN}{a numerical value giving the number of nearest neighbor to
+consider}
 
 \item{data}{a dataframe considering all the distance between the considered
 species and all of these neighbors}
 }
 \description{
 Calculate the nearest neighbors for a given species
+}
+\author{
+Fabien Leprieur et Camille Albouy
 }

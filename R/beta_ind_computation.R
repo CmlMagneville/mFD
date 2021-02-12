@@ -108,7 +108,7 @@
 #'   fish assemblages. _Global Ecology and Biogeography_, **22**, 671-681. \cr
 #'  
 #' @importFrom betapart beta.para.control functional.beta.pair 
-#' @importFrom  functional.betapart.core
+#' @importFrom betapart functional.betapart.core
 #' @importFrom dendextend dist_long
 #' @importFrom geometry convhulln
 #'
@@ -312,7 +312,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
   if (details_returned == TRUE) {
     return_list <- list(pairasb_fbd_indices = pairasb_fbd_indices, 
               details = list(inputs = list(sp_faxes_coord = sp_faxes_coord, 
-                sb_sp_occ = asb_sp_occ), 
+                asb_sp_occ = asb_sp_occ), 
                 asb_FRic_raw = F_betapart_core$details$CH$FRi, 
                 asb_FRic = fric, 
                 asb_vertices = lapply(F_betapart_core$details$CH$coord_vertices, 

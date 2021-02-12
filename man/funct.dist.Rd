@@ -93,7 +93,7 @@ Johnson \emph{et al.} (2020) Handling missing values in trait data.
 \emph{Global Ecology and Biogeography}, \strong{30}, 51-62.\cr
 Pavoine \emph{et al.} (2009) On the challenge of treating various types of
 variables: application for improving the measurement of functional
-diversity, \emph{Oikos}, \strong{118}, 391-402
+diversity, \emph{Oikos}, \strong{118}, 391-402. \cr
 }
 \author{
 Nicolas Loiseau & Sébastien Villéger

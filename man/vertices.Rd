@@ -10,7 +10,7 @@ vertices(sp_faxes_coord, order_2D = FALSE, check_input = FALSE)
 \arguments{
 \item{sp_faxes_coord}{a matrix of species coordinates in a chosen functional
 space. Species coordinates have been retrieved thanks to
-\code{fspace.conttr} or \code{\link{quality.fspaces}}.}
+\code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
 \item{order_2D}{a logical value defining whether vertices names are reordered
 so that they define a convex polygon in 2D which is convenient for plotting.

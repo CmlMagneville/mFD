@@ -15,10 +15,10 @@ feve.computation(
 \item{asb_sp_relatw_k}{a \strong{matrix} containing species relative weight (columns)
 for a given assemblage.}
 
-\item{sp_faxes_coord_k}{a \strong{matrix} of species coordinates present in a given
-assemblage in a chosen functional space with only needed axes. Species
-coordinates have been retrieved thanks to \code{fspace.conttr} or
-\code{qual.funct.space} and filtered thanks to \code{sp.filter}.}
+\item{sp_faxes_coord_k}{a matrix of species coordinates present in a
+given assemblage in a chosen functional space with only needed axes.
+Species coordinates have been retrieved thanks to \code{\link{tr.cont.fspace}} or
+\code{\link{quality.fspaces}} and filtered thanks to \code{\link{sp.filter}}.}
 
 \item{k}{a \strong{character string} referring to the assemblage studied.}
 

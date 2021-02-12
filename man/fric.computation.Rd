@@ -7,14 +7,14 @@
 fric.computation(sp_faxes_coord_k, k, check_input = check_input)
 }
 \arguments{
-\item{sp_faxes_coord_k}{a \strong{matrix} of species coordinates present in a given
+\item{sp_faxes_coord_k}{a matrix of species coordinates present in a given
 assemblage in a chosen functional space with only needed axes. Species
-coordinates have been retrieved thanks to \code{fspace.conttr} or
-\code{qual.funct.space} and filtered thanks to \code{sp.filter}.}
+coordinates have been retrieved thanks to \code{\link{tr.cont.fspace}} or
+\code{qual.funct.space} and filtered thanks to \code{\link{sp.filter}}.}
 
-\item{k}{a \strong{character string} referring to the assemblage studied.}
+\item{k}{a character string referring to the assemblage studied.}
 
-\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a logical value allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Species coordinates matrix must not contain NA, its
 rownames must be filled and the number of species should strictly be higher
