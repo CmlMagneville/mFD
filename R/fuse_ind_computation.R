@@ -87,6 +87,18 @@
 #'  standGE = TRUE)
 #'  
 #' @author Fabien Leprieur et Camille Albouy
+#' 
+#' @references 
+#'     Griffin _et al._ (2020) Functionally unique, specialised, and 
+#'     endangered (FUSE) species: towards integrated metrics for the 
+#'     conservation prioritisation toolbox. _Biorxiv_ \cr
+#'     Mouillot _et al._ (2013) Rare Species Support Vulnerable Functions 
+#'     in High-Diversity Ecosystems. _Plos Biology_ \cr
+#'     Pimiento _et al._ (2020) Functional diversity of marine 
+#'     megafauna in the Anthropocene. _Science Advances_ **6** \cr
+#'     Violle _et al._ (2007) Let the concept of trait be functional! _Oikos_
+#'     **116**, 882-892 \cr
+#'     
 #'  
 #' @importFrom vegan decostand
 #' @importFrom stats setNames
