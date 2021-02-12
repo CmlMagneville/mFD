@@ -5,31 +5,34 @@
 #' special case where function 'f' in equation 3c is linear:f(dij(tau)) =
 #' dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 #'
-#' @param asb_sp_w a \strong{matrix} with weight of species (columns) in a set of
-#'  assemblages (rows). Rows and columns should have names. NA are not allowed.
+#' @param asb_sp_w a \strong{matrix} with weight of species (columns) in a set
+#'   of assemblages (rows). Rows and columns should have names. NA are not
+#'   allowed.
 #'
-#' @param sp_dist a \strong{matrix or dist object} with distance between species. Species
-#'  names should be provided and match those in 'asb_sp_w'. NA are not allowed.
+#' @param sp_dist a \strong{matrix or dist object} with distance between
+#'   species. Species names should be provided and match those in 'asb_sp_w'. NA
+#'   are not allowed.
 #'
-#' @param q a \strong{vector} containing values referring to the order of diversity to use
+#' @param q a \strong{vector} containing values referring to the order of
+#'   diversity to use
 #'
-#' @param tau a \strong{character string} with name of function to apply to distance
-#'  matrix (i.e. among all pairs of species) to get the threshold used to define
-#'  'functionally indistinct set of species'. Could be qet to 'mean' (default),
-#'  'min' or 'max'.
+#' @param tau a \strong{character string} with name of function to apply to
+#'   distance matrix (i.e. among all pairs of species) to get the threshold used
+#'   to define 'functionally indistinct set of species'. Could be qet to 'mean'
+#'   (default), 'min' or 'max'.
 #'
-#' @param check_input a \strong{logical value} defining whether inputs are checked before
-#'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check_input =
-#'  TRUE.
+#' @param check_input a \strong{logical value} defining whether inputs are
+#'   checked before computation of indices. Possible error messages will thus
+#'   may be more understandable for the user than R error messages. Default:
+#'   check_input = TRUE.
 #'
-#' @param details_returned a \strong{logical value} indicating whether the user want to store
-#'  values used for computing indices (see list below)
+#' @param details_returned a \strong{logical value} indicating whether the user
+#'   want to store values used for computing indices (see list below)
 #'
 #' @return a list with: \itemize{
 #'
-#'  \item \emph{asb_FD_Hill} a matrix containing indices values for each level of
-#'  q (columns, named as 'FD_qx') for each assemblage (rows, named as in
+#'  \item \emph{asb_FD_Hill} a matrix containing indices values for each level
+#'  of q (columns, named as 'FD_qx') for each assemblage (rows, named as in
 #'  \strong{asb_sp_w})
 #'  \item \emph{tau_dist} the threshold value applied to distance between
 #'  species to compute diversity according to function provided in \strong{tau}
@@ -44,13 +47,14 @@
 #'  
 #' @author Sébastien Villéger and Camille Magneville
 #'
-#' @note FD computed with q=2 and tau = 'max' is equivalent to the Rao's quadratic
-#'  entropy from Ricotta & Szeidl (2009, J Theor Biol).
-#'  FD computed with tau = 'min' is equivalent to Hill number taxonomic diversity,
-#'  thus with q=0 it is species richness (S), with q = 1 it is exponential of Shannon
-#'  entropy (H) and with q = 2 it is 1/(1-D) where D is Simpson diversity
-#'  FD is computed applying the special case where function 'f' in equation 3c
-#'  is linear:f(dij(tau)) = dij(tau)/tau, hence f(0)=0 and f(tau)=1.
+#' @note FD computed with q=2 and tau = 'max' is equivalent to the Rao's
+#'   quadratic entropy from Ricotta & Szeidl (2009, J Theor Biol). FD computed
+#'   with tau = 'min' is equivalent to Hill number taxonomic diversity, thus
+#'   with q=0 it is species richness (S), with q = 1 it is exponential of
+#'   Shannon entropy (H) and with q = 2 it is 1/(1-D) where D is Simpson
+#'   diversity FD is computed applying the special case where function 'f' in
+#'   equation 3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0)=0 and
+#'   f(tau)=1.
 #'
 #' @examples
 #' # Load Species*Traits dataframe:
@@ -64,7 +68,8 @@
 #'  scaling      = 'scaledBYrange',  
 #'  stop_if_NA   = TRUE)
 #' # Compute alpha fd hill indices:
-#' alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, q = c(0, 1, 2),
+#' alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
+#'  q = c(0, 1, 2),
 #'  tau = 'mean', check_input = TRUE, details_returned = TRUE)
 #'  
 #'@references 
@@ -116,7 +121,8 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
     isnum_vect <- sapply(asb_sp_w, is.numeric)
     
     if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. Please convert values")
+      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. 
+           Please convert values")
     }
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_sp_dist)))) {
@@ -146,8 +152,8 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
     # Add a stop if there is a negative value in the
     # occurrence dataframe:
     if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight dataframe should not contain negative values.
-           Please check.")
+      stop("Error: The species*weight dataframe should not contain negative 
+           values. Please check.")
     }
     
   }

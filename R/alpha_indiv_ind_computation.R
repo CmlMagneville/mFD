@@ -7,21 +7,22 @@
 #' the same weight. The results of this function are used in FSpe, FOri and FNND
 #' computation.
 #'
-#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
-#'   assemblage in a chosen functional space with only needed axes. Species
-#'   coordinates have been retrieved thanks to \code{fspace.conttr} or
-#'   \code{\link{quality.fspaces}} and filtered thanks to \code{\link{sp.filter}}.
+#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a
+#'   given assemblage in a chosen functional space with only needed axes.
+#'   Species coordinates have been retrieved thanks to \code{fspace.conttr} or
+#'   \code{\link{quality.fspaces}} and filtered thanks to
+#'   \code{\link{sp.filter}}.
 #'
-#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
-#'   for a given assemblage.
-#'
+#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight
+#'   (columns) for a given assemblage.
+#'   
 #' @param k a \strong{character string} referring to the assemblage studied.
 #'
-#' @param check_input a \strong{logical value} allowing to test or not the inputs.
-#'   Possible error messages will thus may be more understandable for the user
-#'   than R error messages. Species coordinates matrix and species*weight
-#'   dataframe must not contain NA, their rownames must be filled and they must
-#'   have similar names values. Default: check_input = FALSE.
+#' @param check_input a \strong{logical value} allowing to test or not the
+#'   inputs. Possible error messages will thus may be more understandable for
+#'   the user than R error messages. Species coordinates matrix and
+#'   species*weight dataframe must not contain NA, their rownames must be filled
+#'   and they must have similar names values. Default: check_input = FALSE.
 #'
 #' @return a matrix containing functional identity values for a given assemblage
 #'   along the dimensions (columns). Number of dimensions is fixed to the number
@@ -75,22 +76,23 @@ fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #' by the maximum value possible given species pool (i.e. the most distant
 #' species pair have half of total weight) to standardize values.
 #'
-#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
-#'   assemblage in a chosen functional space with only needed axes. Species
-#'   coordinates have been retrieved thanks to \code{fspace.conttr} or
-#'   \code{qual.funct.space} and filtered thanks to \code{sp.filter}.
+#' @param sp_faxes_coord_k a matrix of species coordinates present in a
+#'   given assemblage in a chosen functional space with only needed axes.
+#'   Species coordinates have been retrieved thanks to
+#'   \code{\link{fspace.conttr}} or \code{\link{quality.fspaces}} and filtered
+#'   thanks to \code{\link{sp.filter}.
+#'   
+#' @param asb_sp_relatw_k a matrix containing species relative weight
+#'   (columns) for a given assemblage.
 #'
-#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
-#'   for a given assemblage.
-#'
-#' @param fide_asb a \strong{matrix} containing functional identity values a given
-#'   assemblage along the dimensions (columns). Can be retrieved after
+#' @param fide_asb a matrix containing functional identity values a
+#'   given assemblage along the dimensions (columns). Can be retrieved after
 #'   \code{fide.computation} function and is compute if NULL. Default: fide_asb
 #'   = NULL.
 #'
-#' @param k a \strong{character string} referring to the assemblage studied.
+#' @param k a character string referring to the assemblage studied.
 #'
-#' @param check_input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a logical value allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
@@ -146,7 +148,8 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
     # compute distance to the centroid to compute fdis:
     dist_centr_k <- apply(sp_faxes_coord_k, 1, 
                           function(x) {
-                            (sum((x - fide_asb[k, colnames(sp_faxes_coord_k)])^2))^0.5
+                            (sum((x - fide_asb[k, 
+                                          colnames(sp_faxes_coord_k)])^2))^0.5
                           })
     # compute fdis value:
     fdis_asb_k <- (asb_sp_relatw_k %*% dist_centr_k)
@@ -161,14 +164,14 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #' This function computes the volume of functional space filled by species
 #' present in a given assemblage.
 #'
-#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
+#' @param sp_faxes_coord_k a matrix of species coordinates present in a given
 #'   assemblage in a chosen functional space with only needed axes. Species
-#'   coordinates have been retrieved thanks to \code{fspace.conttr} or
-#'   \code{qual.funct.space} and filtered thanks to \code{sp.filter}.
+#'   coordinates have been retrieved thanks to \code{\link{fspace.conttr}} or
+#'   \code{qual.funct.space} and filtered thanks to \code{\link{sp.filter}}.
 #'
-#' @param k a \strong{character string} referring to the assemblage studied.
+#' @param k a character string referring to the assemblage studied.
 #'
-#' @param check_input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a logical value allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix must not contain NA, its
 #'   rownames must be filled and the number of species should strictly be higher
@@ -246,26 +249,25 @@ fric.computation <- function(sp_faxes_coord_k, k, check_input = check_input) {
 #' This function to compute Functional Divergence (FDiv) index for one
 #' assemblage. FDiv indice accounts for deviation of biomass to the center of
 #' gravity of the vertices shaping the convex hull (see \code{\link{vertices}}).
-#' FDiv is scaled between 0 and 1. For details about FDiv index see
-#' \emph{Villeger et al. 2008 (https://doi.org/10.1890/07-1206.1)} Use
-#' \code{\link{alpha.fd.multidim}} to compute FDiv over multiple assemblages (and
-#' together with other FD indices) .
+#' FDiv is scaled between 0 and 1. For details about FDiv index see Villeger _et
+#' al._ 2008. Use \code{\link{alpha.fd.multidim}} to compute FDiv over multiple
+#' assemblages (and together with other FD indices) .
 #'
-#' @param sp_faxes_coord_k a \strong{matrix} with species coordinates for species present
+#' @param sp_faxes_coord_k a matrix with species coordinates for species present
 #'   in a given assemblage along functional axes.
 #'
-#' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight
+#' @param asb_sp_relatw_k a matrix containing species relative weight
 #'   (columns) for a given assemblage.
 #'
-#' @param vert_nm a \strong{vector} with names of the species being vertices of the
+#' @param vert_nm a vector with names of the species being vertices of the
 #'   convex hull (so should be a subset of colnames of \code{sp_faxes_coord_k}.
-#'   This vector can be provided through \code{\link{vertices}}) function or
-#'   retrieved after the \code{\link{fric.computation}} function. Default: vert_nm =
+#'   This vector can be provided through \code{vertices}) function or
+#'   retrieved after the \code{fric.computation} function. Default: vert_nm =
 #'   NULL.
 #'
-#' @param k a \strong{character string} referring to the assemblage studied.
+#' @param k a character string referring to the assemblage studied.
 #'
-#' @param check_input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a logical value allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled, they must
@@ -368,7 +370,8 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
   }
   
   return_list <- list(fdiv = fdiv_asb_k, details = list(vertices_nm = vert_nm, 
-                                                        B_coord = B_coord, mean_dtoB = mean_dtoB))
+                                                        B_coord = B_coord, 
+                                                        mean_dtoB = mean_dtoB))
   return(return_list)
 }
 
@@ -381,10 +384,10 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
 #' This function computes the regularity of distribution of species weights in
 #' the functional space.
 #'
-#' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in a given
-#'   assemblage in a chosen functional space with only needed axes. Species
-#'   coordinates have been retrieved thanks to \code{fspace.conttr} or
-#'   \code{qual.funct.space} and filtered thanks to \code{sp.filter}.
+#' @param sp_faxes_coord_k a matrix of species coordinates present in a
+#'   given assemblage in a chosen functional space with only needed axes.
+#'   Species coordinates have been retrieved thanks to \code{\link{fspace.conttr}} or
+#'   \code{qual.funct.space} and filtered thanks to \code{\link{sp.filter}}.
 #'
 #' @param asb_sp_relatw_k a \strong{matrix} containing species relative weight (columns)
 #'   for a given assemblage.

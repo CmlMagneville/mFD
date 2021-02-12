@@ -1,32 +1,35 @@
 #' Compute a set of alpha functional indices for a set of assemblages
 #'
-#' This function computes a set of multidimensional space based indices of alpha functional
-#' diversity. The user can choose which functional indices to compute.
+#' This function computes a set of multidimensional space based indices of alpha
+#' functional diversity. The user can choose which functional indices to
+#' compute.
 #'
-#' @param sp_faxes_coord a \strong{matrix} of species coordinates in a chosen functional
-#'  space. Species coordinates have been retrieved thanks to
-#'  \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
+#' @param sp_faxes_coord a \strong{matrix} of species coordinates in a chosen
+#'   functional space. Species coordinates have been retrieved thanks to
+#'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#' @param asb_sp_w a \strong{matrix} linking weight of species (columns) and a set of
-#'  assemblages (rows).
+#' @param asb_sp_w a \strong{matrix} linking weight of species (columns) and a
+#'   set of assemblages (rows).
 #'
-#' @param ind_vect a \strong{vector} of character string of the name of functional indices
-#'  to compute. \strong{Indices names must be written in lower case letters}.
-#'  Possible indices to compute are: 'fide', fdis', 'fmpd', 'fnnd', 'feve', 'fric',
-#'  'fdiv', 'fori' and 'fspe'. Default: all the indices are computed.
+#' @param ind_vect a \strong{vector} of character string of the name of
+#'   functional indices to compute. \strong{Indices names must be written in
+#'   lower case letters}. Possible indices to compute are: 'fide', fdis',
+#'   'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 'fori' and 'fspe'. Default: all the
+#'   indices are computed.
 #'
-#' @param scaling a \strong{logical value} indicating if scaling is to be done (TRUE) or
-#'  not (FALSE) on functional indices. Scaling is used to be able to compare
-#'  indices values between assemblages. Default: scaling = TRUE.
+#' @param scaling a \strong{logical value} indicating if scaling is to be done
+#'   (TRUE) or not (FALSE) on functional indices. Scaling is used to be able to
+#'   compare indices values between assemblages. Default: scaling = TRUE.
 #'
-#' @param check_input a \strong{logical value} defining whether inputs are checked before
-#'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check_input =
-#'  TRUE.
+#' @param check_input a \strong{logical value} defining whether inputs are
+#'   checked before computation of indices. Possible error messages will thus
+#'   may be more understandable for the user than R error messages. Default:
+#'   check_input = TRUE.
 #'
-#' @param details_returned a \strong{logical value} indicating whether the user want to store
-#'  details. Details are used in graphical functions and thus must be kept if
-#'  the user want to have graphical outputs for the computed indices.
+#' @param details_returned a \strong{logical value} indicating whether the user
+#'   want to store details. Details are used in graphical functions and thus
+#'   must be kept if the user want to have graphical outputs for the computed
+#'   indices.
 #'
 #' @return a list with: \itemize{
 #'
@@ -106,8 +109,9 @@
 
 
 alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w, 
-                              ind_vect = c("fide", "fdis", "fmpd", "fnnd", "feve", 
-                                           "fric", "fdiv", "fori", "fspe"), scaling = TRUE, 
+                              ind_vect = c("fide", "fdis", "fmpd", "fnnd", 
+                                           "feve", "fric", "fdiv", "fori", 
+                                           "fspe"), scaling = TRUE, 
                               check_input = TRUE, details_returned = TRUE) {
   
   
@@ -161,7 +165,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     isnum_vect <- sapply(asb_sp_w, is.numeric)
     
     if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. Please convert values")
+      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. 
+           Please convert values")
     }
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_faxes_coord)))) {
@@ -182,8 +187,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     # Add a stop if there is a negative value in the
     # occurrence dataframe:
     if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight dataframe should not contain negative values.
-           Please check.")
+      stop("Error: The species*weight dataframe should not contain negative 
+          values.Please check.")
     }
     
   }
@@ -362,7 +367,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       if (check_input == TRUE) {
         if (round(sum(asb_sp_relatw_k), 10) != 
             1) {
-          stop(paste0("Error: the sum of relative weights is not equal to one for", 
+          stop(paste0("Error: the sum of relative weights is not equal to 
+                      one for", 
                       k, sep = ""))
         }
       }
@@ -378,7 +384,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       if (check_input == TRUE) {
         if (round(round(sum(asb_sp_relatw_k), 
                         10), 10) != 1) {
-          stop(paste0("Error: the sum of relative weights is not equal to one for", 
+          stop(paste0("Error: the sum of relative weights is not equal to 
+                      one for", 
                       sep = " ", k))
         }
       }
@@ -407,7 +414,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
           stop(paste0("Error: Number of species should strictly be higher than
           the number of axes to compute the convex hull.
           It is not the case for", 
-                      sep = " ", k, sep = ".", "Remove this assemblage or decrease the number of functional axes.
+                      sep = " ", k, sep = ".", "Remove this assemblage or
+                      decrease the number of functional axes.
           FRic can not be computed here."))
         }
       }
@@ -427,9 +435,10 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         # coplanearity):
         if (!is.na(fric_value)) {
           conv_fa_all <- tryCatch(geometry::convhulln(sp_faxes_coord, 
-                                                      option = "FA"), error = function(err) {
+                                                      option = "FA"), 
+                                  error = function(err) {
                                                         "NA"
-                                                      })
+                                                         })
           fric_value <- fric$fric
           # if convex hull of the gp can be computed:
           if (!is.character(conv_fa_all)) {
@@ -461,7 +470,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       if (check_input == TRUE) {
         if (round(sum(asb_sp_relatw_k), 10) != 
             1) {
-          stop(paste0("Error: the sum of relative weights is not equal to one for", 
+          stop(paste0("Error: the sum of relative weights is not equal to 
+                      one for", 
                       k, sep = " "))
         }
       }
@@ -492,7 +502,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         # fill the list of mean distance to gravity center
         # of species present...  ... in each assemblage:
         mean_dtogravcenter_all_asb[[paste0("mean_dist_to_sp_gravcent_asb", 
-                                           sep = "_", k)]] <- fdiv$details$mean_dtoB
+                                           sep = "_", 
+                                           k)]] <- fdiv$details$mean_dtoB
       }
     }
     if (!is.character(vert_nm)) {
@@ -515,7 +526,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         }
         if (round(sum(asb_sp_relatw_k), 10) != 
             1) {
-          stop(paste0("Error: the sum of relative weights is not equal to one for", 
+          stop(paste0("Error: the sum of relative weights is not equal 
+                      to one for", 
                       k, sep = " "))
         }
       }
@@ -537,7 +549,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       if (check_input == TRUE) {
         if (round(sum(asb_sp_relatw_k), 10) != 
             1) {
-          stop(paste0("Error: the sum of relative weights is not equal to one for", 
+          stop(paste0("Error: the sum of relative weights is not equal 
+                      to one for", 
                       k, sep = ""))
         }
       }
@@ -562,7 +575,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       if (check_input == TRUE) {
         if (round(sum(asb_sp_relatw_k), 10) != 
             1) {
-          stop(paste0("Error: the sum of relative weights is not equal to one for", 
+          stop(paste0("Error: the sum of relative weights is not equal 
+                      to one for", 
                       k, sep = ""))
         }
       }
@@ -578,7 +592,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
           ref_sp <- rownames(sp_faxes_coord)[i]
           dist_nn_sp <- dist.nearneighb(sp_faxes_coord, 
                                         ref_sp)
-          dist_nn[ref_sp] <- dist_nn_sp$`distance of the reference species to its nearest neighbour`
+          dist_nn[ref_sp] <- dist_nn_sp$`distance of the reference species 
+                                          to its nearest neighbour`
         }
         fnnd_value <- fnnd$fnnd
         fnnd_value <- fnnd_value/(max(unlist(dist_nn), 
@@ -596,7 +611,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       nms_all <- list(fnnd$details$nm_nn_k)
       names(nms_all) <- k
       nm_nn_all_asb[k] <- nms_all
-      dist_nn_all_asb[k, c(rownames(sp_faxes_coord_k))] <- fnnd$details$dist_nn_k
+      dist_nn_all_asb[k, 
+                      c(rownames(sp_faxes_coord_k))] <- fnnd$details$dist_nn_k
     }
     
     # fori:
@@ -655,7 +671,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       if (check_input == TRUE) {
         if (round(sum(asb_sp_relatw_k), 10) != 
             1) {
-          stop(paste0("Error: the sum of relative weights is not equal to one for", 
+          stop(paste0("Error: the sum of relative weights is not equal 
+                      to one for", 
                       k, sep = ""))
         }
       }
@@ -672,7 +689,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
                                       })
       # compute fspe value:
       fspe <- fspe.computation(asb_sp_relatw_k, 
-                               special_sp_global_pool, k, check_input = check_input)
+                               special_sp_global_pool, k, 
+                               check_input = check_input)
       if (scaling == TRUE) {
         fspe <- fspe/max(special_sp_global_pool)
         asb_ind_values[k, "fspe"] <- fspe
@@ -692,16 +710,18 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
   ## construct the return list:
   if (details_returned == TRUE) {
     return_list <- list(functional_diversity_indices = asb_ind_values_all, 
-                        details = list(asb_sp_occ = asb_sp_occ, 
-                                       asb_sp_relatw = relat_w_all_asb, sp_faxes_coord_list = sp_coord_all_asb, 
-                                       vert_nm_list = vert_nm_all_asb, mst_list = mst_all_asb, 
-                                       grav_center_vert_coord_list = grav_center_vert_coord, 
-                                       mean_dtogravcenter_list = mean_dtogravcenter_all_asb, 
-                                       dtogravcenter_global_pool_list = special_sp_global_pool, 
-                                       nm_nn_global_pool_list = nm_nn_global_pool, 
-                                       dist_nn_global_pool_list = dist_nn_global_pool, 
-                                       nm_nn_asb_list = nm_nn_all_asb, dist_nn_asb_list = dist_nn_all_asb, 
-                                       grav_center_global_pool = centroid_global_pool))
+          details = list(asb_sp_occ = asb_sp_occ, 
+            asb_sp_relatw = relat_w_all_asb, 
+            sp_faxes_coord_list = sp_coord_all_asb, 
+            vert_nm_list = vert_nm_all_asb, 
+            mst_list = mst_all_asb, 
+            grav_center_vert_coord_list = grav_center_vert_coord, 
+            mean_dtogravcenter_list = mean_dtogravcenter_all_asb, 
+            dtogravcenter_global_pool_list = special_sp_global_pool, 
+            nm_nn_global_pool_list = nm_nn_global_pool, 
+            dist_nn_global_pool_list = dist_nn_global_pool, 
+            nm_nn_asb_list = nm_nn_all_asb, dist_nn_asb_list = dist_nn_all_asb, 
+            grav_center_global_pool = centroid_global_pool))
   } else {
     return_list <- (functional_diversity_indices = asb_ind_values_all)
   }

@@ -11,7 +11,8 @@
 #' @param ref_sp a character string referring to the name of the reference
 #'   species
 #'
-#' @return a vector of species distances to the reference species \code{dist_refsp}
+#' @return a vector of species distances to the reference species 
+#' \code{dist_refsp}
 #' 
 #' @author Camille Magneville and Sébastien Villéger
 #' 
@@ -72,10 +73,12 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
   nn_refsp_id <- as.data.frame(nn_refsp_id)
   nn_id <- rownames(nn_refsp_id)
   nn_ref_sp_dist <- dist_sp[which(rownames(dist_sp) == 
-                                    ref_sp), which(colnames(dist_sp) %in% as.vector(nn_id[1]))]
+                                    ref_sp), which(colnames(dist_sp) %in% 
+                                                     as.vector(nn_id[1]))]
   return_list <- list(nn_id, nn_ref_sp_dist)
   names(return_list) <- c("nearest neighbour identity", 
-                          "distance of the reference species to its nearest neighbour")
+                          "distance of the reference species to its nearest 
+                          neighbour")
   return(return_list)
 }
 
@@ -121,7 +124,7 @@ mst.computation <- function(sp_faxes_coord_k) {
 #'
 #' @param sp_faxes_coord a matrix of species coordinates in a chosen functional
 #'   space. Species coordinates have been retrieved thanks to
-#'   \code{fspace.conttr} or \code{\link{quality.fspaces}}.
+#'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
 #' @param order_2D a logical value defining whether vertices names are reordered
 #' so that they define a convex polygon in 2D which is convenient for plotting.
@@ -136,7 +139,7 @@ mst.computation <- function(sp_faxes_coord_k) {
 #' 
 #' @author Camille Magneville and Sébastien Villéger
 #'
-#'@importFrom geometry convhulln
+#' @importFrom geometry convhulln
 
 vertices <- function(sp_faxes_coord, order_2D = FALSE, 
                      check_input = FALSE) {
@@ -167,9 +170,10 @@ vertices <- function(sp_faxes_coord, order_2D = FALSE,
   # compute vertices: if vertices can be computed
   # (coplanearity), convFx == NA:
   conv_Fx <- tryCatch(geometry::convhulln(sp_faxes_coord, 
-                                          options = "Fx"), error = function(err) {
+                                          options = "Fx"), 
+                      error = function(err) {
                                             "NA"
-                                          })
+                                             })
   
   # extracting unique names of vertices from the
   # matrix with identity ...  ...of species for each
@@ -185,9 +189,10 @@ vertices <- function(sp_faxes_coord, order_2D = FALSE,
         2) {
       
       vert_nm <- vert_nm[order(-1 * atan2(sp_faxes_coord[vert_nm, 
-                                                         1] - mean(range(sp_faxes_coord[vert_nm, 
-                                                                                        1])), 
-                                                                  sp_faxes_coord[vert_nm, 2] - 
+                                                         1] - 
+                                            mean(range(sp_faxes_coord[vert_nm, 
+                                                                      1])), 
+                                              sp_faxes_coord[vert_nm, 2] - 
                                             mean(range(sp_faxes_coord[vert_nm, 
                                                                       2]))))]
     }

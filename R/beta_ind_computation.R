@@ -1,10 +1,10 @@
 #' Computes functional beta-diversity indices for pairs of assemblages in a
 #' multidimensional space.
 #'
-#' Computes a set of indices of pairwise functional beta-diversity (dissimilarity
-#' and its turnover and nestedness-resultant components) based on overlap between
-#' convex hulls in a multidimensional space. For details about indices formulas
-#' see Villéger _et al._ (2013).
+#' Computes a set of indices of pairwise functional beta-diversity
+#' (dissimilarity and its turnover and nestedness-resultant components) based on
+#' overlap between convex hulls in a multidimensional space. For details about
+#' indices formulas see Villéger _et al._ (2013).
 #'
 #' @param sp_faxes_coord a \strong{matrix} with coordinates of species (rows) on
 #'  functional axes (columns). Species coordinates have been retrieved thanks to
@@ -13,61 +13,63 @@
 #' @param asb_sp_occ a \strong{matrix} with presence/absence (coded as 0/1)
 #'  of species (columns) in a set of assemblages (rows).
 #'
-#' @param check_input a \strong{logical value} defining whether inputs are checked before
-#'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check_input =
-#'  TRUE.
+#' @param check_input a \strong{logical value} defining whether inputs are
+#'   checked before computation of indices. Possible error messages will thus
+#'   may be more understandable for the user than R error messages. Default:
+#'   check_input = TRUE.
+#'   
+#' @param beta_family a \strong{character string} for the type of beta-diversity
+#'   index to use, 'Jaccard' (default) and/or 'Sorensen'
 #'
-#' @param beta_family a \strong{character string} for the type of beta-diversity index to
-#'  use, 'Jaccard' (default) and/or 'Sorensen'
-#'
-#' @param details_returned a \strong{logical value} indicating whether the user wants to
-#'  details_returned. Details are used in the graphical function
-#'  \code{beta.multidim.plot} and thus must be kept if the user want to have
-#'  graphical outputs for the computed indices.
-#'
-#' @param betapart_step a \strong{logical value} indicating whether the computation
-#'  progress tracking file 'step.fbc.txt' should be created. Setting it to FALSE
-#'  will speed up the function. Default: betapart_step = FALSE, and it is automatically turned
-#'  to FALSE when 'betapart_para' is TRUE.
+#' @param details_returned a \strong{logical value} indicating whether the user
+#'   wants to details_returned. Details are used in the graphical function
+#'   \code{beta.multidim.plot} and thus must be kept if the user want to have
+#'   graphical outputs for the computed indices.
+#'   
+#' @param betapart_step a \strong{logical value} indicating whether the
+#'   computation progress tracking file 'step.fbc.txt' should be created.
+#'   Setting it to FALSE will speed up the function. Default: betapart_step =
+#'   FALSE, and it is automatically turned to FALSE when 'betapart_para' is
+#'   TRUE.
 #'
 #' @param betapart_para a \strong{logical value} indicating whether internal
 #'  parallelization should be used to compute pairwise dissimilarities. Default:
 #'  betapart_para = FALSE.
 #'
-#' @param betapart_para_opt a \strong{list} with details about parallelization. Default
-#'  value means those parameters are set according to computer specifications.
-#'  'nc' is number of cores (default = 4), 'type' is a character string with
-#'  code of method used (default PSOCK), 'LB' is a boolean specifying whether
-#'  load-balancing is applied (default is TRUE) and 'size' is a numeric value
-#'  for number of tasks performed at each time (default is 1). See help of
-#'  \code{\link[betapart]{functional.betapart.core}} for more details.
+#' @param betapart_para_opt a \strong{list} with details about parallelization.
+#'   Default value means those parameters are set according to computer
+#'   specifications. 'nc' is number of cores (default = 4), 'type' is a
+#'   character string with code of method used (default PSOCK), 'LB' is a
+#'   boolean specifying whether load-balancing is applied (default is TRUE) and
+#'   'size' is a numeric value for number of tasks performed at each time
+#'   (default is 1). See help of
+#'   \code{\link[betapart]{functional.betapart.core}} for more details.
 #'
-#' @return a list with: \itemize{
-#'  \item inputs a list with \item \emph{pairasb_fbd_indices} a dataframe with for all pairs of
-#'  assemblages (rows) names of the assemblages in the 2 first columns and
-#'  columns with beta functional diversity indices following the additive
-#'  decomposition of Villéger et al 2013 : 'F_diss': functional dissimilarity
-#'  index, 'F_turn': its turnover component, and 'F_nest': its
-#'  nestedness-resultant component, i.e. F_diss = F_turn + F_nest. Those indices
-#'  names are preceded by the abbreviation of the type of indices used, 'jac'
-#'  for decomposition of Jaccard-like functional dissimilarity and 'sor' for
-#'  Sorensen-like dissimilarity.
+#' @return a list with: \itemize{ \item inputs a list with \item
+#'   \emph{pairasb_fbd_indices} a dataframe with for all pairs of assemblages
+#'   (rows) names of the assemblages in the 2 first columns and columns with
+#'   beta functional diversity indices following the additive decomposition of
+#'   Villéger et al 2013 : 'F_diss': functional dissimilarity index, 'F_turn':
+#'   its turnover component, and 'F_nest': its nestedness-resultant component,
+#'   i.e. F_diss = F_turn + F_nest. Those indices names are preceded by the
+#'   abbreviation of the type of indices used, 'jac' for decomposition of
+#'   Jaccard-like functional dissimilarity and 'sor' for Sorensen-like
+#'   dissimilarity.
 #'  \item \emph{details_beta} list if \emph{details_returned} is TRUE:
-#'  \emph{sp_faxes_coord} and \emph{asb_sp_occ} on which indices were computed (convenient for drawing
-#'  graphics) ; a \strong{asb_FRic_raw} vector with volume of
-#'  the convex hull shaping each assemblage ; a \strong{asb_FRic} vector with volume of
-#'  the convex hull shaping each assemblage ; a \strong{asb_vertices} a list of
-#'  vectors (1 per assemblage) with names of species being vertices of the
-#'  convex hull }
+#'  \emph{sp_faxes_coord} and \emph{asb_sp_occ} on which indices were computed
+#'  (convenient for drawing graphics) ; a \strong{asb_FRic_raw} vector with
+#'  volume of the convex hull shaping each assemblage ; a \strong{asb_FRic}
+#'  vector with volume of the convex hull shaping each assemblage ; a
+#'  \strong{asb_vertices} a list of vectors (1 per assemblage) with names of
+#'  species being vertices of the convex hull }
 #'  
 #' @author Sébastien Villéger and Camille Magneville
 #'
-#' @section Notes: \strong{All assemblages should have a number of species strictly
-#'  higher than the number of functional axes}. Computing intersection of convex
-#'  hulls in space of >5 dimensions is yet impossible with most computers.
-#'  This function uses R libraries 'betapart' (>=1.5.2) for indices computation
-#'  and 'dendextend' for formatting values in a dataframe.
+#' @section Notes: \strong{All assemblages should have a number of species
+#'   strictly higher than the number of functional axes}. Computing intersection
+#'   of convex hulls in space of >5 dimensions is yet impossible with most
+#'   computers. This function uses R libraries 'betapart' (>=1.5.2) for indices
+#'   computation and 'dendextend' for formatting values in a dataframe.
 #'
 #' @examples
 #'  # Load Species*Traits dataframe:
@@ -101,22 +103,24 @@
 #'  details_returned = TRUE)
 #'  
 #' @references 
-#'   Villéger _et al._ (2013) Decomposing functional β‐diversity reveals that
-#'   low functional β‐diversity is driven by low functional turnover in European
+#'   Villéger _et al._ (2013) Decomposing functional ß-diversity reveals that
+#'   low functional ß-diversity is driven by low functional turnover in European
 #'   fish assemblages. _Global Ecology and Biogeography_, **22**, 671-681. \cr
 #'  
-#' @importFrom betapart beta.para.control functional.beta.pair functional.betapart.core
+#' @importFrom betapart beta.para.control functional.beta.pair 
+#' @importFrom  functional.betapart.core
 #' @importFrom dendextend dist_long
 #' @importFrom geometry convhulln
 #'
 #' @export
 
 
-beta.fd.multidim <- function(sp_faxes_coord, asb_sp_occ, 
-                             check_input = TRUE, beta_family = "Jaccard", 
-                             details_returned = TRUE, 
-                             betapart_step = FALSE, betapart_para = FALSE, 
-                             betapart_para_opt = betapart::beta.para.control()) {
+beta.fd.multidim <- function(sp_faxes_coord, 
+                             asb_sp_occ, check_input = TRUE, 
+                             beta_family = "Jaccard", 
+                             details_returned = TRUE, betapart_step = FALSE, 
+                             betapart_para = FALSE, 
+                             betapart_para_opt = betapart::beta.para.control()){
   
   
   
@@ -150,17 +154,20 @@ beta.fd.multidim <- function(sp_faxes_coord, asb_sp_occ,
     if (any(is.na(asb_sp_occ))) {
       stop("Error: The species occurence matrix contains NA. Please check.")
     }
-    if (any(asb_sp_occ != 0 & asb_sp_occ != 1)) {
+    if (any(asb_sp_occ != 0 & asb_sp_occ != 
+            1)) {
       stop("Error: The species occurence matrix should contain only 0 and 1.
            Please check.")
     }
     
-    if (any(!(colnames(asb_sp_occ) %in% rownames(sp_faxes_coord)))) {
+    if (any(!(colnames(asb_sp_occ) %in% 
+              rownames(sp_faxes_coord)))) {
       stop(paste("Error: Mismatch in species names between species occurence
         and species coordinates matrices. Please check."))
     }
     
-    if (any(apply(asb_sp_occ, 1, sum) <= ncol(sp_faxes_coord))) {
+    if (any(apply(asb_sp_occ, 1, sum) <= 
+            ncol(sp_faxes_coord))) {
       stop(paste("Error: all assemblages should have more species
                    than number of functional axes"))
     }
@@ -173,64 +180,71 @@ beta.fd.multidim <- function(sp_faxes_coord, asb_sp_occ,
                    Consider keeping only five dimensions"))
     }
     
-    if (any(!beta_family %in% c("Jaccard", "Sorensen"))) {
+    if (any(!beta_family %in% c("Jaccard", 
+                                "Sorensen"))) {
       stop(paste("Error: beta diversity index should be 'Jaccard' and/or
                    'Sorensen'. Please check."))
     }
     
-    # Add a stop if some species do not belong to any
-    # assemblage:
-    if (min(apply(asb_sp_occ, 2, sum)) == 0) {
+    # Add a stop if some species do not
+    # belong to any assemblage:
+    if (min(apply(asb_sp_occ, 2, sum)) == 
+        0) {
       stop("Error: Some species are absent from all assemblages.")
     }
-    # Add a stop if some asb do not contain species:
-    if (min(apply(asb_sp_occ, 1, sum)) == 0) {
+    # Add a stop if some asb do not contain
+    # species:
+    if (min(apply(asb_sp_occ, 1, sum)) == 
+        0) {
       stop("Error: Some assemblages do not contain species.")
     }
     
   }
   
   
-  # ensuring species are in the same order in both
-  # matrices
+  # ensuring species are in the same order
+  # in both matrices
   sp_faxes_coord <- sp_faxes_coord[colnames(asb_sp_occ), 
   ]
   
-  # calling functional.betapart.core function to
-  # compute beta functional diversity = computing
-  # convex hulls and their intersections for all
-  # pairs of assemblages 2 last parameters are for
+  # calling functional.betapart.core
+  # function to compute beta functional
+  # diversity = computing convex hulls and
+  # their intersections for all pairs of
+  # assemblages 2 last parameters are for
   # parallelization
   F_betapart_core <- betapart::functional.betapart.core(x = asb_sp_occ, 
-                                                        traits = sp_faxes_coord, 
-                                                        multi = FALSE, 
-                                                        return.details = TRUE, 
-                                                        fbc.step = betapart_step, 
-                                                        parallel = betapart_para, 
-                                                        opt.parallel = betapart_para_opt)
+                                              traits = sp_faxes_coord, 
+                                              multi = FALSE, 
+                                              return.details = TRUE, 
+                                              fbc.step = betapart_step, 
+                                              parallel = betapart_para, 
+                                              opt.parallel = betapart_para_opt)
   
   
-  # computing functional beta diversity indices for
-  # all pairs of assemblages according to the type of
-  # index (indices) selected
+  # computing functional beta diversity
+  # indices for all pairs of assemblages
+  # according to the type of index
+  # (indices) selected
   if ("Jaccard" %in% beta_family) {
     F_beta_jac <- betapart::functional.beta.pair(F_betapart_core, 
                                                  index.family = "jaccard")
     
-    # indices values in a dataframe where rows are
-    # pairs of assemblages
+    # indices values in a dataframe where
+    # rows are pairs of assemblages
     F_beta_jac_df <- dendextend::dist_long(F_beta_jac$funct.beta.jac)
-    names(F_beta_jac_df) <- c("asb.2", "asb.1", 
-                              "jac_diss")
+    names(F_beta_jac_df) <- c("asb.2", 
+                              "asb.1", "jac_diss")
     
     F_beta_jac_df <- data.frame(F_beta_jac_df, 
-                                jac_turn = dendextend::dist_long(F_beta_jac$funct.beta.jtu)$distance, 
-                                jac_nest = dendextend::dist_long(F_beta_jac$funct.beta.jne)$distance)
+           jac_turn = dendextend::dist_long(F_beta_jac$funct.beta.jtu)$distance, 
+           jac_nest = dendextend::dist_long(F_beta_jac$funct.beta.jne)$distance)
     
-    # dataframe after reordering columns and proper row
-    # names
-    pairasb_fbd_indices <- F_beta_jac_df[, c("asb.1", 
-                                             "asb.2", "jac_diss", "jac_turn", "jac_nest")]
+    # dataframe after reordering columns and
+    # proper row names
+    pairasb_fbd_indices <- F_beta_jac_df[, 
+                                         c("asb.1", "asb.2", "jac_diss", 
+                                           "jac_turn", "jac_nest")]
     row.names(pairasb_fbd_indices) <- NULL
     
   }
@@ -239,47 +253,56 @@ beta.fd.multidim <- function(sp_faxes_coord, asb_sp_occ,
     F_beta_sor <- betapart::functional.beta.pair(F_betapart_core, 
                                                  index.family = "sorensen")
     
-    # indices values in a dataframe where rows are
-    # pairs of assemblages
+    # indices values in a dataframe where
+    # rows are pairs of assemblages
     F_beta_sor_df <- dendextend::dist_long(F_beta_sor$funct.beta.sor)
-    names(F_beta_sor_df) <- c("asb.2", "asb.1", 
-                              "sor_diss")
+    names(F_beta_sor_df) <- c("asb.2", 
+                              "asb.1", "sor_diss")
     
     F_beta_sor_df <- data.frame(F_beta_sor_df, 
-                                sor_turn = dendextend::dist_long(F_beta_sor$funct.beta.sim)$distance, 
-                                sor_nest = dendextend::dist_long(F_beta_sor$funct.beta.sne)$distance)
+          sor_turn = dendextend::dist_long(F_beta_sor$funct.beta.sim)$distance, 
+          sor_nest = dendextend::dist_long(F_beta_sor$funct.beta.sne)$distance)
     
-    # dataframe after reordering columns and proper row
-    # names
-    pairasb_fbd_indices <- F_beta_sor_df[, c("asb.1", 
-                                             "asb.2", "sor_diss", "sor_turn", "sor_nest")]
+    # dataframe after reordering columns and
+    # proper row names
+    pairasb_fbd_indices <- F_beta_sor_df[, 
+                                         c("asb.1", "asb.2", "sor_diss", 
+                                           "sor_turn", "sor_nest")]
     row.names(pairasb_fbd_indices) <- NULL
     
   }
   
-  # if both families of indices should be returned
+  # if both families of indices should be
+  # returned
   if (("Sorensen" %in% beta_family) & ("Jaccard" %in% 
                                        beta_family)) 
   {
     pairasb_fbd_indices <- cbind.data.frame(F_beta_jac_df[, 
-                                                          c("asb.1", "asb.2", "jac_diss", "jac_turn", 
-                                                            "jac_nest")], 
-                                            F_beta_sor_df[, c("sor_diss", "sor_turn", "sor_nest")])
+                                                          c("asb.1", "asb.2", 
+                                                          "jac_diss", 
+                                                          "jac_turn", 
+                                                          "jac_nest")], 
+                                            F_beta_sor_df[, c("sor_diss", 
+                                                              "sor_turn", 
+                                                              "sor_nest")])
     row.names(pairasb_fbd_indices) <- NULL
     
   }  #end of if both indices
   
-  # compute the volume of the convex hull of the gp
-  # to compute real FRic value:
+  # compute the volume of the convex hull
+  # of the gp to compute real FRic value:
   conv_fa_all <- tryCatch(geometry::convhulln(sp_faxes_coord, 
-                                              option = "FA"), error = function(err) {
+                                              option = "FA"), 
+                          error = function(err) {
                                                 "NA"
-                                              })
-  # if convex hull of the gp can be computed:
+                                                })
+  # if convex hull of the gp can be
+  # computed:
   if (is.character(conv_fa_all)) {
     fric <- F_betapart_core$details$CH$FRi/conv_fa_all
   }
-  # if convex hull of the gp can not be computed:
+  # if convex hull of the gp can not be
+  # computed:
   if (!is.character(conv_fa_all)) {
     fric <- NA
   }
@@ -288,12 +311,12 @@ beta.fd.multidim <- function(sp_faxes_coord, asb_sp_occ,
   ## results to return
   if (details_returned == TRUE) {
     return_list <- list(pairasb_fbd_indices = pairasb_fbd_indices, 
-                        details = list(inputs = list(sp_faxes_coord = sp_faxes_coord, 
-                                                     asb_sp_occ = asb_sp_occ), 
-                                       asb_FRic_raw = F_betapart_core$details$CH$FRi, 
-                                       asb_FRic = fric, 
-                                       asb_vertices = lapply(F_betapart_core$details$CH$coord_vertices, 
-                                                                              row.names)))
+              details = list(inputs = list(sp_faxes_coord = sp_faxes_coord, 
+                sb_sp_occ = asb_sp_occ), 
+                asb_FRic_raw = F_betapart_core$details$CH$FRi, 
+                asb_FRic = fric, 
+                asb_vertices = lapply(F_betapart_core$details$CH$coord_vertices, 
+                                                                    row.names)))
   } else {
     return_list <- (pairasb_fbd_indices = pairasb_fbd_indices)
   }

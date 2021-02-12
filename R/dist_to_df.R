@@ -3,9 +3,9 @@
 #'
 #' This functions stands on the \code{\link[dendextend]{dist_long}} function
 #' 
-#' @param list_dist a list of dist object(s). All dist objects should have a name
-#' (e.g. name of distance metric) and the same labels (i.e. names of sets
-#' between which distance was computed).
+#' @param list_dist a list of dist object(s). All dist objects should have a
+#'   name (e.g. name of distance metric) and the same labels (i.e. names of sets
+#'   between which distance was computed).
 #'
 #' @return a dataframe which first and second columns (names `x1` and `x2`)
 #' contain names of the 2 sets involved in each pair, and with one column for
@@ -17,9 +17,12 @@
 #' 
 #' @examples 
 #' # Create dist objects: 
-#' dist_A <- round(dist(matrix(runif(1:100), 5, 2, dimnames = list(letters[1:5], NULL))), 2)
-#' dist_B <- round(dist(matrix(runif(1:100), 5, 2, dimnames = list(letters[1:5], NULL))), 2)
-#' dist_C <- round(dist(matrix(runif(1:100), 5, 2, dimnames = list(letters[1:5], NULL))), 2)
+#' dist_A <- round(dist(matrix(runif(1:100), 5, 2, 
+#'                       dimnames = list(letters[1:5], NULL))), 2)
+#' dist_B <- round(dist(matrix(runif(1:100), 5, 2, 
+#'                       dimnames = list(letters[1:5], NULL))), 2)
+#' dist_C <- round(dist(matrix(runif(1:100), 5, 2, 
+#'                       dimnames = list(letters[1:5], NULL))), 2)
 #'
 #' # First example with only 1 distance:
 #' dist.to.df(list(dA = dist_A))
@@ -41,20 +44,24 @@ dist.to.df <- function(list_dist) {
   
   #### checking inputs #####
   
-  # checking list contains only dist objects:
-  if (any(unlist(lapply(list_dist, class)) != "dist")) {
-      stop("Error: input 'list_dist' should contain only 'dist' object
+  # checking list contains only dist
+  # objects:
+  if (any(unlist(lapply(list_dist, class)) != 
+          "dist")) {
+    stop("Error: input 'list_dist' should contain only 'dist' object
               Correct using 'as.dist()' if necessary")
   }
   
   # checking input is a list
-  if ( ! is.list(list_dist) ) {
-    stop("Error: input 'list_dist' should be a list (even when only one dist object is provided)")
+  if (!is.list(list_dist)) {
+    stop("Error: input 'list_dist' should be a list (even when only one 
+         dist object is provided)")
   }
   
   
   # checking all dist objects have names:
-  if (is.null(dist_nm) | any(nchar(dist_nm) == 0)) {
+  if (is.null(dist_nm) | any(nchar(dist_nm) == 
+                             0)) {
     stop("Error: some of dist objects in 'list_dist' do not all have a name.
        Name all dist objects within the list (e.g. with distance metric).")
   }
@@ -68,20 +75,21 @@ dist.to.df <- function(list_dist) {
   }
   
   
-  #### reference for pairs of sets is first object of
-  #### list ####
+  #### reference for pairs of sets is first
+  #### object of list ####
   
   # applying dist_long:
   df_dist <- dendextend::dist_long(list_dist[[1]])
   
-  # reversing and renaming order of columns:
+  # reversing and renaming order of
+  # columns:
   df_dist <- data.frame(df_dist$cols, df_dist$rows, 
                         df_dist$distance)
   names(df_dist) <- c("x1", "x2", dist_nm[1])
   
   
-  #### if other dist object, binding values with first
-  #### ones as new column(s) ####
+  #### if other dist object, binding values
+  #### with first ones as new column(s) ####
   
   if (dist_nb > 1) 
   {
@@ -94,11 +102,12 @@ dist.to.df <- function(list_dist) {
       # names of its labels:
       k_labels <- labels(list_dist[[k_nm]])
       
-      # checking same labels than first dist object:
+      # checking same labels than first dist
+      # object:
       if (is.null(k_labels) | any(dist1_labels != 
                                   k_labels)) {
-        stop(paste0("Error: element ", k_nm, 
-                    " does not have the same labels
+        stop(paste0("Error: element ", 
+                    k_nm, " does not have the same labels
       than first dist object ", 
                     dist_nm[1], ".Check labels of inputs."))
       }
@@ -106,8 +115,8 @@ dist.to.df <- function(list_dist) {
       # applying dist_long:
       df_k <- dendextend::dist_long(list_dist[[k_nm]])
       
-      # merging with first dataframe as variable with
-      # dist object name:
+      # merging with first dataframe as
+      # variable with dist object name:
       df_dist[[k_nm]] <- df_k$distance
       
     }  # end of k
