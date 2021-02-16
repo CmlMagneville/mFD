@@ -1,38 +1,28 @@
-# Function to compute vertices of the minimal convex hull shaping species from a
-# single assemblage in a multidimensional functional space
-#
-# Authors: Sébastien Villéger, Nicolas Loiseau & Camille Magneville
-#
-#
-
-#-------------------------------------------------------------------------------
-
 #' Compute functional entities composition based on a species*traits matrix
 #'
-#' @param sp_tr a \strong{dataframe} with values of traits (columns) for a set of
+#' @param sp_tr a dataframe with values of traits (columns) for a set of
 #' species (rows)
 #'
-#' @param tr_cat a \strong{dataframe} containing three columns for each trait (rows):
-#'  \itemize{
-#'  \item \strong{trait_name}: names of all traits as in \code{sp_tr} data.frame
-#'  \item \strong{trait_type}: category codes for each trait as followed:
-#'  \emph{N} for Nominal traits (factor variable), \emph{O} for Ordinal traits
-#'  (ordered variable), \emph{C} for Circular traits (integer values), \emph{Q}
-#'  for quantitative traits (numeric values) that is allowed \strong{only} if
-#'  there are at least 2 species with the same value and \emph{F} for fuzzy-coded
-#'  traits (i.e. described with several 'sub-traits').
-#'  \item \strong{fuzzy_name} name of fuzzy-coded trait to which 'sub-trait'
-#'  belongs (if trait is not fuzzy, ignored so could be trait name or NA)
+#' @param tr_cat a dataframe containing three columns for each trait (rows):
+#'   \itemize{ \item \strong{trait_name}: names of all traits as in \code{sp_tr}
+#'   data.frame \item \strong{trait_type}: category codes for each trait as
+#'   followed: \emph{N} for Nominal traits (factor variable), \emph{O} for
+#'   Ordinal traits (ordered variable), \emph{C} for Circular traits (integer
+#'   values), \emph{Q} for quantitative traits (numeric values) that is allowed
+#'   \strong{only} if there are at least 2 species with the same value and
+#'   \emph{F} for fuzzy-coded traits (i.e. described with several 'sub-traits').
+#'   \item \strong{fuzzy_name} name of fuzzy-coded trait to which 'sub-trait'
+#'   belongs (if trait is not fuzzy, ignored so could be trait name or NA)
 #'  }
 #'
-#' @param fe_nm_type a \strong{character string} referring to the type of naming functional entities.
-#' Two possible values: \emph{"fe_rank"} (FE are named after their decreasing rank in
-#' term of number of species \emph{i.e.} fe_1 is the one gathering
-#' most species) and \emph{"tr_val"} (FE are named after names of traits
-#' and of trait values for each FE, \emph{see details below}).
-#' Default: fe_nm_type = "fe_rank".
+#' @param fe_nm_type a character string referring to the type of naming
+#'   functional entities. Two possible values: \emph{"fe_rank"} (FE are named
+#'   after their decreasing rank in term of number of species \emph{i.e.} fe_1
+#'   is the one gathering most species) and \emph{"tr_val"} (FE are named after
+#'   names of traits and of trait values for each FE, \emph{see details below}).
+#'   Default: fe_nm_type = "fe_rank".
 #'
-#' @param check_input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a logical value allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Default: check_input = TRUE.
 #'
@@ -46,28 +36,26 @@
 #'   a single letter whenever possible. \emph{Examples:} ("TAc2_TBxx_TCyy" and
 #'   "TAc3_TBff_TCyy") or ("A2_Bx_Cy" & "A3_Bf_Cy")
 #'
-#' @return a list of objects containing: \itemize{
-#' \item \strong{fe_nm}: a vector containing the name of each FE
-#' (following fe_nm_type).FE order is done according to decreasing
-#' number of species.
-#' \item \strong{sp_fe}: a vector containing for each species (first column)
-#' (ordered as rows of \code{sp_tr}) the name of the FE it belongs to.
-#' FE order is done according to decreasing number of species.
-#' \item \strong{fe_tr}: a dataframe containing traits values (columns) for each
-#' FE (rows). FE order is done according to decreasing number of species.
-#' \item \strong{fe_nb_sp}: a vector containing species number per FE.
-#' If all FE have only one species, a warning message is returned.
-#' FE order is done according to decreasing number of species.
-#' \item \strong{details_fe}: a list containing: \emph{fe_codes} a vector
-#' containing character referring to traits values (like a barcode) with names
-#' as in \code{fe_nm_type} and sorted according to \code{fe_nb_sp} ; \emph{tr_uval}
-#' a list containing for each trait a vector of its unique values or a dataframe
-#' for fuzzy-coded traits ; \emph{fuzzy_E} a list with for each fuzzy-coded
-#' trait a dataframe with names of entities (E) and names of species (sp) ;
-#' \emph{tr_nb_uval} a vector with number of unique values per trait
-#' (or combinations for fuzzy-coded traits) ; \emph{max_nb_fe} the maximum
-#' number of FE possible given number of unique values per trait
-#' }
+#' @return a list of objects containing: \itemize{ \item \strong{fe_nm}: a
+#'   vector containing the name of each FE (following fe_nm_type).FE order is
+#'   done according to decreasing number of species. \item \strong{sp_fe}: a
+#'   vector containing for each species (first column) (ordered as rows of
+#'   \code{sp_tr}) the name of the FE it belongs to. FE order is done according
+#'   to decreasing number of species. \item \strong{fe_tr}: a dataframe
+#'   containing traits values (columns) for each FE (rows). FE order is done
+#'   according to decreasing number of species. \item \strong{fe_nb_sp}: a
+#'   vector containing species number per FE. If all FE have only one species, a
+#'   warning message is returned. FE order is done according to decreasing
+#'   number of species. \item \strong{details_fe}: a list containing:
+#'   \emph{fe_codes} a vector containing character referring to traits values
+#'   (like a barcode) with names as in \code{fe_nm_type} and sorted according to
+#'   \code{fe_nb_sp} ; \emph{tr_uval} a list containing for each trait a vector
+#'   of its unique values or a dataframe for fuzzy-coded traits ; \emph{fuzzy_E}
+#'   a list with for each fuzzy-coded trait a dataframe with names of entities
+#'   (E) and names of species (sp) ; \emph{tr_nb_uval} a vector with number of
+#'   unique values per trait (or combinations for fuzzy-coded traits) ;
+#'   \emph{max_nb_fe} the maximum number of FE possible given number of unique
+#'   values per trait }
 #'
 #' @examples
 #' library(ade4)
@@ -82,11 +70,14 @@
 #' mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "tr_val")
 #' mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank")
 #' 
+#' @author Sébastien Villéger, Nicolas Loiseau and Camille Magneville
+#' 
 #' @importFrom stats na.omit
 #'
 #' @export
 
-sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check_input = TRUE) {
+sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", 
+                      check_input = TRUE) {
   
   
   # define key parameters used in the function:
@@ -145,8 +136,8 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check_input = TRUE)
   }
   
   if (any(! tr_cat$trait_type %in% c("N","O","C","Q","F") ) ) {
-    stop("Error: Trait type in traits*category should be among 'N','O','C','Q','F'.
-            Please check type of all traits.")
+    stop("Error: Trait type in traits*category should be among 
+    'N','O','C','Q','F'. Please check type of all traits.")
   }
   
   # check nominal traits:
@@ -432,8 +423,10 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", check_input = TRUE)
   
   return_list <-list( fe_nm = fe_nm, sp_fe = sp_fe_ord, fe_tr = fe_trait_ord,
                       fe_nb_sp = fe_nb_sp_ord,
-                      details_fe = list (fe_codes = fe_codes_ord, tr_uval = tr_uval,
-                                         tr_nb_uval = tr_nb_uval, max_nb_fe = max_nb_fe))
+                      details_fe = list (fe_codes = fe_codes_ord, 
+                                         tr_uval = tr_uval,
+                                         tr_nb_uval = tr_nb_uval, 
+                                         max_nb_fe = max_nb_fe))
   
   if ("F" %in% tr_type) {
     return_list$details_fe$fuzzy_E <- fuzzy_E
