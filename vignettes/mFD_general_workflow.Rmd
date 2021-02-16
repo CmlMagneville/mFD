@@ -495,15 +495,11 @@ mFD::quality.fspaces.plot(fspaces_quality            = fspaces_quality_fruits,
 ```
 
 
-Here we can see on the top row that, for the dendrogram, species pairs arrange
+For the 2D space, on the top row there are a lot of points below the 1:1 lines, meaning that distances are overestimated in this multidimensional space. Looking at panels, we can see that the 4D space is the one in which points are the closest to the 1:1 line on the top row,and the closest to the x-axis for the two bottom rows, which reflects a better
+quality compared to other functional spaces / dendrogram. 
+For the dendrogram, we can see on the top row that species pairs arrange
 in horizontal lines, meaning that different trait-based distances have then the
-same cophenetic distance on the dendrogram. For the 2D space, on the top row
-there are a lot of points below the 1:1 lines, meaning that distances are over
-estimated in this multidimensional space. Looking at panels, we can see that the
-5D space is the one in which points are the closest to the 1:1 line on the top row,
-and the closest to the x-axis for the two bottom rows, which reflects a better
-quality compared to other functional spaces / dendrogram. It is consistent with
-the metric quality values obtained in **step 4.1**.
+same cophenetic distance on the dendrogram. 
 
 <br />
 
