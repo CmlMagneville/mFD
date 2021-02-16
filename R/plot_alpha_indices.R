@@ -881,7 +881,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       plot_k <- get(paste0("plot_funct", sep = '_', i)) +
         ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'),
                                              c(faxes_nm[[1]], faxes_nm[[2]])],
-                            colour = color_sp_gp, shape = shape_sp_gp, fill = fill_sp_gp) +
+                            colour = color_sp_gp, shape = shape_sp_gp, 
+                            fill = fill_sp_gp) +
         
         ggplot2::geom_segment(data = sp_faxes_coord_k,
                               ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
@@ -894,18 +895,21 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         ggplot2::geom_point(data = sp_faxes_coord_k2,
                             ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
                                           y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                          size = sp_faxes_coord_k2$w), colour = color_sp,
+                                          size = sp_faxes_coord_k2$w), 
+                            colour = color_sp,
                             shape = shape_sp, fill = fill_sp) +
         
         ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
         
-        ggplot2::geom_point(data = vert_sp_coord_asb1, ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
-                                                                     y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
-                            color = color_vert, fill = fill_vert, shape = shape_vert, size = size_vert) +
+        ggplot2::geom_point(data = vert_sp_coord_asb1, 
+                      ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
+                                    y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
+                            color = color_vert, fill = fill_vert, 
+                            shape = shape_vert, size = size_vert) +
         
         ggplot2::geom_point(data = grav_center_global_pool,
-                            ggplot2::aes_(x = grav_center_global_pool[faxes_nm[[1]], ],
-                                          y = grav_center_global_pool[faxes_nm[[2]], ]),
+                    ggplot2::aes_(x = grav_center_global_pool[faxes_nm[[1]], ],
+                                  y = grav_center_global_pool[faxes_nm[[2]], ]),
                             colour = color_centroid, shape = shape_centroid,
                             size = size_centroid, fill = fill_centroid) +
         
@@ -961,9 +965,9 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                             linetype = "dotted", color = "red", size = 1) +
         
         ggplot2::geom_point(data = sp_faxes_coord_k2,
-                            ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                          y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                          size = sp_faxes_coord_k2$w), 
+                          ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
+                                        y = sp_faxes_coord_k2[, faxes_nm[[2]]],
+                                        size = sp_faxes_coord_k2$w), 
                             colour = color_sp,
                             shape = shape_sp, fill = fill_sp) +
         
@@ -1722,7 +1726,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                                 size = segment_size_asb2,
                                 linetype = linetype_segment_asb2,
                                 arrow = grid::arrow(length = grid::unit(0.10, 
-                                                                        "inches"),
+                                                                      "inches"),
                                                     ends = "last", 
                                                     type = "open")) +
           
@@ -2098,7 +2102,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                                    caption = "made with mFD package")
     }
     
-    return_panels_list <- rlist::list.append(return_panels_list,  return_plot_fric)
+    return_panels_list <- rlist::list.append(return_panels_list,
+                                             return_plot_fric)
     
   }
   

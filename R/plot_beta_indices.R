@@ -1,172 +1,177 @@
-# Function to illustrate functional beta-diversity indices in a multidimensional space
-#
-# Authors:  Sébastien Villéger, Camille Magneville
-#
-#
-# ------------------------------------------------------------------------------
-
-
-#'Illustrate functional beta-diversity indices for pairs of assemblages in a
-#'multidimensional space
+#' Illustrate functional beta-diversity indices for pairs of assemblages in a
+#' multidimensional space
 #'
-#'Illustrate overlap between convex hulls shaping species assemblages in a
-#'multidimensional functional space.\strong{Before plotting beta functional
-#'diversity indices should have been computed using the} \code{\link{beta.fd.multidim}}
-#'\strong{function}.
+#' Illustrate overlap between convex hulls shaping species assemblages in a
+#' multidimensional functional space.\strong{Before plotting beta functional
+#' diversity indices should have been computed using the}
+#' \code{\link{beta.fd.multidim}} \strong{function}.
+#' 
+#' @param output_beta_fd_multidim the list returned by
+#'   \code{\link{beta.fd.multidim}} when its input 'details_returned ' is TRUE'.
+#'   Thus, even if this function will illustrate functional beta-diversity for a
+#'   single pair of assemblages, plots will be scaled according to all
+#'   assemblages for which indices were computed.
 #'
-#'@param output_beta_fd_multidim the list returned by \code{\link{beta.fd.multidim}}
-#'  when its input 'details_returned ' is TRUE'. Thus, even if this function will
-#'  illustrate functional beta-diversity for a single pair of assemblages, plots
-#'  will be scaled according to all assemblages for which indices were computed.
-#'
-#'@param plot_asb_nm a \strong{vector} with names of the 2 assemblages for which
+#' @param plot_asb_nm a vector with names of the 2 assemblages for which
 #'  functional beta-diversity will be illustrated.
 #'
-#'@param beta_family a \strong{character string} for the type of beta-diversity index for
-#'  which values will be printed, 'Jaccard' (default) and/or 'Sorensen'.
+#' @param beta_family a character string for the type of beta-diversity index
+#'   for which values will be printed, 'Jaccard' (default) and/or 'Sorensen'.
 #'
-#'@param faxes a \strong{vector} with names of axes to plot (as columns names in
+#' @param faxes a vector with names of axes to plot (as columns names in
 #'  \code{output_beta_fd_multidim$details$input$sp_faxes_coord} ). \strong{You
 #'  can only plot from 2 to 4 axes for graphical reasons}. Default: faxes = NULL
 #'  (the four first axes will be plotted).
 #'
-#'@param plot_sp_nm a \strong{vector} containing species names that are to be plotted.
+#' @param plot_sp_nm a vector containing species names that are to be plotted.
 #'  Default: plot_nm_sp = NULL (no name plotted).
 #'
-#'@param name_file a \strong{character string} with name of file to save the figure
-#'  (without extension). Default is 'NULL' which means plot is displayed.
+#' @param name_file a character string with name of file to save the figure
+#'   (without extension). Default: name_file = 'NULL' which means plot is
+#'   displayed.
 #'
-#'@param faxes_nm a \strong{vector} with axes labels for figure. Default: as
+#' @param faxes_nm a vector with axes labels for figure. Default: as
 #'  \code{faxes}).
 #'
-#'@param range_faxes a \strong{vector} with minimum and maximum values of axes. Note that
-#'  to have a fair representation of position of species in all plots, they
-#'  should have the same range. Default: faxes_lim = c(NA, NA) (the range is
-#'  computed according to the range of values among all axes).
+#' @param range_faxes a vector with minimum and maximum values of axes. Note
+#'   that to have a fair representation of position of species in all plots,
+#'   they should have the same range. Default: faxes_lim = c(NA, NA) (the range
+#'   is computed according to the range of values among all axes).
 #'
-#'@param color_bg a \strong{R color name or an hexadecimal cod} used to fill plot
-#'  background. Default: color_bg = "grey95".
+#' @param color_bg a R color name or an hexadecimal code used to fill
+#'   plot background. Default: color_bg = "grey95".
 #'
-#'@param shape_sp a \strong{vector} with 3 numeric values referring to the shape of
+#'@param shape_sp a vector with 3 numeric values referring to the shape of
 #'  symbol used for species from the 'pool' absent from the 2 assemblages, and
 #'  for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-#'  Default: shape_sp = c("pool"=3, asb1=22, asb2=21) so cross, square and
+#'  Default: shape_sp = c("pool" = 3, asb1 = 22, asb2 = 21) so cross, square and
 #'  circle .
 #'
-#'@param size_sp a \strong{numeric value} referring to the size of symbols for species.
-#'  Default: is size_sp = c("pool"=0.8, asb1=1, asb2=1).
-#'
-#'@param color_sp a \strong{vector} with 3 names or hexadecimal codes referring to the
+#' @param size_sp a numeric value referring to the size of symbols for
+#'  species. Default: is size_sp = c("pool" = 0.8, asb1 = 1, asb2 = 1).
+#'  
+#' @param color_sp a vector with 3 names or hexadecimal codes referring to the
 #'  colour of symbol for species. Default is color_sp = c("pool"="grey50",
 #'  asb1="blue", asb2= "red").
 #'
-#'@param fill_sp a \strong{vector} with 3 names or hexadecimal codes referring to the
-#'  colour to fill symbol (if \code{shape_sp} >20) for species of the pool and
-#'  of the 2 assemblages. Default is fill_sp = c("pool"=NA, asb1="white", asb2=
-#'  "white").
+#' @param fill_sp a vector with 3 names or hexadecimal codes referring to the
+#'   colour to fill symbol (if \code{shape_sp} >20) for species of the pool and
+#'   of the 2 assemblages. Default is fill_sp = c("pool" = NA, asb1 = "white",
+#'   asb2 = "white").
 #'
-#'@param fill_vert a \strong{vector} with 3 names or hexadecimal codes referring to the
-#'  colour to fill symbol (if \code{shape_sp} >20) for species being vertices of
-#'  the convex hulls of the pool of species and of the 2 assemblages. Default is
-#'  fill_vert = c("pool"=NA, asb1="blue", asb2= "red").
+#' @param fill_vert a vector with 3 names or hexadecimal codes
+#'   referring to the colour to fill symbol (if \code{shape_sp} >20) for species
+#'   being vertices of the convex hulls of the pool of species and of the 2
+#'   assemblages. Default is fill_vert = c("pool" = NA, asb1 = "blue", asb2 =
+#'   "red").
 #'
-#'@param color_ch a \strong{vector} with 3 names or hexadecimal codes referring to the
+#' @param color_ch a vector with 3 names or hexadecimal codes referring to the
 #'  border of the convex hulls of the pool of species and by the 2 assemblages.
-#'  Default is color_ch = c("pool"=NA, asb1="blue", asb2= "red").
+#'  Default is color_ch = c("pool" = NA, asb1 = "blue", asb2 = "red").
 #'
-#'@param fill_ch a \strong{vector} with 3 names or hexadecimal codes referring to the
+#' @param fill_ch a vector with 3 names or hexadecimal codes referring to the
 #'  filling of the convex hull of the pool of species and of the 2 assemblages.
-#'  Default is fill_ch = c("pool"="white", asb1="blue", asb2= "red").
+#'  Default is fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red").
 #'
-#'@param alpha_ch a \strong{vector} with 3 numeric value for transparency of the filling
-#'  of the convex hulls (0 = high transparency, 1 = no transparency). Default is
-#'  alpha_ch = c("pool"=1, asb1=0.3, asb2=0.3).
+#' @param alpha_ch a vector with 3 numeric value for transparency of
+#'   the filling of the convex hulls (0 = high transparency, 1 = no
+#'   transparency). Default is alpha_ch = c("pool"=1, asb1=0.3, asb2=0.3).
 #'
-#'@param nm_size a \strong{numeric value} for size of species label. Default is 3 points.
+#' @param nm_size a numeric value for size of species label. Default is 3
+#'   points.
 #'
-#'@param nm_color a \strong{R color name or an hexadecimal code} referring to the colour
+#' @param nm_color a R color name or an hexadecimal code referring to the colour
 #'  of species label. Default is black.
 #'
-#'@param nm_fontface a \strong{character string} for font of species labels (e.g.
-#'  "italic", "bold"). Default is 'plain'.
+#' @param nm_fontface a character string for font of species labels (e.g.
+#'   "italic", "bold"). Default is 'plain'.
 #'
-#'@param check_input a \strong{logical value} defining whether key inputs (i.e. not
-#'  aesthetics settings) are checked before plotting computation of indices.
-#'  Possible error messages will thus may be more understandable for the user
-#'  than R error messages. Default: check_input = TRUE.
+#' @param check_input a logical value defining whether key inputs (i.e. not
+#'   aesthetics settings) are checked before plotting computation of indices.
+#'   Possible error messages will thus may be more understandable for the user
+#'   than R error messages. Default: check_input = TRUE.
 #'
-#'@return for the given pair of assemblages, returns a \code{patchwork} figure
+#' @return for the given pair of assemblages, returns a \code{patchwork} figure
 #'  with overlap between convex hulls projected in 2-dimensional spaces. Values
 #'  of functional beta-diversity indices are shown on top-right corner of the
 #'  figure.
 #'  
-#'@examples
+#' @examples
 #' # Load Species*Traits dataframe:
-#' data("fruits_traits", package = "mFD")
+#'  data("fruits_traits", package = "mFD")
 #' 
 #' # Load Assemblages*Species dataframe:      
-#' data("baskets_fruits_weights", package = "mFD") 
+#'  data("baskets_fruits_weights", package = "mFD") 
 #' 
 #' # Load Traits categories dataframe:
-#' data("fruits_traits_cat", package = "mFD") 
+#'  data("fruits_traits_cat", package = "mFD") 
 #'  
 #' # Compute functional distance 
-#' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
-#'                                   tr_cat        = fruits_traits_cat,
-#'                                   metric        = "gower",
-#'                                   scale_euclid  = "scale_center",
-#'                                   ordinal_var   = "classic",
-#'                                   weight_type   = "equal",
-#'                                   stop_if_NA    = TRUE)
+#'  sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                    tr_cat        = fruits_traits_cat,
+#'                                    metric        = "gower",
+#'                                    scale_euclid  = "scale_center",
+#'                                    ordinal_var   = "classic",
+#'                                    weight_type   = "equal",
+#'                                    stop_if_NA    = TRUE)
 #'   
 #' # Compute functional spaces quality to retrieve species coordinates matrix:
-#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
-#'  maxdim_pcoa         = 10,
-#'  deviation_weighting = "absolute",
-#'  fdist_scaling       = FALSE,
-#'  fdendro             = "average")
+#'  fspaces_quality_fruits <- mFD::quality.fspaces(
+#'                                   sp_dist             = sp_dist_fruits, 
+#'                                   maxdim_pcoa         = 10,
+#'                                   deviation_weighting = "absolute",
+#'                                   fdist_scaling       = FALSE,
+#'                                   fdendro             = "average")
 #'  
 #' # Retrieve species coordinates matrix:
-#' sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
-#'  # Get the occurrence dataframe:
-#' asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
-#' asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
+#'  sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+#'  
+#' # Get the occurrence dataframe:
+#'  asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
+#'  asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 #' 
 #' # Compute beta diversity indices:
-#' beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
-#'  c("PC1", "PC2", "PC3", "PC4")], asb_sp_occ = asb_sp_fruits_occ,
-#'  check_input = TRUE,
-#'  beta_family = c("Jaccard"),
-#'  details_returned = TRUE)
+#'  beta_fd_fruits <- mFD::beta.fd.multidim(
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")], 
+#'   asb_sp_occ       = asb_sp_fruits_occ,
+#'   check_input      = TRUE,
+#'   beta_family      = c("Jaccard"),
+#'   details_returned = TRUE)
 #'  
 #' # Compute beta fd plots:
-#' beta.multidim.plot(output_beta_fd_multidim = beta_fd_fruits,
-#'  plot_asb_nm = c("basket_1", "basket_3"),
-#'  beta_family = c("Jaccard"),
-#'  plot_sp_nm = c("apple", "cherry", "lemon"),
-#'  faxes = paste0("PC", 1:4),
-#'  name_file = NULL,
-#'  faxes_nm = NULL, range_faxes = c(NA, NA),
-#'  color_bg = "grey95",
-#'  shape_sp = c("pool" = 3, asb1 = 22, asb2 = 21),
-#'  size_sp = c("pool" = 0.8, asb1 = 1, asb2 = 1),
-#'  color_sp = c("pool" = "grey50", asb1 = "blue", asb2 = "red"),
-#'  fill_sp = c("pool" = NA, asb1 = "white", asb2 = "white"),
-#'  fill_vert = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#'  color_ch = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#'  fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red"),
-#'  alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-#'  nm_size = 3, nm_color = "black", nm_fontface = "plain",
-#'  check_input = TRUE) 
+#'  beta.multidim.plot(
+#'    output_beta_fd_multidim = beta_fd_fruits,
+#'    plot_asb_nm             = c("basket_1", "basket_3"),
+#'    beta_family             = c("Jaccard"),
+#'    plot_sp_nm              = c("apple", "cherry", "lemon"),
+#'    faxes                   = paste0("PC", 1:4),
+#'    name_file               = NULL,
+#'    faxes_nm                = NULL, 
+#'    range_faxes             = c(NA, NA),
+#'    color_bg                = "grey95",
+#'    shape_sp                = c("pool" = 3, asb1 = 22, asb2 = 21),
+#'    size_sp                 = c("pool" = 0.8, asb1 = 1, asb2 = 1),
+#'    color_sp              = c("pool" = "grey50", asb1 = "blue", asb2 = "red"),
+#'    fill_sp               = c("pool" = NA, asb1 = "white", asb2 = "white"),
+#'    fill_vert             = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+#'    color_ch              = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+#'    fill_ch               = c("pool" = "white", asb1 = "blue", asb2 = "red"),
+#'    alpha_ch              = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
+#'    nm_size               = 3, 
+#'    nm_color              = "black", 
+#'    nm_fontface           = "plain",
+#'    check_input           = TRUE) 
 #'  
 #'@importFrom ggplot2 aes aes_string xlab ylab element_blank element_rect
 #'@importFrom ggplot2 coord_fixed theme theme_void geom_rect geom_text 
-#'@importFrom ggplot2 geom_point geom_polygon scale_x_continuous scale_y_continuous
-#'@importFrom ggplot2 ggplot ggsave
+#'@importFrom ggplot2 geom_point geom_polygon scale_x_continuous 
+#'@importFrom ggplot2 ggplot ggsave scale_y_continuous
 #'@importFrom grid arrow unit
 #'@importFrom utils combn
 #'@importFrom ggrepel geom_text_repel
 #'@importFrom patchwork plot_layout plot_annotation plot_spacer
+#'
+#'@author Sébastien Villéger & Camille Magneville 
 #'
 #'@export
 
@@ -181,20 +186,27 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
                                color_bg = "grey95",
                                shape_sp = c("pool"=3, asb1=22, asb2=21),
                                size_sp = c("pool"=0.8, asb1=1, asb2=1),
-                               color_sp = c("pool"="grey50", asb1="blue", asb2= "red"),
-                               fill_sp = c("pool"= NA, asb1 ="white", asb2 = "white"),
-                               fill_vert = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-                               color_ch = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-                               fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red"),
+                               color_sp = c("pool"="grey50", asb1="blue", 
+                                            asb2= "red"),
+                               fill_sp = c("pool"= NA, asb1 ="white", 
+                                           asb2 = "white"),
+                               fill_vert = c("pool" = NA, asb1 = "blue", 
+                                             asb2 = "red"),
+                               color_ch = c("pool" = NA, asb1 = "blue",
+                                            asb2 = "red"),
+                               fill_ch = c("pool" = "white", asb1 = "blue", 
+                                           asb2 = "red"),
                                alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-                               nm_size = 3, nm_color = "black", nm_fontface = "plain",
+                               nm_size = 3, nm_color = "black", 
+                               nm_fontface = "plain",
                                check_input = TRUE) {
   
   
   ## extracting dataset from inputs ####
   
   # basic check of the core input
-  if(any (names(output_beta_fd_multidim) != c("pairasb_fbd_indices", "details"))) {
+  if(any (names(output_beta_fd_multidim) != c("pairasb_fbd_indices",
+                                              "details"))) {
     stop("Error: 'output_beta_fd_multidim' does not have elements of an output
       from 'beta.fd.multidim' function. Please check.")
   }
@@ -219,7 +231,8 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     
     if (any(! plot_sp_nm %in% rownames(sp_faxes_coord))) {
       stop("Error: species names in 'plot_sp_nm' can not be found in
-           'sp_faxes_coord' row names. Please check names of species you want to plot.")
+           'sp_faxes_coord' row names. 
+           Please check names of species you want to plot.")
     }
     
     if (! is.null(faxes)) {
@@ -289,7 +302,8 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   sp_faxes_coord_plot <- data.frame(sp_faxes_coord,
                                     label = rep("", nrow(sp_faxes_coord)))
   
-  # if some species names to be plotted, adding a binary variable to sp_faxes_coord
+  # if some species names to be plotted, adding a binary variable to ...
+  # ... sp_faxes_coord
   if(! is.null(plot_sp_nm)) {
     sp_faxes_coord_plot[plot_sp_nm, "label"] <- plot_sp_nm
   }
@@ -335,7 +349,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
       ggplot2::ylab(faxes_nm[y]) +
       ggplot2::theme(panel.grid.minor = ggplot2::element_blank(),
                      panel.grid.major = ggplot2::element_blank(),
-                     panel.background = ggplot2::element_rect(fill = color_bg)) +
+                     panel.background = ggplot2::element_rect(fill = color_bg))+
       ggplot2::coord_fixed()
     
     # if required adding convex hull of pool projected in 2D ----
@@ -364,9 +378,11 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     
     
     # computing 2D convex hulls for the 2 assemblages
-    vert_asb1_xy <- vertices(sp_faxes_coord_plot[sp_asb1, c(x,y)], order_2D = TRUE,
+    vert_asb1_xy <- vertices(sp_faxes_coord_plot[sp_asb1, c(x,y)], 
+                             order_2D = TRUE,
                              check_input = TRUE )
-    vert_asb2_xy <- vertices(sp_faxes_coord_plot[sp_asb2, c(x,y)], order_2D = TRUE,
+    vert_asb2_xy <- vertices(sp_faxes_coord_plot[sp_asb2, c(x,y)], 
+                             order_2D = TRUE,
                              check_input = TRUE )
     
     # plotting convex hulls
@@ -406,12 +422,15 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     # adding species names if needed ----
     if(! is.null(plot_sp_nm)) {
       plot_k <- plot_k +
-        ggrepel::geom_text_repel(x = sp_faxes_coord_plot[, x], y = sp_faxes_coord_plot[, y],
+        ggrepel::geom_text_repel(x = sp_faxes_coord_plot[, x], 
+                                 y = sp_faxes_coord_plot[, y],
                                  label = sp_faxes_coord_plot[, "label"],
-                                 size = nm_size, colour= nm_color, fontface = nm_fontface,
+                                 size = nm_size, colour= nm_color, 
+                                 fontface = nm_fontface,
                                  box.padding = grid::unit(2, 'lines'),
                                  force = 5,
-                                 arrow = grid::arrow(length = grid::unit(0.02, 'npc')),
+                                 arrow = grid::arrow(length = grid::unit(0.02, 
+                                                                       'npc')),
                                  segment.color = nm_color)
     }
     
@@ -525,8 +544,9 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   
   # title and caption
   patchwork_plots_all <- patchwork_plots_all +
-    patchwork::plot_annotation(title = paste0("Functional beta-diversity between '",
-                                              plot_asb_nm[1],"' and '", plot_asb_nm[2], "'"),
+   patchwork::plot_annotation(title = paste0(
+                               "Functional beta-diversity between '",
+                                plot_asb_nm[1],"' and '", plot_asb_nm[2], "'"),
                                caption = "made with mFD package")
   
   

@@ -1,60 +1,53 @@
-# Function to plot functional indices based on FEs in functional space
-#
-# Authors: Camille Magneville and Sébastien Villéger
-#
-#
-
-# ------------------------------------------------------------------------------
-
 #' Illustrate functional diversity indices based on functional entities
 #' (FE).Graphical representation of distribution of species in Functional
 #' Entities (FE) and of indices from Mouillot et al 2014. \strong{To plot
 #' functional indices, functional indices values must have been retrieve through
-#' the use of the alpha.fd.fe function}
+#' the use of the} \code{\link{alpha.fd.fe function}}
 #'
-#' @param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} applied on
-#'  assemblage of interest with \code{details_returned = TRUE}.
+#' @param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} applied
+#'   on assemblage of interest with \code{details_returned = TRUE}.
 #'
-#' @param plot_asb_nm a \strong{vector} containing the name of the assemblage to plot.
+#' @param plot_asb_nm a vector containing the name of the assemblage to plot.
 #'
-#' @param name_file a \strong{character string} with name of file to save the figure
-#'  (without extension). Default is 'NULL' which means plot is displayed.
+#' @param name_file a character string with name of file to save the figure
+#'   (without extension). Default: name_file = 'NULL' which means plot is
+#'   displayed.
 #'
-#' @param plot_ind_nm a \strong{vector} containing the names of the indices to plot. It
+#' @param plot_ind_nm a vector containing the names of the indices to plot. It
 #'  can be \code{'fred'} to plot functional redundancy (FRed), \code{'fored'} to
 #'  plot functional over-redundancy (FOred) and/or \code{'fvuln'} to plot
 #'  functional vulnerability (FVuln). Default is all 3 indices.
 #'
-#' @param color_fill_fored a \strong{R color name or an hexadecimal code} referring to the
-#'  color used to fill the part of barplots that contain species in excess in
-#'  species-rich FEs. It refers to the FORed value. Default:
-#'  color_fill_fored = "darkolivegreen2".
+#' @param color_fill_fored a R color name or an hexadecimal code referring to
+#'   the color used to fill the part of barplots that contain species in excess
+#'   in species-rich FEs. It refers to the FORed value. Default:
+#'   color_fill_fored = "darkolivegreen2".
 #'
-#' @param color_line_fred a \strong{R color name or an hexadecimal code} referring to the
+#' @param color_line_fred a R color name or an hexadecimal code referring to the
 #'  color used to draw the horizontal line referring to the FRed value.
 #'  Default:color_line_fred = "darkolivegreen4".
 #'
-#' @param color_fill_bar a \strong{R color name or an hexadecimal code} referring to the
+#' @param color_fill_bar a R color name or an hexadecimal code referring to the
 #'  color used to draw barplots. Default: color_fill_bar = "grey80".
 #'
-#' @param color_fill_fvuln a \strong{R color name or an hexadecimal code} referring to the
-#'  color used to fill barplots containing only one species. It refers to the
-#'  FVuln value. Default: color_fill_fvuln = "lightcoral".
+#' @param color_fill_fvuln a R color name or an hexadecimal code referring to
+#'   the color used to fill barplots containing only one species. It refers to
+#'   the FVuln value. Default: color_fill_fvuln = "lightcoral".
 #'
-#' @param color_arrow_fvuln  a \strong{R color name or an hexadecimal code} referring to
+#' @param color_arrow_fvuln  a R color name or an hexadecimal code referring to
 #'  the color used to draw the horizontal arrow showing the proportion of FEs
 #'  containing only one species. It refers to the FVuln value. If there is only
 #'  one FE containing one species, the arrow will be a point. Default:
 #'  color_arrow_fvuln = "indianred4".
 #'
-#' @param size_line_fred a \strong{numeric value} referring to the size of the horizontal
+#' @param size_line_fred a numeric value referring to the size of the horizontal
 #'  linerefering to the FRed value. Default: size_line_fred = 1.5.
 #'
-#' @param size_arrow_fvuln a \strong{numeric value} referring to the size of the arrow
+#' @param size_arrow_fvuln a numeric value referring to the size of the arrow
 #'  showing the proportion of FEs containing only one species. Default:
 #'  size_arrow_fvuln = 1.
 #'
-#' @param check_input a \strong{logical value} allowing to test or not the inputs.
+#' @param check_input a logical value allowing to test or not the inputs.
 #'  Possible error messages will thus may be more understandable for the user
 #'  than R error messages. Default: check_input = TRUE.
 #'
@@ -119,6 +112,8 @@
 #'   size_arrow_fvuln  = 1,
 #'   check_input       = TRUE) 
 #'   
+#' @author: Camille Magneville and sébastien Villéger
+#'   
 #' @importFrom ggplot2 geom_segment geom_hline geom_bar ggsave ggplot xlab ylab
 #' @importFrom ggplot2 theme aes element_line element_text element_rect
 #' @importFrom grid arrow unit
@@ -144,26 +139,30 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
   if (check_input == TRUE) {
     
     if (any(!names(alpha_fd_fe) %in% c("asb_fdfe", "details_fdfe") ) )
-      stop("Error: Input 'alpha_fd_fe' shoudl be output from function 'alpha.fd.fe'.
-            applied with details_returned=TRUE. Please check.")
+      stop("Error: Input 'alpha_fd_fe' shoudl be output from 
+      function 'alpha.fd.fe'applied with details_returned = TRUE. 
+      Please check.")
     
     
     # check name(s) of indice(s) to plot:
     if (! any( plot_ind_nm %in% c("fred", "fored", "fvuln") ) ) {
-      stop("Error: Names of functional diversity indices to plot are not within names allowed.
-             Be careful, they should all be written in lowercase letters.")
+      stop("Error: Names of functional diversity indices to plot are not 
+      within names allowed.
+     Be careful, they should all be written in lowercase letters.")
     }
     
     # check indice(s) were computed:
     if (! any(plot_ind_nm %in% colnames(alpha_fd_fe$asb_fdfe) ) ) {
-      stop("Error: Names of functional diversity indices to plot should have been computed with 'alpha.fd.fe'.  Please check. ")
+      stop("Error: Names of functional diversity indices to plot should have 
+           been computed with 'alpha.fd.fe'. Please check. ")
     }
     
     # check name of the assemblage to plot:
     if (! plot_asb_nm %in% rownames(alpha_fd_fe$asb_fdfe) ){
       stop("Error: Name of assemblage for which FE-based indices should be
-              plotted is not  present in input 'alpha_fd_fe'.
-              Please check function 'alpha.fd.fe' was applied on thisassemblage.")
+          plotted is not  present in input 'alpha_fd_fe'.
+          Please check function 'alpha.fd.fe' was applied on 
+          this assemblage.")
     }
     
   }
@@ -184,12 +183,20 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
   
   
   # plotting number of species for all FE
-  plot_k <- ggplot2::ggplot(data = data_k, ggplot2::aes(x = stats::reorder(fe_nm, -fe_nbsp), y = fe_nbsp)) +
+  plot_k <- ggplot2::ggplot(data = data_k, 
+                            ggplot2::aes(
+                            x = stats::reorder(fe_nm, -fe_nbsp), y = fe_nbsp)) +
     ggplot2::geom_bar(stat = "identity", fill = color_fill_bar) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90),
-                   panel.background = ggplot2::element_rect(fill = "white", colour = "grey50", size = 1),
-                   panel.grid.major = ggplot2::element_line(size = 0.5, linetype = 'solid', colour = "grey85"),
-                   panel.grid.minor = ggplot2::element_line(size = 0.5, linetype = 'solid', colour = "grey85")) +
+                   panel.background = ggplot2::element_rect(fill = "white", 
+                                                            colour = "grey50", 
+                                                            size = 1),
+                   panel.grid.major = ggplot2::element_line(size = 0.5,
+                                                            linetype = 'solid',
+                                                            colour = "grey85"),
+                   panel.grid.minor = ggplot2::element_line(size = 0.5, 
+                                                          linetype = 'solid', 
+                                                          colour = "grey85")) +
     ggplot2::xlab("Functional Entities") +
     ggplot2::ylab("Number of species")
   
@@ -205,17 +212,23 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
     
     if (length(fe_vuln_k)>0) {
       plot_k <- plot_k +
-        ggplot2::geom_bar(data = data_k[fe_vuln_k,], ggplot2::aes(x = fe_nm, y = fe_nbsp),
+        ggplot2::geom_bar(data = data_k[fe_vuln_k,], ggplot2::aes(x = fe_nm, 
+                                                                  y = fe_nbsp),
                           stat = "identity", fill = color_fill_fvuln)
       if (length(fe_vuln_k)>1) {
         plot_k <- plot_k +
           ggplot2::geom_segment(ggplot2::aes(x =fe_vuln_k[1] , y = 0.5,
-                                             xend = fe_vuln_k[length(fe_vuln_k)], yend = 0.5),
-                                arrow = grid::arrow(ends = "both", length = grid::unit(0.25, "cm")),
-                                color = color_arrow_fvuln, size = size_arrow_fvuln)
+                                            xend = fe_vuln_k[length(fe_vuln_k)], 
+                                            yend = 0.5),
+                                arrow = grid::arrow(ends = "both", 
+                                                    length = grid::unit(0.25, 
+                                                                        "cm")),
+                                color = color_arrow_fvuln, 
+                                size = size_arrow_fvuln)
       }# end of if >1 vulnerable
     } # end of if >=1 vulnerable FE
-    sub_k<-paste0(sub_k, "  FVuln=", round(alpha_fd_fe$asb_fdfe[plot_asb_nm, 'fvuln'],3))
+    sub_k<-paste0(sub_k, "  FVuln=", round(alpha_fd_fe$asb_fdfe[plot_asb_nm, 
+                                                                'fvuln'],3))
   }
   
   
@@ -228,20 +241,25 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
     
     if (length(fe_ored_k)>0) {
       plot_k <- plot_k +
-        ggplot2::geom_bar(data = data_k[fe_ored_k,], ggplot2::aes(x = fe_nm, y = fe_nbsp),
+        ggplot2::geom_bar(data = data_k[fe_ored_k,], ggplot2::aes(x = fe_nm, 
+                                                                  y = fe_nbsp),
                           stat = "identity", fill = color_fill_fored) +
-        ggplot2::geom_bar(data = data_k[fe_ored_k,], ggplot2::aes(x = fe_nm, y = fred_k),
+        ggplot2::geom_bar(data = data_k[fe_ored_k,], ggplot2::aes(x = fe_nm, 
+                                                                  y = fred_k),
                           stat = "identity", fill = color_fill_bar)
     }#edn of if FE over-redundant
-    sub_k <- paste0("  FORed=", round(alpha_fd_fe$asb_fdfe[plot_asb_nm, 'fored'],3), sub_k )
+    sub_k <- paste0("  FORed=", round(alpha_fd_fe$asb_fdfe[plot_asb_nm, 
+                                                           'fored'],3), sub_k )
   }
   
   # adding illustration of funct redundancy if needed
   if ("fred" %in% plot_ind_nm) {
     plot_k <- plot_k +
-      ggplot2::geom_hline(yintercept = alpha_fd_fe$asb_fdfe[plot_asb_nm, 'fred'],
+      ggplot2::geom_hline(yintercept = alpha_fd_fe$asb_fdfe[plot_asb_nm, 
+                                                            'fred'],
                           color = color_line_fred, size = size_line_fred)
-    sub_k<-paste0("  FRed=",round(alpha_fd_fe$asb_fdfe[plot_asb_nm, 'fred'],3), sub_k)
+    sub_k<-paste0("  FRed=",round(alpha_fd_fe$asb_fdfe[plot_asb_nm, 'fred'],3), 
+                  sub_k)
   }
   
   # create patchwork object to return:
