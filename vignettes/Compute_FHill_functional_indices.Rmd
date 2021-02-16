@@ -1,10 +1,10 @@
 ---
-title: "mFD: General Workflow"
+title: "Compute FHill functional indices"
 author: "Camille Magneville"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{mFD: General Workflow}
+  %\VignetteIndexEntry{Compute FHill functional indices}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
