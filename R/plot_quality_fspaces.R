@@ -1,58 +1,53 @@
-# Function to illustrate the quality of multidimensional functional spaces
-#
-# Authors: Sébastien Villéger & Camille Magneville
-#
-#------------------------------------------------------------------------------
-#
-#
 #' Plot functional space quality with a chosen quality metric
 #'
-#' @param fspaces_quality output from the \code{\link{quality.fspaces}} function,
-#'   that is a list with all data needed to illustrate quality of functional
-#'   spaces based on deviation between species trait-based distance and distance
-#'   in functional spaces built using PCoA (and dendrogram).
+#' @param fspaces_quality output from the \code{\link{quality.fspaces}}
+#'   function, that is a list with all data needed to illustrate quality of
+#'   functional spaces based on deviation between species trait-based distance
+#'   and distance in functional spaces built using PCoA (and dendrogram).
 #'
-#' @param fspaces_plot a \strong{vector} with names of functional spaces to consider.
+#' @param fspaces_plot a vector with names of functional spaces to consider.
 #'   Should be a subset of the row names of
-#'   \code{fspaces_quality$quality_fspaces}. Maximum of 10 spaces allowed to keep decent
-#'   plot size.
+#'   \code{quality_fspaces$quality_fspaces}. Maximum of 10 spaces allowed to
+#'   keep decent plot size.
 #'
-#' @param quality_metric a \strong{character string} with the name of the quality metric
+#' @param quality_metric a character string with the name of the quality metric
 #'   to illustrate. Should be one of the column names of
-#'   \code{fspaces_quality$quality_fspaces}. See help of \code{\link{quality.fspaces}}
-#'   for the meaning of these names regarding type of deviation and scaling of
-#'   distance in functional space. Default: 'mad' (Mean absolute deviation).
+#'   \code{fspaces_quality$quality_fspaces}. See help of
+#'   \code{\link{quality.fspaces}} for the meaning of these names regarding type
+#'   of deviation and scaling of distance in functional space. Default: 'mad'
+#'   (Mean absolute deviation).
 #'
-#' @param name_file a \strong{character string} with name of file to save the figure
-#'   (without extension). Default: NULL which means plot is displayed.
+#' @param name_file a character string with name of file to save the
+#'   figure (without extension). Default: NULL which means plot is displayed.
 #'
-#' @param range_dist a \strong{vector} with minimum and maximum values to display for
-#'   species pairwise distances (x-axis for all panels and y-axes of top panel).
-#'   Default: NULL, which means range is 0 to maximum distance among all the
-#'   functional spaces to plot.
-#'
-#' @param range_dev a \strong{vector} with minimum and maximum values to display for
-#'   deviation to trait-based distance (y-axis of middle panel). Default: NULL,
-#'   which means range is set to range of deviation among all the functional
-#'   spaces to plot.
-#'
-#' @param range_qdev a \strong{vector} with minimum and maximum values to display for
-#'   deviation to trait-based distance (y-axis of bottom panel). Default:NULL,
-#'   which means range is from 0 to the maximum of (transformed) deviation among
+#' @param range_dist a vector with minimum and maximum values to
+#'   display for species pairwise distances (x-axis for all panels and y-axes of
+#'   top panel). Default: NULL, which means range is 0 to maximum distance among
 #'   all the functional spaces to plot.
 #'
-#' @param gradient_deviation a \strong{vector} of 3 colors for illustrating raw deviation
-#'   with \code{\link[ggplot2]{scale_colour_gradient2}}. The first value ('neg') is for the
-#'   lowest negative deviation, the second value ('nul')is for null deviation and
-#'   the third value ('pos') is for the highest positive deviation. Default gradient
-#'   is from darkblue to grey to red.
+#' @param range_dev a vector with minimum and maximum values to display
+#'   for deviation to trait-based distance (y-axis of middle panel). Default:
+#'   NULL, which means range is set to range of deviation among all the
+#'   functional spaces to plot.
+#'
+#' @param range_qdev a vector with minimum and maximum values to
+#'   display for deviation to trait-based distance (y-axis of bottom panel).
+#'   Default:NULL, which means range is from 0 to the maximum of (transformed)
+#'   deviation among all the functional spaces to plot.
+#'
+#' @param gradient_deviation a vector of 3 colors for illustrating raw
+#'   deviation with \code{\link[ggplot2]{scale_colour_gradient2}}. The first
+#'   value ('neg') is for the lowest negative deviation, the second value
+#'   ('nul')is for null deviation and the third value ('pos') is for the highest
+#'   positive deviation. Default gradient is from darkblue to grey to red.
 #'
 #' @param gradient_deviation_quality 2 colors (named 'low' and 'high') for
 #'   illustrating transformed deviation used to compute quality metric with
-#'   \code{\link[ggplot2]{scale_colour_gradient2}} (default gradient is from yellow to red).
+#'   \code{\link[ggplot2]{scale_colour_gradient2}} (default gradient is from
+#'   yellow to red).
 #'
-#' @param x_lab a \strong{character string} with title to display below X axis. Default
-#'   is 'Trait-based distance'.
+#' @param x_lab a character string with title to display below X axis.
+#'   Default is 'Trait-based distance'.
 #'
 #' @return a png file (resolution 300dpi) saved in the current working
 #'   directory. Quality of each functional space is illustrated with three
@@ -60,23 +55,23 @@
 #'   space-based distance. - middle row shows trait-based distance vs. deviation
 #'   between space-based and trait-based distances - bottom row shows
 #'   trait-based distance between species vs. transformed deviation used to
-#'   compute the quality metric All plots have the same X axis. All plots on a given
-#'   row have the same Y axis and color palette. Type of distance in functional
-#'   space (Euclidean in PCoA, Cophenetic on tree) are abbreviated, as well as
-#'   type of transformation of distance (scaling) and of deviation (Absolute or
-#'   Squared)
+#'   compute the quality metric All plots have the same X axis. All plots on a
+#'   given row have the same Y axis and color palette. Type of distance in
+#'   functional space (Euclidean in PCoA, Cophenetic on tree) are abbreviated,
+#'   as well as type of transformation of distance (scaling) and of deviation
+#'   (Absolute or Squared)
 #'
 #' @examples
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
-#' 
-#' # Load Assemblages*Species dataframe:      
+#'
+#' # Load Assemblages*Species dataframe:
 #' data("baskets_fruits_weights", package = "mFD")
-#' 
+#'
 #' # Load Traits categories dataframe:
-#' data("fruits_traits_cat", package = "mFD") 
-#'   
-#' # Compute functional distance 
+#' data("fruits_traits_cat", package = "mFD")
+#'
+#' # Compute functional distance
 #' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
 #'                                   tr_cat        = fruits_traits_cat,
 #'                                   metric        = "gower",
@@ -84,28 +79,37 @@
 #'                                   ordinal_var   = "classic",
 #'                                   weight_type   = "equal",
 #'                                   stop_if_NA    = TRUE)
-#'   
+#'
 #' # Compute functional spaces quality to retrieve species coordinates matrix:
-#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
 #'  maxdim_pcoa         = 10,
 #'  deviation_weighting = "absolute",
 #'  fdist_scaling       = FALSE,
 #'  fdendro             = "average")
-#'  
+#'
 #'  # Illustrate the quality of functional spaces:
-#'  mFD::quality.fspaces.plot(fspaces_quality = fspaces_quality_fruits, 
-#'   quality_metric = "mad",
-#'   fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", "pcoa_5d"),
-#'   name_file = NULL, range_dist = NULL, range_dev = NULL, range_qdev = NULL,
-#'   gradient_deviation  = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
+#'  mFD::quality.fspaces.plot(
+#'   fspaces_quality            = fspaces_quality_fruits,
+#'   quality_metric             = "mad",
+#'   fspaces_plot               = c("tree_average", "pcoa_2d", "pcoa_3d", 
+#'                               "pcoa_4d", "pcoa_5d"),
+#'   name_file                  = NULL, 
+#'   range_dist                 = NULL, 
+#'   range_dev                  = NULL, 
+#'   range_qdev                 = NULL,
+#'   gradient_deviation         = c(neg = "darkblue", nul = "grey80", 
+#'                                  pos = "darkred"),
 #'   gradient_deviation_quality = c(low ="yellow", high = "red"),
-#'   x_lab = "Trait-based distance")
-#'   
-#' @importFrom ggplot2 scale_colour_gradient2 scale_colour_gradient aes labs guides
+#'   x_lab                      = "Trait-based distance")
+#'
+#' @author Sébastien Villéger and Camille Magneville
+#'
+#' @importFrom ggplot2 scale_colour_gradient2 scale_colour_gradient aes labs
+#'   guides
 #' @importFrom ggplot2 margin element_text ggsave geom_hline theme ggplot
 #' @importFrom ggplot2 scale_x_continuous scale_y_continuous geom_point theme_bw
 #' @importFrom ggplot2 expansion
-#' @importFrom patchwork plot_annotation 
+#' @importFrom patchwork plot_annotation
 #'
 #' @export
 
@@ -124,7 +128,8 @@ quality.fspaces.plot <- function(
   
   # check core input with data from quality_fspaces:
   if(any(! names(fspaces_quality) %in% c("quality_fspaces", "details_trdist",
-                                         "details_fspaces", "details_deviation"))) {
+                                         "details_fspaces", 
+                                         "details_deviation"))) {
     stop("Error: input 'fspaces_quality' should be the output from function
        'mFD::quality_fspaces'.")
   }
@@ -150,8 +155,10 @@ quality.fspaces.plot <- function(
   
   # detailed name of functional spaces ----
   fspaces_nm_plot <- gsub(fspaces_plot, pattern = "_", replacement = " ")
-  fspaces_nm_plot <- gsub(fspaces_nm_plot, pattern = "pcoa", replacement = "PCoA")
-  fspaces_nm_plot <- gsub(fspaces_nm_plot, pattern = "tree", replacement = "Tree")
+  fspaces_nm_plot <- gsub(fspaces_nm_plot, pattern = "pcoa", 
+                          replacement = "PCoA")
+  fspaces_nm_plot <- gsub(fspaces_nm_plot, pattern = "tree", 
+                          replacement = "Tree")
   fspaces_nm_plot <- gsub(fspaces_nm_plot, pattern = "d", replacement = "D")
   fspaces_nm_plot <- substr(fspaces_nm_plot, 1, 12)
   names(fspaces_nm_plot) <- fspaces_plot
@@ -270,31 +277,36 @@ quality.fspaces.plot <- function(
     # subtitle = name of metric + rounded value
     tit_k <- fspaces_nm_plot[k]
     subtit_k <- paste0(nm_qual_metrics[quality_metric], " = ",
-                       round(as.numeric(fspaces_quality$quality_fspaces[k, quality_metric]), 3))
+       round(as.numeric(fspaces_quality$quality_fspaces[k, quality_metric]), 3))
     
     # plotting trait-based distance versus raw distance in functional spaces ----
-    plot_dist_k <- ggplot2::ggplot(data = df_plot_k, ggplot2::aes(x = d_tr, y = d_sp_k ) )+
+    plot_dist_k <- ggplot2::ggplot(data = df_plot_k, ggplot2::aes(x = d_tr, 
+                                                                  y = d_sp_k ))+
       ggplot2::labs(x = NULL, y = y_lab_dist_k,
                     title = tit_k, subtitle= subtit_k ) +
       ggplot2::scale_x_continuous(limits = range_dist, expand = c(0,0) ) +
       ggplot2::scale_y_continuous(limits = range_dist, expand = c(0,0) ) +
       ggplot2::theme_bw(base_size = scaling_text) +
-      ggplot2::theme(aspect.ratio = 1, plot.title = ggplot2::element_text(face = "bold"),
+      ggplot2::theme(aspect.ratio = 1, 
+                     plot.title = ggplot2::element_text(face = "bold"),
                      plot.margin = ggplot2::margin(2, 8, 2, 2, "pt") ) +
       ggplot2::geom_abline(ggplot2::aes(intercept=0, slope=1)) +
       
-      ggplot2::geom_point(size = point_size, shape = 16, color="grey30", show.legend = FALSE)+
+      ggplot2::geom_point(size = point_size, shape = 16, color="grey30", 
+                          show.legend = FALSE)+
       ggplot2::guides(colour = "none")
     
     
     # plotting  plot for looking at raw deviation along values of distances ----
-    plot_dev_k <- ggplot2::ggplot(data = df_plot_k, ggplot2::aes(x = d_tr, y = dev_k )) +
+    plot_dev_k <- ggplot2::ggplot(data = df_plot_k, 
+                                  ggplot2::aes(x = d_tr, y = dev_k )) +
       ggplot2::labs(x = NULL, y = y_lab_dev_k) +
       ggplot2::scale_x_continuous(limits = range_dist, expand = c(0,0)) +
       ggplot2::scale_y_continuous(limits = range_dev,
-                                  expand = ggplot2::expansion(mult = c(0.03, 0.03))) +
+                          expand = ggplot2::expansion(mult = c(0.03, 0.03))) +
       ggplot2::theme_bw(base_size = scaling_text) +
-      ggplot2::theme(aspect.ratio = 1, plot.margin = ggplot2::margin(2, 8, 2, 2, "pt")) +
+      ggplot2::theme(aspect.ratio = 1, 
+                     plot.margin = ggplot2::margin(2, 8, 2, 2, "pt")) +
       ggplot2::geom_hline(ggplot2::aes(yintercept = 0)) +
       
       ggplot2::geom_point(size=point_size, shape = 16,
@@ -310,14 +322,17 @@ quality.fspaces.plot <- function(
     # plotting trait-based distance along transformed deviation ----
     # i.e. the one used for quality metric
     
-    plot_qdev_k <- ggplot2::ggplot(data = df_plot_k, ggplot2::aes(x = d_tr, y = qdev_k )) +
+    plot_qdev_k <- ggplot2::ggplot(data = df_plot_k, 
+                                   ggplot2::aes(x = d_tr, y = qdev_k )) +
       ggplot2::labs(x = x_lab,  y = y_lab_qdev_k) +
       ggplot2::scale_x_continuous(limits = range_dist, expand = c(0 ,0)) +
       ggplot2::scale_y_continuous(limits = range_qdev,
                                   expand = ggplot2::expansion(mult=c(0,0.03))) +
       ggplot2::theme_bw(base_size = scaling_text) +
-      ggplot2::theme(aspect.ratio = 1, plot.margin = ggplot2::margin(2, 8, 2, 2, "pt")) +
-      ggplot2::geom_point(size=point_size, shape = 16, ggplot2::aes( colour = qdev_k ))  +
+      ggplot2::theme(aspect.ratio = 1, 
+                     plot.margin = ggplot2::margin(2, 8, 2, 2, "pt")) +
+      ggplot2::geom_point(size=point_size, shape = 16, 
+                          ggplot2::aes( colour = qdev_k ))  +
       ggplot2::scale_colour_gradient(low = gradient_deviation_quality["low"],
                                      high = gradient_deviation_quality["high"],
                                      limits = range_qdev ,
