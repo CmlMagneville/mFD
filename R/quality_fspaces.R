@@ -14,8 +14,7 @@
 #' and distance in the PCoA-based space (raw Euclidean distance or scaled
 #' distance according to its maximum value and maximum of trait-based distance).
 #' Option to compute a functional dendrogram and its quality.
-#' This function is based on the framework presented in \emph{Maire et al 2015},
-#' DOI:10.1111/geb.12299).
+#' This function is based on the framework presented in Maire _et al._ (2015).
 #'
 #' @param sp_dist a \strong{dist object} with pairwise distance among all species (at
 #'   least 3 species needed). Functional distance matrix from trait values can
@@ -118,6 +117,11 @@
 #'   
 #' # Retrieve Species Coordinates
 #' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#' 
+#' @references 
+#' Maire _et al._ (2015) How many dimensions are needed to accurately assess 
+#' functional diversity? A pragmatic approach for assessing the quality of 
+#' functional spaces _Global Ecology and Biogeography_, **24**, 728-740.\cr
 #' 
 #' @importFrom dendextend is.dist dist_long
 #' @importFrom stats sd dist hclust cophenetic
