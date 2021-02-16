@@ -2,7 +2,7 @@
 #' (FE).Graphical representation of distribution of species in Functional
 #' Entities (FE) and of indices from Mouillot et al 2014. \strong{To plot
 #' functional indices, functional indices values must have been retrieve through
-#' the use of the} \code{\link{alpha.fd.fe function}}
+#' the use of the} \code{\link{alpha.fd.fe}} function.
 #'
 #' @param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} applied
 #'   on assemblage of interest with \code{details_returned = TRUE}.

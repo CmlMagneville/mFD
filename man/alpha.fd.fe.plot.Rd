@@ -6,7 +6,7 @@
 (FE).Graphical representation of distribution of species in Functional
 Entities (FE) and of indices from Mouillot et al 2014. \strong{To plot
 functional indices, functional indices values must have been retrieve through
-the use of the alpha.fd.fe function}}
+the use of the} \code{\link{alpha.fd.fe}} function.}
 \usage{
 alpha.fd.fe.plot(
   alpha_fd_fe,
@@ -24,49 +24,50 @@ alpha.fd.fe.plot(
 )
 }
 \arguments{
-\item{alpha_fd_fe}{output from the function \code{\link{alpha.fd.fe}} applied on
-assemblage of interest with \code{details_returned = TRUE}.}
+\item{alpha_fd_fe}{output from the function \code{\link{alpha.fd.fe}} applied
+on assemblage of interest with \code{details_returned = TRUE}.}
 
-\item{plot_asb_nm}{a \strong{vector} containing the name of the assemblage to plot.}
+\item{plot_asb_nm}{a vector containing the name of the assemblage to plot.}
 
-\item{plot_ind_nm}{a \strong{vector} containing the names of the indices to plot. It
+\item{plot_ind_nm}{a vector containing the names of the indices to plot. It
 can be \code{'fred'} to plot functional redundancy (FRed), \code{'fored'} to
 plot functional over-redundancy (FOred) and/or \code{'fvuln'} to plot
 functional vulnerability (FVuln). Default is all 3 indices.}
 
-\item{name_file}{a \strong{character string} with name of file to save the figure
-(without extension). Default is 'NULL' which means plot is displayed.}
+\item{name_file}{a character string with name of file to save the figure
+(without extension). Default: name_file = 'NULL' which means plot is
+displayed.}
 
-\item{color_fill_fored}{a \strong{R color name or an hexadecimal code} referring to the
-color used to fill the part of barplots that contain species in excess in
-species-rich FEs. It refers to the FORed value. Default:
+\item{color_fill_fored}{a R color name or an hexadecimal code referring to
+the color used to fill the part of barplots that contain species in excess
+in species-rich FEs. It refers to the FORed value. Default:
 color_fill_fored = "darkolivegreen2".}
 
-\item{color_line_fred}{a \strong{R color name or an hexadecimal code} referring to the
+\item{color_line_fred}{a R color name or an hexadecimal code referring to the
 color used to draw the horizontal line referring to the FRed value.
 Default:color_line_fred = "darkolivegreen4".}
 
-\item{color_fill_bar}{a \strong{R color name or an hexadecimal code} referring to the
+\item{color_fill_bar}{a R color name or an hexadecimal code referring to the
 color used to draw barplots. Default: color_fill_bar = "grey80".}
 
-\item{color_fill_fvuln}{a \strong{R color name or an hexadecimal code} referring to the
-color used to fill barplots containing only one species. It refers to the
-FVuln value. Default: color_fill_fvuln = "lightcoral".}
+\item{color_fill_fvuln}{a R color name or an hexadecimal code referring to
+the color used to fill barplots containing only one species. It refers to
+the FVuln value. Default: color_fill_fvuln = "lightcoral".}
 
-\item{color_arrow_fvuln}{a \strong{R color name or an hexadecimal code} referring to
+\item{color_arrow_fvuln}{a R color name or an hexadecimal code referring to
 the color used to draw the horizontal arrow showing the proportion of FEs
 containing only one species. It refers to the FVuln value. If there is only
 one FE containing one species, the arrow will be a point. Default:
 color_arrow_fvuln = "indianred4".}
 
-\item{size_line_fred}{a \strong{numeric value} referring to the size of the horizontal
+\item{size_line_fred}{a numeric value referring to the size of the horizontal
 linerefering to the FRed value. Default: size_line_fred = 1.5.}
 
-\item{size_arrow_fvuln}{a \strong{numeric value} referring to the size of the arrow
+\item{size_arrow_fvuln}{a numeric value referring to the size of the arrow
 showing the proportion of FEs containing only one species. Default:
 size_arrow_fvuln = 1.}
 
-\item{check_input}{a \strong{logical value} allowing to test or not the inputs.
+\item{check_input}{a logical value allowing to test or not the inputs.
 Possible error messages will thus may be more understandable for the user
 than R error messages. Default: check_input = TRUE.}
 }
@@ -87,7 +88,7 @@ Illustrate functional diversity indices based on functional entities
 (FE).Graphical representation of distribution of species in Functional
 Entities (FE) and of indices from Mouillot et al 2014. \strong{To plot
 functional indices, functional indices values must have been retrieve through
-the use of the alpha.fd.fe function}
+the use of the} \code{\link{alpha.fd.fe}} function.
 }
 \examples{
 # Load Species*Traits dataframe
@@ -137,4 +138,7 @@ mFD::alpha.fd.fe.plot(
   size_arrow_fvuln  = 1,
   check_input       = TRUE) 
   
+}
+\author{
+: Camille Magneville and sébastien Villéger
 }
