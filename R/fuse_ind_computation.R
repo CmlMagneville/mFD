@@ -3,8 +3,8 @@
 #' This index takes into account species functional uniqueness (also called
 #' Functional Originality), species specialisation and species IUCN status
 #'
-#' @param sp_dist a dist object provided by the daisy() of the cluster
-#' package or dist.ktab() of the ade4 package
+#' @param sp_dist a dist object provided by the \code{\link{funct.dist}}
+#'   function, daisy() of the cluster package or dist.ktab() of the ade4 package
 #'
 #' @param sp_faxes_coord a data.frame with the coordinates of the species on a
 #'   multidimensional space based on a selected number of axes derived from a

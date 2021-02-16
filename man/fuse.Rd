@@ -7,8 +7,8 @@
 fuse(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = F)
 }
 \arguments{
-\item{sp_dist}{a dist object provided by the daisy() of the cluster
-package or dist.ktab() of the ade4 package}
+\item{sp_dist}{a dist object provided by the \code{\link{funct.dist}}
+function, daisy() of the cluster package or dist.ktab() of the ade4 package}
 
 \item{sp_faxes_coord}{a data.frame with the coordinates of the species on a
 multidimensional space based on a selected number of axes derived from a

@@ -50,20 +50,26 @@ Compute the set of indices based on number of species in functional entities
 \examples{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
+
 # Load Traits categories dataframe:
 data('fruits_traits_cat', package = 'mFD')
+
 # Load Assemblages*Species matrix:
 data('baskets_fruits_weights', package = 'mFD')
+
 # Remove continuous trait:
 fruits_traits <- fruits_traits[, -5]
 fruits_traits_cat <- fruits_traits_cat[-5, ]
+
 # Compute gathering species into FEs:
 sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = fruits_traits, 
  tr_cat = fruits_traits_cat, 
  fe_nm_type = 'fe_rank', check_input = TRUE)
+ 
 # Get the occurrence dataframe:
 asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
 asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
+
 # Compute alpha fd indices:
 alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
  ind_nm = c('fred', 'fored', 'fvuln'),
