@@ -116,7 +116,7 @@ sp.tr.summary <- function(tr_cat, sp_tr,
     
     # List containing modalities for non
     # continuous traits
-    sp_non_conttr <- sp_tr[, lapply(sp_tr, 
+    sp_non_conttr <- sp_tr[, apply(sp_tr, 2,
                                     function(x) !is.numeric(x))]
     non_conttr_modalities_list <- lapply(sp_non_conttr, 
                                          unique)
