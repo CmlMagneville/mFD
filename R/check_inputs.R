@@ -25,18 +25,23 @@ check.tr.cat <- function(tr_cat) {
     }
   }
   
-  if (ncol(tr_cat) == 3) {
+  # Check for a third column if some traits are fuzzy:
+  if (ncol(tr_cat) == 3 & any(tr_cat$"trait_type" == "F")) {
     valid_names  <- c("trait_name", "trait_type", "fuzzy_name")
     if (!identical(colnames(tr_cat), valid_names)) {
       stop("The 3 first columns of the traits x category data frame must be ",
-           "'trait_name', 'trait_type', and 'fuzzy_name' in this exact order.")
+           "'trait_name', 'trait_type', and 'fuzzy_name' in this exact order.
+           Weight can not be provided if fuzzy traits are used with mFD,
+           please use gawdis package instead")
     }
   } 
-  if (ncol(tr_cat) > 3) {
-    valid_names  <- c("trait_name", "trait_type", "fuzzy_name","trait_weigth")
+  
+  # Check for a fourth column if trait weight is needed:
+  if (ncol(tr_cat) == 3 & (is.element(c("F"), tr_cat$trait_type) == FALSE)) {
+    valid_names  <- c("trait_name", "trait_type","trait_weight")
     if (!identical(colnames(tr_cat), valid_names)) {
       stop("The 3 first columns of the traits x category data frame must be ",
-           "'trait_name', 'trait_type', and 'fuzzy_name' in this exact order.")
+           "'trait_name', 'trait_type', and 'trait_weight' in this exact order.")
     }
   }
   
@@ -86,7 +91,11 @@ check.sp.tr <- function(sp_tr, tr_cat = NULL, stop_if_NA = TRUE) {
   
   if (stop_if_NA) {
     if (any(is.na(sp_tr))) {
-      stop("There must be no NA in the species x traits data frame.")
+      stop("Species x traits data frame contains NA. If you want to ",
+           "continue with missing traits (Be careful: Functional measures ", 
+           "are sensitive to missing traits), set 'stop_if_NA' parameter ",
+           "to FALSE. Otherwise you can delete species with missing or ",
+           "extrapolate missing traits (Johnson et al. (2020).")
     } 
   }
   
