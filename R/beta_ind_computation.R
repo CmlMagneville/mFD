@@ -74,27 +74,36 @@
 #' @examples
 #'  # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
+#' 
 #' # Load Assemblages*Species dataframe:      
 #' data('baskets_fruits_weights', package = 'mFD') 
+#' 
 #' # Load Traits categories dataframe:
-#' data('fruits_traits_cat', package = 'mFD')  
+#' data('fruits_traits_cat', package = 'mFD') 
+#'  
 #' # Compute functional distance 
-#' sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,         
-#'  tr_cat       = fruits_traits_cat,   
-#'  dist_metric  = 'kgower',         
-#'  scaling      = 'scaledBYrange',  
-#'  stop_if_NA   = TRUE)
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                   tr_cat        = fruits_traits_cat,
+#'                                   metric        = "gower",
+#'                                   scale_euclid  = "scale_center",
+#'                                   ordinal_var   = "classic",
+#'                                   weight_type   = "equal",
+#'                                   stop_if_NA    = TRUE)
+#' 
 #' # Compute functional spaces quality to retrieve species coordinates matrix:
 #' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
 #'  maxdim_pcoa         = 10,
 #'  deviation_weighting = 'absolute',
 #'  fdist_scaling       = FALSE,
 #'  fdendro             = 'average')
+#'  
 #' # Retrieve species coordinates matrix:
 #' sp_faxes_coord_fruits <- fspaces_quality_fruits$'details_fspaces'$'sp_pc_coord'
+#' 
 #'  # Get the occurrence dataframe:
 #' asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
 #' asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
+#' 
 #' # Compute beta diversity indices:
 #' beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
 #'  c('PC1', 'PC2', 'PC3', 'PC4')], asb_sp_occ = asb_sp_fruits_occ,

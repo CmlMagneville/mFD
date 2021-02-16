@@ -70,12 +70,13 @@
 #' data('fruits_traits_cat', package = 'mFD')  
 #'  
 #' # Compute functional distance 
-#' sp_dist_fruits <- mFD::funct.dist(
-#'   sp_tr        = fruits_traits,         
-#'   tr_cat       = fruits_traits_cat,   
-#'   dist_metric  = 'kgower',         
-#'   scaling      = 'scaledBYrange',  
-#'   stop_if_NA   = TRUE)
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                   tr_cat        = fruits_traits_cat,
+#'                                   metric        = "gower",
+#'                                   scale_euclid  = "scale_center",
+#'                                   ordinal_var   = "classic",
+#'                                   weight_type   = "equal",
+#'                                   stop_if_NA    = TRUE)
 #'  
 #' # Compute functional spaces quality to retrieve species coordinates matrix:
 #' fspaces_quality_fruits <- mFD::quality.fspaces(

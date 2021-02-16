@@ -58,14 +58,19 @@
 #' @examples
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
+#' 
 #' # Load Assemblages*Species dataframe:      
-#' data('baskets_fruits_weights', package = 'mFD')   
+#' data('baskets_fruits_weights', package = 'mFD')
+#'    
 #' # Compute functional distance 
-#' sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,         
-#'  tr_cat       = fruits_traits_cat,   
-#'  dist_metric  = 'kgower',         
-#'  scaling      = 'scaledBYrange',  
-#'  stop_if_NA   = TRUE)
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                   tr_cat        = fruits_traits_cat,
+#'                                   metric        = "gower",
+#'                                   scale_euclid  = "scale_center",
+#'                                   ordinal_var   = "classic",
+#'                                   weight_type   = "equal",
+#'                                   stop_if_NA    = TRUE)
+#' 
 #' # Compute beta functional hill indices:
 #' beta.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
 #'  q = c(0,1,2), tau = 'mean',

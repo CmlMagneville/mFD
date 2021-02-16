@@ -295,11 +295,13 @@ which includes the following arguments:
 **USAGE**
 
 ```{r, results = "hide"}
-sp_dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,             # Species x Traits data frame
-                           tr_cat       = fruits_traits_cat,         # Traits informations
-                           dist_metric  = "kgower",          # Distance metric
-                           scaling      = "scaledBYrange",   # Scaling method
-                           stop_if_NA   = TRUE)
+sp_dist_fruits <- mFD::funct.dist(sp_tr  = fruits_traits,
+                                  tr_cat = fruits_traits_cat,
+                                  metric = "gower",
+                           scale_euclid  = "scale_center",
+                             ordinal_var = "classic",
+                             weight_type = "equal",
+                             stop_if_NA  = TRUE)
 ```
 
 

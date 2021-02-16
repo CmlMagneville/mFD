@@ -4,7 +4,15 @@
 \alias{funct.dist}
 \title{Compute Functional Distance between Species}
 \usage{
-funct.dist(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE)
+funct.dist(
+  sp_tr,
+  tr_cat,
+  metric,
+  scale_euclid = "scale_center",
+  ordinal_var = "classic",
+  weight_type = "equal",
+  stop_if_NA = TRUE
+)
 }
 \arguments{
 \item{sp_tr}{a data frame of traits values (columns) for each species (rows).}
@@ -21,32 +29,37 @@ there are at least 2 species with the same value, and \code{F} for fuzzy
 traits (i.e. described with several values defined with several column);
 \item \strong{fuzzy_name}: name of fuzzy-coded trait to which 'sub-trait'
 belongs (if trait is not fuzzy, ignored so could be trait name or NA).
-}
+\item \strong{trait_weight}: Optional, a numeric vector of length n (traits number)
+to specify a weight for each trait.
+}}
 
-An option is to add a fourth column with a numeric vector of length n
-(traits number) to specify a weight for each trait.}
-
-\item{dist_metric}{the distance to be computed:
+\item{metric}{the distance to be computed:
 \code{euclidean}, the Euclidean distance,
-\code{classical_gower}, the Classical Gower distance as defined by Gower (1971),
-or \code{kgower}, the Gower distance modified by Pavoine \emph{et al.} (2009).
+\code{gower}, the Classical Gower distance as defined by Gower (1971), extent by Bello et al. (2021)
+Based on the \code{\link[gawdis]{gawdis}}}
 
-Based on the \code{\link[ade4]{dist.ktab}} function: "\emph{If \code{kgower} is
-chosen user have several choice to scale quantitative variables A string
-that can have three values: either \code{scaledBYrange} if the quantitative
-variables must be scaled by their range, or \code{scaledBYsd} if they must
-be scaled by their standard deviation, or \code{noscale} if they should not
-be scaled. This last option can be useful if the values have already been
-normalized by the known range of the whole population instead of the
-observed range measured on the sample. If x contains data from various
-types, then the option \code{scaledBYsd} is not suitable (a warning will
-appear if the option selected with that condition)"}.}
+\item{scale_euclid}{only when computing euclidean distance a string value to compute (or not)
+scaling of quantitative traits using the \code{\link{tr.cont.scale}} function.
+Possible options are:
+\code{range} (standardize by the range: \eqn{({x' = x - min(x) )} / (max(x) - min (x))})
+\code{center} (use the center transformation: \eqn{x' = x - mean(x)}),
+\code{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}}),
+\code{scale_center} (use the scale-center transformation:
+\eqn{x' = \frac{x - mean(x)}{sd(x)}}), or
+\code{noscale} traits are not scaled
+Default is \code{scale_center}.}
 
-\item{scaling}{a character string referring to the way traits must be scaled.
-There are three options:
-\code{scaledBYrange} (if traits must be scaled by range),
-\code{scaledBYsd} (if traits must be scaled by their standard deviation), or
-\code{noscale} (if traits do not have to be scaled).}
+\item{ordinal_var}{Character string specifying the method to be used for ordinal variables
+(i.e. ordered).
+\code{classic} simply treats ordinal variables as continuous variables.
+\verb{metric`` refers to Eq. 3 of Podani (1999);  }podani\verb{ refers to Eqs. 2a-b of Podani (1999),  #'   both options convert ordinal variables to ranks.  Default is}classic`}
+
+\item{weight_type}{Type of used method to weight traits.
+\code{user} – user defined weights in tr_cat
+\code{equal} – all traits having the same weight.
+More methods are available using gawdis from gawdis package. To compute gower
+distance with fuzzy trait and traits weight please refer to gawdis() from gawdis package
+Default is\code{equal}}
 
 \item{stop_if_NA}{a logical value to stop or not the process if the
 \code{sp_tr} data frame contains NA. Functional measures are sensitive to
@@ -74,26 +87,28 @@ data("fruits_traits", package = "mFD")
 # Load Traits x Categories data
 data("fruits_traits_cat", package = "mFD")
 
-# Remove fuzzy traits for this example
+# Remove fuzzy traits for this example and thus remove lat column:
 fruits_traits     <- fruits_traits[ , -c(6:8)]
 fruits_traits_cat <- fruits_traits_cat[-c(6:8), ]
+fruits_traits_cat <- fruits_traits_cat[, -3]
 
 # Compute Functional Distance
-mFD::funct.dist(
-  sp_tr       = fruits_traits, 
-  tr_cat      = fruits_traits_cat, 
-  dist_metric = "classical_gower", 
-  scaling     = "noscale", 
-  stop_if_NA  = TRUE)
+sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+                                  tr_cat        = fruits_traits_cat,
+                                  metric        = "gower",
+                                  scale_euclid  = "scale_center",
+                                  ordinal_var   = "classic",
+                                  weight_type   = "equal",
+                                  stop_if_NA    = TRUE)
 }
 \references{
 Gower, J.C. (1971) A general coefficient of similarity and some of its
 properties. \emph{Biometrics}, \strong{27}, 857-871.\cr
 Johnson \emph{et al.} (2020) Handling missing values in trait data.
 \emph{Global Ecology and Biogeography}, \strong{30}, 51-62.\cr
-Pavoine \emph{et al.} (2009) On the challenge of treating various types of
-variables: application for improving the measurement of functional
-diversity, \emph{Oikos}, \strong{118}, 391-402. \cr
+Bello \emph{et al.} (2021) Towards a more balanced combination of multiple traits when
+computing functional differences between species \emph{Method in Ecology and Evolution},
+doi: https://doi.org/10.1111/2041-210X.13537
 }
 \author{
 Nicolas Loiseau & Sébastien Villéger

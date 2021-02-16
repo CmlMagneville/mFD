@@ -44,8 +44,8 @@ summary(fruits_traits)
 ```
 These traits are summed up in the following dataframe (always the same format, see [mFD_general_workflow] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.html> for details):
 ```{r, echo = FALSE}
-sp_tr_cat <- data.frame(names(fruits_traits), c("O","N","O","O","Q"), c(NA, NA, NA, NA, NA))
-colnames(sp_tr_cat) <- c("trait_name", "trait_type", "fuzzy_name")
+fruits_traits_cat <- data.frame(names(fruits_traits), c("O","N","O","O","Q"))
+colnames(fruits_traits_cat) <- c("trait_name", "trait_type")
 ```
 
 ----
@@ -55,19 +55,25 @@ colnames(sp_tr_cat) <- c("trait_name", "trait_type", "fuzzy_name")
 First, traits based distance between species should be computed. Here we use Gower distance.
 
 ```{r, echo = FALSE}
-dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits, tr_cat = sp_tr_cat, dist_metric = "classical_gower", scaling = 'noscale', stop_if_NA = TRUE)
-summary(dist_fruits)
+dist_fruits <- mFD::funct.dist(sp_tr = fruits_traits,
+                       tr_cat = fruits_traits_cat,
+                       metric = "gower",
+                       scale_euclid  = "noscale",
+                       ordinal_var = "classic",
+                       weight_type = "equal",
+                       stop_if_NA  = TRUE)
+summary(as.matrix(dist_fruits))
 ```
 
-The Gower distances range from < 0.01 to 0.867 with a median and a mean of 0.41.
+The Gower distances range from < 0.01 to 0.790.
 
 We can now have a look to the Gower distances between blackberry and 3 other fruits:
 
-```{r, echo = FALSE}
+```{r}
 
 ex_blackberry <- c("blackberry","currant","cherry","banana")
 
-round(as.matrix(dist_fruits)[ex_blackberry,ex_blackberry],2)
+round(as.matrix(dist_fruits)[ex_blackberry,ex_blackberry], 2)
 fruits_traits[ex_blackberry,]
 ```
 

@@ -17,32 +17,40 @@
 #'   traits (i.e. described with several values defined with several column);
 #'   \item \strong{fuzzy_name}: name of fuzzy-coded trait to which 'sub-trait'
 #'   belongs (if trait is not fuzzy, ignored so could be trait name or NA).
+#'   \item \strong{trait_weight}: Optional, a numeric vector of length n (traits number)
+#'  to specify a weight for each trait.
 #'   }
 #'   
-#'   An option is to add a fourth column with a numeric vector of length n 
-#'   (traits number) to specify a weight for each trait.
-#'
-#' @param dist_metric the distance to be computed:
+#' @param metric the distance to be computed:
 #'   `euclidean`, the Euclidean distance, 
-#'   `classical_gower`, the Classical Gower distance as defined by Gower (1971),
-#'   or `kgower`, the Gower distance modified by Pavoine _et al._ (2009).
+#'   `gower`, the Classical Gower distance as defined by Gower (1971), extent by Bello et al. (2021)
+#'   Based on the \code{\link[gawdis]{gawdis}} 
 #'   
-#'   Based on the \code{\link[ade4]{dist.ktab}} function: "_If `kgower` is 
-#'   chosen user have several choice to scale quantitative variables A string 
-#'   that can have three values: either \code{scaledBYrange} if the quantitative
-#'   variables must be scaled by their range, or \code{scaledBYsd} if they must 
-#'   be scaled by their standard deviation, or \code{noscale} if they should not 
-#'   be scaled. This last option can be useful if the values have already been
-#'   normalized by the known range of the whole population instead of the 
-#'   observed range measured on the sample. If x contains data from various 
-#'   types, then the option \code{scaledBYsd} is not suitable (a warning will 
-#'   appear if the option selected with that condition)"_.
-#' 
-#' @param scaling a character string referring to the way traits must be scaled. 
-#'   There are three options: 
-#'   `scaledBYrange` (if traits must be scaled by range),
-#'   `scaledBYsd` (if traits must be scaled by their standard deviation), or
-#'   `noscale` (if traits do not have to be scaled). 
+#' @param scale_euclid only when computing euclidean distance a string value to compute (or not)
+#'   scaling of quantitative traits using the \code{\link{tr.cont.scale}} function. 
+#'   Possible options are:
+#'   `range` (standardize by the range: \eqn{({x' = x - min(x) )} / (max(x) - min (x))})
+#'   `center` (use the center transformation: \eqn{x' = x - mean(x)}), 
+#'   `scale` (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}}),
+#'   `scale_center` (use the scale-center transformation: 
+#'   \eqn{x' = \frac{x - mean(x)}{sd(x)}}), or
+#'   `noscale` traits are not scaled
+#'   Default is `scale_center`.
+#'   
+#' @param ordinal_var Character string specifying the method to be used for ordinal variables
+#'   (i.e. ordered). 
+#'    `classic` simply treats ordinal variables as continuous variables.
+#'    `metric`` refers to Eq. 3 of Podani (1999); 
+#'    `podani` refers to Eqs. 2a-b of Podani (1999), 
+#'   #'   both options convert ordinal variables to ranks. 
+#'   Default is`classic`
+#'  
+#' @param weight_type Type of used method to weight traits. 
+#'   `user` – user defined weights in tr_cat
+#'   `equal` – all traits having the same weight.
+#'   More methods are available using gawdis from gawdis package. To compute gower 
+#'   distance with fuzzy trait and traits weight please refer to gawdis() from gawdis package
+#'   Default is`equal`
 #' 
 #' @param stop_if_NA a logical value to stop or not the process if the
 #'   `sp_tr` data frame contains NA. Functional measures are sensitive to
@@ -62,15 +70,14 @@
 #'   properties. _Biometrics_, **27**, 857-871.\cr
 #'   Johnson _et al._ (2020) Handling missing values in trait data. 
 #'   _Global Ecology and Biogeography_, **30**, 51-62.\cr
-#'   Pavoine _et al._ (2009) On the challenge of treating various types of 
-#'   variables: application for improving the measurement of functional 
-#'   diversity, _Oikos_, **118**, 391-402. \cr
-#' 
+#'   Bello _et al._ (2021) Towards a more balanced combination of multiple traits when 
+#'   computing functional differences between species _Method in Ecology and Evolution_,
+#'   doi: https://doi.org/10.1111/2041-210X.13537
+#'     
 #' @author Nicolas Loiseau & Sébastien Villéger
 #'
 #' @export
-#' @importFrom ade4 prep.fuzzy ktab.list.df dist.ktab
-#' @importFrom cluster daisy
+#' @importFrom gawdis gawdis
 #' 
 #' @examples
 #' # Load Species x Traits data
@@ -79,195 +86,166 @@
 #' # Load Traits x Categories data
 #' data("fruits_traits_cat", package = "mFD")
 #' 
-#' # Remove fuzzy traits for this example
+#' # Remove fuzzy traits for this example and thus remove lat column:
 #' fruits_traits     <- fruits_traits[ , -c(6:8)]
 #' fruits_traits_cat <- fruits_traits_cat[-c(6:8), ]
+#' fruits_traits_cat <- fruits_traits_cat[, -3]
 #' 
 #' # Compute Functional Distance
-#' mFD::funct.dist(
-#'   sp_tr       = fruits_traits, 
-#'   tr_cat      = fruits_traits_cat, 
-#'   dist_metric = "classical_gower", 
-#'   scaling     = "noscale", 
-#'   stop_if_NA  = TRUE)
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                   tr_cat        = fruits_traits_cat,
+#'                                   metric        = "gower",
+#'                                   scale_euclid  = "scale_center",
+#'                                   ordinal_var   = "classic",
+#'                                   weight_type   = "equal",
+#'                                   stop_if_NA    = TRUE)
 
-funct.dist <- function(sp_tr, tr_cat, dist_metric, scaling, stop_if_NA = TRUE) {
-  
+funct.dist <- function(sp_tr,
+                       tr_cat,
+                       metric,
+                       scale_euclid  = "scale_center",
+                       ordinal_var = "classic",
+                       weight_type = "equal",
+                       stop_if_NA  = TRUE) {
   
   ## Check Inputs ----
   
-  if (any(is.na(sp_tr)) && stop_if_NA) {
-    stop("Species x traits data frame contains NA. If you want to ",
-         "continue with missing traits (Be careful: Functional measures ", 
-         "are sensitive to missing traits), set 'stop_if_NA' parameter ",
-         "to FALSE. Otherwise you can delete species with missing or ",
-         "extrapolate missing traits (Johnson et al. (2020).")
-  }
-  
+  # with generic functions:
   check.sp.tr(sp_tr, tr_cat, stop_if_NA)
+  check.tr.cat(tr_cat)
+  check.nominal(tr_cat, sp_tr)
+  check.ordinal(tr_cat, sp_tr)
+  check.circular(tr_cat, sp_tr)
+  check.continuous(tr_cat, sp_tr)
+  check.fuzzy(tr_cat, sp_tr)
+    
+  # checks associated with funct.dist:
   
-  if (ncol(tr_cat) == 4) {
-    cat("tr_cat has 4 columns, if you use 'classical_gower' traits will be",
-        "weighted.\n")
+  metric <- match.arg(metric, c("euclidean", "gower"))
+  
+  weight_type <- match.arg(weight_type, c("equal", "user"))
+  
+  ordinal_var <- match.arg(ordinal_var, c("classic", "metric","podani"))
+  
+  
+  if (weight_type == "user" && sum(colnames(tr_cat) %in% "trait_weight")==0){
+    stop("A fourth colunm trait_weight must be added in tr_cat
+                       to specify weight for each trait.")
   }
   
-  dist_metric <- match.arg(dist_metric, c("euclidean", "classical_gower", 
-                                          "kgower"))
+  if (sum(colnames(tr_cat) %in% "trait_weight") != 0) { 
+    weight_type <- "user"
+    tr_weights  <- tr_cat$trait_weight
+    if (any(tr_cat$trait_weight <= 0)){
+      stop("Trait weight cannot be negative")
+    }
+    
+  }else{ tr_weights  <- NULL }
   
-  scaling <- match.arg(scaling, c("scaledBYrange", "scaledBYsd", "noscale")) 
-  
+  if (any(tr_cat$"trait_type" == "F") && !is.null(tr_weights)) {
+    stop("To compute Gower distance with fuzzy traits and trait weights please use 
+          gawdis package")}
   
   ## Compute Distances ----
   
-  if (dist_metric == "classical_gower") {
+  # . . . Euclidean distance
+  
+  if (metric == "euclidean") {
     
-    if (ncol(tr_cat) == 4) {
-      
-      ktab_dist <- cluster::daisy(sp_tr, "gower", weights = tr_cat$"weight")
-      
-    } else {
-      
-      ktab_dist <- cluster::daisy(sp_tr, "gower")
+    if (any(tr_cat$"trait_type" == "N")){
+      stop("At least one trait is nominal.Species x traits data frame 
+                          must contain only numerical variables.")
     }
+    
+    if (any(tr_cat$"trait_type" == "F")){
+      stop("At least one trait is fuzzy.Gower distance should be used
+               to consider fuzzy trait")
+    }
+    
+    for (k in tr_cat$"trait_name"[which(tr_cat$"trait_type" == "Q")]) {
+      if (!is.numeric(sp_tr[ , k])) {
+        
+        stop("Trait '", k, "' is supposed to be continuous but is not ",
+             "described with a 'numeric' variable.")
+        
+        warning("To compute euclidean distance, Species x traits data frame 
+                          must contain only numerical variables.")
+      }
+    }
+    
+    scale_euclid <- match.arg(scale_euclid, c("scale_center","range", "center", "scale", "noscale"))
+    
+    if (scale_euclid != "noscale") {
+      sp_tr <- tr.cont.scale(sp_tr, std_method = scale_euclid)
+    }
+    
+    tab_dist <- stats::dist(sp_tr, method = "euclidean")
   }
   
-  if (dist_metric == "euclidean") {
-    
-    if (!is.numeric(sp_tr)) {
-      stop("Some traits are not numerical.")
-    }
-
-    ktab_dist <- stats::dist(sp_tr, method = "euclidean")
-  }
-    
+  # . . . Gower distance  
   
-  if (dist_metric == "kgower") {
+  if (metric == "gower") {
     
-    # Need to prepare functional trait in function of their nature...
-
-    
-    # ... Quantitative traits
-    
-    quant_trait <- NULL
-    
-    if (any(tr_cat$"trait_type" == "Q")) {
-      quant_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "Q"],
-                            drop = FALSE]
+    if (any(apply(sp_tr, 2, is.numeric))) {
+      warning("Species x traits data frame contains only numerical variables.
+              Euclidean can be used")
+      #Not a stop because user may want to weight traits
     }
     
     
-    # ... Ordinal Traits
+    # Compute the final distance using the retained categories and weight:      
     
-    ord_trait <- NULL
-    
-    if (any(tr_cat$"trait_type" == "O")) {
-      ord_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "O"],
-                          drop = FALSE]
-    }
-    
-    
-    # ... Circular traits
-    
-    circ_trait <- NULL
-    
-    if (any(tr_cat$"trait_type" == "C")) {
-      circ_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "C"],
-                           drop = FALSE]
-      
-      circ_trait <- ade4::prep.circular(circ_trait, 1, 12)
-    }
-    
-    
-    # ... Fuzzy traits
-    
-    fuzz_trait <- NULL
-    
+    #if any fuzzy traits   
     if (any(tr_cat$"trait_type" == "F")) {
       
       # Select the fuzzy traits
-      fuzz_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "F"],
-                           drop = FALSE]
-      
-      # Count the number of fuzzy categories
       fuzz_cat <- table(tr_cat[tr_cat$"trait_type" == "F", ]$"fuzzy_name")
       
-      # Order the trait names based on the order of the categories
-      fuzz_names_ordered <- unlist(lapply(names(fuzz_cat), function(x) {
-        tr_cat$"trait_name"[tr_cat$"fuzzy_name" == x & 
-                            !is.na(tr_cat$"fuzzy_name")]
-      }))
-
-      fuzz_names_ordered <- as.character(fuzz_names_ordered)        # R (< 4.0)
+      # Fill all fuzzy names of traits
+      tr_cat[is.na(tr_cat$fuzzy_name),]$fuzzy_name <- tr_cat[is.na(tr_cat$fuzzy_name),]$trait_name 
       
-      # Reorder the traits according to the names
-      fuzz_trait <- fuzz_trait[ , fuzz_names_ordered]
+      tab_dist <- gawdis::gawdis(sp_tr,
+                                 W                 = tr_weights, 
+                                 asym.bin          = NULL, 
+                                 ord               = ordinal_var,
+                                 w.type            = weight_type, 
+                                 groups            = tr_cat$fuzzy_name,
+                                 groups.weight     = FALSE, 
+                                 fuzzy             = c(names(fuzz_cat)), 
+                                 opti.getSpecDists = NULL,
+                                 opti.f            = NULL,
+                                 opti.min.weight   = 0.01,
+                                 opti.max.weight   = 1,
+                                 opti.maxiter      = 300,
+                                 silent            = TRUE)  
       
-      fuzz_trait <- ade4::prep.fuzzy(fuzz_trait,
-                                     col.blocks = as.numeric(fuzz_cat),
-                                     labels     = names(fuzz_cat))
-    }
-    
-    
-    # ... Binary traits
-    
-    bin_trait <- NULL
-    
-    if (any(tr_cat$"trait_type" == "B")) {
-      bin_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "B"], 
-                          drop = FALSE]
+    } else{ 
       
-      bin_trait <- ade4::prep.binary(bin_trait, col.blocks = ncol(bin_trait))
+      #without fuzzy traits   
+      tab_dist <- gawdis::gawdis(sp_tr,
+                                 W                 = tr_weights, 
+                                 asym.bin          = NULL, 
+                                 ord               = ordinal_var,
+                                 w.type            = weight_type, 
+                                 groups            = NULL,
+                                 groups.weight     = FALSE, 
+                                 fuzzy             = NULL, 
+                                 opti.getSpecDists = NULL,
+                                 opti.f            = NULL,
+                                 opti.min.weight   = 0.01,
+                                 opti.max.weight   = 1,
+                                 opti.maxiter      = 300,
+                                 silent            = TRUE) 
     }
-    
-    
-    # ... Nominal traits
-    
-    nom_trait <- NULL
-    
-    if (any(tr_cat$"trait_type" == "N")) {
-      nom_trait <- sp_tr[ , tr_cat$"trait_name"[tr_cat$"trait_type" == "N"], 
-                          drop = FALSE]
-    }
-    
-    # Combine all traits
-    all_trait <- list("Q" = quant_trait, "O" = ord_trait, "F" = fuzz_trait,
-                      "B" = bin_trait,   "N" = nom_trait, "C" = circ_trait)
-    
-    # Remove NULL data frames
-    not_null  <- unlist(lapply(all_trait, function(x) {
-      ifelse(!is.null(x), TRUE, FALSE) 
-    }))
-    all_trait <- all_trait[not_null]
-    
-    ktab_list <- ade4::ktab.list.df(all_trait)
-    
-    
-    # Compute the final distance using the retained categories:
-    
-    if (scaling == "scaledBYrange") {
-      ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),
-                                   option = "scaledBYrange")
-    }
-    
-    if (scaling == "scaledBYsd") {
-      ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),
-                                   option = "scaledBYsd")
-    }
-    
-    if (scaling == "noscale") {
-      ktab_dist <- ade4::dist.ktab(ktab_list, names(all_trait),
-                                   option = "noscale")
-    }
-  }
-  
+  }    
   # if some species have a functional distance equal to 0, tell the user that it
   # could be a god idea to gather species into FEs:
   
-  if (min(ktab_dist) == 0) {
+  if (min(tab_dist) == 0) {
     warning("Functional distance between some species is equal to 0. You can ",
             "choose to gather species into Functional Entities gathering ",
             "species with similar traits values.")
   }
   
-  return(ktab_dist)
-}
+  return(tab_dist)
+} 

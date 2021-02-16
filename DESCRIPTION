@@ -96,7 +96,8 @@ Imports:
     rstatix,
     stats,
     utils,
-    vegan
+    vegan,
+    gawdis
 Suggests:
     knitr,
     rmarkdown,
