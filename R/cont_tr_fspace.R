@@ -241,11 +241,10 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return_list1 <- list(quality_nbdim, as.matrix(sp_faxes_coord), 
                            sp_dist_multidim, corr_tr_coeff)
       
-      names(return_list1) <- c("mAD and mSD for each functional space", 
-                               "species coordinates in functional space", 
-                               "species distance in functional space", 
-                               "correlation coefficients between traits
-                               and their associated pvalue")
+      names(return_list1) <- c("quality_metrics", 
+                               "sp_faxes_coord", 
+                               "sp_dist", 
+                               "tr_correl")
       return(return_list1)
       
     } else {
@@ -254,9 +253,9 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return_list1 <- list(quality_nbdim, sp_faxes_coord, 
                            sp_dist_multidim)
       
-      names(return_list1) <- c("mAD and mSD for each functional space", 
-                               "species coordinates in functional space", 
-                               "species distance in functional space")
+      names(return_list1) <- c("quality_metrics", 
+                               "sp_faxes_coord", 
+                               "sp_dist")
       return(return_list1)
     }
     
@@ -274,10 +273,9 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return_list2 <- list(sp_faxes_coord, sp_dist_init, 
                            corr_tr_coeff)
       
-      names(return_list2) <- c("species coordinates in functional space", 
-                               "species distances in functional space", 
-                               paste("correlation coefficients between traits", 
-                                     "and their associated pvalue"))
+      names(return_list2) <- c("sp_faxes_coord", 
+                               "sp_dist", 
+                               paste("tr_correl"))
       return(return_list2)
       
     } else {
@@ -286,8 +284,8 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return_list2 <- list(as.matrix(sp_faxes_coord), 
                            sp_dist_init)
       
-      names(return_list2) <- c("species coordinates in functional space", 
-                               "species distances in functional space")
+      names(return_list2) <- c("sp_faxes_coord", 
+                               "sp_dist")
       return(return_list2)
     }
   }

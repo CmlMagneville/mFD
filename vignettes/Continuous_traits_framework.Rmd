@@ -139,7 +139,7 @@ If the PCA is computed, the output contains:
 <br />
 
 ```{r}
-fspace$`mAD and mSD for each functional space`
+fspace$`quality_metrics`
 ```  
 
 <br />
@@ -151,7 +151,7 @@ fspace$`mAD and mSD for each functional space`
   <br />
 
 ```{r}
-head(fspace$`species coordinates in functional space`)
+head(fspace$sp_faxes_coord)
 ```
 
 <br />
@@ -161,7 +161,7 @@ head(fspace$`species coordinates in functional space`)
 <br />
 
 ```{r}
-dist_mat <- as.matrix(fspace$`species distance in functional space`$`5D`)
+dist_mat <- as.matrix(fspace$sp_dist$`5D`)
 dist_mat[c(1:5), c(1:5)]
 ```
 
@@ -170,8 +170,7 @@ dist_mat[c(1:5), c(1:5)]
 <br />
 
 ```{r}
-fspace$`correlation coefficients between traits
-                               and their associated pvalue`
+fspace$tr_correl
 ```
 
 <br />
