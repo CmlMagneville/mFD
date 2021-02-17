@@ -20,7 +20,7 @@ functional diversity (FD) indices in a multidimensional space using `mFD`
 package. Other functions are available and their uses are illustrated in others
 tutorials.
 
-The data set used to illustrate this tutorial is a **fruits dataset** based on
+🧩 The data set used to illustrate this tutorial is a **fruits dataset** based on
 25 types of fruits (*i.e.* species) distributed in 10 fruits baskets (*i.e.*
 assemblages). Each fruit is characterized by six traits values summarized in the
 following table:
