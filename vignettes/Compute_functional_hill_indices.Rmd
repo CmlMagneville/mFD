@@ -87,6 +87,7 @@ knitr::kable(head(fruits_traits_cat), caption = "Traits types based on **fruits 
 Then, we can compute functional distance using the `mFD::funct.dist` function as follows:
 
 
+**USAGE**
 
 ```{r}
 fruits_gower <- mFD::funct.dist(sp_tr = fruits_traits,
@@ -128,6 +129,7 @@ All these indices can be computed with the function `mFD::alpha.fd.hill`.
 Here we start by comparing the **'classical' Rao's quadratic entropy expressed in Hill numbers** following [Ricotta & Szeidl (2009)] (https://www.sciencedirect.com/science/article/pii/S0040580909001117) which is the special case with `q = 2` and `tau = "max"`.
 
 
+**USAGE**
 
 ```{r}
 baskets_FD2max <- mFD::alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = fruits_gower, 
@@ -165,6 +167,7 @@ Hence, if the goal is to compute a richness-like index (*i.e.* accounting only f
 Species occurrence data can be retrieve through the `mFD::asb.sp.summary` function:
 
 
+**USAGE**
 
 ```{r}
 # Retrieve species occurrences data:
@@ -214,6 +217,7 @@ apply(baskets_fruits_relw, 1, sum)
 Now we can compute functional beta-diversity of order `q = 2` (with `tau = "mean"` for higher sensitivity) with Jaccard-type index:
 
 
+**USAGE**
 
 ```{r}
 # Compute index:
