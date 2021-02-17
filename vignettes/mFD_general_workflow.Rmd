@@ -620,6 +620,8 @@ same range to get rid of bias based on different axis scales.
 
 <br />
 
+**USAGE**
+
 ```{r, fig.height = 7, fig.width = 7, fig.align = "center"}
 
 big_plot <- mFD::funct.space.plot(sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
