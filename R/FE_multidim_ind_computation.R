@@ -6,7 +6,7 @@
 #'   assemblage must contain at least one species}.
 #'
 #' @param sp_to_fe a \strong{list} with details of species clustering into FE
-#'   from \code{sp.to.fe}.
+#'   from \code{\link{sp.to.fe}}.
 #'   
 #' @param ind_nm a \strong{vector} of character strings with the names of
 #'   functional diversity indices to compute among 'fred', 'fored' and 'fvuln'.

@@ -262,15 +262,15 @@ framework proposed in [Mouillot _et al._
 `mFD::alpha.fd.fe()` function. It computes:
 
   * *Functional Redundancy* that reflects the average number of species per FE
-  * *Functional Overredundancy* that reflects the proportion of species in excess
-  in species-rich FE *ie* it represents the percentage of species that fill
-  functional entities above the mean level of functional redundancy
+  * *Functional Overredundancy* that reflects the proportion of species in
+  excess in species-rich FE *ie* it represents the percentage of species that
+  fill functional entities above the mean level of functional redundancy
   * *Functional Vulnerability* that reflects the proportion of FE with only one
   species
 
 <br />
 
-`mFD::alpha.fd.fe`() function is used as follows:
+`mFD::alpha.fd.fe()` function is used as follows:
 
 <br />
 
