@@ -74,7 +74,12 @@ asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
 alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
  ind_nm = c('fred', 'fored', 'fvuln'),
  check_input = TRUE, details_returned = TRUE)
-
+ 
+}
+\references{
+Mouillot \emph{et al.} (2014) Functional over-redundancy and high functional
+vulnerability in global fish faunas on tropical reefs \emph{PNAS} \strong{38},
+13757-13762 \cr
 }
 \author{
 Camille Magneville

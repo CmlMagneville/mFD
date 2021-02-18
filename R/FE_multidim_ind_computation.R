@@ -56,6 +56,12 @@
 #' alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
 #'  ind_nm = c('fred', 'fored', 'fvuln'),
 #'  check_input = TRUE, details_returned = TRUE)
+#'  
+#' @references 
+#' Mouillot _et al._ (2014) Functional over-redundancy and high functional 
+#' vulnerability in global fish faunas on tropical reefs _PNAS_ **38**, 
+#' 13757-13762 \cr
+
 #'
 #' @author Camille Magneville
 #'
