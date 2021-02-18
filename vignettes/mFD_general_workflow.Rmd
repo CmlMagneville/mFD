@@ -256,8 +256,9 @@ asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 <br />
 
 If you have many species described by few categorical and ordinal traits only,
-then you might want to group them into Functional Entities (**FE**), *i.e* **groups
-of species with same trait values when species are described with categorical and/or ordinal traits**. It is particularly useful when using large
+then you might want to group them into Functional Entities (**FE**), *i.e*
+**groups of species with same trait values when species are described with
+categorical and/or ordinal traits**. It is particularly useful when using large
 datasets with "functionally similar" species.
 
 
