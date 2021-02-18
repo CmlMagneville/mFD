@@ -44,8 +44,8 @@ following table:
 
 
 💡 This dataset is a subset of the dataset used in the [mFD_general_workflow]
-<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>
-tutorial to keep only non-fuzzy traits
+<https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html>
+tutorial to keep only non-fuzzy traits.
 
 
 <br />
@@ -71,7 +71,7 @@ knitr::kable(head(fruits_traits),
 <br />
 
 
-Thus, this data set contains 5 traits: 3 ordinal (Size, Climate, Seed), 1
+Thus, this dataset contains 5 traits: 3 ordinal (Size, Climate, Seed), 1
 categorical (Plant type), 1 continuous (sugar content):
 
 <br />
@@ -86,7 +86,7 @@ summary(fruits_traits)
 
 These traits are summed up in the following dataframe (details:
 [mFD_general_workflow]
-<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>
+<https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html>
 tutorial):
 
 <br />
@@ -160,12 +160,13 @@ fruits_traits[ex_blackberry, ]
 <br />
 
 Indeed: 
+
  * blackberry shares 3 traits values with currant and these 2 species have close
- values for other 2 traits wich explains teh low distance (< 0.1)
-  * blackberry shares 2 traits with cherry (size and climate), differs slightly
+ values for other 2 traits which explains the low distance (< 0.1)
+ * blackberry shares 2 traits with cherry (size and climate), differs slightly
   for seed size (by only 1 order) but is quite different in terms of plant type
   and sugar content, hence Gower distance is around 0.5
-  * blackberry is maximally different to banana for ordinal traits, difference
+ * blackberry is maximally different to banana for ordinal traits, difference
   for categorical and sugar content differ by a 2.5 factor, hence Gower distance
   is high (> 0.8).
   
@@ -185,9 +186,9 @@ Indeed:
 
 We now compute varying number of functional space from 1 to 9 dimensions based
 on a PCoA as well as an UPGMA dendrogram using `mFD::quality.fspaces()`
-function. Then, we compute 4 quality metrics *(= all combinations of deviation
+function. We also compute 4 quality metrics *(= all combinations of deviation
 weighting and distance scaling )* (details: [mFD_general_workflow]
-<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>
+<https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html>
 tutorial , **step 4.1**).
 
 <br />
@@ -246,11 +247,12 @@ functional space is.
 <br />
 
 We can here notice that: 
-  * inaccuracy of dendrogram (shown on the right) is much higher than inaccuracy
+
+* inaccuracy of dendrogram (shown on the right) is much higher than inaccuracy
   of spaces made of at least 3 dimensions
-  * ranking of spaces is only slightly affected by quality metric, with here
+* ranking of spaces is only slightly affected by quality metric, with here
   higher values for indices based on squared deviation
-  * scaling distance increases inaccuracy of dendrogram
+* scaling distance increases inaccuracy of dendrogram
 
 <br />
 
@@ -274,7 +276,7 @@ mFD::quality.fspaces.plot(quality_fspaces_fruits, quality_metric="mad",
 <br />
 
 2D and 3D spaces bias distance (hence have high deviation, see top row) because
-some species pairs are closer in those spaces while they have close trait
+some species pairs are closer in those spaces than they have close trait
 values. In the 4D space most species pairs are accurately represented (absolute
 deviation < 0.1).
 
@@ -288,7 +290,7 @@ deviation < 0.1).
 
 
 💡 **Many of the pairwise distance on dendrogram deviate by more than 0.3 from
-the trait-based distances** (top-left panel fo the above figure), particularly
+the trait-based distances** (top-left panel of the above figure), particularly
 with some of the highest distances on the dendrogram corresponding to pairs of
 species with actually close trait values (Gower distance < 0.3). The dichotomous
 nature of dendrogram implies that many species pairs have the same distance,
@@ -302,7 +304,8 @@ For instance, let's consider the 3 fruits: lemon, lime and cherry:
 <br />
 
 
-```{r, echo = FALSE}
+```{r}
+# get fruits traits:
 fruits_traits[c("cherry","lime","lemon"), ]
 ```
 
@@ -330,13 +333,13 @@ dplyr::mutate(across(where(is.numeric), round, 2))
 <br />
 
 As expected given trait values, Gower distance between lime and lemon is 2.75
-times lower than distance between each of them and cherry. Euclidean distances
-in the 4D space (pcoa_4d) are very similar to those Gower distance, with only a
-slight overestimation. Meanwhile, on the UPGMA dendrogram, lime is as distant to
-lemon than to the cherry and lemon is even closer to the cherry than to the
-lime. This is an illustration of the usual bias of **dendrogram that
-overestimates distance between some pairs of species having actually similar
-trait values**.
+(0.44/0.16 = 2.75) times lower than distance between each of them and cherry.
+Euclidean distances in the 4D space (pcoa_4d) are very similar to those Gower
+distance, with only a slight overestimation. Meanwhile, on the UPGMA dendrogram,
+lime is as distant to lemon than to the cherry and lemon is even closer to the
+cherry than to the lime. This is an illustration of the usual bias of
+**dendrogram that overestimates distance between some pairs of species having
+actually similar trait values**.
 
 <br />
 
@@ -357,7 +360,7 @@ quality_fspaces_fruits$details_fspaces$pairsp_fspaces_dist %>%
   ggplot2::ggplot(aes(x = Gower_distance, y = Cophenetic_distance, 
                       label = fruit)) +
   ggplot2::geom_point(size = 1) +
-  ggplot2::geom_text(size = 2, nudge_y = 0.05, check_overlap = TRUE) +
+  ggplot2::geom_text(size = 2, nudge_y = 0.08, check_overlap = TRUE) +
   ggplot2::geom_abline(slope = 1, intercept = 0) +
   ggplot2::scale_x_continuous(limits = c(0, 1)) +
   ggplot2::scale_y_continuous(limits = c(0, 1))
@@ -366,8 +369,8 @@ quality_fspaces_fruits$details_fspaces$pairsp_fspaces_dist %>%
 <br />
 
 The cophenetic distance on the dendrogram between pineapple and all species but
-litchi, banana and mango is 0.56 while trait-based Gower distance with those 22
-fruits varied by a two-fold magnitude from 0.42 (water melon) to 0.84 (currant).
+banana is 0.53 while trait-based Gower distance with those 22
+fruits varied by a two-fold magnitude from 0.32 (water melon) to 0.73 (currant).
 This homogenization of distance is due to the ultrametricity of the dendrogram,
 *i.e.* a species is at the same distance to all species not on the same main
 branch (*i.e.* descending from the root). Let's plot of UPGMA dendrogram:
@@ -417,7 +420,7 @@ below)
 
 Applying PCoA to a non-Euclidean distance eventually leads to PC axes with
 negative eigenvalues. Those axes are meaningless and removed by default by the
-`ape::pcoa` function used in the `mFD::quality.fspaces()` function.
+`ape::pcoa()` function used in the `mFD::quality.fspaces()` function.
 
 <br />
 
@@ -434,7 +437,7 @@ with positive eigenvalues.
 <br />
 
 To deal with the non-Euclidean 'issue', it **has been recommended to square-root
-the Gower distance matrix before computing the PCoA**.However as Gower distance
+the Gower distance matrix before computing the PCoA**. However as Gower distance
 is by definition between 0 and 1, and as for 0 < x < 1, sqrt(x) > x: **this
 transformation means that all square-root distances are higher than raw
 distances and the difference between raw and square-root distances varies
@@ -459,19 +462,19 @@ quality_fspaces_fruits$details_fspaces$pairsp_fspaces_dist %>%
 
 <br />
 
-Raw Gower distance between blackberry and banana is twice higher than distance
-between blackberry and cherry and 10 times higher than distance between
-blackberry and currant because of the high slope of the square-root function
-(close to 0). Square-root distance between blackberry and banana differs by a
-1.5 and 3-fold factor to distance between blackberry and cherry and currant,
-respectively.
+Raw Gower distance between blackberry and banana is almost twice higher than
+distance between blackberry and cherry and 10 times higher than distance between
+blackberry and currant. Square-root distance between blackberry and banana
+differs by a 1.5 and 3-fold factor to distance between blackberry and cherry and
+currant, respectively  because of the high slope of the square-root function
+(close to 0).
 
-If we apply the quality_fspaces on the square-root of Gower distance:
+If we apply `mFD::quality.fspace` on the square-root of Gower distance:
 
 <br />
 
 ```{r}
-# compute quality metrics with square-root transformated distances:
+# compute quality metrics with square-root transformed distances:
 quality_fspaces_fruits_sqrtgower <- mFD::quality.fspaces(
                                         sp_dist             = sqrt(dist_fruits),
                                         fdendro             = NULL,
@@ -489,7 +492,7 @@ quality_fspaces_fruits_sqrtgower$quality_fspaces
 
 <br />
 
-The inaccuracy (measured with *mAD* metric) decreases with the number of axes
+The inaccuracy (measured with *mAD* (mean absolute deviation) metric) decreases with the number of axes
 down to 0.
 
 <br />
@@ -521,7 +524,7 @@ shape above the 1:1 line.
 
 <br />
 
-If we now compute the actual mean absolute deviation between Gower and Euclidean
+If we now compute the actual *mAD* between Gower and Euclidean
 distances in this apparently perfect 24D space:
 
 <br />
@@ -533,7 +536,7 @@ mean(abs(quality_fspaces_fruits$details_fspaces$pairsp_fspaces_dist$tr -
 
 <br />
 
-We notice that the mAD = 0.212: inaccuracy is much higher than the worst space
+We notice that mAD = 0.212: inaccuracy is much higher than the worst space
 and of the dendrogram computed on the raw Gower distance matrix that does
 represent the actual difference in trait values
 
@@ -541,6 +544,7 @@ represent the actual difference in trait values
 
 
 So to **sum up**: 
+
   * non-continuous traits ofteh make Gower distances between
 species being non-Euclidean 
   * PCoA on such Gower distance could lead to PCoA
@@ -583,7 +587,7 @@ round(dist_gower, 2)
 <br />
 
 There are thus only 3 distances values, 0.33, 0.67 or 1, depending on the number
-of traits with the same values (0, 1 or2)
+of traits with the same values (0, 1 or 2)
 
 <br />
 
@@ -595,9 +599,9 @@ round(gower_sqrt, 2)
 
 <br />
 
-After applying the squareroot transformation, the 1/0.33 3 -fold difference in
+After applying the squareroot transformation, the (1/0.33) 3-fold difference in
 Gower distance between pairs of species sharing no trait value and pairs of
-species sharing 2 traits becomes 1/0.58 < 2. Thus, applying the square-root
+species sharing 2 traits becomes (1/0.58) < 2. Thus, applying the square-root
 transformation to Gower distance decreases the magnitude of variation in
 trait-based distance, by increasing the distances between the most similar
 species
