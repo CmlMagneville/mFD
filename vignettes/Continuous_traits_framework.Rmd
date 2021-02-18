@@ -20,6 +20,8 @@ This tutorial explains the workflow to use to compute functional space based on
 continuous traits and it shows how to retrieve species coordinates and species
 functional distances in the functional space.
 
+<br />
+
 🧩 This tutorial uses a dataset from one of the 80 CESTES database (Jeliazkov &
 the CESTES consortium (2019)) based on [Villéger _et al._
 2012](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679).
@@ -27,7 +29,9 @@ This dataframe contains 45 fish species from the Terminos Lagoon (Gulf of
 Mexico) gathered into 36 sites considered as assemblages. Each species is
 described with 16 continuous morphological traits.
 
-When the data set **only** gathers continuous traits, the functional space can
+<br />
+
+When the dataset **only** gathers continuous traits, the functional space can
 be computed using one trait for one dimension or using Principal Component
 Analysis (PCA: convert correlations among samples into a 2D plot). 💡 Using a
 PCoA on continuous traits and euclidean distance is the same than using a PCA
@@ -43,7 +47,11 @@ obtained by maximizing linear correlations (PCA)).
 <br />
 
 
-The species traits dataframe has rows corresponding to species and columns corresponding to traits. The different traits are summed up in the following table:
+The species traits dataframe has rows corresponding to species and columns
+corresponding to traits. The different traits are summed up in the following
+table:
+
+<br />
 
 | Trait name | Trait signification              | 
 |:----------:|:--------------------------------:|
@@ -65,47 +73,75 @@ The species traits dataframe has rows corresponding to species and columns corre
 | FsSf       | 	Fins surface to body size ratio |
  
  <br />
+ 
+ To work with `mFD` with only continuous traits, you must load two objects:
 
-`sp_tr` :  species-trait dataframe:
+  * `sp_tr` :  species-trait dataframe:
+  
+ <br />
 
-```{r}
-sp_tr <- read.csv(system.file("extdata", "data_cestes_sp_tr.csv", package = "mFD"), dec = ",", sep = ":")
+```{r, warning = FALSE}
+# load dataset:
+sp_tr <- read.csv(system.file("extdata", "data_cestes_sp_tr.csv", 
+                              package = "mFD"), dec = ",", sep = ":")
 rownames(sp_tr) <- sp_tr$Sp
 sp_tr <- sp_tr[, -1]
-knitr::kable(head(sp_tr), caption = "Species x traits dataframe based on *CESTES* dataset")
+
+# display the table:
+knitr::kable(head(sp_tr), 
+             caption = "Species x traits dataframe based on *CESTES* dataset")
 ```
 
+ <br />
+
+  * `asb_sp_w` : species-assemblage dataframe summarizing biomass recorded in a volume of 4500m^3 per site and per species: 
+
 <br />
 
-`asb_sp_w` : species-assemblage dataframe summarizing biomass recorded in a volume of 4500m^3 per site and per species: 
-
-<br />
-
-```{r}
+```{r, warning = FALSE}
 library(knitr)
-asb_sp_w <- read.csv(system.file("extdata", "data_cestes_asb_sp_w.csv", package = "mFD"), dec = ",", sep = ":")
+# load dataset:
+asb_sp_w <- read.csv(system.file("extdata", "data_cestes_asb_sp_w.csv", 
+                                 package = "mFD"), dec = ",", sep = ":")
 rownames(asb_sp_w) <- paste0("site", sep = "_", asb_sp_w$Sites)
 asb_sp_w <- asb_sp_w[, -1]
 asb_sp_w$Urobatis_jamaicensis <- as.numeric(asb_sp_w$Urobatis_jamaicensis)
-# remove sites 12, 23, 35 because Fric can not be computed on it (for a clean example):
+
+# remove sites 12, 23, 35 because FRic can not be computed on it...
+# ... (for a clean example):
 asb_sp_w <- asb_sp_w[-c(11, 22, 33), ]
-knitr::kable(asb_sp_w[c(1:7), c(1:6)], caption = "Species x assemblages dataframe based on *CESTES* dataset for the first six species and first seven sites")
+
+# display the table:
+knitr::kable(asb_sp_w[c(1:7), c(1:6)], 
+  caption = "Species x assemblages dataframe based on *CESTES* dataset for 
+  the first six species and first seven sites")
 ```
 
+ <br />
 
 
 
 # 2 - Compute the functional space
 
-Based on the species-trait dataframe or the species-standardized traits dataframe, `mFD` allows to build a functional space based on a PCA or using each trait as a dimension. The function used to computed functional space with continuous traits is called `mFD::tr.cont.fspace` and is used as follow:
+<br />
+
+
+Based on the species-trait dataframe or the species-standardized traits
+dataframe, `mFD` allows to build a functional space based on a PCA or using each
+trait as a dimension. The function used to computed functional space with
+continuous traits is called `mFD::tr.cont.fspace()` and is used as follows:
 
 <br />
 
 **USAGE**
 
 ```{r, results = "hide"}
-mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
-                           compute_corr = "pearson")
+mFD::tr.cont.fspace(
+                  sp_tr        = sp_tr, 
+                  pca          = TRUE, 
+                  nb_dim       = 7, 
+                  scaling      = "scale_center",
+                  compute_corr = "pearson")
 ```
 
 <br />
@@ -113,20 +149,39 @@ mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = "scale_center",
 It takes as inputs: 
 
   * the *sp_tr* dataframe 
-  * a *pca* argument that must be set to TRUE if the user wants to compute a PCA or to FALSE if the user wants to use each trait as a dimension to construct the multidimensional space
-  * a *nb_dim* argument referring to the maximum number of dimensions for multidimensional functional spaces. Final number of dimensions depends on the number of positive eigenvalues obtained with PCA is the user sets *pca = TRUE* or the number of traits used if the user sets *pca = FALSE*. 💡 High value for *nb_dim* can increase computation time.
-  * a *scaling* argument allowing traits values to be standardized. They can be standardized in several ways: standardization by the range value of the trait, center-transformation, scale transformation or scale-center transformation can be used. The user can also chose not to standardize traits values.
-👉  Standardizing traits or not is a choice from the user, there is no "rule" to decide to standardize or not. Standardization allows to conserve distances proportions (*ie* if one species is twice as far from another species based on traits, then, in the multidimensional space, this species will still be twice as far from the other). 
-If there is no scaling, then distances in the multidimensional space are a raw representation of traits based distances.
-  * a *compute_corr* argument which refers to a string value to compute Pearson correlation coefficients between traits using *"pearson"* or not using *"none*.
+  * a *pca* argument that must be set to TRUE if you want to compute a PCA or to
+  FALSE if you want to use each trait as a dimension to construct the
+  multidimensional space
+  * a *nb_dim* argument referring to the maximum number of dimensions for
+  multidimensional functional spaces. Final number of dimensions depends on the
+  number of positive eigenvalues obtained with PCA if *pca = TRUE*
+  or the number of traits used if *pca = FALSE*. 💡 High value for
+  *nb_dim* can increase computation time.
+  * a *scaling* argument allowing traits values to be standardized. They can be
+  standardized in several ways: standardization by the range value of the trait,
+  center-transformation, scale transformation or scale-center transformation can
+  be used. You can also chose not to standardize traits values.
+👉  Scaling ensures that trait-based distances and distances in the functional
+space have the same maximum. Scaling distances implies that the quality of the
+functional space accounts for congruence in distances rather than their equality
+  * a *compute_corr* argument which refers to a string value to compute Pearson
+  correlation coefficients between traits using *"pearson"* or not using
+  *"none*.
   
-In this example, we will compute a PCA based on a maximum number of 7 dimensions and get Pearson's correlation coefficients: 
+<br />
+
+In this example, we will compute a PCA based on a maximum number of 7 dimensions
+and get Pearson's correlation coefficients:
 
  <br />
 
 ```{r, results = "hide"}
-fspace <- mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 10, scaling = "scale_center",
-                           compute_corr = "pearson")
+fspace <- mFD::tr.cont.fspace(
+                      sp_tr       = sp_tr, 
+                      pca         = TRUE, 
+                      nb_dim      = 10, 
+                      scaling     = "scale_center",
+                     compute_corr = "pearson")
 ```
 
 <br />
@@ -134,7 +189,11 @@ fspace <- mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 10, scaling = "scale_c
 If the PCA is computed, the output contains:
 
   * quality metrics for spaces from 2 dimensions to *nb_dim* dimensions:
-💡 **mean absolute deviation (mad)** reflects the actual magnitude of errors that affect distances, hence FD metrics and **mean squared deviation (msd)** reflects the potential risk associated with a few species pairs being strongly misplaced in the functional space ([Maire _et al._ (2015)](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299)).
+💡 **mean absolute deviation (mad)** reflects the actual magnitude of errors
+that affect distances, hence FD metrics ;  **mean squared deviation (msd)**
+reflects the potential risk associated with a few species pairs being strongly
+misplaced in the functional space ([Maire _et al._
+(2015)](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299)).
 
 <br />
 
@@ -144,7 +203,15 @@ fspace$`quality_metrics`
 
 <br />
 
-💡 The lower the quality metric is, the better the quality of your space is. Here, thanks to mAD and mSD value, we can see that as the number of dimensions increases, the quality increases. However, to decrease computation time, we can chose to work with the 6D space which has good quality of functional space. Generally, you must keep in mind a trade-off between the number of axes and quality of functional space. Increasing the number of functional axes increases computation time.
+💡 The lower the quality metric is, the better the quality of your space is.
+Here, thanks to mAD and mSD value, we can see that as the number of dimensions
+increases, the quality increases. However, to decrease computation time, we can
+chose to work with the 6D space which has good quality of functional space.
+Generally, you must keep in mind a trade-off between the number of axes and
+quality of functional space. Increasing the number of functional axes increases
+computation time.
+
+<br />
 
   * a matrix of species coordinates in the functional space:
   
@@ -156,16 +223,20 @@ head(fspace$sp_faxes_coord)
 
 <br />
 
-  * a dist object containing species euclidean distances in the functional space (here 5D space) for the first five species:
+  * a dist object containing species euclidean distances in the functional space
+  (here 5D space) for the first five species:
   
 <br />
 
 ```{r}
-dist_mat <- as.matrix(fspace$sp_dist$`5D`)
+dist_mat <- as.matrix(fspace$sp_dist$`6D`)
 dist_mat[c(1:5), c(1:5)]
 ```
 
-  * a correlation matrix containing correlation between traits and their associated pvalue:
+<br />
+
+  * a correlation matrix containing correlation between traits and their
+  associated pvalue:
   
 <br />
 
@@ -175,9 +246,12 @@ fspace$tr_correl
 
 <br />
 
-Here we can notice that there is no strong correlation between traits. 💡 However, if some strong correlation is to be found, then one of the two correlated trait can be remove from the analysis.
+Here we can notice that there is no strong correlation between traits. 💡
+However, if some strong correlation is to be found, then one of the two
+correlated trait can be remove from the analysis.
 
-If the PCA is not computed, outputs are the same except that mad and msd are not computed.
+If the PCA is not computed, outputs are the same except that mad and msd are not
+computed.
 
 <br />
 
@@ -186,7 +260,10 @@ If the PCA is not computed, outputs are the same except that mad and msd are not
 
 <br />
 
-Then, based on the species coordinates matrix, steps are similar as those listed in the [mFD_general_workflow] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm> , from step 5 till the end. 
+Then, based on the species coordinates matrix, steps are similar as those listed
+in the  [mFD: General
+Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
+, from step 5 till the end.
 
 <br />
 
