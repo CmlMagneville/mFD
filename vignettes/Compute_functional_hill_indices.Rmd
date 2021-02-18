@@ -16,7 +16,10 @@ vignette: >
 ## What is this tutorial about?
 <br />
 
-This tutorial explains how to compute the family of indices presented in [Chao _et al._ (2019)] (https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) using `mFD`.
+This tutorial explains how to compute the family of indices presented in [Chao
+_et al._ (2019)]
+(https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) using
+`mFD`.
 
 <br />
 
@@ -40,12 +43,14 @@ following table:
 
 <br />
 
-We load the three objects used to compute functional framework (for more explanations, see: [mFD: General Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html):
+We load the three objects used to compute functional framework (for more
+explanations, see: [mFD: General
+Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)):
 
 <br />
 
 * a **data frame** summarizing traits values for each species called `fruits_traits` in
-this tutorial
+this tutorial:
 
 
 
@@ -57,10 +62,10 @@ knitr::kable(head(fruits_traits),
 
 <br />
 
-* a **matrix** summarizing species assemblages called `baskets_fruits_weights` in this
-tutorial. Weights in this matrix can be occurrence data, abundance, biomass,
-coverage, etc. The studied example works with biomass and this matrix looks at
-it follows:
+* a **matrix** summarizing species assemblages called `baskets_fruits_weights`
+in this tutorial. Weights in this matrix can be occurrence data, abundance,
+biomass, coverage, etc. The studied example works with biomass (*i.e.* grams of
+a fruit in a basket) and this matrix looks as follows:
 
 
 
@@ -73,7 +78,9 @@ knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), centering = 
 
 <br />
 
-* a **data frame** summarizing traits types called `fruits_traits_cat` in this tutoral:
+* a **data frame** summarizing traits types called `fruits_traits_cat` in this
+tutorial (for details, see: [mFD: General
+Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)):
 
 
 
@@ -84,19 +91,21 @@ knitr::kable(head(fruits_traits_cat), caption = "Traits types based on **fruits 
 
 <br />
 
-Then, we can compute functional distance using the `mFD::funct.dist` function as follows:
+Then, we can compute functional distance using the `mFD::funct.dist()` function
+as follows:
 
 
 **USAGE**
 
-```{r}
-fruits_gower <- mFD::funct.dist(sp_tr = fruits_traits,
-                       tr_cat = fruits_traits_cat,
-                       metric = "gower",
+```{r, echo = FALSE}
+fruits_gower <- mFD::funct.dist(
+                       sp_tr         = fruits_traits,
+                       tr_cat        = fruits_traits_cat,
+                       metric        = "gower",
                        scale_euclid  = "noscale",
-                       ordinal_var = "classic",
-                       weight_type = "equal",
-                       stop_if_NA  = TRUE)
+                       ordinal_var   = "classic",
+                       weight_type   = "equal",
+                       stop_if_NA    = TRUE)
 ```
 
 <br />
@@ -104,48 +113,75 @@ fruits_gower <- mFD::funct.dist(sp_tr = fruits_traits,
 
 # Generalisation of Hill numbers for alpha functional diversity
 
-<br />
-
-The family of indices presented in [Chao _et al._ (2019)] (https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) allows computing FD based on pairwise distance between species and their weights in assemblages. 
-This generalization of Hill numbers framework is based on two parameters:
-
-* `q` : the importance of species weight compared to species distance. Values allowed in `mFD` are 0, 1, 2 (the most often used, see below).
-
-* `tau` : the threshold of functional distinctiveness between any two species (i.e. all species with distance above this threshold are considered as functionally equally distinct). Values allowed in `mFD` are "min(imum)", "mean" and "max(imum)".
 
 <br />
 
-Indices are expressed as effective number of functionally equally distinct species (or _“virtual functional groups”_) and could thus be directly compared to taxonomic Hill numbers (including species richness).
-<br />
-💡 For more details about the properties of Hill numbers FD read [Chao _et al._ (2019)]
-(https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) and especially its Figures 1 & 2
+The family of indices presented in [Chao _et al._ (2019)]
+(https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) allows
+computing FD based on pairwise distance between species and their weights in
+assemblages. This generalization of Hill numbers framework is based on two
+parameters:
+
+* `q` : the importance of species weight compared to species distance. Values
+allowed in `mFD` are 0, 1, 2 (the most often used, see below).
+
+* `tau` : the threshold of functional distinctiveness between any two species
+(*i.e.* all species with distance above this threshold are considered as
+functionally equally distinct). Values allowed in `mFD` are "min(imum)", "mean"
+and "max(imum)".
 
 <br />
 
-All these indices can be computed with the function `mFD::alpha.fd.hill`.
+Indices are expressed as effective number of functionally equally distinct
+species (or _“virtual functional groups”_) and could thus be directly compared
+to taxonomic Hill numbers (including species richness).
 
 <br />
 
-Here we start by comparing the **'classical' Rao's quadratic entropy expressed in Hill numbers** following [Ricotta & Szeidl (2009)] (https://www.sciencedirect.com/science/article/pii/S0040580909001117) which is the special case with `q = 2` and `tau = "max"`.
+💡 For more details about the properties of Hill numbers FD read [Chao _et al._
+(2019)] (https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343)
+and especially its Figures 1 & 2
+
+<br />
+
+All these indices can be computed with the function `mFD::alpha.fd.hill()`.
+
+<br />
+
+Here we start by comparing the **'classical' Rao's quadratic entropy expressed
+in Hill numbers** following [Ricotta & Szeidl (2009)]
+(https://www.sciencedirect.com/science/article/pii/S0040580909001117) which is
+the special case with `q = 2` and `tau = "max"`.
+
+<br />
 
 
 **USAGE**
 
 ```{r}
-baskets_FD2max <- mFD::alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = fruits_gower, 
-                              tau = "max", q = 2)
+baskets_FD2max <- mFD::alpha.fd.hill(
+                             asb_sp_w = baskets_fruits_weights, 
+                             sp_dist  = fruits_gower, 
+                             tau      = "max", 
+                             q        = 2)
 ```
 
 <br />
 
-Then, we can compute **Hill numbers FD of order 2** computed with `tau = "mean"` and `q = 2` as recommended in [Chao _et al._ (2019)]
+Then, we can compute **Hill numbers FD of order 2** computed with `tau = "mean"`
+and `q = 2` as recommended in [Chao _et al._ (2019)]
 (https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343)
 
+<br />
 
 
+**USAGE**
 ```{r}
-baskets_FD2mean <- mFD::alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = fruits_gower, 
-                               tau = "mean", q = 2)
+baskets_FD2mean <- mFD::alpha.fd.hill(
+                              asb_sp_w = baskets_fruits_weights, 
+                              sp_dist  = fruits_gower, 
+                              tau      = "mean", 
+                              q        = 2)
 ```
 
 <br />
@@ -157,14 +193,20 @@ We can now compare these two metrics:
 round(cbind(FD2max = baskets_FD2max$asb_FD_Hill[, 1], 
             FD2mean = baskets_FD2mean$asb_FD_Hill[, 1]), 2)
 ```
+<br />
 
-We can see that FD computed with `tau = "max"` is less variable (ranging from 1.51 to only 2.45) than FD computed with `tau = "min"`  (ranging from 1.95 to 4.36) illustrating its **higher sensitivity to functional differences between species**.
+We can see that FD computed with `tau = "max"` is less variable (ranging from
+1.50 to only 1.86) than FD computed with `tau = "min"`  (ranging from 1.72 to
+4.10) illustrating its **higher sensitivity to functional differences between
+species**.
 
 <br />
 
-💡 **Note that even with** `q = 0`**, weights of species are still accounted for by FD** 
-Hence, if the goal is to compute a richness-like index (*i.e.* accounting only for distance between species present), function `mFD::alpha.fd.hill` should be applied to **species occurrence data** (coded as 0/1, previously computed using sp.tr.summary) so that all species have the same weight).
-Species occurrence data can be retrieve through the `mFD::asb.sp.summary` function:
+💡 **Note that even with** `q = 0`**, weights of species are still accounted for by FD.** 
+Hence, if the goal is to compute a richness-like index (*i.e.* accounting only for distance between species present), function `mFD::alpha.fd.hill()` should be applied to **species occurrence data** (coded as 0/1, previously computed using sp.tr.summary) so that all species have the same weight).
+Species occurrence data can be retrieve through the `mFD::asb.sp.summary()` function:
+
+<br />
 
 
 **USAGE**
@@ -180,7 +222,11 @@ baskets_FD0mean <- mFD::alpha.fd.hill(asb_sp_w = baskets_fruits_occ, sp_dist = f
                                tau = "mean", q = 0)
 round(baskets_FD0mean$asb_FD_Hill, 2)
 ```
-We can see that baskets with same composition of fruits species have same FD values (*e.g* *basket_1*, *basket_2* and *basket_3*)
+
+<br />
+
+We can see that baskets with same composition of fruits species have same FD
+values (*e.g* *basket_1*, *basket_2* and *basket_3*)
 
 
 <br />
@@ -192,15 +238,24 @@ We can see that baskets with same composition of fruits species have same FD val
 
 
 Framework of [Chao _et al._ (2019)]
-(https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) also allows computing beta-diversity, with 2 framework similar to Jaccard and Sorensen ones for taxonomic diversity. The `mFD:beta.fd.hill` function computes these indices.
+(https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) also
+allows computing beta-diversity, with 2 framework similar to Jaccard and
+Sorensen ones for taxonomic diversity. The `mFD:beta.fd.hill()` function
+computes these indices.
 
 <br />
 
-💡 Note that **total weight of assemblages is affecting computation of functional beta-diversity**. 
-Hence **if it is does not reflect an ecological pattern** (*e.g*. rather difference in sampling effort), it is recommended to **apply** `mFD::beta.fd.hill` **to relative weight of species in assemblages**.
+💡 Note that **total weight of assemblages is affecting computation of
+functional beta-diversity**. Hence **if it is does not reflect an ecological
+pattern** (*e.g*. rather difference in sampling effort), it is recommended to
+**apply** `mFD::beta.fd.hill()` **to relative weight of species in
+assemblages**.
+
+<br />
 
 
 ```{r}
+# retrieve total weight per basket:
 baskets_summary$asb_tot_w
 
 # Here baskets all contain 2000g of fruits, we illustrate how to compute relative ...
@@ -213,8 +268,10 @@ apply(baskets_fruits_relw, 1, sum)
 <br />
 
 
+Now we can compute functional beta-diversity of order `q = 2` (with `tau =
+"mean"` for higher sensitivity) with Jaccard-type index:
 
-Now we can compute functional beta-diversity of order `q = 2` (with `tau = "mean"` for higher sensitivity) with Jaccard-type index:
+<br />
 
 
 **USAGE**
@@ -228,5 +285,19 @@ baskets_betaq2 <- mFD::beta.fd.hill(asb_sp_w = baskets_fruits_relw, sp_dist = fr
 mFD::dist.to.df(list_dist = list(FDq2 = baskets_betaq2$beta_fd_q$q2))
 ```
 
-We can see that *basket 1* is similar (beta < 0.1) to *baskets 2,3,4,5,10* and that it is the most dissimilar to *basket 8 (beta > 0.5)*. *Baskets 4 and 5* are highly dissimilar (beta > 0.8) to *basket 8*.
+We can see that *basket 1* is similar (beta < 0.1) to *baskets 2,3,4,5,10* and
+that it is the most dissimilar to *basket 8 (beta > 0.5)*. *Baskets 4 and 5* are
+highly dissimilar (beta > 0.8) to *basket 8*.
 
+
+<br />
+
+
+# References:
+<br />
+
+Chao _et al._ (2019) An attribute‐diversity approach to functional diversity,
+functional beta diversity, and related (dis)similarity measures _Ecological
+Monographs_, **89**. \cr
+Ricotta and Szeidl (2009) Diversity partitioning of Rao’s quadratic entropy
+_Theoretical Population Biology_, **76**, 299-302. \cr
