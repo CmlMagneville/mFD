@@ -489,8 +489,8 @@ quality_fspaces_fruits_sqrtgower$quality_fspaces
 
 <br />
 
-The inaccuracy (measured with *mAD* (mean absolute deviation) metric) decreases with the number of axes
-down to 0.
+The inaccuracy (measured with *mAD* (mean absolute deviation) metric) decreases
+with the number of axes down to 0.
 
 <br />
 
@@ -546,7 +546,7 @@ So to **sum up**:
 species being non-Euclidean 
   * PCoA on such Gower distance could lead to PCoA
 axes with negative eigenvalues but the remaining axes always represent
-accurately Gower distance (for more details see [Maire _et al._ (2015)](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299) and
+accurately Gower distance (for more details see [Maire _et al._2015](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299) and
 especially *Figure 2*). 
   * Square-root transformed Gower distance is apparently
 increasing the efficiency of the PCoA (no more negative eigenvalue) but

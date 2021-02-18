@@ -1200,9 +1200,7 @@ in this example. Species of all assemblages are plotted with gray cross and the 
 <br />
 
 
-# References:
-<br />
-
+# References
 
 Maire _et al._ (2015) How many dimensions are needed to accurately assess 
 functional diversity? A pragmatic approach for assessing the quality of 
