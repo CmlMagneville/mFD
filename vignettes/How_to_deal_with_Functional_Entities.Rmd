@@ -9,20 +9,31 @@ vignette: >
   \usepackage[utf8]{inputenc}
 
 ---
+<br />
 
 # 1 - Why Functional Entities (FEs)?
 
-The packages allows gathering species into **functional entities (FEs)** *ie* **groups of species with same trait values when many species are described with a few categorical or ordinal traits**. It is particularly useful when using large data sets with "functionally similar" species. Working with FEs is also interesting to understand the links between functional diversity and ecological processes as redundant species that are supposed to have similar ecological roles are clustered in this method.
+<br />
+
+`mFD` allows gathering species into **functional entities (FEs)** *ie* **groups of species with same trait values when many species are described with a few categorical or ordinal traits**. It is particularly useful when using large data sets with "functionally similar" species. FEs also allow to understand the links between functional diversity and ecological processes as redundant species that are supposed to have similar ecological roles are clustered in this method.
 
 To compute FEs, data must carry **non-continuous traits** as FEs are computed using non_continuous traits and there must be enough species with both similar and distinct traits values so that computed FEs gather more than one species.
 
 
-----
+<br />
 
 
 # 2 - Tutorial's data
 
-This tutorial uses the *fruits dataset* based on 25 types of fruits distributed in 10 fruits baskets. Each fruit is characterized by 6 traits values summarized in the following table:
+<br />
+
+
+🧩 The data set used to illustrate this tutorial is a **fruits dataset** based on
+25 types of fruits (*i.e.* species) distributed in 10 fruits baskets (*i.e.*
+assemblages). Each fruit is characterized by six traits values summarized in the
+following table:
+
+<br />
 
 | Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
 |:------------:|:------------------:|:------------:|:-------------------:|:---------------:|:-----:|
@@ -31,16 +42,21 @@ This tutorial uses the *fruits dataset* based on 25 types of fruits distributed 
 |Climate       | Climatic niche     |Ordinal       |3                    |temperate ; tropical|NA|
 |Seed          | Seed type          |Ordinal       |3                    |none ; pip ; pit| NA|
 
+<br />
 
-Here fruits are **species** and baskets are **species assemblages**.
 
-💡 *This dataset is changed compared to the one used in the mFD general workflow vignette to only keep ordinal and categorical traits and categories are restrained to 2 or 3 per traits to have less unique combination values*
+💡 We reduced the dataset used in [mFD_general_workflow]
+<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm> to only keep ordinal and categorical traits. Categorical traits are restrained to 2 or 3 modalities per traits to limit the number of unique combinations.
+
+<br />
 
 The following dataframe and matrix are needed: 
 
   * Here is the dataframe summarizing traits values for each species called *fruits_traits* dataframe in this tutorial:
 
-```{r, echo = FALSE}
+<br />
+
+```{r}
 data("fruits_traits", package = "mFD")
 
 fruits_traits <- fruits_traits[, c(1:4)]      # only keep the first 4 traits to illustrate FEs
@@ -67,51 +83,74 @@ fruits_traits[which(fruits_traits[, "Climate"] != "temperate"), "Climate"] <- "t
 fruits_traits[, "Climate"] <- factor(fruits_traits[, "Climate"], levels = c("temperate", "tropical"),
                             ordered = TRUE)
 
+# display the table:
 knitr::kable(head(fruits_traits), caption = "Species x traits dataframe based on *fruits* dataset")
 ```
 
+<br />
+
    * Here is the matrix summarizing assemblages:
    
-```{r, echo = FALSE}
+<br />
+
+```{r}
 data("baskets_fruits_weights", package = "mFD")
 knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), caption = "Species x assemblages dataframe based on *fruits* dataset")
 ```
 
-  * Here is the dataframe summarizing traits categories: The **first column** contains **traits name**. The **second column** contains **traits type** following this code: 
+<br />
 
-    * N for nominal trait (factor variable)
-    * O for ordinal traits (ordered variable)
-    * C for circular traits (integer values)
-    * Q for quantitative traits (numeric values)
-    * F for fuzzy traits (described with several values defined in several columns in the *fruits_traits* dataframe)
+  * Here is the dataframe summarizing traits categories (for details: [mFD_general_workflow]
+<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>) 
 
-The **third column** summarizes to which fuzzy trait belongs each column that refers to a fuzzy trait. Here there is no fuzzy traits, thus the column only contains NA.
+<br />
 
 ```{r, echo = FALSE}
 data("fruits_traits_cat", package = "mFD")
+
 # only keeps traits 1 - 4:
 fruits_traits_cat <- fruits_traits_cat[c(1:4), ]
 knitr::kable(head(fruits_traits_cat), caption = "Traits types based on *fruits & baskets* dataset")
 ```
 
 
+<br />
+
+
+Using the `mFD::asb.sp.summary()` function, we can sum up the assemblages data and retrieve species occurence data: 
+
+<br />
+
 ```{r}
+# summarize species assemblages: 
 asb_sp_fruits_summ <- mFD::asb.sp.summary(baskets_fruits_weights)
-# species occurrences for the first 3 assemblages (fruits baskets):
+
+# retrieve species occurrences for the first 3 assemblages (fruits baskets):
 head(asb_sp_fruits_summ$asb_sp_occ, 3)
 asb_sp_fruits_occ <- asb_sp_fruits_summ$asb_sp_occ
 ```
 
 
-----
+<br />
+
+
 
 # 3 - Gather species into FEs
 
-The *mFD* package allows the user to gather species into FEs using the *sp.to.fe* function. It uses the following arguments:
+<br />
+
+
+`mFD` allows you to gather species into FEs using the `mFD::sp.to.fe()` function. It uses the following arguments:
+
+<br />
+
+**USAGE**
 
 ```{r, results = "hide", eval = FALSE}
 mFD::sp.to.fe(sp_tr = fruits_traits, tr_cat = fruits_traits_cat, fe_nm_type = "fe_rank", check_input = TRUE) 
 ```
+
+<br />
 
   * *sp_tr* the dataframe of species traits
   * *tr_cat* the dataframe summarizing traits categories
@@ -119,11 +158,16 @@ mFD::sp.to.fe(sp_tr = fruits_traits, tr_cat = fruits_traits_cat, fe_nm_type = "f
   * *check_input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
   
 Let's use this function with the *fruits dataset*:
+
+<br />
+
 ```{r}
 sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = fruits_traits, tr_cat = fruits_traits_cat, fe_nm_type = "fe_rank", check_input = TRUE) 
 ```
 
-This function returns:
+<br />
+
+`mFD::sp.to.fe()` returns:
 
   * a vector containing FEs names:
 ```{r}
@@ -147,29 +191,44 @@ fe_nb_sp <- sp_to_fe_fruits$fe_nb_sp
 
   * a detailed list containing vectors or list with supplementary information about FEs
   
-----
+  
+<br />
+
 
 # 4 - Compute FEs coordinates, build functional space, compute & plot alpha and beta functional indices
+
+
+
+<br />
 
 
 Then based on the dataframe containing the value of traits for each FE, the workflow is the same as the one listed in the [mFD_general_workflow] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm> to compute functional trait based distance, multidimensional functional space and associated plots and compute alpha and beta functional indices (step 3 till the end). It will thus not be summed up in this dataframe. 
 
 
-----
+<br />
 
 
 # 4' - Compute FEs based indices 
 
 
-However, the *mFD* package allows to compute functional indices based on FEs following the *Mouillot et al (2013)* framework using the *alpha.fd.fe* function. It computes:
+<br />
+
+
+However, `mFD` allows to compute functional indices based on FEs following the framework proposed in [Mouillot _et al._ 2014](https://www.pnas.org/content/111/38/13757.short)) using the `mFD::alpha.fd.fe` function. It computes:
 
   * *Functional Redundancy* that reflects the average number of species per FE
   * *Functional Overredundancy* that reflects the proportion of species in excess in
 species-rich FE *ie* it represents the percentage of species that fill functional
 entities above the mean level of functional redundancy
   * *Functional Vulnerability* that reflects the proportion of FE with only one species
-  
-The *alpha.fd.fe* function is used as follow:
+
+<br />
+
+`mFD::alpha.fd.fe` function is used as follow:
+
+<br />
+
+**USAGE**
 
 ```{r, results = "hide", eval = FALSE}
 mFD::alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
@@ -178,10 +237,13 @@ mFD::alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
                        details_returned = TRUE) 
 ```
 
+<br />
+
+
 It takes as inputs:
 
   * *asb_sp_occ* the assemblages-species occurrence dataframe
-  * *sp_to_fe* a list with details of species clustering into FE from **sp.to.fe**
+  * *sp_to_fe* a list with details of species clustering into FE from `mFD::sp.to.fe()`
   * *ind_nm* a vector referring to the indices to compute: *fred* for Functional Redundancy, *fored* for Functional Overredundancy and *fvuln* for Functional Vulnerability.
   * *check_input* is a logical value reflecting whether inputs should be checked
   or not. Possible error messages will thus be more understandable for the user
@@ -190,9 +252,16 @@ It takes as inputs:
   details_returned. Details are used in graphical functions and thus must be kept
   if the user want to have graphical outputs for the computed indices.
 
-💡 For this step, species do not have to be gathered into FEs, the gathering is coded within the *alpha.fd.fe* function
+<br />
+
+💡 For this step, species do not have to be gathered into FEs, the gathering is coded within the `mFD::alpha.fd.fe()` function
   
+<br />
+
 Let's apply this function with the *fruits* dataset:
+
+<br />
+
 ```{r}
 alpha_fd_fe_fruits <- mFD::alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
                        ind_nm = c("fred", "fored", "fvuln"),
@@ -200,18 +269,29 @@ alpha_fd_fe_fruits <- mFD::alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe 
                        details_returned = TRUE) 
 ```
 
+<br />
+
 This function returns a dataframe of indices values for each assemblage:
 ```{r}
 alpha_fd_fe_fruits
 ```
 
 
-----
+<br />
+
+
 
 # 5 - Plot functional indices based on FEs
 
 
-Then, it is possible to have a graphical representation of FE based indices for a given assemblage using the *alpha.fe.fd.plot* function:
+<br />
+
+
+Then, it is possible to have a graphical representation of FE-based indices for a given assemblage using the `mFD::alpha.fe.fd.plot()` function:
+
+<br />
+
+**USAGE**
 
 ```{r, results = FALSE, eval = FALSE}
 mFD::alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits,
@@ -228,19 +308,26 @@ mFD::alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits,
                  check_input = TRUE)
 ```
 
+<br />
+
 This function takes as inputs:
 
   * *asb_vect* a vector containing the name of the assemblage to plot
   * *ind_vect* a vector containing the names of the indices to plot. FOred and FRed are computed together using the 'red' character string and FVuln is computed by using the "fvuln" character string
-  * *sp_fe* a vector containing for each species, the FE it belongs to. It is retrieved through the *sp.to.fe* function
-  * *fd_fe_values* a dataframe with the indices values for each assemblage retrieved through the *fe.fd.multidim* function
-  * *fe_nb_sp* a vector containing the number of species per FE. It can retrieved through the *sp.to.fe* function
-  * color and size arguments to personnalize the plot. To have more information about it, read the *alpha.fe.fd.plot* help file
-  * *check_input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as TRUE
+  * *sp_fe* a vector containing for each species, the FE it belongs to. It is retrieved through the `mFD::sp.to.fe()` function
+  * *fd_fe_values* a dataframe with the indices values for each assemblage retrieved through the `mFD::alpha.fd.fe()` function
+  * *fe_nb_sp* a vector containing the number of species per FE. It can retrieved through the `mFD::sp.to.fe()` function
+  * color and size arguments to personalize the plot. To have more information about it, read the `mFD::alpha.fd.fe.plot` help file
+  * *check_input* is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as `TRUE`
   
-For the studied example, the plot looks as follow:
-  
-``` {r, fig.height = 7, fig.width = 7, fig.align = "center"}
+<br />
+
+
+For the studied example, the plot looks as follows:
+
+<br />
+
+``` {r, fig.height = 7, fig.width = 12, fig.align = "center"}
 mFD::alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits,
                  plot_asb_nm = c("basket_1"),
                  plot_ind_nm = c("fred", "fored", "fvuln"),
@@ -254,3 +341,17 @@ mFD::alpha.fd.fe.plot(alpha_fd_fe = alpha_fd_fe_fruits,
                  size_arrow_fvuln = 1,
                  check_input = TRUE)
 ```
+
+<br />
+
+All FE except "fe_3" contain only one species thus FRed and FVuln are close to 1. Only "fe_3" has more species than the average number of species thus the proportion of species in excess in FE richer than average is quite low (FRed = 0.107).
+
+
+<br />
+
+
+# References
+
+Mouillot _et al._ (2014) Functional over-redundancy and high functional 
+vulnerability in global fish faunas on tropical reefs _PNAS_ **38**, 
+13757-13762 \cr
