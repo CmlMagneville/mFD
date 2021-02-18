@@ -56,7 +56,7 @@
 #'  (average number of species per FE) is illustrated with a horizontal line.
 #'  Funct. Over-redundancy (proportion of species in excess in FE richer than
 #'  average) is illustrated with top part of these bars filled with
-#'  'color_fill_fored'. Functional vulnerability (proportion of Fe with a single
+#'  'color_fill_fored'. Functional vulnerability (proportion of FE with a single
 #'  species) is illustrated with bars of these vulnerable FE filled with
 #'  'color_fill_fvuln' and the double-head arrow highlighting their number.
 #'  FE-based indices values on top of the plot. if \code{name_file} is provided,
@@ -116,6 +116,7 @@
 #'   
 #' @importFrom ggplot2 geom_segment geom_hline geom_bar ggsave ggplot xlab ylab
 #' @importFrom ggplot2 theme aes element_line element_text element_rect
+#' @importFrom ggplot2 scale_y_continuous
 #' @importFrom grid arrow unit
 #' @importFrom patchwork plot_annotation
 #' @importFrom stats reorder
@@ -181,12 +182,15 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
   data_k<-data.frame(fe_nm = names(fe_nbsp_k),
                      fe_nbsp = fe_nbsp_k )
   
+  breaks_max <- max(fe_nbsp_k)
+  breaks <- seq(0, breaks_max, by = 1)
   
   # plotting number of species for all FE
   plot_k <- ggplot2::ggplot(data = data_k, 
                             ggplot2::aes(
                             x = stats::reorder(fe_nm, -fe_nbsp), y = fe_nbsp)) +
     ggplot2::geom_bar(stat = "identity", fill = color_fill_bar) +
+    ggplot2::scale_y_continuous(breaks = breaks) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90),
                    panel.background = ggplot2::element_rect(fill = "white", 
                                                             colour = "grey50", 
@@ -285,6 +289,6 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
                             height= 4,
                             width = 5,
                             units= "in",
-                            dpi = res_file )
+                            dpi = res_file)
   }
 }

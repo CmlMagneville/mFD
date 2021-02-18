@@ -77,7 +77,7 @@ Indices names provided in 'plot_ind_nm' are illustrated. Func. Redundancy
 (average number of species per FE) is illustrated with a horizontal line.
 Funct. Over-redundancy (proportion of species in excess in FE richer than
 average) is illustrated with top part of these bars filled with
-'color_fill_fored'. Functional vulnerability (proportion of Fe with a single
+'color_fill_fored'. Functional vulnerability (proportion of FE with a single
 species) is illustrated with bars of these vulnerable FE filled with
 'color_fill_fvuln' and the double-head arrow highlighting their number.
 FE-based indices values on top of the plot. if \code{name_file} is provided,
