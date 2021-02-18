@@ -13,7 +13,11 @@ vignette: >
 
 <br />
 
-This tutorial illustrates how to compute and interpret quality of functional spaces using `mFD`, with a special emphasis on how functional dendrograms and functional spaces with a low dimension could distort original trait-based distances. This tutorial also explains why square-rooting the original distances before computing PCoA may be misleading.
+This tutorial illustrates how to compute and interpret quality of functional
+spaces using `mFD`, with a special emphasis on how functional dendrograms and
+functional spaces with a low dimension could distort original trait-based
+distances. This tutorial also explains why square-rooting the original distances
+before computing PCoA may be misleading.
 
 
 <br />
@@ -23,7 +27,9 @@ This tutorial illustrates how to compute and interpret quality of functional spa
 
 <br />
 
-The dataset used to illustrate this tutorial is *a fruit dataset* based on 25 types of fruits. Each fruit is characterized by 5 traits summarized in the following table:
+🧩 The dataset used to illustrate this tutorial is *a fruit dataset* based on 25
+types of fruits. Each fruit is characterized by 5 traits summarized in the
+following table:
 
 | Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
 |:------------:|:------------------:|:------------:|:-------------------:|:---------------:|:-----:|
@@ -37,7 +43,9 @@ The dataset used to illustrate this tutorial is *a fruit dataset* based on 25 ty
 <br />
 
 
-💡 *This dataset is a subset of the dataset used in the [mFD_general_workflow] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm> to keep only non-fuzzy traits*
+💡 This dataset is a subset of the dataset used in the [mFD_general_workflow]
+<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>
+tutorial to keep only non-fuzzy traits
 
 
 <br />
@@ -56,13 +64,15 @@ data("fruits_traits", package = "mFD")
 fruits_traits <- fruits_traits[1:5]
 
 # plot the table:
-knitr::kable(head(fruits_traits), caption = "Species x traits dataframe based on *fruits* dataset")
+knitr::kable(head(fruits_traits), 
+             caption = "Species x traits dataframe based on *fruits* dataset")
 ```
 
 <br />
 
 
-Thus, this data set contains 5 traits: 3 ordinal (Size, Climate, Seed), 1 categorical (Plant type), 1 continuous (sugar content):
+Thus, this data set contains 5 traits: 3 ordinal (Size, Climate, Seed), 1
+categorical (Plant type), 1 continuous (sugar content):
 
 <br />
 
@@ -74,7 +84,10 @@ summary(fruits_traits)
 <br />
 
 
-These traits are summed up in the following dataframe (details: [mFD_general_workflow] tutorial <https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>):
+These traits are summed up in the following dataframe (details:
+[mFD_general_workflow]
+<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>
+tutorial):
 
 <br />
 
@@ -94,7 +107,8 @@ fruits_traits_cat
 
 <br />
 
-First, trait-based distance between species should be computed using `mFD::funct.dist`. Here we use Gower distance.
+First, trait-based distance between species should be computed using
+`mFD::funct.dist()`. Here we use Gower distance.
 
 <br />
 
@@ -117,7 +131,8 @@ summary(as.matrix(dist_fruits))
 
 <br />
 
-The Gower distances range from < 0.01 to 0.790. For instance, Gower distances between blackberry and 3 other fruits are:
+The Gower distances range from < 0.01 to 0.790. For instance, Gower distances
+between blackberry and 3 other fruits are:
 
 <br />
 
@@ -169,11 +184,11 @@ Indeed:
 <br />
 
 We now compute varying number of functional space from 1 to 9 dimensions based
-on a PCoA as well as an UPGMA dendrogram using a`mFD::quality.fspaces` function.
-Then, we compute 4 quality metrics *(= all combinations of deviation weighting
-and distance scaling )* (details: [mFD_general_workflow] tutorial
-<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>,
-**step 4.1**).
+on a PCoA as well as an UPGMA dendrogram using `mFD::quality.fspaces()`
+function. Then, we compute 4 quality metrics *(= all combinations of deviation
+weighting and distance scaling )* (details: [mFD_general_workflow]
+<https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm>
+tutorial , **step 4.1**).
 
 <br />
 
@@ -202,13 +217,13 @@ apply(quality_fspaces_fruits$quality_fspaces, 2, which.min)
 The best space (with the minimum deviation between trait-based distance and
 space-based distance) is the 4D according to all indices.
 
-Then using the output of `mFD::quality.fspaces`, we plot quality metrics of each
+Then using the output of `mFD::quality.fspaces()`, we plot quality metrics of each
 space:
 
 <br />
 
 
-```{r, out.width = "600px", warning = FALSE}
+```{r, fig.height = 7, fig.width = 12, fig.align = "center", warning = FALSE}
 library(tidyr)
 library(ggplot2)
 quality_fspaces_fruits$quality_fspaces %>%
@@ -245,13 +260,13 @@ distance), we hereafter will consider only the mean absolute-deviation metric.
 <br />
 
 The raw and absolute deviation of distances for only dendrogram and 2, 3, 4D
-spaces are plotted below thanks to the `mFD::quality.fspaces.plot` function:
+spaces are plotted below thanks to the `mFD::quality.fspaces.plot()` function:
 
 <br />
 
 
 **USAGE**
-```{r, out.width = "600px", warning = FALSE}
+```{r, fig.height = 7, fig.width = 12, fig.align = "center", warning = FALSE}
 mFD::quality.fspaces.plot(quality_fspaces_fruits, quality_metric="mad",
    fspaces_plot = c("tree_average", "pcoa_2d", "pcoa_3d", "pcoa_4d", 'pcoa_5d'))
 ``` 
@@ -329,7 +344,7 @@ Now let's have look to the distance between pineapple and other fruits:
 
 <br />
 
-```{r, warning = FALSE, out.width = "600px"}
+```{r, warning = FALSE, fig.height = 7, fig.width = 12, fig.align = "center"}
 library(tidyr)
 library(dplyr)
 library(ggplot2)
@@ -360,7 +375,7 @@ branch (*i.e.* descending from the root). Let's plot of UPGMA dendrogram:
 <br />
 
 
-```{r, warning = FALSE, out.width = "600px"}
+```{r, warning = FALSE, fig.height = 7, fig.width = 12, fig.align = "center"}
 library(tidyr)
 quality_fspaces_fruits$details_fspaces$dendro %>%
   as.dendrogram() %>%
@@ -402,7 +417,7 @@ below)
 
 Applying PCoA to a non-Euclidean distance eventually leads to PC axes with
 negative eigenvalues. Those axes are meaningless and removed by default by the
-`ape::pcoa` function used in the `mFD::quality_fspaces` function.
+`ape::pcoa` function used in the `mFD::quality.fspaces()` function.
 
 <br />
 
@@ -485,7 +500,7 @@ distance in the 24D PCoA space:
 
 <br />
 
-```{r, out.width = "600px"}
+```{r, fig.height = 7, fig.width = 12, fig.align = "center"}
 library(tidyr)
 library(dplyr)
 library(ggplot2)
