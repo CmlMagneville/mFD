@@ -1208,8 +1208,8 @@ Maire _et al._ (2015) How many dimensions are needed to accurately assess
 functional diversity? A pragmatic approach for assessing the quality of 
 functional spaces _Global Ecology and Biogeography_, **24**, 728-740.\cr
 Mouillot _et al._ (2013) A functional approach reveals community responses 
-to disturbances _Trends in Ecology and Evolution_ **28**, 167-177 \cr
+to disturbances _Trends in Ecology and Evolution_ **28**, 167-177. \cr
 Mouillot _et al._ (2014) Functional over-redundancy and high functional 
 vulnerability in global fish faunas on tropical reefs _PNAS_ **38**, 
-13757-13762 \cr
+13757-13762. \cr
 
