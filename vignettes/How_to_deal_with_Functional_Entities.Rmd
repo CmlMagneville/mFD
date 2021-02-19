@@ -17,10 +17,10 @@ vignette: >
 
 `mFD` allows gathering species into **functional entities (FEs)** *ie* **groups
 of species with same trait values** when many species are described with a few
-categorical or ordinal traits. It is particularly useful when using large data
-sets with "functionally similar" species. FEs also allow to understand the links
-between functional diversity and ecological processes as redundant species that
-are supposed to have similar ecological roles are clustered in this method.
+categorical or ordinal traits. It is particularly useful when using large
+datasets with "functionally similar" species. FEs also allow to understand the
+links between functional diversity and ecological processes as redundant species
+that are supposed to have similar ecological roles are clustered in this method.
 
 <br />
 
@@ -48,7 +48,7 @@ following table:
 
 
 💡 We reduced the dataset used in
-[mFD_general_workflow](https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm)
+[mFD_general_workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
 to only keep ordinal and categorical traits. Categorical traits are restrained
 to 2 or 3 modalities per traits to limit the number of unique combinations.
 
@@ -66,9 +66,10 @@ data("fruits_traits", package = "mFD")
 
 fruits_traits <- fruits_traits[, c(1:4)]      # only keep the first 4 traits to illustrate FEs
 
-# Decrease the number of modalities per trait for convenience (to have less unique combinations of trait values):
+# Decrease the number of modalities per trait for convenience ...
+# ... (to have less unique combinations of trait values):
 
-# size grouped into only 3 categories:
+# Size grouped into only 3 categories:
 fruits_traits[, "Size"] <- as.character(fruits_traits[ , "Size"])
 fruits_traits[which(fruits_traits[ , "Size"] %in% c("0-1cm", "1-3cm", "3-5cm")), "Size"] <- "small"
 fruits_traits[which(fruits_traits[, "Size"] == "5-10cm"), "Size"] <- "medium"
@@ -88,13 +89,14 @@ fruits_traits[which(fruits_traits[, "Climate"] != "temperate"), "Climate"] <- "t
 fruits_traits[, "Climate"] <- factor(fruits_traits[, "Climate"], levels = c("temperate", "tropical"),
                             ordered = TRUE)
 
-# display the table:
+# Display the table:
 knitr::kable(head(fruits_traits), caption = "Species x traits dataframe based on *fruits* dataset")
 ```
 
 <br />
 
-   * the matrix summarizing assemblages:
+   * the matrix summarizing assemblages called *basket_fruits_weights* in this
+   tutorial:
    
 <br />
 
@@ -105,7 +107,9 @@ knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), caption = "S
 
 <br />
 
-  * the dataframe summarizing traits categories (for details: [mFD_general_workflow](https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm)) 
+  * the dataframe summarizing traits categories called *fruits_traits_cat in
+  this tutorial: (for details:
+  [mFD_general_workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html))
 
 <br />
 
@@ -153,7 +157,11 @@ function. It uses the following arguments:
 **USAGE**
 
 ```{r, results = "hide", eval = FALSE}
-mFD::sp.to.fe(sp_tr = fruits_traits, tr_cat = fruits_traits_cat, fe_nm_type = "fe_rank", check_input = TRUE) 
+mFD::sp.to.fe(
+  sp_tr       = fruits_traits, 
+  tr_cat      = fruits_traits_cat, 
+  fe_nm_type  = "fe_rank", 
+  check_input = TRUE) 
 ```
 
 <br />
@@ -173,7 +181,11 @@ Let's use this function with the *fruits dataset*:
 <br />
 
 ```{r}
-sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = fruits_traits, tr_cat = fruits_traits_cat, fe_nm_type = "fe_rank", check_input = TRUE) 
+sp_to_fe_fruits <- mFD::sp.to.fe(
+  sp_tr       = fruits_traits, 
+  tr_cat      = fruits_traits_cat, 
+  fe_nm_type  = "fe_rank", 
+  check_input = TRUE) 
 ```
 
 <br />
@@ -181,7 +193,6 @@ sp_to_fe_fruits <- mFD::sp.to.fe(sp_tr = fruits_traits, tr_cat = fruits_traits_c
 `mFD::sp.to.fe()` returns:
 
   * a vector containing FEs names:
-  
 <br />
 
 ```{r}
@@ -191,38 +202,37 @@ sp_to_fe_fruits$fe_nm
 <br />
 
   * a vector containing for each species, the FE it belongs to:
-
 <br />
 
 ```{r}
 sp_fe <- sp_to_fe_fruits$sp_fe
+sp_fe
 ```
 
 <br />
 
   * a dataframe containing for FEs, the values of traits for each FE:
-  
   <br />
 
 ```{r}
 fe_tr <- sp_to_fe_fruits$fe_tr
+fe_tr
 ```
 
 <br />
 
   * a vector containing the number of species per FE:
-  
   <br />
 
 ```{r}
 fe_nb_sp <- sp_to_fe_fruits$fe_nb_sp
+fe_nb_sp
 ```
 
 <br />
 
   * a detailed list containing vectors or list with supplementary information
   about FEs:
-  
 <br />
 
 ```{r}
@@ -233,15 +243,14 @@ sp_to_fe_fruits$details_fe
 
 
 
-# 4 - Compute FEs coordinates, build functional space, compute & plot alpha and
-beta functional indices
+# 4 - Compute alpha and beta functional indices
 
 
 <br />
 
 
 Then based on the dataframe containing the value of traits for each FE, the
-workflow is the same as the one listed in [mFD_general_workflow](https://github.com/CmlMagneville/mFD/docs/articles/mFD_general_workflow.htlm)
+workflow is the same as the one listed in [mFD_general_workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
 to compute functional trait based distance, multidimensional functional space
 and associated plots and compute alpha and beta functional indices (step 3 till
 the end). It will thus not be summed up in this tutorial.
@@ -250,13 +259,7 @@ the end). It will thus not be summed up in this tutorial.
 <br />
 
 
-# 4' - Compute FEs based indices 
-
-
-<br />
-
-
-However, `mFD` allows to compute functional indices based on FEs following the
+`mFD` also allows to compute functional indices based on FEs following the
 framework proposed in [Mouillot _et al._
 2014](https://www.pnas.org/content/111/38/13757.short)) using the
 `mFD::alpha.fd.fe()` function. It computes:
@@ -290,7 +293,8 @@ mFD::alpha.fd.fe(
 
 It takes as inputs:
 
-  * *asb_sp_occ* the assemblages-species occurrence dataframe
+  * *asb_sp_occ* the assemblages-species occurrence dataframe retrieved on
+  **step 2** with `mFD::sp.tr.summary()` function
   * *sp_to_fe* a list with details of species clustering into FE from
   `mFD::sp.to.fe()`
   * *ind_nm* a vector referring to the indices to compute: *fred* for Functional
@@ -303,10 +307,6 @@ It takes as inputs:
   details_returned. Details are used in graphical functions and thus must be
   kept if the user want to have graphical outputs for the computed indices.
 
-<br />
-
-💡 For this step, species do not have to be gathered into FEs, the gathering is
-coded within the `mFD::alpha.fd.fe()` function
   
 <br />
 
@@ -325,12 +325,16 @@ alpha_fd_fe_fruits <- mFD::alpha.fd.fe(
 
 <br />
 
-This function returns a dataframe of indices values for each assemblage:
+This function returns a dataframe of indices values for each assemblage and a detailed list containing a matrix gathering the number of species per FE in each assemblage:
 
 <br />
 
 ```{r}
-alpha_fd_fe_fruits
+# dataframe with indices values for each assemblage:
+alpha_fd_fe_fruits$asb_fdfe
+
+# a matrix gathering the number of species per FE in each assemblage
+alpha_fd_fe_fruits$details_fdfe
 ```
 
 
@@ -371,21 +375,19 @@ mFD::alpha.fd.fe.plot(
 
 This function takes as inputs:
 
-  * *asb_vect* a vector containing the name of the assemblage to plot
-  * *ind_vect* a vector containing the names of the indices to plot. FOred and
-  FRed are computed together using the 'red' character string and FVuln is
-  computed by using the "fvuln" character string
-  * *sp_fe* a vector containing for each species, the FE it belongs to. It is
-  retrieved through the `mFD::sp.to.fe()` function
-  * *fd_fe_values* a dataframe with the indices values for each assemblage
-  retrieved through the `mFD::alpha.fd.fe()` function
-  * *fe_nb_sp* a vector containing the number of species per FE. It can
-  retrieved through the `mFD::sp.to.fe()` function
-  * color and size arguments to personalize the plot. To have more information
-  about it, read the `mFD::alpha.fd.fe.plot()` help file
-  * *check_input* is a logical value reflecting whether inputs should be checked
-  or not. Possible error messages will thus be more understandable for the user
-  than R error messages 💡 Recommendation: set it as `TRUE`
+* *alpha_fe_fe_fruits* the output from the function `mFD::alpha.fd.fe()` applied
+on assemblage of interest with `details_returned = TRUE`
+* *plot_asb_nm* a vector containing the name of the assemblage to plot
+* *plot_ind_nm* a vector containing the names of the indices to plot. It `fred`
+to plot functional redundancy (FRed), `fored` to plot functional over-redundancy
+(FOred) and/or `fvuln` to plot functional vulnerability (FVuln)
+* *name_file* a character string with name of file to save the figure. If set to
+`NULL` the plot is only displayed
+* inputs to personalize the plot (for details: see help file of the
+`mFD::alpha.fd.fe.plot`)
+* *check_input* is a logical value reflecting whether inputs should be checked
+or not. Possible error medevtssages will thus be more understandable for the user
+than R error messages 💡 Recommendation: set it as `TRUE`
   
 <br />
 
