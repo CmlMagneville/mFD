@@ -274,5 +274,5 @@ Maire _et al._ (2015) How many dimensions are needed to accurately assess
 functional diversity? A pragmatic approach for assessing the quality of 
 functional spaces _Global Ecology and Biogeography_, **24**, 728-740.\cr
 Villéger _et al._ (2012) Low Functional β-Diversity Despite High Taxonomic 
-β-Diversity among Tropical Estuarine Fish Communities _PLoS ONE_, **7**.
+β-Diversity among Tropical Estuarine Fish Communities _PLoS ONE_, **7**.\cr
 

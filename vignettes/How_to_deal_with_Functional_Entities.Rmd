@@ -427,4 +427,4 @@ proportion of species in excess in FE richer than average is quite low (FRed =
 
 Mouillot _et al._ (2014) Functional over-redundancy and high functional 
 vulnerability in global fish faunas on tropical reefs _PNAS_ **38**, 
-13757-13762 \cr
+13757-13762.\cr

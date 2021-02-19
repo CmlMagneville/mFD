@@ -298,6 +298,6 @@ highly dissimilar (beta > 0.8) to *basket 8*.
 
 Chao _et al._ (2019) An attribute‐diversity approach to functional diversity,
 functional beta diversity, and related (dis)similarity measures _Ecological
-Monographs_, **89**. \cr
+Monographs_, **89**.\cr
 Ricotta and Szeidl (2009) Diversity partitioning of Rao’s quadratic entropy
-_Theoretical Population Biology_, **76**, 299-302. \cr
+_Theoretical Population Biology_, **76**, 299-302.\cr
