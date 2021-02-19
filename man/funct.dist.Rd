@@ -52,7 +52,10 @@ Default is \code{scale_center}.}
 \item{ordinal_var}{Character string specifying the method to be used for ordinal variables
 (i.e. ordered).
 \code{classic} simply treats ordinal variables as continuous variables.
-\verb{metric`` refers to Eq. 3 of Podani (1999);  }podani\verb{ refers to Eqs. 2a-b of Podani (1999),  #'   both options convert ordinal variables to ranks.  Default is}classic`}
+\code{metric} refers to Eq. 3 of Podani (1999);
+\code{podani} refers to Eqs. 2a-b of Podani (1999),
+#'   both options convert ordinal variables to ranks.
+Default is\code{classic}}
 
 \item{weight_type}{Type of used method to weight traits.
 \code{user} – user defined weights in tr_cat

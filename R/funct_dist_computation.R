@@ -40,7 +40,7 @@
 #' @param ordinal_var Character string specifying the method to be used for ordinal variables
 #'   (i.e. ordered). 
 #'    `classic` simply treats ordinal variables as continuous variables.
-#'    `metric`` refers to Eq. 3 of Podani (1999); 
+#'    `metric` refers to Eq. 3 of Podani (1999); 
 #'    `podani` refers to Eqs. 2a-b of Podani (1999), 
 #'   #'   both options convert ordinal variables to ranks. 
 #'   Default is`classic`
