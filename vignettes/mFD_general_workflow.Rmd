@@ -20,7 +20,7 @@ functional diversity (FD) indices in a multidimensional space using `mFD`
 package. Other functions are available and their uses are illustrated in others
 tutorials.
 
-🧩 The data set used to illustrate this tutorial is a **fruits dataset** based on
+🧩 The dataset used to illustrate this tutorial is a **fruits dataset** based on
 25 types of fruits (*i.e.* species) distributed in 10 fruits baskets (*i.e.*
 assemblages). Each fruit is characterized by six traits values summarized in the
 following table:
@@ -53,9 +53,13 @@ this tutorial
 
 
 ```{r}
+# Load data:
 data("fruits_traits", package = "mFD")
-# remove fuzzy traits in this tutorial:
+
+# Remove fuzzy traits in this tutorial:
 fruits_traits <- fruits_traits[, -c(6:8)]
+
+# Display the table:
 knitr::kable(head(fruits_traits),
              caption = "Species x traits data frame")
 ```
@@ -68,8 +72,11 @@ coverage, etc. The studied example works with biomass (*i.e.* grams of a fruit i
 
 
 
-```{r, echo = FALSE}
+```{r}
+# Load data:
 data("baskets_fruits_weights", package = "mFD")
+
+# Display the table:
 knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), centering = TRUE,
              caption = "Species x assemblages matrix based on the **fruits** dataset")
 
@@ -100,7 +107,7 @@ knitr::include_graphics("basic_framework.PNG")
 The first thing to do before starting analyses is to know your data. To do so,
 you must be able to characterize the traits you are using (*i.e.* tell the
 package what type of traits you are using). That is why `mFD` package needs a
-data frame summarizing type of each trait (*i.e.* each column of the
+data frame summarizing the type of each trait (*i.e.* each column of the
 `fruits_traits` data frame).
 
 👉 You need to set up a data frame with the same columns names as the below example:
@@ -108,12 +115,15 @@ data frame summarizing type of each trait (*i.e.* each column of the
 
 
 ```{r}
+# Load data:
 data("fruits_traits_cat", package = "mFD")
-# remove fuzzy traits in this tutorial:
+
+# Remove fuzzy traits in this tutorial:
 fruits_traits_cat <- fruits_traits_cat[-c(6:8), ]
-# thus remove the "fuzzy_name" column:
+# Thus remove the "fuzzy_name" column:
 fruits_traits_cat <- fruits_traits_cat[, -3]
-# display the table:
+
+# Display the table:
 knitr::kable(head(fruits_traits_cat), caption = "Traits types based on **fruits & baskets** dataset")
 ```
 
@@ -131,7 +141,7 @@ in `mFD` function used to compute functional distance but ok for summary functio
 in the `fruits_traits` data frame)
 
 You can add a **third column** **if** your dataset use fuzzy traits (then the third column summarizes to which fuzzy trait belongs each column that
-refers to a fuzzy trait) or **if** you want to give weight to each traits (then the third column summarizes traits weights). 
+refers to a fuzzy trait) **or if** you want to give weight to each traits (then the third column summarizes traits weights). 
 
 <br />
 
@@ -146,7 +156,7 @@ refers to a fuzzy trait) or **if** you want to give weight to each traits (then 
 The `mFD` package helps you to **summarize your data** using two distinct
 functions: `mFD::sp.tr.summary()`  and `mFD::asb.sp.summary()`.
 
-The function `mFD::sp.tr.summary()` summarizes the `fruits_traits` data frame and
+The function `mFD::sp.tr.summary()` summarizes the `fruits_traits` dataframe and
 returns a list gathering several tables and lists:
 
 * tables with summaries for non-fuzzy & fuzzy traits. **For non-fuzzy traits**,
@@ -265,7 +275,7 @@ datasets with "functionally similar" species.
 In this tutorial, this function is not illustrated (FE for the **fruits** dataset
 have a single species) and thus functional diversity indices based on FE are not
 computed. You can have a look to the
-[Compute Functional Diversity Indices based on Functional Entities](https://CmlMagneville.github.io/mFD_shared/articles/how_to_deal_with_functional_entities.html)
+[Compute Functional Diversity Indices based on Functional Entities](https://cmlmagneville.github.io/mFD_shared/articles/How_to_deal_with_Functional_Entities.html)
 tutorial for further analysis using FE.
 
 
@@ -276,7 +286,7 @@ tutorial for further analysis using FE.
 **Functional OverRedundancy (FORed)** and **Functional Vulnerability (FVuln)**
 ([Mouillot _et al._ 2014](https://www.pnas.org/content/111/38/13757.short)).
 The **fruits & baskets** example does not allow to compute FEs, thus FD indices
-based on FEs can not be compute. Check the [Compute functional diversity indices based on Functional Entities](https://cmlmagneville.github.io/mFD_shared/articles/compute_and_interpret_quality_of_functional_spaces.html) tutorial to see how to compute them.
+based on FEs can not be compute. Check the [Compute functional diversity indices based on Functional Entities](https://cmlmagneville.github.io/mFD_shared/articles/How_to_deal_with_Functional_Entities.html) tutorial to see how to compute them.
 
 <br />
 
@@ -316,12 +326,19 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr  = fruits_traits,
 distances. Two metrics are available and **the choice depends on your traits data**:
 
   * if **all traits are continuous** use the **Euclidean distance** (`metric = "euclidean"`) and check the
-  [Compute Functional Diversity Indices based on Only Continuous Traits](https://CmlMagneville.github.io/mFD_shared/articles/continuous_traits_framework.html)
+  [Compute Functional Diversity Indices based on Only Continuous Traits](https://cmlmagneville.github.io/mFD_shared/articles/Continuous_traits_framework.html)
   tutorial which explains how to build a multidimensional space from traits through PCA analysis or considering directly each trait as a dimension.
 
   * if you have **non-continuous traits** use the **Gower distance** (`metric = "gower"`) as this method allows traits weighting. This method can also deal with fuzzy traits.
 
-* `scale_euclid` is a character string referring to the way the user wants to scale traits. You can either chose to scale by range `range`, use the center transformation `center`, use the scale transformation `scale`, use the scale-center transformation `scale_center` or you can chose not to scale `noscale`.
+* `scale_euclid` is a character string referring to the way the user wants to scale **euclidean** traits. You can either chose to scale by range `range`, use the center transformation `center`, use the scale transformation `scale`, use the scale-center transformation `scale_center` or you can chose not to scale `noscale`.
+
+* `ordinal_var` is a character string specifying the method to be used for ordinal variables
+(*i.e.* ordered). You can either chose to treat ordinal variables as continuous variables (with `"classic"` option) or to treat ordinal variables as ranks (with `metric` or `podani` options, see `mFD::funct.dist()` help file for details). 
+
+* `weight_type` is a character string referring to the type of method to weight traits. You can either chose to define weights using the `tr_cat` dataframe (cf **step 1.1**) (`user` option) or you can chose to give the same weight to all traits (`equal` option). (⚠️ Using `mFD`, you can not define weights for fuzzy traits, use [`gawdis`](https://cran.r-project.org/web/packages/gawdis/index.html) package instead)
+
+* `stop_if_NA` is a logical value  to stop or not the process if the `sp_tr` data frame contains NA. If the `sp_tr` data frame contains `NA` you can either chose to compute anyway functional distances (but keep in mind that **Functional measures are sensitive to missing traits!**) or you can delete species with missing or extrapolate missing traits (see [Johnson _et al._ (2020)](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.13185)).
 
 <br />
 
@@ -362,7 +379,7 @@ For that, we will use the `mFD::quality.fspaces()` function:
 **USAGE**
 
 ```{r, results = "hide"}
- fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist             = sp_dist_fruits,
+ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist      = sp_dist_fruits,
                                          maxdim_pcoa         = 10,
                                          deviation_weighting = "absolute",
                                          fdist_scaling       = FALSE,
@@ -372,8 +389,10 @@ For that, we will use the `mFD::quality.fspaces()` function:
 
 * `sp_dist` is the `dist` object with pairwise trait-based distance between
 species as computed in **step 3**
+
 * `maxdim_pcoa` is the maximum number of PCoA axes to consider to build
 multidimensional spaces. Actually, the maximum number of dimensions considered depends on the number of PCoA axes with positive eigenvalues.
+
 * `deviation_weighting` refers to the method(s) used to weight the difference
 between species pairwise distances in the functional space and trait-based distances.
 **You can chose between**:
@@ -383,17 +402,19 @@ between species pairwise distances in the functional space and trait-based dista
   This weighting puts more weight to the large deviations between trait-based distances and distances in the functional space.
   misplaced in the functional space. 
   * Both quality metrics can be used with `deviation_weighting = c("absolute", "squared")`.
-💡 In [Maire _et al._ (2015)](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299), the metric used is the squared rmsd
+
 * `fdist_scaling` specifies whether distances in the functional space should be
 scaled before computing differences with trait-based distances. Scaling ensures
 that trait-based distances and distances in the functional space have the same
 maximum. Scaling distances implies that the quality of the functional space
 accounts for congruence in distances rather than their equality.
 
+💡 The combination of `deviation_weighting` and `fdist_scaling` arguments leads to **four possible quality metrics**: `mad`, `rmsd`, `mad_scaled` and `rmsd_scaled`
+
 * `fdendro` specifies the clustering algorithm to compute a functional dendrogram.
 `NA` means no dendrogram computed. The chosen algorithm must be one of the method
 recognized by the `stats::hclust()` function from the
-[`stats`](https://cran.r-project.org/web/packages/stats/index.html) package.
+[`stats`](https://www.rdocumentation.org/packages/stats) package.
 
 
 <br />
@@ -449,17 +470,23 @@ mFD::quality.fspaces.plot(fspaces_quality            = fspaces_quality_fruits,
 
 
 * `fspaces_quality` is the output of the `mFD::quality.fspaces()` function (**step 4.1**).
-* `quality_metric` refers to the quality metric used.
+
+* `quality_metric` refers to the quality metric used. It should be one of the column name(s) of the table gathering quality metric values (output of `mFD::quality.fspaces()` called `quality_fspaces`) (here: `fspaces_quality_fruits$quality_fspaces`) Thus it can be: `mad`, `rmsd`, `mad_scaled` or `rmsd_scaled` (see **step 4.1**)
+
 * `fspaces_plot` refers to the names of spaces for which quality has to be
 illustrated (up to 10). Names are those used in the output of `mFD::quality.fspaces()`
 function showing the values of the quality metric.
+
 * `name_file` refers to the name of file to save (without extension) if the user
 wants to save the figure. If the user only wants the plot to be displayed,
 then `name_file = NULL`.
+
 * `range_dist`, `range_dev`, `range_qdev` are arguments to set ranges of panel
 axes (check function help for further information).
+
 * `gradient_deviation` and `gradient_deviation_quality` are arguments to set
 points colors (check function help for further information).
+
 * `xlab` is a parameter to set x-axis label.
 
 <br />
@@ -495,6 +522,8 @@ mFD::quality.fspaces.plot(fspaces_quality            = fspaces_quality_fruits,
                           x_lab                      = "Trait-based distance")
 ```
 
+<br />
+
 
 For the 2D space, on the top row there are a lot of points below the 1:1 lines, meaning that distances are overestimated in this multidimensional space. Looking at panels, we can see that the 4D space is the one in which points are the closest to the 1:1 line on the top row,and the closest to the x-axis for the two bottom rows, which reflects a better
 quality compared to other functional spaces / dendrogram. 
@@ -505,14 +534,22 @@ same cophenetic distance on the dendrogram.
 <br />
 
 💡 To know more and better understand how to interpret quality of functional spaces, you should read the
-[Compute and Interpret Quality of Functional Space](https://CmlMagneville.github.io/mFD_shared/articles/compute_and_interpret_quality_of_functional_spaces.html)
+[Compute and Interpret Quality of Functional Space](https://cmlmagneville.github.io/mFD_shared/articles/Compute_and_interpret_quality_of_functional_spaces.html)
 tutorial.
+
+<br />
+
+
 
 # 5. Test correlation between functional axes and traits
 
-`mFD` allows to test for correlations between traits and functional axes and then illustrate possible correlations. For continuous traits, a linear model is computed and r2 and associated p-value are returned. For non-continuous traits, a Kruskal-Wallis test is computed and eta2 statistic is returned. The function `mFD::traits.faxes.cor` allows to test and plot correlation and needs the following arguments:
+<br />
 
-* `sp_tr` is the species x trait data frame
+
+
+`mFD` allows to test for correlations between traits and functional axes and then illustrate possible correlations. For continuous traits, a linear model is computed and r2 and associated p-value are returned. For non-continuous traits, a Kruskal-Wallis test is computed and eta2 statistic is returned. The function `mFD::traits.faxes.cor()` allows to test and plot correlation and needs the following arguments:
+
+* `sp_tr` is the species x traits data frame
 * `sp_faxes_coord` is a matrix of species coordinates taken from the outputs of
 the `mFD::quality.fspaces()` function **with columns representing axes on which
 functional space must be computed**. For instance, in this tutorial, we will plot
@@ -527,6 +564,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 ```
 <br />
 
+
 * `plot` is a logical value indicating whether correlations should be illustrated or not. If this option is set to `TRUE`, traits-axis relationships are plotted through scatterplot for continuous traits and boxplot for non-continuous traits.
 
 
@@ -536,8 +574,10 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 **USAGE**
 
 ```{r, results = "hide"}
-fruits_tr_faxes <- mFD::traits.faxes.cor(sp_tr = fruits_traits, 
-                                    sp_faxes_coord = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3",                                          "PC4")], plot = TRUE)
+fruits_tr_faxes <- mFD::traits.faxes.cor(
+            sp_tr          = fruits_traits, 
+            sp_faxes_coord = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3",                                                                             "PC4")], 
+            plot           = TRUE)
 ```
 <br />
 We can print only traits with significant effect on position along one of the axis and look at the plots:
@@ -555,7 +595,7 @@ fruits_tr_faxes$tr_faxes_plot
 
 <br />
 
-We can thus see that `PC1` is mostly driven by Size (large fruits on the right) and Plant Type (forb & shrub on the left vs tree & vine on the right), with weaker influence Climate (eta2 < 0.25) and Use of fruits (r2 < 0.4). Then, `PC2` is mostly driven by Plant type (vine on the left, shrubs on the right) and use as jam (high on the right). `PC3` is driven by Climate (tropical on the right), Seed (pit on the right) and Sugar Content (high on the right). And finally `PC4` is driven by only one trait: Plant Type with forbs on the left and vines on the right.
+We can thus see that **PC1** is mostly driven by *Size* (large fruits on the right) and *Plant Type* (forb & shrub on the left vs tree & vine on the right), with weaker influence of *Climate* (eta2 < 0.25) and *Use of fruits* (r2 < 0.4). Then, **PC2** is mostly driven by *Plant type* (vine on the left, shrubs on the right) and *Use as jam* (high on the right). **PC3** is driven by *Climate* (tropical on the right), *Seed* (pit on the right) and *Sugar Content* (high on the right). And finally **PC4** is driven by only one trait: *Plant Type* with forbs on the left and vines on the right.
 
 <br />
 
@@ -566,7 +606,11 @@ We can thus see that `PC1` is mostly driven by Size (large fruits on the right) 
 
 Once the user has selected the dimensionality of the functional space, `mFD` allows you to plot the given multidimensional functional space and the position of species in all 2-dimensions spaces made by pairs of axes.
 
-The `mFD::funct.space.plot()` function allows to illustrate the position of all species along paris of space axes.
+<br />
+
+The `mFD::funct.space.plot()` function allows to illustrate the position of all species along pairs of space axes.
+
+<br />
 
 This function allows to plot with many possibilities to change colors/shapes of
 each plotted element. Here are listed the main arguments:
@@ -578,6 +622,7 @@ the functional space for 4 and 10 dimensions (*cf.* the two examples below).
 The whole `sp_faxes_coord` can be retrieved through the output of the
 `mFD::quality.fspaces()` function:
 
+<br />
 
 
 ```{r, results = "hide"}
@@ -616,8 +661,8 @@ messages will thus be more understandable for the user than R error messages
 
 <br />
 
-Here, the convex-hull of the global pool is plotted in white and axis have the
-same range to get rid of bias based on different axis scales.
+
+Here are the plots for the *fruits & baskets* dataset for the **first four PCoA axis**:
 
 <br />
 
@@ -659,7 +704,7 @@ Here, the convex-hull of the species pool is plotted in white and axis have the 
 
 <br />
 
-Here are the plots for the **fruits & baskets** dataset for the ten PCoA axis:
+Here are the plots for the *fruits & baskets* dataset for the **first ten PCoA axis**:
 
 <br />
 
@@ -730,9 +775,7 @@ alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(sp_faxes_coord_fruits[, c("PC1
 
 The arguments and their use are listed below:
 
-* `sp_faxes_coord` is the species coordinates matrix. It is not the species data
-frame that is the raw output of the `mFD::quality.fspaces()` function (**step 4**),
-as it gathers **only** axis of the functional space the use has chosen based on **step 4**.
+* `sp_faxes_coord` is the species coordinates matrix. This dataframe gathers only axis of the functional space you have chosen based on **step 4**.
 
 * `asb_sp_w` is the data frame linking species and assemblages they belong to
 (summarized in **step 1**).
@@ -1031,11 +1074,12 @@ The `mFD::beta.fd.multidim()` function has the main following arguments:
 **USAGE**
 
 ```{r, results = "hide", message=FALSE}
-beta_fd_indices_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
-                                         asb_sp_occ = asb_sp_fruits_occ,
-                                         check_input   = TRUE,
-                                         beta_family   = c("Jaccard"),
-                                         details_returned = TRUE)
+beta_fd_indices_fruits <- mFD::beta.fd.multidim(
+      sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+      asb_sp_occ       = asb_sp_fruits_occ,
+      check_input      = TRUE,
+      beta_family      = c("Jaccard"),
+      details_returned = TRUE)
 ```
 
  <br />
@@ -1066,7 +1110,7 @@ The function returns a list containing:
 * a data frame with beta indices values for each pair of assemblages:
 
 ```{r}
-head(beta_fd_indices_fruits$"pairasb_fbd_indices", 10)
+head(beta_fd_indices_fruits$pairasb_fbd_indices, 10)
 ```
 
 <br />
@@ -1080,7 +1124,7 @@ function
 retrieved through the `details_beta` list:
 
 ```{r}
-beta_fd_indices_fruits$"details"$"asb_FRic_raw"
+beta_fd_indices_fruits$details$asb_FRic_raw
 ```
 
 <br />
@@ -1203,12 +1247,13 @@ in this example. Species of all assemblages are plotted with gray cross and the 
 
 # References
 
+Johnson _et al._ (2020) Handling missing values in trait data _Global Ecology and Biogeography_, **30**, 51-62.\cr
 Maire _et al._ (2015) How many dimensions are needed to accurately assess 
 functional diversity? A pragmatic approach for assessing the quality of 
 functional spaces _Global Ecology and Biogeography_, **24**, 728-740.\cr
 Mouillot _et al._ (2013) A functional approach reveals community responses 
-to disturbances _Trends in Ecology and Evolution_ **28**, 167-177. \cr
+to disturbances _Trends in Ecology and Evolution_ **28**, 167-177.\cr
 Mouillot _et al._ (2014) Functional over-redundancy and high functional 
 vulnerability in global fish faunas on tropical reefs _PNAS_ **38**, 
-13757-13762. \cr
+13757-13762.\cr
 
