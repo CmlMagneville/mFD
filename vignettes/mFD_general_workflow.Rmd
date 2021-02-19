@@ -1163,33 +1163,34 @@ graphical options. Arguments are listed below:
 **USAGE**
 
 ```{r, results = "hide"}
-beta_plot_fruits <- mFD::beta.multidim.plot(output_beta_fd_multidim = beta_fd_indices_fruits,
-                                     plot_asb_nm = c("basket_1", "basket_3"),
-                                     beta_family = c("Jaccard"),
-                                     plot_sp_nm  = c("apple", "cherry", "lemon"),
-                                     faxes       = paste0("PC", 1:4),
-                                     name_file   = NULL,
-                                     faxes_nm    = NULL,
-                                     range_faxes = c(NA, NA),
-                                     color_bg    = "grey95",
-                                     shape_sp    = c("pool" = 3.0, asb1 = 22, asb2 = 21),
-                                     size_sp     = c("pool" = 0.8, asb1 =  1, asb2 =  1),
-                                     color_sp    = c("pool" = "grey50", asb1="blue", asb2= "red"),
-                                     fill_sp     = c("pool" = NA, asb1 = "white", asb2 = "white"),
-                                     fill_vert   = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-                                     color_ch    = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-                                     fill_ch     = c("pool" = "white", asb1 = "blue", asb2 = "red"),
-                                     alpha_ch    = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-                                     nm_size     = 3,
-                                     nm_color    = "black",
-                                     nm_fontface = "plain",
-                                     check_input = TRUE)
+beta_plot_fruits <- mFD::beta.multidim.plot(
+  output_beta_fd_multidim = beta_fd_indices_fruits,
+  plot_asb_nm             = c("basket_1", "basket_3"),
+  beta_family             = c("Jaccard"),
+  plot_sp_nm              = c("apple", "cherry", "lemon"),
+  faxes                   = paste0("PC", 1:4),
+  name_file               = NULL,
+  faxes_nm                = NULL,
+  range_faxes             = c(NA, NA),
+  color_bg                = "grey95",
+  shape_sp                = c("pool" = 3.0, asb1 = 22, asb2 = 21),
+  size_sp                 = c("pool" = 0.8, asb1 =  1, asb2 =  1),
+  color_sp                = c("pool" = "grey50", asb1="blue", asb2= "red"),
+  fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
+  fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+  color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+  fill_ch                 = c("pool" = "white", asb1 = "blue", asb2 = "red"),
+  alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
+  nm_size                 = 3,
+  nm_color                = "black",
+  nm_fontface             = "plain",
+  check_input             = TRUE)
 ```
 
 <br />
 
-* `output_beta_fd_multidim` is the output of the `mFD::beta.fd.multidim()` function
-retrieved before as `beta_fd_indices`.
+* `output_beta_fd_multidim` is the output of the `mFD::beta.fd.multidim()`
+function retrieved before as `beta_fd_indices`.
 
 * `plot_asb_nm` is a vector containing the name of the two assemblages to plot.
 Here plots of indices will be shown for *basket_1* and *basket_2*.
@@ -1198,14 +1199,15 @@ Here plots of indices will be shown for *basket_1* and *basket_2*.
 as the family chosen to compute beta functional indices values with the
 `mFD::beta.fd.multidim()` function.
 
-* `plot_sp_nm` is a vector containing the names of species the user want to plot,
-if any. If no the user does not want to plot any species name, then this argument
-must be set up to `NULL`. Here, *apple*, *cherry* and *lemon* will be plotted on
-the graph.
+* `plot_sp_nm` is a vector containing the names of species the user want to
+plot, if any. If no the user does not want to plot any species name, then this
+argument must be set up to `NULL`. Here, *apple*, *cherry* and *lemon* will be
+plotted on the graph.
 
 * `faxes` is a vector containing the names of the functional axes of the plotted
 functional space. Here, the figure will be plotted for *PC1*, *PC2* and *PC3*.
-This function allows you to plot between two and four axes for graphical reasons.
+This function allows you to plot between two and four axes for graphical
+reasons.
 
 * `name_file` is a character string with the name of the file to save the figure
 (without extension). If the user does not want to save the file and only display
@@ -1222,8 +1224,8 @@ to the range of values among all axes, this argument must be set up to
 
 * `check_input` is a recurrent argument in the `mFD` package. It defines whether
 inputs should be checked before computation or not. Possible error messages will
-thus be more understandable for the user than R error messages (**Recommendation:**
-set it as `TRUE`.
+thus be more understandable for the user than R error messages
+(**Recommendation:** set it as `TRUE`.
 
 * Others arguments to set up colors, shapes, sizes and, text fonts are also
 available. For more information about them, read the function help file.
@@ -1240,20 +1242,24 @@ beta_plot_fruits
 For each assemblage, the associated convex hull is plotted in a different colour
 and indices values are printed on the right corner of the plot. Vertices of the
 convex hull of a given assemblage can be plotted with a different symbol such as
-in this example. Species of all assemblages are plotted with gray cross and the associated convex hull is plotted in white.
+in this example. Species of all assemblages are plotted with gray cross and the
+associated convex hull is plotted in white.
 
 <br />
 
 
 # References
 
-Johnson _et al._ (2020) Handling missing values in trait data _Global Ecology and Biogeography_, **30**, 51-62.\cr
-Maire _et al._ (2015) How many dimensions are needed to accurately assess 
-functional diversity? A pragmatic approach for assessing the quality of 
-functional spaces _Global Ecology and Biogeography_, **24**, 728-740.\cr
-Mouillot _et al._ (2013) A functional approach reveals community responses 
-to disturbances _Trends in Ecology and Evolution_ **28**, 167-177.\cr
-Mouillot _et al._ (2014) Functional over-redundancy and high functional 
-vulnerability in global fish faunas on tropical reefs _PNAS_ **38**, 
+Johnson _et al._ (2020) Handling missing values in trait data _Global Ecology
+and Biogeography_, **30**, 51-62.\cr 
+Maire _et al._ (2015) How many dimensions
+are needed to accurately assess functional diversity? A pragmatic approach for
+assessing the quality of functional spaces _Global Ecology and Biogeography_,
+**24**, 728-740.\cr 
+Mouillot _et al._ (2013) A functional approach reveals
+community responses to disturbances _Trends in Ecology and Evolution_ **28**,
+167-177.\cr 
+Mouillot _et al._ (2014) Functional over-redundancy and high
+functional vulnerability in global fish faunas on tropical reefs _PNAS_ **38**,
 13757-13762.\cr
 
