@@ -123,7 +123,7 @@ sp.tr.summary <- function(tr_cat, sp_tr,
     
     return(list(tr_summary_list = tr_summary_list, 
                 tr_types = tr_types, 
-                non_conttr_mod_list = non_conttr_modalities_list))
+                mod_list = non_conttr_modalities_list))
     
   } else {
     # fuzzy coded traits
