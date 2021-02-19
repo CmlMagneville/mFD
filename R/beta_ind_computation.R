@@ -307,12 +307,12 @@ beta.fd.multidim <- function(sp_faxes_coord,
                                                 })
   # if convex hull of the gp can be
   # computed:
-  if (is.character(conv_fa_all)) {
-    fric <- F_betapart_core$details$CH$FRi/conv_fa_all
+  if (! is.character(conv_fa_all)) {
+    fric <- F_betapart_core$details$CH$FRi/conv_fa_all$vol
   }
   # if convex hull of the gp can not be
   # computed:
-  if (!is.character(conv_fa_all)) {
+  if (is.character(conv_fa_all)) {
     fric <- NA
   }
   
