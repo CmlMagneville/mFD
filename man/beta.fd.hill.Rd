@@ -45,24 +45,20 @@ want to store values used for computing indices (see list below)}
 \value{
 a list with: \itemize{
 
-\item \emph{asb_FDbeta} a dataframe with a row for each pair of assemblages
-(names in 2 first columns, as in \strong{asb_sp_w}) and beta-diversity
-for each value of q in other column(s)
-
-\item if \strong{details_returned} turned to TRUE a list \emph{details} with
+\item \emph{asb_FDbeta} a list with for each value of q a \emph{dist} object
+with beta functional diversity indices for all pairs of assemblages
+item if \strong{store.details} turned to TRUE a list \emph{details} with
 \itemize{
-\item \emph{asb_FDalpha} a dataframe with mean alpha diversity of each pair
-of assemblages (rows) and values of q (columns)
-\item \emph{asb_FDgamma} a dataframe with gamma diversity of each pair
-of assemblages (rows) and values of q (columns)
+\item \emph{malpha_fd_q} a list with for each value of q a \emph{dist} object
+with mean alpha functional diversity indices for all pairs of assemblages
+\item \emph{gamma_fd_q} a list with for each value of q a \emph{dist} object
+with gamma functional diversity indices for all pairs of assemblages
 }
 }
 }
 \description{
 Compute functional beta-diversity indices based on Hill numbers applied to
 distance between species following the framework from Chao \emph{et al.} (2019).
-FD is computed applying the special case where function 'f' in equation 3c is
-linear: f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 }
 \note{
 when q=1 Jaccard-like and Sorensen-like beta-diversity are identical.
@@ -70,6 +66,8 @@ FD computed with tau='min' is equivalent to Hill number taxonomic beta
 diversity. If tau='min' and there are species with null distance, tau is
 set to the minimum non-null value and a warning message is displayed.
 Indices values are stored as \emph{dist} objects to optimize memory.
+See below example of how merging distance values in a \emph{dataframe} with
+\code{\link{dist.to.df}}
 }
 \examples{
 # Load Species*Traits dataframe:
@@ -88,9 +86,12 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
                                   stop_if_NA    = TRUE)
 
 # Compute beta functional hill indices:
-beta.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
+baskets_beta <- beta.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
  q = c(0,1,2), tau = 'mean',
  beta_type = 'Jaccard', check_input = TRUE, details_returned = TRUE)
+ 
+# Then use the mFD::dist.to.df function to ease visualizing result:
+mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q))
  
 }
 \references{

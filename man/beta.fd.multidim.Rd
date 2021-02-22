@@ -17,63 +17,58 @@ beta.fd.multidim(
 )
 }
 \arguments{
-\item{sp_faxes_coord}{a \strong{matrix} with coordinates of species (rows) on
+\item{sp_faxes_coord}{a matrix with coordinates of species (rows) on
 functional axes (columns). Species coordinates have been retrieved thanks to
 \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
-\item{asb_sp_occ}{a \strong{matrix} with presence/absence (coded as 0/1)
+\item{asb_sp_occ}{a matrix with presence/absence (coded as 0/1)
 of species (columns) in a set of assemblages (rows).}
 
-\item{check_input}{a \strong{logical value} defining whether inputs are
+\item{check_input}{a logical value defining whether inputs are
 checked before computation of indices. Possible error messages will thus
 may be more understandable for the user than R error messages. Default:
 check_input = TRUE.}
 
-\item{beta_family}{a \strong{character string} for the type of beta-diversity
+\item{beta_family}{a character string for the type of beta-diversity
 index to use, 'Jaccard' (default) and/or 'Sorensen'}
 
-\item{details_returned}{a \strong{logical value} indicating whether the user
+\item{details_returned}{a logical value indicating whether the user
 wants to details_returned. Details are used in the graphical function
 \code{beta.multidim.plot} and thus must be kept if the user want to have
 graphical outputs for the computed indices.}
 
-\item{betapart_step}{a \strong{logical value} indicating whether the
+\item{betapart_step}{a logical value indicating whether the
 computation progress tracking file 'step.fbc.txt' should be created.
 Setting it to FALSE will speed up the function. Default: betapart_step =
 FALSE, and it is automatically turned to FALSE when 'betapart_para' is
 TRUE.}
 
-\item{betapart_para}{a \strong{logical value} indicating whether internal
+\item{betapart_para}{a logical value indicating whether internal
 parallelization should be used to compute pairwise dissimilarities. Default:
 betapart_para = FALSE.}
 
-\item{betapart_para_opt}{a \strong{list} with details about parallelization.
+\item{betapart_para_opt}{a list with details about parallelization.
 Default value means those parameters are set according to computer
-specifications. 'nc' is number of cores (default = 4), 'type' is a
-character string with code of method used (default PSOCK), 'LB' is a
-boolean specifying whether load-balancing is applied (default is TRUE) and
-'size' is a numeric value for number of tasks performed at each time
-(default is 1). See help of
+specifications. \code{nc} is the number of cores (default = 4), \code{type}
+is a character string with code of method used (default PSOCK), \code{LB}
+is a boolean specifying whether load-balancing is applied (default is TRUE)
+and \code{size} is a numeric value for number of tasks performed at each
+time (default is 1). See help of
 \code{\link[betapart]{functional.betapart.core}} for more details.}
 }
 \value{
-a list with: \itemize{ \item inputs a list with \item
-\emph{pairasb_fbd_indices} a dataframe with for all pairs of assemblages
-(rows) names of the assemblages in the 2 first columns and columns with
-beta functional diversity indices following the additive decomposition of
-Villéger et al 2013 : 'F_diss': functional dissimilarity index, 'F_turn':
-its turnover component, and 'F_nest': its nestedness-resultant component,
-i.e. F_diss = F_turn + F_nest. Those indices names are preceded by the
-abbreviation of the type of indices used, 'jac' for decomposition of
-Jaccard-like functional dissimilarity and 'sor' for Sorensen-like
-dissimilarity.
-\item \emph{details_beta} list if \emph{details_returned} is TRUE:
-\emph{sp_faxes_coord} and \emph{asb_sp_occ} on which indices were computed
-(convenient for drawing graphics) ; a \strong{asb_FRic_raw} vector with
-volume of the convex hull shaping each assemblage ; a \strong{asb_FRic}
-vector with volume of the convex hull shaping each assemblage ; a
+a list with: \itemize{ \item \emph{beta_fd_ind} a list with for each
+index a \emph{dist} object with values for all pairs of assemblages.
+Indices names start with the abbreviation of the type of dissimilarity
+index ('jac' for Jaccard-like and 'sor' for Sorensen-like dissimilarity)
+and end with abbreviation of component ('diss': dissimilarity, 'turn' its
+turnover component, and 'nest' its nestedness-resultant component).
+\item if \emph{store_details} is TRUE, \item \emph{details_beta} list:
+inputs a list with \emph{sp_faxes_coord} and \emph{asb_sp_occ} on which
+indices were computed (convenient for drawing graphics) a \strong{asb_FRic}
+a vectors with volume of the convex hull shaping each assemblage ; a
 \strong{asb_vertices} a list of vectors (1 per assemblage) with names of
-species being vertices of the convex hull }
+species being vertices of the convex hull}
 }
 \description{
 Computes a set of indices of pairwise functional beta-diversity
@@ -81,14 +76,16 @@ Computes a set of indices of pairwise functional beta-diversity
 overlap between convex hulls in a multidimensional space. For details about
 indices formulas see Villéger \emph{et al.} (2013).
 }
-\section{Notes}{
- \strong{All assemblages should have a number of species
-strictly higher than the number of functional axes}. Computing intersection
-of convex hulls in space of >5 dimensions is yet impossible with most
-computers. This function uses R libraries 'betapart' (>=1.5.2) for indices
-computation and 'dendextend' for formatting values in a dataframe.
+\note{
+all assemblages should have a number of species strictly higher than
+the number of functional axes.
+Computing intersection of convex hulls in space of >5 dimensions is yet
+impossible with most computers.
+This function uses R libraries 'betapart' (> =1.5.2) for indices computation.
+Indices values are stored as \emph{dist} objects to optimize memory.
+See below example of how merging distance values in a \emph{dataframe} with
+\code{dist.to.df}.
 }
-
 \examples{
  # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
@@ -118,7 +115,7 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
 # Retrieve species coordinates matrix:
 sp_faxes_coord_fruits <- fspaces_quality_fruits$'details_fspaces'$'sp_pc_coord'
 
- # Get the occurrence dataframe:
+# Get the occurrence dataframe:
 asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
 asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
 

@@ -30,10 +30,9 @@ the indices are computed.}
 inputs. Possible error messages will thus may be more understandable for
 the user than R error messages. Default: check_input = TRUE.}
 
-\item{details_returned}{a \strong{logical value} indicating whether the user
-wants to details_returned. Details are used in graphical functions and thus
-must be kept if the user want to have graphical outputs for the computed
-indices.}
+\item{details_returned}{a \strong{logical value} indicating whether details
+about indices computation should be returned. These details are required by
+\code{\link{alpha.fd.fe.plot}} to plot FEs indices.}
 }
 \value{
 \itemize{ \item \emph{asb_fdfe} a matrix containing for each
