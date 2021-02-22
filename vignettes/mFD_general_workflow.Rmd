@@ -862,7 +862,7 @@ The `mFD::alpha.fd.multidim()` function allows computing many alpha FD indices:
 ```{r, results = "hide"}
 
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_fxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", 
                        "fori", "fspe"),

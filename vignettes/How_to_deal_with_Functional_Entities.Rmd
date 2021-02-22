@@ -116,7 +116,7 @@ knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), caption = "S
 ```{r, echo = FALSE}
 data("fruits_traits_cat", package = "mFD")
 
-# only keeps traits 1 - 4:
+# only keep traits 1 - 4:
 fruits_traits_cat <- fruits_traits_cat[c(1:4), ]
 knitr::kable(head(fruits_traits_cat), caption = "Traits types based on *fruits & baskets* dataset")
 ```
