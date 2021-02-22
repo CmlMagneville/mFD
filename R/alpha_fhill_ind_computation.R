@@ -3,30 +3,30 @@
 #' Compute functional alpha diversity applied to distance between species
 #' following the framework from Chao _et al._(2019).
 #'
-#' @param asb_sp_w a \strong{matrix} with weight of species (columns) in a set
+#' @param asb_sp_w a matrix with weight of species (columns) in a set
 #'   of assemblages (rows). Rows and columns should have names. NA are not
 #'   allowed.
 #'
-#' @param sp_dist a \strong{matrix or dist object} with distance between
+#' @param sp_dist a matrix or dist object with distance between
 #'   species. Species names should be provided and match those in 'asb_sp_w'. NA
 #'   are not allowed.
 #'
-#' @param q a \strong{vector} containing values referring to the order of
+#' @param q a vector containing values referring to the order of
 #'   diversity to consider, could be 0, 1 and/or 2.
 #'
-#' @param tau a \strong{character string} with name of function to apply to
+#' @param tau a character string with name of function to apply to
 #'   distance matrix (i.e. among all pairs of species) to get the threshold used
 #'   to define 'functionally indistinct set of species'. Could be 'mean'
 #'   (default), 'min' or 'max'. If tau = 'min" and there are null values in
-#'   \code{sp_dist}, the threshold is the lowest striclty positive value and a
+#'   \code{sp_dist}, the threshold is the lowest strictly positive value and a
 #'   warning message is displayed.
 #'
-#' @param check_input a \strong{logical value} defining whether inputs are
-#'   checked before computation of indices. Possible error messages will thus
-#'   may be more understandable for the user than R error messages. Default:
-#'   check_input = TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'
-#' @param details_returned a \strong{logical value} indicating whether the user
+#' @param details_returned a logical value indicating whether the user
 #'   want to store values used for computing indices (see list below)
 #'
 #' @return a list with: \itemize{
@@ -78,9 +78,13 @@
 #'                                   stop_if_NA    = TRUE)
 #' 
 #' # Compute alpha fd hill indices:
-#' alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
-#'  q = c(0, 1, 2),
-#'  tau = 'mean', check_input = TRUE, details_returned = TRUE)
+#' alpha.fd.hill(
+#'    asb_sp_w         = baskets_fruits_weights, 
+#'    sp_dist          = sp_dist_fruits, 
+#'    q                = c(0, 1, 2),
+#'    tau              = 'mean', 
+#'    check_input      = TRUE, 
+#'    details_returned = TRUE)
 #'  
 #'@references 
 #'   Chao _et al._ (2019) An attribute‐diversity approach to functional
