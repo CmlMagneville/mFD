@@ -439,6 +439,12 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       }
     }
     
+    # check that indices to plot are contained in the fd_ind_value table:
+    if (any(!(ind_vect %in% colnames(fd_ind_values))) == TRUE) {
+      stop("Error: Functional indices to plot must be contained in 
+           'fd_ind_values' columns")
+    }
+    
     check.sp.faxes.coord(sp_faxes_coord)
     
     check.asb.sp.w(asb_sp_w)
