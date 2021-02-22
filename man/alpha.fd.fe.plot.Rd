@@ -67,9 +67,10 @@ line illustrating FRed. Default: size_line_fred = 1.5.}
 showing the proportion of FEs containing only one species. Default:
 size_arrow_fvuln = 1.}
 
-\item{check_input}{a logical value allowing to test or not the inputs.
-Possible error messages will thus may be more understandable for the user
-than R error messages. Default: check_input = TRUE.}
+\item{check_input}{a logical value indicating whether key features the inputs
+are checked (e.g. class and/or mode of objects, names of rows and/or
+columns, missing values). If an error is detected, a detailed message is
+returned. Default: check.input = TRUE.}
 }
 \value{
 a \code{patchwork} object with a barplot of number of species per FE.
@@ -118,10 +119,10 @@ asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 
 # Compute alpha fd indices
 alpha_fd_fe_fruits <- mFD::alpha.fd.fe(
-  asb_sp_occ  = asb_sp_fruits_occ, 
-  sp_to_fe    = sp_to_fe_fruits,
-  ind_nm      = c("fred", "fored", "fvuln"),
-  check_input = TRUE, 
+  asb_sp_occ       = asb_sp_fruits_occ, 
+  sp_to_fe         = sp_to_fe_fruits,
+  ind_nm           = c("fred", "fored", "fvuln"),
+  check_input      = TRUE, 
   details_returned = TRUE)
   
 # Plot fd fe indices

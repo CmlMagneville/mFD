@@ -110,10 +110,10 @@ of species label. Default is black.}
 \item{nm_fontface}{a character string for font of species labels (e.g.
 "italic", "bold"). Default is 'plain'.}
 
-\item{check_input}{a logical value defining whether key inputs (i.e. not
-aesthetics settings) are checked before plotting computation of indices.
-Possible error messages will thus may be more understandable for the user
-than R error messages. Default: check_input = TRUE.}
+\item{check_input}{a logical value indicating whether key features the inputs
+are checked (e.g. class and/or mode of objects, names of rows and/or
+columns, missing values). If an error is detected, a detailed message is
+returned. Default: check.input = TRUE.}
 }
 \value{
 for the given pair of assemblages, returns a \code{patchwork} figure
@@ -182,16 +182,18 @@ diversity indices should have been computed using the}
    color_bg                = "grey95",
    shape_sp                = c("pool" = 3, asb1 = 22, asb2 = 21),
    size_sp                 = c("pool" = 0.8, asb1 = 1, asb2 = 1),
-   color_sp              = c("pool" = "grey50", asb1 = "blue", asb2 = "red"),
-   fill_sp               = c("pool" = NA, asb1 = "white", asb2 = "white"),
-   fill_vert             = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-   color_ch              = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-   fill_ch               = c("pool" = "white", asb1 = "blue", asb2 = "red"),
-   alpha_ch              = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-   nm_size               = 3, 
-   nm_color              = "black", 
-   nm_fontface           = "plain",
-   check_input           = TRUE) 
+   color_sp                = c("pool" = "grey50", asb1 = "blue", 
+                               asb2 = "red"),
+   fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
+   fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+   color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+   fill_ch                 = c("pool" = "white", asb1 = "blue", 
+                               asb2 = "red"),
+   alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
+   nm_size                 = 3, 
+   nm_color                = "black", 
+   nm_fontface             = "plain",
+   check_input             = TRUE) 
  
 }
 \author{

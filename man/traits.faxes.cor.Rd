@@ -40,7 +40,7 @@ the color of points when relationships between the trait and the axis is
 significant. Default is \verb{dark blue}.}
 }
 \value{
-A data frame with for each combination of trait and axis (rows), the
+a data frame with for each combination of trait and axis (rows), the
 name of the test performed, and the corresponding statistics and p-value.
 If \code{plot = TRUE} a multi-panel figure with traits as columns and axes as
 rows is also plotted. When relationships between trait and axis is

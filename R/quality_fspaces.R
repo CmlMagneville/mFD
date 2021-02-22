@@ -8,40 +8,40 @@
 #' Compute functional spaces and return their quality
 #'
 #' Compute a Principal Coordinates Analysis (PCoA) using functional distance
-#' between species. Then the function evaluates the quality of spaces
-#' built using an increasing number of Principal components. Quality is evaluated
-#' as the (absolute or squared) deviation between trait-based distance (input)
-#' and distance in the PCoA-based space (raw Euclidean distance or scaled
-#' distance according to its maximum value and maximum of trait-based distance).
-#' Option to compute a functional dendrogram and its quality.
-#' This function is based on the framework presented in Maire _et al._ (2015).
+#' between species. Then the function evaluates the quality of spaces built
+#' using an increasing number of Principal components. Quality is evaluated as
+#' the (absolute or squared) deviation between trait-based distance (input) and
+#' distance in the PCoA-based space (raw Euclidean distance or scaled distance
+#' according to its maximum value and maximum of trait-based distance). Option
+#' to compute a functional dendrogram and its quality. This function is based on
+#' the framework presented in Maire _et al._ (2015).
 #'
-#' @param sp_dist a \strong{dist object} with pairwise distance among all species (at
-#'   least 3 species needed). Functional distance matrix from trait values can
-#'   be computed using \code{\link{funct.dist}} function.
+#' @param sp_dist a \strong{dist object} with pairwise distance among all
+#'   species (at least 3 species needed). Functional distance matrix from trait
+#'   values can be computed using \code{\link{funct.dist}} function.
 #'
-#' @param maxdim_pcoa a single \strong{numeric value} with maximum number of PCoA axes to
-#'   consider to build multidimensional functional spaces. Default: maxdim_pcoa
-#'   = 10. See note about number of axes actually considered.
+#' @param maxdim_pcoa a single \strong{numeric value} with maximum number of
+#'   PCoA axes to consider to build multidimensional functional spaces. Default:
+#'   maxdim_pcoa = 10. See note about number of axes actually considered.
 #'
-#' @param deviation_weighting a \strong{character string} referring to the method(s)
-#'   used to weight the differences between species pairwise distance in the
-#'   functional space and trait-based distance. \code{'absolute'} (default) means
-#'   absolute differences are used to compute mean absolute deviation \emph{mad}
-#'   index; \code{'squared'} means squared differences are used to compute root of
-#'   mean squared deviation \emph{rmsd} index.
-#'   Both values could be provided to compare quality metrics.
+#' @param deviation_weighting a \strong{character string} referring to the
+#'   method(s) used to weight the differences between species pairwise distance
+#'   in the functional space and trait-based distance. \code{'absolute'}
+#'   (default) means absolute differences are used to compute mean absolute
+#'   deviation \emph{mad} index; \code{'squared'} means squared differences are
+#'   used to compute root of mean squared deviation \emph{rmsd} index. Both
+#'   values could be provided to compare quality metrics.
 #'
-#' @param fdist_scaling a \strong{vector} with logical value(s) specifying whether
-#'   distances in the functional space should be scaled before computing
+#' @param fdist_scaling a \strong{vector} with logical value(s) specifying
+#'   whether distances in the functional space should be scaled before computing
 #'   differences with trait-based distances. Scaling ensures that trait-based
 #'   distances and distances in the functional space have the same maximum.
 #'   Default: FALSE. Both values could be provided to compare quality metrics.
 #'
-#' @param fdendro a \strong{character string} indicating the clustering algorithm to use
-#'   to compute dendrogram. Should be one of the method recognized by
-#'   \code{\link[stats]{hclust}} (e.g. 'average' for UPGMA). Default: fdendro = NULL (so
-#'   no dendrogram computed).
+#' @param fdendro a \strong{character string} indicating the clustering
+#'   algorithm to use to compute dendrogram. Should be one of the method
+#'   recognized by \code{\link[stats]{hclust}} (e.g. 'average' for UPGMA).
+#'   Default: fdendro = NULL (so no dendrogram computed).
 #'
 #' @return a list with: \itemize{
 #'
@@ -64,9 +64,9 @@
 #'   object with the dendrogram details (null if no dendrogram computed) ;
 #'   \code{$pairsp_fspaces_dist} a dataframe containing for each pair of
 #'   species (rows), their names in the 2 first columns ('sp.x' and 'sp.y'),
-#'   their distance based on trait-values ('tr'), and their Euclidean (for PCoA) or
-#'   cophenetic (for dendrogram if computed) distance in each of the functional
-#'   space computed ('pcoa_1d', 'pcoa_2d', ... , 'tree_clust');
+#'   their distance based on trait-values ('tr'), and their Euclidean (for PCoA)
+#'   or cophenetic (for dendrogram if computed) distance in each of the
+#'   functional space computed ('pcoa_1d', 'pcoa_2d', ... , 'tree_clust');
 #'   if fdist_scaling = TRUE, \code{$pairsp_fspaces_dist_scaled} a dataframe
 #'   with scaled values of distances in functional spaces.
 #'
@@ -162,7 +162,8 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
 
   # check that the name of quality metric is correct:
   if ( any( ! deviation_weighting %in% c("absolute", "squarred") ) ) {
-    stop("Error: input 'deviation_weighting' should be 'absolute' and/or 'squarred'.")
+    stop("Error: input 'deviation_weighting' should be 'absolute' and/or 
+         'squarred'.")
   }
 
   # check that the scaled_metric input is logical:
@@ -308,7 +309,7 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
 
     # compute deviation between scaled distance and trait-based distance:
     dev_distsp_scaled <- data.frame(df_distsp_scaled[, c("sp.x", "sp.y")],
-                                     df_distsp_scaled[, fspaces_nm] - df_distsp_scaled[, "tr"])
+                     df_distsp_scaled[, fspaces_nm] - df_distsp_scaled[, "tr"])
     details_deviation$dev_distsp_scaled <-  dev_distsp_scaled
 
     # if required based on absolute deviation
@@ -320,7 +321,8 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
       details_deviation$abs_dev_distsp_scaled <- abs_dev_distsp_scaled
 
       # mean absolute deviation:
-      q_fspaces[fspaces_nm, "mad_scaled"] <- apply(abs_dev_distsp_scaled[, fspaces_nm],
+      q_fspaces[fspaces_nm, "mad_scaled"] <- apply(abs_dev_distsp_scaled[, 
+                                                                  fspaces_nm],
                                                   2, mean)
     }
 
@@ -328,12 +330,14 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
     if ("squarred" %in% deviation_weighting) {
 
       # compute squared deviation and storing:
-      sqr_dev_distsp_scaled <- data.frame (dev_distsp_scaled[, c("sp.x", "sp.y")],
+      sqr_dev_distsp_scaled <- data.frame (dev_distsp_scaled[, c("sp.x",
+                                                                 "sp.y")],
                                            (dev_distsp_scaled[, fspaces_nm])^2)
       details_deviation$sqr_dev_distsp_scaled <- sqr_dev_distsp_scaled
 
       # root of mean squared deviation:
-      q_fspaces[fspaces_nm, "rmsd_scaled"] <- sqrt(apply(sqr_dev_distsp_scaled[, fspaces_nm],
+      q_fspaces[fspaces_nm, "rmsd_scaled"] <- sqrt(apply(sqr_dev_distsp_scaled[, 
+                                                                    fspaces_nm],
                                                         2, mean))
     }
 
@@ -355,7 +359,10 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
                       details_deviation = details_deviation)
 
   if (min(sp_dist) == 0) {
-    warning("Functional distance between some species is equal to 0 (explains the Warning message 1). You can choose to gather species into Functional Entities gathering species with similar traits values")
+    warning("Functional distance between some species is equal to 0 
+            (explains the Warning message 1). You can choose to gather species 
+            into Functional Entities gathering species with similar traits 
+            values")
   }
 
   return(return_list)

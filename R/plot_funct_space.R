@@ -89,10 +89,10 @@
 #' @param nm_fontface a character string for font of species labels (e.g.
 #'   "italic", "bold"). Default: nm_fontface = 'plain'.
 #'
-#' @param check_input a logical value defining whether inputs are checked before
-#'   computation of indices. Possible error messages will thus may be more
-#'   understandable for the user than R error messages. Default: check_input =
-#'   TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'   
 #' @return a list containing \code{ggplot2} objects that were built before
 #'   assembling them in the figure using the library \code{patchwork}. If
@@ -134,7 +134,7 @@
 #'   fdendro             = "average")
 #'  
 #' # Retrieve species coordinates matrix:
-#'  sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 #' 
 #' # Plot functional spaces:
 #'  mFD::funct.space.plot(

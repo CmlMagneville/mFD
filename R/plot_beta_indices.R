@@ -86,10 +86,10 @@
 #' @param nm_fontface a character string for font of species labels (e.g.
 #'   "italic", "bold"). Default is 'plain'.
 #'
-#' @param check_input a logical value defining whether key inputs (i.e. not
-#'   aesthetics settings) are checked before plotting computation of indices.
-#'   Possible error messages will thus may be more understandable for the user
-#'   than R error messages. Default: check_input = TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'
 #' @return for the given pair of assemblages, returns a \code{patchwork} figure
 #'  with overlap between convex hulls projected in 2-dimensional spaces. Values
@@ -151,16 +151,18 @@
 #'    color_bg                = "grey95",
 #'    shape_sp                = c("pool" = 3, asb1 = 22, asb2 = 21),
 #'    size_sp                 = c("pool" = 0.8, asb1 = 1, asb2 = 1),
-#'    color_sp              = c("pool" = "grey50", asb1 = "blue", asb2 = "red"),
-#'    fill_sp               = c("pool" = NA, asb1 = "white", asb2 = "white"),
-#'    fill_vert             = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#'    color_ch              = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#'    fill_ch               = c("pool" = "white", asb1 = "blue", asb2 = "red"),
-#'    alpha_ch              = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-#'    nm_size               = 3, 
-#'    nm_color              = "black", 
-#'    nm_fontface           = "plain",
-#'    check_input           = TRUE) 
+#'    color_sp                = c("pool" = "grey50", asb1 = "blue", 
+#'                                asb2 = "red"),
+#'    fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
+#'    fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+#'    color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+#'    fill_ch                 = c("pool" = "white", asb1 = "blue", 
+#'                                asb2 = "red"),
+#'    alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
+#'    nm_size                 = 3, 
+#'    nm_color                = "black", 
+#'    nm_fontface             = "plain",
+#'    check_input             = TRUE) 
 #'  
 #'@importFrom ggplot2 aes aes_string xlab ylab element_blank element_rect
 #'@importFrom ggplot2 coord_fixed theme theme_void geom_rect geom_text 

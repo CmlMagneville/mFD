@@ -13,29 +13,29 @@ quality.fspaces(
 )
 }
 \arguments{
-\item{sp_dist}{a \strong{dist object} with pairwise distance among all species (at
-least 3 species needed). Functional distance matrix from trait values can
-be computed using \code{\link{funct.dist}} function.}
+\item{sp_dist}{a \strong{dist object} with pairwise distance among all
+species (at least 3 species needed). Functional distance matrix from trait
+values can be computed using \code{\link{funct.dist}} function.}
 
-\item{fdendro}{a \strong{character string} indicating the clustering algorithm to use
-to compute dendrogram. Should be one of the method recognized by
-\code{\link[stats]{hclust}} (e.g. 'average' for UPGMA). Default: fdendro = NULL (so
-no dendrogram computed).}
+\item{fdendro}{a \strong{character string} indicating the clustering
+algorithm to use to compute dendrogram. Should be one of the method
+recognized by \code{\link[stats]{hclust}} (e.g. 'average' for UPGMA).
+Default: fdendro = NULL (so no dendrogram computed).}
 
-\item{maxdim_pcoa}{a single \strong{numeric value} with maximum number of PCoA axes to
-consider to build multidimensional functional spaces. Default: maxdim_pcoa
-= 10. See note about number of axes actually considered.}
+\item{maxdim_pcoa}{a single \strong{numeric value} with maximum number of
+PCoA axes to consider to build multidimensional functional spaces. Default:
+maxdim_pcoa = 10. See note about number of axes actually considered.}
 
-\item{deviation_weighting}{a \strong{character string} referring to the method(s)
-used to weight the differences between species pairwise distance in the
-functional space and trait-based distance. \code{'absolute'} (default) means
-absolute differences are used to compute mean absolute deviation \emph{mad}
-index; \code{'squared'} means squared differences are used to compute root of
-mean squared deviation \emph{rmsd} index.
-Both values could be provided to compare quality metrics.}
+\item{deviation_weighting}{a \strong{character string} referring to the
+method(s) used to weight the differences between species pairwise distance
+in the functional space and trait-based distance. \code{'absolute'}
+(default) means absolute differences are used to compute mean absolute
+deviation \emph{mad} index; \code{'squared'} means squared differences are
+used to compute root of mean squared deviation \emph{rmsd} index. Both
+values could be provided to compare quality metrics.}
 
-\item{fdist_scaling}{a \strong{vector} with logical value(s) specifying whether
-distances in the functional space should be scaled before computing
+\item{fdist_scaling}{a \strong{vector} with logical value(s) specifying
+whether distances in the functional space should be scaled before computing
 differences with trait-based distances. Scaling ensures that trait-based
 distances and distances in the functional space have the same maximum.
 Default: FALSE. Both values could be provided to compare quality metrics.}
@@ -62,9 +62,9 @@ with eigenvalues of axes from PCoA ; \code{$dendro} a hclust
 object with the dendrogram details (null if no dendrogram computed) ;
 \code{$pairsp_fspaces_dist} a dataframe containing for each pair of
 species (rows), their names in the 2 first columns ('sp.x' and 'sp.y'),
-their distance based on trait-values ('tr'), and their Euclidean (for PCoA) or
-cophenetic (for dendrogram if computed) distance in each of the functional
-space computed ('pcoa_1d', 'pcoa_2d', ... , 'tree_clust');
+their distance based on trait-values ('tr'), and their Euclidean (for PCoA)
+or cophenetic (for dendrogram if computed) distance in each of the
+functional space computed ('pcoa_1d', 'pcoa_2d', ... , 'tree_clust');
 if fdist_scaling = TRUE, \code{$pairsp_fspaces_dist_scaled} a dataframe
 with scaled values of distances in functional spaces.
 
@@ -83,13 +83,13 @@ dataframes with deviation computed on scaled distance in functional spaces.
 }
 \description{
 Compute a Principal Coordinates Analysis (PCoA) using functional distance
-between species. Then the function evaluates the quality of spaces
-built using an increasing number of Principal components. Quality is evaluated
-as the (absolute or squared) deviation between trait-based distance (input)
-and distance in the PCoA-based space (raw Euclidean distance or scaled
-distance according to its maximum value and maximum of trait-based distance).
-Option to compute a functional dendrogram and its quality.
-This function is based on the framework presented in Maire \emph{et al.} (2015).
+between species. Then the function evaluates the quality of spaces built
+using an increasing number of Principal components. Quality is evaluated as
+the (absolute or squared) deviation between trait-based distance (input) and
+distance in the PCoA-based space (raw Euclidean distance or scaled distance
+according to its maximum value and maximum of trait-based distance). Option
+to compute a functional dendrogram and its quality. This function is based on
+the framework presented in Maire \emph{et al.} (2015).
 }
 \note{
 the maximum number of dimensions considered for assessing quality of
