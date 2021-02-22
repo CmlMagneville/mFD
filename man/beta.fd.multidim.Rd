@@ -106,7 +106,8 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
                                   stop_if_NA    = TRUE)
 
 # Compute functional spaces quality to retrieve species coordinates matrix:
-fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+fspaces_quality_fruits <- mFD::quality.fspaces(
+ sp_dist             = sp_dist_fruits, 
  maxdim_pcoa         = 10,
  deviation_weighting = 'absolute',
  fdist_scaling       = FALSE,
@@ -120,11 +121,12 @@ asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
 
 # Compute beta diversity indices:
-beta_fd_fruits <- mFD::beta.fd.multidim(sp_faxes_coord_fruits[, 
- c('PC1', 'PC2', 'PC3', 'PC4')], asb_sp_occ = asb_sp_fruits_occ,
- check_input = TRUE,
- beta_family = c('Jaccard'),
- details_returned = TRUE)
+beta_fd_fruits <- mFD::beta.fd.multidim(
+  sp_faxes_coord   = sp_faxes_coord_fruits[, c('PC1', 'PC2', 'PC3', 'PC4')], 
+  asb_sp_occ       = asb_sp_fruits_occ,
+  check_input      = TRUE,
+  beta_family      = c('Jaccard'),
+  details_returned = TRUE)
  
 }
 \references{
