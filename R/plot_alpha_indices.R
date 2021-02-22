@@ -439,61 +439,16 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       }
     }
     
-    if (any(is.na(sp_faxes_coord))) {
-      stop("Error: The species*coordinates matrix contains NA. Please check.")
-    }
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates matrix.
-             Please add species names as row names.")
-    }
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates matrix.
-             Please add species names as row names.")
-    }
+    check.sp.faxes.coord(sp_faxes_coord)
     
-    if (is.matrix(asb_sp_w) == FALSE) {
-      stop("Error: 'asb_sp_w' must be a matrix")
-    }
+    check.asb.sp.w(asb_sp_w)
     
-    if (any(is.na(asb_sp_w))) {
-      stop("Error: The species*weights matrix contains NA. Please check.")
-    }
-    if (is.null(rownames(asb_sp_w))) {
-      stop("Error: No row names provided in species*weights matrix.
-             Please add assemblages names as row names.")
-    }
-    if (is.null(colnames(asb_sp_w))) {
-      stop("Error: No column names provided in species*weight matrix.
-             Please add species names as column names.")
-    }
-    
-    # Add a stop if there is a negative value in the occurrence dataframe:
-    if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight matrix should not contain negative values.
-           Please check.")
-    }
-    
-    asb_sp_w <- as.data.frame(asb_sp_w)
-    isnum_vect <- sapply(asb_sp_w, is.numeric)
-    
-    if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' matrix must only contain numeric values. 
-           Please convert values")
-    }
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_faxes_coord)))) {
       stop(paste("Error: Mismatch between names in species*weight and
                    species*coordinates matrix. Please check."))
     }
     
-    # Add a stop if some species do not belong to any assemblage:
-    if (min(apply(asb_sp_w, 2, sum)) == 0){
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain species:
-    if (min(apply(asb_sp_w, 1, sum)) == 0){
-      stop("Error: Some assemblages do not contain species.")
-    }
   }
   
   

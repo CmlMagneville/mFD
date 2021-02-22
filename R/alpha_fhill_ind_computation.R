@@ -109,9 +109,7 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
   ## check_inputs if required #####
   if (check_input == TRUE) {
     
-    if (is.matrix(asb_sp_w) == FALSE) {
-      stop("Error: 'asb_sp_w' must be a matrix")
-    }
+    check.asb.sp.w(asb_sp_w)
     
     if (any(is.na(sp_dist))) {
       stop("Error: The species distances matrix contains NA. Please check.")
@@ -119,24 +117,6 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
     if (is.null(rownames(sp_sp_dist))) {
       stop("Error: No row names provided in species distances matrix.
              Please add species names as row names.")
-    }
-    if (any(is.na(asb_sp_w))) {
-      stop("Error: The species*weights dataframe contains NA. Please check.")
-    }
-    if (is.null(rownames(asb_sp_w))) {
-      stop("Error: No row names provided in species*weights dataframe.
-             Please add assemblages names as row names.")
-    }
-    if (is.null(colnames(asb_sp_w))) {
-      stop("Error: No column names provided in species*assemblage dataframe.
-             Please add species names as column names.")
-    }
-    
-    isnum_vect <- sapply(asb_sp_w, is.numeric)
-    
-    if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. 
-           Please convert values")
     }
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_sp_dist)))) {
@@ -151,23 +131,6 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
     
     if (any(!tau %in% c("min", "mean", "max"))) {
       stop(paste("Error: tau should be 'min', 'mean' or 'max'. Please check."))
-    }
-    
-    # Add a stop if some species do not belong to any
-    # assemblage:
-    if (min(apply(asb_sp_w, 2, sum)) == 0) {
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain species:
-    if (min(apply(asb_sp_w, 1, sum)) == 0) {
-      stop("Error: Some assemblages do not contain species.")
-    }
-    
-    # Add a stop if there is a negative value in the
-    # occurrence dataframe:
-    if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight dataframe should not contain negative 
-           values. Please check.")
     }
     
   }

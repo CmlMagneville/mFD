@@ -194,25 +194,11 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
   ## check_inputs if asked: ####
   if (check_input == TRUE) {
     
-    if(! is.matrix(sp_faxes_coord)){
-      stop("Error: 'sp_faxes_coord' must be a matrix. Please change its class.")
-    }
+    check.sp.faxes.coord(sp_faxes_coord)
+    # so ok when ggploting:
     sp_faxes_coord <- as.data.frame(sp_faxes_coord)
     
-    if (any(is.na(sp_faxes_coord))) {
-      stop("Error: The species*coordinates dataframe contains NA. 
-           Please check.")
-    }
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates dataframe.
-             Please add species names as row names.")
-    }
-    if (is.null(colnames(sp_faxes_coord))) {
-      stop("Error: No column names provided in species*coordinates dataframe.
-             Please add dimensions labels as column names.")
-    }
-    
-    if ( (! is.null(plot_sp_nm)) &
+    if ((! is.null(plot_sp_nm)) &
          any( ! plot_sp_nm %in% rownames(sp_faxes_coord))) {
       stop("Error: species names in 'plot_sp_nm' can not be found in
            'sp_faxes_coord'row names. 

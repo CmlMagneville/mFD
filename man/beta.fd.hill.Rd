@@ -74,8 +74,8 @@ See below example of how merging distance values in a \emph{dataframe} with
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
-# Load Assemblages*Species dataframe:      
-data('baskets_fruits_weights', package = 'mFD')
+# Load Traits types dataframe:      
+data('fruits_traits_cat', package = 'mFD')
    
 # Compute functional distance 
 sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
@@ -97,7 +97,12 @@ baskets_beta <- beta.fd.hill(
       details_returned = TRUE)
  
 # Then use the mFD::dist.to.df function to ease visualizing result:
-mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q))
+## for q = 0:
+mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q0))
+## for q = 1:
+mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q1))
+## for q = 2:
+mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
  
 }
 \references{

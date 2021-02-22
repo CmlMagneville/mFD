@@ -58,8 +58,8 @@
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
-#' # Load Assemblages*Species dataframe:      
-#' data('baskets_fruits_weights', package = 'mFD')
+#' # Load Traits types dataframe:      
+#' data('fruits_traits_cat', package = 'mFD')
 #'    
 #' # Compute functional distance 
 #' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
@@ -81,7 +81,12 @@
 #'       details_returned = TRUE)
 #'  
 #' # Then use the mFD::dist.to.df function to ease visualizing result:
-#' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q))
+#' ## for q = 0:
+#' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q0))
+#' ## for q = 1:
+#' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q1))
+#' ## for q = 2:
+#' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
 #'  
 #' @references 
 #'   Chao _et al._ (2019) An attribute-diversity approach to functional
@@ -109,8 +114,9 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
   
   
   ## check_inputs if required #####
-  if (check_input == TRUE) 
-  {
+  if (check_input == TRUE)  {
+    
+    check.asb.sp.w(asb_sp_w)
     
     if (any(is.na(sp_dist))) {
       stop("Error: The species distances matrix contains NA. Please check.")
@@ -119,17 +125,7 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
       stop("Error: No row names provided in species distance matrix.
              Please add species names as row names.")
     }
-    if (any(is.na(asb_sp_w))) {
-      stop("Error: The species*weights matrix contains NA. Please check.")
-    }
-    if (is.null(rownames(asb_sp_w))) {
-      stop("Error: No row names provided in species*weights dataframe.
-             Please add assemblages names as row names.")
-    }
-    if (is.null(colnames(asb_sp_w))) {
-      stop("Error: No column names provided in species*weights dataframe.
-             Please add species names as column names.")
-    }
+    
     if (any(!(colnames(asb_sp_w) %in% 
               rownames(sp_sp_dist)))) {
       stop(paste("Error: Mismatch between names in species*weight and
@@ -150,35 +146,6 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
                               "Sorensen"))) {
       stop(paste("Error: beta_type should be 'Jaccard' or 'Sorensen'. 
                  Please check."))
-    }
-    
-    # Add a stop if some species do not
-    # belong to any assemblage:
-    if (min(apply(asb_sp_w, 2, sum)) == 
-        0) {
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain
-    # species:
-    if (min(apply(asb_sp_w, 1, sum)) == 
-        0) {
-      stop("Error: Some assemblages do not contain species.")
-    }
-    
-    # Add a stop if there is a negative value
-    # in the occurrence dataframe:
-    if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight dataframe should not contain negative 
-      values.
-           Please check.")
-    }
-    
-    isnum_vect <- sapply(asb_sp_w, 
-                         is.numeric)
-    
-    if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. 
-           Please convert values")
     }
     
   }  # end of checking inputs

@@ -136,38 +136,9 @@ beta.fd.multidim <- function(sp_faxes_coord,
   ## check_input if asked:
   if (check_input == TRUE) {
     
-    if (!is.matrix(sp_faxes_coord)) {
-      stop("Error: species coordinates on functional axes should be provided as
-      a matrix. Please check.")
-    }
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates matrix.
-             Please add species names as row names.")
-    }
-    if (is.null(colnames(sp_faxes_coord))) {
-      stop("Error: No column names provided in species*coordinates matrix.
-             Please add axes names as column names.")
-    }
-    if (any(is.na(sp_faxes_coord))) {
-      stop("Error: The species*coordinates matrix contains NA. Please check.")
-    }
+    check.sp.faxes.coord(sp_faxes_coord)
     
-    if (is.null(rownames(asb_sp_occ))) {
-      stop("Error: No row names provided in the species occurence matrix.
-             Please add assemblages names as row names.")
-    }
-    if (is.null(colnames(asb_sp_occ))) {
-      stop("Error: No column names provided in the species occurence matrix.
-             Please add species names as column names.")
-    }
-    if (any(is.na(asb_sp_occ))) {
-      stop("Error: The species occurence matrix contains NA. Please check.")
-    }
-    if (any(asb_sp_occ != 0 & asb_sp_occ != 
-            1)) {
-      stop("Error: The species occurence matrix should contain only 0 and 1.
-           Please check.")
-    }
+    check.asb.sp.w.occ(asb_sp_occ)
     
     if (any(!(colnames(asb_sp_occ) %in% 
               rownames(sp_faxes_coord)))) {
@@ -193,19 +164,6 @@ beta.fd.multidim <- function(sp_faxes_coord,
                                 "Sorensen"))) {
       stop(paste("Error: beta diversity index should be 'Jaccard' and/or
                    'Sorensen'. Please check."))
-    }
-    
-    # Add a stop if some species do not
-    # belong to any assemblage:
-    if (min(apply(asb_sp_occ, 2, sum)) == 
-        0) {
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain
-    # species:
-    if (min(apply(asb_sp_occ, 1, sum)) == 
-        0) {
-      stop("Error: Some assemblages do not contain species.")
     }
     
   }

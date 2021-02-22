@@ -78,22 +78,8 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred",
   
   # check_inputs if asked:
   if (check_input == TRUE) {
-    if (is.null(rownames(asb_sp_occ))) {
-      stop("Error: No row names provided in species*assemblage matrix.
-             Please add assemblage names as column names.")
-    }
-    if (is.null(colnames(asb_sp_occ))) {
-      stop("Error: No column names provided in species*assemblage matrix.
-             Please add species names as column names.")
-    }
-    if (any(is.na(asb_sp_occ))) {
-      stop("Error: The species*assemblage matrix contains NA. Please check.")
-    }
     
-    if (any((asb_sp_occ != 0 & asb_sp_occ != 1))) {
-      stop("Error: The species*assemblage occurrence matrix should only 
-           contain 0 or 1. Please check.")
-    }
+    check.asb.sp.w.occ(asb_sp_occ)
     
     if (any(!ind_nm %in% c("fred", "fored", "fvuln"))) {
       stop("Error: Name of the functional indice to compute does not match with
@@ -111,16 +97,6 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred",
           be in the input 'sp_to_fe'.
           Please check that the function 'sp.to.fe' was applied on trait values 
           of the same set of species.")
-    }
-    
-    # Add a stop if some species do not belong to any
-    # assemblage:
-    if (min(apply(asb_sp_occ, 2, sum)) == 0) {
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain species:
-    if (min(apply(asb_sp_occ, 1, sum)) == 0) {
-      stop("Error: Some assemblages do not contain species.")
     }
     
   }

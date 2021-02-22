@@ -162,48 +162,16 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   }
   
   # check nominal traits:
-  if ("N" %in% tr_cat$trait_type) {
-    for (k in tr_cat$trait_name[which(tr_cat$trait_type == "N")]) {
-      if (is.factor(sp_tr[, k]) == FALSE) {
-        stop(paste0("Error: Trait '", k, "'is supposed to be nominal
-            but is not described with a 'factor' variable"))
-      }
-    }
-  }
+  check.nominal(tr_cat, sp_tr)
   
   # check that ordinal traits have ordered categories:
-  if ("O" %in% tr_cat$trait_type) {
-    for (k in tr_cat$trait_name[which(tr_cat$trait_type == "O")]) {
-      if (is.ordered(sp_tr[, k]) == FALSE) {
-        stop(paste0("Error: Trait '", k, "'is supposed to be ordinal
-            but is not described with an 'ordered' variable"))
-      }
-    }
-  }
+  check.ordinal(tr_cat, sp_tr)
   
   # check that circular traits are coded with integer:
-  if ("C" %in% tr_cat$trait_type) {
-    for (k in tr_cat$trait_name[which(tr_cat$trait_type == "C")]) {
-      if (is.integer(sp_tr[, k]) == FALSE) {
-        stop( paste0("Error: Trait '", k, "'is supposed to be circular
-          but is not described with an 'integer' variable"))
-      }
-    }
-  }
+  check.circular(tr_cat, sp_tr)
   
   # check that continuous trait have non unique values:
-  if ("Q" %in% tr_cat$trait_type) {
-    for (k in tr_cat$trait_name[which(tr_cat$trait_type == "Q")]) {
-      if (is.numeric(sp_tr[, k]) == FALSE) {
-        stop(paste0("Error: Trait '", k, "'is supposed to be continuous
-                  but is not described with a 'numeric' variable"))
-      }
-      if(length(unique(sp_tr[, k])) == sp_nb) {
-        stop(paste0("Error: Continuous trait '", k, "' has only unique values,
-              impossible to group species into functional entities"))
-      }
-    }
-  }
+  check.continuous(tr_cat, sp_tr)
   
   # check fuzzy coded traits:
   if ("F" %in% tr_cat$trait_type) {
