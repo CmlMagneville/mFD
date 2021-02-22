@@ -49,15 +49,15 @@ Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workfl
 
 <br />
 
-* a **data frame** summarizing traits values for each species called `fruits_traits` in
-this tutorial:
+* a **data frame** summarizing traits values for each species called
+`fruits_traits` in this tutorial:
 
 
 
 ```{r}
 data("fruits_traits", package = "mFD")
 knitr::kable(head(fruits_traits),
-             caption = "Species x traits data frame based on the **fruits** dataset")
+      caption = "Species x traits data frame based on the **fruits** dataset")
 ```
 
 <br />
@@ -71,8 +71,9 @@ a fruit in a basket) and this matrix looks as follows:
 
 ```{r}
 data("baskets_fruits_weights", package = "mFD")
-knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), centering = TRUE,
-             caption = "Species x assemblages matrix based on the **fruits** dataset")
+knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), 
+      centering = TRUE,
+      caption = "Species x assemblages matrix based on the **fruits** dataset")
 
 ```
 
@@ -86,7 +87,8 @@ Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workfl
 
 ```{r}
 data("fruits_traits_cat", package = "mFD")
-knitr::kable(head(fruits_traits_cat), caption = "Traits types based on **fruits & baskets** dataset")
+knitr::kable(head(fruits_traits_cat), 
+             caption = "Traits types based on **fruits & baskets** dataset")
 ```
 
 <br />
@@ -202,9 +204,13 @@ species**.
 
 <br />
 
-💡 **Note that even with** `q = 0`**, weights of species are still accounted for by FD.** 
-Hence, if the goal is to compute a richness-like index (*i.e.* accounting only for distance between species present), function `mFD::alpha.fd.hill()` should be applied to **species occurrence data** (coded as 0/1, previously computed using sp.tr.summary) so that all species have the same weight).
-Species occurrence data can be retrieve through the `mFD::asb.sp.summary()` function:
+💡 **Note that even with** `q = 0`**, weights of species are still accounted for
+by FD.** Hence, if the goal is to compute a richness-like index (*i.e.*
+accounting only for distance between species present), function
+`mFD::alpha.fd.hill()` should be applied to **species occurrence data** (coded
+as 0/1, previously computed using sp.tr.summary) so that all species have the
+same weight). Species occurrence data can be retrieve through the
+`mFD::asb.sp.summary()` function:
 
 <br />
 
@@ -218,8 +224,11 @@ baskets_fruits_occ <- baskets_summary$asb_sp_occ
 head(baskets_fruits_occ)
 
 # Compute alpha FD Hill with q = 0:
-baskets_FD0mean <- mFD::alpha.fd.hill(asb_sp_w = baskets_fruits_occ, sp_dist = fruits_gower, 
-                               tau = "mean", q = 0)
+baskets_FD0mean <- mFD::alpha.fd.hill(
+       asb_sp_w = baskets_fruits_occ, 
+       sp_dist  = fruits_gower, 
+       tau      = "mean", 
+       q        = 0)
 round(baskets_FD0mean$asb_FD_Hill, 2)
 ```
 
@@ -258,8 +267,8 @@ assemblages**.
 # retrieve total weight per basket:
 baskets_summary$asb_tot_w
 
-# Here baskets all contain 2000g of fruits, we illustrate how to compute relative ...
-# ... weights using the output of asb.sp.summary:
+# Here baskets all contain 2000g of fruits, we illustrate how to compute...
+# relative weights using the output of asb.sp.summary:
 
 baskets_fruits_relw <- baskets_fruits_weights / baskets_summary$asb_tot_w
 apply(baskets_fruits_relw, 1, sum)
@@ -278,8 +287,12 @@ Now we can compute functional beta-diversity of order `q = 2` (with `tau =
 
 ```{r}
 # Compute index:
-baskets_betaq2 <- mFD::beta.fd.hill(asb_sp_w = baskets_fruits_relw, sp_dist = fruits_gower, 
-                             q = 2, tau = "mean", beta_type = "Jaccard")
+baskets_betaq2 <- mFD::beta.fd.hill(
+       asb_sp_w  = baskets_fruits_relw, 
+       sp_dist   = fruits_gower, 
+       q         = 2,
+       tau       = "mean", 
+       beta_type = "Jaccard")
 
 # Then use the mFD::dist.to.df function to ease visualizing result
 mFD::dist.to.df(list_dist = list(FDq2 = baskets_betaq2$beta_fd_q$q2))
