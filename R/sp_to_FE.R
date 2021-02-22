@@ -19,34 +19,38 @@
 #'   functional entities. Two possible values: \emph{"fe_rank"} (FE are named
 #'   after their decreasing rank in term of number of species \emph{i.e.} fe_1
 #'   is the one gathering most species) and \emph{"tr_val"} (FE are named after
-#'   names of traits and of trait values for each FE, \emph{see details below}).
-#'   Default: fe_nm_type = "fe_rank".
+#'   names of traits and of trait values for each FE, if possible, \emph{see
+#'   details below}). Default: fe_nm_type = "fe_rank".
 #'
-#' @param check_input a logical value allowing to test or not the inputs.
-#'   Possible error messages will thus may be more understandable for the user
-#'   than R error messages. Default: check_input = TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'
 #' @note fe_nm_type = 'tr_val' is allowed \strong{only} if: \itemize{ \item
 #'   there are less than 7 traits \item none of them is fuzzy-coded (so that
 #'   names are not too long) \item all trait names and all trait values have
-#'   different 2 first letters } If these 3 conditions are valid, names of
+#'   different 2 first letters } If these 3 conditions are met, names of
 #'   Functional Entities are made as a character string of up to 2 letters for
 #'   trait name in upper case font then up to 2 letters for trait value in lower
 #'   case font, separated by "_" between traits. Trait names are abbreviated to
-#'   a single letter whenever possible. \emph{Examples:} ("TAc2_TBxx_TCyy" and
-#'   "TAc3_TBff_TCyy") or ("A2_Bx_Cy" & "A3_Bf_Cy")
+#'   a single letter whenever possible. \emph{Examples:} ("TAc2_TBxx_TCyy",
+#'   "TAc3_TBff_TCyy") or ("A2_Bx_Cy", "A3_Bf_Cy")
 #'
 #' @return a list of objects containing: \itemize{ \item \strong{fe_nm}: a
-#'   vector containing the name of each FE (following fe_nm_type).FE order is
-#'   done according to decreasing number of species. \item \strong{sp_fe}: a
-#'   vector containing for each species (first column) (ordered as rows of
-#'   \code{sp_tr}) the name of the FE it belongs to. FE order is done according
-#'   to decreasing number of species. \item \strong{fe_tr}: a dataframe
-#'   containing traits values (columns) for each FE (rows). FE order is done
-#'   according to decreasing number of species. \item \strong{fe_nb_sp}: a
-#'   vector containing species number per FE. If all FE have only one species, a
-#'   warning message is returned. FE order is done according to decreasing
-#'   number of species. \item \strong{details_fe}: a list containing:
+#'   vector with names of all FE (following fe_nm_type).FE are ordered 
+#'   according to the decreasing number of species they gather. \item
+#'   \strong{sp_fe}: a vector containing for each species the name of the FE it
+#'   belongs to. FE order is done according to decreasing number of species.
+#'   \item
+#'   \strong{fe_tr}: a dataframe
+#'   containing traits values (variables in columns) for each FE (rows). FE
+#'   order is done according to decreasing number of species. \item
+#'   \strong{fe_nb_sp}: a
+#'   vector with species number per FE. If all FE have only one species, a
+#'   warning message is returned. FE are ordered according to the decreasing
+#'   number of species they gather. \item \strong{details_fe}: a list
+#'   containing:
 #'   \emph{fe_codes} a vector containing character referring to traits values
 #'   (like a barcode) with names as in \code{fe_nm_type} and sorted according to
 #'   \code{fe_nb_sp} ; \emph{tr_uval} a list containing for each trait a vector
@@ -58,17 +62,34 @@
 #'   values per trait }
 #'
 #' @examples
-#' library(ade4)
-#' data("woangers")
-#' sp_tr <- na.omit(woangers$traits[, c("li", "pr", "fo", "he")])
-#' sp_tr$he <- as.ordered(sp_tr$he)
-#' tr_cat <- data.frame(
-#'   trait_name = colnames(sp_tr),
-#'   trait_type = c(rep("N", 2),"C", rep("O", 1)),
-#'   fuzzy_name = NA,
-#'   stringsAsFactors = FALSE)
-#' mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "tr_val")
-#' mFD::sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank")
+#' # Load species traits data:
+#'  data("fruits_traits", package = "mFD")
+#' 
+#' # Transform species traits data:
+#' # Only keep the first 4 traits to illustrate FEs:
+#'  fruits_traits <- fruits_traits[, c(1:4)]   
+#'
+#' # Load trait types data:
+#'  data("fruits_traits_cat", package = "mFD")
+#' 
+#' # Transform the trait types data to only keep traits 1 - 4:
+#'  fruits_traits_cat <- fruits_traits_cat[c(1:4), ]
+#'
+#' # Gather species into FEs:
+#' ## gathering species into FEs (FEs named according to the decreasing...
+#' ## ...  number of species they gather):
+#'  sp_FEs <- mFD::sp.to.fe(
+#'       sp_tr      = fruits_traits, 
+#'       tr_cat     = fruits_traits_cat, 
+#'       fe_nm_type = "fe_rank")
+#' ## display FEs names:
+#'  sp_FEs$fe_nm
+#' ## display for each species the name of the FE it belongs to:
+#'  sp_FEs$sp_fe
+#' ## display trait values for each FE:
+#'  sp_FEs$fe_tr
+#' ## display the number of species per FEs:
+#'  sp_FEs$fe_nb_sp
 #' 
 #' @author Sébastien Villéger, Nicolas Loiseau and Camille Magneville
 #' 
