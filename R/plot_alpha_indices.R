@@ -938,7 +938,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                             color = color_vert, fill = fill_vert, 
                             shape = shape_vert, size = size_vert) +
         
-        ggplot2::geom_point(data = grav_center_global_pool,
+        ggplot2::geom_point(data = as.data.frame(grav_center_global_pool),
                     ggplot2::aes_(x = fide_values[, 
                                     paste0("fide", sep = "_", faxes_nm[[1]])],
                                   y = fide_values[, 
