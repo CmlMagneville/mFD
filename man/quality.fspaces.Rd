@@ -89,8 +89,7 @@ as the (absolute or squared) deviation between trait-based distance (input)
 and distance in the PCoA-based space (raw Euclidean distance or scaled
 distance according to its maximum value and maximum of trait-based distance).
 Option to compute a functional dendrogram and its quality.
-This function is based on the framework presented in \emph{Maire et al 2015},
-DOI:10.1111/geb.12299).
+This function is based on the framework presented in Maire \emph{et al.} (2015).
 }
 \note{
 the maximum number of dimensions considered for assessing quality of
@@ -128,4 +127,9 @@ fspaces_quality_fruits <- mFD::quality.fspaces(
 # Retrieve Species Coordinates
 sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
+}
+\references{
+Maire \emph{et al.} (2015) How many dimensions are needed to accurately assess
+functional diversity? A pragmatic approach for assessing the quality of
+functional spaces \emph{Global Ecology and Biogeography}, \strong{24}, 728-740.\cr
 }
