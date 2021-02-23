@@ -1200,14 +1200,6 @@ beta_fd_indices_fruits <- mFD::beta.fd.multidim(
       check_input      = TRUE,
       beta_family      = c("Jaccard"),
       details_returned = TRUE)
-
-
-
-beta_fd_indices_fruits <- mFD::beta.fd.multidim(
-      sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
-      asb_sp_occ       = asb_sp_fruits_occ,
-      beta_family      = c("Jaccard"))
-
 ```
 
  <br />
@@ -1367,7 +1359,7 @@ available. For more information about them, read the function help file.
 
 Then, the function returns a multipanel plot:
 
-```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
+```{r, fig.height = 16, fig.width = 16, fig.align = "center", warning = FALSE}
 beta_plot_fruits
 ```
 
