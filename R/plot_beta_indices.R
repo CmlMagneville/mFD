@@ -282,6 +282,12 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   if (! is.null(faxes) & is.null(faxes_nm)) {
     faxes_nm <- faxes
   }
+  
+  # give faxes names if faxes set to NULL:
+  if (is.null(faxes_nm)) {
+    faxes_nm <- faxes
+  }
+  
   names(faxes_nm) <- faxes
   
   # number of axes
@@ -427,6 +433,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
         ggrepel::geom_text_repel(x = sp_faxes_coord_plot[, x], 
                                  y = sp_faxes_coord_plot[, y],
                                  label = sp_faxes_coord_plot[, "label"],
+                                 max.overlaps = Inf,
                                  size = nm_size, colour= nm_color, 
                                  fontface = nm_fontface,
                                  box.padding = grid::unit(2, 'lines'),
