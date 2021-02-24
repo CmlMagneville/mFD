@@ -57,8 +57,12 @@ correlation between traits.
 \examples{
 load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 
-mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = 'scale_center',
-                    compute_corr = 'pearson')
+mFD::tr.cont.fspace(
+    sp_tr        = sp_tr, 
+    pca          = TRUE, 
+    nb_dim       = 7, 
+    scaling      = 'scale_center',
+    compute_corr = 'pearson')
 }
 \author{
 Camille Magneville & Sébastien Villéger

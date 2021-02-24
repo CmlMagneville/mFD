@@ -224,10 +224,10 @@
 #'  If several plots are to be saved (for several indices), then files are
 #'  named as follow "name_file1", "name_file2"...
 #'
-#' @param check_input a logical value defining whether inputs are checked before
-#'  computation of indices. Possible error messages will thus may be more
-#'  understandable for the user than R error messages. Default: check_input =
-#'  TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'
 #' @return for the given assemblage, return a list of one \code{patchwork}
 #'   figure per functional indice containing plots for combinations of up to
@@ -279,58 +279,61 @@
 #' details_list_fruits <- alpha_fd_indices_fruits$details
 #' 
 #' # Compute the plots:
-#' mFD::alpha.multidim.plot(sp_faxes_coord = sp_faxes_coord_fruits, 
-#'  asb_sp_w = baskets_fruits_weights,
-#'  ind_vect = c("fdis",
-#'              "fnnd", "feve",
-#'              "fric", "fdiv",
-#'              "fori", "fspe"),
-#'  details_list = details_list_fruits,
-#'  asb_vect = c("basket_1"),
-#'  fd_ind_values = fd_ind_values_fruits,
-#'  faxes = NULL, faxes_nm = NULL,
-#'  range_faxes_lim = c(NA, NA),
-#'  color_bg = "grey95",
-#'  size_sp = 1,
-#'  size_centroid = 1,
-#'  size_centroid_asb2 = 1,
-#'  size_vert = 1,
-#'  size_sp_nm = 3,
-#'  color_sp = "#0072B2", color_sp_asb2 = "#D55E00",
-#'  color_sp_gp = "gray80",
-#'  color_segment = "#0072B2",
-#'  color_segment_asb2 = "#CC79A7",
-#'  color_centroid = '#0072B2',
-#'  color_centroid_asb2 = "#D55E00",
-#'  color_vert = NA, color_vert_asb2 = NA,
-#'  color_ch = "black",
-#'  color_sp_nm = "black",
-#'  fill_sp = "white",
-#'  fill_sp_asb2 = "white",
-#'  fill_sp_gp = "gray80",
-#'  fill_vert = NA,
-#'  fill_vert_asb2 = NA,
-#'  fill_ch = "white",
-#'  fill_centroid = '#0072B2',
-#'  fill_centroid_asb2 = "#D55E00",
-#'  alpha_ch = 0.3,
-#'  shape_sp_gp = 3,
-#'  shape_sp = 16,
-#'  shape_sp_asb2 = 15,
-#'  shape_vert = NA,
-#'  shape_vert_asb2 = NA,
-#'  shape_centroid = 10,
-#'  shape_centroid_asb2 = 12,
-#'  segment_size = 1,
-#'  segment_size_asb2 = 0.5,
-#'  linetype_segment = "solid",
+#' mFD::alpha.multidim.plot(
+#'  sp_faxes_coord        = sp_faxes_coord_fruits, 
+#'  asb_sp_w              = baskets_fruits_weights,
+#'  ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", "fori", 
+#'                            "fspe"),
+#'  details_list          = details_list_fruits,
+#'  asb_vect              = c("basket_1"),
+#'  fd_ind_values         = fd_ind_values_fruits,
+#'  faxes                 = NULL, 
+#'  faxes_nm              = NULL,
+#'  range_faxes_lim       = c(NA, NA),
+#'  color_bg              = "grey95",
+#'  size_sp               = 1,
+#'  size_centroid         = 1,
+#'  size_centroid_asb2    = 1,
+#'  size_vert             = 1,
+#'  size_sp_nm            = 3,
+#'  color_sp              = "#0072B2", 
+#'  color_sp_asb2         = "#D55E00",
+#'  color_sp_gp           = "gray80",
+#'  color_segment         = "#0072B2",
+#'  color_segment_asb2    = "#CC79A7",
+#'  color_centroid        = '#0072B2',
+#'  color_centroid_asb2   = "#D55E00",
+#'  color_vert            = NA, 
+#'  color_vert_asb2       = NA,
+#'  color_ch              = "black",
+#'  color_sp_nm           = "black",
+#'  fill_sp               = "white",
+#'  fill_sp_asb2          = "white",
+#'  fill_sp_gp            = "gray80",
+#'  fill_vert             = NA,
+#'  fill_vert_asb2        = NA,
+#'  fill_ch               = "white",
+#'  fill_centroid         = '#0072B2',
+#'  fill_centroid_asb2    = "#D55E00",
+#'  alpha_ch              = 0.3,
+#'  shape_sp_gp           = 3,
+#'  shape_sp              = 16,
+#'  shape_sp_asb2         = 15,
+#'  shape_vert            = NA,
+#'  shape_vert_asb2       = NA,
+#'  shape_centroid        = 10,
+#'  shape_centroid_asb2   = 12,
+#'  segment_size          = 1,
+#'  segment_size_asb2     = 0.5,
+#'  linetype_segment      = "solid",
 #'  linetype_segment_asb2 = "dashed",
-#'  scale_inf = 1, scale_sup = 3,
-#'  plot_sp_nm = NULL,
-#'  plot_ch = TRUE,
-#'  fontface_nm = "plain",
-#'  name_file = NULL,
-#'  check_input = TRUE)
+#'  scale_inf             = 1, 
+#'  scale_sup             = 3,
+#'  plot_sp_nm            = NULL,
+#'  plot_ch               = TRUE,
+#'  fontface_nm           = "plain",
+#'  name_file             = NULL,
+#'  check_input           = TRUE)
 #'  
 #' @author Camille Magneville and Sébastien Villéger
 #'
@@ -436,61 +439,16 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       }
     }
     
-    if (any(is.na(sp_faxes_coord))) {
-      stop("Error: The species*coordinates matrix contains NA. Please check.")
-    }
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates matrix.
-             Please add species names as row names.")
-    }
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates matrix.
-             Please add species names as row names.")
-    }
+    check.sp.faxes.coord(sp_faxes_coord)
     
-    if (is.matrix(asb_sp_w) == FALSE) {
-      stop("Error: 'asb_sp_w' must be a matrix")
-    }
+    check.asb.sp.w(asb_sp_w)
     
-    if (any(is.na(asb_sp_w))) {
-      stop("Error: The species*weights matrix contains NA. Please check.")
-    }
-    if (is.null(rownames(asb_sp_w))) {
-      stop("Error: No row names provided in species*weights matrix.
-             Please add assemblages names as row names.")
-    }
-    if (is.null(colnames(asb_sp_w))) {
-      stop("Error: No column names provided in species*weight matrix.
-             Please add species names as column names.")
-    }
-    
-    # Add a stop if there is a negative value in the occurrence dataframe:
-    if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight matrix should not contain negative values.
-           Please check.")
-    }
-    
-    asb_sp_w <- as.data.frame(asb_sp_w)
-    isnum_vect <- sapply(asb_sp_w, is.numeric)
-    
-    if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' matrix must only contain numeric values. 
-           Please convert values")
-    }
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_faxes_coord)))) {
       stop(paste("Error: Mismatch between names in species*weight and
                    species*coordinates matrix. Please check."))
     }
     
-    # Add a stop if some species do not belong to any assemblage:
-    if (min(apply(asb_sp_w, 2, sum)) == 0){
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain species:
-    if (min(apply(asb_sp_w, 1, sum)) == 0){
-      stop("Error: Some assemblages do not contain species.")
-    }
   }
   
   

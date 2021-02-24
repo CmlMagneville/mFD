@@ -1,26 +1,26 @@
 #' Compute the set of indices based on number of species in functional entities
 #' (FEs) following Mouillot et al (2014)
 #'
-#' @param asb_sp_occ a \strong{matrix} linking occurrences (coded as 0/1) of
+#' @param asb_sp_occ a matrix linking occurrences (coded as 0/1) of
 #'   species (columns) in a set of assemblages (rows). Warning: \strong{An
 #'   assemblage must contain at least one species}.
 #'
-#' @param sp_to_fe a \strong{list} with details of species clustering into FE
-#'   from \code{sp.to.fe}.
+#' @param sp_to_fe a list with details of species clustering into FE
+#'   from \code{\link{sp.to.fe}}.
 #'   
-#' @param ind_nm a \strong{vector} of character strings with the names of
+#' @param ind_nm a vector of character strings with the names of
 #'   functional diversity indices to compute among 'fred', 'fored' and 'fvuln'.
 #'   \bold{Indices names must be written in lower case letters}. Default: all
 #'   the indices are computed.
 #'
-#' @param check_input a \strong{logical value} allowing to test or not the
-#'   inputs. Possible error messages will thus may be more understandable for
-#'   the user than R error messages. Default: check_input = TRUE.
-#'
-#' @param details_returned a \strong{logical value} indicating whether the user
-#'   wants to details_returned. Details are used in graphical functions and thus
-#'   must be kept if the user want to have graphical outputs for the computed
-#'   indices.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
+#'   
+#' @param details_returned a logical value indicating whether details
+#'   about indices computation should be returned. These details are required by
+#'   \code{\link{alpha.fd.fe.plot}} to plot FEs indices.
 #'
 #' @return  \itemize{ \item \emph{asb_fdfe} a matrix containing for each
 #'   assemblage (rows), values of functional diversity indices (same names than
@@ -53,9 +53,18 @@
 #' asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
 #' 
 #' # Compute alpha fd indices:
-#' alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
-#'  ind_nm = c('fred', 'fored', 'fvuln'),
-#'  check_input = TRUE, details_returned = TRUE)
+#' alpha.fd.fe(
+#'    asb_sp_occ       = asb_sp_fruits_occ, 
+#'    sp_to_fe         = sp_to_fe_fruits,
+#'    ind_nm           = c('fred', 'fored', 'fvuln'),
+#'    check_input      = TRUE, 
+#'    details_returned = TRUE)
+#'  
+#' @references 
+#' Mouillot _et al._ (2014) Functional over-redundancy and high functional 
+#' vulnerability in global fish faunas on tropical reefs _PNAS_ **38**, 
+#' 13757-13762 \cr
+
 #'
 #' @author Camille Magneville
 #'
@@ -69,22 +78,8 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred",
   
   # check_inputs if asked:
   if (check_input == TRUE) {
-    if (is.null(rownames(asb_sp_occ))) {
-      stop("Error: No row names provided in species*assemblage matrix.
-             Please add assemblage names as column names.")
-    }
-    if (is.null(colnames(asb_sp_occ))) {
-      stop("Error: No column names provided in species*assemblage matrix.
-             Please add species names as column names.")
-    }
-    if (any(is.na(asb_sp_occ))) {
-      stop("Error: The species*assemblage matrix contains NA. Please check.")
-    }
     
-    if (any((asb_sp_occ != 0 & asb_sp_occ != 1))) {
-      stop("Error: The species*assemblage occurrence matrix should only 
-           contain 0 or 1. Please check.")
-    }
+    check.asb.sp.w.occ(asb_sp_occ)
     
     if (any(!ind_nm %in% c("fred", "fored", "fvuln"))) {
       stop("Error: Name of the functional indice to compute does not match with
@@ -102,16 +97,6 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred",
           be in the input 'sp_to_fe'.
           Please check that the function 'sp.to.fe' was applied on trait values 
           of the same set of species.")
-    }
-    
-    # Add a stop if some species do not belong to any
-    # assemblage:
-    if (min(apply(asb_sp_occ, 2, sum)) == 0) {
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain species:
-    if (min(apply(asb_sp_occ, 1, sum)) == 0) {
-      stop("Error: Some assemblages do not contain species.")
     }
     
   }

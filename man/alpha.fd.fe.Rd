@@ -14,26 +14,26 @@ alpha.fd.fe(
 )
 }
 \arguments{
-\item{asb_sp_occ}{a \strong{matrix} linking occurrences (coded as 0/1) of
+\item{asb_sp_occ}{a matrix linking occurrences (coded as 0/1) of
 species (columns) in a set of assemblages (rows). Warning: \strong{An
 assemblage must contain at least one species}.}
 
-\item{sp_to_fe}{a \strong{list} with details of species clustering into FE
-from \code{sp.to.fe}.}
+\item{sp_to_fe}{a list with details of species clustering into FE
+from \code{\link{sp.to.fe}}.}
 
-\item{ind_nm}{a \strong{vector} of character strings with the names of
+\item{ind_nm}{a vector of character strings with the names of
 functional diversity indices to compute among 'fred', 'fored' and 'fvuln'.
 \bold{Indices names must be written in lower case letters}. Default: all
 the indices are computed.}
 
-\item{check_input}{a \strong{logical value} allowing to test or not the
-inputs. Possible error messages will thus may be more understandable for
-the user than R error messages. Default: check_input = TRUE.}
+\item{check_input}{a logical value indicating whether key features the inputs
+are checked (e.g. class and/or mode of objects, names of rows and/or
+columns, missing values). If an error is detected, a detailed message is
+returned. Default: check.input = TRUE.}
 
-\item{details_returned}{a \strong{logical value} indicating whether the user
-wants to details_returned. Details are used in graphical functions and thus
-must be kept if the user want to have graphical outputs for the computed
-indices.}
+\item{details_returned}{a logical value indicating whether details
+about indices computation should be returned. These details are required by
+\code{\link{alpha.fd.fe.plot}} to plot FEs indices.}
 }
 \value{
 \itemize{ \item \emph{asb_fdfe} a matrix containing for each
@@ -71,10 +71,18 @@ asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
 
 # Compute alpha fd indices:
-alpha.fd.fe(asb_sp_occ = asb_sp_fruits_occ, sp_to_fe = sp_to_fe_fruits,
- ind_nm = c('fred', 'fored', 'fvuln'),
- check_input = TRUE, details_returned = TRUE)
-
+alpha.fd.fe(
+   asb_sp_occ       = asb_sp_fruits_occ, 
+   sp_to_fe         = sp_to_fe_fruits,
+   ind_nm           = c('fred', 'fored', 'fvuln'),
+   check_input      = TRUE, 
+   details_returned = TRUE)
+ 
+}
+\references{
+Mouillot \emph{et al.} (2014) Functional over-redundancy and high functional
+vulnerability in global fish faunas on tropical reefs \emph{PNAS} \strong{38},
+13757-13762 \cr
 }
 \author{
 Camille Magneville

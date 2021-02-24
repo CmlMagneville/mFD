@@ -103,7 +103,8 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
                                   stop_if_NA    = TRUE)
 
 # Compute functional spaces quality to retrieve species coordinates matrix:
-fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
+fspaces_quality_fruits <- mFD::quality.fspaces(
+ sp_dist             = sp_dist_fruits,
  maxdim_pcoa         = 10,
  deviation_weighting = "absolute",
  fdist_scaling       = FALSE,

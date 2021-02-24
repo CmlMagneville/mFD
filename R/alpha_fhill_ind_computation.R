@@ -1,32 +1,32 @@
 #' Compute functional alpha diversity indices based on Hill numbers
 #'
 #' Compute functional alpha diversity applied to distance between species
-#' following the framework from Chao _et al._(2019). FD is computed applying the
-#' special case where function 'f' in equation 3c is linear:f(dij(tau)) =
-#' dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
+#' following the framework from Chao _et al._(2019).
 #'
-#' @param asb_sp_w a \strong{matrix} with weight of species (columns) in a set
+#' @param asb_sp_w a matrix with weight of species (columns) in a set
 #'   of assemblages (rows). Rows and columns should have names. NA are not
 #'   allowed.
 #'
-#' @param sp_dist a \strong{matrix or dist object} with distance between
+#' @param sp_dist a matrix or dist object with distance between
 #'   species. Species names should be provided and match those in 'asb_sp_w'. NA
 #'   are not allowed.
 #'
-#' @param q a \strong{vector} containing values referring to the order of
-#'   diversity to use
+#' @param q a vector containing values referring to the order of
+#'   diversity to consider, could be 0, 1 and/or 2.
 #'
-#' @param tau a \strong{character string} with name of function to apply to
+#' @param tau a character string with name of function to apply to
 #'   distance matrix (i.e. among all pairs of species) to get the threshold used
-#'   to define 'functionally indistinct set of species'. Could be qet to 'mean'
-#'   (default), 'min' or 'max'.
+#'   to define 'functionally indistinct set of species'. Could be 'mean'
+#'   (default), 'min' or 'max'. If tau = 'min" and there are null values in
+#'   \code{sp_dist}, the threshold is the lowest strictly positive value and a
+#'   warning message is displayed.
 #'
-#' @param check_input a \strong{logical value} defining whether inputs are
-#'   checked before computation of indices. Possible error messages will thus
-#'   may be more understandable for the user than R error messages. Default:
-#'   check_input = TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'
-#' @param details_returned a \strong{logical value} indicating whether the user
+#' @param details_returned a logical value indicating whether the user
 #'   want to store values used for computing indices (see list below)
 #'
 #' @return a list with: \itemize{
@@ -47,14 +47,19 @@
 #'  
 #' @author Sébastien Villéger and Camille Magneville
 #'
-#' @note FD computed with q=2 and tau = 'max' is equivalent to the Rao's
+#' @note FD is computed applying the special case where function 'f' in equation
+#'   3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
+#'   FD computed with q=2 and tau = 'max' is equivalent to the Rao's
 #'   quadratic entropy from Ricotta & Szeidl (2009, J Theor Biol). FD computed
 #'   with tau = 'min' is equivalent to Hill number taxonomic diversity, thus
 #'   with q=0 it is species richness (S), with q = 1 it is exponential of
 #'   Shannon entropy (H) and with q = 2 it is 1/(1-D) where D is Simpson
-#'   diversity FD is computed applying the special case where function 'f' in
-#'   equation 3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0)=0 and
-#'   f(tau)=1.
+#'   diversity.  Note that even when q=0, weights of species are accounted for
+#'   in FD. Hence to compute FD based only on distance between species present
+#'   in an assemblage (i.e. a richness-like index) , asb_sp_w has to contain
+#'   only species presence/absence coded as 0/1 with q=0 and tau=”mean”. If
+#'   asb_sp_w contains only 0/1 and q>0, it means that all species have the same
+#'   contribution to FD.
 #'
 #' @examples
 #' # Load Species*Traits dataframe:
@@ -73,9 +78,13 @@
 #'                                   stop_if_NA    = TRUE)
 #' 
 #' # Compute alpha fd hill indices:
-#' alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
-#'  q = c(0, 1, 2),
-#'  tau = 'mean', check_input = TRUE, details_returned = TRUE)
+#' alpha.fd.hill(
+#'    asb_sp_w         = baskets_fruits_weights, 
+#'    sp_dist          = sp_dist_fruits, 
+#'    q                = c(0, 1, 2),
+#'    tau              = 'mean', 
+#'    check_input      = TRUE, 
+#'    details_returned = TRUE)
 #'  
 #'@references 
 #'   Chao _et al._ (2019) An attribute‐diversity approach to functional
@@ -100,9 +109,7 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
   ## check_inputs if required #####
   if (check_input == TRUE) {
     
-    if (is.matrix(asb_sp_w) == FALSE) {
-      stop("Error: 'asb_sp_w' must be a matrix")
-    }
+    check.asb.sp.w(asb_sp_w)
     
     if (any(is.na(sp_dist))) {
       stop("Error: The species distances matrix contains NA. Please check.")
@@ -110,24 +117,6 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
     if (is.null(rownames(sp_sp_dist))) {
       stop("Error: No row names provided in species distances matrix.
              Please add species names as row names.")
-    }
-    if (any(is.na(asb_sp_w))) {
-      stop("Error: The species*weights dataframe contains NA. Please check.")
-    }
-    if (is.null(rownames(asb_sp_w))) {
-      stop("Error: No row names provided in species*weights dataframe.
-             Please add assemblages names as row names.")
-    }
-    if (is.null(colnames(asb_sp_w))) {
-      stop("Error: No column names provided in species*assemblage dataframe.
-             Please add species names as column names.")
-    }
-    
-    isnum_vect <- sapply(asb_sp_w, is.numeric)
-    
-    if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. 
-           Please convert values")
     }
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_sp_dist)))) {
@@ -142,23 +131,6 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
     
     if (any(!tau %in% c("min", "mean", "max"))) {
       stop(paste("Error: tau should be 'min', 'mean' or 'max'. Please check."))
-    }
-    
-    # Add a stop if some species do not belong to any
-    # assemblage:
-    if (min(apply(asb_sp_w, 2, sum)) == 0) {
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain species:
-    if (min(apply(asb_sp_w, 1, sum)) == 0) {
-      stop("Error: Some assemblages do not contain species.")
-    }
-    
-    # Add a stop if there is a negative value in the
-    # occurrence dataframe:
-    if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight dataframe should not contain negative 
-           values. Please check.")
     }
     
   }

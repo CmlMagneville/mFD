@@ -14,28 +14,30 @@ alpha.fd.hill(
 )
 }
 \arguments{
-\item{asb_sp_w}{a \strong{matrix} with weight of species (columns) in a set
+\item{asb_sp_w}{a matrix with weight of species (columns) in a set
 of assemblages (rows). Rows and columns should have names. NA are not
 allowed.}
 
-\item{sp_dist}{a \strong{matrix or dist object} with distance between
+\item{sp_dist}{a matrix or dist object with distance between
 species. Species names should be provided and match those in 'asb_sp_w'. NA
 are not allowed.}
 
-\item{q}{a \strong{vector} containing values referring to the order of
-diversity to use}
+\item{q}{a vector containing values referring to the order of
+diversity to consider, could be 0, 1 and/or 2.}
 
-\item{tau}{a \strong{character string} with name of function to apply to
+\item{tau}{a character string with name of function to apply to
 distance matrix (i.e. among all pairs of species) to get the threshold used
-to define 'functionally indistinct set of species'. Could be qet to 'mean'
-(default), 'min' or 'max'.}
+to define 'functionally indistinct set of species'. Could be 'mean'
+(default), 'min' or 'max'. If tau = 'min" and there are null values in
+\code{sp_dist}, the threshold is the lowest strictly positive value and a
+warning message is displayed.}
 
-\item{check_input}{a \strong{logical value} defining whether inputs are
-checked before computation of indices. Possible error messages will thus
-may be more understandable for the user than R error messages. Default:
-check_input = TRUE.}
+\item{check_input}{a logical value indicating whether key features the inputs
+are checked (e.g. class and/or mode of objects, names of rows and/or
+columns, missing values). If an error is detected, a detailed message is
+returned. Default: check.input = TRUE.}
 
-\item{details_returned}{a \strong{logical value} indicating whether the user
+\item{details_returned}{a logical value indicating whether the user
 want to store values used for computing indices (see list below)}
 }
 \value{
@@ -57,19 +59,22 @@ assemblages
 }
 \description{
 Compute functional alpha diversity applied to distance between species
-following the framework from Chao \emph{et al.}(2019). FD is computed applying the
-special case where function 'f' in equation 3c is linear:f(dij(tau)) =
-dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
+following the framework from Chao \emph{et al.}(2019).
 }
 \note{
+FD is computed applying the special case where function 'f' in equation
+3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 FD computed with q=2 and tau = 'max' is equivalent to the Rao's
 quadratic entropy from Ricotta & Szeidl (2009, J Theor Biol). FD computed
 with tau = 'min' is equivalent to Hill number taxonomic diversity, thus
 with q=0 it is species richness (S), with q = 1 it is exponential of
 Shannon entropy (H) and with q = 2 it is 1/(1-D) where D is Simpson
-diversity FD is computed applying the special case where function 'f' in
-equation 3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0)=0 and
-f(tau)=1.
+diversity.  Note that even when q=0, weights of species are accounted for
+in FD. Hence to compute FD based only on distance between species present
+in an assemblage (i.e. a richness-like index) , asb_sp_w has to contain
+only species presence/absence coded as 0/1 with q=0 and tau=”mean”. If
+asb_sp_w contains only 0/1 and q>0, it means that all species have the same
+contribution to FD.
 }
 \examples{
 # Load Species*Traits dataframe:
@@ -88,9 +93,13 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
                                   stop_if_NA    = TRUE)
 
 # Compute alpha fd hill indices:
-alpha.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
- q = c(0, 1, 2),
- tau = 'mean', check_input = TRUE, details_returned = TRUE)
+alpha.fd.hill(
+   asb_sp_w         = baskets_fruits_weights, 
+   sp_dist          = sp_dist_fruits, 
+   q                = c(0, 1, 2),
+   tau              = 'mean', 
+   check_input      = TRUE, 
+   details_returned = TRUE)
  
 }
 \references{

@@ -29,19 +29,21 @@ there are at least 2 species with the same value, and \code{F} for fuzzy
 traits (i.e. described with several values defined with several column);
 \item \strong{fuzzy_name}: name of fuzzy-coded trait to which 'sub-trait'
 belongs (if trait is not fuzzy, ignored so could be trait name or NA).
-\item \strong{trait_weight}: Optional, a numeric vector of length n (traits number)
-to specify a weight for each trait.
+\item \strong{trait_weight}: Optional, a numeric vector of length n (traits
+number) to specify a weight for each trait.
 }}
 
 \item{metric}{the distance to be computed:
 \code{euclidean}, the Euclidean distance,
-\code{gower}, the Classical Gower distance as defined by Gower (1971), extent by Bello et al. (2021)
-Based on the \code{\link[gawdis]{gawdis}}}
+\code{gower}, the Classical Gower distance as defined by Gower (1971), extent by
+Bello et al. (2021) Based on the \code{\link[gawdis]{gawdis}}}
 
-\item{scale_euclid}{only when computing euclidean distance a string value to compute (or not)
-scaling of quantitative traits using the \code{\link{tr.cont.scale}} function.
+\item{scale_euclid}{only when computing euclidean distance a string value to
+compute (or not) scaling of quantitative traits using the
+\code{\link{tr.cont.scale}} function.
 Possible options are:
-\code{range} (standardize by the range: \eqn{({x' = x - min(x) )} / (max(x) - min (x))})
+\code{range} (standardize by the range: \eqn{({x' = x - min(x) )} / (max(x) -
+  min (x))})
 \code{center} (use the center transformation: \eqn{x' = x - mean(x)}),
 \code{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}}),
 \code{scale_center} (use the scale-center transformation:
@@ -49,17 +51,20 @@ Possible options are:
 \code{noscale} traits are not scaled
 Default is \code{scale_center}.}
 
-\item{ordinal_var}{Character string specifying the method to be used for ordinal variables
-(i.e. ordered).
+\item{ordinal_var}{Character string specifying the method to be used for
+ordinal variables (i.e. ordered).
 \code{classic} simply treats ordinal variables as continuous variables.
-\verb{metric`` refers to Eq. 3 of Podani (1999);  }podani\verb{ refers to Eqs. 2a-b of Podani (1999),  #'   both options convert ordinal variables to ranks.  Default is}classic`}
+\code{metric} refers to Eq. 3 of Podani (1999);
+\code{podani} refers to Eqs. 2a-b of Podani (1999),
+#'   both options convert ordinal variables to ranks.
+Default is\code{classic}}
 
 \item{weight_type}{Type of used method to weight traits.
 \code{user} – user defined weights in tr_cat
 \code{equal} – all traits having the same weight.
-More methods are available using gawdis from gawdis package. To compute gower
-distance with fuzzy trait and traits weight please refer to gawdis() from gawdis package
-Default is\code{equal}}
+More methods are available using gawdis from gawdis package. To compute
+gower distance with fuzzy trait and traits weight please refer to gawdis()
+from gawdis package Default is\code{equal}}
 
 \item{stop_if_NA}{a logical value to stop or not the process if the
 \code{sp_tr} data frame contains NA. Functional measures are sensitive to
@@ -106,9 +111,9 @@ Gower, J.C. (1971) A general coefficient of similarity and some of its
 properties. \emph{Biometrics}, \strong{27}, 857-871.\cr
 Johnson \emph{et al.} (2020) Handling missing values in trait data.
 \emph{Global Ecology and Biogeography}, \strong{30}, 51-62.\cr
-Bello \emph{et al.} (2021) Towards a more balanced combination of multiple traits when
-computing functional differences between species \emph{Method in Ecology and Evolution},
-doi: https://doi.org/10.1111/2041-210X.13537
+Bello \emph{et al.} (2021) Towards a more balanced combination of multiple
+traits when computing functional differences between species \emph{Method in
+Ecology and Evolution}, doi: https://doi.org/10.1111/2041-210X.13537
 }
 \author{
 Nicolas Loiseau & Sébastien Villéger

@@ -2,48 +2,45 @@
 #'
 #' Compute functional beta-diversity indices based on Hill numbers applied to
 #' distance between species following the framework from Chao _et al._ (2019).
-#' FD is computed applying the special case where function 'f' in equation 3c is
-#' linear: f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
 #'
-#' @param asb_sp_w a \strong{matrix} with weight of species (columns) in a set
+#' @param asb_sp_w a matrix with weight of species (columns) in a set
 #'   of assemblages (rows). Rows and columns should have names. NA are not
 #'   allowed.
 #'
-#' @param sp_dist a \strong{matrix or dist object} with distance between
+#' @param sp_dist a matrix or dist object with distance between
 #'   species. Species names should be provided and match those in 'asb_sp_w'. NA
 #'   are not allowed.
 #'
-#' @param q a \strong{vector} containing values referring to the order of
+#' @param q a vector containing values referring to the order of
 #'   diversity to use
 #'
-#' @param tau a \strong{character string} with name of function to apply to
+#' @param tau a character string with name of function to apply to
 #'   distance matrix (i.e. among all pairs of species) to get the threshold used
 #'   to define 'functionally indistinct set of species'. Could be qet to 'mean'
 #'   (default), 'min' or 'max'.
 #'
-#' @param beta_type a \strong{character string} with name of framework used for
+#' @param beta_type a character string with name of framework used for
 #'   computing beta-diversity, either 'Jaccard' (default) or 'Sorensen'.
 #'
-#' @param check_input a \strong{logical value} defining whether inputs are
-#'   checked before computation of indices. Possible error messages will thus
-#'   may be more understandable for the user than R error messages. Default:
-#'   check_input = TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'
-#' @param details_returned a \strong{logical value} indicating whether the user
+#' @param details_returned a logical value indicating whether the user
 #'   want to store values used for computing indices (see list below)
 #'
 #' @return a list with: \itemize{
 #'
-#'  \item \emph{asb_FDbeta} a dataframe with a row for each pair of assemblages
-#'  (names in 2 first columns, as in \strong{asb_sp_w}) and beta-diversity
-#'  for each value of q in other column(s)
-#'
-#'  \item if \strong{details_returned} turned to TRUE a list \emph{details} with
+#'  \item \emph{asb_FDbeta} a list with for each value of q a \emph{dist} object
+#'  with beta functional diversity indices for all pairs of assemblages
+#'  item if \strong{store.details} turned to TRUE a list \emph{details} with
 #'  \itemize{
-#'  \item \emph{asb_FDalpha} a dataframe with mean alpha diversity of each pair
-#'  of assemblages (rows) and values of q (columns)
-#'  \item \emph{asb_FDgamma} a dataframe with gamma diversity of each pair
-#'  of assemblages (rows) and values of q (columns)
+#'  \item \emph{malpha_fd_q} a list with for each value of q a \emph{dist}
+#'  object with mean alpha functional diversity indices for all pairs of
+#'  assemblages
+#'  \item \emph{gamma_fd_q} a list with for each value of q a \emph{dist} object
+#'  with gamma functional diversity indices for all pairs of assemblages
 #'  }
 #'  }
 #'
@@ -54,13 +51,15 @@
 #' diversity. If tau='min' and there are species with null distance, tau is
 #' set to the minimum non-null value and a warning message is displayed.
 #' Indices values are stored as \emph{dist} objects to optimize memory.
+#' See below example of how merging distance values in a \emph{dataframe} with
+#' \code{\link{dist.to.df}}
 #'
 #' @examples
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
-#' # Load Assemblages*Species dataframe:      
-#' data('baskets_fruits_weights', package = 'mFD')
+#' # Load Traits types dataframe:      
+#' data('fruits_traits_cat', package = 'mFD')
 #'    
 #' # Compute functional distance 
 #' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
@@ -72,9 +71,22 @@
 #'                                   stop_if_NA    = TRUE)
 #' 
 #' # Compute beta functional hill indices:
-#' beta.fd.hill(asb_sp_w = baskets_fruits_weights, sp_dist = sp_dist_fruits, 
-#'  q = c(0,1,2), tau = 'mean',
-#'  beta_type = 'Jaccard', check_input = TRUE, details_returned = TRUE)
+#' baskets_beta <- beta.fd.hill(
+#'       asb_sp_w         = baskets_fruits_weights, 
+#'       sp_dist          = sp_dist_fruits, 
+#'       q                = c(0,1,2), 
+#'       tau              = 'mean',
+#'       beta_type        = 'Jaccard', 
+#'       check_input      = TRUE, 
+#'       details_returned = TRUE)
+#'  
+#' # Then use the mFD::dist.to.df function to ease visualizing result:
+#' ## for q = 0:
+#' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q0))
+#' ## for q = 1:
+#' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q1))
+#' ## for q = 2:
+#' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
 #'  
 #' @references 
 #'   Chao _et al._ (2019) An attribute-diversity approach to functional
@@ -102,8 +114,9 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
   
   
   ## check_inputs if required #####
-  if (check_input == TRUE) 
-  {
+  if (check_input == TRUE)  {
+    
+    check.asb.sp.w(asb_sp_w)
     
     if (any(is.na(sp_dist))) {
       stop("Error: The species distances matrix contains NA. Please check.")
@@ -112,17 +125,7 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
       stop("Error: No row names provided in species distance matrix.
              Please add species names as row names.")
     }
-    if (any(is.na(asb_sp_w))) {
-      stop("Error: The species*weights matrix contains NA. Please check.")
-    }
-    if (is.null(rownames(asb_sp_w))) {
-      stop("Error: No row names provided in species*weights dataframe.
-             Please add assemblages names as row names.")
-    }
-    if (is.null(colnames(asb_sp_w))) {
-      stop("Error: No column names provided in species*weights dataframe.
-             Please add species names as column names.")
-    }
+    
     if (any(!(colnames(asb_sp_w) %in% 
               rownames(sp_sp_dist)))) {
       stop(paste("Error: Mismatch between names in species*weight and
@@ -143,35 +146,6 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
                               "Sorensen"))) {
       stop(paste("Error: beta_type should be 'Jaccard' or 'Sorensen'. 
                  Please check."))
-    }
-    
-    # Add a stop if some species do not
-    # belong to any assemblage:
-    if (min(apply(asb_sp_w, 2, sum)) == 
-        0) {
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain
-    # species:
-    if (min(apply(asb_sp_w, 1, sum)) == 
-        0) {
-      stop("Error: Some assemblages do not contain species.")
-    }
-    
-    # Add a stop if there is a negative value
-    # in the occurrence dataframe:
-    if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight dataframe should not contain negative 
-      values.
-           Please check.")
-    }
-    
-    isnum_vect <- sapply(asb_sp_w, 
-                         is.numeric)
-    
-    if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. 
-           Please convert values")
     }
     
   }  # end of checking inputs

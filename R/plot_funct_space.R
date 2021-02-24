@@ -89,10 +89,10 @@
 #' @param nm_fontface a character string for font of species labels (e.g.
 #'   "italic", "bold"). Default: nm_fontface = 'plain'.
 #'
-#' @param check_input a logical value defining whether inputs are checked before
-#'   computation of indices. Possible error messages will thus may be more
-#'   understandable for the user than R error messages. Default: check_input =
-#'   TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'   
 #' @return a list containing \code{ggplot2} objects that were built before
 #'   assembling them in the figure using the library \code{patchwork}. If
@@ -134,7 +134,7 @@
 #'   fdendro             = "average")
 #'  
 #' # Retrieve species coordinates matrix:
-#'  sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 #' 
 #' # Plot functional spaces:
 #'  mFD::funct.space.plot(
@@ -194,25 +194,11 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
   ## check_inputs if asked: ####
   if (check_input == TRUE) {
     
-    if(! is.matrix(sp_faxes_coord)){
-      stop("Error: 'sp_faxes_coord' must be a matrix. Please change its class.")
-    }
+    check.sp.faxes.coord(sp_faxes_coord)
+    # so ok when ggploting:
     sp_faxes_coord <- as.data.frame(sp_faxes_coord)
     
-    if (any(is.na(sp_faxes_coord))) {
-      stop("Error: The species*coordinates dataframe contains NA. 
-           Please check.")
-    }
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates dataframe.
-             Please add species names as row names.")
-    }
-    if (is.null(colnames(sp_faxes_coord))) {
-      stop("Error: No column names provided in species*coordinates dataframe.
-             Please add dimensions labels as column names.")
-    }
-    
-    if ( (! is.null(plot_sp_nm)) &
+    if ((! is.null(plot_sp_nm)) &
          any( ! plot_sp_nm %in% rownames(sp_faxes_coord))) {
       stop("Error: species names in 'plot_sp_nm' can not be found in
            'sp_faxes_coord'row names. 

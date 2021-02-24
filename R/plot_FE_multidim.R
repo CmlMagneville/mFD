@@ -1,8 +1,8 @@
 #' Illustrate functional diversity indices based on functional entities
 #' (FE).Graphical representation of distribution of species in Functional
 #' Entities (FE) and of indices from Mouillot et al 2014. \strong{To plot
-#' functional indices, functional indices values must have been retrieve through
-#' the use of the} \code{\link{alpha.fd.fe}} function.
+#' functional indices, functional indices values must have been computed first
+#' through the use of the} \code{\link{alpha.fd.fe}} function.
 #'
 #' @param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} applied
 #'   on assemblage of interest with \code{details_returned = TRUE}.
@@ -31,32 +31,34 @@
 #'  color used to draw barplots. Default: color_fill_bar = "grey80".
 #'
 #' @param color_fill_fvuln a R color name or an hexadecimal code referring to
-#'   the color used to fill barplots containing only one species. It refers to
-#'   the FVuln value. Default: color_fill_fvuln = "lightcoral".
+#'   the color used to fill barplot containing only one species for illustrating
+#'   FVuln. Default: color_fill_fvuln = "lightcoral".
 #'
 #' @param color_arrow_fvuln  a R color name or an hexadecimal code referring to
 #'  the color used to draw the horizontal arrow showing the proportion of FEs
-#'  containing only one species. It refers to the FVuln value. If there is only
+#'  containing only one species for illustrating FVuln. If there is only
 #'  one FE containing one species, the arrow will be a point. Default:
 #'  color_arrow_fvuln = "indianred4".
 #'
 #' @param size_line_fred a numeric value referring to the size of the horizontal
-#'  linerefering to the FRed value. Default: size_line_fred = 1.5.
+#'  line illustrating FRed. Default: size_line_fred = 1.5.
 #'
 #' @param size_arrow_fvuln a numeric value referring to the size of the arrow
 #'  showing the proportion of FEs containing only one species. Default:
 #'  size_arrow_fvuln = 1.
 #'
-#' @param check_input a logical value allowing to test or not the inputs.
-#'  Possible error messages will thus may be more understandable for the user
-#'  than R error messages. Default: check_input = TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'
 #' @return a \code{patchwork} object with a barplot of number of species per FE.
-#'  Indices names provided in 'plot_ind_nm' are illustrated. Func. Redundancy
-#'  (average number of species per FE) is illustrated with a horizontal line.
-#'  Funct. Over-redundancy (proportion of species in excess in FE richer than
-#'  average) is illustrated with top part of these bars filled with
-#'  'color_fill_fored'. Functional vulnerability (proportion of Fe with a single
+#'  Indices names provided in 'plot_ind_nm' are illustrated. Functional
+#'  Redundancy (average number of species per FE) is illustrated with a
+#'  horizontal line. Functional Over-redundancy (proportion of species in excess
+#'  in FE richer than average) is illustrated with top part of these bars filled
+#'  with
+#'  'color_fill_fored'. Functional Vulnerability (proportion of FE with a single
 #'  species) is illustrated with bars of these vulnerable FE filled with
 #'  'color_fill_fvuln' and the double-head arrow highlighting their number.
 #'  FE-based indices values on top of the plot. if \code{name_file} is provided,
@@ -91,10 +93,10 @@
 #' 
 #' # Compute alpha fd indices
 #' alpha_fd_fe_fruits <- mFD::alpha.fd.fe(
-#'   asb_sp_occ  = asb_sp_fruits_occ, 
-#'   sp_to_fe    = sp_to_fe_fruits,
-#'   ind_nm      = c("fred", "fored", "fvuln"),
-#'   check_input = TRUE, 
+#'   asb_sp_occ       = asb_sp_fruits_occ, 
+#'   sp_to_fe         = sp_to_fe_fruits,
+#'   ind_nm           = c("fred", "fored", "fvuln"),
+#'   check_input      = TRUE, 
 #'   details_returned = TRUE)
 #'   
 #' # Plot fd fe indices
@@ -116,6 +118,7 @@
 #'   
 #' @importFrom ggplot2 geom_segment geom_hline geom_bar ggsave ggplot xlab ylab
 #' @importFrom ggplot2 theme aes element_line element_text element_rect
+#' @importFrom ggplot2 scale_y_continuous
 #' @importFrom grid arrow unit
 #' @importFrom patchwork plot_annotation
 #' @importFrom stats reorder
@@ -181,12 +184,15 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
   data_k<-data.frame(fe_nm = names(fe_nbsp_k),
                      fe_nbsp = fe_nbsp_k )
   
+  breaks_max <- max(fe_nbsp_k)
+  breaks <- seq(0, breaks_max, by = 1)
   
   # plotting number of species for all FE
   plot_k <- ggplot2::ggplot(data = data_k, 
                             ggplot2::aes(
                             x = stats::reorder(fe_nm, -fe_nbsp), y = fe_nbsp)) +
     ggplot2::geom_bar(stat = "identity", fill = color_fill_bar) +
+    ggplot2::scale_y_continuous(breaks = breaks) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90),
                    panel.background = ggplot2::element_rect(fill = "white", 
                                                             colour = "grey50", 
@@ -285,6 +291,6 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
                             height= 4,
                             width = 5,
                             units= "in",
-                            dpi = res_file )
+                            dpi = res_file)
   }
 }

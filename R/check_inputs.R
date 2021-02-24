@@ -174,6 +174,13 @@ check.sp.faxes.coord <- function(sp_faxes_coord) {
     stop("No row names provided in the species x coordinates matrix. Please ", 
          "add species names as row names.")
   }
+  
+  if (is.null(colnames(sp_faxes_coord))) {
+    stop("Error: No column names provided in species*coordinates matrix.
+             Please add axes names as column names.")
+  }
+  
+  
 }
 
 
@@ -279,7 +286,31 @@ check.asb.sp.tr <- function() {
 
 ## ... ----
 
-check.asb.sp.w.occ <- function() {
-  invisible(NULL)
+check.asb.sp.w.occ <- function(asb_sp_occ) {
+  if (is.null(rownames(asb_sp_occ))) {
+    stop("Error: No row names provided in the species occurence matrix.
+             Please add assemblages names as row names.")
+  }
+  if (is.null(colnames(asb_sp_occ))) {
+    stop("Error: No column names provided in the species occurence matrix.
+             Please add species names as column names.")
+  }
+  if (any(is.na(asb_sp_occ))) {
+    stop("Error: The species occurence matrix contains NA. Please check.")
+  }
+  if (any(asb_sp_occ != 0 & asb_sp_occ != 
+          1)) {
+    stop("Error: The species occurence matrix should contain only 0 and 1.
+           Please check.")
+  }
+  # Add a stop if some species do not belong to any
+  # assemblage:
+  if (min(apply(asb_sp_occ, 2, sum)) == 0) {
+    stop("Error: Some species are absent from all assemblages.")
+  }
+  # Add a stop if some asb do not contain species:
+  if (min(apply(asb_sp_occ, 1, sum)) == 0) {
+    stop("Error: Some assemblages do not contain species.")
+  }
 }
 

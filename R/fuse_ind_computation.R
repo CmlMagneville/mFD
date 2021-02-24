@@ -35,15 +35,18 @@
 #'   }
 #'
 #' @examples
+#' # Load species traits data:
 #' sp_tr <- read.csv(system.file('extdata', 'data_traits_MMA_ursus.csv', 
 #'  package = 'mFD'),
 #' dec=',', sep=';', header=TRUE,row.names=1, na.strings='NA')
+#' 
 #' # Trait compilation and ordination:
 #'  dimorphism <- ordered(sp_tr$dimorphism)
 #'  breeding_site   <- ordered(sp_tr$breeding_site)
 #'  social_behavior <- ordered(sp_tr$social_behavior)
 #'  weight_max <- log(sp_tr$adult_weight_max)
 #'  social_group <- log(sp_tr$social_group_mean)
+#'  
 #' # Trait Matrix construction:
 #'  sp_tr_end <- data.frame(main_diet = sp_tr$main_diet, 
 #'   foraging_water_depth = sp_tr$foraging_water_depth,
@@ -58,9 +61,11 @@
 #'   weight_max = sp_tr$adult_weight_max,
 #'   dimorphism = sp_tr$dimorphism)
 #'  rownames(sp_tr_end) <- rownames(sp_tr)
+#'  
 #' # Function weigthing vector:
 #'  v <- c(0.25, 0.25, 0.25, 0.25, 0.20, 0.20, 0.20, 0.20, 0.20, 0.5, 
 #'    0.5, 0.5, 0.5)
+#'    
 #' # Gower distance calculation:
 #'  sp_tr_end$main_diet <- as.factor(sp_tr_end$main_diet)
 #'  sp_tr_end$foraging_water_depth <- as.factor(sp_tr_end$foraging_water_depth)
@@ -69,22 +74,31 @@
 #'  sp_tr_end$social_behavior <- as.factor(sp_tr_end$social_behavior)
 #'  sp_dist_tr <- cluster::daisy(sp_tr_end, metric = c('gower'), 
 #'   type = list(symm = c(4)), weights = v)
+#'   
 #' # Principal coordinate analyses
-#'  Pcoa <- ade4::dudi.pco(ade4::quasieuclid(sp_dist_tr), scann = FALSE, nf = 40)
+#'  Pcoa <- ade4::dudi.pco(ade4::quasieuclid(sp_dist_tr), scann = FALSE,
+#'    nf = 40)
 #'  sp_faxes_coord <- Pcoa$li[1:40]
-#'# FUSE calculation:
-#'  FUSE_res <- mFD::fuse(sp_dist = sp_dist_tr, 
-#'   sp_faxes_coord = as.matrix(sp_faxes_coord), 
-#'   nb_NN = 5, GE = sp_tr$IUCN_num,
-#'   standGE = TRUE)
-#'  FUSE_res2 <- mFD::fuse(sp_dist = sp_dist_tr, 
-#'   sp_faxes_coord = as.matrix(sp_faxes_coord), 
-#'   nb_NN = 5,GE = sp_tr$IUCN_50,
-#'   standGE = TRUE)
-#'  FUSE_res3 <- mFD::fuse(sp_dist = sp_dist_tr, 
-#'   sp_faxes_coord = as.matrix(sp_faxes_coord), 
-#'   nb_NN = 5, GE = sp_tr$IUCN_100,
-#'  standGE = TRUE)
+#'  
+#' # FUSE calculation:
+#'  FUSE_res <- mFD::fuse(
+#'     sp_dist        = sp_dist_tr, 
+#'     sp_faxes_coord = as.matrix(sp_faxes_coord), 
+#'     nb_NN          = 5,  
+#'     GE             = sp_tr$IUCN_num,
+#'     standGE        = TRUE)
+#'  FUSE_res2 <- mFD::fuse(
+#'     sp_dist        = sp_dist_tr, 
+#'     sp_faxes_coord = as.matrix(sp_faxes_coord), 
+#'     nb_NN          = 5,
+#'     GE             = sp_tr$IUCN_50,
+#'     standGE        = TRUE)
+#'  FUSE_res3 <- mFD::fuse(
+#'     sp_dist        = sp_dist_tr, 
+#'     sp_faxes_coord = as.matrix(sp_faxes_coord), 
+#'     nb_NN          = 5, 
+#'     GE             = sp_tr$IUCN_100,
+#'     standGE        = TRUE)
 #'  
 #' @author Fabien Leprieur et Camille Albouy
 #' 

@@ -29,7 +29,7 @@
 #' @examples
 #' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
-#' mFD::tr.cont.scale(sp_tr, std_method = 'scale_center')
+#' mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center')
 
 
 tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
@@ -122,8 +122,12 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #' @examples
 #' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
-#' mFD::tr.cont.fspace(sp_tr, pca = TRUE, nb_dim = 7, scaling = 'scale_center',
-#'                     compute_corr = 'pearson')
+#' mFD::tr.cont.fspace(
+#'     sp_tr        = sp_tr, 
+#'     pca          = TRUE, 
+#'     nb_dim       = 7, 
+#'     scaling      = 'scale_center',
+#'     compute_corr = 'pearson')
 
 
 tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7, 
@@ -223,10 +227,11 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
     for (i in 2:nb_dim) {
       
       sp_dist_multidim2 <- stats::dist(sp_faxes_coord[, 
-                                                      1:i], method = "euclidean")
+                                                      1:i], 
+                                       method = "euclidean")
       quality_nbdim[paste0(i, "D"), c("mAD", 
                                       "mSD")] <- deviation_dist(sp_dist_init, 
-                                                                sp_dist_multidim2)
+                                                              sp_dist_multidim2)
       
       sp_dist_multidim[[i - 1]] <- sp_dist_multidim2
       names(sp_dist_multidim)[i - 1] <- paste0(i, 
@@ -241,11 +246,10 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return_list1 <- list(quality_nbdim, as.matrix(sp_faxes_coord), 
                            sp_dist_multidim, corr_tr_coeff)
       
-      names(return_list1) <- c("mAD and mSD for each functional space", 
-                               "species coordinates in functional space", 
-                               "species distance in functional space", 
-                               "correlation coefficients between traits
-                               and their associated pvalue")
+      names(return_list1) <- c("quality_metrics", 
+                               "sp_faxes_coord", 
+                               "sp_dist", 
+                               "tr_correl")
       return(return_list1)
       
     } else {
@@ -254,9 +258,9 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return_list1 <- list(quality_nbdim, sp_faxes_coord, 
                            sp_dist_multidim)
       
-      names(return_list1) <- c("mAD and mSD for each functional space", 
-                               "species coordinates in functional space", 
-                               "species distance in functional space")
+      names(return_list1) <- c("quality_metrics", 
+                               "sp_faxes_coord", 
+                               "sp_dist")
       return(return_list1)
     }
     
@@ -274,10 +278,9 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return_list2 <- list(sp_faxes_coord, sp_dist_init, 
                            corr_tr_coeff)
       
-      names(return_list2) <- c("species coordinates in functional space", 
-                               "species distances in functional space", 
-                               paste("correlation coefficients between traits", 
-                                     "and their associated pvalue"))
+      names(return_list2) <- c("sp_faxes_coord", 
+                               "sp_dist", 
+                               paste("tr_correl"))
       return(return_list2)
       
     } else {
@@ -286,8 +289,8 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return_list2 <- list(as.matrix(sp_faxes_coord), 
                            sp_dist_init)
       
-      names(return_list2) <- c("species coordinates in functional space", 
-                               "species distances in functional space")
+      names(return_list2) <- c("sp_faxes_coord", 
+                               "sp_dist")
       return(return_list2)
     }
   }

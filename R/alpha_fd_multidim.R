@@ -4,29 +4,29 @@
 #' functional diversity. The user can choose which functional indices to
 #' compute.
 #'
-#' @param sp_faxes_coord a \strong{matrix} of species coordinates in a chosen
+#' @param sp_faxes_coord a matrix of species coordinates in a chosen
 #'   functional space. Species coordinates have been retrieved thanks to
 #'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#' @param asb_sp_w a \strong{matrix} linking weight of species (columns) and a
+#' @param asb_sp_w a matrix linking weight of species (columns) and a
 #'   set of assemblages (rows).
 #'
-#' @param ind_vect a \strong{vector} of character string of the name of
+#' @param ind_vect a vector of character string of the name of
 #'   functional indices to compute. \strong{Indices names must be written in
 #'   lower case letters}. Possible indices to compute are: 'fide', fdis',
 #'   'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 'fori' and 'fspe'. Default: all the
 #'   indices are computed.
 #'
-#' @param scaling a \strong{logical value} indicating if scaling is to be done
+#' @param scaling a logical value indicating if scaling is to be done
 #'   (TRUE) or not (FALSE) on functional indices. Scaling is used to be able to
 #'   compare indices values between assemblages. Default: scaling = TRUE.
 #'
-#' @param check_input a \strong{logical value} defining whether inputs are
-#'   checked before computation of indices. Possible error messages will thus
-#'   may be more understandable for the user than R error messages. Default:
-#'   check_input = TRUE.
+#' @param check_input a logical value indicating whether key features the inputs
+#'   are checked (e.g. class and/or mode of objects, names of rows and/or
+#'   columns, missing values). If an error is detected, a detailed message is
+#'   returned. Default: check.input = TRUE.
 #'
-#' @param details_returned a \strong{logical value} indicating whether the user
+#' @param details_returned a logical value indicating whether the user
 #'   want to store details. Details are used in graphical functions and thus
 #'   must be kept if the user want to have graphical outputs for the computed
 #'   indices.
@@ -126,70 +126,13 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
            Please check and rewright them following the function help.")
     }
     
-    if (!is.matrix(sp_faxes_coord)) {
-      stop("Error: species coordinates on functional axes should be provided as
-      a matrix. Please check.")
-    }
+    check.sp.faxes.coord(sp_faxes_coord)
     
-    if (any(is.na(sp_faxes_coord))) {
-      stop("Error: The species*coordinates matrix contains NA. Please check.")
-    }
-    
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates matrix.
-             Please add species names as row names.")
-    }
-    
-    if (is.null(rownames(sp_faxes_coord))) {
-      stop("Error: No row names provided in species*coordinates matrix.
-             Please add species names as row names.")
-    }
-    
-    if (is.matrix(asb_sp_w) == FALSE) {
-      stop("Error: 'asb_sp_w' must be a matrix")
-    }
-    
-    if (any(is.na(asb_sp_w))) {
-      stop("Error: The species*weights dataframe contains NA. Please check.")
-    }
-    
-    if (is.null(rownames(asb_sp_w))) {
-      stop("Error: No row names provided in species*weights dataframe.
-             Please add assemblages names as row names.")
-    }
-    
-    if (is.null(colnames(asb_sp_w))) {
-      stop("Error: No column names provided in species*assemblage dataframe.
-             Please add species names as column names.")
-    }
-    
-    isnum_vect <- sapply(asb_sp_w, is.numeric)
-    
-    if (FALSE %in% isnum_vect) {
-      stop("Error: The 'asp_sp_w' dataframe must only contain numeric values. 
-           Please convert values")
-    }
+    check.asb.sp.w(asb_sp_w)
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_faxes_coord)))) {
       stop(paste("Error: Mismatch between names in species*weight and
                    species*coordinates matrix. Please check."))
-    }
-    
-    # Add a stop if some species do not belong to any
-    # assemblage:
-    if (any(apply(asb_sp_w, 2, sum)) == 0) {
-      stop("Error: Some species are absent from all assemblages.")
-    }
-    # Add a stop if some asb do not contain species:
-    if (any(apply(asb_sp_w, 1, sum)) == 0) {
-      stop("Error: Some assemblages do not contain species.")
-    }
-    
-    # Add a stop if there is a negative value in the
-    # occurrence dataframe:
-    if (any(asb_sp_w < 0)) {
-      stop("Error: The species*weight dataframe should not contain negative 
-          values.Please check.")
     }
     
   }

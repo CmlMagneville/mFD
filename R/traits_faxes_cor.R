@@ -32,7 +32,7 @@
 #'   the color of points when relationships between the trait and the axis is
 #'   significant. Default is `dark blue`.
 #'
-#' @return A data frame with for each combination of trait and axis (rows), the  
+#' @return a data frame with for each combination of trait and axis (rows), the  
 #'   name of the test performed, and the corresponding statistics and p-value. 
 #'   If `plot = TRUE` a multi-panel figure with traits as columns and axes as 
 #'   rows is also plotted. When relationships between trait and axis is 
@@ -267,7 +267,7 @@ traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL,
     # if plot to be returned:
     # adding title and legend to plot:
     tr_faxes_plot <- tr_faxes_plot + 
-      patchwork::plot_annotation(title = "Relation between traits and PCoA axes",
+     patchwork::plot_annotation(title = "Relation between traits and PCoA axes",
                                  caption = "Made with mFD package")
     
     # displaying or saving:

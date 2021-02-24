@@ -721,7 +721,7 @@ fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k,
     }
   }
   nm_sp_asb_k <- colnames(asb_sp_relatw_k)
-  fori_asb_k <- (asb_sp_relatw_k %*% dist_nn_global_pool[nm_sp_asb_k])
+  fori_asb_k <- (asb_sp_relatw_k %*% as.matrix(dist_nn_global_pool[nm_sp_asb_k]))
   return(fori_asb_k)
 }
 

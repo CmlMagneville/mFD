@@ -277,10 +277,10 @@ plot_ch = TRUE.}
 If several plots are to be saved (for several indices), then files are
 named as follow "name_file1", "name_file2"...}
 
-\item{check_input}{a logical value defining whether inputs are checked before
-computation of indices. Possible error messages will thus may be more
-understandable for the user than R error messages. Default: check_input =
-TRUE.}
+\item{check_input}{a logical value indicating whether key features the inputs
+are checked (e.g. class and/or mode of objects, names of rows and/or
+columns, missing values). If an error is detected, a detailed message is
+returned. Default: check.input = TRUE.}
 }
 \value{
 for the given assemblage, return a list of one \code{patchwork}
@@ -338,58 +338,61 @@ fd_ind_values_fruits
 details_list_fruits <- alpha_fd_indices_fruits$details
 
 # Compute the plots:
-mFD::alpha.multidim.plot(sp_faxes_coord = sp_faxes_coord_fruits, 
- asb_sp_w = baskets_fruits_weights,
- ind_vect = c("fdis",
-             "fnnd", "feve",
-             "fric", "fdiv",
-             "fori", "fspe"),
- details_list = details_list_fruits,
- asb_vect = c("basket_1"),
- fd_ind_values = fd_ind_values_fruits,
- faxes = NULL, faxes_nm = NULL,
- range_faxes_lim = c(NA, NA),
- color_bg = "grey95",
- size_sp = 1,
- size_centroid = 1,
- size_centroid_asb2 = 1,
- size_vert = 1,
- size_sp_nm = 3,
- color_sp = "#0072B2", color_sp_asb2 = "#D55E00",
- color_sp_gp = "gray80",
- color_segment = "#0072B2",
- color_segment_asb2 = "#CC79A7",
- color_centroid = '#0072B2',
- color_centroid_asb2 = "#D55E00",
- color_vert = NA, color_vert_asb2 = NA,
- color_ch = "black",
- color_sp_nm = "black",
- fill_sp = "white",
- fill_sp_asb2 = "white",
- fill_sp_gp = "gray80",
- fill_vert = NA,
- fill_vert_asb2 = NA,
- fill_ch = "white",
- fill_centroid = '#0072B2',
- fill_centroid_asb2 = "#D55E00",
- alpha_ch = 0.3,
- shape_sp_gp = 3,
- shape_sp = 16,
- shape_sp_asb2 = 15,
- shape_vert = NA,
- shape_vert_asb2 = NA,
- shape_centroid = 10,
- shape_centroid_asb2 = 12,
- segment_size = 1,
- segment_size_asb2 = 0.5,
- linetype_segment = "solid",
+mFD::alpha.multidim.plot(
+ sp_faxes_coord        = sp_faxes_coord_fruits, 
+ asb_sp_w              = baskets_fruits_weights,
+ ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", "fori", 
+                           "fspe"),
+ details_list          = details_list_fruits,
+ asb_vect              = c("basket_1"),
+ fd_ind_values         = fd_ind_values_fruits,
+ faxes                 = NULL, 
+ faxes_nm              = NULL,
+ range_faxes_lim       = c(NA, NA),
+ color_bg              = "grey95",
+ size_sp               = 1,
+ size_centroid         = 1,
+ size_centroid_asb2    = 1,
+ size_vert             = 1,
+ size_sp_nm            = 3,
+ color_sp              = "#0072B2", 
+ color_sp_asb2         = "#D55E00",
+ color_sp_gp           = "gray80",
+ color_segment         = "#0072B2",
+ color_segment_asb2    = "#CC79A7",
+ color_centroid        = '#0072B2',
+ color_centroid_asb2   = "#D55E00",
+ color_vert            = NA, 
+ color_vert_asb2       = NA,
+ color_ch              = "black",
+ color_sp_nm           = "black",
+ fill_sp               = "white",
+ fill_sp_asb2          = "white",
+ fill_sp_gp            = "gray80",
+ fill_vert             = NA,
+ fill_vert_asb2        = NA,
+ fill_ch               = "white",
+ fill_centroid         = '#0072B2',
+ fill_centroid_asb2    = "#D55E00",
+ alpha_ch              = 0.3,
+ shape_sp_gp           = 3,
+ shape_sp              = 16,
+ shape_sp_asb2         = 15,
+ shape_vert            = NA,
+ shape_vert_asb2       = NA,
+ shape_centroid        = 10,
+ shape_centroid_asb2   = 12,
+ segment_size          = 1,
+ segment_size_asb2     = 0.5,
+ linetype_segment      = "solid",
  linetype_segment_asb2 = "dashed",
- scale_inf = 1, scale_sup = 3,
- plot_sp_nm = NULL,
- plot_ch = TRUE,
- fontface_nm = "plain",
- name_file = NULL,
- check_input = TRUE)
+ scale_inf             = 1, 
+ scale_sup             = 3,
+ plot_sp_nm            = NULL,
+ plot_ch               = TRUE,
+ fontface_nm           = "plain",
+ name_file             = NULL,
+ check_input           = TRUE)
  
 }
 \author{
