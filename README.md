@@ -31,7 +31,7 @@ be used:
 
 ``` r
 library(remotes)
-remotes::install_github("CmlMagneville/mFD", force = TRUE)
+remotes::install_github("CmlMagneville/mFD")
 library(mFD)
 ```
 
@@ -59,7 +59,9 @@ possibilities, please refer to the
 
 To cite package `mFD` in publications use:
 
-    __ADD CITATION HERE__
+``` r
+citation("mFD")
+```
 
 ## Contributions
 

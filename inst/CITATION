@@ -1,0 +1,14 @@
+citHeader("To cite mFD in publications use:")
+
+bibentry(
+  bibtype = "Manual",
+  title   = "{mFD}: {A} Computation of Functional Spaces and Functional Indices",
+  author  = c(person("Camille", "Magneville"), person("Nicolas", "Loiseau"), 
+              person("Camille", "Albouy"), person("Nicolas", "Casajus"), 
+              person("Thomas", "Claverie"), person("Arthur", "Escalas"), 
+              person("Fabien", "Leprieur"), person("Eva", "Maire"), 
+              person("David", "Mouillot"), person("Sebastien", "Villeger")),
+  year    = "2021",
+  note    = "R package version 1.0.0",
+  url     = "https://CRAN.R-project.org/package=mFD"
+)
