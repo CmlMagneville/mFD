@@ -36,14 +36,15 @@ number) to specify a weight for each trait.
 \item{metric}{the distance to be computed:
 \code{euclidean}, the Euclidean distance,
 \code{gower}, the Classical Gower distance as defined by Gower (1971), extent by
-Bello et al. (2021) Based on the \code{\link[gawdis]{gawdis}}}
+de Bello \emph{et al.} (2021) and based on the \code{\link[gawdis]{gawdis}}
+function.}
 
 \item{scale_euclid}{only when computing euclidean distance a string value to
 compute (or not) scaling of quantitative traits using the
 \code{\link{tr.cont.scale}} function.
 Possible options are:
-\code{range} (standardize by the range: \eqn{({x' = x - min(x) )} / (max(x) -
-  min (x))})
+\code{range} (standardize by the range:
+\eqn{({x' = x - min(x) )} / (max(x) - min (x))})
 \code{center} (use the center transformation: \eqn{x' = x - mean(x)}),
 \code{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}}),
 \code{scale_center} (use the scale-center transformation:
@@ -51,20 +52,19 @@ Possible options are:
 \code{noscale} traits are not scaled
 Default is \code{scale_center}.}
 
-\item{ordinal_var}{Character string specifying the method to be used for
+\item{ordinal_var}{a character string specifying the method to be used for
 ordinal variables (i.e. ordered).
-\code{classic} simply treats ordinal variables as continuous variables.
+\code{classic} simply treats ordinal variables as continuous variables;
 \code{metric} refers to Eq. 3 of Podani (1999);
 \code{podani} refers to Eqs. 2a-b of Podani (1999),
-#'   both options convert ordinal variables to ranks.
-Default is\code{classic}}
+Both options convert ordinal variables to ranks. Default is \code{classic}.}
 
-\item{weight_type}{Type of used method to weight traits.
-\code{user} – user defined weights in tr_cat
+\item{weight_type}{the type of used method to weight traits.
+\code{user} – user defined weights in tr_cat,
 \code{equal} – all traits having the same weight.
-More methods are available using gawdis from gawdis package. To compute
-gower distance with fuzzy trait and traits weight please refer to gawdis()
-from gawdis package Default is\code{equal}}
+More methods are available using \code{\link[gawdis]{gawdis}} from \code{gawdis}
+package. To compute gower distance with fuzzy trait and traits weight
+please refer to \code{\link[gawdis]{gawdis}}. Default is \code{equal}.}
 
 \item{stop_if_NA}{a logical value to stop or not the process if the
 \code{sp_tr} data frame contains NA. Functional measures are sensitive to
@@ -72,7 +72,7 @@ missing traits. For further explanations, see the Note section.
 Default is \code{TRUE}.}
 }
 \value{
-A \code{dist} object containing distance between each pair of species.
+a \code{dist} object containing distance between each pair of species.
 }
 \description{
 For a given combination of traits, this function returns the functional
@@ -86,6 +86,7 @@ delete species with missing or extrapolate missing traits (see
 Johnson \emph{et al.} (2020)).
 }
 \examples{
+\dontrun{
 # Load Species x Traits data
 data("fruits_traits", package = "mFD")
 
@@ -95,7 +96,7 @@ data("fruits_traits_cat", package = "mFD")
 # Remove fuzzy traits for this example and thus remove lat column:
 fruits_traits     <- fruits_traits[ , -c(6:8)]
 fruits_traits_cat <- fruits_traits_cat[-c(6:8), ]
-fruits_traits_cat <- fruits_traits_cat[, -3]
+fruits_traits_cat <- fruits_traits_cat[ , -3]
 
 # Compute Functional Distance
 sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
@@ -106,15 +107,19 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
                                   weight_type   = "equal",
                                   stop_if_NA    = TRUE)
 }
+}
 \references{
-Gower, J.C. (1971) A general coefficient of similarity and some of its
+de Bello \emph{et al.} (2021) Towards a more balanced combination of multiple
+traits when computing functional differences between species.
+\emph{Method in Ecology and Evolution}, accepted,
+doi: https://doi.org/10.1111/2041-210X.13537.
+Gower (1971 ) A general coefficient of similarity and some of its
 properties. \emph{Biometrics}, \strong{27}, 857-871.\cr
 Johnson \emph{et al.} (2020) Handling missing values in trait data.
 \emph{Global Ecology and Biogeography}, \strong{30}, 51-62.\cr
-Bello \emph{et al.} (2021) Towards a more balanced combination of multiple
-traits when computing functional differences between species \emph{Method in
-Ecology and Evolution}, doi: https://doi.org/10.1111/2041-210X.13537
+Podani (1999) Extending Gower's general coefficient of similarity to ordinal
+characters, \emph{Taxon}, \strong{48}, 331-340.
 }
 \author{
-Nicolas Loiseau & Sébastien Villéger
+Nicolas Loiseau & Sebastien Villeger
 }

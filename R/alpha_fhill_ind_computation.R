@@ -1,4 +1,4 @@
-#' Compute functional alpha diversity indices based on Hill numbers
+#' Compute Functional alpha-Diversity Indices based on Hill Numbers
 #'
 #' Compute functional alpha diversity applied to distance between species
 #' following the framework from Chao _et al._(2019).
@@ -24,7 +24,7 @@
 #' @param check_input a logical value indicating whether key features the inputs
 #'   are checked (e.g. class and/or mode of objects, names of rows and/or
 #'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: check.input = TRUE.
+#'   returned. Default: `check.input = TRUE`.
 #'
 #' @param details_returned a logical value indicating whether the user
 #'   want to store values used for computing indices (see list below)
@@ -44,8 +44,6 @@
 #'  assemblages
 #'  }
 #'  }
-#'  
-#' @author Sébastien Villéger and Camille Magneville
 #'
 #' @note FD is computed applying the special case where function 'f' in equation
 #'   3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
@@ -60,8 +58,18 @@
 #'   only species presence/absence coded as 0/1 with q=0 and tau=”mean”. If
 #'   asb_sp_w contains only 0/1 and q>0, it means that all species have the same
 #'   contribution to FD.
+#'   
+#' @references 
+#' Chao _et al._ (2019) An attribute‐diversity approach to functional
+#'   diversity, functional beta diversity, and related (dis)similarity measures.
+#'   _Ecological Monographs_, **89**.\cr
 #'
+#' @author Sebastien Villeger and Camille Magneville
+#'
+#' @export
+#' 
 #' @examples
+#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -85,13 +93,7 @@
 #'    tau              = 'mean', 
 #'    check_input      = TRUE, 
 #'    details_returned = TRUE)
-#'  
-#'@references 
-#'   Chao _et al._ (2019) An attribute‐diversity approach to functional
-#'   diversity, functional beta diversity, and related (dis)similarity measures.
-#'   _Ecological Monographs_, **89**.\cr
-#'
-#'@export
+#' }
 
 alpha.fd.hill <- function(asb_sp_w, sp_dist, 
                           q = c(0, 1, 2), tau = "mean", check_input = TRUE, 
@@ -102,35 +104,35 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
   
   sp_sp_dist <- sp_dist
   
-  if (is.matrix(sp_sp_dist) == FALSE) {
+  if (!is.matrix(sp_sp_dist)) {
     sp_sp_dist <- as.matrix(sp_sp_dist)
   }
   
   ## check_inputs if required #####
-  if (check_input == TRUE) {
+  if (check_input) {
     
     check.asb.sp.w(asb_sp_w)
     
     if (any(is.na(sp_dist))) {
-      stop("Error: The species distances matrix contains NA. Please check.")
+      stop("The species distances matrix contains NA. Please check.")
     }
+    
     if (is.null(rownames(sp_sp_dist))) {
-      stop("Error: No row names provided in species distances matrix.
-             Please add species names as row names.")
+      stop("No row names provided in species distances matrix. Please add ", 
+           "species names as row names.")
     }
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_sp_dist)))) {
-      stop(paste("Error: Mismatch between names in species*weight and
-                   species distances matrix. Please check."))
+      stop("Mismatch between names in species*weight and species distances ", 
+           "matrix. Please check.")
     }
     
     if (any(!q %in% c(0, 1, 2))) {
-      stop(paste("Error: q should be 0, 1 and/or 2.
-                  Please check."))
+      stop("q should be 0, 1 and/or 2. Please check.")
     }
     
     if (any(!tau %in% c("min", "mean", "max"))) {
-      stop(paste("Error: tau should be 'min', 'mean' or 'max'. Please check."))
+      stop("tau should be 'min', 'mean' or 'max'. Please check.")
     }
     
   }
@@ -172,15 +174,14 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
   
   # applying tau threshold to distance matrix
   dij_tau <- sp_sp_dist
-  dij_tau[which(dij_tau > tau_dist, arr.ind = T)] <- tau_dist
+  dij_tau[which(dij_tau > tau_dist, arr.ind = TRUE)] <- tau_dist
   
   
   #### computing diversity of assemblages ####
   
   # empty matrix to store outputs
   asb_FD_Hill <- matrix(NA, nrow(asb_sp_w), length(q), 
-                        dimnames = list(row.names(asb_sp_w), paste0("FD_q", 
-                                                                    q)))
+                        dimnames = list(row.names(asb_sp_w), paste0("FD_q", q)))
   
   # loop on assemblages (equations id refers to those
   # in Chao et al 2019
@@ -190,19 +191,18 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
     nplus_k <- asb_totw[k]
     
     # species names present in assemblage k
-    sp_k <- colnames(asb_sp_w)[which(asb_sp_w[k, 
-    ] > 0)]
+    sp_k <- colnames(asb_sp_w)[which(asb_sp_w[k, ] > 0)]
     
     # f(dij(tau)) with f being linear so dij(tau)/tau
     # (see bottom right of p7)
-    f_dij_tau <- dij_tau[sp_k, sp_k]/tau_dist
+    f_dij_tau <- dij_tau[sp_k, sp_k] / tau_dist
     
     # 'abundance of species given tau' (eq 3c)
     a_k <- (1 - f_dij_tau) %*% asb_sp_w[k, sp_k]
     
     # attribute contribution of species given tau (eq
     # 3d)
-    v_k <- asb_sp_w[k, sp_k]/a_k[, 1]
+    v_k <- asb_sp_w[k, sp_k] / a_k[ , 1]
     
     # diversity of order 0 (eq 4c)
     if (0 %in% q) {
@@ -212,16 +212,13 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
     # diversity of order 1 (eq 4d)
     if (1 %in% q) {
       asb_FD_Hill[k, "FD_q1"] <- exp(sum(-v_k * 
-                                           a_k/nplus_k * log(a_k/nplus_k)))
+                                           a_k / nplus_k * log(a_k / nplus_k)))
     }
     
     # diversity of order 2 (eq 4e)
     if (2 %in% q) {
-      asb_FD_Hill[k, "FD_q2"] <- 1/(sum(v_k * 
-                                          (a_k/nplus_k)^2))
+      asb_FD_Hill[k, "FD_q2"] <- 1 / (sum(v_k * (a_k / nplus_k) ^ 2))
     }
-    
-    
   }  # end of k
   
   
@@ -231,13 +228,11 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
   res <- asb_FD_Hill
   
   # details if required
-  if (details_returned == TRUE) {
+  if (details_returned) {
     res <- list(asb_FD_Hill = asb_FD_Hill, tau_dist = tau_dist, 
                 details = list(asb_totw = asb_totw, asb_sp_relw = asb_sp_relw))
   }
   
   # returning
   return(res)
-  
-  
 }  # end of function

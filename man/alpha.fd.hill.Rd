@@ -2,7 +2,7 @@
 % Please edit documentation in R/alpha_fhill_ind_computation.R
 \name{alpha.fd.hill}
 \alias{alpha.fd.hill}
-\title{Compute functional alpha diversity indices based on Hill numbers}
+\title{Compute Functional alpha-Diversity Indices based on Hill Numbers}
 \usage{
 alpha.fd.hill(
   asb_sp_w,
@@ -35,7 +35,7 @@ warning message is displayed.}
 \item{check_input}{a logical value indicating whether key features the inputs
 are checked (e.g. class and/or mode of objects, names of rows and/or
 columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.}
+returned. Default: \code{check.input = TRUE}.}
 
 \item{details_returned}{a logical value indicating whether the user
 want to store values used for computing indices (see list below)}
@@ -77,6 +77,7 @@ asb_sp_w contains only 0/1 and q>0, it means that all species have the same
 contribution to FD.
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -100,7 +101,7 @@ alpha.fd.hill(
    tau              = 'mean', 
    check_input      = TRUE, 
    details_returned = TRUE)
- 
+}
 }
 \references{
 Chao \emph{et al.} (2019) An attribute‐diversity approach to functional
@@ -108,5 +109,5 @@ diversity, functional beta diversity, and related (dis)similarity measures.
 \emph{Ecological Monographs}, \strong{89}.\cr
 }
 \author{
-Sébastien Villéger and Camille Magneville
+Sebastien Villeger and Camille Magneville
 }

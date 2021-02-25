@@ -2,7 +2,7 @@
 % Please edit documentation in R/alpha_fd_multidim.R
 \name{alpha.fd.multidim}
 \alias{alpha.fd.multidim}
-\title{Compute a set of alpha functional indices for a set of assemblages}
+\title{Compute a Set of alpha Functional Indices for a Set of Assemblages}
 \usage{
 alpha.fd.multidim(
   sp_faxes_coord,
@@ -34,7 +34,7 @@ compare indices values between assemblages. Default: scaling = TRUE.}
 \item{check_input}{a logical value indicating whether key features the inputs
 are checked (e.g. class and/or mode of objects, names of rows and/or
 columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.}
+returned. Default: \code{check.input = TRUE}.}
 
 \item{details_returned}{a logical value indicating whether the user
 want to store details. Details are used in graphical functions and thus
@@ -74,6 +74,7 @@ functional diversity. The user can choose which functional indices to
 compute.
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -116,8 +117,8 @@ alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
 # Retrieve alpha diversity indices table
 fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 fd_ind_values_fruits
-
+}
 }
 \author{
-Camille Magneville & Sebastien Villeger
+Camille Magneville and Sebastien Villeger
 }

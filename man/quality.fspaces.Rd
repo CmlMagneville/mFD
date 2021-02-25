@@ -2,7 +2,7 @@
 % Please edit documentation in R/quality_fspaces.R
 \name{quality.fspaces}
 \alias{quality.fspaces}
-\title{Compute functional spaces and return their quality}
+\title{Compute Functional Spaces their Quality}
 \usage{
 quality.fspaces(
   sp_dist,
@@ -13,20 +13,20 @@ quality.fspaces(
 )
 }
 \arguments{
-\item{sp_dist}{a \strong{dist object} with pairwise distance among all
-species (at least 3 species needed). Functional distance matrix from trait
-values can be computed using \code{\link{funct.dist}} function.}
+\item{sp_dist}{a dist object with pairwise distance among all species (at
+least 3 species needed). Functional distance matrix from trait values can
+be computed using \code{\link{funct.dist}} function.}
 
-\item{fdendro}{a \strong{character string} indicating the clustering
+\item{fdendro}{a character string indicating the clustering
 algorithm to use to compute dendrogram. Should be one of the method
 recognized by \code{\link[stats]{hclust}} (e.g. 'average' for UPGMA).
-Default: fdendro = NULL (so no dendrogram computed).}
+Default: \code{fdendro = NULL} (so no dendrogram computed).}
 
-\item{maxdim_pcoa}{a single \strong{numeric value} with maximum number of
-PCoA axes to consider to build multidimensional functional spaces. Default:
-maxdim_pcoa = 10. See note about number of axes actually considered.}
+\item{maxdim_pcoa}{a single numeric value with maximum number of PCoA axes to
+consider to build multidimensional functional spaces. Default:
+\code{maxdim_pcoa = 10}. See below about number of axes actually considered.}
 
-\item{deviation_weighting}{a \strong{character string} referring to the
+\item{deviation_weighting}{a character string referring to the
 method(s) used to weight the differences between species pairwise distance
 in the functional space and trait-based distance. \code{'absolute'}
 (default) means absolute differences are used to compute mean absolute
@@ -34,27 +34,24 @@ deviation \emph{mad} index; \code{'squared'} means squared differences are
 used to compute root of mean squared deviation \emph{rmsd} index. Both
 values could be provided to compare quality metrics.}
 
-\item{fdist_scaling}{a \strong{vector} with logical value(s) specifying
+\item{fdist_scaling}{a vector with logical value(s) specifying
 whether distances in the functional space should be scaled before computing
 differences with trait-based distances. Scaling ensures that trait-based
 distances and distances in the functional space have the same maximum.
-Default: FALSE. Both values could be provided to compare quality metrics.}
+Default: \code{FALSE}. Both values could be provided to compare quality metrics.}
 }
 \value{
-a list with: \itemize{
-
-\item \code{$quality_fspaces}: a dataframe with quality metric(s) for each
-functional space. Functional spaces are named as 'pcoa_.d'
-and if required 'tree_clustering method'. Quality metrics are named after
+A list with:
+\itemize{
+\item \code{$quality_fspaces}: a data frame with quality metric(s) for each
+functional space. Functional spaces are named as 'pcoa_.d' and if
+required 'tree_clustering method'. Quality metrics are named after
 deviation_weighting ('mad' for 'absolute' and and 'rmsd' for 'squared')
 and if fdist_scaling is TRUE with suffix '_scaled'.
-
-\item \code{$details_trdist} a list with 2 elements:
-\code{$trdist_summary} a vector with minimum (min), maximum (max),
-mean (mean) and standard deviation (sd) of \code{sp_dist} ;
-\code{$trdist_euclidean} a logical value indicating whether
-\code{sp_dist} checks Euclidean properties
-
+\item \code{$details_trdist} a list with 2 elements: \code{$trdist_summary}
+a vector with minimum (min), maximum (max), mean (mean) and standard
+deviation (sd) of \code{sp_dist}; \code{$trdist_euclidean} a logical
+value indicating whether \code{sp_dist} checks Euclidean properties.
 \item \code{$details_fspaces} a list with 4 elements: \code{$sp_pc_coord}
 a matrix with coordinates of species (rows) along Principal Components
 (columns) with positive eigenvalues ; \code{$pc_eigenvalues} a matrix
@@ -62,29 +59,27 @@ with eigenvalues of axes from PCoA ; \code{$dendro} a hclust
 object with the dendrogram details (null if no dendrogram computed) ;
 \code{$pairsp_fspaces_dist} a dataframe containing for each pair of
 species (rows), their names in the 2 first columns ('sp.x' and 'sp.y'),
-their distance based on trait-values ('tr'), and their Euclidean (for PCoA)
-or cophenetic (for dendrogram if computed) distance in each of the
-functional space computed ('pcoa_1d', 'pcoa_2d', ... , 'tree_clust');
-if fdist_scaling = TRUE, \code{$pairsp_fspaces_dist_scaled} a dataframe
-with scaled values of distances in functional spaces.
-
-\item \code{$details_deviation} a list of dataframes:
+their distance based on trait-values ('tr'), and their Euclidean
+(for PCoA) or cophenetic (for dendrogram if computed) distance in each of
+the functional space computed ('pcoa_1d', 'pcoa_2d', ... , 'tree_clust');
+if \code{fdist_scaling = TRUE}, \code{$pairsp_fspaces_dist_scaled} a data
+frame with scaled values of distances in functional spaces.
+\item \code{$details_deviation} a list of data frames:
 \code{$dev_distsp} a dataframe containing for each space (columns) the
 difference for all species pairs (rows) of the distance in the functional
 space and trait-based distance (i.e. positive deviation indicates
 overestimation of actual distance) ; \code{$abs_dev_distsp} and/or
 \code{$sqr_dev_distsp}, dataframes with for each space (columns) and all
 species pairs (rows) the absolute or squared deviation of distance ; if
-fdist_scaling = TRUE \code{$dev_distsp_scaled}, and
-\code{$abs_dev_distsp_scaled} and/or \code{$sqr_dev_distsp_scaled},
-dataframes with deviation computed on scaled distance in functional spaces.
-
+\code{fdist_scaling = TRUE} \code{$dev_distsp_scaled}, and
+\code{$abs_dev_distsp_scaled} and/or \code{$sqr_dev_distsp_scaled}, data
+frames with deviation computed on scaled distance in functional spaces.
 }
 }
 \description{
 Compute a Principal Coordinates Analysis (PCoA) using functional distance
 between species. Then the function evaluates the quality of spaces built
-using an increasing number of Principal components. Quality is evaluated as
+using an increasing number of principal components. Quality is evaluated as
 the (absolute or squared) deviation between trait-based distance (input) and
 distance in the PCoA-based space (raw Euclidean distance or scaled distance
 according to its maximum value and maximum of trait-based distance). Option
@@ -92,15 +87,16 @@ to compute a functional dendrogram and its quality. This function is based on
 the framework presented in Maire \emph{et al.} (2015).
 }
 \note{
-the maximum number of dimensions considered for assessing quality of
+The maximum number of dimensions considered for assessing quality of
 functional spaces depends on number of PC axes with positive eigenvalues
 (i.e. axes with negative eigenvalues are not considered); so it could be
 lower than \code{$maxdim_pcoa}.
 The quality metric obtained with deviation_weighting = 'squared' and
-fdist_scaling = TRUE is equivalent to the square-root of the 'mSD'
-originally suggested in \emph{Maire et al. 2015}.
+\code{fdist_scaling = TRUE} is equivalent to the square-root of the 'mSD'
+originally suggested in Maire \emph{et al.} (2015).
 }
 \examples{
+\dontrun{
 # Load Species x Traits Data
 data("fruits_traits", package = "mFD")
 
@@ -108,13 +104,14 @@ data("fruits_traits", package = "mFD")
 data("fruits_traits_cat", package = "mFD")
 
 # Compute Functional Distance
-sp_dist_fruits <- mFD::funct.dist(sp_tr  = fruits_traits,
- tr_cat = fruits_traits_cat,
- metric = "gower",
- scale_euclid  = "scale_center",
- ordinal_var = "classic",
- weight_type = "equal",
- stop_if_NA  = TRUE)
+sp_dist_fruits <- mFD::funct.dist(
+  sp_tr         = fruits_traits,
+  tr_cat        = fruits_traits_cat,
+  metric        = "gower",
+  scale_euclid  = "scale_center",
+  ordinal_var   = "classic",
+  weight_type   = "equal",
+  stop_if_NA    = TRUE)
 
 # Compute Functional Spaces Quality (to retrieve species coordinates)
 fspaces_quality_fruits <- mFD::quality.fspaces(
@@ -123,13 +120,16 @@ fspaces_quality_fruits <- mFD::quality.fspaces(
   deviation_weighting = "absolute",
   fdist_scaling       = FALSE,
   fdendro             = "average")
-
+  
 # Retrieve Species Coordinates
 sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
-
+}
 }
 \references{
 Maire \emph{et al.} (2015) How many dimensions are needed to accurately assess
 functional diversity? A pragmatic approach for assessing the quality of
-functional spaces \emph{Global Ecology and Biogeography}, \strong{24}, 728-740.\cr
+functional spaces \emph{Global Ecology and Biogeography}, \strong{24}, 728-740.
+}
+\author{
+Sebastien Villeger, Eva Maire & Camille Magneville
 }

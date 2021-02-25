@@ -2,8 +2,8 @@
 % Please edit documentation in R/beta_ind_computation.R
 \name{beta.fd.multidim}
 \alias{beta.fd.multidim}
-\title{Computes functional beta-diversity indices for pairs of assemblages in a
-multidimensional space.}
+\title{Compute Functional beta-Diversity Indices for Pairs of Assemblages in a
+Multidimensional Space}
 \usage{
 beta.fd.multidim(
   sp_faxes_coord,
@@ -87,6 +87,7 @@ See below example of how merging distance values in a \emph{dataframe} with
 \code{dist.to.df}.
 }
 \examples{
+\dontrun{
  # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -122,18 +123,18 @@ asb_sp_fruits_occ <- asb_sp_fruits_summ$'asb_sp_occ'
 
 # Compute beta diversity indices:
 beta_fd_fruits <- mFD::beta.fd.multidim(
-  sp_faxes_coord   = sp_faxes_coord_fruits[, c('PC1', 'PC2', 'PC3', 'PC4')], 
+  sp_faxes_coord   = sp_faxes_coord_fruits[ , c('PC1', 'PC2', 'PC3', 'PC4')], 
   asb_sp_occ       = asb_sp_fruits_occ,
   check_input      = TRUE,
   beta_family      = c('Jaccard'),
   details_returned = TRUE)
- 
+}
 }
 \references{
-Villéger \emph{et al.} (2013) Decomposing functional ß-diversity reveals that
+Villeger \emph{et al.} (2013) Decomposing functional ß-diversity reveals that
 low functional ß-diversity is driven by low functional turnover in European
-fish assemblages. \emph{Global Ecology and Biogeography}, \strong{22}, 671-681. \cr
+fish assemblages. \emph{Global Ecology and Biogeography}, \strong{22}, 671-681.
 }
 \author{
-Sébastien Villéger and Camille Magneville
+Sebastien Villeger and Camille Magneville
 }

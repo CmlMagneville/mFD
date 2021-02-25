@@ -1,5 +1,5 @@
-#' Computes functional beta-diversity indices for pairs of assemblages in a
-#' multidimensional space.
+#' Compute Functional beta-Diversity Indices for Pairs of Assemblages in a
+#' Multidimensional Space
 #'
 #' Computes a set of indices of pairwise functional beta-diversity
 #' (dissimilarity and its turnover and nestedness-resultant components) based on
@@ -66,10 +66,18 @@
 #' Indices values are stored as \emph{dist} objects to optimize memory.
 #' See below example of how merging distance values in a \emph{dataframe} with
 #' \code{dist.to.df}.
-#'  
-#' @author Sébastien Villéger and Camille Magneville
+#'
+#' @references 
+#' Villeger _et al._ (2013) Decomposing functional ß-diversity reveals that
+#'   low functional ß-diversity is driven by low functional turnover in European
+#'   fish assemblages. _Global Ecology and Biogeography_, **22**, 671-681.
+#'   
+#' @author Sebastien Villeger and Camille Magneville
+#'
+#' @export
 #'
 #' @examples
+#' \dontrun{
 #'  # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -105,24 +113,12 @@
 #' 
 #' # Compute beta diversity indices:
 #' beta_fd_fruits <- mFD::beta.fd.multidim(
-#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c('PC1', 'PC2', 'PC3', 'PC4')], 
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[ , c('PC1', 'PC2', 'PC3', 'PC4')], 
 #'   asb_sp_occ       = asb_sp_fruits_occ,
 #'   check_input      = TRUE,
 #'   beta_family      = c('Jaccard'),
 #'   details_returned = TRUE)
-#'  
-#' @references 
-#'   Villéger _et al._ (2013) Decomposing functional ß-diversity reveals that
-#'   low functional ß-diversity is driven by low functional turnover in European
-#'   fish assemblages. _Global Ecology and Biogeography_, **22**, 671-681. \cr
-#'  
-#' @importFrom betapart beta.para.control functional.beta.pair 
-#' @importFrom betapart functional.betapart.core
-#' @importFrom dendextend dist_long
-#' @importFrom geometry convhulln
-#'
-#' @export
-
+#' }
 
 beta.fd.multidim <- function(sp_faxes_coord, 
                              asb_sp_occ, check_input = TRUE, 
@@ -134,36 +130,32 @@ beta.fd.multidim <- function(sp_faxes_coord,
   
   
   ## check_input if asked:
-  if (check_input == TRUE) {
+  if (check_input) {
     
     check.sp.faxes.coord(sp_faxes_coord)
     
     check.asb.sp.w.occ(asb_sp_occ)
     
-    if (any(!(colnames(asb_sp_occ) %in% 
-              rownames(sp_faxes_coord)))) {
-      stop(paste("Error: Mismatch in species names between species occurence
-        and species coordinates matrices. Please check."))
+    if (any(!(colnames(asb_sp_occ) %in% rownames(sp_faxes_coord)))) {
+      stop("Mismatch in species names between species occurence and species ", 
+           "coordinates matrices. Please check.")
     }
     
-    if (any(apply(asb_sp_occ, 1, sum) <= 
-            ncol(sp_faxes_coord))) {
-      stop(paste("Error: all assemblages should have more species
-                   than number of functional axes"))
+    if (any(apply(asb_sp_occ, 1, sum) <= ncol(sp_faxes_coord))) {
+      stop("All assemblages should have more species than number of ", 
+           "functional axes")
     }
     
     
     if (ncol(sp_faxes_coord) > 5) {
-      stop(paste("Computing beta functional diversity in a", 
-                 ncol(sp_faxes_coord), "-dimensions space could exceed
-                   computing power of your computer.
-                   Consider keeping only five dimensions"))
+      stop("Computing beta functional diversity in a", ncol(sp_faxes_coord), 
+           "-dimensions space could exceed computing power of your computer. ", 
+           "Consider keeping only five dimensions.")
     }
     
-    if (any(!beta_family %in% c("Jaccard", 
-                                "Sorensen"))) {
-      stop(paste("Error: beta diversity index should be 'Jaccard' and/or
-                   'Sorensen'. Please check."))
+    if (any(!beta_family %in% c("Jaccard", "Sorensen"))) {
+      stop("beta diversity index should be 'Jaccard' and/or 'Sorensen'. ", 
+           "Please check.")
     }
     
   }
@@ -200,8 +192,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
     # indices values in a dataframe where
     # rows are pairs of assemblages
     F_beta_jac_df <- dendextend::dist_long(F_beta_jac$funct.beta.jac)
-    names(F_beta_jac_df) <- c("asb.2", 
-                              "asb.1", "jac_diss")
+    names(F_beta_jac_df) <- c("asb.2", "asb.1", "jac_diss")
     
     F_beta_jac_df <- data.frame(F_beta_jac_df, 
            jac_turn = dendextend::dist_long(F_beta_jac$funct.beta.jtu)$distance, 
@@ -223,8 +214,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
     # indices values in a dataframe where
     # rows are pairs of assemblages
     F_beta_sor_df <- dendextend::dist_long(F_beta_sor$funct.beta.sor)
-    names(F_beta_sor_df) <- c("asb.2", 
-                              "asb.1", "sor_diss")
+    names(F_beta_sor_df) <- c("asb.2", "asb.1", "sor_diss")
     
     F_beta_sor_df <- data.frame(F_beta_sor_df, 
           sor_turn = dendextend::dist_long(F_beta_sor$funct.beta.sim)$distance, 
@@ -241,9 +231,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
   
   # if both families of indices should be
   # returned
-  if (("Sorensen" %in% beta_family) & ("Jaccard" %in% 
-                                       beta_family)) 
-  {
+  if (("Sorensen" %in% beta_family) && ("Jaccard" %in% beta_family)) {
     pairasb_fbd_indices <- cbind.data.frame(F_beta_jac_df[, 
                                                           c("asb.1", "asb.2", 
                                                           "jac_diss", 
@@ -260,23 +248,21 @@ beta.fd.multidim <- function(sp_faxes_coord,
   # of the gp to compute real FRic value:
   conv_fa_all <- tryCatch(geometry::convhulln(sp_faxes_coord, 
                                               option = "FA"), 
-                          error = function(err) {
-                                                "NA"
-                                                })
+                          error = function(err) "NA")
   # if convex hull of the gp can be
   # computed:
-  if (! is.character(conv_fa_all)) {
+  if (!is.character(conv_fa_all)) {
     fric <- F_betapart_core$details$CH$FRi/conv_fa_all$vol
   }
+  
   # if convex hull of the gp can not be
   # computed:
-  if (is.character(conv_fa_all)) {
-    fric <- NA
-  }
+  if (is.character(conv_fa_all)) fric <- NA
   
   
   ## results to return
-  if (details_returned == TRUE) {
+  if (details_returned) {
+    
     return_list <- list(pairasb_fbd_indices = pairasb_fbd_indices, 
               details = list(inputs = list(sp_faxes_coord = sp_faxes_coord, 
                 asb_sp_occ = asb_sp_occ), 
@@ -285,6 +271,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
                 asb_vertices = lapply(F_betapart_core$details$CH$coord_vertices, 
                                                                     row.names)))
   } else {
+    
     return_list <- (pairasb_fbd_indices = pairasb_fbd_indices)
   }
   

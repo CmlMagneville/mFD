@@ -1,11 +1,10 @@
-# Helpers Functions to Check {mFD} Functions Inputs
-# 
-#' @importFrom stats na.omit
-#' @keywords internal
+##
+## HELPERS FUNCTIONS TO CHECK {mFD} FUNCTIONS INPUTS
+##
 
 
-
-## Traits x Categories Data Frame ----
+#' Traits x Categories Data Frame
+#' @noRd
 
 check.tr.cat <- function(tr_cat) {
   
@@ -68,11 +67,14 @@ check.tr.cat <- function(tr_cat) {
       stop("Fuzzy traits need to have at least two categories.")
     }
   }
+  
+  invisible(NULL)
 }
 
 
 
-## Species x Traits Data Frame ----
+#' Species x Traits Data Frame
+#' @noRd
 
 check.sp.tr <- function(sp_tr, tr_cat = NULL, stop_if_NA = TRUE) {
   
@@ -114,11 +116,14 @@ check.sp.tr <- function(sp_tr, tr_cat = NULL, stop_if_NA = TRUE) {
            "traits x category data frame. Please check.")
     }
   }
+  
+  invisible(NULL)
 }
 
 
 
-## Assemblages x Species Matrix ----
+#' Assemblages x Species Matrix
+#' @noRd
 
 check.asb.sp.w <- function(asb_sp_w) { 
   
@@ -146,7 +151,6 @@ check.asb.sp.w <- function(asb_sp_w) {
          "Please check.")
   }
   
-  
   if (min(apply(asb_sp_w, 2, sum)) == 0) {
     warning("Some species are absent from all assemblages.")
   }
@@ -154,11 +158,14 @@ check.asb.sp.w <- function(asb_sp_w) {
   if (min(apply(asb_sp_w, 1, sum)) == 0) {
     warning("Some assemblages do not contain species.")
   }
+  
+  invisible(NULL)
 }
 
 
 
-## Species Coordinates on Axes ----
+#' Species Coordinates on Axes
+#' @noRd
 
 check.sp.faxes.coord <- function(sp_faxes_coord) {
   
@@ -176,16 +183,17 @@ check.sp.faxes.coord <- function(sp_faxes_coord) {
   }
   
   if (is.null(colnames(sp_faxes_coord))) {
-    stop("Error: No column names provided in species*coordinates matrix.
-             Please add axes names as column names.")
+    stop("No column names provided in species*coordinates matrix. Please add ",
+         "axes names as column names.")
   }
   
-  
+  invisible(NULL)
 }
 
 
 
-## Nominal Traits ----
+#' Nominal Traits
+#' @noRd
 
 check.nominal <- function(tr_cat, sp_tr) {
   
@@ -197,11 +205,14 @@ check.nominal <- function(tr_cat, sp_tr) {
       }
     }
   }
+  
+  invisible(NULL)
 }
 
 
 
-## Ordinal Traits ----
+#' Ordinal Traits
+#' @noRd
 
 check.ordinal <- function(tr_cat, sp_tr) {
   
@@ -213,11 +224,14 @@ check.ordinal <- function(tr_cat, sp_tr) {
       }
     }
   }
+  
+  invisible(NULL)
 }
 
 
 
-## Circular Traits ----
+#' Circular Traits
+#' @noRd
 
 check.circular <- function(tr_cat, sp_tr) {
   
@@ -229,11 +243,14 @@ check.circular <- function(tr_cat, sp_tr) {
       }
     }
   }
+  
+  invisible(NULL)
 }
 
 
 
-## Continuous Traits ----
+#' Continuous Traits
+#' @noRd
 
 check.continuous <- function(tr_cat, sp_tr) {
   
@@ -245,11 +262,14 @@ check.continuous <- function(tr_cat, sp_tr) {
       }
     }
   }
+  
+  invisible(NULL)
 }
 
 
 
-## Fuzzy Traits ----
+#' Fuzzy Traits
+#' @noRd
 
 check.fuzzy <- function(tr_cat, sp_tr) {
   
@@ -272,45 +292,46 @@ check.fuzzy <- function(tr_cat, sp_tr) {
       }
     }
   }
-}
-
-
-
-## ... ----
-
-check.asb.sp.tr <- function() { 
+  
   invisible(NULL)
 }
 
 
-
-## ... ----
+#' ...
+#' @noRd
 
 check.asb.sp.w.occ <- function(asb_sp_occ) {
+  
   if (is.null(rownames(asb_sp_occ))) {
-    stop("Error: No row names provided in the species occurence matrix.
-             Please add assemblages names as row names.")
+    stop("No row names provided in the species occurence matrix. Please add ",
+         "assemblages names as row names.")
   }
+  
   if (is.null(colnames(asb_sp_occ))) {
-    stop("Error: No column names provided in the species occurence matrix.
-             Please add species names as column names.")
+    stop("No column names provided in the species occurence matrix. Please ",
+         "add species names as column names.")
   }
+  
   if (any(is.na(asb_sp_occ))) {
-    stop("Error: The species occurence matrix contains NA. Please check.")
+    stop("The species occurence matrix contains NA. Please check.")
   }
-  if (any(asb_sp_occ != 0 & asb_sp_occ != 
-          1)) {
-    stop("Error: The species occurence matrix should contain only 0 and 1.
-           Please check.")
+  
+  if (any(asb_sp_occ != 0 & asb_sp_occ != 1)) {
+    stop("The species occurence matrix should contain only 0 and 1. Please ",
+         "check.")
   }
+  
   # Add a stop if some species do not belong to any
   # assemblage:
   if (min(apply(asb_sp_occ, 2, sum)) == 0) {
-    stop("Error: Some species are absent from all assemblages.")
+    stop("Some species are absent from all assemblages.")
   }
+  
   # Add a stop if some asb do not contain species:
   if (min(apply(asb_sp_occ, 1, sum)) == 0) {
-    stop("Error: Some assemblages do not contain species.")
+    stop("Some assemblages do not contain species.")
   }
+  
+  invisible(NULL)
 }
 

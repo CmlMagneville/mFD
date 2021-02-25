@@ -2,11 +2,7 @@
 % Please edit documentation in R/plot_FE_multidim.R
 \name{alpha.fd.fe.plot}
 \alias{alpha.fd.fe.plot}
-\title{Illustrate functional diversity indices based on functional entities
-(FE).Graphical representation of distribution of species in Functional
-Entities (FE) and of indices from Mouillot et al 2014. \strong{To plot
-functional indices, functional indices values must have been computed first
-through the use of the} \code{\link{alpha.fd.fe}} function.}
+\title{Illustrate Functional Diversity Indices based on Functional Entities}
 \usage{
 alpha.fd.fe.plot(
   alpha_fd_fe,
@@ -32,48 +28,48 @@ on assemblage of interest with \code{details_returned = TRUE}.}
 \item{plot_ind_nm}{a vector containing the names of the indices to plot. It
 can be \code{'fred'} to plot functional redundancy (FRed), \code{'fored'} to
 plot functional over-redundancy (FOred) and/or \code{'fvuln'} to plot
-functional vulnerability (FVuln). Default is all 3 indices.}
+functional vulnerability (FVuln). Default is all \code{3} indices.}
 
 \item{name_file}{a character string with name of file to save the figure
-(without extension). Default: name_file = 'NULL' which means plot is
+(without extension). Default: \code{name_file = NULL} which means plot is
 displayed.}
 
 \item{color_fill_fored}{a R color name or an hexadecimal code referring to
 the color used to fill the part of barplots that contain species in excess
 in species-rich FEs. It refers to the FORed value. Default:
-color_fill_fored = "darkolivegreen2".}
+\code{color_fill_fored = "darkolivegreen2"}.}
 
 \item{color_line_fred}{a R color name or an hexadecimal code referring to the
 color used to draw the horizontal line referring to the FRed value.
-Default:color_line_fred = "darkolivegreen4".}
+Default: \code{color_line_fred = "darkolivegreen4"}.}
 
 \item{color_fill_bar}{a R color name or an hexadecimal code referring to the
-color used to draw barplots. Default: color_fill_bar = "grey80".}
+color used to draw barplots. Default: \code{color_fill_bar = "grey80"}.}
 
 \item{color_fill_fvuln}{a R color name or an hexadecimal code referring to
 the color used to fill barplot containing only one species for illustrating
-FVuln. Default: color_fill_fvuln = "lightcoral".}
+FVuln. Default: \code{color_fill_fvuln = "lightcoral"}.}
 
 \item{color_arrow_fvuln}{a R color name or an hexadecimal code referring to
 the color used to draw the horizontal arrow showing the proportion of FEs
 containing only one species for illustrating FVuln. If there is only
 one FE containing one species, the arrow will be a point. Default:
-color_arrow_fvuln = "indianred4".}
+\code{color_arrow_fvuln = "indianred4"}.}
 
 \item{size_line_fred}{a numeric value referring to the size of the horizontal
-line illustrating FRed. Default: size_line_fred = 1.5.}
+line illustrating FRed. Default: \verb{size_line_fred = 1.5.}}
 
 \item{size_arrow_fvuln}{a numeric value referring to the size of the arrow
 showing the proportion of FEs containing only one species. Default:
-size_arrow_fvuln = 1.}
+\code{size_arrow_fvuln = 1}.}
 
 \item{check_input}{a logical value indicating whether key features the inputs
 are checked (e.g. class and/or mode of objects, names of rows and/or
 columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.}
+returned. Default: \code{check.input = TRUE}.}
 }
 \value{
-a \code{patchwork} object with a barplot of number of species per FE.
+A \code{patchwork} object with a barplot of number of species per FE.
 Indices names provided in 'plot_ind_nm' are illustrated. Functional
 Redundancy (average number of species per FE) is illustrated with a
 horizontal line. Functional Over-redundancy (proportion of species in excess
@@ -86,13 +82,13 @@ FE-based indices values on top of the plot. if \code{name_file} is provided,
 plot saved as a 300dpi png file in the working directory.
 }
 \description{
-Illustrate functional diversity indices based on functional entities
-(FE).Graphical representation of distribution of species in Functional
-Entities (FE) and of indices from Mouillot et al 2014. \strong{To plot
+Graphical representation of distribution of species in Functional
+Entities (FE) and of indices from Mouillot \emph{et al.} (2014). \strong{To plot
 functional indices, functional indices values must have been computed first
 through the use of the} \code{\link{alpha.fd.fe}} function.
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe
 data("fruits_traits", package = "mFD")
 
@@ -139,8 +135,13 @@ mFD::alpha.fd.fe.plot(
   size_line_fred    = 1.5,
   size_arrow_fvuln  = 1,
   check_input       = TRUE) 
-  
+}
+}
+\references{
+Mouillot \emph{et al.} (2014) Functional over-redundancy and high functional
+vulnerability in global fish faunas on tropical reefs. \emph{PNAS}, \strong{111},
+13757-13762.
 }
 \author{
-: Camille Magneville and sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

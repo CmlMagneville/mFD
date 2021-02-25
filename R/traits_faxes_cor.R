@@ -4,7 +4,6 @@
 #' For continuous trait a linear model is computed and r2 and p-value are 
 #' returned. For other types of traits, a Kruskal-Wallis test is computed and  
 #' eta2 statistics is returned.
-#' 
 #' Option allows to plot trait-axis relationships with scatterplot and boxplot 
 #' for continuous and non-continuous traits, respectively.
 #'
@@ -32,7 +31,7 @@
 #'   the color of points when relationships between the trait and the axis is
 #'   significant. Default is `dark blue`.
 #'
-#' @return a data frame with for each combination of trait and axis (rows), the  
+#' @return 1 data frame with for each combination of trait and axis (rows), the  
 #'   name of the test performed, and the corresponding statistics and p-value. 
 #'   If `plot = TRUE` a multi-panel figure with traits as columns and axes as 
 #'   rows is also plotted. When relationships between trait and axis is 
@@ -41,14 +40,10 @@
 #' @author Nicolas Loiseau & Sebastien Villeger
 #'
 #' @export
-#' 
-#' @importFrom ggplot2 ggplot aes xlab ylab theme_bw geom_point geom_boxplot 
-#'   geom_jitter ggsave
-#' @importFrom patchwork plot_annotation
-#' @importFrom rstatix kruskal_effsize
-#' @importFrom stats lm summary.lm kruskal.test
+#' @importFrom stats summary.lm
 #' 
 #' @examples
+#' \dontrun{
 #' # Load Species x Traits Data
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -83,6 +78,7 @@
 #'   faxes_nm       = NULL,
 #'   name_file      = NULL, 
 #'   color_signif   = "darkblue")
+#' }
 
 
 traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL, 

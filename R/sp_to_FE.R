@@ -1,73 +1,86 @@
-#' Compute functional entities composition based on a species*traits matrix
+#' Compute Functional Entities Composition based on a Species x Traits Matrix
 #'
-#' @param sp_tr a dataframe with values of traits (columns) for a set of
-#' species (rows)
+#' @param sp_tr a data frame containing species as rows and traits as columns.
 #'
-#' @param tr_cat a dataframe containing three columns for each trait (rows):
-#'   \itemize{ \item \strong{trait_name}: names of all traits as in \code{sp_tr}
-#'   data.frame \item \strong{trait_type}: category codes for each trait as
-#'   followed: \emph{N} for Nominal traits (factor variable), \emph{O} for
-#'   Ordinal traits (ordered variable), \emph{C} for Circular traits (integer
-#'   values), \emph{Q} for quantitative traits (numeric values) that is allowed
-#'   \strong{only} if there are at least 2 species with the same value and
-#'   \emph{F} for fuzzy-coded traits (i.e. described with several 'sub-traits').
+#' @param tr_cat a data frame containing three columns for each trait (rows):
+#' \itemize{
+#'   \item \strong{trait_name}: names of all traits as in \code{sp_tr} data 
+#'     frame;
+#'   \item \strong{trait_type}: category codes for each trait as followed: 
+#'     \emph{N} for Nominal traits (factor variable), 
+#'     \emph{O} for Ordinal traits (ordered variable), 
+#'     \emph{C} for Circular traits (integer values), 
+#'     \emph{Q} for Quantitative traits (numeric values) that is allowed
+#'       \strong{only} if there are at least 2 species with the same value, and
+#'     \emph{F} for fuzzy-coded traits (i.e. described with several 
+#'       'sub-traits');
 #'   \item \strong{fuzzy_name} name of fuzzy-coded trait to which 'sub-trait'
-#'   belongs (if trait is not fuzzy, ignored so could be trait name or NA)
-#'  }
+#'     belongs (if trait is not fuzzy, ignored so could be trait name or NA).
+#' }
 #'
 #' @param fe_nm_type a character string referring to the type of naming
 #'   functional entities. Two possible values: \emph{"fe_rank"} (FE are named
 #'   after their decreasing rank in term of number of species \emph{i.e.} fe_1
 #'   is the one gathering most species) and \emph{"tr_val"} (FE are named after
 #'   names of traits and of trait values for each FE, if possible, \emph{see
-#'   details below}). Default: fe_nm_type = "fe_rank".
+#'   details below}). Default: `fe_nm_type = "fe_rank"`.
 #'
 #' @param check_input a logical value indicating whether key features the inputs
 #'   are checked (e.g. class and/or mode of objects, names of rows and/or
 #'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: check.input = TRUE.
+#'   returned. Default: `check.input = TRUE`.
 #'
-#' @note fe_nm_type = 'tr_val' is allowed \strong{only} if: \itemize{ \item
-#'   there are less than 7 traits \item none of them is fuzzy-coded (so that
-#'   names are not too long) \item all trait names and all trait values have
-#'   different 2 first letters } If these 3 conditions are met, names of
-#'   Functional Entities are made as a character string of up to 2 letters for
-#'   trait name in upper case font then up to 2 letters for trait value in lower
-#'   case font, separated by "_" between traits. Trait names are abbreviated to
-#'   a single letter whenever possible. \emph{Examples:} ("TAc2_TBxx_TCyy",
-#'   "TAc3_TBff_TCyy") or ("A2_Bx_Cy", "A3_Bf_Cy")
+#' @details `fe_nm_type = "tr_val"` is allowed \strong{only} if: 
+#' \itemize{
+#'   \item there are less than 7 traits;
+#'   \item none of them is fuzzy-coded (so that names are not too long)
+#'   \item all trait names and all trait values have different 2 first letters 
+#' }
+#' 
+#' If these 3 conditions are met, names of Functional Entities are made as a 
+#' character string of up to 2 letters for trait name in upper case font then up 
+#' to 2 letters for trait value in lower case font, separated by "_" between 
+#' traits. Trait names are abbreviated to a single letter whenever possible.
+#' \emph{Examples:} ("TAc2_TBxx_TCyy", "TAc3_TBff_TCyy") or 
+#' ("A2_Bx_Cy", "A3_Bf_Cy")
 #'
-#' @return a list of objects containing: \itemize{ \item \strong{fe_nm}: a
-#'   vector with names of all FE (following fe_nm_type).FE are ordered 
-#'   according to the decreasing number of species they gather. \item
-#'   \strong{sp_fe}: a vector containing for each species the name of the FE it
-#'   belongs to. FE order is done according to decreasing number of species.
-#'   \item
-#'   \strong{fe_tr}: a dataframe
-#'   containing traits values (variables in columns) for each FE (rows). FE
-#'   order is done according to decreasing number of species. \item
-#'   \strong{fe_nb_sp}: a
-#'   vector with species number per FE. If all FE have only one species, a
-#'   warning message is returned. FE are ordered according to the decreasing
-#'   number of species they gather. \item \strong{details_fe}: a list
-#'   containing:
-#'   \emph{fe_codes} a vector containing character referring to traits values
-#'   (like a barcode) with names as in \code{fe_nm_type} and sorted according to
-#'   \code{fe_nb_sp} ; \emph{tr_uval} a list containing for each trait a vector
-#'   of its unique values or a dataframe for fuzzy-coded traits ; \emph{fuzzy_E}
-#'   a list with for each fuzzy-coded trait a dataframe with names of entities
-#'   (E) and names of species (sp) ; \emph{tr_nb_uval} a vector with number of
-#'   unique values per trait (or combinations for fuzzy-coded traits) ;
-#'   \emph{max_nb_fe} the maximum number of FE possible given number of unique
-#'   values per trait }
+#' @return A list of objects containing: 
+#' \itemize{
+#'   \item \strong{fe_nm}: a vector with names of all FE (following fe_nm_type).
+#'     FE are ordered according to the decreasing number of species they gather. 
+#'   \item \strong{sp_fe}: a vector containing for each species the name of the 
+#'     FE it belongs to. FE order is done according to decreasing number of 
+#'     species.
+#'   \item \strong{fe_tr}: a data frame containing traits values (variables in 
+#'     columns) for each FE (rows). FE order is done according to decreasing 
+#'     number of species.
+#'   \item \strong{fe_nb_sp}: a vector with species number per FE. If all FE 
+#'     have only one species, a warning message is returned. FE are ordered 
+#'     according to the decreasing number of species they gather. 
+#'   \item \strong{details_fe}: a list containing: \emph{fe_codes} a vector 
+#'     containing character referring to traits values (like a barcode) with 
+#'     names as in \code{fe_nm_type} and sorted according to \code{fe_nb_sp}; 
+#'     \emph{tr_uval} a list containing for each trait a vector of its unique 
+#'     values or a data frame for fuzzy-coded traits; \emph{fuzzy_E} a list with 
+#'     for each fuzzy-coded trait a data frame with names of entities (E) and 
+#'     names of species (sp); \emph{tr_nb_uval} a vector with number of unique 
+#'     values per trait (or combinations for fuzzy-coded traits); 
+#'     \emph{max_nb_fe} the maximum number of FE possible given number of unique
+#'     values per trait.
+#' }
 #'
+#' @author Sebastien Villeger, Nicolas Loiseau and Camille Magneville
+#'
+#' @export
+#' 
 #' @examples
+#' \dontrun{
 #' # Load species traits data:
 #'  data("fruits_traits", package = "mFD")
 #' 
 #' # Transform species traits data:
 #' # Only keep the first 4 traits to illustrate FEs:
-#'  fruits_traits <- fruits_traits[, c(1:4)]   
+#'  fruits_traits <- fruits_traits[ , c(1:4)]   
 #'
 #' # Load trait types data:
 #'  data("fruits_traits_cat", package = "mFD")
@@ -90,12 +103,7 @@
 #'  sp_FEs$fe_tr
 #' ## display the number of species per FEs:
 #'  sp_FEs$fe_nb_sp
-#' 
-#' @author Sébastien Villéger, Nicolas Loiseau and Camille Magneville
-#' 
-#' @importFrom stats na.omit
-#'
-#' @export
+#' }
 
 sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", 
                       check_input = TRUE) {
@@ -121,44 +129,49 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   ## check_inputs:
   
   if (sp_nb < 2) {
-    stop("Error: There must be at least 2 species in species*traits
-           data.frame.")
+    stop("There must be at least 2 species in species x traits data frame.")
   }
+  
   if (length(tr_nm) < 2) {
-    stop("Error: There must be at least 2 traits in the species*traits
-           data.frame.")
+    stop("There must be at least 2 traits in the species x traits data frame.")
   }
+  
   if (any(is.na(sp_tr))) {
-    stop("Error: The species*traits data.frame contains NA. Please check.")
+    stop("The species x traits data frame contains NA. Please check.")
   }
+  
   if (! is.data.frame(sp_tr))  {
-    stop("Error: your species-traits data must be gathered in a matrix")
+    stop("Your species x traits data must be gathered in a matrix.")
   }
   
   if (is.null(colnames(sp_tr))) {
-    stop("Error: No column names provided in traits table. Analysis will not go
-      through, please add traits as column names")
-  }
-  if (is.null(rownames(sp_tr))) {
-    stop("Error: No row names provided in traits table. Analysis will not go
-      through, please add species names as row names")
-  }
-  if (any(is.na(tr_cat$trait_type))) {
-    stop("Error: Trait type in traits*category data.frame contains NA.
-             Please check and specify type of all traits.")
-  }
-  if (any(tr_nm != tr_cat$trait_name)) {
-    stop("Error: Trait names differ between species*traits data.frame and
-             traits*category data.frame. Please check.")
-  }
-  if (any(is.na(tr_cat$trait_type))) {
-    stop("Error: Trait type in traits*category data.frame contains NA.
-             Please check and specify type of all traits.")
+    stop("No column names provided in traits table. Analysis will not go ",
+         "through, please add traits as column names.")
   }
   
-  if (any(! tr_cat$trait_type %in% c("N","O","C","Q","F") ) ) {
-    stop("Error: Trait type in traits*category should be among 
-    'N','O','C','Q','F'. Please check type of all traits.")
+  if (is.null(rownames(sp_tr))) {
+    stop("No row names provided in traits table. Analysis will not go ",
+         "through. Please add species names as row names.")
+  }
+  
+  if (any(is.na(tr_cat$trait_type))) {
+    stop("Trait type in traits x category data frame contains NA. Please ",
+         "check and specify type of all traits.")
+  }
+  
+  if (any(tr_nm != tr_cat$trait_name)) {
+    stop("Trait names differ between species x traits data frame and traits x ",
+         "category data.frame. Please check.")
+  }
+  
+  if (any(is.na(tr_cat$trait_type))) {
+    stop("Trait type in traits x category data frame contains NA. Please ", 
+         "check and specify type of all traits.")
+  }
+  
+  if (any(!(tr_cat$trait_type %in% c("N", "O", "C", "Q", "F")))) {
+    stop("Trait type in traits x category should be among 'N', 'O', 'C', 'Q', ",
+         "'F'. Please check type of all traits.")
   }
   
   # check nominal traits:
@@ -181,16 +194,17 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
     for (k in nm_fuzzy) {
       # get the names of variables for fuzzy trait k:
       var_k <- tr_cat$trait_name[which(tr_cat$fuzzy_name == k)]
+      
       # check that there are at least 2 columns per fuzzy coded trait:
-      if(length(var_k) < 2) {
-        stop(paste0("Error: Fuzzy-coded trait '", k,
-                    "' is described with a single variable,
-            consider changing its type to 'nominal'"))
+      if (length(var_k) < 2) {
+        stop("Fuzzy-coded trait '", k, "' is described with a single ",
+             "variable, consider changing its type to 'nominal'")
       }
+      
       # check that variables are continuous:
-      if(any(apply(sp_tr[, var_k ], 2, is.numeric) == FALSE)) {
-        stop( paste0("Error: Fuzzy-coded trait '", k,
-                     "' is not described with 'numeric' variables"))
+      if (any(apply(sp_tr[, var_k ], 2, is.numeric) == FALSE)) {
+        stop("Fuzzy-coded trait '", k, "' is not described with 'numeric' ",
+             "variables.")
       }
     }
     
@@ -304,7 +318,7 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   
   # return a warning if all species are different (i.e. only 1 sp per FE):
   if (max(fe_nb_sp) == 1) {
-    warning("Warning: all Functional Entities have a single species")
+    warning("All Functional Entities have a single species.")
   }
   
   # decrease order of FE according to their number of species to order fe codes:
@@ -343,15 +357,15 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   if (fe_nm_type == "tr_val") {
     # check that there is no fuzzy-coded trait:
     if ("F" %in% tr_type) {
-      stop("Error: Functional entities could not be named according to
-            names of traits and of trait values when there is a fuzzy-coded
-            trait. Set 'fe_nm_type' to 'fe_rank'.")
+      stop("Functional entities could not be named according to names of ",
+           "traits and of trait values when there is a fuzzy-coded trait. ",
+           "Set 'fe_nm_type' to 'fe_rank'.")
     }
     # check that there is less than 6 traits:
     if (tr_nb > 6) {
-      stop("Error: Functional entities could not be named according to
-            names of traits and of trait values becasue there are more than
-            6 traits. Set 'fe_nm_type' to 'fe_rank'.")
+      stop("Functional entities could not be named according to names of ",
+           "traits and of trait values becasue there are more than 6 traits. ",
+           "Set 'fe_nm_type' to 'fe_rank'.")
     }
     # set traits code default value to one letter:
     traits_codes <- substr(names(fe_trait_ord), 1, 1)
@@ -363,8 +377,8 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
     }
     # check that codes for traits are unique so traits can be identified:
     if (length(unique(traits_codes)) != tr_nb) {
-      stop("Error: 2 first letters of trait names should be unique.
-            Please change 'fe_nm_type' to 'fe_rank'.")
+      stop("Two first letters of trait names should be unique. Please change ",
+           "'fe_nm_type' to 'fe_rank'.")
     }
     # build FE names after check for each trait...
     # ... that levels have unique two first letters:
@@ -382,9 +396,8 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
       }
       # if some codes have the same two 1st letters, error message:
       if (length(unique(level_t_codes)) != length(unique(level_t))) {
-        stop(paste0("Error: 2 first letters of levels of trait '", t,
-                    "' are not unique. Please change 'fe_nm_type' to
-                    'fe_rank'."))
+        stop("Two first letters of levels of trait '", t, "' are not unique. ",
+             "Please change 'fe_nm_type' to 'fe_rank'.")
       }
       # add trait name and values among FE to the names of FE:
       fe_nm <- paste0(fe_nm, "_", toupper(traits_codes[t]),
@@ -410,19 +423,16 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   
   ## return results:
   
-  return_list <-list( fe_nm = fe_nm, sp_fe = sp_fe_ord, fe_tr = fe_trait_ord,
-                      fe_nb_sp = fe_nb_sp_ord,
-                      details_fe = list (fe_codes = fe_codes_ord, 
-                                         tr_uval = tr_uval,
-                                         tr_nb_uval = tr_nb_uval, 
-                                         max_nb_fe = max_nb_fe))
+  return_list <-list("fe_nm" = fe_nm, "sp_fe" = sp_fe_ord, 
+                     "fe_tr" = fe_trait_ord, "fe_nb_sp" = fe_nb_sp_ord,
+                     "details_fe" = list("fe_codes" = fe_codes_ord, 
+                                         "tr_uval" = tr_uval,
+                                         "tr_nb_uval" = tr_nb_uval, 
+                                         "max_nb_fe" = max_nb_fe))
   
   if ("F" %in% tr_type) {
     return_list$details_fe$fuzzy_E <- fuzzy_E
   }
   
   return(return_list)
-  
 }
-
-
