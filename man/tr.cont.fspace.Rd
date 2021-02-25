@@ -2,7 +2,7 @@
 % Please edit documentation in R/cont_tr_fspace.R
 \name{tr.cont.fspace}
 \alias{tr.cont.fspace}
-\title{Build a Functional Space Based on Continuous Traits Only}
+\title{Build a Functional Space based on Continuous Traits Only}
 \usage{
 tr.cont.fspace(
   sp_tr,
@@ -55,6 +55,7 @@ you want to center, scale or standardize by any mean your data, please use
 correlation between traits.
 }
 \examples{
+\dontrun{
 load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 
 mFD::tr.cont.fspace(
@@ -64,6 +65,7 @@ mFD::tr.cont.fspace(
     scaling      = 'scale_center',
     compute_corr = 'pearson')
 }
+}
 \author{
-Camille Magneville & Sébastien Villéger
+Camille Magneville & Sebastien Villeger
 }

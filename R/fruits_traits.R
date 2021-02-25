@@ -1,4 +1,4 @@
-#' Traits Values of Fruits Species
+#' Dataset: Traits Values of Fruits Species
 #' 
 #' This dataset represents the value of 6 traits for 15 fruits species. 
 #' **Important:** Species names must be specified as the data frame row names 
@@ -23,6 +23,7 @@
 #' @seealso `fruits_traits_cat`, `baskets_fruits_weights`
 #' 
 #' @examples 
+#' \dontrun{
 #' # Load Species x Traits Data Frame
 #' data("fruits_traits", package = "mFD")
 #' fruits_traits
@@ -33,5 +34,6 @@
 #' 
 #' # Summarize Species x Traits Data
 #' mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
+#' }
 
 "fruits_traits"

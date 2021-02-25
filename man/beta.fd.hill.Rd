@@ -2,7 +2,7 @@
 % Please edit documentation in R/beta_fhill_ind_computation.R
 \name{beta.fd.hill}
 \alias{beta.fd.hill}
-\title{Compute functional beta-diversity indices based on Hill numbers}
+\title{Compute Functional beta-Diversity Indices based on Hill Numbers}
 \usage{
 beta.fd.hill(
   asb_sp_w,
@@ -20,8 +20,8 @@ of assemblages (rows). Rows and columns should have names. NA are not
 allowed.}
 
 \item{sp_dist}{a matrix or dist object with distance between
-species. Species names should be provided and match those in 'asb_sp_w'. NA
-are not allowed.}
+species. Species names should be provided and match those in 'asb_sp_w'.
+NA are not allowed.}
 
 \item{q}{a vector containing values referring to the order of
 diversity to use}
@@ -43,8 +43,8 @@ returned. Default: check.input = TRUE.}
 want to store values used for computing indices (see list below)}
 }
 \value{
-a list with: \itemize{
-
+a list with:
+\itemize{
 \item \emph{asb_FDbeta} a list with for each value of q a \emph{dist} object
 with beta functional diversity indices for all pairs of assemblages
 item if \strong{store.details} turned to TRUE a list \emph{details} with
@@ -62,7 +62,7 @@ Compute functional beta-diversity indices based on Hill numbers applied to
 distance between species following the framework from Chao \emph{et al.} (2019).
 }
 \note{
-when q=1 Jaccard-like and Sorensen-like beta-diversity are identical.
+When q=1 Jaccard-like and Sorensen-like beta-diversity are identical.
 FD computed with tau='min' is equivalent to Hill number taxonomic beta
 diversity. If tau='min' and there are species with null distance, tau is
 set to the minimum non-null value and a warning message is displayed.
@@ -71,6 +71,7 @@ See below example of how merging distance values in a \emph{dataframe} with
 \code{\link{dist.to.df}}
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -103,13 +104,13 @@ mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q0))
 mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q1))
 ## for q = 2:
 mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
- 
+}
 }
 \references{
 Chao \emph{et al.} (2019) An attribute-diversity approach to functional
 diversity, functional beta diversity, and related (dis)similarity measures.
-\emph{Ecological Monographs}, \strong{89}.\cr
+\emph{Ecological Monographs}, \strong{89}.
 }
 \author{
-Sébastien Villéger and Camille Magneville
+Sebastien Villeger and Camille Magneville
 }

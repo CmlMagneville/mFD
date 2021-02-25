@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_quality_fspaces.R
 \name{quality.fspaces.plot}
 \alias{quality.fspaces.plot}
-\title{Plot functional space quality with a chosen quality metric}
+\title{Plot Functional Space Quality with a Chosen Quality Metric}
 \usage{
 quality.fspaces.plot(
   fspaces_quality,
@@ -27,7 +27,7 @@ and distance in functional spaces built using PCoA (and dendrogram).}
 to illustrate. Should be one of the column names of
 \code{fspaces_quality$quality_fspaces}. See help of
 \code{\link{quality.fspaces}} for the meaning of these names regarding type
-of deviation and scaling of distance in functional space. Default: 'mad'
+of deviation and scaling of distance in functional space. Default: \code{'mad'}
 (Mean absolute deviation).}
 
 \item{fspaces_plot}{a vector with names of functional spaces to consider.
@@ -36,7 +36,7 @@ Should be a subset of the row names of
 keep decent plot size.}
 
 \item{name_file}{a character string with name of file to save the
-figure (without extension). Default: NULL which means plot is displayed.}
+figure (without extension). Default: \code{NULL} which means plot is displayed.}
 
 \item{range_dist}{a vector with minimum and maximum values to
 display for species pairwise distances (x-axis for all panels and y-axes of
@@ -68,7 +68,7 @@ yellow to red).}
 Default is 'Trait-based distance'.}
 }
 \value{
-a png file (resolution 300dpi) saved in the current working
+A png file (resolution 300dpi) saved in the current working
 directory. Quality of each functional space is illustrated with three
 panels : - top row shows trait-based distance between species vs.
 space-based distance. - middle row shows trait-based distance vs. deviation
@@ -81,9 +81,10 @@ as well as type of transformation of distance (scaling) and of deviation
 (Absolute or Squared)
 }
 \description{
-Plot functional space quality with a chosen quality metric
+Plot Functional Space Quality with a Chosen Quality Metric
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -124,8 +125,8 @@ fspaces_quality_fruits <- mFD::quality.fspaces(
                                  pos = "darkred"),
   gradient_deviation_quality = c(low ="yellow", high = "red"),
   x_lab                      = "Trait-based distance")
-
+}
 }
 \author{
-Sébastien Villéger and Camille Magneville
+Sebastien Villeger and Camille Magneville
 }

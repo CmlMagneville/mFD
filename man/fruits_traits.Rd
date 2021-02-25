@@ -3,7 +3,7 @@
 \docType{data}
 \name{fruits_traits}
 \alias{fruits_traits}
-\title{Traits Values of Fruits Species}
+\title{Dataset: Traits Values of Fruits Species}
 \format{
 A data frame with 25 rows (species) and the following columns
 (traits):
@@ -30,6 +30,7 @@ This dataset represents the value of 6 traits for 15 fruits species.
 (not in an additional column).
 }
 \examples{
+\dontrun{
 # Load Species x Traits Data Frame
 data("fruits_traits", package = "mFD")
 fruits_traits
@@ -40,6 +41,7 @@ fruits_traits_cat
 
 # Summarize Species x Traits Data
 mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
+}
 }
 \seealso{
 \code{fruits_traits_cat}, \code{baskets_fruits_weights}

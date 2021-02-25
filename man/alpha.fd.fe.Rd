@@ -2,8 +2,7 @@
 % Please edit documentation in R/FE_multidim_ind_computation.R
 \name{alpha.fd.fe}
 \alias{alpha.fd.fe}
-\title{Compute the set of indices based on number of species in functional entities
-(FEs) following Mouillot et al (2014)}
+\title{Compute the Set of Indices based on Number of Species in Functional Entities}
 \usage{
 alpha.fd.fe(
   asb_sp_occ,
@@ -29,25 +28,30 @@ the indices are computed.}
 \item{check_input}{a logical value indicating whether key features the inputs
 are checked (e.g. class and/or mode of objects, names of rows and/or
 columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.}
+returned. Default: \code{check.input = TRUE}.}
 
 \item{details_returned}{a logical value indicating whether details
 about indices computation should be returned. These details are required by
 \code{\link{alpha.fd.fe.plot}} to plot FEs indices.}
 }
 \value{
-\itemize{ \item \emph{asb_fdfe} a matrix containing for each
-assemblage (rows), values of functional diversity indices (same names than
-in 'ind_nm') as well as the number of species ('nb_sp') and the number of
-FE (nb_fe). \item if \emph{details_returned} is TRUE, \item
-\emph{details_fdfe} a list with \emph{asb_fe_nbsp} a matrix with number of
-species per FE in each assemblage.}
+A list with:
+\itemize{
+\item \emph{asb_fdfe} a matrix containing for each assemblage (rows),
+values of functional diversity indices (same names than in 'ind_nm')
+as well as the number of species ('nb_sp') and the number of FE
+(nb_fe);
+\item if \emph{details_returned} is \code{TRUE},
+\item \emph{details_fdfe} a list with \emph{asb_fe_nbsp} a matrix with
+number of species per FE in each assemblage.
+}
 }
 \description{
-Compute the set of indices based on number of species in functional entities
-(FEs) following Mouillot et al (2014)
+This function computes the set of indices based on number of species in
+Functional Entities (FEs) following Mouillot \emph{et al.} (2014).
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -77,12 +81,12 @@ alpha.fd.fe(
    ind_nm           = c('fred', 'fored', 'fvuln'),
    check_input      = TRUE, 
    details_returned = TRUE)
- 
+}
 }
 \references{
 Mouillot \emph{et al.} (2014) Functional over-redundancy and high functional
-vulnerability in global fish faunas on tropical reefs \emph{PNAS} \strong{38},
-13757-13762 \cr
+vulnerability in global fish faunas on tropical reefs. \emph{PNAS}, \strong{38},
+13757-13762.
 }
 \author{
 Camille Magneville

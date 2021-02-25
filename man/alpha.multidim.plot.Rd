@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_alpha_indices.R
 \name{alpha.multidim.plot}
 \alias{alpha.multidim.plot}
-\title{Plot functional space and chosen functional indices}
+\title{Plot Functional Space and Chosen Functional Indices}
 \usage{
 alpha.multidim.plot(
   sp_faxes_coord,
@@ -99,178 +99,182 @@ is computed according to the range of values among all axes, all axes having
 the same range).}
 
 \item{color_bg}{a R color name  or an hexadecimal code used to fill plot
-background. Default: color_bg = "grey95".}
+background. Default: \code{color_bg = "grey95"}.}
 
 \item{size_sp}{a numeric value referring to the size of species belonging to
-the global pool but not the plotted assemblage. Default: size_sp = 1.}
+the global pool but not the plotted assemblage. Default: \code{size_sp = 1}.}
 
 \item{size_centroid}{a numeric value referring to the size of the centroid
-point. Used for FDiv, FSpe, FDis plotting. Default: size_centroid = 1.}
+point. Used for FDiv, FSpe, FDis plotting. Default: \code{size_centroid = 1}.}
 
 \item{size_centroid_asb2}{a numeric value referring to the size of the
 centroid point for the second assemblage to plot if there is one. Used for
-FDiv, FSpe, FDis plotting. Default: size_centroid = 1.}
+FDiv, FSpe, FDis plotting. Default: \code{size_centroid = 1}.}
 
 \item{size_vert}{a numeric value referring to the size of symbol for vertices
-Default: size_vert = 1.}
+Default: \code{size_vert = 1}.}
 
 \item{size_sp_nm}{a numeric value for size of species label. Default:
-size_sp_nm = 3.}
+\code{size_sp_nm = 3}.}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
 of species from the studied assemblage.  This color is also used for FRic
-convex hull color. Default: color_sp = "#0072B2".}
+convex hull color. Default: \code{color_sp = "#0072B2"}.}
 
 \item{color_sp_asb2}{a R color name or an hexadecimal code referring to the
 colour of species from the second assemblage to plot if there is one. This
-color is also used for FRic convex hull color. Default: color_sp_asb2 =
-"#D55E00".}
+color is also used for FRic convex hull color. Default is:
+\code{color_sp_asb2 = "#D55E00"}.}
 
 \item{color_sp_gp}{a R color name or an hexadecimal code to give to species
-that do not belong to the studied assemblages. Default: color_sp_global_pool
-= "gray80".}
+that do not belong to the studied assemblages. Default is:
+\code{color_sp_global_pool = "gray80"}.}
 
 \item{color_segment}{a R color name or an hexadecimal code referring to the
 color of segments linking species of the studied assemblage and/or centroid
 for FDiv, FEve, FSpe, FOri, FNND, FDis computation. Defaut is the same than
-\code{color_sp} ; Default: color_segment = color_segment = "#0072B2".}
+\code{color_sp} ; Default: \code{color_segment = "#0072B2"}.}
 
 \item{color_segment_asb2}{a R color name or an hexadecimal code referring to
 the color of segments linking species and/or centroid of the second
 assemblage to plot if there is one for FDiv, FEve, FSpe, FOri, FNND, FDis
 computation. Defaut is the same than \code{color_sp_asb2} ; Default:
-color_segment = color_segment = "#0072B2".}
+\code{color_segment = "#0072B2"}.}
 
 \item{color_centroid}{a R color name or an hexadecimal code referring to the
 color of the centroid point. Used for FDiv, FSpe, FDis plotting. Default:
 color_centroid = 1. Defaut is the same than \code{color_sp} ; Default:
-color_segment = color_segment = "#0072B2".}
+\code{color_segment = "#0072B2"}.}
 
 \item{color_centroid_asb2}{a R color name or an hexadecimal code referring to
 the color of the centroid point for the second assemblage to plot if there
 is one. Used for FDiv, FSpe, FDis plotting. Default: color_centroid = 1.
-Defaut is the same than \code{color_sp_asb2} ; Default: color_segment =
-color_segment = "#0072B2".}
+Defaut is the same than \code{color_sp_asb2} ; Default:
+\code{color_segment = "#0072B2"}.}
 
 \item{color_vert}{a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
 (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA). Default: color_vert =  NA.}
+must also be set to NA). Default: \code{color_vert =  NA}.}
 
 \item{color_vert_asb2}{a R color name or an hexadecimal code referring to the
 color of vertices if plotted for the second assemblage. If color_vert = NA,
 vertices are not plotted (for shapes only defined by color, ie shape < 20.
-Otherwise fill must also be set to NA). Default: color_vert_asb2 =  NA.}
+Otherwise fill must also be set to NA). Default: \code{color_vert_asb2 =  NA}.}
 
 \item{color_ch}{a R color name or an hexadecimal code referring to the border
-of the convex hull filled by the pool of species. Default: color_ch =
-"black".}
+of the convex hull filled by the pool of species. Default:
+\code{color_ch = "black"}.}
 
 \item{color_sp_nm}{a R color name or an hexadecimal code referring to the
-colour of species label. Default: color_sp_nm = "black".}
+colour of species label. Default: \code{color_sp_nm = "black"}.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-hull. Default: fill_sp = '#0072B2'}
+hull. Default: \code{fill_sp = '#0072B2'}.}
 
 \item{fill_sp_asb2}{a R color name or an hexadecimal code referring to the
 colour to fill species symbol for the second assemblage (if \code{shape_sp}
-superior to 20) and its associated convex hull. Default: fill_sp_asb2 =
-'white'.}
+superior to 20) and its associated convex hull. Default:
+\code{fill_sp_asb2 = 'white'}.}
 
 \item{fill_sp_gp}{a R color name or an hexadecimal code referring to the
 colour to fill symbol for species from the global pool (if \code{shape_sp}
-superior to 20). Default: fill_sp_gp = "grey80".}
+superior to 20). Default: \code{fill_sp_gp = "grey80"}.}
 
 \item{fill_vert}{a character value referring to the color for filling symbol
-for vertices (if \code{shape_vert} >20). If fill = NA and color = NA,
+for vertices (if \code{shape_vert} >20). If \code{fill = NA} and \code{color = NA},
 vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-color_vert = NULL is enough). Default is NA.}
+\code{color_vert = NULL} is enough). Default is \code{NA.}}
 
 \item{fill_vert_asb2}{a character value referring to the color for filling
 symbol for vertices (if \code{shape_vert} superior to 20) for the second
-assemblage. If fill = NA and color = NA, vertices are not plotted (if
-\code{shape_vert} superior to 20. Otherwise color_vert = NA is enough).
-Default is NA.}
+assemblage. If \code{fill = NA} and \code{color = NA}, vertices are not plotted (if
+\code{shape_vert} superior to 20. Otherwise \code{color_vert = NA} is enough).
+Default is \code{NA}.}
 
 \item{fill_ch}{a R color name or an hexadecimal code referring to the filling
-of the convex hull filled by the pool of species. Default is "white".}
+of the convex hull filled by the pool of species. Default is:
+\code{fill_ch = "white"}.}
 
 \item{fill_centroid}{a R color name or an hexadecimal code referring to the
 filling of the centroid (if \code{shape_centroid} superior to 20). Default:
-fill_centroid = '#0072B2'.}
+\code{fill_centroid = '#0072B2'}.}
 
 \item{fill_centroid_asb2}{a R color name or an hexadecimal code referring to
 the filling of the centroid of the second assemblage (if
-\code{shape_centroid} superior to 20). Default: fill_centroid = "#D55E00".}
+\code{shape_centroid} superior to 20). Default: \code{fill_centroid = "#D55E00"}.}
 
 \item{alpha_ch}{a numeric value for transparency of the filling of the convex
-hull (0 = high transparency, 1 = no transparency). Default is 0.3.}
+hull (0 = high transparency, 1 = no transparency). Default is \code{0.3}.}
 
 \item{shape_sp_gp}{a numeric value referring to the shape used to plot
 species belonging to the global pool but not to the studied assemblage(s).
-Default: shape_sp_global_pool = 3 (horizontal cross).}
+Default: \code{shape_sp_global_pool = 3} (horizontal cross).}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage. Default: shape_sp = 16 (filled circle).}
+belonging to the studied assemblage. Default: \code{shape_sp = 16}
+(filled circle).}
 
 \item{shape_sp_asb2}{a numeric value referring to the shape used to plot
 species belonging to the second assemblage to plot if there is one. Default:
-shape_sp_asb2 = 15 (filled square)}
+\code{shape_sp_asb2 = 15} (filled square).}
 
 \item{shape_vert}{a numeric value referring to the symbol used to show
-vertices position if \code{plot_vertices} = TRUE. Default is 23 (filled
+vertices position if \code{plot_vertices} = TRUE. Default is \code{23} (filled
 diamond).}
 
 \item{shape_vert_asb2}{a numeric value referring to the shape used to plot
 vertices of the second assemblage if vertices should be plotted in a
-different way than other species. If shape_vert = NA, no vertices plotted.
-Default: shape_vert_asb2 = NA.}
+different way than other species. If \code{shape_vert = NA}, no vertices plotted.
+Default: \code{shape_vert_asb2 = NA}.}
 
 \item{shape_centroid}{a numeric value referring to the shape used to plot
-centroid for the given assemblage. Default: shape_centroid = 10 (horizontal
-cross inside an empty circle).}
+centroid for the given assemblage. Default: \code{shape_centroid = 10}
+(horizontal cross inside an empty circle).}
 
 \item{shape_centroid_asb2}{a numeric value referring to the shape used to
 plot centroid for the second assemblage to plot if there is one. Default:
-shape_centroid_asb2 = 12 (horizontal cross inside an empty square).}
+\code{shape_centroid_asb2 = 12} (horizontal cross inside an empty square).}
 
 \item{segment_size}{a numeric value referring to the size of the segment used
-to link species of a given assemblage and centroid. Default: segment_size =
-1}
+to link species of a given assemblage and centroid. Default:
+\code{segment_size = 1}.}
 
 \item{segment_size_asb2}{a numeric value referring to the size of the segment
 used to link species of the second assemblage and centroid. Default:
-segment_size = 0.5}
+\code{segment_size = 0.5}.}
 
 \item{linetype_segment}{a character string or the associated numeric value
 referring the type of line used for segments linking species of the studied
 assemblage and/or centroid for FDiv, FEve, FSpe, FOri, FNND, FDis
-computation. Default: linetype_segment = "solid".}
+computation. Default: \code{linetype_segment = "solid"}.}
 
 \item{linetype_segment_asb2}{a character string or the associated numeric
 value referring the type of line used for segments linking species and/or
 centroid of the second assemblage to plot if there is one. Used for FDiv,
-FEve, FSpe, FOri, FNND, FDis computation. Default: linetype_segment =
-"dashed".}
+FEve, FSpe, FOri, FNND, FDis computation. Default:
+\code{linetype_segment = "dashed"}.}
 
 \item{scale_inf}{a numeric value referring to the minimal size of a point in
-a plot according to each species's relative weight. Default: scale_inf = 1.}
+a plot according to each species's relative weight. Default:
+\code{scale_inf = 1}.}
 
 \item{scale_sup}{a numeric value referring to the minimal size of a point in
-a plot according to each species's relative weight. Default: scale_inf = 3.}
+a plot according to each species's relative weight. Default:
+\code{scale_inf = 3}.}
 
 \item{plot_sp_nm}{a vector containing species names that are to be plotted.
-Default: plot_nm_sp = NULL (no name plotted).}
+Default: \code{plot_nm_sp = NULL} (no name plotted).}
 
 \item{plot_ch}{a logical value indicating whether the convex hull shaping the
 pool of species should be illustrated. If plot_ch = TRUE, convex hull of all
 species in the multidimensional space described in \code{sp_faxes_coord} is
 computed and its projection in 2D spaces are drawn as polygons. Default:
-plot_ch = TRUE.}
+\code{ plot_ch = TRUE}.}
 
 \item{fontface_nm}{a character string for font of species labels (e.g.
-"italic", "bold"). Default: fontface_nm = 'plain'.}
+"italic", "bold"). Default: \code{fontface_nm = 'plain'}.}
 
 \item{name_file}{a character string with name of file to save the figure
 (without extension). Default is 'NULL' which means plot is displayed.
@@ -280,10 +284,10 @@ named as follow "name_file1", "name_file2"...}
 \item{check_input}{a logical value indicating whether key features the inputs
 are checked (e.g. class and/or mode of objects, names of rows and/or
 columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.}
+returned. Default: \code{check.input = TRUE}.}
 }
 \value{
-for the given assemblage, return a list of one \code{patchwork}
+For the given assemblage, return a list of one \code{patchwork}
 figure per functional indice containing plots for combinations of up to
 four axes.
 }
@@ -293,6 +297,7 @@ functional indices, functional indices values must have been retrieve through
 the use of the} \code{\link{alpha.fd.multidim}} \strong{function}.
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -393,8 +398,8 @@ mFD::alpha.multidim.plot(
  fontface_nm           = "plain",
  name_file             = NULL,
  check_input           = TRUE)
- 
+}
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

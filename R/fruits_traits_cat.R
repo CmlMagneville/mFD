@@ -1,4 +1,4 @@
-#' Fruits Traits Informations
+#' Dataset: Fruits Traits Informations
 #' 
 #' This dataset summarizes information about the 6 traits used in the 
 #' `fruits_traits` dataset.
@@ -23,6 +23,7 @@
 #' @seealso `fruits_traits`, `baskets_fruits_weights`
 #' 
 #' @examples 
+#' \dontrun{
 #' # Load Traits Information
 #' data("fruits_traits_cat", package = "mFD")
 #' fruits_traits_cat
@@ -32,5 +33,6 @@
 #' 
 #' # Summarize Species x Traits Data
 #' mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
+#' }
 
 "fruits_traits_cat"

@@ -2,8 +2,7 @@
 % Please edit documentation in R/dist_to_df.R
 \name{dist.to.df}
 \alias{dist.to.df}
-\title{Function to merge distance object(s) into a single dataframe
-which rows are pairs of elements and column(s) distance metric(s)}
+\title{Merge Distance Object(s) into a Single Data Frame}
 \usage{
 dist.to.df(list_dist)
 }
@@ -13,14 +12,17 @@ name (e.g. name of distance metric) and the same labels (i.e. names of sets
 between which distance was computed).}
 }
 \value{
-a dataframe which first and second columns (names \code{x1} and \code{x2})
+A data frame which first and second columns (names \code{x1} and \code{x2})
 contain names of the 2 sets involved in each pair, and with one column for
 each dist object (named after its name in \code{list_dist}.
 }
 \description{
-This functions stands on the \code{\link[dendextend]{dist_long}} function
+This function merges distance object(s) into a single data frame which rows
+are pairs of elements and column(s) distance metric(s). It stands on the
+\code{\link[dendextend]{dist_long}} function.
 }
 \examples{
+\dontrun{
 # Create dist objects: 
 dist_A <- round(dist(matrix(runif(1:100), 5, 2, 
                       dimnames = list(letters[1:5], NULL))), 2)
@@ -34,8 +36,8 @@ dist.to.df(list(dA = dist_A))
 
 # Second example with 3 distances:
 dist.to.df(list(d1 = dist_A, d2 = dist_B, d3 = dist_C))
-
+}
 }
 \author{
-Sébastien Villéger
+Sebastien Villeger
 }

@@ -1,4 +1,4 @@
-#' Plot functional space and chosen functional indices
+#' Plot Functional Space and Chosen Functional Indices
 #'
 #' Compute a graphical representation of functional indices. \strong{To plot
 #' functional indices, functional indices values must have been retrieve through
@@ -42,182 +42,187 @@
 #'  the same range).
 #'
 #' @param color_bg a R color name  or an hexadecimal code used to fill plot
-#'  background. Default: color_bg = "grey95".
+#'  background. Default: `color_bg = "grey95"`.
 #'
 #' @param size_sp a numeric value referring to the size of species belonging to
-#'  the global pool but not the plotted assemblage. Default: size_sp = 1.
+#'  the global pool but not the plotted assemblage. Default: `size_sp = 1`.
 #'
 #' @param size_centroid a numeric value referring to the size of the centroid
-#'  point. Used for FDiv, FSpe, FDis plotting. Default: size_centroid = 1.
+#'  point. Used for FDiv, FSpe, FDis plotting. Default: `size_centroid = 1`.
 #'
 #' @param size_centroid_asb2 a numeric value referring to the size of the
 #'  centroid point for the second assemblage to plot if there is one. Used for
-#'  FDiv, FSpe, FDis plotting. Default: size_centroid = 1.
+#'  FDiv, FSpe, FDis plotting. Default: `size_centroid = 1`.
 #'
 #' @param size_vert a numeric value referring to the size of symbol for vertices
-#'  Default: size_vert = 1.
+#'  Default: `size_vert = 1`.
 #'
 #' @param size_sp_nm a numeric value for size of species label. Default:
-#'  size_sp_nm = 3.
+#'  `size_sp_nm = 3`.
 #'
 #' @param color_sp a R color name or an hexadecimal code referring to the color
 #'  of species from the studied assemblage.  This color is also used for FRic
-#'  convex hull color. Default: color_sp = "#0072B2".
+#'  convex hull color. Default: `color_sp = "#0072B2"`.
 #'
 #' @param color_sp_asb2 a R color name or an hexadecimal code referring to the
 #'  colour of species from the second assemblage to plot if there is one. This
-#'  color is also used for FRic convex hull color. Default: color_sp_asb2 =
-#'  "#D55E00".
+#'  color is also used for FRic convex hull color. Default is: 
+#'  `color_sp_asb2 = "#D55E00"`.
 #'
 #' @param color_sp_gp a R color name or an hexadecimal code to give to species
-#'  that do not belong to the studied assemblages. Default: color_sp_global_pool
-#'  = "gray80".
+#'  that do not belong to the studied assemblages. Default is: 
+#'  `color_sp_global_pool = "gray80"`.
 #'
 #' @param color_segment a R color name or an hexadecimal code referring to the
 #'  color of segments linking species of the studied assemblage and/or centroid
 #'  for FDiv, FEve, FSpe, FOri, FNND, FDis computation. Defaut is the same than
-#'  \code{color_sp} ; Default: color_segment = color_segment = "#0072B2".
+#'  \code{color_sp} ; Default: `color_segment = "#0072B2"`.
 #'
 #' @param color_segment_asb2 a R color name or an hexadecimal code referring to
 #'  the color of segments linking species and/or centroid of the second
 #'  assemblage to plot if there is one for FDiv, FEve, FSpe, FOri, FNND, FDis
 #'  computation. Defaut is the same than \code{color_sp_asb2} ; Default:
-#'  color_segment = color_segment = "#0072B2".
+#'  `color_segment = "#0072B2"`.
 #'
 #' @param color_centroid a R color name or an hexadecimal code referring to the
 #'  color of the centroid point. Used for FDiv, FSpe, FDis plotting. Default:
 #'  color_centroid = 1. Defaut is the same than \code{color_sp} ; Default:
-#'  color_segment = color_segment = "#0072B2".
+#'  `color_segment = "#0072B2"`.
 #'
 #' @param color_centroid_asb2 a R color name or an hexadecimal code referring to
 #'  the color of the centroid point for the second assemblage to plot if there
 #'  is one. Used for FDiv, FSpe, FDis plotting. Default: color_centroid = 1.
-#'  Defaut is the same than \code{color_sp_asb2} ; Default: color_segment =
-#'  color_segment = "#0072B2".
+#'  Defaut is the same than \code{color_sp_asb2} ; Default: 
+#'  `color_segment = "#0072B2"`.
 #'
 #' @param color_vert a R color name or an hexadecimal code referring to the
 #'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
 #'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-#'   must also be set to NA). Default: color_vert =  NA.
+#'   must also be set to NA). Default: `color_vert =  NA`.
 #'
 #' @param color_vert_asb2 a R color name or an hexadecimal code referring to the
 #'  color of vertices if plotted for the second assemblage. If color_vert = NA,
 #'  vertices are not plotted (for shapes only defined by color, ie shape < 20.
-#'  Otherwise fill must also be set to NA). Default: color_vert_asb2 =  NA.
+#'  Otherwise fill must also be set to NA). Default: `color_vert_asb2 =  NA`.
 #'
 #' @param color_ch a R color name or an hexadecimal code referring to the border
-#'  of the convex hull filled by the pool of species. Default: color_ch =
-#'  "black".
+#'  of the convex hull filled by the pool of species. Default: 
+#'  `color_ch = "black"`.
 #'
 #' @param color_sp_nm a R color name or an hexadecimal code referring to the
-#'  colour of species label. Default: color_sp_nm = "black".
+#'  colour of species label. Default: `color_sp_nm = "black"`.
 #'
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
 #'  to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-#'  hull. Default: fill_sp = '#0072B2'
+#'  hull. Default: `fill_sp = '#0072B2'`.
 #'
 #' @param fill_sp_gp a R color name or an hexadecimal code referring to the
 #'  colour to fill symbol for species from the global pool (if \code{shape_sp}
-#'   superior to 20). Default: fill_sp_gp = "grey80".
+#'   superior to 20). Default: `fill_sp_gp = "grey80"`.
 #'
 #' @param fill_sp_asb2 a R color name or an hexadecimal code referring to the
 #'   colour to fill species symbol for the second assemblage (if \code{shape_sp}
-#'   superior to 20) and its associated convex hull. Default: fill_sp_asb2 =
-#'   'white'.
+#'   superior to 20) and its associated convex hull. Default: 
+#'   `fill_sp_asb2 = 'white'`.
 #'
 #' @param fill_vert a character value referring to the color for filling symbol
-#'   for vertices (if \code{shape_vert} >20). If fill = NA and color = NA,
+#'   for vertices (if \code{shape_vert} >20). If `fill = NA` and `color = NA`,
 #'   vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-#'   color_vert = NULL is enough). Default is NA.
+#'   `color_vert = NULL` is enough). Default is `NA.`
 #'
 #' @param fill_vert_asb2 a character value referring to the color for filling
 #'   symbol for vertices (if \code{shape_vert} superior to 20) for the second
-#'   assemblage. If fill = NA and color = NA, vertices are not plotted (if
-#'   \code{shape_vert} superior to 20. Otherwise color_vert = NA is enough).
-#'   Default is NA.
+#'   assemblage. If `fill = NA` and `color = NA`, vertices are not plotted (if
+#'   \code{shape_vert} superior to 20. Otherwise `color_vert = NA` is enough).
+#'   Default is `NA`.
 #'
 #' @param fill_ch a R color name or an hexadecimal code referring to the filling
-#'  of the convex hull filled by the pool of species. Default is "white".
+#'  of the convex hull filled by the pool of species. Default is: 
+#'  `fill_ch = "white"`.
 #'
 #' @param fill_centroid a R color name or an hexadecimal code referring to the
 #'  filling of the centroid (if \code{shape_centroid} superior to 20). Default:
-#'  fill_centroid = '#0072B2'.
+#'  `fill_centroid = '#0072B2'`.
 #'
 #' @param fill_centroid_asb2 a R color name or an hexadecimal code referring to
 #'  the filling of the centroid of the second assemblage (if
-#'  \code{shape_centroid} superior to 20). Default: fill_centroid = "#D55E00".
+#'  \code{shape_centroid} superior to 20). Default: `fill_centroid = "#D55E00"`.
 #'
 #' @param alpha_ch a numeric value for transparency of the filling of the convex
-#'  hull (0 = high transparency, 1 = no transparency). Default is 0.3.
+#'  hull (0 = high transparency, 1 = no transparency). Default is `0.3`.
 #'
 #' @param shape_sp_gp a numeric value referring to the shape used to plot
 #'   species belonging to the global pool but not to the studied assemblage(s).
-#'   Default: shape_sp_global_pool = 3 (horizontal cross).
+#'   Default: `shape_sp_global_pool = 3` (horizontal cross).
 #'
 #' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: shape_sp = 16 (filled circle).
+#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
+#'  (filled circle).
 #'
 #' @param shape_sp_asb2 a numeric value referring to the shape used to plot
 #'  species belonging to the second assemblage to plot if there is one. Default:
-#'  shape_sp_asb2 = 15 (filled square)
+#'  `shape_sp_asb2 = 15` (filled square).
 #'
 #' @param shape_vert a numeric value referring to the shape used to plot
 #'   vertices if vertices should be plotted in a different way than other
-#'   species. If shape_vert = NA, no vertices plotted. Default: shape_vert = NA.
+#'   species. If `shape_vert = NA`, no vertices plotted. Default: 
+#'   `shape_vert = NA`.
 #'
 #' @param shape_vert_asb2 a numeric value referring to the shape used to plot
 #'  vertices of the second assemblage if vertices should be plotted in a
-#'  different way than other species. If shape_vert = NA, no vertices plotted.
-#'  Default: shape_vert_asb2 = NA.
+#'  different way than other species. If `shape_vert = NA`, no vertices plotted.
+#'  Default: `shape_vert_asb2 = NA`.
 #'
 #' @param shape_centroid a numeric value referring to the shape used to plot
-#'  centroid for the given assemblage. Default: shape_centroid = 10 (horizontal
-#'  cross inside an empty circle).
+#'  centroid for the given assemblage. Default: `shape_centroid = 10` 
+#'  (horizontal cross inside an empty circle).
 #'
 #' @param shape_centroid_asb2 a numeric value referring to the shape used to
 #'   plot centroid for the second assemblage to plot if there is one. Default:
-#'   shape_centroid_asb2 = 12 (horizontal cross inside an empty square).
+#'   `shape_centroid_asb2 = 12` (horizontal cross inside an empty square).
 #'
 #' @param shape_vert a numeric value referring to the symbol used to show
-#'  vertices position if \code{plot_vertices} = TRUE. Default is 23 (filled
+#'  vertices position if \code{plot_vertices} = TRUE. Default is `23` (filled
 #'  diamond).
 #'
 #' @param segment_size a numeric value referring to the size of the segment used
-#'  to link species of a given assemblage and centroid. Default: segment_size =
-#'  1
+#'  to link species of a given assemblage and centroid. Default: 
+#'  `segment_size = 1`.
 #'
 #' @param segment_size_asb2 a numeric value referring to the size of the segment
 #'  used to link species of the second assemblage and centroid. Default:
-#'  segment_size = 0.5
+#'  `segment_size = 0.5`.
 #'
 #' @param linetype_segment a character string or the associated numeric value
 #'  referring the type of line used for segments linking species of the studied
 #'  assemblage and/or centroid for FDiv, FEve, FSpe, FOri, FNND, FDis
-#'  computation. Default: linetype_segment = "solid".
+#'  computation. Default: `linetype_segment = "solid"`.
 #'
 #' @param linetype_segment_asb2 a character string or the associated numeric
 #'  value referring the type of line used for segments linking species and/or
 #'  centroid of the second assemblage to plot if there is one. Used for FDiv,
-#'  FEve, FSpe, FOri, FNND, FDis computation. Default: linetype_segment =
-#'  "dashed".
+#'  FEve, FSpe, FOri, FNND, FDis computation. Default: 
+#'  `linetype_segment = "dashed"`.
 #'
 #' @param scale_inf a numeric value referring to the minimal size of a point in
-#'   a plot according to each species's relative weight. Default: scale_inf = 1.
+#'   a plot according to each species's relative weight. Default: 
+#'   `scale_inf = 1`.
 #'
 #' @param scale_sup a numeric value referring to the minimal size of a point in
-#'   a plot according to each species's relative weight. Default: scale_inf = 3.
+#'   a plot according to each species's relative weight. Default: 
+#'   `scale_inf = 3`.
 #'
 #' @param plot_sp_nm a vector containing species names that are to be plotted.
-#'  Default: plot_nm_sp = NULL (no name plotted).
+#'  Default: `plot_nm_sp = NULL` (no name plotted).
 #'
 #' @param plot_ch a logical value indicating whether the convex hull shaping the
 #'  pool of species should be illustrated. If plot_ch = TRUE, convex hull of all
 #'  species in the multidimensional space described in \code{sp_faxes_coord} is
 #'  computed and its projection in 2D spaces are drawn as polygons. Default:
-#'  plot_ch = TRUE.
+#' ` plot_ch = TRUE`.
 #'
 #' @param fontface_nm a character string for font of species labels (e.g.
-#'  "italic", "bold"). Default: fontface_nm = 'plain'.
+#'  "italic", "bold"). Default: `fontface_nm = 'plain'`.
 #'
 #' @param name_file a character string with name of file to save the figure
 #'  (without extension). Default is 'NULL' which means plot is displayed.
@@ -227,13 +232,18 @@
 #' @param check_input a logical value indicating whether key features the inputs
 #'   are checked (e.g. class and/or mode of objects, names of rows and/or
 #'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: check.input = TRUE.
+#'   returned. Default: `check.input = TRUE`.
 #'
-#' @return for the given assemblage, return a list of one \code{patchwork}
+#' @return For the given assemblage, return a list of one \code{patchwork}
 #'   figure per functional indice containing plots for combinations of up to
 #'   four axes.
 #'
+#' @export
+#' 
+#' @author Camille Magneville and Sebastien Villeger
+#' 
 #' @examples
+#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -334,25 +344,11 @@
 #'  fontface_nm           = "plain",
 #'  name_file             = NULL,
 #'  check_input           = TRUE)
-#'  
-#' @author Camille Magneville and Sébastien Villéger
-#'
-#' @importFrom ggplot2 aes_ geom_hline geom_vline geom_segment geom_rect
-#' @importFrom ggplot2 geom_point geom_polygon scale_size scale_x_continuous
-#' @importFrom ggplot2 scale_y_continuous theme theme_void ggplot ggsave
-#' @importFrom grid arrow unit
-#' @importFrom utils tail
-#' @importFrom rlist list.append
-#' @importFrom patchwork plot_layout plot_annotation plot_spacer
-#'
-#' @export
-
+#' }
 
 alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
-                                ind_vect = c("fdis",
-                                             "fnnd", "feve",
-                                             "fric", "fdiv",
-                                             "fori", "fspe"),
+                                ind_vect = c("fdis","fnnd", "feve", "fric", 
+                                             "fdiv", "fori", "fspe"),
                                 details_list,
                                 asb_vect,
                                 fd_ind_values,
@@ -403,39 +399,38 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   
   #### Retrieve all the needed elements from details_list ####
   
-  asb_sp_relatw                <- details_list$asb_sp_relatw
+  asb_sp_relatw               <- details_list$asb_sp_relatw
   mst_list                    <- details_list$mst_list
   grav_center_vert_coord_list <- details_list$grav_center_vert_coord_list
-  grav_center_global_pool        <- details_list$grav_center_global_pool
-  nm_nn_global_pool_list              <- details_list$nm_nn_global_pool_list
-  nm_nn_asb_list                  <- details_list$nm_nn_asb_list
+  grav_center_global_pool     <- details_list$grav_center_global_pool
+  nm_nn_global_pool_list      <- details_list$nm_nn_global_pool_list
+  nm_nn_asb_list              <- details_list$nm_nn_asb_list
   
   
   # Check inputs relative to this function (funct.space.plot, already done) ####
   
-  if (check_input == TRUE) {
+  if (check_input) {
     
     # check that functional indices have the right names:
     for (ind in ind_vect) {
-      if (! ind %in% c("fdis","fnnd", "feve", "fric", "fdiv", "fori", "fspe")) {
-        stop("Error: Provided names of functional indices are not well written.
-             Please re-write them. Be careful, they should all be written in 
-             lowercase letters.")
+      if (!ind %in% c("fdis","fnnd", "feve", "fric", "fdiv", "fori", "fspe")) {
+        stop("Provided names of functional indices are not well written. ", 
+             "Please re-write them. Be careful, they should all be written in ",
+             "lowercase letters.")
       }
     }
     
     # check that good number of assemblage(s) to plot:
-    if (! length(asb_vect) %in% c(1, 2)) {
-      stop("Error: This function can only plot one or two assemblages.
-           Please chose two or less assemblages to plot.")
+    if (!length(asb_vect) %in% c(1, 2)) {
+      stop("This function can only plot one or two assemblages. Please chose ", 
+           "two or less assemblages to plot.")
     }
     
     # check that assemblage(s) to plot has(ve) the right name(s):
     for (asb in asb_vect) {
-      if (! asb %in% colnames(asb_sp_relatw)) {
-        stop("Error: Provided name(s) of assemblage(s) to plot is(are) not well 
-        written.
-             Please re-write.")
+      if (!asb %in% colnames(asb_sp_relatw)) {
+        stop("Provided name(s) of assemblage(s) to plot is(are) not well ", 
+             "written. Please re-write.")
       }
     }
     
@@ -446,13 +441,12 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
     }
     
     check.sp.faxes.coord(sp_faxes_coord)
-    
     check.asb.sp.w(asb_sp_w)
     
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_faxes_coord)))) {
-      stop(paste("Error: Mismatch between names in species*weight and
-                   species*coordinates matrix. Please check."))
+      stop("Mismatch between names in species x weight and species x ",
+           "coordinates matrix. Please check.")
     }
     
   }
@@ -534,6 +528,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   sp_faxes_coord_k2 <- sp_faxes_coord_k
   sp_faxes_coord_k2 <- as.data.frame(sp_faxes_coord_k2)
   weight <- c()
+  
   for (n in (1:ncol(asb_sp_relatw_k))) {
     weight <- append(weight, asb_sp_relatw_k[1, n])
   }
@@ -551,7 +546,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   # ... present on the assemblage to plot:
   sp_coord2 <- sp_faxes_coord
   sp_coord2$asb <- rownames(sp_coord2)
-  sp_coord2$asb[which(! sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- "no"
+  sp_coord2$asb[which(!sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- "no"
   sp_coord2$asb[which(sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- asb_k
   sp_coord2$asb <- as.factor(sp_coord2$asb)
   # count the number of column of this dataframe used to retrieve last ...
@@ -559,8 +554,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   col_nb <- ncol(sp_coord2)
   
   # set range of axes if c(NA, NA):
-  if (is.na(range_faxes_lim[1]) & is.na(range_faxes_lim[2])) {
-    range_sp_coord <- range(sp_faxes_coord)
+  if (is.na(range_faxes_lim[1]) && is.na(range_faxes_lim[2])) {
+    range_sp_coord  <- range(sp_faxes_coord)
     range_faxes_lim <- range_sp_coord +
       c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
   }
@@ -595,8 +590,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
     # retrieve vertices names of asb_k along the 2 dimensions to be plotted ...
     # ... before all indices and not just for FRic because needed if 
     # ... vertices number  is to show in graphs caption for all indices:
-    vert_nm_asb_k <- vertices(sp_faxes_coord_k[, c(faxes_nm[[1]], 
-                                                   faxes_nm[[2]])], 
+    vert_nm_asb_k <- vertices(sp_faxes_coord_k[ , c(faxes_nm[[1]], 
+                                                    faxes_nm[[2]])], 
                               check_input = TRUE)
     
     # retrieve coordinates of species of asb_k along the 2 plotted dimensions:
@@ -633,9 +628,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       # check that FRic can be computed for this asb:
       if (is.na(fd_ind_values[asb_k, "fric"])) {
-        stop(paste0("Error: FRic value can not be computed for",
-                    sep = " ", asb_k, ".", sep = " ",
-                    "The associated figure can not be computed."))
+        stop("FRic value can not be computed for ", asb_k, ". The associated ",
+             "figure can not be computed.")
       }
       
       plot_k <- get(paste0("plot_funct", sep = '_', i)) +
@@ -643,24 +637,24 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'), 
                                              c(faxes_nm[[1]], faxes_nm[[2]])],
                             ggplot2::aes_(x = sp_coord2[which(
-                                            sp_coord2[, col_nb] == 'no'),
+                                            sp_coord2[ , col_nb] == 'no'),
                                                         c(faxes_nm[[1]])],
                                           y = sp_coord2[which(
-                                            sp_coord2[, col_nb] == 'no'),
+                                            sp_coord2[ , col_nb] == 'no'),
                                                         c(faxes_nm[[2]])]),
                             colour = color_sp_gp, shape = shape_sp_gp, 
                             fill = fill_sp_gp) +
         
         ggplot2::geom_polygon(data = vert_sp_faxes_coord_k,
-                              ggplot2::aes_(x = vert_sp_faxes_coord_k[, 
+                              ggplot2::aes_(x = vert_sp_faxes_coord_k[ , 
                                                               faxes_nm[[1]]],
-                                            y = vert_sp_faxes_coord_k[, 
+                                            y = vert_sp_faxes_coord_k[ , 
                                                               faxes_nm[[2]]]),
                               fill = color_sp, alpha = alpha_ch) +
         
         ggplot2::geom_point(data = sp_faxes_coord_k, 
-                          ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
-                                        y = sp_faxes_coord_k[, faxes_nm[[2]]]),
+                          ggplot2::aes_(x = sp_faxes_coord_k[ , faxes_nm[[1]]],
+                                        y = sp_faxes_coord_k[ , faxes_nm[[2]]]),
                           colour = color_sp, shape = shape_sp, fill = fill_sp) +
         
         ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
@@ -682,9 +676,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       # check that FDiv can be computed for this asb:
       if (is.na(fd_ind_values[asb_k, "fdiv"])) {
-        stop(paste0("Error: FDiv value can not be computed for",
-                    sep = " ", asb_k, ".", sep = " ",
-                    "The associated figure can not be computed."))
+        stop("FDiv value can not be computed for ", asb_k, ". The associated ",
+             "figure can not be computed.")
       }
       
       # retrieve gravity center of vertices for the studied assemblage:
@@ -697,17 +690,17 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'),
                                              c(faxes_nm[[1]], faxes_nm[[2]])],
                             ggplot2::aes_(x = sp_coord2[which(
-                              sp_coord2[, col_nb] == 'no'),
+                              sp_coord2[ , col_nb] == 'no'),
                                                         c(faxes_nm[[1]])],
                                           y = sp_coord2[which(
-                                            sp_coord2[, col_nb] == 'no'),
+                                            sp_coord2[ , col_nb] == 'no'),
                                                         c(faxes_nm[[2]])]),
                             colour = color_sp_gp, shape = shape_sp_gp, 
                             fill = fill_sp_gp) +
         
         ggplot2::geom_point(data = sp_faxes_coord_k2, 
-                        ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                      y = sp_faxes_coord_k2[, faxes_nm[[2]]],
+                        ggplot2::aes_(x = sp_faxes_coord_k2[ , faxes_nm[[1]]],
+                                      y = sp_faxes_coord_k2[ , faxes_nm[[2]]],
                                       size = sp_faxes_coord_k2$w),
                           colour = color_sp, shape = shape_sp, fill = fill_sp) +
         
@@ -726,8 +719,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                               linetype = linetype_segment) +
         
         ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                        ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
+                        ggplot2::aes_(x = vert_sp_coord_asb1[ , faxes_nm[[1]]],
+                                      y = vert_sp_coord_asb1[ , faxes_nm[[2]]]),
                             color = color_vert, fill = fill_vert, 
                         shape = shape_vert, size = size_vert) +
         
@@ -751,9 +744,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       # check that FEve can be computed for this asb:
       if (is.na(fd_ind_values[asb_k, "feve"])) {
-        stop(paste0("Error: FEve value can not be computed for",
-                    sep = " ", asb_k, ".", sep = " ",
-                    "The associated figure can not be computed."))
+        stop("FEve value can not be computed for ", asb_k, ". The associated ",
+             "figure can not be computed.")
       }
       
       # retrieve mst information for the studied assemblage:
@@ -833,9 +825,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       # check that FSpe can be computed for this asb:
       if (is.na(fd_ind_values[asb_k, "fspe"])) {
-        stop(paste0("Error: FSpe value can not be computed for",
-                    sep = " ", asb_k, ".", sep = " ",
-                    "The associated figure can not be computed."))
+        stop("FSpe value can not be computed for ", asb_k, ". The associated ",
+             "figure can not be computed.")
       }
       
       # retrieve coordinates of gravity center of the global pool:
@@ -849,16 +840,20 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                             fill = fill_sp_gp) +
         
         ggplot2::geom_segment(data = sp_faxes_coord_k,
-                              ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
-                                            y = sp_faxes_coord_k[, faxes_nm[[2]]]),
+                              ggplot2::aes_(x = sp_faxes_coord_k[ , 
+                                                                faxes_nm[[1]]],
+                                            y = sp_faxes_coord_k[ , 
+                                                                faxes_nm[[2]]]),
                               xend = grav_center_global_pool[faxes_nm[[1]], ],
                               yend = grav_center_global_pool[faxes_nm[[2]], ],
                               colour = color_segment, size = segment_size,
                               linetype = linetype_segment) +
         
         ggplot2::geom_point(data = sp_faxes_coord_k2,
-                            ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                          y = sp_faxes_coord_k2[, faxes_nm[[2]]],
+                            ggplot2::aes_(x = sp_faxes_coord_k2[ , 
+                                                                faxes_nm[[1]]],
+                                          y = sp_faxes_coord_k2[ , 
+                                                                faxes_nm[[2]]],
                                           size = sp_faxes_coord_k2$w), 
                             colour = color_sp,
                             shape = shape_sp, fill = fill_sp) +
@@ -866,8 +861,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
         
         ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                      ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
-                                    y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
+                      ggplot2::aes_(x = vert_sp_coord_asb1[ , faxes_nm[[1]]],
+                                    y = vert_sp_coord_asb1[ , faxes_nm[[2]]]),
                             color = color_vert, fill = fill_vert, 
                             shape = shape_vert, size = size_vert) +
         
@@ -889,9 +884,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       # check that FDis can be computed for this asb:
       if (is.na(fd_ind_values[asb_k, "fdis"])) {
-        stop(paste0("Error: FDis value can not be computed for",
-                    sep = " ", asb_k, ".", sep = " ",
-                    "The associated figure can not be computed."))
+        stop("FDis value can not be computed for ", asb_k, ". The associated ",
+             "figure can not be computed.")
       }
       
       # retrieve fdis values
@@ -909,9 +903,9 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                             fill = fill_sp_gp) +
         
         ggplot2::geom_segment(data = sp_faxes_coord_k,
-                              ggplot2::aes_(x = sp_faxes_coord_k[, 
+                              ggplot2::aes_(x = sp_faxes_coord_k[ , 
                                                                 faxes_nm[[1]]],
-                                            y = sp_faxes_coord_k[, 
+                                            y = sp_faxes_coord_k[ , 
                                                               faxes_nm[[2]]]),
                               xend = fide_values[, paste0("fide", sep = "_", 
                                                           faxes_nm[[1]])],
@@ -964,9 +958,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       # check that FOri can be computed for this asb:
       if (is.na(fd_ind_values[asb_k, "fori"])) {
-        stop(paste0("Error: FOri value can not be computed for",
-                    sep = " ", asb_k, ".", sep = " ",
-                    "The associated figure can not be computed."))
+        stop("FOri value can not be computed for ", asb_k, ". The associated ",
+             "figure can not be computed.")
       }
       
       # retrieve nearest neighbor identity in the global pool...
@@ -1052,9 +1045,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       # check that FNND can be computed for this asb:
       if (is.na(fd_ind_values[asb_k, "fnnd"])) {
-        stop(paste0("Error: FNND value can not be computed for",
-                    sep = " ", asb_k, ".", sep = " ",
-                    "The associated figure can not be computed."))
+        stop("FNND value can not be computed for ", asb_k, ". The associated ",
+             "figure can not be computed.")
       }
       
       # retrieve nearest neighbor identity in the asb...
@@ -1171,7 +1163,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
     # ... present on the assemblage to plot:
     sp_coord2 <- sp_faxes_coord
     sp_coord2$asb <- rownames(sp_coord2)
-    sp_coord2$asb[which(! sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- "no"
+    sp_coord2$asb[which(!sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- "no"
     sp_coord2$asb[which(sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- asb_k
     sp_coord2$asb <- as.factor(sp_coord2$asb)
     
@@ -1201,8 +1193,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       # retrieve vertices names of asb_k along the 2 dimensions to be ...
       # ... plotted before all indices and not just for FRic because needed ...
       # ... if vertices number is to show in graphs caption for all indices:
-      vert_nm_asb_k <- vertices(sp_faxes_coord_k[, c(faxes_nm[[1]], 
-                                                     faxes_nm[[2]])], 
+      vert_nm_asb_k <- vertices(sp_faxes_coord_k[ , c(faxes_nm[[1]], 
+                                                      faxes_nm[[2]])], 
                                 check_input = TRUE)
       
       # retrieve coordinates of species of asb_k along the 2 plotted dimensions:
@@ -1218,10 +1210,10 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       # ... angle value of each species to this points, then order angle values:
       vert_sp_faxes_coord_k <- vert_sp_faxes_coord_k[order(-1 * atan2(
         vert_sp_faxes_coord_k[, 
-         faxes_nm[[2]]] - mean(range(vert_sp_faxes_coord_k[, 
+         faxes_nm[[2]]] - mean(range(vert_sp_faxes_coord_k[ , 
                                                            faxes_nm[[2]]])),
         vert_sp_faxes_coord_k[, 
-         faxes_nm[[1]]] - mean(range(vert_sp_faxes_coord_k[, 
+         faxes_nm[[1]]] - mean(range(vert_sp_faxes_coord_k[ , 
                                                           faxes_nm[[1]]])))), ]
       
       # convert the format so that it can be used with ggplot2:
@@ -1240,9 +1232,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         
         # check that FRic can be computed for this asb:
         if (is.na(fd_ind_values[asb_k, "fric"])) {
-          stop(paste0("Error: FRic value can not be computed for",
-                      sep = " ", asb_k, ".", sep = " ",
-                      "The associated figure can not be computed."))
+          stop("FRic value can not be computed for ", asb_k, ". ",
+               "The associated figure can not be computed.")
         }
         
         plot_k <- get("return_fric_list")[[i]] +
@@ -1278,9 +1269,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         
         # check that FDiv can be computed for this asb:
         if (is.na(fd_ind_values[asb_k, "fdiv"])) {
-          stop(paste0("Error: FDiv value can not be computed for",
-                      sep = " ", asb_k, ".", sep = " ",
-                      "The associated figure can not be computed."))
+          stop("FDiv value can not be computed for ", asb_k, ". ",
+               "The associated figure can not be computed.")
         }
         
         # retrieve gravity center of vertices for the studied assemblage:
@@ -1327,7 +1317,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                                       y = grav_center_vert_asb[faxes_nm[[2]], 
                           paste0("grav_center_vert_coord", sep = "_", asb_k)]),
                           colour = color_centroid_asb2, 
-                          shape = shape_centroid_asb2, size = size_centroid_asb2,
+                          shape = shape_centroid_asb2, 
+                          size = size_centroid_asb2,
                           fill = fill_centroid_asb2) +
           
           ggplot2::theme(legend.position = "none")
@@ -1342,9 +1333,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         
         # check that FEve can be computed for this asb:
         if (is.na(fd_ind_values[asb_k, "feve"])) {
-          stop(paste0("Error: FEve value can not be computed for",
-                      sep = " ", asb_k, ".", sep = " ",
-                      "The associated figure can not be computed."))
+          stop("FEve value can not be computed for ", asb_k, ". ",
+               "The associated figure can not be computed.")
         }
         
         # retrieve mst information for the studied assemblage:
@@ -1425,9 +1415,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         
         # check that FSpe can be computed for this asb:
         if (is.na(fd_ind_values[asb_k, "fspe"])) {
-          stop(paste0("Error: FSpe value can not be computed for",
-                      sep = " ", asb_k, ".", sep = " ",
-                      "The associated figure can not be computed."))
+          stop("FSpe value can not be computed for ", asb_k, ". ",
+               "The associated figure can not be computed.")
         }
         
         # retrieve coordinates of gravity center of the global pool:
@@ -1481,9 +1470,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         
         # check that FDis can be computed for this asb:
         if (is.na(fd_ind_values[asb_k, "fdis"])) {
-          stop(paste0("Error: FDis value can not be computed for",
-                      sep = " ", asb_k, ".", sep = " ",
-                      "The associated figure can not be computed."))
+          stop("FDis value can not be computed for ", asb_k, ". ",
+               "The associated figure can not be computed.")
         }
         
         # retrieve fdis values
@@ -1552,9 +1540,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         
         # check that FOri can be computed for this asb:
         if (is.na(fd_ind_values[asb_k, "fori"])) {
-          stop(paste0("Error: FOri value can not be computed for",
-                      sep = " ", asb_k, ".", sep = " ",
-                      "The associated figure can not be computed."))
+          stop("FOri value can not be computed for ", asb_k, ". ",
+               "The associated figure can not be computed.")
         }
         
         # retrieve nearest neighbor identity in the global pool...
@@ -1605,10 +1592,9 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                                 colour = color_segment_asb2, 
                                 size = segment_size_asb2,
                                 linetype = linetype_segment_asb2,
-                                arrow = grid::arrow(length = grid::unit(0.10, 
-                                                                        "inches"),
-                                                    ends = "last", 
-                                                    type = "open")) +
+                                arrow = grid::arrow(
+                                  length = grid::unit(0.10, "inches"),
+                                  ends = "last", type = "open")) +
           
           ggplot2::geom_point(data = sp_faxes_coord_k2,
                           ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
@@ -1638,9 +1624,8 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         
         # check that FNND can be computed for this asb:
         if (is.na(fd_ind_values[asb_k, "fnnd"])) {
-          stop(paste0("Error: FNND value can not be computed for",
-                      sep = " ", asb_k, ".", sep = " ",
-                      "The associated figure can not be computed."))
+          stop("FNND value can not be computed for ", asb_k, ". ",
+               "The associated figure can not be computed.")
         }
         
         # retrieve nearest neighbor identity in the asb...
@@ -2467,14 +2452,14 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   return_panels_list <- utils::tail(return_panels_list, length(ind_vect))
   
   # type, resolution and dimensions of file if to be saved
-  device_file = "png"
-  res_file= 300
+  device_file <- "png"
+  res_file <- 300
   
   # displaying or saving
-  if (is.null(name_file) == TRUE )  {
+  if (is.null(name_file)) {
     return(return_panels_list)
     
-  } else  {
+  } else {
     for (j in (1:length(return_panels_list))) {
       ggplot2::ggsave(filename = paste0(name_file, j, ".", device_file),
                       plot = return_panels_list[j],

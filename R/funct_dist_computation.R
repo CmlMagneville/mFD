@@ -24,14 +24,15 @@
 #' @param metric the distance to be computed:
 #'   `euclidean`, the Euclidean distance, 
 #'   `gower`, the Classical Gower distance as defined by Gower (1971), extent by
-#'   Bello et al. (2021) Based on the \code{\link[gawdis]{gawdis}}
+#'   de Bello _et al._ (2021) and based on the \code{\link[gawdis]{gawdis}} 
+#'   function.
 #'   
 #' @param scale_euclid only when computing euclidean distance a string value to
 #'   compute (or not) scaling of quantitative traits using the
 #'   \code{\link{tr.cont.scale}} function.
 #'   Possible options are:
-#'   `range` (standardize by the range: \eqn{({x' = x - min(x) )} / (max(x) -
-#'   min (x))})
+#'   `range` (standardize by the range: 
+#'   \eqn{({x' = x - min(x) )} / (max(x) - min (x))})
 #'   `center` (use the center transformation: \eqn{x' = x - mean(x)}), 
 #'   `scale` (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}}),
 #'   `scale_center` (use the scale-center transformation: 
@@ -39,27 +40,26 @@
 #'   `noscale` traits are not scaled
 #'   Default is `scale_center`.
 #'   
-#' @param ordinal_var Character string specifying the method to be used for
+#' @param ordinal_var a character string specifying the method to be used for
 #'   ordinal variables (i.e. ordered).
-#'    `classic` simply treats ordinal variables as continuous variables.
+#'    `classic` simply treats ordinal variables as continuous variables;
 #'    `metric` refers to Eq. 3 of Podani (1999); 
 #'    `podani` refers to Eqs. 2a-b of Podani (1999), 
-#'   #'   both options convert ordinal variables to ranks. 
-#'   Default is`classic`
+#'   Both options convert ordinal variables to ranks. Default is `classic`.
 #'  
-#' @param weight_type Type of used method to weight traits. 
-#'   `user` – user defined weights in tr_cat
+#' @param weight_type the type of used method to weight traits. 
+#'   `user` – user defined weights in tr_cat, 
 #'   `equal` – all traits having the same weight.
-#'   More methods are available using gawdis from gawdis package. To compute
-#'   gower distance with fuzzy trait and traits weight please refer to gawdis()
-#'   from gawdis package Default is`equal`
+#'   More methods are available using \code{\link[gawdis]{gawdis}} from `gawdis` 
+#'   package. To compute gower distance with fuzzy trait and traits weight 
+#'   please refer to \code{\link[gawdis]{gawdis}}. Default is `equal`.
 #' 
 #' @param stop_if_NA a logical value to stop or not the process if the
 #'   `sp_tr` data frame contains NA. Functional measures are sensitive to
 #'   missing traits. For further explanations, see the Note section.
 #'   Default is `TRUE`.
 #'
-#' @return A `dist` object containing distance between each pair of species.
+#' @return a `dist` object containing distance between each pair of species.
 #'
 #' @note If the `sp_tr` data frame contains `NA` you can either
 #'   chose to compute anyway functional distances (but keep in mind that
@@ -68,20 +68,23 @@
 #'   Johnson _et al._ (2020)).
 #'
 #' @references 
-#'   Gower, J.C. (1971) A general coefficient of similarity and some of its 
+#' de Bello _et al._ (2021) Towards a more balanced combination of multiple
+#'   traits when computing functional differences between species. 
+#'   _Method in Ecology and Evolution_, accepted, 
+#'   doi: https://doi.org/10.1111/2041-210X.13537.
+#' Gower (1971 ) A general coefficient of similarity and some of its 
 #'   properties. _Biometrics_, **27**, 857-871.\cr
-#'   Johnson _et al._ (2020) Handling missing values in trait data. 
+#' Johnson _et al._ (2020) Handling missing values in trait data. 
 #'   _Global Ecology and Biogeography_, **30**, 51-62.\cr
-#'   Bello _et al._ (2021) Towards a more balanced combination of multiple
-#'   traits when computing functional differences between species _Method in
-#'   Ecology and Evolution_, doi: https://doi.org/10.1111/2041-210X.13537
+#' Podani (1999) Extending Gower's general coefficient of similarity to ordinal 
+#'   characters, _Taxon_, **48**, 331-340.
 #'     
-#' @author Nicolas Loiseau & Sébastien Villéger
+#' @author Nicolas Loiseau & Sebastien Villeger
 #'
 #' @export
-#' @importFrom gawdis gawdis
 #' 
 #' @examples
+#' \dontrun{
 #' # Load Species x Traits data
 #' data("fruits_traits", package = "mFD")
 #'
@@ -91,7 +94,7 @@
 #' # Remove fuzzy traits for this example and thus remove lat column:
 #' fruits_traits     <- fruits_traits[ , -c(6:8)]
 #' fruits_traits_cat <- fruits_traits_cat[-c(6:8), ]
-#' fruits_traits_cat <- fruits_traits_cat[, -3]
+#' fruits_traits_cat <- fruits_traits_cat[ , -3]
 #' 
 #' # Compute Functional Distance
 #' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
@@ -101,6 +104,7 @@
 #'                                   ordinal_var   = "classic",
 #'                                   weight_type   = "equal",
 #'                                   stop_if_NA    = TRUE)
+#' }
 
 funct.dist <- function(sp_tr,
                        tr_cat,
@@ -123,30 +127,34 @@ funct.dist <- function(sp_tr,
     
   # checks associated with funct.dist:
   
-  metric <- match.arg(metric, c("euclidean", "gower"))
-  
+  metric      <- match.arg(metric, c("euclidean", "gower"))
   weight_type <- match.arg(weight_type, c("equal", "user"))
+  ordinal_var <- match.arg(ordinal_var, c("classic", "metric", "podani"))
   
-  ordinal_var <- match.arg(ordinal_var, c("classic", "metric","podani"))
   
-  
-  if (weight_type == "user" && sum(colnames(tr_cat) %in% "trait_weight") == 0){
-    stop("A fourth colunm trait_weight must be added in tr_cat
-                       to specify weight for each trait.")
+  if (weight_type == "user" && sum(colnames(tr_cat) %in% "trait_weight") == 0) {
+    stop("A fourth colunm trait_weight must be added in tr_cat to specify ", 
+         "weight for each trait.")
   }
   
   if (sum(colnames(tr_cat) %in% "trait_weight") != 0) { 
+    
     weight_type <- "user"
     tr_weights  <- tr_cat$trait_weight
+    
     if (any(tr_cat$trait_weight <= 0)){
-      stop("Trait weight cannot be negative")
+      stop("Trait weight cannot be negative.")
     }
     
-  }else{ tr_weights  <- NULL }
+  } else { 
+    
+    tr_weights  <- NULL 
+  }
   
   if (any(tr_cat$"trait_type" == "F") && !is.null(tr_weights)) {
-    stop("To compute Gower distance with fuzzy traits and trait weights 
-         please use gawdis package")}
+    stop("To compute Gower distance with fuzzy traits and trait weights ", 
+         "please use gawdis package.")
+  }
   
   ## Compute Distances ----
   
@@ -155,23 +163,21 @@ funct.dist <- function(sp_tr,
   if (metric == "euclidean") {
     
     if (any(tr_cat$"trait_type" == "N")){
-      stop("At least one trait is nominal.Species x traits data frame 
-                          must contain only numerical variables.")
+      stop("At least one trait is nominal.Species x traits data frame must ", 
+           "contain only numerical variables.")
     }
     
     if (any(tr_cat$"trait_type" == "F")){
-      stop("At least one trait is fuzzy.Gower distance should be used
-               to consider fuzzy trait")
+      stop("At least one trait is fuzzy.Gower distance should be used to ", 
+           "consider fuzzy trait.")
     }
     
     for (k in tr_cat$"trait_name"[which(tr_cat$"trait_type" == "Q")]) {
       if (!is.numeric(sp_tr[ , k])) {
-        
+        warning("To compute euclidean distance species x traits data frame ", 
+                "must contain only numerical variables.")
         stop("Trait '", k, "' is supposed to be continuous but is not ",
              "described with a 'numeric' variable.")
-        
-        warning("To compute euclidean distance, Species x traits data frame 
-                          must contain only numerical variables.")
       }
     }
     
@@ -190,9 +196,9 @@ funct.dist <- function(sp_tr,
   if (metric == "gower") {
     
     if (any(apply(sp_tr, 2, is.numeric))) {
-      warning("Species x traits data frame contains only numerical variables.
-              Euclidean can be used")
-      #Not a stop because user may want to weight traits
+      warning("Species x traits data frame contains only numerical variables. ", 
+              "Euclidean can be used.")
+      # Not a stop because user may want to weight traits
     }
     
     
@@ -205,8 +211,8 @@ funct.dist <- function(sp_tr,
       fuzz_cat <- table(tr_cat[tr_cat$"trait_type" == "F", ]$"fuzzy_name")
       
       # Fill all fuzzy names of traits
-      tr_cat[is.na(tr_cat$fuzzy_name),]$fuzzy_name <- tr_cat[is.na(
-                                                tr_cat$fuzzy_name),]$trait_name 
+      tr_cat[is.na(tr_cat$fuzzy_name), ]$fuzzy_name <- tr_cat[is.na(
+                                                tr_cat$fuzzy_name), ]$trait_name 
       
       tab_dist <- gawdis::gawdis(sp_tr,
                                  W                 = tr_weights, 
@@ -223,7 +229,7 @@ funct.dist <- function(sp_tr,
                                  opti.maxiter      = 300,
                                  silent            = TRUE)  
       
-    } else{ 
+    } else { 
       
       #without fuzzy traits   
       tab_dist <- gawdis::gawdis(sp_tr,
@@ -242,6 +248,7 @@ funct.dist <- function(sp_tr,
                                  silent            = TRUE) 
     }
   }    
+  
   # if some species have a functional distance equal to 0, tell the user that it
   # could be a god idea to gather species into FEs:
   

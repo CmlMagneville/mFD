@@ -55,6 +55,7 @@ you can do with your data. For this function to work, there must be no NA in
 your \code{sp_tr} data frame.
 }
 \examples{
+\dontrun{
 # Load Species x Traits data
 data('fruits_traits', package = 'mFD')
 
@@ -63,6 +64,7 @@ data('fruits_traits_cat', package = 'mFD')
 
 # Summarize Species x Traits data
 mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
+}
 }
 \author{
 Camille Magneville & Sebastien Villeger

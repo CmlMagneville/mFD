@@ -1,5 +1,7 @@
-#' Compute the set of indices based on number of species in functional entities
-#' (FEs) following Mouillot et al (2014)
+#' Compute the Set of Indices based on Number of Species in Functional Entities
+#' 
+#' This function computes the set of indices based on number of species in 
+#' Functional Entities (FEs) following Mouillot _et al._ (2014).
 #'
 #' @param asb_sp_occ a matrix linking occurrences (coded as 0/1) of
 #'   species (columns) in a set of assemblages (rows). Warning: \strong{An
@@ -16,20 +18,34 @@
 #' @param check_input a logical value indicating whether key features the inputs
 #'   are checked (e.g. class and/or mode of objects, names of rows and/or
 #'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: check.input = TRUE.
+#'   returned. Default: `check.input = TRUE`.
 #'   
 #' @param details_returned a logical value indicating whether details
 #'   about indices computation should be returned. These details are required by
 #'   \code{\link{alpha.fd.fe.plot}} to plot FEs indices.
 #'
-#' @return  \itemize{ \item \emph{asb_fdfe} a matrix containing for each
-#'   assemblage (rows), values of functional diversity indices (same names than
-#'   in 'ind_nm') as well as the number of species ('nb_sp') and the number of
-#'   FE (nb_fe). \item if \emph{details_returned} is TRUE, \item
-#'   \emph{details_fdfe} a list with \emph{asb_fe_nbsp} a matrix with number of
-#'   species per FE in each assemblage.}
+#' @return A list with:
+#'   \itemize{ 
+#'     \item \emph{asb_fdfe} a matrix containing for each assemblage (rows), 
+#'       values of functional diversity indices (same names than in 'ind_nm') 
+#'       as well as the number of species ('nb_sp') and the number of FE
+#'       (nb_fe);
+#'   \item if \emph{details_returned} is `TRUE`, 
+#'   \item \emph{details_fdfe} a list with \emph{asb_fe_nbsp} a matrix with 
+#'     number of species per FE in each assemblage.
+#'   }
 #'
+#' @references 
+#' Mouillot _et al._ (2014) Functional over-redundancy and high functional 
+#' vulnerability in global fish faunas on tropical reefs. _PNAS_, **38**, 
+#' 13757-13762.
+#'
+#' @author Camille Magneville
+#'
+#' @export
+#' 
 #' @examples
+#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -59,46 +75,33 @@
 #'    ind_nm           = c('fred', 'fored', 'fvuln'),
 #'    check_input      = TRUE, 
 #'    details_returned = TRUE)
-#'  
-#' @references 
-#' Mouillot _et al._ (2014) Functional over-redundancy and high functional 
-#' vulnerability in global fish faunas on tropical reefs _PNAS_ **38**, 
-#' 13757-13762 \cr
+#' }
 
-#'
-#' @author Camille Magneville
-#'
-#' @export
-
-
-alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred", 
-                                                         "fored", "fvuln"), 
+alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred", "fored", 
+                                                         "fvuln"), 
                         check_input = TRUE, details_returned = TRUE) {
   
   
   # check_inputs if asked:
-  if (check_input == TRUE) {
+  if (check_input) {
     
     check.asb.sp.w.occ(asb_sp_occ)
     
     if (any(!ind_nm %in% c("fred", "fored", "fvuln"))) {
-      stop("Error: Name of the functional indice to compute does not match with
-         those allowed. Please check.")
+      stop("Name of the functional indice to compute does not match with ",
+           "those allowed. Please check.")
     }
     
     if (!("sp_fe" %in% names(sp_to_fe))) {
-      stop("Error: Input 'sp_to_fe' should contain a vector named 'sp_fe' 
-      (as returned by function 'sp.to.fe').
-           Please check.")
+      stop("Input 'sp_to_fe' should contain a vector named 'sp_fe' (as ", 
+           "returned by function 'sp.to.fe'). Please check.")
     }
     
     if (any(!(colnames(asb_sp_occ) %in% names(sp_to_fe$sp_fe)))) {
-      stop("Error: All species in species*assemblage occurence matrix  should 
-          be in the input 'sp_to_fe'.
-          Please check that the function 'sp.to.fe' was applied on trait values 
-          of the same set of species.")
+      stop("All species in species*assemblage occurence matrix  should be in ", 
+           "the input 'sp_to_fe'. Please check that the function 'sp.to.fe' ", 
+           "was applied on trait values of the same set of species.")
     }
-    
   }
   
   # change occ matrix as a df:
@@ -126,8 +129,7 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred",
     # retrieve names of species present in assemblage
     # k:
     asb_sp_occ_k <- asb_sp_occ[k, , drop = FALSE]
-    to_remove <- colnames(asb_sp_occ_k[, asb_sp_occ_k == 
-                                         0])
+    to_remove <- colnames(asb_sp_occ_k[ , asb_sp_occ_k == 0])
     nmsp_k <- colnames(asb_sp_occ[which(!(colnames(asb_sp_occ) %in% 
                                             to_remove))])
     
@@ -147,47 +149,45 @@ alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred",
     
     # ration between number of species and number of FE
     # (i.e. Funct redundancy)
-    fred_k <- nbsp_k/nbfe_k
+    fred_k <- nbsp_k / nbfe_k
     
     # number of species in each FE
-    fe_nbsp_k <- unlist(lapply(nmfe_k, function(x) {
-      length(which(fe_k == x))
-    }))
+    fe_nbsp_k <- unlist(lapply(nmfe_k, function(x) length(which(fe_k == x))))
     names(fe_nbsp_k) <- nmfe_k
     asb_fe_nbsp[k, nmfe_k] <- fe_nbsp_k
     
     
     # compute functional redundancy for assemblage k:
-    if ("fred" %in% ind_nm) {
-      asb_fdfe[k, "fred"] <- fred_k  # or mean(fe_nbsp_k)
-    }
+    if ("fred" %in% ind_nm) asb_fdfe[k, "fred"] <- fred_k  # or mean(fe_nbsp_k)
+
     
     # compute functional over-redundancy for assemblage
     # k:
     if ("fored" %in% ind_nm) {
       fored_k <- sum(sapply(fe_nbsp_k, function(x) {
         max(c(x, fred_k) - fred_k)
-      }))/nbsp_k
+      })) / nbsp_k
       asb_fdfe[k, "fored"] <- fored_k
     }
     
     # compute functional vulnerability for assemblage
     # k:
     if ("fvuln" %in% ind_nm) {
-      fvuln_k <- length(which(fe_nbsp_k == 1))/nbfe_k
+      fvuln_k <- length(which(fe_nbsp_k == 1)) / nbfe_k
       asb_fdfe[k, "fvuln"] <- fvuln_k
     }
     
   }
   
   # outputs
-  if (details_returned == TRUE) {
+  if (details_returned) {
+    
     res <- list(asb_fdfe = asb_fdfe, details_fdfe = list(asb_fe_nbsp = 
                                                            asb_fe_nbsp))
   } else {
+    
     res <- asb_fdfe
   }
   
   return(res)
-  
 }

@@ -2,8 +2,8 @@
 % Please edit documentation in R/plot_beta_indices.R
 \name{beta.multidim.plot}
 \alias{beta.multidim.plot}
-\title{Illustrate functional beta-diversity indices for pairs of assemblages in a
-multidimensional space}
+\title{Illustrate fFnctional beta-Diversity Indices for Pairs of Assemblages in a
+Multidimensional Space}
 \usage{
 beta.multidim.plot(
   output_beta_fd_multidim,
@@ -31,7 +31,7 @@ beta.multidim.plot(
 }
 \arguments{
 \item{output_beta_fd_multidim}{the list returned by
-\code{\link{beta.fd.multidim}} when its input 'details_returned ' is TRUE'.
+\code{\link{beta.fd.multidim}} when \code{details_returned = TRUE}.
 Thus, even if this function will illustrate functional beta-diversity for a
 single pair of assemblages, plots will be scaled according to all
 assemblages for which indices were computed.}
@@ -40,10 +40,11 @@ assemblages for which indices were computed.}
 functional beta-diversity will be illustrated.}
 
 \item{beta_family}{a character string for the type of beta-diversity index
-for which values will be printed, 'Jaccard' (default) and/or 'Sorensen'.}
+for which values will be printed, \code{'Jaccard'} (default) and/or
+\code{'Sorensen'}.}
 
 \item{plot_sp_nm}{a vector containing species names that are to be plotted.
-Default: plot_nm_sp = NULL (no name plotted).}
+Default: \code{plot_nm_sp = NULL} (no name plotted).}
 
 \item{faxes}{a vector with names of axes to plot (as columns names in
 \code{output_beta_fd_multidim$details$input$sp_faxes_coord} ). \strong{You
@@ -51,7 +52,7 @@ can only plot from 2 to 4 axes for graphical reasons}. Default: faxes = NULL
 (the four first axes will be plotted).}
 
 \item{name_file}{a character string with name of file to save the figure
-(without extension). Default: name_file = 'NULL' which means plot is
+(without extension). Default: \code{name_file = NULL} which means plot is
 displayed.}
 
 \item{faxes_nm}{a vector with axes labels for figure. Default: as
@@ -59,64 +60,65 @@ displayed.}
 
 \item{range_faxes}{a vector with minimum and maximum values of axes. Note
 that to have a fair representation of position of species in all plots,
-they should have the same range. Default: faxes_lim = c(NA, NA) (the range
-is computed according to the range of values among all axes).}
+they should have the same range. Default: \code{faxes_lim = c(NA, NA)} (the
+range is computed according to the range of values among all axes).}
 
 \item{color_bg}{a R color name or an hexadecimal code used to fill
-plot background. Default: color_bg = "grey95".}
+plot background. Default: \code{color_bg = "grey95"}.}
 
 \item{shape_sp}{a vector with 3 numeric values referring to the shape of
 symbol used for species from the 'pool' absent from the 2 assemblages, and
 for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-Default: shape_sp = c("pool" = 3, asb1 = 22, asb2 = 21) so cross, square and
-circle .}
+Default: \code{shape_sp = c("pool" = 3, "asb1" = 22, "asb2" = 21)} so cross,
+square and circle.}
 
 \item{size_sp}{a numeric value referring to the size of symbols for
-species. Default: is size_sp = c("pool" = 0.8, asb1 = 1, asb2 = 1).}
+species. Default: \verb{is size_sp = c("pool" = 0.8, "asb1" = 1, "asb2" = 1)}.}
 
 \item{color_sp}{a vector with 3 names or hexadecimal codes referring to the
-colour of symbol for species. Default is color_sp = c("pool"="grey50",
-asb1="blue", asb2= "red").}
+colour of symbol for species. Default is:
+\code{color_sp = c("pool" = "grey50", "asb1" = "blue", "asb2" = "red")}.}
 
 \item{fill_sp}{a vector with 3 names or hexadecimal codes referring to the
-colour to fill symbol (if \code{shape_sp} >20) for species of the pool and
-of the 2 assemblages. Default is fill_sp = c("pool" = NA, asb1 = "white",
-asb2 = "white").}
+color to fill symbol (if \code{shape_sp} > 20) for species of the pool and
+of the 2 assemblages. Default is:
+\code{fill_sp = c("pool" = NA, "asb1" = "white", "asb2" = "white")}.}
 
 \item{fill_vert}{a vector with 3 names or hexadecimal codes
-referring to the colour to fill symbol (if \code{shape_sp} >20) for species
-being vertices of the convex hulls of the pool of species and of the 2
-assemblages. Default is fill_vert = c("pool" = NA, asb1 = "blue", asb2 =
-"red").}
+referring to the colour to fill symbol (if \code{shape_sp} > 20) for
+species being vertices of the convex hulls of the pool of species and of
+the 2 assemblages. Default is:
+\code{fill_vert = c("pool" = NA, "asb1" = "blue", "asb2" = "red")}.}
 
 \item{color_ch}{a vector with 3 names or hexadecimal codes referring to the
 border of the convex hulls of the pool of species and by the 2 assemblages.
-Default is color_ch = c("pool" = NA, asb1 = "blue", asb2 = "red").}
+Default is: \code{color_ch = c("pool" = NA, "asb1" = "blue", "asb2" = "red")}.}
 
 \item{fill_ch}{a vector with 3 names or hexadecimal codes referring to the
 filling of the convex hull of the pool of species and of the 2 assemblages.
-Default is fill_ch = c("pool" = "white", asb1 = "blue", asb2 = "red").}
+Default is \code{fill_ch = c("pool" = "white", "asb1" = "blue", "asb2" = "red")}.}
 
 \item{alpha_ch}{a vector with 3 numeric value for transparency of
 the filling of the convex hulls (0 = high transparency, 1 = no
-transparency). Default is alpha_ch = c("pool"=1, asb1=0.3, asb2=0.3).}
+transparency). Default is:
+\code{alpha_ch = c("pool" = 1, "asb1" = 0.3, "asb2" = 0.3)}.}
 
-\item{nm_size}{a numeric value for size of species label. Default is 3
-points.}
+\item{nm_size}{a numeric value for size of species label. Default is \code{3}
+(in points).}
 
-\item{nm_color}{a R color name or an hexadecimal code referring to the colour
-of species label. Default is black.}
+\item{nm_color}{a R color name or an hexadecimal code referring to the color
+of species label. Default is \code{black.}}
 
 \item{nm_fontface}{a character string for font of species labels (e.g.
-"italic", "bold"). Default is 'plain'.}
+"italic", "bold"). Default is \code{'plain'}.}
 
 \item{check_input}{a logical value indicating whether key features the inputs
 are checked (e.g. class and/or mode of objects, names of rows and/or
 columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.}
+returned. Default: \code{check.input = TRUE}.}
 }
 \value{
-for the given pair of assemblages, returns a \code{patchwork} figure
+For the given pair of assemblages, returns a \code{patchwork} figure
 with overlap between convex hulls projected in 2-dimensional spaces. Values
 of functional beta-diversity indices are shown on top-right corner of the
 figure.
@@ -128,6 +130,7 @@ diversity indices should have been computed using the}
 \code{\link{beta.fd.multidim}} \strong{function}.
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
@@ -155,7 +158,7 @@ diversity indices should have been computed using the}
                                   fdendro             = "average")
  
 # Retrieve species coordinates matrix:
- sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
  
 # Get the occurrence dataframe:
  asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
@@ -163,7 +166,7 @@ diversity indices should have been computed using the}
 
 # Compute beta diversity indices:
  beta_fd_fruits <- mFD::beta.fd.multidim(
-  sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")], 
+  sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")], 
   asb_sp_occ       = asb_sp_fruits_occ,
   check_input      = TRUE,
   beta_family      = c("Jaccard"),
@@ -194,8 +197,8 @@ diversity indices should have been computed using the}
    nm_color                = "black", 
    nm_fontface             = "plain",
    check_input             = TRUE) 
- 
+}
 }
 \author{
-Sébastien Villéger & Camille Magneville
+Sebastien Villeger & Camille Magneville
 }

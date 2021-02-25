@@ -1,4 +1,4 @@
-#' Retrieve information about species in a given assemblage
+#' Retrieve Information about Species in a Given Assemblage
 #'
 #' This function computes names of species present in an given assemblage, their
 #' coordinates in the functional space and their weights. It is used in the
@@ -11,25 +11,30 @@
 #'   space. Species coordinates have been retrieved thanks to
 #'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#' @param asb_sp_w a \strong{matrix} linking weight of species (columns) and a
+#' @param asb_sp_w a matrix linking weight of species (columns) and a
 #'   set of assemblages (rows).
 #'
-#' @return a vector containing names of species present in a given assemblage
+#' @return A vector containing names of species present in a given assemblage
 #'   \code{sp_name_asb_k}, a matrix containing coordinates of species present in
 #'   a given assemblage \code{sp_faxes_coord_k}, a matrix containing weight of
 #'   species present in a given assemblage \code{asb_sp_w_k}, a matrix
 #'   containing relative weight of species present in a given assemblage
 #'   \code{asb_sp_relatw_k}.
 #'
+#' @author Camille Magneville and Sebastien Villeger
+#'
+#' @export
+#'
 #' @examples
+#' \dontrun{
 #' # Load Species*Traits dataframe:
-#'  data("fruits_traits", package = "mFD")
+#' data("fruits_traits", package = "mFD")
 #' 
 #' # Load Assemblages*Species dataframe:      
-#'  data("baskets_fruits_weights", package = "mFD")
+#' data("baskets_fruits_weights", package = "mFD")
 #'  
 #' # Load Traits categories dataframe:
-#'  data("fruits_traits_cat", package = "mFD")  
+#' data("fruits_traits_cat", package = "mFD")  
 #' 
 #' # Compute functional distance 
 #' sp_dist_fruits <- mFD::funct.dist(
@@ -50,30 +55,25 @@
 #'  fdendro             = "average")
 #'  
 #' # Retrieve species coordinates matrix:
-#'  sp_faxes_coord_fruits <- 
-#'  fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 #' 
 #' # Filter species of basket_1 assemblage:
-#'  sp.filter(
-#'  asb_nm         = "basket_1", 
-#'  sp_faxes_coord = sp_faxes_coord_fruits, 
-#'  asb_sp_w       = baskets_fruits_weights)
-#' 
-#' @author Camille Magneville and Sébastien Villéger
-#'
-#'@export
+#' sp.filter(asb_nm         = "basket_1", 
+#'           sp_faxes_coord = sp_faxes_coord_fruits, 
+#'           asb_sp_w       = baskets_fruits_weights)
+#' }
 
 sp.filter <- function(asb_nm, sp_faxes_coord, asb_sp_w) {
-  asb_sp_w <- as.data.frame(asb_sp_w)
+  
+  asb_sp_w  <- as.data.frame(asb_sp_w)
   asb_sp_w2 <- asb_sp_w[asb_nm, ]
+  
   sp_name_asb_k <- colnames(asb_sp_w2)[which(asb_sp_w2 != 0)]
   sp_faxes_coord_k <- sp_faxes_coord[sp_name_asb_k, , drop = FALSE]
   asb_sp_w_k <- asb_sp_w2[asb_nm, sp_name_asb_k, drop = FALSE]
   asb_sp_relatw_k <- asb_sp_w_k / sum(asb_sp_w_k)
   
-  return_list <- list(sp_name_asb_k, sp_faxes_coord_k, asb_sp_w_k,
-                      asb_sp_relatw_k)
-  names(return_list) <- c("species names", "species coordinates",
-                          "species weight", "species relative weight")
-  return(return_list)
+  list("species names" = sp_name_asb_k, 
+       "species coordinates" = sp_faxes_coord_k, "species weight" = asb_sp_w_k,
+       "species relative weight" = asb_sp_relatw_k)
 }

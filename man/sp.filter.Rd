@@ -2,7 +2,7 @@
 % Please edit documentation in R/sp_filtering.R
 \name{sp.filter}
 \alias{sp.filter}
-\title{Retrieve information about species in a given assemblage}
+\title{Retrieve Information about Species in a Given Assemblage}
 \usage{
 sp.filter(asb_nm, sp_faxes_coord, asb_sp_w)
 }
@@ -13,11 +13,11 @@ sp.filter(asb_nm, sp_faxes_coord, asb_sp_w)
 space. Species coordinates have been retrieved thanks to
 \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
-\item{asb_sp_w}{a \strong{matrix} linking weight of species (columns) and a
+\item{asb_sp_w}{a matrix linking weight of species (columns) and a
 set of assemblages (rows).}
 }
 \value{
-a vector containing names of species present in a given assemblage
+A vector containing names of species present in a given assemblage
 \code{sp_name_asb_k}, a matrix containing coordinates of species present in
 a given assemblage \code{sp_faxes_coord_k}, a matrix containing weight of
 species present in a given assemblage \code{asb_sp_w_k}, a matrix
@@ -31,14 +31,15 @@ coordinates in the functional space and their weights. It is used in the
 functional indices for each community.
 }
 \examples{
+\dontrun{
 # Load Species*Traits dataframe:
- data("fruits_traits", package = "mFD")
+data("fruits_traits", package = "mFD")
 
 # Load Assemblages*Species dataframe:      
- data("baskets_fruits_weights", package = "mFD")
+data("baskets_fruits_weights", package = "mFD")
  
 # Load Traits categories dataframe:
- data("fruits_traits_cat", package = "mFD")  
+data("fruits_traits_cat", package = "mFD")  
 
 # Compute functional distance 
 sp_dist_fruits <- mFD::funct.dist(
@@ -59,16 +60,14 @@ fspaces_quality_fruits <- mFD::quality.fspaces(
  fdendro             = "average")
  
 # Retrieve species coordinates matrix:
- sp_faxes_coord_fruits <- 
- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
+sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 # Filter species of basket_1 assemblage:
- sp.filter(
- asb_nm         = "basket_1", 
- sp_faxes_coord = sp_faxes_coord_fruits, 
- asb_sp_w       = baskets_fruits_weights)
-
+sp.filter(asb_nm         = "basket_1", 
+          sp_faxes_coord = sp_faxes_coord_fruits, 
+          asb_sp_w       = baskets_fruits_weights)
+}
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

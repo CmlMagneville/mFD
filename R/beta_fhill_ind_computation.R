@@ -1,4 +1,4 @@
-#' Compute functional beta-diversity indices based on Hill numbers 
+#' Compute Functional beta-Diversity Indices based on Hill Numbers 
 #'
 #' Compute functional beta-diversity indices based on Hill numbers applied to
 #' distance between species following the framework from Chao _et al._ (2019).
@@ -8,8 +8,8 @@
 #'   allowed.
 #'
 #' @param sp_dist a matrix or dist object with distance between
-#'   species. Species names should be provided and match those in 'asb_sp_w'. NA
-#'   are not allowed.
+#'   species. Species names should be provided and match those in 'asb_sp_w'. 
+#'   NA are not allowed.
 #'
 #' @param q a vector containing values referring to the order of
 #'   diversity to use
@@ -30,8 +30,8 @@
 #' @param details_returned a logical value indicating whether the user
 #'   want to store values used for computing indices (see list below)
 #'
-#' @return a list with: \itemize{
-#'
+#' @return a list with: 
+#' \itemize{
 #'  \item \emph{asb_FDbeta} a list with for each value of q a \emph{dist} object
 #'  with beta functional diversity indices for all pairs of assemblages
 #'  item if \strong{store.details} turned to TRUE a list \emph{details} with
@@ -44,9 +44,7 @@
 #'  }
 #'  }
 #'
-#' @author Sébastien Villéger and Camille Magneville
-#'
-#' @note when q=1 Jaccard-like and Sorensen-like beta-diversity are identical.
+#' @note When q=1 Jaccard-like and Sorensen-like beta-diversity are identical.
 #' FD computed with tau='min' is equivalent to Hill number taxonomic beta
 #' diversity. If tau='min' and there are species with null distance, tau is
 #' set to the minimum non-null value and a warning message is displayed.
@@ -54,7 +52,17 @@
 #' See below example of how merging distance values in a \emph{dataframe} with
 #' \code{\link{dist.to.df}}
 #'
+#' @references 
+#'   Chao _et al._ (2019) An attribute-diversity approach to functional
+#'   diversity, functional beta diversity, and related (dis)similarity measures.
+#'   _Ecological Monographs_, **89**.
+#'
+#' @author Sebastien Villeger and Camille Magneville
+#' 
+#' @export
+#' 
 #' @examples
+#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -87,16 +95,7 @@
 #' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q1))
 #' ## for q = 2:
 #' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
-#'  
-#' @references 
-#'   Chao _et al._ (2019) An attribute-diversity approach to functional
-#'   diversity, functional beta diversity, and related (dis)similarity measures.
-#'   _Ecological Monographs_, **89**.\cr
-#'
-#' @importFrom utils combn
-#' @importFrom stats dist
-#'
-#' @export
+#' }
 
 beta.fd.hill <- function(asb_sp_w, sp_dist, 
                          q = c(0, 1, 2), tau = "mean", beta_type = "Jaccard", 
@@ -108,46 +107,41 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
   # matrix ####
   sp_sp_dist <- sp_dist
   
-  if (is.matrix(sp_sp_dist) == FALSE) {
+  if (!is.matrix(sp_sp_dist)) {
     sp_sp_dist <- as.matrix(sp_sp_dist)
   }
   
   
   ## check_inputs if required #####
-  if (check_input == TRUE)  {
+  if (check_input) {
     
     check.asb.sp.w(asb_sp_w)
     
     if (any(is.na(sp_dist))) {
-      stop("Error: The species distances matrix contains NA. Please check.")
-    }
-    if (is.null(rownames(sp_sp_dist))) {
-      stop("Error: No row names provided in species distance matrix.
-             Please add species names as row names.")
+      stop("The species distances matrix contains NA. Please check.")
     }
     
-    if (any(!(colnames(asb_sp_w) %in% 
-              rownames(sp_sp_dist)))) {
-      stop(paste("Error: Mismatch between names in species*weight and
-                   species distances matrix. Please check."))
+    if (is.null(rownames(sp_sp_dist))) {
+      stop("No row names provided in species distance matrix. Please add ", 
+           "species names as row names.")
+    }
+    
+    if (any(!(colnames(asb_sp_w) %in% rownames(sp_sp_dist)))) {
+      stop("Mismatch between names in species*weight and species distances ", 
+           "matrix. Please check.")
     }
     
     if (any(!q %in% c(0, 1, 2))) {
-      stop(paste("Error: q should be 0, 1 and/or 2.
-                  Please check."))
+      stop("q should be 0, 1 and/or 2. Please check.")
     }
     
-    if (any(!tau %in% c("min", "mean", 
-                        "max"))) {
-      stop(paste("Error: tau should be 'mean' or 'max'. Please check."))
+    if (any(!tau %in% c("min", "mean", "max"))) {
+      stop("tau should be 'mean' or 'max'. Please check.")
     }
     
-    if (any(!beta_type %in% c("Jaccard", 
-                              "Sorensen"))) {
-      stop(paste("Error: beta_type should be 'Jaccard' or 'Sorensen'. 
-                 Please check."))
+    if (any(!beta_type %in% c("Jaccard", "Sorensen"))) {
+      stop("beta_type should be 'Jaccard' or 'Sorensen'. Please check.")
     }
-    
   }  # end of checking inputs
   
   # preliminary operations ####
@@ -164,8 +158,7 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
   # ----
   asb_totw <- apply(asb_sp_w, 1, sum)
   if (any(asb_totw == 0)) {
-    stop(paste("Error: all assemblages should contain at least one species.
-               Please check."))
+    stop("All assemblages should contain at least one species. Please check.")
   }
   
   
@@ -197,7 +190,7 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
   # applying tau threshold to distance
   # matrix
   dij_tau <- sp_sp_dist
-  dij_tau[which(dij_tau > tau_dist, arr.ind = T)] <- tau_dist
+  dij_tau[which(dij_tau > tau_dist, arr.ind = TRUE)] <- tau_dist
   
   
   # dissimilarity between assemblages ####
@@ -209,8 +202,7 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
   
   # matrices to store diversity values of
   # order q
-  mat_res <- matrix(NA, asb_nb, asb_nb, 
-                    dimnames = list(asb_nm, asb_nm))
+  mat_res <- matrix(NA, asb_nb, asb_nb, dimnames = list(asb_nm, asb_nm))
   if (0 %in% q) {
     beta_fd_q$q0 <- mat_res
     gamma_fd_q$q0 <- mat_res
@@ -231,8 +223,7 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
   # combinations of assemblages
   asb_pairs <- t(utils::combn(asb_nm, 2))
   asb_pairs_nb <- nrow(asb_pairs)
-  colnames(asb_pairs) <- paste0("asb.", 
-                                1:2)
+  colnames(asb_pairs) <- paste0("asb.", 1:2)
   
   # loop on pairs of assemblages
   for (x in 1:asb_pairs_nb) {
@@ -268,10 +259,9 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
     
     # weight of functionally distinct group
     # of species (aik, ai+ and vi+)
-    x_sp_aik <- (1 - x_sp_dist/tau_dist) %*% 
-      x_nik
+    x_sp_aik <- (1 - x_sp_dist / tau_dist) %*% x_nik
     x_sp_aip <- apply(x_sp_aik, 1, sum)
-    x_sp_vip <- x_nip/x_sp_aip
+    x_sp_vip <- x_nip / x_sp_aip
     
     # species occurrences
     x_sp_01 <- x_sp_aik
@@ -281,100 +271,85 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
     # diversity according to levels of q ----
     
     # q=0 ----
-    if (0 %in% q) 
-    {
+    if (0 %in% q) {
       
       # hence sum of species attribute
       # contribution depends on their
       # occurrence:
-      x_malpha_q0 <- sum(x_sp_vip * 
-                           x_sp_01)/2
+      x_malpha_q0 <- sum(x_sp_vip * x_sp_01) / 2
       
       # gamma diversity (eq 6a)
       x_gamma_q0 <- sum(x_sp_vip)
       
       # beta Jaccard or Sorensen
       if (beta_type == "Sorensen") {
-        x_beta_q0 <- (x_gamma_q0/x_malpha_q0) - 
-          1
+        x_beta_q0 <- (x_gamma_q0 / x_malpha_q0) - 1
       }
+      
       if (beta_type == "Jaccard") {
-        x_beta_q0 <- (1 - (x_malpha_q0/x_gamma_q0))/(0.5)
+        x_beta_q0 <- (1 - (x_malpha_q0/x_gamma_q0)) / 0.5
       }
       
       # storing values
-      malpha_fd_q$q0[asb_nm_x[2], 
-                     asb_nm_x[1]] <- x_malpha_q0
-      gamma_fd_q$q0[asb_nm_x[2], 
-                    asb_nm_x[1]] <- x_gamma_q0
-      beta_fd_q$q0[asb_nm_x[2], 
-                   asb_nm_x[1]] <- x_beta_q0
+      malpha_fd_q$q0[asb_nm_x[2], asb_nm_x[1]] <- x_malpha_q0
+      gamma_fd_q$q0[asb_nm_x[2], asb_nm_x[1]] <- x_gamma_q0
+      beta_fd_q$q0[asb_nm_x[2], asb_nm_x[1]] <- x_beta_q0
     }  # end of q=0
     
     # q=1 -----
-    if (1 %in% q) 
-    {
+    if (1 %in% q) {
       
       # alpha diversity (eq 7b) with special
       # case of 0^0=0 hence sum of species
       # attribute contribution depends on their
       # occurrence
       x_malpha_q1 <- 0.5 * exp((-1) * 
-                                 sum(x_sp_vip * (x_sp_aik/x_npp) * 
-                                       log(x_sp_aik/x_npp), 
-                                     na.rm = T))
+                                 sum(x_sp_vip * (x_sp_aik / x_npp) * 
+                                       log(x_sp_aik / x_npp), 
+                                     na.rm = TRUE))
       
       # gamma diversity (eq 6b)
       x_gamma_q1 <- exp((-1) * 
-                          sum(x_sp_vip * (x_sp_aip/x_npp) * 
-                                log(x_sp_aip/x_npp)))
+                          sum(x_sp_vip * (x_sp_aip / x_npp) * 
+                                log(x_sp_aip / x_npp)))
       
       # beta Jaccard or Sorensen are identical
-      x_beta_q1 <- log(x_gamma_q1/x_malpha_q1)/log(2)
+      x_beta_q1 <- log(x_gamma_q1 / x_malpha_q1) / log(2)
       
       # storing values
-      malpha_fd_q$q1[asb_nm_x[2], 
-                     asb_nm_x[1]] <- x_malpha_q1
-      gamma_fd_q$q1[asb_nm_x[2], 
-                    asb_nm_x[1]] <- x_gamma_q1
-      beta_fd_q$q1[asb_nm_x[2], 
-                   asb_nm_x[1]] <- x_beta_q1
+      malpha_fd_q$q1[asb_nm_x[2], asb_nm_x[1]] <- x_malpha_q1
+      gamma_fd_q$q1[asb_nm_x[2], asb_nm_x[1]] <- x_gamma_q1
+      beta_fd_q$q1[asb_nm_x[2], asb_nm_x[1]] <- x_beta_q1
       
     }  # end of q=1
     
     
     
     # q=2 ----
-    if (2 %in% q) 
-    {
+    if (2 %in% q) {
       
       # alpha diversity (eq 7a) with special
       # case of 0^0=0 hence sum of species
       # attribute contribution depends on their
       # occurrence
-      x_malpha_q2 <- 0.5/(sum(x_sp_vip * 
-                                ((x_sp_aik/x_npp)^2)))
+      x_malpha_q2 <- 0.5 / (sum(x_sp_vip * ((x_sp_aik / x_npp) ^ 2)))
       
       # gamma diversity (eq 6a)
-      x_gamma_q2 <- 1/(sum(x_sp_vip * 
-                             ((x_sp_aip/x_npp)^2)))
+      x_gamma_q2 <- 1 / (sum(x_sp_vip * ((x_sp_aip / x_npp) ^ 2)))
       
       # beta Jaccard or Sorensen
       if (beta_type == "Sorensen") {
-        x_beta_q2 <- (1 - (x_malpha_q2/x_gamma_q2))/(0.5)
+        x_beta_q2 <- (1 - (x_malpha_q2 / x_gamma_q2)) / 0.5
       }
+      
       if (beta_type == "Jaccard") {
-        x_beta_q2 <- (x_gamma_q2/x_malpha_q2) - 
-          1
+        x_beta_q2 <- (x_gamma_q2 / x_malpha_q2) - 1
       }
       
       # storing values
-      malpha_fd_q$q2[asb_nm_x[2], 
-                     asb_nm_x[1]] <- x_malpha_q2
-      gamma_fd_q$q2[asb_nm_x[2], 
-                    asb_nm_x[1]] <- x_gamma_q2
-      beta_fd_q$q2[asb_nm_x[2], 
-                   asb_nm_x[1]] <- x_beta_q2
+      malpha_fd_q$q2[asb_nm_x[2], asb_nm_x[1]] <- x_malpha_q2
+      gamma_fd_q$q2[asb_nm_x[2], asb_nm_x[1]] <- x_gamma_q2
+      beta_fd_q$q2[asb_nm_x[2], asb_nm_x[1]] <- x_beta_q2
     }  # end of q=2
     
     
@@ -389,11 +364,10 @@ beta.fd.hill <- function(asb_sp_w, sp_dist,
   # returning outputs
   res <- beta_fd_q
   
-  if (details_returned == TRUE) {
+  if (details_returned) {
     res <- list(beta_fd_q = beta_fd_q, 
                 details = list(malpha_fd_q = malpha_fd_q, 
                                gamma_fd_q = gamma_fd_q))
   }
   return(res)
-  
 }  # end of function

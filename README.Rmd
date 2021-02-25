@@ -42,7 +42,7 @@ or for the latest development version, the `mFD` Github repository can be used:
 
 ```{r, eval = FALSE}
 library(remotes)
-remotes::install_github("CmlMagneville/mFD", force = TRUE)
+remotes::install_github("CmlMagneville/mFD")
 library(mFD)
 ```
 
@@ -71,8 +71,8 @@ possibilities, please refer to the
 
 To cite package `mFD` in publications use:
 
-```
-__ADD CITATION HERE__
+```{r, eval = FALSE}
+citation("mFD")
 ```
 
 

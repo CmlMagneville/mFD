@@ -40,7 +40,7 @@ the color of points when relationships between the trait and the axis is
 significant. Default is \verb{dark blue}.}
 }
 \value{
-a data frame with for each combination of trait and axis (rows), the
+1 data frame with for each combination of trait and axis (rows), the
 name of the test performed, and the corresponding statistics and p-value.
 If \code{plot = TRUE} a multi-panel figure with traits as columns and axes as
 rows is also plotted. When relationships between trait and axis is
@@ -51,12 +51,11 @@ Compute relationship between all traits and all axes of the functional space.
 For continuous trait a linear model is computed and r2 and p-value are
 returned. For other types of traits, a Kruskal-Wallis test is computed and
 eta2 statistics is returned.
-}
-\details{
 Option allows to plot trait-axis relationships with scatterplot and boxplot
 for continuous and non-continuous traits, respectively.
 }
 \examples{
+\dontrun{
 # Load Species x Traits Data
 data("fruits_traits", package = "mFD")
 
@@ -91,6 +90,7 @@ mFD::traits.faxes.cor(
   faxes_nm       = NULL,
   name_file      = NULL, 
   color_signif   = "darkblue")
+}
 }
 \author{
 Nicolas Loiseau & Sebastien Villeger

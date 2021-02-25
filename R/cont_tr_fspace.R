@@ -21,16 +21,16 @@
 #' @return A data frame of standardized trait values (columns) for each species
 #'   (rows).
 #'
-#' @author Camille Magneville & Sébastien Villéger
+#' @author Camille Magneville & Sebastien Villeger
 #'
 #' @export
-#' @importFrom stats sd
 #' 
 #' @examples
+#' \dontrun{
 #' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
 #' mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center')
-
+#' }
 
 tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
   
@@ -42,15 +42,14 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
     stop("Species x traits data frame must contain only numerical variables.")
   }
   
-  std_method <- match.arg(std_method, c("range", 
-                                        "center", "scale", "scale_center"))
+  std_method <- match.arg(std_method, c("range", "center", "scale", 
+                                        "scale_center"))
   
   
   ## Standardization ----
   
   if (std_method == "range") {
-    sp_tr <- apply(sp_tr, 2, function(x) (x - min(x))/(max(x) - 
-                                                         min(x)))
+    sp_tr <- apply(sp_tr, 2, function(x) (x - min(x)) / (max(x) - min(x)))
   }
   
   if (std_method == "center") {
@@ -58,11 +57,11 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
   }
   
   if (std_method == "scale") {
-    sp_tr <- apply(sp_tr, 2, function(x) x/stats::sd(x))
+    sp_tr <- apply(sp_tr, 2, function(x) x / stats::sd(x))
   }
   
   if (std_method == "scale_center") {
-    sp_tr <- apply(sp_tr, 2, function(x) (x - mean(x)/stats::sd(x)))
+    sp_tr <- apply(sp_tr, 2, function(x) (x - mean(x) / stats::sd(x)))
   }
   
   return(sp_tr)
@@ -70,7 +69,7 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 
 
 
-#' Build a Functional Space Based on Continuous Traits Only
+#' Build a Functional Space based on Continuous Traits Only
 #'
 #' This function computes a functional space based on continuous standardized 
 #' traits or continuous raw traits matrix. User can either choose to compute 
@@ -111,15 +110,12 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'   functional axis, a species distance matrix, and a correlation coefficients 
 #'   between traits (if asked).
 #'
-#' @author Camille Magneville & Sébastien Villéger
+#' @author Camille Magneville & Sebastien Villeger
 #'
 #' @export
-#' @importFrom cluster daisy
-#' @importFrom FactoMineR PCA
-#' @importFrom Hmisc rcorr
-#' @importFrom stats dist
 #' 
 #' @examples
+#' \dontrun{
 #' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
 #' mFD::tr.cont.fspace(
@@ -128,6 +124,7 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'     nb_dim       = 7, 
 #'     scaling      = 'scale_center',
 #'     compute_corr = 'pearson')
+#' }
 
 
 tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7, 
@@ -234,8 +231,7 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
                                                               sp_dist_multidim2)
       
       sp_dist_multidim[[i - 1]] <- sp_dist_multidim2
-      names(sp_dist_multidim)[i - 1] <- paste0(i, 
-                                               "D")
+      names(sp_dist_multidim)[i - 1] <- paste0(i, "D")
     }
     
     
@@ -253,6 +249,7 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       return(return_list1)
       
     } else {
+      
       # no Pearson correlation
       
       return_list1 <- list(quality_nbdim, sp_faxes_coord, 

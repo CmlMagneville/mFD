@@ -2,24 +2,27 @@
 % Please edit documentation in R/sp_to_FE.R
 \name{sp.to.fe}
 \alias{sp.to.fe}
-\title{Compute functional entities composition based on a species*traits matrix}
+\title{Compute Functional Entities Composition based on a Species x Traits Matrix}
 \usage{
 sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check_input = TRUE)
 }
 \arguments{
-\item{sp_tr}{a dataframe with values of traits (columns) for a set of
-species (rows)}
+\item{sp_tr}{a data frame containing species as rows and traits as columns.}
 
-\item{tr_cat}{a dataframe containing three columns for each trait (rows):
-\itemize{ \item \strong{trait_name}: names of all traits as in \code{sp_tr}
-data.frame \item \strong{trait_type}: category codes for each trait as
-followed: \emph{N} for Nominal traits (factor variable), \emph{O} for
-Ordinal traits (ordered variable), \emph{C} for Circular traits (integer
-values), \emph{Q} for quantitative traits (numeric values) that is allowed
-\strong{only} if there are at least 2 species with the same value and
-\emph{F} for fuzzy-coded traits (i.e. described with several 'sub-traits').
+\item{tr_cat}{a data frame containing three columns for each trait (rows):
+\itemize{
+\item \strong{trait_name}: names of all traits as in \code{sp_tr} data
+frame;
+\item \strong{trait_type}: category codes for each trait as followed:
+\emph{N} for Nominal traits (factor variable),
+\emph{O} for Ordinal traits (ordered variable),
+\emph{C} for Circular traits (integer values),
+\emph{Q} for Quantitative traits (numeric values) that is allowed
+\strong{only} if there are at least 2 species with the same value, and
+\emph{F} for fuzzy-coded traits (i.e. described with several
+'sub-traits');
 \item \strong{fuzzy_name} name of fuzzy-coded trait to which 'sub-trait'
-belongs (if trait is not fuzzy, ignored so could be trait name or NA)
+belongs (if trait is not fuzzy, ignored so could be trait name or NA).
 }}
 
 \item{fe_nm_type}{a character string referring to the type of naming
@@ -27,59 +30,65 @@ functional entities. Two possible values: \emph{"fe_rank"} (FE are named
 after their decreasing rank in term of number of species \emph{i.e.} fe_1
 is the one gathering most species) and \emph{"tr_val"} (FE are named after
 names of traits and of trait values for each FE, if possible, \emph{see
-details below}). Default: fe_nm_type = "fe_rank".}
+details below}). Default: \code{fe_nm_type = "fe_rank"}.}
 
 \item{check_input}{a logical value indicating whether key features the inputs
 are checked (e.g. class and/or mode of objects, names of rows and/or
 columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.}
+returned. Default: \code{check.input = TRUE}.}
 }
 \value{
-a list of objects containing: \itemize{ \item \strong{fe_nm}: a
-vector with names of all FE (following fe_nm_type).FE are ordered
-according to the decreasing number of species they gather. \item
-\strong{sp_fe}: a vector containing for each species the name of the FE it
-belongs to. FE order is done according to decreasing number of species.
-\item
-\strong{fe_tr}: a dataframe
-containing traits values (variables in columns) for each FE (rows). FE
-order is done according to decreasing number of species. \item
-\strong{fe_nb_sp}: a
-vector with species number per FE. If all FE have only one species, a
-warning message is returned. FE are ordered according to the decreasing
-number of species they gather. \item \strong{details_fe}: a list
-containing:
-\emph{fe_codes} a vector containing character referring to traits values
-(like a barcode) with names as in \code{fe_nm_type} and sorted according to
-\code{fe_nb_sp} ; \emph{tr_uval} a list containing for each trait a vector
-of its unique values or a dataframe for fuzzy-coded traits ; \emph{fuzzy_E}
-a list with for each fuzzy-coded trait a dataframe with names of entities
-(E) and names of species (sp) ; \emph{tr_nb_uval} a vector with number of
-unique values per trait (or combinations for fuzzy-coded traits) ;
+A list of objects containing:
+\itemize{
+\item \strong{fe_nm}: a vector with names of all FE (following fe_nm_type).
+FE are ordered according to the decreasing number of species they gather.
+\item \strong{sp_fe}: a vector containing for each species the name of the
+FE it belongs to. FE order is done according to decreasing number of
+species.
+\item \strong{fe_tr}: a data frame containing traits values (variables in
+columns) for each FE (rows). FE order is done according to decreasing
+number of species.
+\item \strong{fe_nb_sp}: a vector with species number per FE. If all FE
+have only one species, a warning message is returned. FE are ordered
+according to the decreasing number of species they gather.
+\item \strong{details_fe}: a list containing: \emph{fe_codes} a vector
+containing character referring to traits values (like a barcode) with
+names as in \code{fe_nm_type} and sorted according to \code{fe_nb_sp};
+\emph{tr_uval} a list containing for each trait a vector of its unique
+values or a data frame for fuzzy-coded traits; \emph{fuzzy_E} a list with
+for each fuzzy-coded trait a data frame with names of entities (E) and
+names of species (sp); \emph{tr_nb_uval} a vector with number of unique
+values per trait (or combinations for fuzzy-coded traits);
 \emph{max_nb_fe} the maximum number of FE possible given number of unique
-values per trait }
+values per trait.
+}
 }
 \description{
-Compute functional entities composition based on a species*traits matrix
+Compute Functional Entities Composition based on a Species x Traits Matrix
 }
-\note{
-fe_nm_type = 'tr_val' is allowed \strong{only} if: \itemize{ \item
-there are less than 7 traits \item none of them is fuzzy-coded (so that
-names are not too long) \item all trait names and all trait values have
-different 2 first letters } If these 3 conditions are met, names of
-Functional Entities are made as a character string of up to 2 letters for
-trait name in upper case font then up to 2 letters for trait value in lower
-case font, separated by "_" between traits. Trait names are abbreviated to
-a single letter whenever possible. \emph{Examples:} ("TAc2_TBxx_TCyy",
-"TAc3_TBff_TCyy") or ("A2_Bx_Cy", "A3_Bf_Cy")
+\details{
+\code{fe_nm_type = "tr_val"} is allowed \strong{only} if:
+\itemize{
+\item there are less than 7 traits;
+\item none of them is fuzzy-coded (so that names are not too long)
+\item all trait names and all trait values have different 2 first letters
+}
+
+If these 3 conditions are met, names of Functional Entities are made as a
+character string of up to 2 letters for trait name in upper case font then up
+to 2 letters for trait value in lower case font, separated by "_" between
+traits. Trait names are abbreviated to a single letter whenever possible.
+\emph{Examples:} ("TAc2_TBxx_TCyy", "TAc3_TBff_TCyy") or
+("A2_Bx_Cy", "A3_Bf_Cy")
 }
 \examples{
+\dontrun{
 # Load species traits data:
  data("fruits_traits", package = "mFD")
 
 # Transform species traits data:
 # Only keep the first 4 traits to illustrate FEs:
- fruits_traits <- fruits_traits[, c(1:4)]   
+ fruits_traits <- fruits_traits[ , c(1:4)]   
 
 # Load trait types data:
  data("fruits_traits_cat", package = "mFD")
@@ -102,8 +111,8 @@ a single letter whenever possible. \emph{Examples:} ("TAc2_TBxx_TCyy",
  sp_FEs$fe_tr
 ## display the number of species per FEs:
  sp_FEs$fe_nb_sp
-
+}
 }
 \author{
-Sébastien Villéger, Nicolas Loiseau and Camille Magneville
+Sebastien Villeger, Nicolas Loiseau and Camille Magneville
 }

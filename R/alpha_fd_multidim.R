@@ -1,4 +1,4 @@
-#' Compute a set of alpha functional indices for a set of assemblages
+#' Compute a Set of alpha Functional Indices for a Set of Assemblages
 #'
 #' This function computes a set of multidimensional space based indices of alpha
 #' functional diversity. The user can choose which functional indices to
@@ -24,7 +24,7 @@
 #' @param check_input a logical value indicating whether key features the inputs
 #'   are checked (e.g. class and/or mode of objects, names of rows and/or
 #'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: check.input = TRUE.
+#'   returned. Default: `check.input = TRUE`.
 #'
 #' @param details_returned a logical value indicating whether the user
 #'   want to store details. Details are used in graphical functions and thus
@@ -57,9 +57,12 @@
 #'  \strong{dist_nn_all_asb} data.frame containing distance of each species
 #'  present in a given assemblage to its nearest neighbor.}
 #'  
-#' @author Camille Magneville & Sebastien Villeger
-#'
+#' @author Camille Magneville and Sebastien Villeger
+#' 
+#' @export
+#' 
 #' @examples
+#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -102,12 +105,7 @@
 #' # Retrieve alpha diversity indices table
 #' fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 #' fd_ind_values_fruits
-#'
-#' @importFrom stats dist
-#' @importFrom geometry convhulln
-#' 
-#' @export
-
+#' }
 
 alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w, 
                               ind_vect = c("fide", "fdis", "fmpd", "fnnd", 
@@ -117,13 +115,13 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
   
   
   ## check_input if asked:
-  if (check_input == TRUE) {
+  if (check_input) {
     
     if (any(!ind_vect %in% c("fide", "fdis", "fmpd", 
                              "fnnd", "feve", "fric", "fdiv", "fori", 
                              "fspe"))) {
-      stop("Error: Indices names are wrong.
-           Please check and rewright them following the function help.")
+      stop("Indices names are wrong. Please check and rewright them following ", 
+           "the function help.")
     }
     
     check.sp.faxes.coord(sp_faxes_coord)
@@ -131,8 +129,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     check.asb.sp.w(asb_sp_w)
     
     if (any(!(colnames(asb_sp_w) %in% rownames(sp_faxes_coord)))) {
-      stop(paste("Error: Mismatch between names in species*weight and
-                   species*coordinates matrix. Please check."))
+      stop("Mismatch between names in species*weight and species*coordinates ", 
+           "matrix. Please check.")
     }
     
   }
@@ -165,18 +163,15 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
   # build a matrix to store indices values for each
   # assemblage:
   if ("fide" %in% ind_vect) {
-    asb_ind_values <- matrix(NA, nrow(asb_sp_w), 
-                             (length(ind_vect) - 1))
+    asb_ind_values <- matrix(NA, nrow(asb_sp_w), (length(ind_vect) - 1))
   } else {
-    asb_ind_values <- matrix(NA, nrow(asb_sp_w), 
-                             length(ind_vect))
+    asb_ind_values <- matrix(NA, nrow(asb_sp_w), length(ind_vect))
   }
   
   rownames(asb_ind_values) <- rownames(asb_sp_w)
   
   if ("fide" %in% ind_vect) {
-    colnames(asb_ind_values) <- ind_vect[!ind_vect %in% 
-                                           c("fide")]
+    colnames(asb_ind_values) <- ind_vect[!ind_vect %in% c("fide")]
   } else {
     colnames(asb_ind_values) <- ind_vect
   }
@@ -249,22 +244,18 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
   # compute fdis values:
   fide_asb <- matrix(NA, nrow(asb_sp_w), ncol(sp_faxes_coord))
   rownames(fide_asb) <- rownames(asb_sp_w)
-  colnames(fide_asb) <- paste0("fide", sep = "_", 
-                               colnames(sp_faxes_coord))
+  colnames(fide_asb) <- paste0("fide", sep = "_", colnames(sp_faxes_coord))
   
   # compute distance between species in the global
   # pool for scaling and ...  ... fori computation
-  dist_sp <- as.matrix(stats::dist(sp_faxes_coord, 
-                                   method = "euclidean"))
+  dist_sp <- as.matrix(stats::dist(sp_faxes_coord, method = "euclidean"))
   dist_sp[which(dist_sp == 0)] <- NA
   
   # retrieve a matrix with relative weight of species
   # per assemblage to use it...  ... in output so it
   # can be then used in graphical functions:
   relat_w_all_asb <- asb_sp_w
-  relat_w_all_asb <- apply(relat_w_all_asb, 1, function(x) {
-    x/sum(x)
-  })
+  relat_w_all_asb <- apply(relat_w_all_asb, 1, function(x) x / sum(x))
   
   # retrieve a matrix of presence/absence of species
   # per assemblage:
@@ -302,18 +293,14 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     
     # fill the matrix of species coordinates for all
     # assemblages:
-    sp_coord_all_asb[[paste0("sp_coord", sep = "_", 
-                             k)]] <- sp_faxes_coord_k
+    sp_coord_all_asb[[paste0("sp_coord", sep = "_", k)]] <- sp_faxes_coord_k
     
     # fide:
     if ("fide" %in% ind_vect) {
       # check relative weights sum equals to 1:
-      if (check_input == TRUE) {
-        if (round(sum(asb_sp_relatw_k), 10) != 
-            1) {
-          stop(paste0("Error: the sum of relative weights is not equal to 
-                      one for", 
-                      k, sep = ""))
+      if (check_input) {
+        if (round(sum(asb_sp_relatw_k), 10) != 1) {
+          stop("The sum of relative weights is not equal to one for", k)
         }
       }
       # compute fide value and store in the fide matrix:
@@ -325,12 +312,9 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     # fide and fdis:
     if ("fdis" %in% ind_vect) {
       # check relative weights sum equals to 1:
-      if (check_input == TRUE) {
-        if (round(round(sum(asb_sp_relatw_k), 
-                        10), 10) != 1) {
-          stop(paste0("Error: the sum of relative weights is not equal to 
-                      one for", 
-                      sep = " ", k))
+      if (check_input) {
+        if (round(round(sum(asb_sp_relatw_k), 10), 10) != 1) {
+          stop("The sum of relative weights is not equal to one for", k)
         }
       }
       # compute fide value and store in the fide matrix:
@@ -342,10 +326,10 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
                                k, check_input = check_input)
       # fill the matrix of indices if no scaling: scale
       # and fill the matrix of indices if scaling:
-      if (scaling == TRUE) {
+      if (scaling) {
         # compute distance between species in the global
         # pool for scaling:
-        fdis <- fdis/(max(dist_sp, na.rm = TRUE)/2)
+        fdis <- fdis / (max(dist_sp, na.rm = TRUE) / 2)
         asb_ind_values[k, "fdis"] <- fdis
       }
       asb_ind_values[k, "fdis"] <- fdis
@@ -353,21 +337,19 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     
     # fric:
     if ("fric" %in% ind_vect) {
-      if (check_input == TRUE) {
+      if (check_input) {
         if (nrow(sp_faxes_coord_k) < ncol(sp_faxes_coord_k)) {
-          stop(paste0("Error: Number of species should strictly be higher than
-          the number of axes to compute the convex hull.
-          It is not the case for", 
-                      sep = " ", k, sep = ".", "Remove this assemblage or
-                      decrease the number of functional axes.
-          FRic can not be computed here."))
+          stop("Number of species should strictly be higher than the number ", 
+               "of axes to compute the convex hull. It is not the case for ", 
+               k, ". Remove this assemblage or decrease the number of ", 
+               "functional axes. FRic can not be computed here.")
         }
       }
       fric <- fric.computation(sp_faxes_coord_k, 
                                k, check_input = check_input)
       # scale fric value and fill the matrix of indices
       # if scaling:
-      if (scaling == TRUE) 
+      if (scaling) 
       {
         # applying convhulln function to compute convexhull
         # for all species...  ... with options = 'FA', to
@@ -380,9 +362,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         if (!is.na(fric_value)) {
           conv_fa_all <- tryCatch(geometry::convhulln(sp_faxes_coord, 
                                                       option = "FA"), 
-                                  error = function(err) {
-                                                        "NA"
-                                                         })
+                                  error = function(err) "NA")
           fric_value <- fric$fric
           # if convex hull of the gp can be computed:
           if (!is.character(conv_fa_all)) {
@@ -404,19 +384,15 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       }  # end if scaling == TRUE
       
       asb_ind_values[k, "fric"] <- fric_value
-      vert_nm_all_asb[[paste0("vert_nm", sep = "_", 
-                              k)]] <- fric$vertices_nm
+      vert_nm_all_asb[[paste0("vert_nm", sep = "_", k)]] <- fric$vertices_nm
     }
     
     # fdiv:
     if ("fdiv" %in% ind_vect) {
       # check relative weights sum equals to 1:
-      if (check_input == TRUE) {
-        if (round(sum(asb_sp_relatw_k), 10) != 
-            1) {
-          stop(paste0("Error: the sum of relative weights is not equal to 
-                      one for", 
-                      k, sep = " "))
+      if (check_input) {
+        if (round(sum(asb_sp_relatw_k), 10) != 1) {
+          stop("The sum of relative weights is not equal to one for", k)
         }
       }
       # retrieve vert_nm values if fric computed before:
@@ -450,6 +426,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
                                            k)]] <- fdiv$details$mean_dtoB
       }
     }
+    
     if (!is.character(vert_nm)) {
       fdiv_value <- NA
       asb_ind_values[k, "fdiv"] <- fdiv_value
@@ -464,15 +441,12 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     }
     # feve:
     if ("feve" %in% ind_vect) {
-      if (check_input == TRUE) {
+      if (check_input) {
         if (nrow(sp_faxes_coord_k) < 3) {
-          stop("Error: there must be at least 3 species to compute feve.")
+          stop("There must be at least 3 species to compute feve.")
         }
-        if (round(sum(asb_sp_relatw_k), 10) != 
-            1) {
-          stop(paste0("Error: the sum of relative weights is not equal 
-                      to one for", 
-                      k, sep = " "))
+        if (round(sum(asb_sp_relatw_k), 10) != 1) {
+          stop("The sum of relative weights is not equal to one for", k)
         }
       }
       # compute feve value and fill the matrix of indices
@@ -490,12 +464,9 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     # fmpd:
     if ("fmpd" %in% ind_vect) {
       # check relative weights sum equals to 1:
-      if (check_input == TRUE) {
-        if (round(sum(asb_sp_relatw_k), 10) != 
-            1) {
-          stop(paste0("Error: the sum of relative weights is not equal 
-                      to one for", 
-                      k, sep = ""))
+      if (check_input) {
+        if (round(sum(asb_sp_relatw_k), 10) != 1) {
+          stop("The sum of relative weights is not equal to one for", k)
         }
       }
       # compute fmpd value and fill the matrix of indices
@@ -504,10 +475,9 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
                                sp_faxes_coord_k, k, check_input = check_input)
       # scale fmpd value and fill the matrix of indices
       # if scaling:
-      if (scaling == TRUE) {
-        mean_dist_sp <- apply(dist_sp, 1, mean, 
-                              na.rm = TRUE)
-        fmpd <- fmpd/(max(mean_dist_sp, na.rm = TRUE))
+      if (scaling) {
+        mean_dist_sp <- apply(dist_sp, 1, mean, na.rm = TRUE)
+        fmpd <- fmpd / (max(mean_dist_sp, na.rm = TRUE))
         asb_ind_values[k, "fmpd"] <- fmpd
       }
       asb_ind_values[k, "fmpd"] <- fmpd
@@ -516,11 +486,9 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     # fnnd:
     if ("fnnd" %in% ind_vect) {
       # check relative weights sum equals to 1:
-      if (check_input == TRUE) {
+      if (check_input) {
         if (round(sum(asb_sp_relatw_k), 10) != 1) {
-          stop(paste0("Error: the sum of relative weights is not equal 
-                      to one for", 
-                      k, sep = ""))
+          stop("The sum of relative weights is not equal to one for", k)
         }
       }
       # compute fmpd value and fill the matrix of indices
@@ -529,17 +497,16 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
                                sp_faxes_coord_k, k, check_input = check_input)
       # scale fnnd value and fill the matrix of indices
       # if scaling:
-      if (scaling == TRUE) {
+      if (scaling) {
         dist_nn <- list()
         for (i in (1:nrow(sp_faxes_coord))) {
           ref_sp <- rownames(sp_faxes_coord)[i]
-          dist_nn_sp <- dist.nearneighb(sp_faxes_coord, 
-                                        ref_sp)
-          dist_nn[ref_sp] <- dist_nn_sp$`distance of the reference species to its nearest neighbour`
+          dist_nn_sp <- dist.nearneighb(sp_faxes_coord, ref_sp)
+          dist_nn[ref_sp] <- 
+        dist_nn_sp$`distance of the reference species to its nearest neighbour`
         }
         fnnd_value <- fnnd$fnnd
-        fnnd_value <- fnnd_value/(max(unlist(dist_nn), 
-                                      na.rm = TRUE))
+        fnnd_value <- fnnd_value / (max(unlist(dist_nn), na.rm = TRUE))
         asb_ind_values[k, "fnnd"] <- fnnd_value
       }
       # fill the matrix with the fnnd value if no
@@ -560,11 +527,9 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     # fori:
     if ("fori" %in% ind_vect) {
       # check relative weights sum equals to 1:
-      if (check_input == TRUE) {
-        if (round(sum(asb_sp_relatw_k), 10) != 
-            1) {
-          stop(paste0("Error: the sum of relative weights is not equal to one for", 
-                      k, sep = ""))
+      if (check_input) {
+        if (round(sum(asb_sp_relatw_k), 10) != 1) {
+          stop("The sum of relative weights is not equal to one for", k)
         }
       }
       # compute the minimal distance to the nearest
@@ -583,8 +548,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       # gp for plots...
       for (i in (1:nrow(sp_faxes_coord_k))) {
         ref_sp <- rownames(sp_faxes_coord_k)[i]
-        dist_nn_sp_gp <- dist.nearneighb(sp_faxes_coord, 
-                                         ref_sp)
+        dist_nn_sp_gp <- dist.nearneighb(sp_faxes_coord, ref_sp)
         nms <- list(dist_nn_sp_gp$`nearest neighbour identity`)
         names(nms) <- ref_sp
         nm_nn_gp[ref_sp] <- nms
@@ -600,8 +564,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       
       # scale fori value and fill the matrix of indices
       # if scaling:
-      if (scaling == TRUE) {
-        fori <- fori/max(dist_nn_global_pool)
+      if (scaling) {
+        fori <- fori / max(dist_nn_global_pool)
         asb_ind_values[k, "fori"] <- fori
       }
       asb_ind_values[k, "fori"] <- fori
@@ -610,12 +574,9 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     # fspe:
     if ("fspe" %in% ind_vect) {
       # check relative weights sum equals to 1:
-      if (check_input == TRUE) {
-        if (round(sum(asb_sp_relatw_k), 10) != 
-            1) {
-          stop(paste0("Error: the sum of relative weights is not equal 
-                      to one for", 
-                      k, sep = ""))
+      if (check_input) {
+        if (round(sum(asb_sp_relatw_k), 10) != 1) {
+          stop("The sum of relative weights is not equal to one for", k)
         }
       }
       # compute specialization of each species in the
@@ -633,8 +594,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       fspe <- fspe.computation(asb_sp_relatw_k, 
                                special_sp_global_pool, k, 
                                check_input = check_input)
-      if (scaling == TRUE) {
-        fspe <- fspe/max(special_sp_global_pool)
+      if (scaling) {
+        fspe <- fspe / max(special_sp_global_pool)
         asb_ind_values[k, "fspe"] <- fspe
       }
       asb_ind_values[k, "fspe"] <- fspe
@@ -654,7 +615,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
   }
 
   ## construct the return list:
-  if (details_returned == TRUE) {
+  if (details_returned) {
     return_list <- list(functional_diversity_indices = asb_ind_values_all, 
           details = list(asb_sp_occ = asb_sp_occ, 
             asb_sp_relatw = relat_w_all_asb, 
