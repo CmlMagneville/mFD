@@ -434,6 +434,12 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       }
     }
     
+    # check that indices to plot are contained in the fd_ind_value table:
+    if (any(!(ind_vect %in% colnames(fd_ind_values))) == TRUE) {
+      stop("Error: Functional indices to plot must be contained in 
+           'fd_ind_values' columns")
+    }
+    
     check.sp.faxes.coord(sp_faxes_coord)
     check.asb.sp.w(asb_sp_w)
     
@@ -932,7 +938,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                             color = color_vert, fill = fill_vert, 
                             shape = shape_vert, size = size_vert) +
         
-        ggplot2::geom_point(data = grav_center_global_pool,
+        ggplot2::geom_point(data = as.data.frame(grav_center_global_pool),
                     ggplot2::aes_(x = fide_values[, 
                                     paste0("fide", sep = "_", faxes_nm[[1]])],
                                   y = fide_values[, 

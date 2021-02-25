@@ -608,8 +608,12 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
   
   ## create a matrix linking fide values and other
   ## indices:
-  asb_ind_values_all <- cbind(asb_ind_values, fide_asb)
+  asb_ind_values_all <- asb_ind_values
   
+  if (("fide" %in% ind_vect) | ("fdis" %in% ind_vect)) {
+    asb_ind_values_all <- cbind(asb_ind_values_all, fide_asb)
+  }
+
   ## construct the return list:
   if (details_returned) {
     return_list <- list(functional_diversity_indices = asb_ind_values_all, 

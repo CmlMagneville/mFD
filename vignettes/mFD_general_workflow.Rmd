@@ -22,7 +22,7 @@ tutorials.
 
 🧩 The dataset used to illustrate this tutorial is a **fruits dataset** based on
 25 types of fruits (*i.e.* species) distributed in 10 fruits baskets (*i.e.*
-assemblages). Each fruit is characterized by six traits values summarized in the
+assemblages). Each fruit is characterized by five traits values summarized in the
 following table:
 
 <br />
@@ -34,9 +34,6 @@ following table:
 | Climate      | Climatic niche     | Ordinal       | 3                   | temperate ; subtropical ; tropical | NA     |
 | Seed         | Seed type          | Ordinal       | 3                   | none ; pip ; pit                   | NA     |
 | Sugar        | Sugar              | Continuous    | NA                  | NA                                 | g/kg   |
-| Use          | Use as food        | Fuzzy         | 3                   | raw ; pastry ; jam                 | %      |
-
-
 
 
 <br />
@@ -338,6 +335,7 @@ sp_dist_fruits <- mFD::funct.dist(
 ```
 
 
+
 * `sp_tr` is the species x trait data frame
 
 * `tr_cat` is the data frame summarizing trait type for each trait
@@ -525,6 +523,13 @@ mFD::quality.fspaces.plot(
   gradient_deviation         = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
   gradient_deviation_quality = c(low = "yellow", high = "red"),
   x_lab                      = "Trait-based distance")
+
+
+mFD::quality.fspaces.plot(
+  fspaces_quality            = fspaces_quality_fruits,
+  quality_metric             = "mad",
+  fspaces_plot               = c("tree_average", "pcoa_2d", "pcoa_3d", 
+                                 "pcoa_4d", "pcoa_5d", "pcoa_6d"))
 ```
 
 
@@ -653,10 +658,12 @@ non-continuous traits.
 **USAGE**
 
 ```{r, results = "hide"}
+
 fruits_tr_faxes <- mFD::traits.faxes.cor(
             sp_tr          = fruits_traits, 
             sp_faxes_coord = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3",                                                                             "PC4")], 
             plot           = TRUE)
+
 ```
 <br />
 We can print only traits with significant effect on position along one of the
@@ -676,14 +683,15 @@ fruits_tr_faxes$tr_faxes_plot
 
 <br />
 
-We can thus see that **PC1** is mostly driven by *Size* (large fruits on the
-right) and *Plant Type* (forb & shrub on the left vs tree & vine on the right),
-with weaker influence of *Climate* (eta2 < 0.25) and *Use of fruits* (r2 < 0.4).
-Then, **PC2** is mostly driven by *Plant type* (vine on the left, shrubs on the
-right) and *Use as jam* (high on the right). **PC3** is driven by *Climate*
-(tropical on the right), *Seed* (pit on the right) and *Sugar Content* (high on
-the right). And finally **PC4** is driven by only one trait: *Plant Type* with
-forbs on the left and vines on the right.
+We can thus see that **PC1** is mostly driven by *Climate* (temperate on the
+left and tropical on the right) and *Plant Type* (forb & shrub on the left vs
+tree & vine on the right) and *Size* (large fruits on the right) with weaker
+influence of *Seed* (eta2 < 0.25).
+Then, **PC2** is mostly driven by *Seed* (no seed on the left and pit seed on
+the right) with weaker influence of *Plant Type*. **PC3** is driven by only one
+trait, *Size*. And finally **PC4** is mostly driven by *Sugar* (high sugar
+content on the right and low sugar content on the left) with a weaker influence
+of *Plant Type*.
 
 <br />
 
@@ -760,7 +768,7 @@ axis**:
 
 **USAGE**
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center"}
+```{r, results = "hide"}
 
 big_plot <- mFD::funct.space.plot(
   sp_faxes_coord  = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
@@ -787,9 +795,6 @@ big_plot <- mFD::funct.space.plot(
   nm_color        = "black",
   nm_fontface     = "plain",
   check_input     = TRUE)
-
-# Plot the graph with all pairs of axes:
-big_plot[[7]]
 ```
 
 <br />
@@ -805,7 +810,7 @@ axis**:
 
 <br />
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center"}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center"}
 
 big_plot <- mFD::funct.space.plot(sp_faxes_coord_fruits,
                                   faxes           = NULL,
@@ -971,10 +976,10 @@ function as follows:
 
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
 plots_alpha <- mFD::alpha.multidim.plot(
-  sp_faxes_coord        = sp_faxes_coord_fruits,
+  sp_faxes_coord        = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w              = baskets_fruits_weights,
   ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", 
-                            "fori", "fspe"),
+                       "fori", "fspe"),
   details_list          = details_list_fruits,
   asb_vect              = "basket_1",
   fd_ind_values         = fd_ind_values_fruits,
@@ -1092,7 +1097,7 @@ baskets** dataset:
 assemblage and the white shape reflects the convex-hull of the global pool of
 species:
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
 plots_alpha[[1]]
 ```
 
@@ -1101,7 +1106,7 @@ plots_alpha[[1]]
 * `FDiv` representation: traits represent the distances of each species from the
 assemblage to the gravity center of the vertices of the assemblage
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
 plots_alpha[[2]]
 ```
 
@@ -1110,7 +1115,7 @@ plots_alpha[[2]]
 * `FEve` representation: traits represent the Minimum Spanning Tree linking
 species of the assemblage
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
 plots_alpha[[3]]
 ```
 
@@ -1120,7 +1125,7 @@ plots_alpha[[3]]
 assemblage to the mean position of species from the global pool
 (present in all assemblages)
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
 plots_alpha[[4]]
 ```
 
@@ -1130,7 +1135,7 @@ plots_alpha[[4]]
 assemblage to the biomass-weighted mean trait values of the assemblage. Red
 dotted lines refer to `FIde` values.
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
 plots_alpha[[5]]
 ```
 
@@ -1139,7 +1144,7 @@ plots_alpha[[5]]
 * `FOri` representation: traits represent distances of each species from the
 assemblage nearest species from the global species pool
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
 plots_alpha[[6]]
 ```
 
@@ -1148,7 +1153,7 @@ plots_alpha[[6]]
 * `FNND` representation: arrows represent the link between each species and its
 nearest neighbor
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
+```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
 plots_alpha[[7]]
 ```
 
@@ -1283,9 +1288,9 @@ chose graphical options. Arguments are listed below:
 ```{r, results = "hide"}
 beta_plot_fruits <- mFD::beta.multidim.plot(
   output_beta_fd_multidim = beta_fd_indices_fruits,
-  plot_asb_nm             = c("basket_1", "basket_3"),
+  plot_asb_nm             = c("basket_1", "basket_4"),
   beta_family             = c("Jaccard"),
-  plot_sp_nm              = c("apple", "cherry", "lemon"),
+  plot_sp_nm              = c("apple", "lemon", "pear"),
   faxes                   = paste0("PC", 1:4),
   name_file               = NULL,
   faxes_nm                = NULL,
@@ -1303,6 +1308,7 @@ beta_plot_fruits <- mFD::beta.multidim.plot(
   nm_color                = "black",
   nm_fontface             = "plain",
   check_input             = TRUE)
+
 ```
 
 <br />
@@ -1311,7 +1317,7 @@ beta_plot_fruits <- mFD::beta.multidim.plot(
 function retrieved before as `beta_fd_indices`.
 
 * `plot_asb_nm` is a vector containing the name of the two assemblages to plot.
-Here plots of indices will be shown for *basket_1* and *basket_2*.
+Here plots of indices will be shown for *basket_1* and *basket_4*.
 
 * `beta_family` refers to the family of the plotted index. It must be the same
 as the family chosen to compute beta functional indices values with the
@@ -1343,7 +1349,7 @@ to the range of values among all axes, this argument must be set up to
 * `check_input` is a recurrent argument in the `mFD` package. It defines whether
 inputs should be checked before computation or not. Possible error messages will
 thus be more understandable for the user than R error messages
-(**Recommendation:** set it as `TRUE`.
+(**Recommendation:** set it as `TRUE`)
 
 * Others arguments to set up colors, shapes, sizes and, text fonts are also
 available. For more information about them, read the function help file.
@@ -1353,7 +1359,7 @@ available. For more information about them, read the function help file.
 
 Then, the function returns a multipanel plot:
 
-```{r, fig.height = 7, fig.width = 7, fig.align = "center", warning = FALSE}
+```{r, fig.height = 16, fig.width = 16, fig.align = "center", warning = FALSE}
 beta_plot_fruits
 ```
 
