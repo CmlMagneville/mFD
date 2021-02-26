@@ -288,7 +288,7 @@ datasets with "functionally similar" species.
 In this tutorial, this function is not illustrated (FE for the **fruits**
 dataset have a single species) and thus functional diversity indices based on FE
 are not computed. You can have a look to the
-[Compute Functional Diversity Indices based on Functional Entities](https://cmlmagneville.github.io/mFD_shared/articles/How_to_deal_with_Functional_Entities.html)
+[Compute Functional Diversity Indices based on Functional Entities](https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html)
 tutorial for further analysis using FE.
 
 
@@ -301,7 +301,7 @@ tutorial for further analysis using FE.
 The **fruits & baskets** example does not allow to compute FEs, thus FD indices
 based on FEs can not be compute. Check the [Compute functional diversity indices
 based on Functional
-Entities](https://cmlmagneville.github.io/mFD_shared/articles/How_to_deal_with_Functional_Entities.html)
+Entities](https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html)
 tutorial to see how to compute them.
 
 <br />
@@ -347,7 +347,7 @@ data**:
   * if **all traits are continuous** use the **Euclidean distance** (`metric =
   "euclidean"`) and check the [Compute Functional Diversity Indices based on
   Only Continuous
-  Traits](https://cmlmagneville.github.io/mFD_shared/articles/Continuous_traits_framework.html)
+  Traits](https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html)
   tutorial which explains how to build a multidimensional space from traits
   through PCA analysis or considering directly each trait as a dimension.
 
@@ -610,7 +610,7 @@ then the same cophenetic distance on the dendrogram.
 
 💡 To know more and better understand how to interpret quality of functional
 spaces, you should read the
-[Compute and Interpret Quality of Functional Space](https://cmlmagneville.github.io/mFD_shared/articles/Compute_and_interpret_quality_of_functional_spaces.html)
+[Compute and Interpret Quality of Functional Space](https://cmlmagneville.github.io/mFD/articles/Compute_and_interpret_quality_of_functional_spaces.html)
 tutorial.
 
 <br />
