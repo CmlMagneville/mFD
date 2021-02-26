@@ -523,15 +523,7 @@ mFD::quality.fspaces.plot(
   gradient_deviation         = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
   gradient_deviation_quality = c(low = "yellow", high = "red"),
   x_lab                      = "Trait-based distance")
-
-
-mFD::quality.fspaces.plot(
-  fspaces_quality            = fspaces_quality_fruits,
-  quality_metric             = "mad",
-  fspaces_plot               = c("tree_average", "pcoa_2d", "pcoa_3d", 
-                                 "pcoa_4d", "pcoa_5d", "pcoa_6d"))
 ```
-
 
 * `fspaces_quality` is the output of the `mFD::quality.fspaces()` function
 (**step 4.1**).
@@ -728,6 +720,9 @@ below). The whole `sp_faxes_coord` can be retrieved through the output of the
 sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 ```
 
+<br />
+
+
 * `faxes` is a vector containing names of axes to plot. If set to `NULL`, the
 first four functional axes will be plotted.
 
@@ -812,7 +807,8 @@ axis**:
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center"}
 
-big_plot <- mFD::funct.space.plot(sp_faxes_coord_fruits,
+big_plot <- mFD::funct.space.plot(
+                                  sp_faxes_coord  = sp_faxes_coord_fruits,
                                   faxes           = NULL,
                                   name_file       = NULL,
                                   faxes_nm        = NULL,
@@ -839,6 +835,7 @@ big_plot <- mFD::funct.space.plot(sp_faxes_coord_fruits,
 # Plot the graph with all pairs of axes:
 big_plot[[7]]
 ```
+
 
 <br />
 
