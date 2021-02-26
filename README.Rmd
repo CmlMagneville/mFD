@@ -78,5 +78,8 @@ citation("mFD")
 
 ## Contributions
 
-SV, NL, EM, FL, CA and CM wrote the functions. SV, NL and CM wrote function 
-documentations. SV and CM wrote tutorials.
+SV, NL and CM coded the functions and their help, except for FUSE computation 
+coded by CA and FL. FL, EM, DM, NL and SV contributed to the reflection on 
+quality metrics. SV and CM wrote tutorials and improved them based on 
+feedbacks of the team. NL, CA, NC, TC, AE, FL, EM, SV and CM tested the 
+functions. NC optimized the package and made it ready for CRAN submission.
