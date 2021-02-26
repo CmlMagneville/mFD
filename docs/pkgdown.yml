@@ -1,0 +1,11 @@
+pandoc: 2.11.4
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  Compute_and_interpret_quality_of_functional_spaces: Compute_and_interpret_quality_of_functional_spaces.html
+  Compute_functional_hill_indices: Compute_functional_hill_indices.html
+  Continuous_traits_framework: Continuous_traits_framework.html
+  How_to_deal_with_Functional_Entities: How_to_deal_with_Functional_Entities.html
+  mFD_general_workflow: mFD_general_workflow.html
+last_built: 2021-02-26T13:12Z
+
