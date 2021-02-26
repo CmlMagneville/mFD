@@ -1289,7 +1289,7 @@ beta_plot_fruits <- mFD::beta.multidim.plot(
   beta_family             = c("Jaccard"),
   plot_sp_nm              = c("apple", "lemon", "pear"),
   faxes                   = paste0("PC", 1:4),
-  name_file               = NULL,
+  name_file               = "beta_ind",
   faxes_nm                = NULL,
   range_faxes             = c(NA, NA),
   color_bg                = "grey95",

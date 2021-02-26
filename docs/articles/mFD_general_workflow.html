@@ -1317,7 +1317,7 @@ Basic framework of the mFD package
   beta_family             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jaccard"</span><span class="op">)</span>,
   plot_sp_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"lemon"</span>, <span class="st">"pear"</span><span class="op">)</span>,
   faxes                   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,
-  name_file               <span class="op">=</span> <span class="cn">NULL</span>,
+  name_file               <span class="op">=</span> <span class="st">"beta_ind"</span>,
   faxes_nm                <span class="op">=</span> <span class="cn">NULL</span>,
   range_faxes             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
   color_bg                <span class="op">=</span> <span class="st">"grey95"</span>,
@@ -1333,6 +1333,19 @@ Basic framework of the mFD package
   nm_color                <span class="op">=</span> <span class="st">"black"</span>,
   nm_fontface             <span class="op">=</span> <span class="st">"plain"</span>,
   check_input             <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: ggrepel: 2 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
+<pre><code>## Warning: ggrepel: 3 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
+<pre><code>## Warning: ggrepel: 2 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
+<pre><code>## Warning: ggrepel: 3 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
+<pre><code>## Warning: ggrepel: 2 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps
+
+## Warning: ggrepel: 2 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
 <p><br></p>
 <ul>
 <li><p><code>output_beta_fd_multidim</code> is the output of the <code><a href="../reference/beta.fd.multidim.html">mFD::beta.fd.multidim()</a></code> function retrieved before as <code>beta_fd_indices</code>.</p></li>
@@ -1348,7 +1361,7 @@ Basic framework of the mFD package
 </ul>
 <p><br></p>
 <p>Then, the function returns a multipanel plot:</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_plot_fruits</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-44-1.png" width="1536" style="display: block; margin: auto;"></p>
 <p>For each assemblage, the associated convex hull is plotted in a different colour and indices values are printed on the right corner of the plot. Vertices of the convex hull of a given assemblage can be plotted with a different symbol such as in this example. Species of all assemblages are plotted with gray cross and the associated convex hull is plotted in white.</p>
