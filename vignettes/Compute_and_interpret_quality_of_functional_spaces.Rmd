@@ -43,7 +43,7 @@ following table:
 <br />
 
 
-💡 This dataset is a subset of the dataset used in the [mFD: General Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
+💡 This dataset is a subset of the dataset used in the [mFD: General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
 tutorial to keep only non-fuzzy traits.
 
 
@@ -84,7 +84,7 @@ summary(fruits_traits)
 
 
 These traits are summed up in the following dataframe (details:
-[mFD: General Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
+[mFD: General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
 tutorial):
 
 <br />
@@ -185,7 +185,7 @@ Indeed:
 We now compute varying number of functional space from 1 to 9 dimensions based
 on a PCoA as well as an UPGMA dendrogram using `mFD::quality.fspaces()`
 function. We also compute 4 quality metrics *(= all combinations of deviation
-weighting and distance scaling )* (details: [mFD: General Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
+weighting and distance scaling )* (details: [mFD: General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
 tutorial , **step 4.1**).
 
 <br />
