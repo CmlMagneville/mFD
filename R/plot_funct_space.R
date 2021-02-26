@@ -219,6 +219,8 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
     }
   }# end of checking inputs
   
+  # so ok when ggploting:
+  sp_faxes_coord <- as.data.frame(sp_faxes_coord)
   
   #### names and number of axes to plot ####
   
