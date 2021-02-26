@@ -2454,6 +2454,10 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   # type, resolution and dimensions of file if to be saved
   device_file <- "png"
   res_file <- 300
+  height_file <- 8 * c(2, 2, 3)
+  names(height_file) <- c("1", "3", "6")
+  width_file  <- 10 * c(2, 2, 3)
+  names(width_file) <- c("1", "3", "6")
   
   # displaying or saving
   if (is.null(name_file)) {
@@ -2462,11 +2466,11 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   } else {
     for (j in (1:length(return_panels_list))) {
       ggplot2::ggsave(filename = paste0(name_file, j, ".", device_file),
-                      plot = return_panels_list[j],
+                      plot = return_panels_list[[j]],
                       device = device_file,
                       scale = 1,
-                      height= 4,
-                      width = 5,
+                      height= height_file[as.character(plot_nb)],
+                      width = width_file[as.character(plot_nb)],
                       units= "in",
                       dpi = res_file)
     }
