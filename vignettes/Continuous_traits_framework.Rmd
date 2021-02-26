@@ -262,7 +262,7 @@ computed.
 
 Then, based on the species coordinates matrix, steps are similar as those listed
 in the  [mFD: General
-Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
+Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
 , from step 5 till the end.
 
 <br />
