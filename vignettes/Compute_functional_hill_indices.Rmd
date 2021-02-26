@@ -45,7 +45,7 @@ following table:
 
 We load the three objects used to compute functional framework (for more
 explanations, see: [mFD: General
-Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)):
+Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)):
 
 <br />
 
@@ -81,7 +81,7 @@ knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]),
 
 * a **data frame** summarizing traits types called `fruits_traits_cat` in this
 tutorial (for details, see: [mFD: General
-Workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)):
+Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)):
 
 
 
