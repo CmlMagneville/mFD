@@ -48,7 +48,7 @@ following table:
 
 
 💡 We reduced the dataset used in
-[mFD_general_workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
+[mFD_general_workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
 to only keep ordinal and categorical traits. Categorical traits are restrained
 to 2 or 3 modalities per traits to limit the number of unique combinations.
 
@@ -107,9 +107,9 @@ knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), caption = "S
 
 <br />
 
-  * the dataframe summarizing traits categories called *fruits_traits_cat in
+  * the dataframe summarizing traits categories called *fruits_traits_cat* in
   this tutorial: (for details:
-  [mFD_general_workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html))
+  [mFD_general_workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html))
 
 <br />
 
@@ -250,7 +250,7 @@ sp_to_fe_fruits$details_fe
 
 
 Then based on the dataframe containing the value of traits for each FE, the
-workflow is the same as the one listed in [mFD_general_workflow](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html)
+workflow is the same as the one listed in [mFD_general_workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
 to compute functional trait based distance, multidimensional functional space
 and associated plots and compute alpha and beta functional indices (step 3 till
 the end). It will thus not be summed up in this tutorial.
