@@ -14,8 +14,8 @@ mFD <img src="man/figures/mFDsticker.png" height="120" align="right" alt = "mFD 
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/package=mFD)
-[![R-CMD-check](https://github.com/CmlMagneville/mFD_shared/workflows/R-CMD-check/badge.svg)](https://github.com/CmlMagneville/mFD_shared/actions)
-[![Website](https://img.shields.io/badge/Website-visit-blue?style=flat&logo=html5)](https://cmlmagneville.github.io/mFD_shared/index.html)
+[![R-CMD-check](https://github.com/CmlMagneville/mFD/workflows/R-CMD-check/badge.svg)](https://github.com/CmlMagneville/mFD/actions)
+[![Website](https://img.shields.io/badge/Website-visit-blue?style=flat&logo=html5)](https://cmlmagneville.github.io/mFD/index.html)
 <!-- badges: end -->
 
 
@@ -64,7 +64,7 @@ if no fuzzy traits: NA).
 
 For a complete understanding of the functional workflow and the packages 
 possibilities, please refer to the 
-[General_mFD_workflow_vignette](https://cmlmagneville.github.io/mFD_shared/articles/mFD_general_workflow.html).
+[General_mFD_workflow_vignette](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html).
 
 
 ## Citation
