@@ -683,6 +683,9 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       # retrieve gravity center of vertices for the studied assemblage:
       grav_center_vert_coord_list <- as.data.frame(grav_center_vert_coord_list)
       grav_center_vert_asb <- grav_center_vert_coord_list
+      grav_center_vert_asb <- grav_center_vert_asb[, 
+                                 paste0("grav_center_vert_coord",
+                                 sep = "_", asb_k), drop = FALSE]
       
       # plot fdiv:
       plot_k <- get(paste0("plot_funct", sep = '_', i)) +
@@ -1277,6 +1280,9 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         grav_center_vert_coord_list <- 
           as.data.frame(grav_center_vert_coord_list)
         grav_center_vert_asb <- grav_center_vert_coord_list
+        grav_center_vert_asb <- grav_center_vert_asb[, 
+                                        paste0("grav_center_vert_coord",
+                                        sep = "_", asb_k), drop = FALSE]
         
         # plot fdiv:
         plot_k <- get("return_fdiv_list")[[i]] +
