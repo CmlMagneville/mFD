@@ -48,6 +48,8 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 #'   
 #' @author Camille Magneville and Sebastien Villeger
 #' 
+#' @export
+#' 
 #' @noRd
 
 dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
@@ -91,6 +93,8 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
 #'   
 #' @author Camille Magneville and Sebastien Villeger
 #' 
+#' @export
+#' 
 #' @noRd
 
 mst.computation <- function(sp_faxes_coord_k) {
@@ -128,6 +132,8 @@ mst.computation <- function(sp_faxes_coord_k) {
 #' @return A vector containing names of species being vertices \code{vert_nm}
 #' 
 #' @author Camille Magneville and Sebastien Villeger
+#' 
+#' @export
 #' 
 #' @noRd
 
