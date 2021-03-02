@@ -13,8 +13,43 @@
 #' @return A vector of species distances to the reference species 
 #' 
 #' @author Camille Magneville and Sebastien Villeger
+#' 
+#' @examples
+#' \dontrun{
+#' # Load Species*Traits dataframe:
+#'  data("fruits_traits", package = "mFD")
+#' 
+#' # Load Assemblages*Species dataframe:      
+#'  data("baskets_fruits_weights", package = "mFD") 
+#' 
+#' # Load Traits categories dataframe:
+#'  data("fruits_traits_cat", package = "mFD") 
+#'  
+#' # Compute functional distance 
+#'  sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                    tr_cat        = fruits_traits_cat,
+#'                                    metric        = "gower",
+#'                                    scale_euclid  = "scale_center",
+#'                                    ordinal_var   = "classic",
+#'                                    weight_type   = "equal",
+#'                                    stop_if_NA    = TRUE)
+#'   
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#'  fspaces_quality_fruits <- mFD::quality.fspaces(
+#'                                   sp_dist             = sp_dist_fruits, 
+#'                                   maxdim_pcoa         = 10,
+#'                                   deviation_weighting = "absolute",
+#'                                   fdist_scaling       = FALSE,
+#'                                   fdendro             = "average")
+#'  
+#' # Retrieve species coordinates matrix:
+#'  sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 #'
-#' @noRd
+#' # Retrieve the distances of all species to "pear":
+#'  dist_pear <- dist.point(sp_faxes_coord_fruits, ref_sp = "pear")
+#'  dist_pear
+#' }
+#'
 
 dist.point <- function(sp_faxes_coord, ref_sp) {
   # build the matrix of distances between species to
@@ -31,7 +66,7 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 
 
 #' Compute Distance of a Given Point to its Nearest Neighbor in the Functional
-#' Space and the Udentity of the Nearest Neighbor
+#' Space and the Identity of the Nearest Neighbor
 #'
 #' This function is used in functional indices computation.
 #'
@@ -50,7 +85,42 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 #' 
 #' @export
 #' 
-#' @noRd
+#' @examples
+#' \dontrun{
+#' # Load Species*Traits dataframe:
+#'  data("fruits_traits", package = "mFD")
+#' 
+#' # Load Assemblages*Species dataframe:      
+#'  data("baskets_fruits_weights", package = "mFD") 
+#' 
+#' # Load Traits categories dataframe:
+#'  data("fruits_traits_cat", package = "mFD") 
+#'  
+#' # Compute functional distance 
+#'  sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                    tr_cat        = fruits_traits_cat,
+#'                                    metric        = "gower",
+#'                                    scale_euclid  = "scale_center",
+#'                                    ordinal_var   = "classic",
+#'                                    weight_type   = "equal",
+#'                                    stop_if_NA    = TRUE)
+#'   
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#'  fspaces_quality_fruits <- mFD::quality.fspaces(
+#'                                   sp_dist             = sp_dist_fruits, 
+#'                                   maxdim_pcoa         = 10,
+#'                                   deviation_weighting = "absolute",
+#'                                   fdist_scaling       = FALSE,
+#'                                   fdendro             = "average")
+#'  
+#' # Retrieve species coordinates matrix:
+#'  sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#'
+#' # Compute the distance of "pear" to its nearest neighbor(s):
+#'  dist_nn_pear <- dist.nearneighb(sp_faxes_coord_fruits, ref_sp = "pear")
+#'  dist_nn_pear
+#' }
+#' 
 
 dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
   
@@ -95,7 +165,42 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
 #' 
 #' @export
 #' 
-#' @noRd
+#' @examples
+#' \dontrun{
+#' # Load Species*Traits dataframe:
+#'  data("fruits_traits", package = "mFD")
+#' 
+#' # Load Assemblages*Species dataframe:      
+#'  data("baskets_fruits_weights", package = "mFD") 
+#' 
+#' # Load Traits categories dataframe:
+#'  data("fruits_traits_cat", package = "mFD") 
+#'  
+#' # Compute functional distance 
+#'  sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                    tr_cat        = fruits_traits_cat,
+#'                                    metric        = "gower",
+#'                                    scale_euclid  = "scale_center",
+#'                                    ordinal_var   = "classic",
+#'                                    weight_type   = "equal",
+#'                                    stop_if_NA    = TRUE)
+#'   
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#'  fspaces_quality_fruits <- mFD::quality.fspaces(
+#'                                   sp_dist             = sp_dist_fruits, 
+#'                                   maxdim_pcoa         = 10,
+#'                                   deviation_weighting = "absolute",
+#'                                   fdist_scaling       = FALSE,
+#'                                   fdendro             = "average")
+#'  
+#' # Retrieve species coordinates matrix:
+#'  sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#'
+#' # Compute the distance of "pear" to its nearest neighbor(s):
+#'  mst_fruits <- mst.computation(sp_faxes_coord_fruits)
+#'  mst_fruits
+#' }
+#' 
 
 mst.computation <- function(sp_faxes_coord_k) {
   
@@ -135,7 +240,43 @@ mst.computation <- function(sp_faxes_coord_k) {
 #' 
 #' @export
 #' 
-#' @noRd
+#' @examples
+#' \dontrun{
+#' # Load Species*Traits dataframe:
+#'  data("fruits_traits", package = "mFD")
+#' 
+#' # Load Assemblages*Species dataframe:      
+#'  data("baskets_fruits_weights", package = "mFD") 
+#' 
+#' # Load Traits categories dataframe:
+#'  data("fruits_traits_cat", package = "mFD") 
+#'  
+#' # Compute functional distance 
+#'  sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                    tr_cat        = fruits_traits_cat,
+#'                                    metric        = "gower",
+#'                                    scale_euclid  = "scale_center",
+#'                                    ordinal_var   = "classic",
+#'                                    weight_type   = "equal",
+#'                                    stop_if_NA    = TRUE)
+#'   
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#'  fspaces_quality_fruits <- mFD::quality.fspaces(
+#'                                   sp_dist             = sp_dist_fruits, 
+#'                                   maxdim_pcoa         = 10,
+#'                                   deviation_weighting = "absolute",
+#'                                   fdist_scaling       = FALSE,
+#'                                   fdendro             = "average")
+#'  
+#' # Retrieve species coordinates matrix:
+#'  sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#'
+#' # Compute vertices and order them clockwise:
+#'  vert_nm <- vertices(sp_faxes_coord_fruits[ , c("PC1", "PC2")], 
+#'   order_2D = TRUE, check_input = TRUE)
+#'  vert_nm
+#' }
+#' 
 
 vertices <- function(sp_faxes_coord, order_2D = FALSE, check_input = FALSE) {
   
