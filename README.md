@@ -65,7 +65,7 @@ citation("mFD")
 
 ## Contributions
 
-SV, NL, CA, FL and CM coded the functions and their help. SV and CM
-wrote tutorials. All authors tested the functions and contributed to
+SV, NL, CA, FL and CM coded the functions and their help. SV and CM led
+tutorial writings. All authors tested the functions and contributed to
 writing of helps and tutorials. NC optimized the package and made it
 ready for CRAN submission.
