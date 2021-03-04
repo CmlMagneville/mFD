@@ -36,7 +36,7 @@
 #'
 #' @param range_faxes a vector with minimum and maximum values of axes. Note
 #'   that to have a fair representation of position of species in all plots,
-#'   they should have the same range. Default: `faxes_lim = c(NA, NA)` (the 
+#'   they should have the same range. Default: `range_faxes = c(NA, NA)` (the 
 #'   range is computed according to the range of values among all axes).
 #'
 #' @param color_bg a R color name or an hexadecimal code used to fill
