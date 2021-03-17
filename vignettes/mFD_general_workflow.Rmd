@@ -972,61 +972,61 @@ function as follows:
 **USAGE**
 
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
-plots_alpha <- mFD::alpha.multidim.plot(
-  sp_faxes_coord        = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
-  asb_sp_w              = baskets_fruits_weights,
-  ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", 
-                       "fori", "fspe"),
-  details_list          = details_list_fruits,
-  asb_vect              = "basket_1",
-  fd_ind_values         = fd_ind_values_fruits,
-  faxes                 = NULL,
-  faxes_nm              = NULL,
-  range_faxes_lim       = c(NA, NA),
-  color_bg              = "grey95",
-  size_sp               = 1,
-  size_centroid         = 1,
-  size_centroid_asb2    = 1,
-  size_vert             = 1,
-  size_sp_nm            = 3,
-  color_sp              = "#0072B2",
-  color_sp_asb2         = "#D55E00",
-  color_sp_gp           = "gray80",
-  color_segment         = "#0072B2",
-  color_segment_asb2    = "#CC79A7",
-  color_centroid        = '#0072B2',
-  color_centroid_asb2   = "#D55E00",
-  color_vert            = NA,
-  color_vert_asb2       = NA,
-  color_ch              = "black",
-  color_sp_nm           = "black",
-  fill_sp               = "white",
-  fill_sp_asb2          = "white",
-  fill_sp_gp            = "gray80",
-  fill_vert             = NA,
-  fill_vert_asb2        = NA,
-  fill_ch               = "white",
-  fill_centroid         = '#0072B2',
-  fill_centroid_asb2    = "#D55E00",
-  alpha_ch              = 0.3,
-  shape_sp_gp           = 3,
-  shape_sp              = 16,
-  shape_sp_asb2         = 15,
-  shape_vert            = NA,
-  shape_vert_asb2       = NA,
-  shape_centroid        = 10,
-  shape_centroid_asb2   = 12,
-  segment_size          = 1,
-  segment_size_asb2     = 0.5,
-  linetype_segment      = "solid",
-  linetype_segment_asb2 = "dashed",
-  scale_inf             = 1,
-  scale_sup             = 3,
-  plot_sp_nm            = NULL,
-  plot_ch               = TRUE,
-  fontface_nm           = "plain",
-  name_file             = NULL,
-  check_input           = TRUE)
+# plots_alpha <- mFD::alpha.multidim.plot(
+#   sp_faxes_coord        = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#   asb_sp_w              = baskets_fruits_weights,
+#   ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", 
+#                        "fori", "fspe"),
+#   details_list          = details_list_fruits,
+#   asb_vect              = "basket_1",
+#   fd_ind_values         = fd_ind_values_fruits,
+#   faxes                 = NULL,
+#   faxes_nm              = NULL,
+#   range_faxes_lim       = c(NA, NA),
+#   color_bg              = "grey95",
+#   size_sp               = 1,
+#   size_centroid         = 1,
+#   size_centroid_asb2    = 1,
+#   size_vert             = 1,
+#   size_sp_nm            = 3,
+#   color_sp              = "#0072B2",
+#   color_sp_asb2         = "#D55E00",
+#   color_sp_gp           = "gray80",
+#   color_segment         = "#0072B2",
+#   color_segment_asb2    = "#CC79A7",
+#   color_centroid        = '#0072B2',
+#   color_centroid_asb2   = "#D55E00",
+#   color_vert            = NA,
+#   color_vert_asb2       = NA,
+#   color_ch              = "black",
+#   color_sp_nm           = "black",
+#   fill_sp               = "white",
+#   fill_sp_asb2          = "white",
+#   fill_sp_gp            = "gray80",
+#   fill_vert             = NA,
+#   fill_vert_asb2        = NA,
+#   fill_ch               = "white",
+#   fill_centroid         = '#0072B2',
+#   fill_centroid_asb2    = "#D55E00",
+#   alpha_ch              = 0.3,
+#   shape_sp_gp           = 3,
+#   shape_sp              = 16,
+#   shape_sp_asb2         = 15,
+#   shape_vert            = NA,
+#   shape_vert_asb2       = NA,
+#   shape_centroid        = 10,
+#   shape_centroid_asb2   = 12,
+#   segment_size          = 1,
+#   segment_size_asb2     = 0.5,
+#   linetype_segment      = "solid",
+#   linetype_segment_asb2 = "dashed",
+#   scale_inf             = 1,
+#   scale_sup             = 3,
+#   plot_sp_nm            = NULL,
+#   plot_ch               = TRUE,
+#   fontface_nm           = "plain",
+#   name_file             = NULL,
+#   check_input           = TRUE)
 ```
 
 <br />
@@ -1095,7 +1095,7 @@ assemblage and the white shape reflects the convex-hull of the global pool of
 species:
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-plots_alpha[[1]]
+# plots_alpha[[1]]
 ```
 
 <br />
@@ -1104,7 +1104,7 @@ plots_alpha[[1]]
 assemblage to the gravity center of the vertices of the assemblage
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-plots_alpha[[2]]
+#plots_alpha[[2]]
 ```
 
 <br />
@@ -1113,7 +1113,7 @@ plots_alpha[[2]]
 species of the assemblage
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-plots_alpha[[3]]
+#plots_alpha[[3]]
 ```
 
 <br />
@@ -1123,7 +1123,7 @@ assemblage to the mean position of species from the global pool
 (present in all assemblages)
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-plots_alpha[[4]]
+#plots_alpha[[4]]
 ```
 
 <br />
@@ -1133,7 +1133,7 @@ assemblage to the biomass-weighted mean trait values of the assemblage. Red
 dotted lines refer to `FIde` values.
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-plots_alpha[[5]]
+#plots_alpha[[5]]
 ```
 
 <br />
@@ -1142,7 +1142,7 @@ plots_alpha[[5]]
 assemblage nearest species from the global species pool
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-plots_alpha[[6]]
+#plots_alpha[[6]]
 ```
 
 <br />
@@ -1151,7 +1151,7 @@ plots_alpha[[6]]
 nearest neighbor
 
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-plots_alpha[[7]]
+#plots_alpha[[7]]
 ```
 
 
