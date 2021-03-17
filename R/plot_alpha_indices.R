@@ -400,6 +400,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   #### Retrieve all the needed elements from details_list ####
   
   asb_sp_relatw               <- details_list$asb_sp_relatw
+  asb_sp_relatw               <- t(asb_sp_relatw)
   mst_list                    <- details_list$mst_list
   grav_center_vert_coord_list <- details_list$grav_center_vert_coord_list
   grav_center_global_pool     <- details_list$grav_center_global_pool
@@ -683,9 +684,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       # retrieve gravity center of vertices for the studied assemblage:
       grav_center_vert_coord_list <- as.data.frame(grav_center_vert_coord_list)
       grav_center_vert_asb <- grav_center_vert_coord_list
-      grav_center_vert_asb <- grav_center_vert_asb[, 
-                                 paste0("grav_center_vert_coord",
-                                 sep = "_", asb_k), drop = FALSE]
+      grav_center_vert_asb <- grav_center_vert_asb[asb_k, drop = FALSE]
       
       # plot fdiv:
       plot_k <- get(paste0("plot_funct", sep = '_', i)) +
@@ -713,11 +712,9 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                            ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
                                          y = sp_faxes_coord_k[, faxes_nm[[2]]]),
                               xend = grav_center_vert_asb[faxes_nm[[1]],
-                                             paste0("grav_center_vert_coord",
-                                                    sep = "_", asb_k)],
+                                             asb_k],
                               yend = grav_center_vert_asb[faxes_nm[[2]],
-                                             paste0("grav_center_vert_coord",
-                                                     sep = "_", asb_k)],
+                                             asb_k],
                               colour = color_segment, size = segment_size,
                               linetype = linetype_segment) +
         
@@ -729,9 +726,9 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
         
         ggplot2::geom_point(data = grav_center_vert_asb,
                         ggplot2::aes_(x = grav_center_vert_asb[faxes_nm[[1]], 
-                          paste0("grav_center_vert_coord", sep = "_", asb_k)],
+                          asb_k],
                                         y = grav_center_vert_asb[faxes_nm[[2]],
-                          paste0("grav_center_vert_coord", sep = "_", asb_k)]),
+                          asb_k]),
                           colour = color_centroid, shape = shape_centroid, 
                           size = size_centroid, fill = fill_centroid) +
         
