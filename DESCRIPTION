@@ -74,6 +74,7 @@ Imports:
     FactoMineR,
     gawdis,
     geometry,
+    ggforce,
     ggplot2,
     ggrepel,
     grid,
