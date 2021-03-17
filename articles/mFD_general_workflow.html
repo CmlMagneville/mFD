@@ -94,7 +94,7 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-03-04</h4>
+            <h4 class="date">2021-03-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -1011,39 +1011,28 @@ Basic framework of the mFD package
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fd_ind_values_fruits</span> <span class="op">&lt;-</span> <span class="va">alpha_fd_indices_fruits</span><span class="op">$</span><span class="st">"functional_diversity_indices"</span>
 <span class="va">fd_ind_values_fruits</span></code></pre></div>
-<pre><code>##           sp_richn      fdis      fmpd       fnnd     feve        fric
-## basket_1         8 0.4763773 0.6255537 0.16480656 0.565326 0.162830681
-## basket_2         8 0.7207823 0.7204459 0.26868113 0.754999 0.162830681
-## basket_3         8 0.7416008 0.7274367 0.27454858 0.805534 0.162830681
-## basket_4         8 0.2958614 0.3426258 0.09187694 0.759802 0.007880372
-## basket_5         8 0.3673992 0.3782650 0.11889650 0.843120 0.007880372
-## basket_6         8 0.8001980 0.7838356 0.29681748 0.814829 0.147936148
-## basket_7         8 0.8121314 0.8092985 0.30782182 0.827061 0.147936148
-## basket_8         8 0.4678159 0.5182996 0.14722644 0.566161 0.036480112
-## basket_9         8 0.5577452 0.5566262 0.18567223 0.675735 0.036480112
-## basket_10        8 0.5505783 0.5501381 0.16755918 0.660085 0.025774304
-##                fdiv      fori      fspe    fide_PC1     fide_PC2    fide_PC3
-## basket_1  0.5514453 0.2024008 0.4127138 -0.01473662 -0.009461738 -0.05670043
-## basket_2  0.8064809 0.2788762 0.5781232  0.01887361 -0.061601373 -0.04427402
-## basket_3  0.8089535 0.3067367 0.5888104  0.04724418 -0.056571400 -0.03631846
-## basket_4  0.6080409 0.1766279 0.3106937  0.03994897  0.052581211 -0.08413271
-## basket_5  0.7288912 0.2165945 0.3488358  0.02349573  0.039069220 -0.08187248
-## basket_6  0.8937934 0.6071369 0.7930809  0.24320913 -0.114434642  0.01394977
-## basket_7  0.8989094 0.4841824 0.7443406  0.13341179 -0.183609095 -0.01782549
-## basket_8  0.7113688 0.2538185 0.6363814 -0.24497368  0.036194656  0.04748935
-## basket_9  0.7787237 0.3126927 0.6309078 -0.21021559  0.029339706  0.05516746
-## basket_10 0.7741681 0.1799705 0.4587432 -0.05375867 -0.005743348 -0.05649324
-##               fide_PC4
-## basket_1  -0.001823969
-## basket_2   0.021249327
-## basket_3   0.018045257
-## basket_4  -0.001343112
-## basket_5  -0.010262902
-## basket_6   0.025500282
-## basket_7   0.021494300
-## basket_8  -0.038827673
-## basket_9  -0.041392184
-## basket_10  0.041191011</code></pre>
+<pre><code>##           sp_richn      fdis      fmpd      fnnd     feve        fric      fdiv
+## basket_1         8 0.4763773 0.6255537 0.4050890 0.565326 0.162830681 0.5514453
+## basket_2         8 0.7207823 0.7204459 0.6604092 0.754999 0.162830681 0.8064809
+## basket_3         8 0.7416008 0.7274367 0.6748312 0.805534 0.162830681 0.8089535
+## basket_4         8 0.2958614 0.3426258 0.2258304 0.759802 0.007880372 0.6080409
+## basket_5         8 0.3673992 0.3782650 0.2922436 0.843120 0.007880372 0.7288912
+## basket_6         8 0.8001980 0.7838356 0.7295674 0.814829 0.147936148 0.8937934
+## basket_7         8 0.8121314 0.8092985 0.7566157 0.827061 0.147936148 0.8989094
+## basket_8         8 0.4678159 0.5182996 0.3618776 0.566161 0.036480112 0.7113688
+## basket_9         8 0.5577452 0.5566262 0.4563761 0.675735 0.036480112 0.7787237
+## basket_10        8 0.5505783 0.5501381 0.4118548 0.660085 0.025774304 0.7741681
+##                fori      fspe    fide_PC1     fide_PC2    fide_PC3     fide_PC4
+## basket_1  0.2024008 0.4127138 -0.01473662 -0.009461738 -0.05670043 -0.001823969
+## basket_2  0.2788762 0.5781232  0.01887361 -0.061601373 -0.04427402  0.021249327
+## basket_3  0.3067367 0.5888104  0.04724418 -0.056571400 -0.03631846  0.018045257
+## basket_4  0.1766279 0.3106937  0.03994897  0.052581211 -0.08413271 -0.001343112
+## basket_5  0.2165945 0.3488358  0.02349573  0.039069220 -0.08187248 -0.010262902
+## basket_6  0.6071369 0.7930809  0.24320913 -0.114434642  0.01394977  0.025500282
+## basket_7  0.4841824 0.7443406  0.13341179 -0.183609095 -0.01782549  0.021494300
+## basket_8  0.2538185 0.6363814 -0.24497368  0.036194656  0.04748935 -0.038827673
+## basket_9  0.3126927 0.6309078 -0.21021559  0.029339706  0.05516746 -0.041392184
+## basket_10 0.1799705 0.4587432 -0.05375867 -0.005743348 -0.05649324  0.041191011</code></pre>
 <p><br></p>
 <ul>
 <li>a <strong>details list</strong> of data frames and sublists gathering information such as coordinates of centroids, distances and identity of the nearest neighbour, distances to the centroid, etc. The user does not have to directly use it but it will be useful if FD indices are then plotted. It can be retrieved through:</li>
@@ -1055,61 +1044,61 @@ Basic framework of the mFD package
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.multidim.plot.html">alpha.multidim.plot</a></span><span class="op">(</span>
-  sp_faxes_coord        <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,
-  asb_sp_w              <span class="op">=</span> <span class="va">baskets_fruits_weights</span>,
-  ind_vect              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fdis"</span>, <span class="st">"fnnd"</span>, <span class="st">"feve"</span>, <span class="st">"fric"</span>, <span class="st">"fdiv"</span>, 
-                       <span class="st">"fori"</span>, <span class="st">"fspe"</span><span class="op">)</span>,
-  details_list          <span class="op">=</span> <span class="va">details_list_fruits</span>,
-  asb_vect              <span class="op">=</span> <span class="st">"basket_1"</span>,
-  fd_ind_values         <span class="op">=</span> <span class="va">fd_ind_values_fruits</span>,
-  faxes                 <span class="op">=</span> <span class="cn">NULL</span>,
-  faxes_nm              <span class="op">=</span> <span class="cn">NULL</span>,
-  range_faxes_lim       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
-  color_bg              <span class="op">=</span> <span class="st">"grey95"</span>,
-  size_sp               <span class="op">=</span> <span class="fl">1</span>,
-  size_centroid         <span class="op">=</span> <span class="fl">1</span>,
-  size_centroid_asb2    <span class="op">=</span> <span class="fl">1</span>,
-  size_vert             <span class="op">=</span> <span class="fl">1</span>,
-  size_sp_nm            <span class="op">=</span> <span class="fl">3</span>,
-  color_sp              <span class="op">=</span> <span class="st">"#0072B2"</span>,
-  color_sp_asb2         <span class="op">=</span> <span class="st">"#D55E00"</span>,
-  color_sp_gp           <span class="op">=</span> <span class="st">"gray80"</span>,
-  color_segment         <span class="op">=</span> <span class="st">"#0072B2"</span>,
-  color_segment_asb2    <span class="op">=</span> <span class="st">"#CC79A7"</span>,
-  color_centroid        <span class="op">=</span> <span class="st">'#0072B2'</span>,
-  color_centroid_asb2   <span class="op">=</span> <span class="st">"#D55E00"</span>,
-  color_vert            <span class="op">=</span> <span class="cn">NA</span>,
-  color_vert_asb2       <span class="op">=</span> <span class="cn">NA</span>,
-  color_ch              <span class="op">=</span> <span class="st">"black"</span>,
-  color_sp_nm           <span class="op">=</span> <span class="st">"black"</span>,
-  fill_sp               <span class="op">=</span> <span class="st">"white"</span>,
-  fill_sp_asb2          <span class="op">=</span> <span class="st">"white"</span>,
-  fill_sp_gp            <span class="op">=</span> <span class="st">"gray80"</span>,
-  fill_vert             <span class="op">=</span> <span class="cn">NA</span>,
-  fill_vert_asb2        <span class="op">=</span> <span class="cn">NA</span>,
-  fill_ch               <span class="op">=</span> <span class="st">"white"</span>,
-  fill_centroid         <span class="op">=</span> <span class="st">'#0072B2'</span>,
-  fill_centroid_asb2    <span class="op">=</span> <span class="st">"#D55E00"</span>,
-  alpha_ch              <span class="op">=</span> <span class="fl">0.3</span>,
-  shape_sp_gp           <span class="op">=</span> <span class="fl">3</span>,
-  shape_sp              <span class="op">=</span> <span class="fl">16</span>,
-  shape_sp_asb2         <span class="op">=</span> <span class="fl">15</span>,
-  shape_vert            <span class="op">=</span> <span class="cn">NA</span>,
-  shape_vert_asb2       <span class="op">=</span> <span class="cn">NA</span>,
-  shape_centroid        <span class="op">=</span> <span class="fl">10</span>,
-  shape_centroid_asb2   <span class="op">=</span> <span class="fl">12</span>,
-  segment_size          <span class="op">=</span> <span class="fl">1</span>,
-  segment_size_asb2     <span class="op">=</span> <span class="fl">0.5</span>,
-  linetype_segment      <span class="op">=</span> <span class="st">"solid"</span>,
-  linetype_segment_asb2 <span class="op">=</span> <span class="st">"dashed"</span>,
-  scale_inf             <span class="op">=</span> <span class="fl">1</span>,
-  scale_sup             <span class="op">=</span> <span class="fl">3</span>,
-  plot_sp_nm            <span class="op">=</span> <span class="cn">NULL</span>,
-  plot_ch               <span class="op">=</span> <span class="cn">TRUE</span>,
-  fontface_nm           <span class="op">=</span> <span class="st">"plain"</span>,
-  name_file             <span class="op">=</span> <span class="cn">NULL</span>,
-  check_input           <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># plots_alpha &lt;- mFD::alpha.multidim.plot(</span>
+<span class="co">#   sp_faxes_coord        = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],</span>
+<span class="co">#   asb_sp_w              = baskets_fruits_weights,</span>
+<span class="co">#   ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", </span>
+<span class="co">#                        "fori", "fspe"),</span>
+<span class="co">#   details_list          = details_list_fruits,</span>
+<span class="co">#   asb_vect              = "basket_1",</span>
+<span class="co">#   fd_ind_values         = fd_ind_values_fruits,</span>
+<span class="co">#   faxes                 = NULL,</span>
+<span class="co">#   faxes_nm              = NULL,</span>
+<span class="co">#   range_faxes_lim       = c(NA, NA),</span>
+<span class="co">#   color_bg              = "grey95",</span>
+<span class="co">#   size_sp               = 1,</span>
+<span class="co">#   size_centroid         = 1,</span>
+<span class="co">#   size_centroid_asb2    = 1,</span>
+<span class="co">#   size_vert             = 1,</span>
+<span class="co">#   size_sp_nm            = 3,</span>
+<span class="co">#   color_sp              = "#0072B2",</span>
+<span class="co">#   color_sp_asb2         = "#D55E00",</span>
+<span class="co">#   color_sp_gp           = "gray80",</span>
+<span class="co">#   color_segment         = "#0072B2",</span>
+<span class="co">#   color_segment_asb2    = "#CC79A7",</span>
+<span class="co">#   color_centroid        = '#0072B2',</span>
+<span class="co">#   color_centroid_asb2   = "#D55E00",</span>
+<span class="co">#   color_vert            = NA,</span>
+<span class="co">#   color_vert_asb2       = NA,</span>
+<span class="co">#   color_ch              = "black",</span>
+<span class="co">#   color_sp_nm           = "black",</span>
+<span class="co">#   fill_sp               = "white",</span>
+<span class="co">#   fill_sp_asb2          = "white",</span>
+<span class="co">#   fill_sp_gp            = "gray80",</span>
+<span class="co">#   fill_vert             = NA,</span>
+<span class="co">#   fill_vert_asb2        = NA,</span>
+<span class="co">#   fill_ch               = "white",</span>
+<span class="co">#   fill_centroid         = '#0072B2',</span>
+<span class="co">#   fill_centroid_asb2    = "#D55E00",</span>
+<span class="co">#   alpha_ch              = 0.3,</span>
+<span class="co">#   shape_sp_gp           = 3,</span>
+<span class="co">#   shape_sp              = 16,</span>
+<span class="co">#   shape_sp_asb2         = 15,</span>
+<span class="co">#   shape_vert            = NA,</span>
+<span class="co">#   shape_vert_asb2       = NA,</span>
+<span class="co">#   shape_centroid        = 10,</span>
+<span class="co">#   shape_centroid_asb2   = 12,</span>
+<span class="co">#   segment_size          = 1,</span>
+<span class="co">#   segment_size_asb2     = 0.5,</span>
+<span class="co">#   linetype_segment      = "solid",</span>
+<span class="co">#   linetype_segment_asb2 = "dashed",</span>
+<span class="co">#   scale_inf             = 1,</span>
+<span class="co">#   scale_sup             = 3,</span>
+<span class="co">#   plot_sp_nm            = NULL,</span>
+<span class="co">#   plot_ch               = TRUE,</span>
+<span class="co">#   fontface_nm           = "plain",</span>
+<span class="co">#   name_file             = NULL,</span>
+<span class="co">#   check_input           = TRUE)</span></code></pre></div>
 <p><br></p>
 <p>As you can see, this function has a lot of arguments: most of them are graphical arguments allowing the user to chose colors, shapes, sizes, scales, etc. This tutorial only presents main arguments. To learn about the use of graphical arguments, check the function help file. The main arguments of this function are listed below:</p>
 <ul>
@@ -1135,56 +1124,49 @@ Basic framework of the mFD package
 <code>FRic</code> representation: the blue shape reflects the convex-hull of the studied assemblage and the white shape reflects the convex-hull of the global pool of species:</li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-31-1.png" width="960" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span class="co"># plots_alpha[[1]]</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>
 <code>FDiv</code> representation: traits represent the distances of each species from the assemblage to the gravity center of the vertices of the assemblage</li>
 </ul>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-32-1.png" width="960" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span class="co">#plots_alpha[[2]]</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>
 <code>FEve</code> representation: traits represent the Minimum Spanning Tree linking species of the assemblage</li>
 </ul>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-33-1.png" width="960" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span class="co">#plots_alpha[[3]]</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>
 <code>FSpe</code> representation: traits represent distances of each species from the assemblage to the mean position of species from the global pool (present in all assemblages)</li>
 </ul>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-34-1.png" width="960" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span class="co">#plots_alpha[[4]]</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>
 <code>FDis</code> representation: traits represent distances of each species from the assemblage to the biomass-weighted mean trait values of the assemblage. Red dotted lines refer to <code>FIde</code> values.</li>
 </ul>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-35-1.png" width="960" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span class="co">#plots_alpha[[5]]</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>
 <code>FOri</code> representation: traits represent distances of each species from the assemblage nearest species from the global species pool</li>
 </ul>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-36-1.png" width="960" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span class="co">#plots_alpha[[6]]</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>
 <code>FNND</code> representation: arrows represent the link between each species and its nearest neighbor</li>
 </ul>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-37-1.png" width="960" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span class="co">#plots_alpha[[7]]</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="functional-beta-diversity-indices-based-on-multidimensional-space" class="section level2">
@@ -1223,17 +1205,17 @@ Basic framework of the mFD package
 </ul>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="va">pairasb_fbd_indices</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>##       asb.1     asb.2  jac_diss  jac_turn    jac_nest
-## 1  basket_1  basket_2 0.0000000 0.0000000 0.000000000
-## 2  basket_1  basket_3 0.0000000 0.0000000 0.000000000
-## 3  basket_1  basket_4 0.9654002 0.4320333 0.533366944
-## 4  basket_1  basket_5 0.9654002 0.4320333 0.533366944
-## 5  basket_1  basket_6 0.8701848 0.8627528 0.007431956
-## 6  basket_1  basket_7 0.8701848 0.8627528 0.007431956
-## 7  basket_1  basket_8 0.9797030 0.9425331 0.037169839
-## 8  basket_1  basket_9 0.9797030 0.9425331 0.037169839
-## 9  basket_1 basket_10 0.9151338 0.5990146 0.316119149
-## 10 basket_2  basket_3 0.0000000 0.0000000 0.000000000</code></pre>
+<pre><code>##       asb.1     asb.2     jac_diss     jac_turn    jac_nest
+## 1  basket_1  basket_2 1.438694e-10 1.438694e-10 0.000000000
+## 2  basket_1  basket_3 1.438694e-10 1.438694e-10 0.000000000
+## 3  basket_1  basket_4 9.654002e-01 4.320333e-01 0.533366944
+## 4  basket_1  basket_5 9.654002e-01 4.320333e-01 0.533366944
+## 5  basket_1  basket_6 8.701848e-01 8.627528e-01 0.007431956
+## 6  basket_1  basket_7 8.701848e-01 8.627528e-01 0.007431956
+## 7  basket_1  basket_8 9.797030e-01 9.425331e-01 0.037169839
+## 8  basket_1  basket_9 9.797030e-01 9.425331e-01 0.037169839
+## 9  basket_1 basket_10 9.151338e-01 5.990146e-01 0.316119149
+## 10 basket_2  basket_3 1.438694e-10 1.438694e-10 0.000000000</code></pre>
 <p><br></p>
 <ul>
 <li>

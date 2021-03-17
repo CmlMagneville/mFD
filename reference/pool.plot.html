@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot FRic indice — fric.plot • mFD</title>
+<title>Plot species from the pool — pool.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Plot FRic indice — fric.plot" />
-<meta property="og:description" content="This function adds convex hull(s), points and vertices of 1:N assemblages on
-the background plot" />
+<meta property="og:title" content="Plot species from the pool — pool.plot" />
+<meta property="og:description" content="Plot all species from the study case and associated convex hull" />
 
 
 
@@ -133,32 +132,31 @@ the background plot" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot FRic indice</h1>
+    <h1>Plot species from the pool</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_multidim_layers.R'><code>R/plot_multidim_layers.R</code></a></small>
-    <div class="hidden name"><code>fric.plot.Rd</code></div>
+    <div class="hidden name"><code>pool.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function adds convex hull(s), points and vertices of 1:N assemblages on
-the background plot</p>
+    <p>Plot all species from the study case and associated convex hull</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fric.plot</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>pool.plot</span><span class='op'>(</span>
   <span class='va'>ggplot_bg</span>,
-  <span class='va'>asb_sp_coord2D</span>,
-  <span class='va'>asb_vertices_nD</span>,
-  plot_sp <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  <span class='va'>color_ch</span>,
-  <span class='va'>fill_ch</span>,
-  <span class='va'>alpha_ch</span>,
-  <span class='va'>shape_sp</span>,
-  <span class='va'>size_sp</span>,
-  <span class='va'>color_sp</span>,
-  <span class='va'>fill_sp</span>,
-  <span class='va'>shape_vert</span>,
-  <span class='va'>size_vert</span>,
-  <span class='va'>color_vert</span>,
-  <span class='va'>fill_vert</span>
+  <span class='va'>sp_coord2D</span>,
+  <span class='va'>vertices_nD</span>,
+  plot_pool <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  shape_pool <span class='op'>=</span> <span class='fl'>3</span>,
+  size_pool <span class='op'>=</span> <span class='fl'>0.8</span>,
+  color_pool <span class='op'>=</span> <span class='st'>"grey95"</span>,
+  fill_pool <span class='op'>=</span> <span class='cn'>NA</span>,
+  color_ch <span class='op'>=</span> <span class='cn'>NA</span>,
+  fill_ch <span class='op'>=</span> <span class='st'>"white"</span>,
+  alpha_ch <span class='op'>=</span> <span class='fl'>1</span>,
+  shape_vert <span class='op'>=</span> <span class='fl'>3</span>,
+  size_vert <span class='op'>=</span> <span class='fl'>1</span>,
+  color_vert <span class='op'>=</span> <span class='st'>"black"</span>,
+  fill_vert <span class='op'>=</span> <span class='cn'>NA</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -170,33 +168,55 @@ the background plot</p>
 the <code><a href='background.plot.html'>background.plot</a></code> function.</p></td>
     </tr>
     <tr>
-      <th>asb_sp_coord2D</th>
+      <th>sp_coord2D</th>
       <td><p>a list of matrix (ncol = 2) with coordinates of
-species present in each assemblage for a given pair of axes.</p></td>
+species present in the pool for a given pair of axes</p></td>
     </tr>
     <tr>
-      <th>asb_vertices_nD</th>
-      <td><p>a list (with names as in asb_sp_coord2D) of vectors
-with names of species being vertices in n dimensions.</p></td>
+      <th>vertices_nD</th>
+      <td><p>a list (with names as in sp_coord2D) of vectors with
+names of species being vertices in n dimensions.</p></td>
     </tr>
     <tr>
-      <th>plot_sp</th>
-      <td><p>a logical value indicating whether species of each assemblage
-should be plotted or not. Default: plot_sp = TRUE.</p></td>
+      <th>plot_pool</th>
+      <td><p>a logical value indicating whether species of each
+assemblage should be plotted or not. Default: plot_pool = TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>shape_pool</th>
+      <td><p>a numeric value referring to the shape used to plot species
+pool. Default: <code>shape_pool = 16</code>(filled circle).</p></td>
+    </tr>
+    <tr>
+      <th>size_pool</th>
+      <td><p>a numeric value referring to the size of species belonging
+to the global pool. Default: <code>size_pool = 1</code>.</p></td>
+    </tr>
+    <tr>
+      <th>color_pool</th>
+      <td><p>a R color name or an hexadecimal code referring to the
+color of the pool.  This color is also used for FRic convex hull color.
+Default: <code>color_pool = "#0072B2"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>fill_pool</th>
+      <td><p>a R color name or an hexadecimal code referring to the colour
+to fill species symbol (if <code>shape_sp</code> &gt; 20) and the assemblage convex
+hull. Default: <code>fill_pool = '#0072B2'</code>.</p></td>
     </tr>
     <tr>
       <th>color_ch</th>
       <td><p>a R color name or an hexadecimal code referring to the border
 of the convex hull filled by the pool of species. Default:
 <code>color_ch = "black"</code>. If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+names as in <code>sp_coord2D</code>.</p></td>
     </tr>
     <tr>
       <th>fill_ch</th>
       <td><p>a R color name or an hexadecimal code referring to the filling
 of the convex hull filled by the pool of species. Default is:
 <code>fill_ch = "white"</code>. If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+names as in <code>sp_coord2D</code>.</p></td>
     </tr>
     <tr>
       <th>alpha_ch</th>
@@ -205,53 +225,25 @@ hull (0 = high transparency, 1 = no transparency). Default:
 <code>alpha_ch = 0.3</code>.</p></td>
     </tr>
     <tr>
-      <th>shape_sp</th>
-      <td><p>a numeric value referring to the shape used to plot species
-belonging to the studied assemblage. Default: <code>shape_sp = 16</code>
-(filled circle). If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
-    </tr>
-    <tr>
-      <th>size_sp</th>
-      <td><p>a numeric value referring to the size of species belonging to
-the plotted assemblage. Default: <code>size_sp = 1</code>. If
-several assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
-    </tr>
-    <tr>
-      <th>color_sp</th>
-      <td><p>a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage.  This color is also used for FRic
-convex hull color. Default: <code>color_sp = "#0072B2"</code>. If several assemblages
-it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
-    </tr>
-    <tr>
-      <th>fill_sp</th>
-      <td><p>a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if <code>shape_sp</code> &gt; 20) and the assemblage convex
-hull. Default: <code>fill_sp = '#0072B2'</code>. If several assemblages it should
-be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
-    </tr>
-    <tr>
       <th>shape_vert</th>
       <td><p>a numeric value referring to the shape used to plot
 vertices if vertices should be plotted in a different way than other
 species. If <code>shape_vert = NA</code>, no vertices plotted. Default:
 <code>shape_vert = NA</code>. If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+names as in <code>sp_coord2D</code>.</p></td>
     </tr>
     <tr>
       <th>size_vert</th>
       <td><p>a numeric value referring to the size of symbol for vertices
 Default: <code>size_vert = 1</code>.  If several assemblages it should be a vector
-with names as in <code>asb_sp_coord2D</code>.</p></td>
+with names as in <code>sp_coord2D</code>.</p></td>
     </tr>
     <tr>
       <th>color_vert</th>
       <td><p>a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
 (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA). Default: <code>color_vert =  NA</code>. If several
-assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+must also be set to NA). Default: <code>color_vert =  NA</code>.</p></td>
     </tr>
     <tr>
       <th>fill_vert</th>
@@ -259,19 +251,14 @@ assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.<
 for vertices (if <code>shape_vert</code> &gt;20). If <code>fill = NA</code> and <code>color = NA</code>,
 vertices are not plotted (if <code>shape_vert</code> superior to 20. Otherwise
 <code>color_vert = NULL</code> is enough). Default is <code>NA</code>. If several assemblages
-it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+it should be a vector with names as in <code>sp_coord2D</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a ggplot object plotting background of multidimensional graphs and
-FRic convex hulls</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>first convex hull (2D projection) of all assemblages are added to
-the background ggplot object (<code>ggplot_bg</code>), then species not being vertices
-in n Dimensions-space and lastly species being vertices are plotted</p>
+species from the global pool (associated convex hull if asked)</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sébastien Villéger</p>
@@ -304,23 +291,15 @@ in n Dimensions-space and lastly species being vertices are plotted</p>
  fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
  
 <span class='co'># Retrieve species coordinates matrix:</span>
-  <span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> 
-    <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
-    
- <span class='co'># Retrieve species coordinates matrix for the assemblage "basket_1":</span>
-  <span class='va'>sp_filter</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='sp.filter.html'>sp.filter</a></span><span class='op'>(</span>asb_k          <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span><span class='op'>)</span>, 
-                              sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, 
-                              asb_sp_w       <span class='op'>=</span> <span class='va'>baskets_fruits_weight</span><span class='op'>)</span>
- <span class='va'>sp_faxes_coord_fruits_b1</span> <span class='op'>&lt;-</span> <span class='va'>sp_filter</span><span class='op'>$</span><span class='va'>`species coordinates`</span>
- 
- <span class='co'># Reduce it to the two studed axes: PC1 and PC2:</span>
- <span class='va'>sp_faxes_coord_fruits_b1_2D</span> <span class='op'>&lt;-</span> <span class='va'>sp_faxes_coord_fruits_b1</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>sp_faxes_coord_fruits_2D</span> <span class='op'>&lt;-</span> 
+  <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>
 
 <span class='co'># Set faxes limits:</span>
 <span class='co'># set range of axes if c(NA, NA):</span>
- <span class='va'>range_sp_coord</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span><span class='op'>)</span>
- <span class='va'>range_faxes_lim</span> <span class='op'>&lt;-</span> <span class='va'>range_sp_coord</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>*</span><span class='op'>(</span><span class='va'>range_sp_coord_fruits</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> 
- <span class='va'>range_sp_coord_fruits</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>0.05</span>
+ <span class='va'>range_sp_coord_fruits</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits_2D</span><span class='op'>)</span>
+ <span class='va'>range_faxes_lim</span> <span class='op'>&lt;-</span> <span class='va'>range_sp_coord_fruits</span> <span class='op'>+</span> 
+   <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>*</span><span class='op'>(</span><span class='va'>range_sp_coord_fruits</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> 
+   <span class='va'>range_sp_coord_fruits</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>0.05</span>
  
  <span class='co'># Retrieve the background plot:</span>
  <span class='va'>ggplot_bg_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='background.plot.html'>background.plot</a></span><span class='op'>(</span>
@@ -329,31 +308,28 @@ in n Dimensions-space and lastly species being vertices are plotted</p>
                                color_bg    <span class='op'>=</span> <span class='st'>"grey90"</span><span class='op'>)</span> 
                                
  <span class='co'># Retrieve vertices names:</span>
- <span class='va'>vert_nm_fruits</span> <span class='op'>&lt;-</span> <span class='fu'><a href='vertices.html'>vertices</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits_b1</span>, 
+ <span class='va'>vert_nm_fruits</span> <span class='op'>&lt;-</span> <span class='fu'><a href='vertices.html'>vertices</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span>, 
   order_2D <span class='op'>=</span> <span class='cn'>TRUE</span>, check_input <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  
+ <span class='co'># Plot the pool:</span>
+ <span class='va'>plot_pool_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>pool.plot</span><span class='op'>(</span>ggplot_bg   <span class='op'>=</span> <span class='va'>ggplot_bg_fruits</span>,
+           sp_coord2D    <span class='op'>=</span> <span class='va'>sp_coord_fruits_2D</span>,
+           vertices_nD   <span class='op'>=</span> <span class='va'>vert_nm_fruits</span>,
+           plot_pool     <span class='op'>=</span> <span class='cn'>TRUE</span>,
+           shape_pool    <span class='op'>=</span> <span class='fl'>3</span>, 
+           size_pool     <span class='op'>=</span> <span class='fl'>0.8</span>, 
+           color_pool    <span class='op'>=</span> <span class='st'>"grey95"</span>, 
+           fill_pool     <span class='op'>=</span> <span class='cn'>NA</span>, 
+           color_ch      <span class='op'>=</span> <span class='cn'>NA</span>, 
+           fill_ch       <span class='op'>=</span> <span class='st'>"white"</span>, 
+           alpha_ch      <span class='op'>=</span> <span class='fl'>1</span>, 
+           shape_vert    <span class='op'>=</span> <span class='fl'>3</span>, 
+           size_vert     <span class='op'>=</span> <span class='fl'>1</span>, 
+           color_vert    <span class='op'>=</span> <span class='st'>"black"</span>, 
+           fill_vert     <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span> 
+ <span class='va'>plot_pool_fruits</span>
                                
- <span class='co'># Plot in white the convex hull of all fruits species:</span>
- <span class='va'>ggplot_fric</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>fric.plot</span><span class='op'>(</span>
-           ggplot_bg       <span class='op'>=</span> <span class='va'>ggplot_bg_fruits</span>,
-           asb_sp_coord2D  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits_b1_2D</span><span class='op'>)</span>,
-           asb_vertices_nD <span class='op'>=</span> <span class='va'>vert_nm_fruits</span>,
-           plot_sp         <span class='op'>=</span> <span class='cn'>TRUE</span>,
-           color_ch        <span class='op'>=</span> <span class='st'>"black"</span>, 
-           fill_ch         <span class='op'>=</span> <span class='st'>"white"</span>, 
-           alpha_ch        <span class='op'>=</span> <span class='fl'>0.3</span>,
-           shape_sp        <span class='op'>=</span> <span class='fl'>16</span>, 
-           size_sp         <span class='op'>=</span> <span class='fl'>1</span>, 
-           color_sp        <span class='op'>=</span> <span class='st'>"#0072B2"</span>, 
-           fill_sp         <span class='op'>=</span> <span class='st'>"#0072B2"</span>,
-           shape_vert      <span class='op'>=</span> <span class='fl'>15</span>, 
-           size_vert       <span class='op'>=</span> <span class='fl'>1</span>, 
-           color_vert      <span class='op'>=</span> <span class='st'>"#0072B2"</span>, 
-           fill_vert       <span class='op'>=</span> <span class='st'>"#0072B2"</span><span class='op'>)</span>
- <span class='va'>ggplot_fric</span>
-
 <span class='op'>}</span>
-
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
