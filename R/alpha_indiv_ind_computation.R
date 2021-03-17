@@ -180,8 +180,6 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #'   coordinates have been retrieved thanks to \code{\link{tr.cont.fspace}} or
 #'   \code{qual.funct.space} and filtered thanks to \code{\link{sp.filter}}.
 #'
-#' @param k a character string referring to the assemblage studied.
-#'
 #' @param check_input a logical value allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix must not contain NA, its
@@ -202,7 +200,7 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #' 
 #' @noRd
 
-fric.computation <- function(sp_faxes_coord_k, k, check_input = check_input) {
+fric.computation <- function(sp_faxes_coord_k, check_input = check_input) {
   
   # check_inputs if required:
   if (check_input) {
@@ -216,10 +214,6 @@ fric.computation <- function(sp_faxes_coord_k, k, check_input = check_input) {
            "species names as row names.")
     }
     
-    if (nrow(sp_faxes_coord_k) < ncol(sp_faxes_coord_k)) {
-      stop("Number of species should strictly be higher than the number of ", 
-           "axes to compute the convex hull. Problem for assemblage ", k)
-    }
   }
   
   # applying convhulln function to compute
