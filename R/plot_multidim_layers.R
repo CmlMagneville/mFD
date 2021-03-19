@@ -277,9 +277,10 @@ pool.plot <-function(ggplot_bg,
 #' @param asb_vertices_nD a list (with names as in asb_sp_coord2D) of vectors 
 #' with names of species being vertices in n dimensions.
 #' 
-#' @param asb_sp_relatw a list of matrix gathering species relative weight in
+#' @param asb_sp_relatw a list of vector gathering species relative weight in
 #'   each assemblage. It can be retrieved through the
-#'   \code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}
+#'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
+#'   vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param size_sp a numeric value referring to the size of species belonging to
 #'  the plotted assemblage. Default: `size_sp = 1`. If 
@@ -683,9 +684,10 @@ fric.plot <- function(ggplot_bg,
 #' @param asb_sp_coord2D a list of matrix (ncol = 2) with coordinates of 
 #' species present in each assemblage for a given pair of functional axes.
 #' 
-#' @param asb_sp_relatw a list of matrix gathering species relative weight in
+#' @param asb_sp_relatw a list of vector gathering species relative weight in
 #'   each assemblage. It can be retrieved through the
-#'   \code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}
+#'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
+#'   vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param asb_vertices_nD a list (with names as in asb_sp_coord2D) of vectors
 #'   with names of species being vertices in n dimensions.
@@ -836,24 +838,25 @@ fric.plot <- function(ggplot_bg,
 #'                   alpha_fd_indices_fruits$details$asb_mean_dist_G["basket_1"]
 #'  
 #'  # Retrieve FDiv plot:
-#'  fdiv_plot <- fdiv.plot(ggplot_bg = ggplot_bg_fruits,
-#'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
-#'            asb_sp_relatw = list(basket_1 = fruits_asb_sp_relatw_b1),
-#'            asb_vertices_nD = fruits_asb_vertices_nD,
+#'  fdiv_plot <- fdiv.plot(
+#'            ggplot_bg         = ggplot_bg_fruits,
+#'            asb_sp_coord2D    = list(basket_1 = fruits_asb_sp_coord2D_b1),
+#'            asb_sp_relatw     = list(basket_1 = fruits_asb_sp_relatw_b1),
+#'            asb_vertices_nD   = fruits_asb_vertices_nD,
 #'            asb_vertG_coord2D = list(basket_1 = fruits_asb_vertG_coord_b1_2D),
-#'            asb_meanDtoG = fruits_asb_meanDtoG,
-#'            plot_sp = TRUE,
-#'            shape_sp = 16,
-#'            color_sp = "red",
-#'            fill_sp = "red",
-#'            color_vert = "red",
-#'            fill_vert = "red",
-#'            shape_vert = 16,
-#'            shape_vertG = list(basket_1 = 18),
-#'            size_vertG = list(basket_1 = 2),
-#'            color_vertG = list(basket_1 = "blue"),
-#'            fill_vertG = list(basket_1 = "blue"),
-#'            color_meanD = list(basket_1 = "red"))
+#'            asb_meanDtoG      = fruits_asb_meanDtoG,
+#'            plot_sp           = TRUE,
+#'            shape_sp          = 16,
+#'            color_sp          = "red",
+#'            fill_sp           = "red",
+#'            color_vert        = "red",
+#'            fill_vert         = "red",
+#'            shape_vert        = 16,
+#'            shape_vertG       = list(basket_1 = 18),
+#'            size_vertG        = list(basket_1 = 2),
+#'            color_vertG       = list(basket_1 = "blue"),
+#'            fill_vertG        = list(basket_1 = "blue"),
+#'            color_meanD       = list(basket_1 = "red"))
 #'  fdiv_plot
 #'  
 #'
@@ -949,11 +952,12 @@ fdiv.plot <- function(ggplot_bg,
 #' @param asb_sp_coord2D a list of matrix (ncol = 2) with coordinates of 
 #' species present in each assemblage for a given pair of functional axes.
 #' 
-#' @param asb_sp_relatw a list of matrix gathering species relative weight in
+#' @param asb_sp_relatw a list of vector gathering species relative weight in
 #'   each assemblage. It can be retrieved through the
-#'   \code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}
+#'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
+#'   vector with names as in `asb_sp_coord2D`.
 #' 
-#' @param asb_centroid_coord2D a list (with names as in asb_sp_coord2D) of 
+#' @param asb_fide_coord2D a list (with names as in asb_sp_coord2D) of 
 #' vectors with coordinates of the centroid of species for each assemblage
 #' for a given pair of axes.
 #' 
@@ -979,7 +983,7 @@ fdiv.plot <- function(ggplot_bg,
 #'  `fill_sp = '#0072B2'`. If several assemblages it should  be a vector with 
 #'  names as in `asb_sp_coord2D`.
 #'  
-#' @param fill_centroid a R color name or an hexadecimal code referring to 
+#' @param fill_fide a R color name or an hexadecimal code referring to 
 #' the colour to fill assemblage centroid symbol (if \code{shape_sp} > 20).
 #' If several assemblages it should be a vector with names as in 
 #' `asb_sp_coord2D`.
@@ -989,22 +993,22 @@ fdiv.plot <- function(ggplot_bg,
 #'  (filled circle). If several assemblages it should be a vector with 
 #'  names as in `asb_sp_coord2D`.
 #' 
-#' @param shape_centroid a numeric value referring to the shape used to 
-#' plot centroid of the studied assemblage. Default: `shape_centroid = 18` 
+#' @param shape_fide a numeric value referring to the shape used to 
+#' plot fide centroid of the studied assemblage. Default: `shape_centroid = 18` 
 #'  (filled diamond). If several assemblages it should be a vector with 
 #'  names as in `asb_sp_coord2D`.
 #' 
-#' @param size_centroid a numeric value referring to the size of species 
+#' @param size_fide a numeric value referring to the size of species fide
 #' centroid but not the plotted assemblage. Default: `size_sp = 1`. If 
 #'  several assemblages it should be a vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param width_segment a numeric value referring to the size of the segment 
-#' linking centroid and functional axes. Default: `width_segment = 1`.  If 
+#' linking fide centroid and functional axes. Default: `width_segment = 1`.  If 
 #'  several assemblages it should be a vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param linetype_segment a character string referring to the linetype used to 
-#' draw the segment linking centroid and functional axes. 
-#' Default: `linetype_segment = "dashed`.  If several assemblages it should be a 
+#' draw the segment linking fide centroid and functional axes. 
+#' Default: `linetype_segment = "dashed"`.  If several assemblages it should be a 
 #' vector with names as in `asb_sp_coord2D`.
 #' 
 #' @return a ggplot object with FIde index, species and background
@@ -1016,7 +1020,7 @@ fdiv.plot <- function(ggplot_bg,
 #' @examples 
 #' \dontrun{
 #' 
-#' #' # Load Species*Traits dataframe:
+#' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
 #' # Load Assemblages*Species dataframe:      
@@ -1064,48 +1068,43 @@ fdiv.plot <- function(ggplot_bg,
 #'  fruits_asb_sp_coord_b1 <- sp_filter$`species coordinates`
 #'  fruits_asb_sp_coord2D_b1 <- fruits_asb_sp_coord_b1[, c("PC1", "PC2")]
 #'                                
-#'  # Use alpha.fd.multidim() function to get inputs to plot FDiv:
+#'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
 #'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
-#'   ind_vect         = c("fdiv"),
+#'   ind_vect         = c("fide"),
 #'   scaling          = TRUE,
 #'   check_input      = TRUE,
 #'   details_returned = TRUE)
 #'   
-#'  # Retrieve inputs of the fdiv.plot() function for "basket_1" and PC1, PC2...
-#'  # ... through alpha.fd.multidim outputs:
+#'  # Retrieve fide values through alpha.fd.multidim outputs:
+#'  fruits_asb_fide_coord2D <- 
+#'   alpha_fd_indices_fruits$functional_diversity_indices[c("fide_PC1", 
+#'                                                          "fide_PC2")]
+#'  fruits_asb_fide_coord2D_b1 <- fruits_asb_fide_coord2D[c("basket_1"), ]
 #'  fruits_asb_sp_relatw_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
-#'  fruits_asb_vertices_nD_b1_2D <- 
-#'                       alpha_fd_indices_fruits$details$asb_vert_nm["basket_1"]
-#'  fruits_asb_vertG_coord_b1 <- 
-#'                       alpha_fd_indices_fruits$details$asb_G_coord["basket_1"]
-#'  fruits_asb_vertG_coord_b1_2D <- 
-#'              fruits_asb_vertG_coord_b1[[1]][c("PC1", "PC2")]
-#'  fruits_asb_meanDtoG_b1 <- 
-#'                   alpha_fd_indices_fruits$details$asb_mean_dist_G["basket_1"]
+#'
+#'
 #'  
-#'  # Retrieve FDiv plot:
-#'  fdiv_plot <- fdiv.plot(ggplot_bg = ggplot_bg_fruits,
+#'  # Retrieve FIde plot:
+#'  fide_plot <- fide.plot(ggplot_bg = ggplot_bg_fruits,
 #'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
 #'            asb_sp_relatw = list(basket_1 = fruits_asb_sp_relatw_b1),
-#'            asb_vertices_nD = fruits_asb_vertices_nD,
-#'            asb_vertG_coord2D = list(basket_1 = fruits_asb_vertG_coord_b1_2D),
-#'            asb_meanDtoG = fruits_asb_meanDtoG,
+#'            asb_fide_coord2D = list(basket_1 = fruits_asb_fide_coord2D_b1),
 #'            plot_sp = TRUE,
 #'            shape_sp = 16,
 #'            color_sp = "red",
 #'            fill_sp = "red",
-#'            color_vert = "red",
-#'            fill_vert = "red",
-#'            shape_vert = 16,
-#'            shape_vertG = list(basket_1 = 18),
-#'            size_vertG = list(basket_1 = 2),
-#'            color_vertG = list(basket_1 = "blue"),
-#'            fill_vertG = list(basket_1 = "blue"),
-#'            color_meanD = list(basket_1 = "red"))
-#'  fdiv_plot
+#'            shape_fide = list(basket_1 = 18),
+#'            size_fide = list(basket_1 = 5),
+#'            color_fide = list(basket_1 = "blue"),
+#'            fill_fide = list(basket_1 = "blue"),
+#'            color_segment = list(basket_1 = "red"),
+#'            width_segment = list(basket_1 = 1),
+#'            linetype_segment = list(basket_1 = "dashed"))
+#'            
+#'  fide_plot
 #'  
 #' }
 
@@ -1113,11 +1112,11 @@ fdiv.plot <- function(ggplot_bg,
 fide.plot <-function(ggplot_bg,
                     asb_sp_coord2D,
                     asb_sp_relatw,
-                    asb_centroid_coord2D,
+                    asb_fide_coord2D,
                     plot_sp = TRUE,
                     shape_sp, color_sp, fill_sp,
-                    shape_centroid, size_centroid,
-                    color_centroid, fill_centroid,
+                    shape_fide, size_fide,
+                    color_fide, fill_fide,
                     color_segment, width_segment, linetype_segment) {
   
   # names of assemblages:
@@ -1136,7 +1135,7 @@ fide.plot <-function(ggplot_bg,
   
   for (z in asb_nm){
     
-    cent_z <- asb_centroid_coord2D[[z]]
+    cent_z <- asb_fide_coord2D[[z]]
     
     x <- NULL
     y <- NULL
@@ -1175,9 +1174,9 @@ fide.plot <-function(ggplot_bg,
       ggplot2::geom_segment(data = asb_centroidtoaxes_xyxy[[k]],
                             ggplot2::aes(x = x , 
                                          y = y, xend = xend, yend = yend),
-                            colour = color_segment[k],
-                            size = width_segment[k],
-                            linetype = linetype_segment[k])
+                            colour = color_segment[[k]],
+                            size = width_segment[[k]],
+                            linetype = linetype_segment[[k]])
   }
   
   # plotting center of gravity of species:
@@ -1185,8 +1184,8 @@ fide.plot <-function(ggplot_bg,
     ggplot_fide <- ggplot_fide +
       ggplot2::geom_point(data = asb_centroid_xy[[k]], 
                           ggplot2::aes(x = x , y = y),
-                          colour = color_centroid[k], fill = fill_centroid[k],
-                          shape = shape_centroid[k], size = size_centroid[k])
+                          colour = color_fide[[k]], fill = fill_fide[[k]],
+                          shape = shape_fide[[k]], size = size_fide[[k]])
   }
 
   return(ggplot_fide)
@@ -1209,9 +1208,10 @@ fide.plot <-function(ggplot_bg,
 #' @param asb_sp_coord2D a list of matrix (ncol = 2) with coordinates of 
 #' species present in each assemblage for a given pair of functional axes.
 #' 
-#' @param asb_sp_relatw a list of matrix gathering species relative weight in
+#' @param asb_sp_relatw a list of vector gathering species relative weight in
 #'   each assemblage. It can be retrieved through the
-#'   \code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}
+#'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
+#'   vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param asb_centroid_coord2D a list (with names as in asb_sp_coord2D) of 
 #' vectors with coordinates of the centroid of species for each assemblage
@@ -1378,9 +1378,10 @@ fdis.plot <- function(ggplot_bg,
 #' @param asb_sp_coord2D a list of matrix (ncol = 2) with coordinates of 
 #' species present in each assemblage for a given pair of functional axes.
 #' 
-#' @param asb_sp_relatw a list of matrix gathering species relative weight in
+#' @param asb_sp_relatw a list of vector gathering species relative weight in
 #'   each assemblage. It can be retrieved through the
-#'   \code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}
+#'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
+#'   vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param asb_mst a list (with names as in `asb_sp_coord2D`) of 
 #' vectors with names of species linked in the MST of the 
@@ -1502,9 +1503,10 @@ feve.plot <- function(ggplot_bg,
 #' @param asb_sp_coord2D a list of matrix (ncol = 2) with coordinates of 
 #' species present in each assemblage for a given pair of functional axes
 #' 
-#' @param asb_sp_relatw a list of matrix gathering species relative weight in
+#' @param asb_sp_relatw a list of vector gathering species relative weight in
 #'   each assemblage. It can be retrieved through the
-#'   \code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}
+#'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
+#'   vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param asb_nn_asb a list gathering for each species of a studied assemblage 
 #' its nearest neighbour(s) in the assemblage. If several assemblages it 
@@ -1640,9 +1642,10 @@ fnnd.plot <- function(ggplot_bg,
 #' @param asb_sp_coord2D a list of matrix (ncol = 2) with coordinates of 
 #' species present in each assemblage for a given pair of functional axes.
 #' 
-#' @param asb_sp_relatw a list of matrix gathering species relative weight in
+#' @param asb_sp_relatw a list of vector gathering species relative weight in
 #'   each assemblage. It can be retrieved through the
-#'   \code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}
+#'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
+#'   vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param asb_nn_pool a list gathering for each species of a studied assemblage 
 #' its nearest neighbour(s) in the global pool. If several assemblages it 
@@ -1809,9 +1812,10 @@ fori.plot <- function(ggplot_bg,
 #' @param asb_sp_coord2D a list of matrix (ncol = 2) with coordinates of 
 #' species present in each assemblage for a given pair of functional axes.
 #' 
-#' @param asb_sp_relatw a list of matrix gathering species relative weight in
+#' @param asb_sp_relatw a list of vector gathering species relative weight in
 #'   each assemblage. It can be retrieved through the
-#'   \code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}
+#'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
+#'   vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param center_coord2D a list containing the coordinates of the center of the
 #' global pool for two given functional axes 
