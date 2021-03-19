@@ -151,6 +151,17 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
   asb_nm_nn_asb <- NULL
   asb_dist_nn_asb <- NULL
   O_coord <- NULL
+  vert_nm_all_asb <- list() 
+  pool_vert_nm <- NULL
+  mst_all_asb <- NULL
+  grav_center_vert_coord <- NULL
+  mean_dtogravcenter_all_asb <- NULL
+  special_sp_global_pool <- NULL
+  centroid_global_pool <- NULL
+  nm_nn_global_pool <- NULL
+  dist_nn_global_pool <- NULL
+  nm_nn_all_asb <- NULL
+  dist_nn_all_asb <- NULL
   
   ## build matrices and vectors to store values to
   ## compute indices or ...  ... get outputs (used in
@@ -353,7 +364,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         vert_nm <- NULL
       }
       # compute fdiv value:
-      if (is.character(vert_nm)) {
+      if (is.null(vert_nm)) {
         fdiv <- fdiv.computation(sp_faxes_coord_k, 
                                  asb_sp_relatw_k, vert_nm = vert_nm, 
                                  k, check_input = check_input)
@@ -363,8 +374,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         asb_ind_values[k, "fdiv"] <- fdiv_value
         # fill the vertices list if no fric computed:
         if (!"fric" %in% ind_vect) {
-          vert_nm_all_asb[[paste0("vert_nm", 
-                                  sep = "_", k)]] <- vert_nm
+          vert_nm_all_asb[[k]] <- fdiv$details$vertices_nm
         }
         # fill the list of gravity center coordinates for
         # each assemblage:
@@ -373,19 +383,11 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         # of species present...  ... in each assemblage:
         mean_dtogravcenter_all_asb[[k]] <- fdiv$details$mean_dtoB
       }
+      
     }
     
-    if (!is.character(vert_nm)) {
-      fdiv_value <- NA
-      asb_ind_values[k, "fdiv"] <- fdiv_value
-      # fill the list of gravity center coordinates for
-      # each assemblage:
-      grav_center_vert_coord[[paste0("grav_center_vert_coord", 
-                                     sep = "_", k)]] <- NA
-      # fill the list of mean distance to gravity center
-      # of species present...  ... in each assemblage:
-      mean_dtogravcenter_all_asb[[k]] <- NA
-    }
+    
+    
     # feve:
     if ("feve" %in% ind_vect) {
       if (check_input) {
