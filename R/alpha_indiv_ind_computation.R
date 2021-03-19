@@ -373,8 +373,7 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
     fdiv_asb_k <- (sum(ab_dev) + mean_dtoB) / (sum(ab_absdev) + mean_dtoB)
   }
   
-  # if vertices have not been computed (coplanearity
-  # pb):
+  # if vertices have not been computed (coplanearity pb):
   if (!is.character(vert_nm)) {
     fdiv_asb_k <- NA
     B_coord <- NA
