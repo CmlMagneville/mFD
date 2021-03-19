@@ -170,14 +170,14 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
            color_ch        = "black", 
            fill_ch         = "white", 
            alpha_ch        = 0.3,
-           shape_sp        = 16, 
-           size_sp         = 1, 
-           color_sp        = "#0072B2", 
-           fill_sp         = "#0072B2",
-           shape_vert      = 15, 
-           size_vert       = 1, 
-           color_vert      = "#0072B2", 
-           fill_vert       = "#0072B2")
+           size_sp = 1,
+           shape_sp = 16,
+           color_sp = "red",
+           fill_sp = "red",
+           size_vert = 1,
+           color_vert = "red",
+           fill_vert = "red",
+           shape_vert = 16)
  ggplot_fric
 
 }

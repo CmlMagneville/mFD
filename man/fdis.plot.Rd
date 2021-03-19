@@ -29,9 +29,10 @@ the \code{\link{background.plot}} function.}
 \item{asb_sp_coord2D}{a list of matrix (ncol = 2) with coordinates of
 species present in each assemblage for a given pair of functional axes.}
 
-\item{asb_sp_relatw}{a list of matrix gathering species relative weight in
+\item{asb_sp_relatw}{a list of vector gathering species relative weight in
 each assemblage. It can be retrieved through the
-\code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}}
+\code{\link{alpha.fd.multidim}}. If several assemblages it should be a
+vector with names as in \code{asb_sp_coord2D}.}
 
 \item{asb_centroid_coord2D}{a list (with names as in asb_sp_coord2D) of
 vectors with coordinates of the centroid of species for each assemblage

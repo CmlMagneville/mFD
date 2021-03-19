@@ -32,9 +32,10 @@ the \code{\link{background.plot}} function.}
 \item{asb_sp_coord2D}{a list of matrix (ncol = 2) with coordinates of
 species present in each assemblage for a given pair of functional axes.}
 
-\item{asb_sp_relatw}{a list of matrix gathering species relative weight in
+\item{asb_sp_relatw}{a list of vector gathering species relative weight in
 each assemblage. It can be retrieved through the
-\code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}}
+\code{\link{alpha.fd.multidim}}. If several assemblages it should be a
+vector with names as in \code{asb_sp_coord2D}.}
 
 \item{asb_vertices_nD}{a list (with names as in asb_sp_coord2D) of vectors
 with names of species being vertices in n dimensions.}
@@ -186,24 +187,25 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                   alpha_fd_indices_fruits$details$asb_mean_dist_G["basket_1"]
  
  # Retrieve FDiv plot:
- fdiv_plot <- fdiv.plot(ggplot_bg = ggplot_bg_fruits,
-           asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
-           asb_sp_relatw = list(basket_1 = fruits_asb_sp_relatw_b1),
-           asb_vertices_nD = fruits_asb_vertices_nD,
+ fdiv_plot <- fdiv.plot(
+           ggplot_bg         = ggplot_bg_fruits,
+           asb_sp_coord2D    = list(basket_1 = fruits_asb_sp_coord2D_b1),
+           asb_sp_relatw     = list(basket_1 = fruits_asb_sp_relatw_b1),
+           asb_vertices_nD   = fruits_asb_vertices_nD,
            asb_vertG_coord2D = list(basket_1 = fruits_asb_vertG_coord_b1_2D),
-           asb_meanDtoG = fruits_asb_meanDtoG,
-           plot_sp = TRUE,
-           shape_sp = 16,
-           color_sp = "red",
-           fill_sp = "red",
-           color_vert = "red",
-           fill_vert = "red",
-           shape_vert = 16,
-           shape_vertG = list(basket_1 = 18),
-           size_vertG = list(basket_1 = 2),
-           color_vertG = list(basket_1 = "blue"),
-           fill_vertG = list(basket_1 = "blue"),
-           color_meanD = list(basket_1 = "red"))
+           asb_meanDtoG      = fruits_asb_meanDtoG,
+           plot_sp           = TRUE,
+           shape_sp          = 16,
+           color_sp          = "red",
+           fill_sp           = "red",
+           color_vert        = "red",
+           fill_vert         = "red",
+           shape_vert        = 16,
+           shape_vertG       = list(basket_1 = 18),
+           size_vertG        = list(basket_1 = 2),
+           color_vertG       = list(basket_1 = "blue"),
+           fill_vertG        = list(basket_1 = "blue"),
+           color_meanD       = list(basket_1 = "red"))
  fdiv_plot
  
 

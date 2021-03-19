@@ -31,9 +31,10 @@ species present in each assemblage for a given pair of axes.}
 \item{asb_vertices_nD}{a list (with names as in asb_sp_coord2D) of vectors
 with names of species being vertices in n dimensions.}
 
-\item{asb_sp_relatw}{a list of matrix gathering species relative weight in
+\item{asb_sp_relatw}{a list of vector gathering species relative weight in
 each assemblage. It can be retrieved through the
-\code{\link{asb.sp.summary}} or \code{\link{alpha.fd.multidim}}}
+\code{\link{alpha.fd.multidim}}. If several assemblages it should be a
+vector with names as in \code{asb_sp_coord2D}.}
 
 \item{size_sp}{a numeric value referring to the size of species belonging to
 the plotted assemblage. Default: \code{size_sp = 1}. If
