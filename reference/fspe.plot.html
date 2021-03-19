@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot FIde index — fide.plot • mFD</title>
+<title>Plot FSpe — fspe.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,11 @@
 
 
 
-<meta property="og:title" content="Plot FIde index — fide.plot" />
-<meta property="og:description" content="Plot FIde index given a pair of functional axes for one or several
-assemblages. It adds the centroid of species for each assemblage and
-segments showing centroid coordinates on functional axes on the background
-plot." />
+<meta property="og:title" content="Plot FSpe — fspe.plot" />
+<meta property="og:description" content="This function plots FSpe index for a given pair of functional axes and for
+one or several assemblages. It adds the mean position of species from the
+global pool and the distance of each species from the studied assemblage(s)
+on the background plot" />
 
 
 
@@ -135,31 +135,37 @@ plot." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot FIde index</h1>
+    <h1>Plot FSpe</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_multidim_layers.R'><code>R/plot_multidim_layers.R</code></a></small>
-    <div class="hidden name"><code>fide.plot.Rd</code></div>
+    <div class="hidden name"><code>fspe.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot FIde index given a pair of functional axes for one or several
-assemblages. It adds the centroid of species for each assemblage and
-segments showing centroid coordinates on functional axes on the background
-plot.</p>
+    <p>This function plots FSpe index for a given pair of functional axes and for
+one or several assemblages. It adds the mean position of species from the
+global pool and the distance of each species from the studied assemblage(s)
+on the background plot</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fide.plot</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>fspe.plot</span><span class='op'>(</span>
   <span class='va'>ggplot_bg</span>,
   <span class='va'>asb_sp_coord2D</span>,
   <span class='va'>asb_sp_relatw</span>,
-  <span class='va'>asb_centroid_coord2D</span>,
+  <span class='va'>center_coord2D</span>,
+  <span class='va'>pool_coord2D</span>,
+  plot_pool <span class='op'>=</span> <span class='cn'>TRUE</span>,
   plot_sp <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>shape_pool</span>,
+  <span class='va'>size_pool</span>,
+  <span class='va'>color_pool</span>,
+  <span class='va'>fill_pool</span>,
   <span class='va'>shape_sp</span>,
   <span class='va'>color_sp</span>,
   <span class='va'>fill_sp</span>,
-  <span class='va'>shape_centroid</span>,
-  <span class='va'>size_centroid</span>,
-  <span class='va'>color_centroid</span>,
-  <span class='va'>fill_centroid</span>,
+  <span class='va'>color_center</span>,
+  <span class='va'>fill_center</span>,
+  <span class='va'>shape_center</span>,
+  <span class='va'>size_center</span>,
   <span class='va'>color_segment</span>,
   <span class='va'>width_segment</span>,
   <span class='va'>linetype_segment</span>
@@ -185,15 +191,46 @@ each assemblage. It can be retrieved through the
 <code><a href='asb.sp.summary.html'>asb.sp.summary</a></code> or <code><a href='alpha.fd.multidim.html'>alpha.fd.multidim</a></code></p></td>
     </tr>
     <tr>
-      <th>asb_centroid_coord2D</th>
-      <td><p>a list (with names as in asb_sp_coord2D) of
-vectors with coordinates of the centroid of species for each assemblage
-for a given pair of axes.</p></td>
+      <th>center_coord2D</th>
+      <td><p>a list containing the coordinates of the center of the
+global pool for two given functional axes</p></td>
+    </tr>
+    <tr>
+      <th>pool_coord2D</th>
+      <td><p>a list of matrix (ncol = 2) with coordinates of
+species present in the global pool for a given pair of functional axes.</p></td>
+    </tr>
+    <tr>
+      <th>plot_pool</th>
+      <td><p>a logical value indicating whether species of each
+assemblage should be plotted or not. Default: <code>plot_pool = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>plot_sp</th>
       <td><p>a logical value indicating whether species of each assemblage
 should be plotted or not. Default: <code>plot_sp = TRUE</code></p></td>
+    </tr>
+    <tr>
+      <th>shape_pool</th>
+      <td><p>a numeric value referring to the shape used to plot species
+pool. Default: <code>shape_pool = 16</code>(filled circle).</p></td>
+    </tr>
+    <tr>
+      <th>size_pool</th>
+      <td><p>a numeric value referring to the size of species belonging
+to the global pool. Default: <code>size_pool = 1</code>.</p></td>
+    </tr>
+    <tr>
+      <th>color_pool</th>
+      <td><p>a R color name or an hexadecimal code referring to the
+color of the pool.  This color is also used for FRic convex hull color.
+Default: <code>color_pool = "#0072B2"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>fill_pool</th>
+      <td><p>a R color name or an hexadecimal code referring to the
+colour to fill species symbol (if <code>shape_sp</code> &gt; 20) and the assemblage
+convex hull. Default: <code>fill_pool = '#0072B2'</code>.</p></td>
     </tr>
     <tr>
       <th>shape_sp</th>
@@ -217,48 +254,44 @@ to fill species symbol (if <code>shape_sp</code> &gt; 20). Default:
 names as in <code>asb_sp_coord2D</code>.</p></td>
     </tr>
     <tr>
-      <th>shape_centroid</th>
-      <td><p>a numeric value referring to the shape used to
-plot centroid of the studied assemblage. Default: <code>shape_centroid = 18</code>
-(filled diamond). If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
-    </tr>
-    <tr>
-      <th>size_centroid</th>
-      <td><p>a numeric value referring to the size of species
-centroid but not the plotted assemblage. Default: <code>size_sp = 1</code>. If
-several assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
-    </tr>
-    <tr>
-      <th>color_centroid</th>
+      <th>color_center</th>
       <td><p>a R color name or an hexadecimal code referring to the
-color of the species centroid from the studied assemblage. If several
-assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+color of the center of the global pool. Default: <code>color_center = "#0072B2"</code>.</p></td>
     </tr>
     <tr>
-      <th>fill_centroid</th>
-      <td><p>a R color name or an hexadecimal code referring to
-the colour to fill assemblage centroid symbol (if <code>shape_sp</code> &gt; 20).
-If several assemblages it should be a vector with names as in
-<code>asb_sp_coord2D</code>.</p></td>
+      <th>fill_center</th>
+      <td><p>a R color name or an hexadecimal code referring to the
+colour to fill the center of the global pool (if <code>shape_sp</code> &gt; 20).
+Default: <code>fill_center = '#0072B2'</code>.</p></td>
+    </tr>
+    <tr>
+      <th>shape_center</th>
+      <td><p>a numeric value referring to the shape used to plot the
+center of the global pool.Default: <code>shape_center = 16</code>(filled circle).</p></td>
+    </tr>
+    <tr>
+      <th>size_center</th>
+      <td><p>a numeric value referring to the size of the center of the
+global pool. Default: <code>size_center = 1</code>.</p></td>
     </tr>
     <tr>
       <th>color_segment</th>
       <td><p>a R color name or an hexadecimal code referring to the
-color of the segment linking axes and centroid from the studied assemblage.
+color of the segment linking nearest neighbors in the global pool.
 If several assemblages it should be a vector with names as in
 <code>asb_sp_coord2D</code>.</p></td>
     </tr>
     <tr>
       <th>width_segment</th>
       <td><p>a numeric value referring to the size of the segment
-linking centroid and functional axes. Default: <code>width_segment = 1</code>.  If
-several assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+linking nearest neighbors in the global pool. Default:
+<code>width_segment = 1</code>. If several assemblages it should be a vector with
+names as in <code>asb_sp_coord2D</code>.</p></td>
     </tr>
     <tr>
       <th>linetype_segment</th>
       <td><p>a character string referring to the linetype used to
-draw the segment linking centroid and functional axes.
+link nearest neighbors in the global pool.
 Default: <code>linetype_segment = "dashed</code>.  If several assemblages it should be a
 vector with names as in <code>asb_sp_coord2D</code>.</p></td>
     </tr>
@@ -266,7 +299,7 @@ vector with names as in <code>asb_sp_coord2D</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a ggplot object with FIde index, species and background</p>
+    <p>a ggplot object with FSpe index on the background plot</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sébastien Villéger</p>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot FRic indice — fric.plot • mFD</title>
+<title>Plot FRic index — fric.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,10 @@
 
 
 
-<meta property="og:title" content="Plot FRic indice — fric.plot" />
-<meta property="og:description" content="This function adds convex hull(s), points and vertices of 1:N assemblages on
-the background plot" />
+<meta property="og:title" content="Plot FRic index — fric.plot" />
+<meta property="og:description" content="This function plots FRic index for a given pair of functional axes and one
+or several assemblages. It adds convex hull(s), points and vertices of
+1:N assemblages on the background plot" />
 
 
 
@@ -133,14 +134,15 @@ the background plot" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot FRic indice</h1>
+    <h1>Plot FRic index</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_multidim_layers.R'><code>R/plot_multidim_layers.R</code></a></small>
     <div class="hidden name"><code>fric.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function adds convex hull(s), points and vertices of 1:N assemblages on
-the background plot</p>
+    <p>This function plots FRic index for a given pair of functional axes and one
+or several assemblages. It adds convex hull(s), points and vertices of
+1:N assemblages on the background plot</p>
     </div>
 
     <pre class="usage"><span class='fu'>fric.plot</span><span class='op'>(</span>
@@ -172,7 +174,8 @@ the <code><a href='background.plot.html'>background.plot</a></code> function.</p
     <tr>
       <th>asb_sp_coord2D</th>
       <td><p>a list of matrix (ncol = 2) with coordinates of
-species present in each assemblage for a given pair of axes.</p></td>
+species present in each assemblage for a given pair of axes for a given pair
+of functional axes.</p></td>
     </tr>
     <tr>
       <th>asb_vertices_nD</th>
@@ -308,12 +311,12 @@ in n Dimensions-space and lastly species being vertices are plotted</p>
     <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
     
  <span class='co'># Retrieve species coordinates matrix for the assemblage "basket_1":</span>
-  <span class='va'>sp_filter</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='sp.filter.html'>sp.filter</a></span><span class='op'>(</span>asb_k          <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span><span class='op'>)</span>, 
+  <span class='va'>sp_filter</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='sp.filter.html'>sp.filter</a></span><span class='op'>(</span>asb_nm          <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span><span class='op'>)</span>, 
                               sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, 
                               asb_sp_w       <span class='op'>=</span> <span class='va'>baskets_fruits_weight</span><span class='op'>)</span>
- <span class='va'>sp_faxes_coord_fruits_b1</span> <span class='op'>&lt;-</span> <span class='va'>sp_filter</span><span class='op'>$</span><span class='va'>`species coordinates`</span>
+  <span class='va'>sp_faxes_coord_fruits_b1</span> <span class='op'>&lt;-</span> <span class='va'>sp_filter</span><span class='op'>$</span><span class='va'>`species coordinates`</span>
  
- <span class='co'># Reduce it to the two studed axes: PC1 and PC2:</span>
+ <span class='co'># Reduce it to the two studid axes: PC1 and PC2:</span>
  <span class='va'>sp_faxes_coord_fruits_b1_2D</span> <span class='op'>&lt;-</span> <span class='va'>sp_faxes_coord_fruits_b1</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>
 
 <span class='co'># Set faxes limits:</span>
@@ -335,7 +338,7 @@ in n Dimensions-space and lastly species being vertices are plotted</p>
  <span class='co'># Plot in white the convex hull of all fruits species:</span>
  <span class='va'>ggplot_fric</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>fric.plot</span><span class='op'>(</span>
            ggplot_bg       <span class='op'>=</span> <span class='va'>ggplot_bg_fruits</span>,
-           asb_sp_coord2D  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits_b1_2D</span><span class='op'>)</span>,
+           asb_sp_coord2D  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits_b1_2D</span><span class='op'>)</span>,
            asb_vertices_nD <span class='op'>=</span> <span class='va'>vert_nm_fruits</span>,
            plot_sp         <span class='op'>=</span> <span class='cn'>TRUE</span>,
            color_ch        <span class='op'>=</span> <span class='st'>"black"</span>, 

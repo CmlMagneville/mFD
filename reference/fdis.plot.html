@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot FIde index — fide.plot • mFD</title>
+<title>Plot FDis index — fdis.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,10 @@
 
 
 
-<meta property="og:title" content="Plot FIde index — fide.plot" />
-<meta property="og:description" content="Plot FIde index given a pair of functional axes for one or several
-assemblages. It adds the centroid of species for each assemblage and
-segments showing centroid coordinates on functional axes on the background
-plot." />
+<meta property="og:title" content="Plot FDis index — fdis.plot" />
+<meta property="og:description" content="This function plots FDis index for a given pair of functional axes and for
+one or several assemblages. It adds segments between species relative weights
+and assemblage cenntroid on the background plot." />
 
 
 
@@ -135,19 +134,18 @@ plot." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot FIde index</h1>
+    <h1>Plot FDis index</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_multidim_layers.R'><code>R/plot_multidim_layers.R</code></a></small>
-    <div class="hidden name"><code>fide.plot.Rd</code></div>
+    <div class="hidden name"><code>fdis.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot FIde index given a pair of functional axes for one or several
-assemblages. It adds the centroid of species for each assemblage and
-segments showing centroid coordinates on functional axes on the background
-plot.</p>
+    <p>This function plots FDis index for a given pair of functional axes and for
+one or several assemblages. It adds segments between species relative weights
+and assemblage cenntroid on the background plot.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fide.plot</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>fdis.plot</span><span class='op'>(</span>
   <span class='va'>ggplot_bg</span>,
   <span class='va'>asb_sp_coord2D</span>,
   <span class='va'>asb_sp_relatw</span>,
@@ -266,7 +264,8 @@ vector with names as in <code>asb_sp_coord2D</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a ggplot object with FIde index, species and background</p>
+    <p>a ggplot object showing FDis index for one or several assemblage(s)
+and a given pair of functional axes.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sébastien Villéger</p>
@@ -274,6 +273,7 @@ vector with names as in <code>asb_sp_coord2D</code>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='op'>}</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
