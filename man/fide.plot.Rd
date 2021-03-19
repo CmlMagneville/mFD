@@ -65,6 +65,10 @@ names as in \code{asb_sp_coord2D}.}
 centroid but not the plotted assemblage. Default: \code{size_sp = 1}. If
 several assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
 
+\item{color_fide}{a R color name or an hexadecimal code referring to the
+color of the species centroid from the studied assemblage. If several
+assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
+
 \item{fill_fide}{a R color name or an hexadecimal code referring to
 the colour to fill assemblage centroid symbol (if \code{shape_sp} > 20).
 If several assemblages it should be a vector with names as in
@@ -83,10 +87,6 @@ several assemblages it should be a vector with names as in \code{asb_sp_coord2D}
 draw the segment linking fide centroid and functional axes.
 Default: \code{linetype_segment = "dashed"}.  If several assemblages it should be a
 vector with names as in \code{asb_sp_coord2D}.}
-
-\item{color_centroid}{a R color name or an hexadecimal code referring to the
-color of the species centroid from the studied assemblage. If several
-assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
 }
 \value{
 a ggplot object with FIde index, species and background

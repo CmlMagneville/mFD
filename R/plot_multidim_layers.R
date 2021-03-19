@@ -969,7 +969,7 @@ fdiv.plot <- function(ggplot_bg,
 #'  If several assemblages it should be a vector with names as in 
 #'  `asb_sp_coord2D`.
 #'  
-#' @param color_centroid a R color name or an hexadecimal code referring to the 
+#' @param color_fide a R color name or an hexadecimal code referring to the 
 #' color of the species centroid from the studied assemblage. If several 
 #' assemblages it should be a vector with names as in `asb_sp_coord2D`.
 #' 
@@ -1213,8 +1213,8 @@ fide.plot <-function(ggplot_bg,
 #'   \code{\link{alpha.fd.multidim}}. If several assemblages it should be a 
 #'   vector with names as in `asb_sp_coord2D`.
 #' 
-#' @param asb_centroid_coord2D a list (with names as in asb_sp_coord2D) of 
-#' vectors with coordinates of the centroid of species for each assemblage
+#' @param asb_fide_coord2D a list (with names as in `asb_sp_coord2D`) of 
+#' vectors with coordinates of the fide centroid of species for each assemblage
 #' for a given pair of axes.
 #' 
 #' @param plot_sp a logical value indicating whether species of each assemblage 
@@ -1225,8 +1225,8 @@ fide.plot <-function(ggplot_bg,
 #'  (filled circle). If several assemblages it should be a vector with 
 #'  names as in `asb_sp_coord2D`.
 #' 
-#' @param shape_centroid a numeric value referring to the shape used to 
-#' plot centroid of the studied assemblage. Default: `shape_centroid = 18` 
+#' @param shape_fide a numeric value referring to the shape used to 
+#' plot fide centroid of the studied assemblage. Default: `shape_fide = 18` 
 #'  (filled diamond). If several assemblages it should be a vector with 
 #'  names as in `asb_sp_coord2D`.
 #' 
@@ -1235,8 +1235,8 @@ fide.plot <-function(ggplot_bg,
 #'  If several assemblages it should be a vector with names as in 
 #'  `asb_sp_coord2D`.
 #' 
-#' @param color_centroid a R color name or an hexadecimal code referring to the 
-#' color of the species centroid from the studied assemblage. If several 
+#' @param color_fide a R color name or an hexadecimal code referring to the 
+#' color of the species fide centroid from the studied assemblage. If several 
 #' assemblages it should be a vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param color_segment a R color name or an hexadecimal code referring to the 
@@ -1249,21 +1249,21 @@ fide.plot <-function(ggplot_bg,
 #'  `fill_sp = '#0072B2'`. If several assemblages it should  be a vector with 
 #'  names as in `asb_sp_coord2D`.
 #' 
-#' @param fill_centroid a R color name or an hexadecimal code referring to 
-#' the colour to fill assemblage centroid symbol (if \code{shape_sp} > 20).
-#' If several assemblages it should be a vector with names as in 
-#' `asb_sp_coord2D`.
+#' @param fill_fide a R color name or an hexadecimal code referring to the
+#'   colour to fill assemblage fide centroid symbol (if \code{shape_fide} > 20).
+#'   If several assemblages it should be a vector with names as in
+#'   `asb_sp_coord2D`.
 #' 
-#' @param size_centroid a numeric value referring to the size of species 
-#' centroid but not the plotted assemblage. Default: `size_sp = 1`. If 
+#' @param size_fide a numeric value referring to the size of assemblage 
+#' fide centroid. Default: `size_fide = 1`. If 
 #'  several assemblages it should be a vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param width_segment a numeric value referring to the size of the segment 
-#' linking centroid and functional axes. Default: `width_segment = 1`.  If 
+#' linking fide centroid and functional axes. Default: `width_segment = 1`.  If 
 #'  several assemblages it should be a vector with names as in `asb_sp_coord2D`.
 #' 
 #' @param linetype_segment a character string referring to the linetype used to 
-#' draw the segment linking centroid and functional axes. 
+#' draw the segment linking fide centroid and functional axes. 
 #' Default: `linetype_segment = "dashed`.  If several assemblages it should be a 
 #' vector with names as in `asb_sp_coord2D`.
 #' 
@@ -1276,17 +1276,103 @@ fide.plot <-function(ggplot_bg,
 #' 
 #' @examples 
 #' \dontrun{
+#' 
+#' # Load Species*Traits dataframe:
+#' data("fruits_traits", package = "mFD")
+#' 
+#' # Load Assemblages*Species dataframe:      
+#' data("baskets_fruits_weights", package = "mFD") 
+#' 
+#' # Load Traits categories dataframe:
+#' data("fruits_traits_cat", package = "mFD") 
+#'  
+#' # Compute functional distance 
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                   tr_cat        = fruits_traits_cat,
+#'                                   metric        = "gower",
+#'                                   scale_euclid  = "scale_center",
+#'                                   ordinal_var   = "classic",
+#'                                   weight_type   = "equal",
+#'                                   stop_if_NA    = TRUE)
+#'   
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+#'  maxdim_pcoa         = 10,
+#'  deviation_weighting = "absolute",
+#'  fdist_scaling       = FALSE,
+#'  fdendro             = "average")
+#'  
+#' # Retrieve species coordinates matrix:
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#' 
+#' # Set faxes limits:
+#' # set range of axes if c(NA, NA):
+#'  range_sp_coord_fruits  <- range(sp_faxes_coord_fruits)
+#'  range_faxes_lim <- range_sp_coord_fruits + 
+#'  c(-1, 1)*(range_sp_coord_fruits[2] - 
+#'  range_sp_coord_fruits[1]) * 0.05
+#'  
+#'  # Retrieve the background plot:
+#'  ggplot_bg_fruits <- mFD::background.plot(
+#'                                range_faxes = range_faxes_lim, 
+#'                                faxes_nm    = c("PC 1", "PC 2"), 
+#'                                color_bg    = "grey90") 
+#'                                
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
+#'                              sp_faxes_coord = sp_faxes_coord_fruits, 
+#'                              asb_sp_w       = baskets_fruits_weights)
+#'  fruits_asb_sp_coord_b1 <- sp_filter$`species coordinates`
+#'  fruits_asb_sp_coord2D_b1 <- fruits_asb_sp_coord_b1[, c("PC1", "PC2")]
+#'                                
+#'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
+#'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
+#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'   asb_sp_w         = baskets_fruits_weights,
+#'   ind_vect         = c("fide"),
+#'   scaling          = TRUE,
+#'   check_input      = TRUE,
+#'   details_returned = TRUE)
+#'   
+#'  # Retrieve fide values through alpha.fd.multidim outputs:
+#'  fruits_asb_fide_coord2D <- 
+#'   alpha_fd_indices_fruits$functional_diversity_indices[c("fide_PC1", 
+#'                                                          "fide_PC2")]
+#'  fruits_asb_fide_coord2D_b1 <- fruits_asb_fide_coord2D[c("basket_1"), ]
+#'  fruits_asb_sp_relatw_b1 <- 
+#'          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
+#'
+#'
+#'  
+#'  # Retrieve FIde plot:
+#'  fdis_plot <- fdis.plot(ggplot_bg = ggplot_bg_fruits,
+#'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
+#'            asb_sp_relatw = list(basket_1 = fruits_asb_sp_relatw_b1),
+#'            asb_fide_coord2D = list(basket_1 = fruits_asb_fide_coord2D_b1),
+#'            plot_sp = TRUE,
+#'            shape_sp = 16,
+#'            color_sp = "red",
+#'            fill_sp = "red",
+#'            shape_fide = list(basket_1 = 18),
+#'            size_fide = list(basket_1 = 5),
+#'            color_fide = list(basket_1 = "blue"),
+#'            fill_fide = list(basket_1 = "blue"),
+#'            color_segment = list(basket_1 = "red"),
+#'            width_segment = list(basket_1 = 1),
+#'            linetype_segment = list(basket_1 = "dashed"))
+#'            
+#'  fdis_plot
 #' }
 #' 
 
 fdis.plot <- function(ggplot_bg,
                     asb_sp_coord2D,
                     asb_sp_relatw,
-                    asb_centroid_coord2D,
+                    asb_fide_coord2D,
                     plot_sp = TRUE,
                     shape_sp, color_sp, fill_sp, 
-                    shape_centroid, size_centroid,
-                    color_centroid, fill_centroid,
+                    shape_fide, size_fide,
+                    color_fide, fill_fide,
                     color_segment, width_segment, linetype_segment) {
   
   # get names of assemblages:
@@ -1304,7 +1390,7 @@ fdis.plot <- function(ggplot_bg,
   for (z in asb_nm) {
     
     sp_z <- asb_sp_coord2D[[z]]
-    cent_z <- asb_centroid_coord2D[[z]]
+    cent_z <- asb_fide_coord2D[[z]]
     
     x <- NULL
     y <- NULL
@@ -1343,9 +1429,9 @@ fdis.plot <- function(ggplot_bg,
       ggplot2::geom_segment(data = asb_sptocentroid_xyxy[[k]],
                             ggplot2::aes(x = x , y = y, xend= xend, 
                                          yend = yend),
-                            colour = color_segment[k],
-                            size = width_segment[k],
-                            linetype = linetype_segment[k])
+                            colour = color_segment[[k]],
+                            size = width_segment[[k]],
+                            linetype = linetype_segment[[k]])
   }
   
   # plotting center of gravity of species ----
@@ -1353,8 +1439,8 @@ fdis.plot <- function(ggplot_bg,
     ggplot_fdis <- ggplot_fdis +
       ggplot2::geom_point(data = asb_centroid_xy[[k]], 
                           ggplot2::aes(x = x , y = y),
-                          colour = color_centroid[k], fill = fill_centroid[k],
-                          shape = shape_centroid[k], size = size_centroid[k])
+                          colour = color_fide[[k]], fill = fill_fide[[k]],
+                          shape = shape_fide[[k]], size = size_fide[[k]])
   }
   
   
