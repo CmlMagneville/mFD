@@ -307,6 +307,94 @@ vector with names as in <code>asb_sp_coord2D</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+
+<span class='co'># Load Species*Traits dataframe:</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
+
+<span class='co'># Load Assemblages*Species dataframe:      </span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
+
+<span class='co'># Load Traits categories dataframe:</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
+ 
+<span class='co'># Compute functional distance </span>
+<span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
+                                  tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
+                                  metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
+                                  scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
+                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
+                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
+                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  
+<span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span>
+<span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>sp_dist <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
+ maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
+ deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,
+ fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
+ fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
+ 
+<span class='co'># Retrieve species coordinates matrix:</span>
+<span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
+
+<span class='co'># Set faxes limits:</span>
+<span class='co'># set range of axes if c(NA, NA):</span>
+ <span class='va'>range_sp_coord_fruits</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span><span class='op'>)</span>
+ <span class='va'>range_faxes_lim</span> <span class='op'>&lt;-</span> <span class='va'>range_sp_coord_fruits</span> <span class='op'>+</span> 
+ <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>*</span><span class='op'>(</span><span class='va'>range_sp_coord_fruits</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> 
+ <span class='va'>range_sp_coord_fruits</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>0.05</span>
+ 
+ <span class='co'># Retrieve the background plot:</span>
+ <span class='va'>ggplot_bg_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='background.plot.html'>background.plot</a></span><span class='op'>(</span>
+                               range_faxes <span class='op'>=</span> <span class='va'>range_faxes_lim</span>, 
+                               faxes_nm    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC 1"</span>, <span class='st'>"PC 2"</span><span class='op'>)</span>, 
+                               color_bg    <span class='op'>=</span> <span class='st'>"grey90"</span><span class='op'>)</span> 
+                               
+ <span class='co'># Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:</span>
+ <span class='va'>sp_filter</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='sp.filter.html'>sp.filter</a></span><span class='op'>(</span>asb_nm          <span class='op'>=</span> <span class='st'>"basket_1"</span>, 
+                             sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, 
+                             asb_sp_w       <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span>
+ <span class='va'>fruits_asb_sp_coord_b1</span> <span class='op'>&lt;-</span> <span class='va'>sp_filter</span><span class='op'>$</span><span class='va'>`species coordinates`</span>
+ <span class='va'>fruits_asb_sp_coord2D_b1</span> <span class='op'>&lt;-</span> <span class='va'>fruits_asb_sp_coord_b1</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>
+                               
+ <span class='co'># Use alpha.fd.multidim() function to get inputs to plot FIde:</span>
+ <span class='va'>alpha_fd_indices_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='alpha.fd.multidim.html'>alpha.fd.multidim</a></span><span class='op'>(</span>
+  sp_faxes_coord    <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
+  asb_sp_w         <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span>,
+  ind_vect         <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fspe"</span><span class='op'>)</span>,
+  scaling          <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  
+ <span class='co'># Retrieve nearest neighbor(s) names through alpha.fd.multidim outputs:</span>
+ <span class='va'>fruits_center_coord2D</span> <span class='op'>&lt;-</span> 
+         <span class='va'>alpha_fd_indices_fruits</span><span class='op'>$</span><span class='va'>details</span><span class='op'>$</span><span class='va'>pool_O_coord</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>
+
+ 
+ <span class='co'># Retrieve FNND plot:</span>
+ <span class='va'>fspe_plot</span> <span class='op'>&lt;-</span> <span class='fu'>fspe.plot</span><span class='op'>(</span>ggplot_bg <span class='op'>=</span> <span class='va'>ggplot_bg_fruits</span>,
+           asb_sp_coord2D <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='va'>fruits_asb_sp_coord2D_b1</span><span class='op'>)</span>,
+           asb_sp_relatw <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='va'>fruits_asb_sp_relatw_b1</span><span class='op'>)</span>,
+           center_coord2D <span class='op'>=</span> <span class='va'>fruits_center_coord2D</span>,
+           pool_coord2D <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>,
+           plot_pool <span class='op'>=</span> <span class='cn'>TRUE</span>,
+           plot_sp <span class='op'>=</span> <span class='cn'>TRUE</span>,
+           shape_sp <span class='op'>=</span> <span class='fl'>16</span>,
+           color_sp <span class='op'>=</span> <span class='st'>"red"</span>,
+           fill_sp <span class='op'>=</span> <span class='st'>"red"</span>,
+           shape_pool <span class='op'>=</span> <span class='fl'>4</span>,
+           size_pool <span class='op'>=</span> <span class='fl'>2</span>,
+           color_pool <span class='op'>=</span> <span class='st'>"grey"</span>,
+           fill_pool <span class='op'>=</span> <span class='st'>"grey"</span>,
+           color_center <span class='op'>=</span> <span class='st'>"blue"</span>, 
+           fill_center <span class='op'>=</span> <span class='st'>"blue"</span>,
+           shape_center <span class='op'>=</span> <span class='fl'>18</span>, 
+           size_center <span class='op'>=</span> <span class='fl'>3</span>,
+           color_segment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
+           width_segment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+           linetype_segment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='st'>"solid"</span><span class='op'>)</span><span class='op'>)</span>
+           
+ <span class='va'>fspe_plot</span>
+
 <span class='op'>}</span>
 </div></pre>
   </div>
