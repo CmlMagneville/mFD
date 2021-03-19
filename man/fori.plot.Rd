@@ -104,7 +104,7 @@ to their nearest neighbour(s) from the global pool.
 \examples{
 \dontrun{
 
-#' # Load Species*Traits dataframe:
+# Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
 # Load Assemblages*Species dataframe:      
