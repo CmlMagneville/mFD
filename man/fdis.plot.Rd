@@ -142,7 +142,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                color_bg    = "grey90") 
                                
  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
- sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
+ sp_filter <- mFD::sp.filter(asb_nm         = "basket_1", 
                              sp_faxes_coord = sp_faxes_coord_fruits, 
                              asb_sp_w       = baskets_fruits_weights)
  fruits_asb_sp_coord_b1 <- sp_filter$`species coordinates`
@@ -152,7 +152,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
-  ind_vect         = c("fide"),
+  ind_vect         = c("fdis"),
   scaling          = TRUE,
   check_input      = TRUE,
   details_returned = TRUE)
@@ -167,7 +167,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 
  
- # Retrieve FIde plot:
+ # Retrieve FDis plot:
  fdis_plot <- fdis.plot(ggplot_bg = ggplot_bg_fruits,
            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
            asb_sp_relatw = list(basket_1 = fruits_asb_sp_relatw_b1),

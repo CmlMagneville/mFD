@@ -1319,7 +1319,7 @@ fide.plot <-function(ggplot_bg,
 #'                                color_bg    = "grey90") 
 #'                                
 #'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
-#'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
+#'  sp_filter <- mFD::sp.filter(asb_nm         = "basket_1", 
 #'                              sp_faxes_coord = sp_faxes_coord_fruits, 
 #'                              asb_sp_w       = baskets_fruits_weights)
 #'  fruits_asb_sp_coord_b1 <- sp_filter$`species coordinates`
@@ -1329,7 +1329,7 @@ fide.plot <-function(ggplot_bg,
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
 #'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
-#'   ind_vect         = c("fide"),
+#'   ind_vect         = c("fdis"),
 #'   scaling          = TRUE,
 #'   check_input      = TRUE,
 #'   details_returned = TRUE)
@@ -1344,7 +1344,7 @@ fide.plot <-function(ggplot_bg,
 #'
 #'
 #'  
-#'  # Retrieve FIde plot:
+#'  # Retrieve FDis plot:
 #'  fdis_plot <- fdis.plot(ggplot_bg = ggplot_bg_fruits,
 #'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
 #'            asb_sp_relatw = list(basket_1 = fruits_asb_sp_relatw_b1),
@@ -1513,6 +1513,85 @@ fdis.plot <- function(ggplot_bg,
 #' 
 #' @examples 
 #' \dontrun{
+#' 
+#' # Load Species*Traits dataframe:
+#' data("fruits_traits", package = "mFD")
+#' 
+#' # Load Assemblages*Species dataframe:      
+#' data("baskets_fruits_weights", package = "mFD") 
+#' 
+#' # Load Traits categories dataframe:
+#' data("fruits_traits_cat", package = "mFD") 
+#'  
+#' # Compute functional distance 
+#' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
+#'                                   tr_cat        = fruits_traits_cat,
+#'                                   metric        = "gower",
+#'                                   scale_euclid  = "scale_center",
+#'                                   ordinal_var   = "classic",
+#'                                   weight_type   = "equal",
+#'                                   stop_if_NA    = TRUE)
+#'   
+#' # Compute functional spaces quality to retrieve species coordinates matrix:
+#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+#'  maxdim_pcoa         = 10,
+#'  deviation_weighting = "absolute",
+#'  fdist_scaling       = FALSE,
+#'  fdendro             = "average")
+#'  
+#' # Retrieve species coordinates matrix:
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#' 
+#' # Set faxes limits:
+#' # set range of axes if c(NA, NA):
+#'  range_sp_coord_fruits  <- range(sp_faxes_coord_fruits)
+#'  range_faxes_lim <- range_sp_coord_fruits + 
+#'  c(-1, 1)*(range_sp_coord_fruits[2] - 
+#'  range_sp_coord_fruits[1]) * 0.05
+#'  
+#'  # Retrieve the background plot:
+#'  ggplot_bg_fruits <- mFD::background.plot(
+#'                                range_faxes = range_faxes_lim, 
+#'                                faxes_nm    = c("PC 1", "PC 2"), 
+#'                                color_bg    = "grey90") 
+#'                                
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
+#'                              sp_faxes_coord = sp_faxes_coord_fruits, 
+#'                              asb_sp_w       = baskets_fruits_weights)
+#'  fruits_asb_sp_coord_b1 <- sp_filter$`species coordinates`
+#'  fruits_asb_sp_coord2D_b1 <- fruits_asb_sp_coord_b1[, c("PC1", "PC2")]
+#'                                
+#'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
+#'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
+#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'   asb_sp_w         = baskets_fruits_weights,
+#'   ind_vect         = c("feve"),
+#'   scaling          = TRUE,
+#'   check_input      = TRUE,
+#'   details_returned = TRUE)
+#'   
+#'  # Retrieve fide values through alpha.fd.multidim outputs:
+#'  fruits_asb_mst_b1 <- 
+#'          alpha_fd_indices_fruits$details$asb_mst["basket_1"]
+#'
+#'
+#'  
+#'  # Retrieve FEve plot:
+#'  feve_plot <- feve.plot(ggplot_bg = ggplot_bg_fruits,
+#'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
+#'            asb_sp_relatw = list(basket_1 = fruits_asb_sp_relatw_b1),
+#'            asb_mst = fruits_asb_mst_b1,
+#'            plot_sp = TRUE,
+#'            shape_sp = 16,
+#'            color_sp = "red",
+#'            fill_sp = "red",
+#'            color_mst = list(basket_1 = "blue"),
+#'            width_mst = list(basket_1 = 1),
+#'            linetype_mst = list(basket_1 = "solid"))
+#'            
+#'  feve_plot
+#' 
 #' }
 #'  
 #'  
@@ -1565,9 +1644,9 @@ feve.plot <- function(ggplot_bg,
     ggplot_feve <- ggplot_feve +
       ggplot2::geom_segment(data = k_branches_xyxy,
                           ggplot2::aes(x = x , y = y, xend = xend, yend = yend),
-                          colour = color_mst[k],
-                          size = width_mst[k],
-                          linetype = linetype_mst[k])
+                          colour = color_mst[[k]],
+                          size = width_mst[[k]],
+                          linetype = linetype_mst[[k]])
   }
   
   
