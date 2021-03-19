@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_multidim_layers.R
 \name{fric.plot}
 \alias{fric.plot}
-\title{Plot FRic indice}
+\title{Plot FRic index}
 \usage{
 fric.plot(
   ggplot_bg,
@@ -27,7 +27,8 @@ fric.plot(
 the \code{\link{background.plot}} function.}
 
 \item{asb_sp_coord2D}{a list of matrix (ncol = 2) with coordinates of
-species present in each assemblage for a given pair of axes.}
+species present in each assemblage for a given pair of axes for a given pair
+of functional axes.}
 
 \item{asb_vertices_nD}{a list (with names as in asb_sp_coord2D) of vectors
 with names of species being vertices in n dimensions.}
@@ -95,8 +96,9 @@ a ggplot object plotting background of multidimensional graphs and
 FRic convex hulls
 }
 \description{
-This function adds convex hull(s), points and vertices of 1:N assemblages on
-the background plot
+This function plots FRic index for a given pair of functional axes and one
+or several assemblages. It adds convex hull(s), points and vertices of
+1:N assemblages on the background plot
 }
 \note{
 first convex hull (2D projection) of all assemblages are added to
@@ -135,12 +137,12 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
     fspaces_quality_fruits$details_fspaces$sp_pc_coord
     
  # Retrieve species coordinates matrix for the assemblage "basket_1":
-  sp_filter <- mFD::sp.filter(asb_k          = c("basket_1"), 
+  sp_filter <- mFD::sp.filter(asb_nm          = c("basket_1"), 
                               sp_faxes_coord = sp_faxes_coord_fruits, 
                               asb_sp_w       = baskets_fruits_weight)
- sp_faxes_coord_fruits_b1 <- sp_filter$`species coordinates`
+  sp_faxes_coord_fruits_b1 <- sp_filter$`species coordinates`
  
- # Reduce it to the two studed axes: PC1 and PC2:
+ # Reduce it to the two studid axes: PC1 and PC2:
  sp_faxes_coord_fruits_b1_2D <- sp_faxes_coord_fruits_b1[, c("PC1", "PC2")]
 
 # Set faxes limits:
@@ -162,7 +164,7 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
  # Plot in white the convex hull of all fruits species:
  ggplot_fric <- mFD::fric.plot(
            ggplot_bg       = ggplot_bg_fruits,
-           asb_sp_coord2D  = list(sp_faxes_coord_fruits_b1_2D),
+           asb_sp_coord2D  = list(basket_1 = sp_faxes_coord_fruits_b1_2D),
            asb_vertices_nD = vert_nm_fruits,
            plot_sp         = TRUE,
            color_ch        = "black", 
