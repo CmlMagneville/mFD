@@ -148,12 +148,12 @@ species along pairs of axes.</p>
   faxes <span class='op'>=</span> <span class='cn'>NULL</span>,
   name_file <span class='op'>=</span> <span class='cn'>NULL</span>,
   faxes_nm <span class='op'>=</span> <span class='cn'>NULL</span>,
-  range_faxes_lim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
+  range_faxes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
   color_bg <span class='op'>=</span> <span class='st'>"grey95"</span>,
-  color_sp <span class='op'>=</span> <span class='st'>"darkgreen"</span>,
-  fill_sp <span class='op'>=</span> <span class='st'>"white"</span>,
-  shape_sp <span class='op'>=</span> <span class='fl'>21</span>,
-  size_sp <span class='op'>=</span> <span class='fl'>1</span>,
+  color_pool <span class='op'>=</span> <span class='st'>"darkgreen"</span>,
+  fill_pool <span class='op'>=</span> <span class='st'>"white"</span>,
+  shape_pool <span class='op'>=</span> <span class='fl'>21</span>,
+  size_pool <span class='op'>=</span> <span class='fl'>1</span>,
   plot_ch <span class='op'>=</span> <span class='cn'>TRUE</span>,
   color_ch <span class='op'>=</span> <span class='st'>"black"</span>,
   fill_ch <span class='op'>=</span> <span class='st'>"white"</span>,
@@ -198,7 +198,7 @@ displayed.</p></td>
 <code>faxes</code>).</p></td>
     </tr>
     <tr>
-      <th>range_faxes_lim</th>
+      <th>range_faxes</th>
       <td><p>a vector with minimum and maximum values of axes. Note
 that to have a fair representation of position of species in all plots, have
 the same range. Default: <code>faxes_lim = c(NA, NA)</code> (the range is computed
@@ -210,25 +210,25 @@ according to the range of values among all axes).</p></td>
 background. Default: <code>color_bg = "grey95"</code>.</p></td>
     </tr>
     <tr>
-      <th>color_sp</th>
+      <th>color_pool</th>
       <td><p>a R color name or an hexadecimal code referring to the color
-of symbol for species. Default: <code>color_sp = 'darkgreen'</code>.</p></td>
+of symbol for species. Default: <code>color_pool = 'darkgreen'</code>.</p></td>
     </tr>
     <tr>
-      <th>fill_sp</th>
+      <th>fill_pool</th>
       <td><p>a R color name or an hexadecimal code referring to the color
-to fill species symbol (if <code>shape_sp</code> &gt;20). Default:
-<code>fill_sp = 'white'</code>.</p></td>
+to fill species symbol (if <code>shape_pool</code> &gt;20). Default:
+<code>fill_pool = 'white'</code>.</p></td>
     </tr>
     <tr>
-      <th>shape_sp</th>
+      <th>shape_pool</th>
       <td><p>a numeric value referring to the shape of symbol used for
-species. Default: <code>shape_sp = 21</code> (filled circle).</p></td>
+species. Default: <code>shape_pool = 21</code> (filled circle).</p></td>
     </tr>
     <tr>
-      <th>size_sp</th>
+      <th>size_pool</th>
       <td><p>a numeric value referring to the size of symbol for species.
-Default: <code>size_sp = 1</code>.</p></td>
+Default: <code>size_pool = 1</code>.</p></td>
     </tr>
     <tr>
       <th>plot_ch</th>
@@ -339,13 +339,13 @@ the figure.</p>
 <span class='co'># Load Species*Traits dataframe:</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
 
-<span class='co'># Load Assemblages*Species dataframe:      </span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>  
- 
+<span class='co'># Load Assemblages*Species dataframe:</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
+
 <span class='co'># Load Traits categories dataframe:</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
 
-<span class='co'># Compute functional distance </span>
+<span class='co'># Compute functional distance</span>
  <span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
                                   tr_cat         <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
                                   metric         <span class='op'>=</span> <span class='st'>"gower"</span>,
@@ -353,42 +353,42 @@ the figure.</p>
                                   ordinal_var    <span class='op'>=</span> <span class='st'>"classic"</span>,
                                   weight_type    <span class='op'>=</span> <span class='st'>"equal"</span>,
                                   stop_if_NA     <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
- 
+
 <span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span>
  <span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>
-  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
+  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>,
   maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
   deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,
   fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
   fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
- 
+
 <span class='co'># Retrieve species coordinates matrix:</span>
 <span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
 
 <span class='co'># Plot functional spaces:</span>
  <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>funct.space.plot</span><span class='op'>(</span>
-  sp_faxes_coord    <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>, 
-  faxes             <span class='op'>=</span> <span class='cn'>NULL</span>, 
+  sp_faxes_coord    <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
+  faxes             <span class='op'>=</span> <span class='cn'>NULL</span>,
   name_file         <span class='op'>=</span> <span class='cn'>NULL</span>,
-  faxes_nm          <span class='op'>=</span> <span class='cn'>NULL</span>, 
-  range_faxes_lim   <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
+  faxes_nm          <span class='op'>=</span> <span class='cn'>NULL</span>,
+  range_faxes       <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
   color_bg          <span class='op'>=</span> <span class='st'>"grey95"</span>,
-  color_sp          <span class='op'>=</span> <span class='st'>"darkgreen"</span>, 
-  fill_sp           <span class='op'>=</span> <span class='st'>"white"</span>,  
-  shape_sp          <span class='op'>=</span> <span class='fl'>21</span>, 
-  size_sp           <span class='op'>=</span> <span class='fl'>1</span>,
+  color_pool          <span class='op'>=</span> <span class='st'>"darkgreen"</span>,
+  fill_pool           <span class='op'>=</span> <span class='st'>"white"</span>,
+  shape_pool          <span class='op'>=</span> <span class='fl'>21</span>,
+  size_pool           <span class='op'>=</span> <span class='fl'>1</span>,
   plot_ch           <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  color_ch          <span class='op'>=</span> <span class='st'>"black"</span>, 
-  fill_ch           <span class='op'>=</span> <span class='st'>"white"</span>, 
+  color_ch          <span class='op'>=</span> <span class='st'>"black"</span>,
+  fill_ch           <span class='op'>=</span> <span class='st'>"white"</span>,
   alpha_ch          <span class='op'>=</span> <span class='fl'>0.5</span>,
-  plot_vertices     <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-  color_vert        <span class='op'>=</span> <span class='st'>"blueviolet"</span>, 
+  plot_vertices     <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  color_vert        <span class='op'>=</span> <span class='st'>"blueviolet"</span>,
   fill_vert         <span class='op'>=</span> <span class='st'>"blueviolet"</span>,
-  shape_vert        <span class='op'>=</span> <span class='fl'>23</span>, 
+  shape_vert        <span class='op'>=</span> <span class='fl'>23</span>,
   size_vert         <span class='op'>=</span> <span class='fl'>1</span>,
- plot_sp_nm         <span class='op'>=</span> <span class='cn'>NULL</span>, 
- nm_size            <span class='op'>=</span> <span class='fl'>3</span>, 
- nm_color           <span class='op'>=</span> <span class='st'>"black"</span>, 
+ plot_sp_nm         <span class='op'>=</span> <span class='cn'>NULL</span>,
+ nm_size            <span class='op'>=</span> <span class='fl'>3</span>,
+ nm_color           <span class='op'>=</span> <span class='st'>"black"</span>,
  nm_fontface        <span class='op'>=</span> <span class='st'>"plain"</span>,
  check_input        <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='op'>}</span>

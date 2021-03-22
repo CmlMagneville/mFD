@@ -883,7 +883,7 @@ Basic framework of the mFD package
 <ul>
 <li><p><code>faxes</code> is a vector containing names of axes to plot. If set to <code>NULL</code>, the first four functional axes will be plotted.</p></li>
 <li><p><code>faxes_nm</code> is a vector containing labels of <code>faxes</code> (following faxes vector rank). If <code>NULL</code>, labels follow <code>faxes</code> vector names.</p></li>
-<li><p><code>range_faxes_lim</code> is a vector to complete if the user wants to set specific limits for functional axes. If <code>range_faxes_lim = c(NA, NA)</code>, the range is computed according to the range of values among all axes.</p></li>
+<li><p><code>range_faxes</code> is a vector to complete if the user wants to set specific limits for functional axes. If <code>range_faxes = c(NA, NA)</code>, the range is computed according to the range of values among all axes.</p></li>
 <li><p><code>convex_pool</code> is a logical value used to draw or not the 2D convex-hull filled by the global pool of species.</p></li>
 <li><p><code>color_bg</code>, <code>sp_symb</code>, <code>size_sp</code>, <code>color_sp</code>, <code>color_cv</code>, <code>vert_symb</code> are arguments referring to shapes and colors of objects (check function help for further information).</p></li>
 <li><p><code>plot_sp_nm</code> is a vector containing species names to plot. If <code>NULL</code>, no species names plotted.</p></li>
@@ -900,12 +900,12 @@ Basic framework of the mFD package
   faxes           <span class="op">=</span> <span class="cn">NULL</span>,
   name_file       <span class="op">=</span> <span class="cn">NULL</span>,
   faxes_nm        <span class="op">=</span> <span class="cn">NULL</span>,
-  range_faxes_lim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
+  range_faxes     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
   color_bg        <span class="op">=</span> <span class="st">"grey95"</span>,
-  color_sp        <span class="op">=</span> <span class="st">"darkgreen"</span>,
-  fill_sp         <span class="op">=</span> <span class="st">"white"</span>,
-  shape_sp        <span class="op">=</span> <span class="fl">21</span>,
-  size_sp         <span class="op">=</span> <span class="fl">1</span>,
+  color_pool      <span class="op">=</span> <span class="st">"darkgreen"</span>,
+  fill_pool       <span class="op">=</span> <span class="st">"white"</span>,
+  shape_pool      <span class="op">=</span> <span class="fl">21</span>,
+  size_pool       <span class="op">=</span> <span class="fl">1</span>,
   plot_ch         <span class="op">=</span> <span class="cn">TRUE</span>,
   color_ch        <span class="op">=</span> <span class="st">"black"</span>,
   fill_ch         <span class="op">=</span> <span class="st">"white"</span>,
@@ -927,30 +927,30 @@ Basic framework of the mFD package
 <p><br></p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_plot</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/funct.space.plot.html">funct.space.plot</a></span><span class="op">(</span>
-                                  sp_faxes_coord  <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span>,
-                                  faxes           <span class="op">=</span> <span class="cn">NULL</span>,
-                                  name_file       <span class="op">=</span> <span class="cn">NULL</span>,
-                                  faxes_nm        <span class="op">=</span> <span class="cn">NULL</span>,
-                                  range_faxes_lim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
-                                  color_bg        <span class="op">=</span> <span class="st">"grey95"</span>,
-                                  color_sp        <span class="op">=</span> <span class="st">"darkgreen"</span>,
-                                  fill_sp         <span class="op">=</span> <span class="st">"white"</span>,
-                                  shape_sp        <span class="op">=</span> <span class="fl">21</span>,
-                                  size_sp         <span class="op">=</span> <span class="fl">1</span>,
-                                  plot_ch         <span class="op">=</span> <span class="cn">TRUE</span>,
-                                  color_ch        <span class="op">=</span> <span class="st">"black"</span>,
-                                  fill_ch         <span class="op">=</span> <span class="st">"white"</span>,
-                                  alpha_ch        <span class="op">=</span> <span class="fl">0.5</span>,
-                                  plot_vertices   <span class="op">=</span> <span class="cn">TRUE</span>,
-                                  color_vert      <span class="op">=</span> <span class="st">"blueviolet"</span>,
-                                  fill_vert       <span class="op">=</span> <span class="st">"blueviolet"</span>,
-                                  shape_vert      <span class="op">=</span> <span class="fl">23</span>,
-                                  size_vert       <span class="op">=</span> <span class="fl">1</span>,
-                                  plot_sp_nm      <span class="op">=</span> <span class="cn">NULL</span>,
-                                  nm_size         <span class="op">=</span> <span class="fl">3</span>,
-                                  nm_color        <span class="op">=</span> <span class="st">"black"</span>,
-                                  nm_fontface     <span class="op">=</span> <span class="st">"plain"</span>,
-                                  check_input     <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  sp_faxes_coord  <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,
+  faxes           <span class="op">=</span> <span class="cn">NULL</span>,
+  name_file       <span class="op">=</span> <span class="cn">NULL</span>,
+  faxes_nm        <span class="op">=</span> <span class="cn">NULL</span>,
+  range_faxes     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
+  color_bg        <span class="op">=</span> <span class="st">"grey95"</span>,
+  color_pool      <span class="op">=</span> <span class="st">"darkgreen"</span>,
+  fill_pool       <span class="op">=</span> <span class="st">"white"</span>,
+  shape_pool      <span class="op">=</span> <span class="fl">21</span>,
+  size_pool       <span class="op">=</span> <span class="fl">1</span>,
+  plot_ch         <span class="op">=</span> <span class="cn">TRUE</span>,
+  color_ch        <span class="op">=</span> <span class="st">"black"</span>,
+  fill_ch         <span class="op">=</span> <span class="st">"white"</span>,
+  alpha_ch        <span class="op">=</span> <span class="fl">0.5</span>,
+  plot_vertices   <span class="op">=</span> <span class="cn">TRUE</span>,
+  color_vert      <span class="op">=</span> <span class="st">"blueviolet"</span>,
+  fill_vert       <span class="op">=</span> <span class="st">"blueviolet"</span>,
+  shape_vert      <span class="op">=</span> <span class="fl">23</span>,
+  size_vert       <span class="op">=</span> <span class="fl">1</span>,
+  plot_sp_nm      <span class="op">=</span> <span class="cn">NULL</span>,
+  nm_size         <span class="op">=</span> <span class="fl">3</span>,
+  nm_color        <span class="op">=</span> <span class="st">"black"</span>,
+  nm_fontface     <span class="op">=</span> <span class="st">"plain"</span>,
+  check_input     <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># Plot the graph with all pairs of axes:</span>
 <span class="va">big_plot</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-26-1.png" width="960" style="display: block; margin: auto;"></p>
