@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_beta_indices.R
 \name{beta.multidim.plot}
 \alias{beta.multidim.plot}
-\title{Illustrate fFnctional beta-Diversity Indices for Pairs of Assemblages in a
+\title{Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
 Multidimensional Space}
 \usage{
 beta.multidim.plot(
@@ -16,7 +16,7 @@ beta.multidim.plot(
   range_faxes = c(NA, NA),
   color_bg = "grey95",
   shape_sp = c(pool = 3, asb1 = 22, asb2 = 21),
-  size_sp = c(pool = 0.8, asb1 = 1, asb2 = 1),
+  size_sp = c(pool = 0.7, asb1 = 1.2, asb2 = 1),
   color_sp = c(pool = "grey50", asb1 = "blue", asb2 = "red"),
   fill_sp = c(pool = NA, asb1 = "white", asb2 = "white"),
   fill_vert = c(pool = NA, asb1 = "blue", asb2 = "red"),
@@ -60,7 +60,7 @@ displayed.}
 
 \item{range_faxes}{a vector with minimum and maximum values of axes. Note
 that to have a fair representation of position of species in all plots,
-they should have the same range. Default: \code{range_faxes = c(NA, NA)} (the
+they should have the same range. Default: \code{faxes_lim = c(NA, NA)} (the
 range is computed according to the range of values among all axes).}
 
 \item{color_bg}{a R color name or an hexadecimal code used to fill
@@ -134,13 +134,13 @@ diversity indices should have been computed using the}
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
-# Load Assemblages*Species dataframe:      
- data("baskets_fruits_weights", package = "mFD") 
+# Load Assemblages*Species dataframe:
+ data("baskets_fruits_weights", package = "mFD")
 
 # Load Traits categories dataframe:
- data("fruits_traits_cat", package = "mFD") 
- 
-# Compute functional distance 
+ data("fruits_traits_cat", package = "mFD")
+
+# Compute functional distance
  sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
                                    tr_cat        = fruits_traits_cat,
                                    metric        = "gower",
@@ -148,55 +148,55 @@ diversity indices should have been computed using the}
                                    ordinal_var   = "classic",
                                    weight_type   = "equal",
                                    stop_if_NA    = TRUE)
-  
+
 # Compute functional spaces quality to retrieve species coordinates matrix:
  fspaces_quality_fruits <- mFD::quality.fspaces(
-                                  sp_dist             = sp_dist_fruits, 
+                                  sp_dist             = sp_dist_fruits,
                                   maxdim_pcoa         = 10,
                                   deviation_weighting = "absolute",
                                   fdist_scaling       = FALSE,
                                   fdendro             = "average")
- 
+
 # Retrieve species coordinates matrix:
  sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
- 
+
 # Get the occurrence dataframe:
- asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
+ asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
  asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 
 # Compute beta diversity indices:
  beta_fd_fruits <- mFD::beta.fd.multidim(
-  sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")], 
+  sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_occ       = asb_sp_fruits_occ,
   check_input      = TRUE,
   beta_family      = c("Jaccard"),
   details_returned = TRUE)
- 
+
 # Compute beta fd plots:
  beta.multidim.plot(
    output_beta_fd_multidim = beta_fd_fruits,
-   plot_asb_nm             = c("basket_1", "basket_3"),
+   plot_asb_nm             = c("basket_1", "basket_6"),
    beta_family             = c("Jaccard"),
    plot_sp_nm              = c("apple", "cherry", "lemon"),
    faxes                   = paste0("PC", 1:4),
    name_file               = NULL,
-   faxes_nm                = NULL, 
+   faxes_nm                = NULL,
    range_faxes             = c(NA, NA),
    color_bg                = "grey95",
    shape_sp                = c("pool" = 3, asb1 = 22, asb2 = 21),
    size_sp                 = c("pool" = 0.8, asb1 = 1, asb2 = 1),
-   color_sp                = c("pool" = "grey50", asb1 = "blue", 
+   color_sp                = c("pool" = "grey50", asb1 = "blue",
                                asb2 = "red"),
    fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
    fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
    color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-   fill_ch                 = c("pool" = "white", asb1 = "blue", 
+   fill_ch                 = c("pool" = "white", asb1 = "blue",
                                asb2 = "red"),
    alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-   nm_size                 = 3, 
-   nm_color                = "black", 
+   nm_size                 = 3,
+   nm_color                = "black",
    nm_fontface             = "plain",
-   check_input             = TRUE) 
+   check_input             = TRUE)
 }
 }
 \author{

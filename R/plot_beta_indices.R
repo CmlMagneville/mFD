@@ -1,11 +1,11 @@
-#' Illustrate fFnctional beta-Diversity Indices for Pairs of Assemblages in a
+#' Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
 #' Multidimensional Space
 #'
 #' Illustrate overlap between convex hulls shaping species assemblages in a
 #' multidimensional functional space.\strong{Before plotting beta functional
 #' diversity indices should have been computed using the}
 #' \code{\link{beta.fd.multidim}} \strong{function}.
-#' 
+#'
 #' @param output_beta_fd_multidim the list returned by
 #'   \code{\link{beta.fd.multidim}} when `details_returned = TRUE`.
 #'   Thus, even if this function will illustrate functional beta-diversity for a
@@ -36,7 +36,7 @@
 #'
 #' @param range_faxes a vector with minimum and maximum values of axes. Note
 #'   that to have a fair representation of position of species in all plots,
-#'   they should have the same range. Default: `range_faxes = c(NA, NA)` (the 
+#'   they should have the same range. Default: `faxes_lim = c(NA, NA)` (the
 #'   range is computed according to the range of values among all axes).
 #'
 #' @param color_bg a R color name or an hexadecimal code used to fill
@@ -45,14 +45,14 @@
 #'@param shape_sp a vector with 3 numeric values referring to the shape of
 #'  symbol used for species from the 'pool' absent from the 2 assemblages, and
 #'  for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-#'  Default: `shape_sp = c("pool" = 3, "asb1" = 22, "asb2" = 21)` so cross, 
+#'  Default: `shape_sp = c("pool" = 3, "asb1" = 22, "asb2" = 21)` so cross,
 #'  square and circle.
 #'
 #' @param size_sp a numeric value referring to the size of symbols for
 #'  species. Default: `is size_sp = c("pool" = 0.8, "asb1" = 1, "asb2" = 1)`.
-#'  
+#'
 #' @param color_sp a vector with 3 names or hexadecimal codes referring to the
-#'  colour of symbol for species. Default is: 
+#'  colour of symbol for species. Default is:
 #'  `color_sp = c("pool" = "grey50", "asb1" = "blue", "asb2" = "red")`.
 #'
 #' @param fill_sp a vector with 3 names or hexadecimal codes referring to the
@@ -61,8 +61,8 @@
 #'   `fill_sp = c("pool" = NA, "asb1" = "white", "asb2" = "white")`.
 #'
 #' @param fill_vert a vector with 3 names or hexadecimal codes
-#'   referring to the colour to fill symbol (if \code{shape_sp} > 20) for 
-#'   species being vertices of the convex hulls of the pool of species and of 
+#'   referring to the colour to fill symbol (if \code{shape_sp} > 20) for
+#'   species being vertices of the convex hulls of the pool of species and of
 #'   the 2 assemblages. Default is:
 #'   `fill_vert = c("pool" = NA, "asb1" = "blue", "asb2" = "red")`.
 #'
@@ -97,23 +97,23 @@
 #'  with overlap between convex hulls projected in 2-dimensional spaces. Values
 #'  of functional beta-diversity indices are shown on top-right corner of the
 #'  figure.
-#'  
-#' @author Sebastien Villeger & Camille Magneville 
+#'
+#' @author Sebastien Villeger & Camille Magneville
 #'
 #' @export
-#'  
+#'
 #' @examples
 #' \dontrun{
 #' # Load Species*Traits dataframe:
 #'  data("fruits_traits", package = "mFD")
-#' 
-#' # Load Assemblages*Species dataframe:      
-#'  data("baskets_fruits_weights", package = "mFD") 
-#' 
+#'
+#' # Load Assemblages*Species dataframe:
+#'  data("baskets_fruits_weights", package = "mFD")
+#'
 #' # Load Traits categories dataframe:
-#'  data("fruits_traits_cat", package = "mFD") 
-#'  
-#' # Compute functional distance 
+#'  data("fruits_traits_cat", package = "mFD")
+#'
+#' # Compute functional distance
 #'  sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
 #'                                    tr_cat        = fruits_traits_cat,
 #'                                    metric        = "gower",
@@ -121,104 +121,107 @@
 #'                                    ordinal_var   = "classic",
 #'                                    weight_type   = "equal",
 #'                                    stop_if_NA    = TRUE)
-#'   
+#'
 #' # Compute functional spaces quality to retrieve species coordinates matrix:
 #'  fspaces_quality_fruits <- mFD::quality.fspaces(
-#'                                   sp_dist             = sp_dist_fruits, 
+#'                                   sp_dist             = sp_dist_fruits,
 #'                                   maxdim_pcoa         = 10,
 #'                                   deviation_weighting = "absolute",
 #'                                   fdist_scaling       = FALSE,
 #'                                   fdendro             = "average")
-#'  
+#'
 #' # Retrieve species coordinates matrix:
 #'  sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
-#'  
+#'
 #' # Get the occurrence dataframe:
-#'  asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
+#'  asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 #'  asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
-#' 
+#'
 #' # Compute beta diversity indices:
 #'  beta_fd_fruits <- mFD::beta.fd.multidim(
-#'   sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")], 
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_occ       = asb_sp_fruits_occ,
 #'   check_input      = TRUE,
 #'   beta_family      = c("Jaccard"),
 #'   details_returned = TRUE)
-#'  
+#'
 #' # Compute beta fd plots:
 #'  beta.multidim.plot(
 #'    output_beta_fd_multidim = beta_fd_fruits,
-#'    plot_asb_nm             = c("basket_1", "basket_3"),
+#'    plot_asb_nm             = c("basket_1", "basket_6"),
 #'    beta_family             = c("Jaccard"),
 #'    plot_sp_nm              = c("apple", "cherry", "lemon"),
 #'    faxes                   = paste0("PC", 1:4),
 #'    name_file               = NULL,
-#'    faxes_nm                = NULL, 
+#'    faxes_nm                = NULL,
 #'    range_faxes             = c(NA, NA),
 #'    color_bg                = "grey95",
 #'    shape_sp                = c("pool" = 3, asb1 = 22, asb2 = 21),
 #'    size_sp                 = c("pool" = 0.8, asb1 = 1, asb2 = 1),
-#'    color_sp                = c("pool" = "grey50", asb1 = "blue", 
+#'    color_sp                = c("pool" = "grey50", asb1 = "blue",
 #'                                asb2 = "red"),
 #'    fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
 #'    fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
 #'    color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#'    fill_ch                 = c("pool" = "white", asb1 = "blue", 
+#'    fill_ch                 = c("pool" = "white", asb1 = "blue",
 #'                                asb2 = "red"),
 #'    alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-#'    nm_size                 = 3, 
-#'    nm_color                = "black", 
+#'    nm_size                 = 3,
+#'    nm_color                = "black",
 #'    nm_fontface             = "plain",
-#'    check_input             = TRUE) 
+#'    check_input             = TRUE)
 #' }
 
 beta.multidim.plot <- function(output_beta_fd_multidim,
-                               plot_asb_nm,
-                               beta_family,
-                               plot_sp_nm = NULL,
-                               faxes = NULL,
-                               name_file = NULL,
-                               faxes_nm = NULL, range_faxes = c(NA, NA),
-                               color_bg = "grey95",
-                               shape_sp = c("pool"=3, asb1=22, asb2=21),
-                               size_sp = c("pool"=0.8, asb1=1, asb2=1),
-                               color_sp = c("pool"="grey50", asb1="blue", 
-                                            asb2= "red"),
-                               fill_sp = c("pool"= NA, asb1 ="white", 
-                                           asb2 = "white"),
-                               fill_vert = c("pool" = NA, asb1 = "blue", 
-                                             asb2 = "red"),
-                               color_ch = c("pool" = NA, asb1 = "blue",
-                                            asb2 = "red"),
-                               fill_ch = c("pool" = "white", asb1 = "blue", 
-                                           asb2 = "red"),
-                               alpha_ch = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-                               nm_size = 3, nm_color = "black", 
-                               nm_fontface = "plain",
-                               check_input = TRUE) {
+                                   plot_asb_nm,
+                                   beta_family,
+                                   plot_sp_nm = NULL,
+                                   faxes = NULL,
+                                   name_file = NULL,
+                                   faxes_nm = NULL, range_faxes = c(NA, NA),
+                                   color_bg = "grey95",
+                                   shape_sp = c("pool" = 3, asb1 = 22, 
+                                                asb2 = 21),
+                                   size_sp = c("pool" = 0.7, asb1 = 1.2, 
+                                               asb2 = 1),
+                                   color_sp = c("pool" = "grey50", 
+                                                asb1 = "blue",
+                                                asb2 = "red"),
+                                   fill_sp = c("pool" = NA, asb1 = "white",
+                                               asb2 = "white"),
+                                   fill_vert = c("pool" = NA, asb1 = "blue",
+                                                 asb2 = "red"),
+                                   color_ch = c("pool" = NA, asb1 = "blue",
+                                                asb2 = "red"),
+                                   fill_ch = c("pool" = "white", asb1 = "blue",
+                                               asb2 = "red"),
+                                   alpha_ch = c("pool" = 1, asb1 = 0.3, 
+                                                asb2 = 0.3),
+                                   nm_size = 3, nm_color = "black",
+                                   nm_fontface = "plain",
+                                   check_input = TRUE) {
   
   
-  ## extracting dataset from inputs ####
+  # extract dataset from inputs ####
   
-  # basic check of the core input
-  if (any(names(output_beta_fd_multidim) != c("pairasb_fbd_indices", 
+  # basic check of the core input:
+  if (any(names(output_beta_fd_multidim) != c("pairasb_fbd_indices",
                                               "details"))) {
     stop("'output_beta_fd_multidim' does not have elements of an output from ",
          "'beta.fd.multidim' function. Please check.")
   }
   
-  # species occurrences and position in the functional space
+  # get species occurrences and position in the functional space:
   sp_faxes_coord <- output_beta_fd_multidim$details$inputs$sp_faxes_coord
   asb_sp_occ <- output_beta_fd_multidim$details$inputs$asb_sp_occ
   
-  # indices values
+  # get indices values:
   beta_fd <- output_beta_fd_multidim$pairasb_fbd_indices
   beta_nm <- names(beta_fd)
   
   
-  ## check_inputs if asked: ####
+  # check_inputs if asked: ####
   if (check_input) {
-    
     
     if (length(plot_asb_nm) != 2) {
       stop("There should be 2 assemblages names in 'plot_asb_nm'. Please ",
@@ -231,20 +234,20 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
            "want to plot.")
     }
     
-    if (!is.null(faxes)) {
+    if (! is.null(faxes)) {
       
       if (length(faxes) > 4) {
-        stop("Number of functional axes should be less than 4. Please change 
+        stop("Number of functional axes should be less than 4. Please change
              the number of functional axes to plot.")
       }
       
-      if (!any(faxes %in% colnames(sp_faxes_coord))) {
+      if (! any(faxes %in% colnames(sp_faxes_coord))) {
         stop("Names of axes to plot can not be found in 'sp_faxes_coord' ",
              "columns names. Please check names of axes you want to plot.")
       }
     }
     
-    if ((!is.null(faxes_nm)) && (length(faxes_nm) != length(faxes))) {
+    if ((! is.null(faxes_nm)) && (length(faxes_nm) != length(faxes))) {
       stop("Length of 'faxes_nm' should be equal to length of 'faxes'. Please ",
            "check congruence between these inputs.")
     }
@@ -259,19 +262,17 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
       stop("Some functional beta-diversity indices are not present in ",
            "'output_beta_fd_multidim' input. Please check indices family.")
     }
-  }# end of checking inputs
+  } # end of check inputs
   
-  ## names and number of axes to plot ####
+  # get names and number of axes to plot: ####
   
-  asb_sp_occ <- as.data.frame(asb_sp_occ)
-  
-  # if no axes selected take up to the 4 first axes in the coordinates table
+  # if no axes selected take up to the 4 first axes in the coordinates table:
   if (is.null(faxes)) {
     faxes <- colnames(sp_faxes_coord)[1:min(4, ncol(sp_faxes_coord))]
   }
   
-  # if no faxes_nm provided, default names as in coordinates table
-  if (!is.null(faxes) && is.null(faxes_nm)) {
+  # if no faxes_nm provided, default names as in coordinates table:
+  if (! is.null(faxes) && is.null(faxes_nm)) {
     faxes_nm <- faxes
   }
   
@@ -282,174 +283,140 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   
   names(faxes_nm) <- faxes
   
-  # number of axes
+  # get number of axes:
   nb_faxes <- length(faxes)
   
-  # combinations of axes on plot
+  # retrieve combinations of axes on plot: 
   axes_plot <- utils::combn(faxes, 2)
   plot_nb   <- ncol(axes_plot)
   
-  #### setting graphical parameters #####
   
-  # range of axes
+  # set graphical parameters #####
+  
+  # set range of axes:
   if (is.na(range_faxes[1]) && is.na(range_faxes[2])) {
     range_sp_faxes_coord <- range(sp_faxes_coord)
     range_faxes <- range_sp_faxes_coord +
-      c(-1, 1) * (range_sp_faxes_coord[2] - range_sp_faxes_coord[1]) * 0.05
+      c(-1, 1) * (range_sp_faxes_coord[2] - range_sp_faxes_coord[1]) * 0.1
   }
   
-  # dataframe with species coordinates and option (vertices + label) if required
+  # build dataframe with species coordinates and option (vertices + label) ...
+  # ... if required:
   sp_faxes_coord_plot <- data.frame(sp_faxes_coord,
-                                    label = rep("", nrow(sp_faxes_coord)))
+                                    label = "")
   
-  # if some species names to be plotted, adding a binary variable to ...
-  # ... sp_faxes_coord
-  if(!is.null(plot_sp_nm)) {
+  # if some species names to be plotted, adding a character variable to ...
+  # ... sp_faxes_coord:
+  if(! is.null(plot_sp_nm)) {
     sp_faxes_coord_plot[plot_sp_nm, "label"] <- plot_sp_nm
   }
   
   
-  # computing convex hull of the species pool and its vertices if required
-  if (!is.null(fill_ch["pool"])) {
-    vert_pool_nm    <- vertices(sp_faxes_coord, check_input = TRUE)
-    vert_pool_coord <- sp_faxes_coord[vert_pool_nm, ]
-  }
+  # compute convex hull of the species pool and its vertices:
+  vert_pool <- vertices(sp_faxes_coord)
   
-  # names of species present in species pool but not in assemblage
-  sp_absent <- names(which(apply(asb_sp_occ[plot_asb_nm, ], 2, sum) == 0))
+  # get names of species present in each assemblage:
+  sp_asb1 <- names( which(asb_sp_occ[plot_asb_nm[1], ] == 1))
+  sp_asb2 <- names( which(asb_sp_occ[plot_asb_nm[2], ] == 1))
   
-  # names of species present in each assemblage
-  sp_asb1 <- names(asb_sp_occ[, which(asb_sp_occ[plot_asb_nm[1], ] == 1)])
-  sp_asb2 <- names(asb_sp_occ[, which(asb_sp_occ[plot_asb_nm[2], ] == 1)])
-  
-  # vertices of each assemblage in the n-dimensional space
+  # retrieve vertices of each assemblage in the n-dimensional space:
   vert_asb1 <- output_beta_fd_multidim$details$asb_vertices[[plot_asb_nm[1]]]
   vert_asb2 <- output_beta_fd_multidim$details$asb_vertices[[plot_asb_nm[2]]]
   
   
+  # plot for each pair of axes ####
   
-  ## plot for each pair of axes ####
-  
-  # list to store panels
+  # list to store panels:
   panels <- list()
   
-  # loop on combinations
+  # loop on combinations:
   for (k in (1:plot_nb)) {
     
-    # names of axes as in input dataframe
-    x <- axes_plot[1, k]
-    y <- axes_plot[2, k]
+    # get species coordinates along the 2 axes:
+    sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, axes_plot[1:2, k] ])
+    colnames(sp_coord_xy) <- c("x", "y")
     
-    # background = axes defined by range of values and names as specified  ----
-    plot_k <- ggplot2::ggplot(sp_faxes_coord_plot,
-                              ggplot2::aes_string(x = x, y = y)) +
-      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
-      ggplot2::xlab(faxes_nm[x]) +
-      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
-      ggplot2::ylab(faxes_nm[y]) +
-      ggplot2::theme(panel.grid.minor = ggplot2::element_blank(),
-                     panel.grid.major = ggplot2::element_blank(),
-                     panel.background = ggplot2::element_rect(fill = color_bg))+
-      ggplot2::coord_fixed()
+    # get a list with dataframe of data to plot:
+    asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ],
+                             asb2 = sp_coord_xy[sp_asb2, ])
+    vertices_nD_k <- list(asb1 = vert_asb1, asb2 = vert_asb2)
     
-    # if required adding convex hull of pool projected in 2D ----
-    if (!is.null(fill_ch["pool"])) {
-      
-      # vertices in 2D ordered for plotting
-      vert_pool_xy <- vertices(sp_faxes_coord_plot[ , c(x, y)], order_2D = TRUE,
-                               check_input = TRUE )
-      
-      # plotting
+    
+    # plot background = axes defined by range of values and names as specified:
+    plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+    
+    # species pool
+    plot_k <- pool.plot(ggplot_bg = plot_k,
+                        sp_coord2D = sp_coord_xy,
+                        vertices_nD = vert_pool,
+                        plot_pool = TRUE,
+                        color_ch = color_ch["pool"],
+                        fill_ch = fill_ch["pool"],
+                        alpha_ch = alpha_ch["pool"],
+                        shape_pool = shape_sp["pool"],
+                        size_pool = size_sp["pool"],
+                        color_pool = color_sp["pool"],
+                        fill_pool = fill_sp["pool"],
+                        shape_vert = shape_sp["pool"],
+                        size_vert = size_sp["pool"],
+                        color_vert = color_sp["pool"],
+                        fill_vert = fill_sp["pool"])
+    
+    # plot 2D convex hulls and points for the 2 assemblages:
+    plot_k <- fric.plot(ggplot_bg = plot_k,
+                        asb_sp_coord2D = asb_sp_coord2D_k,
+                        asb_vertices_nD = vertices_nD_k,
+                        plot_sp = TRUE,
+                        color_ch = color_ch[c("asb1", "asb2")],
+                        fill_ch = fill_ch[c("asb1", "asb2")],
+                        alpha_ch = alpha_ch[c("asb1", "asb2")],
+                        shape_sp = shape_sp[c("asb1", "asb2")],
+                        size_sp = size_sp[c("asb1", "asb2")],
+                        color_sp = color_sp[c("asb1", "asb2")],
+                        fill_sp = fill_sp[c("asb1", "asb2")],
+                        shape_vert = shape_sp[c("asb1", "asb2")],
+                        size_vert = size_sp[c("asb1", "asb2")],
+                        color_vert = color_sp[c("asb1", "asb2")],
+                        fill_vert = fill_vert[c("asb1", "asb2")])
+    
+    
+    # add species names if needed:
+    if (! is.null(plot_sp_nm)) {
+      x <- NULL
+      y <- NULL
       plot_k <- plot_k +
-        ggplot2::geom_polygon(data = sp_faxes_coord_plot[vert_pool_xy, ],
-                              ggplot2::aes_string(x = x, y = y),
-                              colour = color_ch["pool"],
-                              fill = fill_ch["pool"], alpha = alpha_ch["pool"])
-      
-    }
-    
-    
-    # points for species absent from the 2 assemblages
-    plot_k <- plot_k +
-      ggplot2::geom_point(data = sp_faxes_coord_plot[sp_absent, ],
-                          ggplot2::aes_string(x = x, y = y),
-                          colour = color_sp["pool"], fill = fill_sp["pool"],
-                          shape = shape_sp["pool"], size = size_sp["pool"])
-    
-    
-    # computing 2D convex hulls for the 2 assemblages
-    vert_asb1_xy <- vertices(sp_faxes_coord_plot[sp_asb1, c(x, y)], 
-                             order_2D = TRUE,
-                             check_input = TRUE)
-    vert_asb2_xy <- vertices(sp_faxes_coord_plot[sp_asb2, c(x, y)], 
-                             order_2D = TRUE,
-                             check_input = TRUE)
-    
-    # plotting convex hulls
-    plot_k <- plot_k +
-      ggplot2::geom_polygon(data = sp_faxes_coord_plot[vert_asb1_xy, ],
-                            ggplot2::aes_string(x = x, y = y),
-                            colour = color_ch["asb1"],
-                            fill = fill_ch["asb1"], alpha = alpha_ch["asb1"]) +
-      ggplot2::geom_polygon(data = sp_faxes_coord_plot[vert_asb2_xy, ],
-                            ggplot2::aes_string(x = x, y = y),
-                            colour = color_ch["asb2"],
-                            fill = fill_ch["asb2"], alpha = alpha_ch["asb2"])
-    
-    # all species present in assemblages
-    plot_k <- plot_k +
-      ggplot2::geom_point(data = sp_faxes_coord_plot[sp_asb1, ],
-                          ggplot2::aes_string(x = x, y = y),
-                          colour = color_sp["asb1"], fill = fill_sp["asb1"],
-                          shape = shape_sp["asb1"], size = size_sp["asb1"]) +
-      ggplot2::geom_point(data = sp_faxes_coord_plot[sp_asb2, ],
-                          ggplot2::aes_string(x = x, y = y ),
-                          colour = color_sp["asb2"], fill = fill_sp["asb2"],
-                          shape = shape_sp["asb2"], size = size_sp["asb2"])
-    
-    
-    # filling points for species being vertices in the n-dimensional space
-    plot_k <- plot_k +
-      ggplot2::geom_point(data = sp_faxes_coord_plot[vert_asb1, ],
-                          ggplot2::aes_string(x = x, y = y),
-                          colour = color_sp["asb1"], fill = fill_vert["asb1"],
-                          shape = shape_sp["asb1"], size = size_sp["asb1"]) +
-      ggplot2::geom_point(data = sp_faxes_coord_plot[vert_asb2,],
-                          ggplot2::aes_string(x = x, y = y ),
-                          colour = color_sp["asb2"], fill = fill_vert["asb2"])
-    
-    
-    # adding species names if needed ----
-    if (!is.null(plot_sp_nm)) {
-      plot_k <- plot_k +
-        ggrepel::geom_text_repel(x = sp_faxes_coord_plot[ , x], 
-                                 y = sp_faxes_coord_plot[ , y],
-                                 label = sp_faxes_coord_plot[ , "label"],
-                                 size = nm_size, colour= nm_color, 
+        ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                 ggplot2::aes_string(x = axes_plot[1, k],
+                                                     y = axes_plot[2, k],
+                                                      label = "label"),
+                                 size = nm_size, colour = nm_color,
                                  fontface = nm_fontface,
                                  max.overlaps = Inf,
                                  box.padding = grid::unit(2, 'lines'),
                                  force = 5,
-                                 arrow = grid::arrow(length = grid::unit(0.02, 
-                                                                       'npc')),
+                                 arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
                                  segment.color = nm_color)
     }
     
-    # saving plot in a list
+    # save plot in a list:
     panels[[k]] <- plot_k
     
   } # end of k
   
   
-  ## plot for indices values #####
+  # plot for indices values #####
   
-  # customizing position of texts in the plot
+  # customize position of texts in the plot:
   spread_faxes <- (range_faxes[2] - range_faxes[1])
   hh <- c(1, 2.5, 4, 5.5)
   vv <- 0.3
   
-  # plotting window
-  plot_caption <- ggplot2::ggplot(sp_faxes_coord_plot) +
+  # plot window:
+  x <- NULL
+  y <- NULL
+  plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+                                  ggplot2::aes(x = x, y = y)) +
     ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
     ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
     ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
@@ -457,7 +424,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
                        ymin = range_faxes[1], ymax = range_faxes[2],
                        fill = "white", colour ="black")
   
-  # family and names of indices
+  # plot family and names of indices:
   h   <- NULL
   v   <- NULL
   top <- NULL
@@ -469,7 +436,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
       ggplot2::aes(x = h, y = v, label = top),
       size = 3, hjust = 0.5, fontface = "bold")
   
-  # values of Jaccard indices if any
+  # plot values of Jaccard indices if any:
   if ("Jaccard" %in% beta_family) {
     
     betajac_asb1_asb2 <- as.numeric(signif(beta_fd[
@@ -478,6 +445,9 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     
     values_jac <- NULL
     values_sor <- NULL
+    label = NULL
+    x <- NULL
+    y <- NULL
     plot_caption <- plot_caption +
       ggplot2::geom_text(data = data.frame(
         h = range_faxes[1] + spread_faxes * 0.15 * hh,
@@ -488,13 +458,16 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     vv <- vv + 0.1
   }
   
-  # values of Sorensen indices if any
+  # plot values of Sorensen indices if any:
   if ("Sorensen" %in% beta_family) {
     
     betasor_asb1_asb2 <- as.numeric(signif(beta_fd[
       which(beta_fd$asb.1 == plot_asb_nm[1] & beta_fd$asb.2 == plot_asb_nm[2]),
       which("sor" == substr(beta_nm, 1, 3))], 4))
     
+    label <- NULL
+    x <- NULL
+    y <- NULL
     plot_caption <- plot_caption +
       ggplot2::geom_text(data = data.frame(
         h = range_faxes[1] + spread_faxes*0.15*hh,
@@ -505,9 +478,12 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     vv <- vv + 0.2
   }
   
-  # text about dimensionality
+  # add text about dimensionality:
   nb <- NULL
-  plot_caption<- plot_caption +
+  label <- NULL
+  x <- NULL
+  y <- NULL
+  plot_caption <- plot_caption +
     ggplot2::geom_text(data = data.frame(
       h = range_faxes[1] + spread_faxes * 0.1,
       v = range_faxes[2] - spread_faxes * vv,
@@ -517,45 +493,21 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
       size = 3, hjust = 0, fontface = "italic")
   
   
-  ### arranging panels #######
+  # arrange panels #######
   
-  # if 2 axes = 1 plot + caption
-  if(plot_nb == 1) {
-    patchwork_plots_all <- panels[[1]] + plot_caption +
-      patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1, 1),
-                             ncol = 2, nrow = 1, guides = "collect")
-  }
+  # merge panels and caption:
+  patchwork_plots_all <- panels.to.patchwork(panels, plot_caption)
   
-  # if 3 axes = 3 plots + caption in a 2*2 layout
-  if(plot_nb == 3) {
-    patchwork_plots_all <- (panels[[1]] + plot_caption +
-                              panels[[2]] + panels[[3]]) +
-      patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1, 1),
-                             ncol = 2, nrow = 2, guides = "collect")
-  }
-  
-  # if 4 axes = 6 plots + caption in a 3*3 layout with 2 empty cases
-  if (plot_nb == 6) {
-    patchwork_plots_all <- (panels[[1]] + patchwork::plot_spacer() + 
-                            plot_caption +
-                            panels[[2]] + panels[[3]] + 
-                            patchwork::plot_spacer() +
-                            panels[[4]] + panels[[5]] + panels[[6]]) +
-      patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3), 
-                             widths = rep(1, 3), ncol = 3, nrow = 3, 
-                             guides = "collect")
-  }
-  
-  # title and caption
+  # add title and caption:
   patchwork_plots_all <- patchwork_plots_all +
-   patchwork::plot_annotation(title = paste0(
-     "Functional beta-diversity between '", plot_asb_nm[1], "' and '", 
-     plot_asb_nm[2], "'"),
-     caption = "made with mFD package")
+    patchwork::plot_annotation(title = paste0(
+      "Functional beta-diversity between '", plot_asb_nm[1], "' and '",
+      plot_asb_nm[2], "'"),
+      caption = "made with mFD package")
   
   
   
-  ## returning output ####
+  ##return output ####
   
   # type, resolution and dimensions of file if to be saved
   device_file <- "png"
@@ -565,13 +517,8 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   width_file  <- 4 * c(2, 2, 3)
   names(width_file) <- c("1", "3", "6")
   
-  # displaying or saving
-  if (is.null(name_file)) {
-    
-    patchwork_plots_all
-    
-  } else {
-    
+  # save in a file or returning list of ggplots:
+  if (! is.null(name_file))  {
     ggplot2::ggsave(filename = paste0(name_file, ".", device_file) ,
                     plot = patchwork_plots_all,
                     device = device_file,
@@ -580,10 +527,16 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
                     width = width_file[as.character(plot_nb)],
                     units= "in",
                     dpi = res_file)
+  } else {
+    
+    # output = list of panels and caption + patchwork:
+    output <- NULL
+    output <- panels
+    names(output) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+    panels[["caption"]] <- plot_caption
+    panels[["patchwork"]] <- patchwork_plots_all
+    
+    return(panels)
   }
   
-  
-  # output = list of panels
-  return(patchwork_plots_all)
-  
-}   # end of function ####
+}
