@@ -13,7 +13,7 @@ alpha.multidim.plot(
   fd_ind_values,
   faxes = NULL,
   faxes_nm = NULL,
-  range_faxes_lim = c(NA, NA),
+  range_faxes = c(NA, NA),
   color_bg = "grey95",
   size_sp = 1,
   size_centroid = 1,
@@ -92,7 +92,7 @@ and 4}. Default: faxes = NULL (the four first axes will be plotted).}
 labels than \code{faxes} ones. Default: faxes_nm = faxes (labels will the
 the same that \code{faxes} ones).}
 
-\item{range_faxes_lim}{a vector with minimum and maximum for values for axes.
+\item{range_faxes}{a vector with minimum and maximum for values for axes.
 Note that to have a fair representation of position of species in all plots,
 all axes must have the same range. Default: faxes_lim = c(NA, NA) (the range
 is computed according to the range of values among all axes, all axes having
@@ -353,7 +353,7 @@ mFD::alpha.multidim.plot(
  fd_ind_values         = fd_ind_values_fruits,
  faxes                 = NULL, 
  faxes_nm              = NULL,
- range_faxes_lim       = c(NA, NA),
+ range_faxes       = c(NA, NA),
  color_bg              = "grey95",
  size_sp               = 1,
  size_centroid         = 1,
