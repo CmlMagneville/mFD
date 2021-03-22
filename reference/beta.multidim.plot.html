@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Illustrate fFnctional beta-Diversity Indices for Pairs of Assemblages in a
+<title>Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
 Multidimensional Space — beta.multidim.plot • mFD</title>
 
 
@@ -40,7 +40,7 @@ Multidimensional Space — beta.multidim.plot • mFD</title>
 
 
 
-<meta property="og:title" content="Illustrate fFnctional beta-Diversity Indices for Pairs of Assemblages in a
+<meta property="og:title" content="Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
 Multidimensional Space — beta.multidim.plot" />
 <meta property="og:description" content="Illustrate overlap between convex hulls shaping species assemblages in a
 multidimensional functional space.Before plotting beta functional
@@ -137,7 +137,7 @@ beta.fd.multidim function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Illustrate fFnctional beta-Diversity Indices for Pairs of Assemblages in a
+    <h1>Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
 Multidimensional Space</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_beta_indices.R'><code>R/plot_beta_indices.R</code></a></small>
     <div class="hidden name"><code>beta.multidim.plot.Rd</code></div>
@@ -161,7 +161,7 @@ diversity indices should have been computed using the</strong>
   range_faxes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
   color_bg <span class='op'>=</span> <span class='st'>"grey95"</span>,
   shape_sp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='fl'>3</span>, asb1 <span class='op'>=</span> <span class='fl'>22</span>, asb2 <span class='op'>=</span> <span class='fl'>21</span><span class='op'>)</span>,
-  size_sp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='fl'>0.8</span>, asb1 <span class='op'>=</span> <span class='fl'>1</span>, asb2 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+  size_sp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='fl'>0.7</span>, asb1 <span class='op'>=</span> <span class='fl'>1.2</span>, asb2 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
   color_sp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='st'>"grey50"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
   fill_sp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"white"</span>, asb2 <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span>,
   fill_vert <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
@@ -223,7 +223,7 @@ displayed.</p></td>
       <th>range_faxes</th>
       <td><p>a vector with minimum and maximum values of axes. Note
 that to have a fair representation of position of species in all plots,
-they should have the same range. Default: <code>range_faxes = c(NA, NA)</code> (the
+they should have the same range. Default: <code>faxes_lim = c(NA, NA)</code> (the
 range is computed according to the range of values among all axes).</p></td>
     </tr>
     <tr>
@@ -323,13 +323,13 @@ figure.</p>
 <span class='co'># Load Species*Traits dataframe:</span>
  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
 
-<span class='co'># Load Assemblages*Species dataframe:      </span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
+<span class='co'># Load Assemblages*Species dataframe:</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
 
 <span class='co'># Load Traits categories dataframe:</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
- 
-<span class='co'># Compute functional distance </span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
+
+<span class='co'># Compute functional distance</span>
  <span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
                                    tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
                                    metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
@@ -337,55 +337,55 @@ figure.</p>
                                    ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
                                    weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
                                    stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-  
+
 <span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span>
  <span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>
-                                  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
+                                  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>,
                                   maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
                                   deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,
                                   fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
                                   fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
- 
+
 <span class='co'># Retrieve species coordinates matrix:</span>
  <span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
- 
+
 <span class='co'># Get the occurrence dataframe:</span>
- <span class='va'>asb_sp_fruits_summ</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='asb.sp.summary.html'>asb.sp.summary</a></span><span class='op'>(</span>asb_sp_w <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span> 
+ <span class='va'>asb_sp_fruits_summ</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='asb.sp.summary.html'>asb.sp.summary</a></span><span class='op'>(</span>asb_sp_w <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span>
  <span class='va'>asb_sp_fruits_occ</span> <span class='op'>&lt;-</span> <span class='va'>asb_sp_fruits_summ</span><span class='op'>$</span><span class='st'>"asb_sp_occ"</span>
 
 <span class='co'># Compute beta diversity indices:</span>
  <span class='va'>beta_fd_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='beta.fd.multidim.html'>beta.fd.multidim</a></span><span class='op'>(</span>
-  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>, 
+  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
   asb_sp_occ       <span class='op'>=</span> <span class='va'>asb_sp_fruits_occ</span>,
   check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>,
   beta_family      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Jaccard"</span><span class='op'>)</span>,
   details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
- 
+
 <span class='co'># Compute beta fd plots:</span>
  <span class='fu'>beta.multidim.plot</span><span class='op'>(</span>
    output_beta_fd_multidim <span class='op'>=</span> <span class='va'>beta_fd_fruits</span>,
-   plot_asb_nm             <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span>, <span class='st'>"basket_3"</span><span class='op'>)</span>,
+   plot_asb_nm             <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span>, <span class='st'>"basket_6"</span><span class='op'>)</span>,
    beta_family             <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Jaccard"</span><span class='op'>)</span>,
    plot_sp_nm              <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"apple"</span>, <span class='st'>"cherry"</span>, <span class='st'>"lemon"</span><span class='op'>)</span>,
    faxes                   <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"PC"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span>,
    name_file               <span class='op'>=</span> <span class='cn'>NULL</span>,
-   faxes_nm                <span class='op'>=</span> <span class='cn'>NULL</span>, 
+   faxes_nm                <span class='op'>=</span> <span class='cn'>NULL</span>,
    range_faxes             <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
    color_bg                <span class='op'>=</span> <span class='st'>"grey95"</span>,
    shape_sp                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='fl'>3</span>, asb1 <span class='op'>=</span> <span class='fl'>22</span>, asb2 <span class='op'>=</span> <span class='fl'>21</span><span class='op'>)</span>,
    size_sp                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='fl'>0.8</span>, asb1 <span class='op'>=</span> <span class='fl'>1</span>, asb2 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
-   color_sp                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='st'>"grey50"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, 
+   color_sp                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='st'>"grey50"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>,
                                asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
    fill_sp                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"white"</span>, asb2 <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span>,
    fill_vert               <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
    color_ch                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
-   fill_ch                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='st'>"white"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, 
+   fill_ch                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='st'>"white"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>,
                                asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
    alpha_ch                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='fl'>1</span>, asb1 <span class='op'>=</span> <span class='fl'>0.3</span>, asb2 <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>,
-   nm_size                 <span class='op'>=</span> <span class='fl'>3</span>, 
-   nm_color                <span class='op'>=</span> <span class='st'>"black"</span>, 
+   nm_size                 <span class='op'>=</span> <span class='fl'>3</span>,
+   nm_color                <span class='op'>=</span> <span class='st'>"black"</span>,
    nm_fontface             <span class='op'>=</span> <span class='st'>"plain"</span>,
-   check_input             <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> 
+   check_input             <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
