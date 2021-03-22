@@ -92,3 +92,6 @@ if \code{asb_vertices_nD = NULL}, all arguments for vertices are
 ignored and if \code{asb_sp_relatw != NULL}, \code{size_sp} and
 \code{size_vert} are ignored.
 }
+\author{
+Camille Magneville and Sébastien Villéger
+}
