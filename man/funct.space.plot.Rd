@@ -9,12 +9,12 @@ funct.space.plot(
   faxes = NULL,
   name_file = NULL,
   faxes_nm = NULL,
-  range_faxes_lim = c(NA, NA),
+  range_faxes = c(NA, NA),
   color_bg = "grey95",
-  color_sp = "darkgreen",
-  fill_sp = "white",
-  shape_sp = 21,
-  size_sp = 1,
+  color_pool = "darkgreen",
+  fill_pool = "white",
+  shape_pool = 21,
+  size_pool = 1,
   plot_ch = TRUE,
   color_ch = "black",
   fill_ch = "white",
@@ -48,7 +48,7 @@ displayed.}
 \item{faxes_nm}{a vector with axes labels for figure. Default: as
 \code{faxes}).}
 
-\item{range_faxes_lim}{a vector with minimum and maximum values of axes. Note
+\item{range_faxes}{a vector with minimum and maximum values of axes. Note
 that to have a fair representation of position of species in all plots, have
 the same range. Default: \code{faxes_lim = c(NA, NA)} (the range is computed
 according to the range of values among all axes).}
@@ -56,18 +56,18 @@ according to the range of values among all axes).}
 \item{color_bg}{a R color name or an hexadecimal code used to fill plot
 background. Default: \code{color_bg = "grey95"}.}
 
-\item{color_sp}{a R color name or an hexadecimal code referring to the color
-of symbol for species. Default: \code{color_sp = 'darkgreen'}.}
+\item{color_pool}{a R color name or an hexadecimal code referring to the color
+of symbol for species. Default: \code{color_pool = 'darkgreen'}.}
 
-\item{fill_sp}{a R color name or an hexadecimal code referring to the color
-to fill species symbol (if \code{shape_sp} >20). Default:
-\code{fill_sp = 'white'}.}
+\item{fill_pool}{a R color name or an hexadecimal code referring to the color
+to fill species symbol (if \code{shape_pool} >20). Default:
+\code{fill_pool = 'white'}.}
 
-\item{shape_sp}{a numeric value referring to the shape of symbol used for
-species. Default: \code{shape_sp = 21} (filled circle).}
+\item{shape_pool}{a numeric value referring to the shape of symbol used for
+species. Default: \code{shape_pool = 21} (filled circle).}
 
-\item{size_sp}{a numeric value referring to the size of symbol for species.
-Default: \code{size_sp = 1}.}
+\item{size_pool}{a numeric value referring to the size of symbol for species.
+Default: \code{size_pool = 1}.}
 
 \item{plot_ch}{a logical value indicating whether the convex hull shaping the
 pool of species should be illustrated. If \code{plot_ch = TRUE}, convex hull of
@@ -148,13 +148,13 @@ species along pairs of axes.
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
-# Load Assemblages*Species dataframe:      
- data("baskets_fruits_weights", package = "mFD")  
- 
+# Load Assemblages*Species dataframe:
+ data("baskets_fruits_weights", package = "mFD")
+
 # Load Traits categories dataframe:
  data("fruits_traits_cat", package = "mFD")
 
-# Compute functional distance 
+# Compute functional distance
  sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
                                   tr_cat         = fruits_traits_cat,
                                   metric         = "gower",
@@ -162,42 +162,42 @@ species along pairs of axes.
                                   ordinal_var    = "classic",
                                   weight_type    = "equal",
                                   stop_if_NA     = TRUE)
- 
+
 # Compute functional spaces quality to retrieve species coordinates matrix:
  fspaces_quality_fruits <- mFD::quality.fspaces(
-  sp_dist             = sp_dist_fruits, 
+  sp_dist             = sp_dist_fruits,
   maxdim_pcoa         = 10,
   deviation_weighting = "absolute",
   fdist_scaling       = FALSE,
   fdendro             = "average")
- 
+
 # Retrieve species coordinates matrix:
 sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 # Plot functional spaces:
  mFD::funct.space.plot(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")], 
-  faxes             = NULL, 
+  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+  faxes             = NULL,
   name_file         = NULL,
-  faxes_nm          = NULL, 
-  range_faxes_lim   = c(NA, NA),
+  faxes_nm          = NULL,
+  range_faxes       = c(NA, NA),
   color_bg          = "grey95",
-  color_sp          = "darkgreen", 
-  fill_sp           = "white",  
-  shape_sp          = 21, 
-  size_sp           = 1,
+  color_pool          = "darkgreen",
+  fill_pool           = "white",
+  shape_pool          = 21,
+  size_pool           = 1,
   plot_ch           = TRUE,
-  color_ch          = "black", 
-  fill_ch           = "white", 
+  color_ch          = "black",
+  fill_ch           = "white",
   alpha_ch          = 0.5,
-  plot_vertices     = TRUE, 
-  color_vert        = "blueviolet", 
+  plot_vertices     = TRUE,
+  color_vert        = "blueviolet",
   fill_vert         = "blueviolet",
-  shape_vert        = 23, 
+  shape_vert        = 23,
   size_vert         = 1,
- plot_sp_nm         = NULL, 
- nm_size            = 3, 
- nm_color           = "black", 
+ plot_sp_nm         = NULL,
+ nm_size            = 3,
+ nm_color           = "black",
  nm_fontface        = "plain",
  check_input        = TRUE)
 }
