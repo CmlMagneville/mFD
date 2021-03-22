@@ -333,6 +333,8 @@ pool.plot <-function(ggplot_bg,
 #' ignored and if \code{asb_sp_relatw != NULL}, \code{size_sp} and 
 #' \code{size_vert} are ignored.
 #' 
+#' @author Camille Magneville and Sébastien Villéger
+#' 
 #' 
 
 sp.plot <-function(ggplot_bg,
@@ -437,6 +439,62 @@ sp.plot <-function(ggplot_bg,
     ggplot2::scale_fill_manual(name = "asb_vert", values = fill_asb_vert)
   
   return(ggplot_sp)
+  
+}
+
+
+
+
+#' Plot individual plots along a pair of functional axes into a unique graph
+#' 
+#' This function gathers panels into a unique \code{patchwork} graph 
+#' with caption
+#' 
+#' @param panels a list of ggplot objects illustrating an index on two given 
+#' functional axes. There must be either one, three or six ggplot objects given
+#' the number of studied functional axes.
+#' 
+#' @param plot_caption a ggplot object illustrating the caption of the 
+#' final patchwork plot.
+#' 
+#' @return a unique ggplot object gathering functional ppanels and caption
+#' 
+#' @author Camille Magneville and Sébastien Villéger
+#' 
+
+panels.to.patchwork <- function(panels, plot_caption) {
+  
+  plot_nb <- length(panels)
+  
+  # if 2 axes = 1 plot + caption:
+  if (plot_nb == 1) { 
+    
+    patchwork_plots_all <- panels[[1]] + plot_caption +
+      patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1, 1),
+                             ncol = 2, nrow = 1, guides = "collect")
+  }
+  
+  # if 3 axes = 3 plots + caption in a 2*2 layout:
+  if (plot_nb == 3) {
+    patchwork_plots_all <- (panels[[1]] + plot_caption +
+                              panels[[2]] + panels[[3]]) +
+      patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1, 1),
+                             ncol = 2, nrow = 2, guides = "collect")
+  }
+  
+  # if 4 axes = 6 plots + caption in a 3*3 layout with 2 empty cases:
+  if (plot_nb == 6) {
+    patchwork_plots_all <- (panels[[1]] + patchwork::plot_spacer() +
+                              plot_caption +
+                              panels[[2]] + panels[[3]] +
+                              patchwork::plot_spacer() +
+                              panels[[4]] + panels[[5]] + panels[[6]]) +
+      patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3),
+                             widths = rep(1, 3), ncol = 3, nrow = 3,
+                             guides = "collect")
+  }
+  
+  return(patchwork_plots_all)
   
 }
 
