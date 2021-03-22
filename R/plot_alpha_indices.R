@@ -35,7 +35,7 @@
 #'  labels than \code{faxes} ones. Default: faxes_nm = faxes (labels will the
 #'  the same that \code{faxes} ones).
 #'
-#' @param range_faxes_lim a vector with minimum and maximum for values for axes.
+#' @param range_faxes a vector with minimum and maximum for values for axes.
 #'  Note that to have a fair representation of position of species in all plots,
 #'  all axes must have the same range. Default: faxes_lim = c(NA, NA) (the range
 #'  is computed according to the range of values among all axes, all axes having
@@ -299,7 +299,7 @@
 #'  fd_ind_values         = fd_ind_values_fruits,
 #'  faxes                 = NULL, 
 #'  faxes_nm              = NULL,
-#'  range_faxes_lim       = c(NA, NA),
+#'  range_faxes       = c(NA, NA),
 #'  color_bg              = "grey95",
 #'  size_sp               = 1,
 #'  size_centroid         = 1,
@@ -353,7 +353,7 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
                                 asb_vect,
                                 fd_ind_values,
                                 faxes = NULL, faxes_nm = NULL,
-                                range_faxes_lim = c(NA, NA),
+                                range_faxes = c(NA, NA),
                                 color_bg = "grey95",
                                 size_sp = 1,
                                 size_centroid = 1,
@@ -485,11 +485,11 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   funct_space_output <- funct.space.plot(sp_faxes_coord, faxes = faxes, 
                                          name_file = name_file,
                                          faxes_nm = faxes_nm, 
-                                         range_faxes_lim = c(NA, NA),
+                                         range_faxes = c(NA, NA),
                                          color_bg = color_bg,
-                                         color_sp = NA, fill_sp = NA,  
-                                         shape_sp = shape_sp_gp, 
-                                         size_sp = size_sp,
+                                         color_pool = NA, fill_pool = NA,  
+                                         shape_pool = shape_sp_gp, 
+                                         size_pool = size_sp,
                                          plot_ch = plot_ch,  
                                          color_ch = color_ch, 
                                          fill_ch = fill_ch, 
@@ -555,9 +555,9 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   col_nb <- ncol(sp_coord2)
   
   # set range of axes if c(NA, NA):
-  if (is.na(range_faxes_lim[1]) && is.na(range_faxes_lim[2])) {
+  if (is.na(range_faxes[1]) && is.na(range_faxes[2])) {
     range_sp_coord  <- range(sp_faxes_coord)
-    range_faxes_lim <- range_sp_coord +
+    range_faxes <- range_sp_coord +
       c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
   }
   
@@ -1715,65 +1715,65 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   
   if (length(asb_vect) == 1) {
     
-    spread_faxes <- (range_faxes_lim[2] - range_faxes_lim[1])
+    spread_faxes <- (range_faxes[2] - range_faxes[1])
     
     plot_caption0 <- ggplot2::ggplot(sp_faxes_coord) +
-      ggplot2::scale_x_continuous(limits = range_faxes_lim, expand = c(0,0)) +
-      ggplot2::scale_y_continuous(limits = range_faxes_lim, expand = c(0,0)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0,0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0,0)) +
       ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
-      ggplot2::geom_rect(xmin = range_faxes_lim[1], xmax = range_faxes_lim[2],
-                         ymin = range_faxes_lim[1], ymax = range_faxes_lim[2],
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
                          fill = "white", colour = "black")
     
     # if indices to plot are not reduced to FRic:
     plot_caption <- plot_caption0 +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.10,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.10,
                           colour = color_sp, fill = fill_sp, shape = shape_sp,
                           size = size_sp) +
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.10,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.10,
                          label = paste0(nrow(sp_coord_asb_1), " species for ", 
                                         asb_vect[1]),
                          colour = color_sp, hjust = 0) +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.25,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.25,
                           colour = color_vert, shape = shape_vert,
                           size = size_vert, fill = fill_vert) +
       
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.25,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.25,
                          label = c("vertices"),
                          colour = color_vert, hjust = 0) +
       
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.40,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.40,
                          label = paste0("plotted along ", length(faxes),
                                         "axes from the ",
                                         ncol(sp_coord_asb_1), 
                                         "-dimensional space"),  
                          hjust = 0) +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.55,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.55,
                           colour = color_sp, shape = shape_sp,
                           size = scale_inf, fill = fill_sp) +
       
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.55,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.55,
                          label = paste0("relative weight", sep = " ", 
                                         min(sp_coord_asb_w_1)),
                          colour = color_sp, hjust = 0) +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.70,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.70,
                           colour = color_sp, fill = fill_sp, shape = shape_sp,
                           size = scale_sup) +
       
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.70,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.70,
                          label = paste0("relative weight", sep = " ", 
                                         max(sp_coord_asb_w_1)),
                          colour = color_sp, hjust = 0)
@@ -1783,41 +1783,41 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       plot_caption_fric <- plot_caption0 +
         
-        ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                            y = range_faxes_lim[2] - spread_faxes*0.25,
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                            y = range_faxes[2] - spread_faxes*0.25,
                             colour = color_sp, fill = fill_sp, shape = shape_sp,
                             size = size_sp) +
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                           y = range_faxes_lim[2] - spread_faxes*0.25,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                           y = range_faxes[2] - spread_faxes*0.25,
                            label = paste0(nrow(sp_coord_asb_1), " species for ", 
                                           asb_vect[1]),
                            colour = color_sp, hjust = 0) +
         
-        ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                            y = range_faxes_lim[2] - spread_faxes*0.45,
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                            y = range_faxes[2] - spread_faxes*0.45,
                             colour = color_vert, shape = shape_vert,
                             size = size_vert, fill = fill_vert) +
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                           y = range_faxes_lim[2] - spread_faxes*0.45,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                           y = range_faxes[2] - spread_faxes*0.45,
                            label = c("vertices"),
                            colour = color_vert, hjust = 0) +
         
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                           y = range_faxes_lim[2] - spread_faxes*0.65,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                           y = range_faxes[2] - spread_faxes*0.65,
                            label = paste0("plotted along ", length(faxes),
                                           "axes from the ",
                                           ncol(sp_coord_asb_1), 
                                           "-dimensional space"),
                            hjust = 0) +
         
-        ggplot2::geom_rect(xmin = range_faxes_lim[1] + spread_faxes*0.05,
-                           xmax = range_faxes_lim[1] + spread_faxes*0.15,
-                           ymin = range_faxes_lim[2] - spread_faxes*0.88,
-                           ymax = range_faxes_lim[2] - spread_faxes*0.92,
+        ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.05,
+                           xmax = range_faxes[1] + spread_faxes*0.15,
+                           ymin = range_faxes[2] - spread_faxes*0.88,
+                           ymax = range_faxes[2] - spread_faxes*0.92,
                            fill = color_sp, alpha = alpha_ch) +
         
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.20,
-                           y = range_faxes_lim[2] - spread_faxes*0.90,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.20,
+                           y = range_faxes[2] - spread_faxes*0.90,
                            label = paste0("convex hull of", sep = " ", 
                                           asb_vect[1]),
                            colour = color_sp, hjust = 0)
@@ -1829,82 +1829,82 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   ## If 2 asb to plot:
   
   if (length(asb_vect) == 2) {
-    spread_faxes <- (range_faxes_lim[2]- range_faxes_lim[1])
+    spread_faxes <- (range_faxes[2]- range_faxes[1])
     
     plot_caption0 <- ggplot2::ggplot(sp_faxes_coord) +
-      ggplot2::scale_x_continuous(limits = range_faxes_lim, expand = c(0,0)) +
-      ggplot2::scale_y_continuous(limits = range_faxes_lim, expand = c(0,0)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0,0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0,0)) +
       ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
-      ggplot2::geom_rect( xmin = range_faxes_lim[1], xmax = range_faxes_lim[2],
-                          ymin = range_faxes_lim[1], ymax = range_faxes_lim[2],
+      ggplot2::geom_rect( xmin = range_faxes[1], xmax = range_faxes[2],
+                          ymin = range_faxes[1], ymax = range_faxes[2],
                           fill = "white", colour = "black")
     
     # if indices to plot are not reduced to FRic:
     
     plot_caption <- plot_caption0 +
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.10,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.10,
                           colour = color_sp, fill = fill_sp, shape = shape_sp,
                           size = size_sp) +
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.10,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.10,
                          label = paste0(nrow(sp_coord_asb_1), " species for ", 
                                         asb_vect[1]),
                          colour = color_sp, hjust = 0) +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.20,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.20,
                           colour = color_sp_asb2, fill = fill_sp_asb2,
                           shape = shape_sp_asb2, size = size_sp) +
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.20,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.20,
                          label = paste0(nrow(sp_coord_asb_2), " species for ", 
                                         asb_vect[2]),
                          colour = color_sp_asb2, hjust = 0) +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.30,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.30,
                           colour = color_vert, shape = shape_vert,
                           size = size_vert, fill = fill_vert) +
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.30,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.30,
                          label = paste0("vertices of", sep = " ", asb_vect[1]),
                          colour = color_vert, hjust = 0) +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.40,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.40,
                           colour = color_vert_asb2, shape = shape_vert_asb2,
                           size = size_vert, fill = fill_vert_asb2) +
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.40,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.40,
                          label = paste0("vertices of", sep = " ", asb_vect[2]),
                          colour = color_vert_asb2, hjust = 0) +
       
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.60,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.60,
                          label = paste0("plotted along ", length(faxes),
                                         "axes from the ",
                                         ncol(sp_faxes_coord), 
                                         "-dimensional space"),
                          hjust = 0) +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.80,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.80,
                           colour = "black", fill = "black", shape = shape_sp,
                           size = scale_inf) +
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.80,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.80,
                          label = paste0("relative weight", sep = " ",
                                         min(min(sp_coord_asb_w_1), 
                                             min(sp_coord_asb_w_2))),
                          colour = "black", hjust = 0) +
       
-      ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                          y = range_faxes_lim[2] - spread_faxes*0.90,
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                          y = range_faxes[2] - spread_faxes*0.90,
                           colour = "black", fill = "black", shape = shape_sp,
                           size = scale_sup) +
-      ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                         y = range_faxes_lim[2] - spread_faxes*0.90,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                         y = range_faxes[2] - spread_faxes*0.90,
                          label = paste0("relative weight", sep = " ",
                                         max(max(sp_coord_asb_w_1), 
                                             max(sp_coord_asb_w_2))),
@@ -1915,71 +1915,71 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
       
       plot_caption_fric <- plot_caption0 +
         
-        ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                            y = range_faxes_lim[2] - spread_faxes*0.10,
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                            y = range_faxes[2] - spread_faxes*0.10,
                             colour = color_sp, fill = fill_sp, shape = shape_sp,
                             size = size_sp) +
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                           y = range_faxes_lim[2] - spread_faxes*0.10,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                           y = range_faxes[2] - spread_faxes*0.10,
                            label = paste0(nrow(sp_coord_asb_1), " species"),
                            colour = color_sp, hjust = 0) +
         
-        ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                            y = range_faxes_lim[2] - spread_faxes*0.20,
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                            y = range_faxes[2] - spread_faxes*0.20,
                             colour = color_sp_asb2, fill = fill_sp_asb2,
                             shape = shape_sp_asb2,
                             size = size_sp) +
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                           y = range_faxes_lim[2] - spread_faxes*0.20,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                           y = range_faxes[2] - spread_faxes*0.20,
                            label = paste0(nrow(sp_coord_asb_2), " species"),
                            colour = color_sp_asb2, hjust = 0) +
         
-        ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                            y = range_faxes_lim[2] - spread_faxes*0.30,
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                            y = range_faxes[2] - spread_faxes*0.30,
                             colour = color_vert, shape = shape_vert,
                             size = size_vert, fill = fill_vert) +
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                           y = range_faxes_lim[2] - spread_faxes*0.30,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                           y = range_faxes[2] - spread_faxes*0.30,
                            label = paste0("vertices of", sep = " ", 
                                           asb_vect[1]),
                            colour = color_vert, hjust = 0) +
         
-        ggplot2::geom_point(x = range_faxes_lim[1] + spread_faxes*0.1,
-                            y = range_faxes_lim[2] - spread_faxes*0.40,
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
+                            y = range_faxes[2] - spread_faxes*0.40,
                             colour = color_vert_asb2, shape = shape_vert_asb2,
                             size = size_vert, fill = fill_vert_asb2) +
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                           y = range_faxes_lim[2] - spread_faxes*0.40,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                           y = range_faxes[2] - spread_faxes*0.40,
                            label = paste0("vertices of", sep = " ", 
                                           asb_vect[2]),
                            colour = color_vert_asb2, hjust = 0) +
         
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.15,
-                           y = range_faxes_lim[2] - spread_faxes*0.50,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
+                           y = range_faxes[2] - spread_faxes*0.50,
                            label = paste0("plotted along ", length(faxes),
                                           "axes from the ",
                                           ncol(sp_faxes_coord), 
                                           "-dimensional space"),
                            hjust = 0) +
         
-        ggplot2::geom_rect(xmin = range_faxes_lim[1] + spread_faxes*0.05,
-                           xmax = range_faxes_lim[1] + spread_faxes*0.15,
-                           ymin = range_faxes_lim[2] - spread_faxes*0.63,
-                           ymax = range_faxes_lim[2] - spread_faxes*0.67,
+        ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.05,
+                           xmax = range_faxes[1] + spread_faxes*0.15,
+                           ymin = range_faxes[2] - spread_faxes*0.63,
+                           ymax = range_faxes[2] - spread_faxes*0.67,
                            fill = color_sp, alpha = alpha_ch) +
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.20,
-                           y = range_faxes_lim[2] - spread_faxes*0.65,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.20,
+                           y = range_faxes[2] - spread_faxes*0.65,
                            label = paste0("convex hull of", sep = " ", 
                                           asb_vect[1]),
                            colour = color_sp, hjust = 0) +
         
-        ggplot2::geom_rect(xmin = range_faxes_lim[1] + spread_faxes*0.05,
-                           xmax = range_faxes_lim[1] + spread_faxes*0.15,
-                           ymin = range_faxes_lim[2] - spread_faxes*0.83,
-                           ymax = range_faxes_lim[2] - spread_faxes*0.87,
+        ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.05,
+                           xmax = range_faxes[1] + spread_faxes*0.15,
+                           ymin = range_faxes[2] - spread_faxes*0.83,
+                           ymax = range_faxes[2] - spread_faxes*0.87,
                            fill = color_sp_asb2, alpha = alpha_ch) +
-        ggplot2::geom_text(x = range_faxes_lim[1] + spread_faxes*0.20,
-                           y = range_faxes_lim[2] - spread_faxes*0.85,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.20,
+                           y = range_faxes[2] - spread_faxes*0.85,
                            label = paste0("convex hull of", sep = " ", 
                                           asb_vect[2]),
                            colour = color_sp_asb2, hjust = 0)

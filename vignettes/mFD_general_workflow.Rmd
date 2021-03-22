@@ -729,8 +729,8 @@ first four functional axes will be plotted.
 * `faxes_nm` is a vector containing labels of `faxes` (following faxes vector
 rank). If `NULL`, labels follow `faxes` vector names.
 
-* `range_faxes_lim` is a vector to complete if the user wants to set specific
-limits for functional axes. If `range_faxes_lim = c(NA, NA)`, the range is
+* `range_faxes` is a vector to complete if the user wants to set specific
+limits for functional axes. If `range_faxes = c(NA, NA)`, the range is
 computed according to the range of values among all axes.
 
 * `convex_pool` is a logical value used to draw or not the 2D convex-hull filled
@@ -770,12 +770,12 @@ big_plot <- mFD::funct.space.plot(
   faxes           = NULL,
   name_file       = NULL,
   faxes_nm        = NULL,
-  range_faxes_lim = c(NA, NA),
+  range_faxes     = c(NA, NA),
   color_bg        = "grey95",
-  color_sp        = "darkgreen",
-  fill_sp         = "white",
-  shape_sp        = 21,
-  size_sp         = 1,
+  color_pool      = "darkgreen",
+  fill_pool       = "white",
+  shape_pool      = 21,
+  size_pool       = 1,
   plot_ch         = TRUE,
   color_ch        = "black",
   fill_ch         = "white",
@@ -808,30 +808,30 @@ axis**:
 ```{r, fig.height = 10, fig.width = 10, fig.align = "center"}
 
 big_plot <- mFD::funct.space.plot(
-                                  sp_faxes_coord  = sp_faxes_coord_fruits,
-                                  faxes           = NULL,
-                                  name_file       = NULL,
-                                  faxes_nm        = NULL,
-                                  range_faxes_lim = c(NA, NA),
-                                  color_bg        = "grey95",
-                                  color_sp        = "darkgreen",
-                                  fill_sp         = "white",
-                                  shape_sp        = 21,
-                                  size_sp         = 1,
-                                  plot_ch         = TRUE,
-                                  color_ch        = "black",
-                                  fill_ch         = "white",
-                                  alpha_ch        = 0.5,
-                                  plot_vertices   = TRUE,
-                                  color_vert      = "blueviolet",
-                                  fill_vert       = "blueviolet",
-                                  shape_vert      = 23,
-                                  size_vert       = 1,
-                                  plot_sp_nm      = NULL,
-                                  nm_size         = 3,
-                                  nm_color        = "black",
-                                  nm_fontface     = "plain",
-                                  check_input     = TRUE)
+  sp_faxes_coord  = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+  faxes           = NULL,
+  name_file       = NULL,
+  faxes_nm        = NULL,
+  range_faxes     = c(NA, NA),
+  color_bg        = "grey95",
+  color_pool      = "darkgreen",
+  fill_pool       = "white",
+  shape_pool      = 21,
+  size_pool       = 1,
+  plot_ch         = TRUE,
+  color_ch        = "black",
+  fill_ch         = "white",
+  alpha_ch        = 0.5,
+  plot_vertices   = TRUE,
+  color_vert      = "blueviolet",
+  fill_vert       = "blueviolet",
+  shape_vert      = 23,
+  size_vert       = 1,
+  plot_sp_nm      = NULL,
+  nm_size         = 3,
+  nm_color        = "black",
+  nm_fontface     = "plain",
+  check_input     = TRUE)
 # Plot the graph with all pairs of axes:
 big_plot[[7]]
 ```
