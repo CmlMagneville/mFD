@@ -364,8 +364,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         vert_nm <- NULL
       }
       # compute fdiv value:
-      if (is.null(vert_nm)) {
-        fdiv <- fdiv.computation(sp_faxes_coord_k, 
+      fdiv <- fdiv.computation(sp_faxes_coord_k, 
                                  asb_sp_relatw_k, vert_nm = vert_nm, 
                                  k, check_input = check_input)
         # scale and fill the matrix if scaling:
@@ -382,7 +381,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
         # fill the list of mean distance to gravity center
         # of species present...  ... in each assemblage:
         mean_dtogravcenter_all_asb[[k]] <- fdiv$details$mean_dtoB
-      }
+      
       
     }
     
@@ -479,7 +478,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     if ("fspe" %in% ind_vect) {
       
       # compute specialization of each species in the
-      # global pool i.e. ...  ... distances to the
+      # global pool i.e. distances to the
       # centroid of the global pool of species:
       # coordinates of the gravity center of the
       # vertices:
