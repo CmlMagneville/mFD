@@ -4,28 +4,15 @@
 #' functional indices, functional indices values must have been retrieve through
 #' the use of the} \code{\link{alpha.fd.multidim}} \strong{function}.
 #'
-#' @param sp_faxes_coord a matrix of species coordinates in a chosen
-#'   functional space. Species coordinates have been retrieved thanks to
-#'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
+#' @param output_alpha_fd_multidim a list of objects retrieved through the 
+#' \code{\link{alpha.fd.multidim}} function.
+#' 
+#' @param plot_asb_nm a vector containing name(s) of assemblage(s) to plot 
 #'
-#' @param asb_sp_w a matrix linking weight of species (columns) and a set of
-#'  assemblages (rows)
-#'
-#' @param ind_vect a vector of character string of the name of functional
+#' @param ind_nm a vector of character string of the name of functional
 #'   indices to plot. \strong{Indices names must be written in lower case
 #'   letters}. Possible indices to compute are: "fdis", "feve", "fric", "fdiv",
 #'   "fori" and "fspe". Default: all the indices are computed.
-#'
-#' @param details_list a list retrieved with the
-#'  \code{\link{alpha.fd.multidim}} function containing information about
-#'  features used to compute indices.
-#'
-#' @param asb_vect a vector containing the name of the assemblages to represent.
-#'  Two assemblages can be represented in each plot if asked by the user.
-#'
-#' @param fd_ind_values a dataframe containing the numeric value of each
-#'   computed indices. This dataframe is an output of the
-#'   \code{\link{alpha.fd.multidim}} function.
 #'
 #' @param faxes a vector with names of axes to plot. \strong{You can only plot
 #'  from 2 to 4 axes for graphical reasons: vector length should be between 2
@@ -44,190 +31,82 @@
 #' @param color_bg a R color name  or an hexadecimal code used to fill plot
 #'  background. Default: `color_bg = "grey95"`.
 #'
-#' @param size_sp a numeric value referring to the size of species belonging to
-#'  the global pool but not the plotted assemblage. Default: `size_sp = 1`.
+#' @param size_sp a vector gathering numeric values referring to the size of 
+#' species belonging to the global pool and the plotted assemblage(s).
+#' It should be written  as c(pool = "...", asb1 = "...", ...). 
+#' If several assemblages, names should be written as in `plot_asb_nm`.
+#' 
+#' @param size_sp_nm a numeric value referring to the size of species names 
+#' if plotted. 
 #'
-#' @param size_centroid a numeric value referring to the size of the centroid
-#'  point. Used for FDiv, FSpe, FDis plotting. Default: `size_centroid = 1`.
+#' @param color_sp a vector gathering R color names or hexadecimal codes 
+#' referring to the color of species from the global pool and studied 
+#' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
+#' If several assemblages, names should be written as in `plot_asb_nm`.
+#' 
+#' @param color_vert a vector gathering R color names or hexadecimal codes 
+#' referring to the color of vertices from the global pool and studied 
+#' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
+#' If several assemblages, names should be written as in `plot_asb_nm`.
+#' 
+#' @param color_centroid_fspe a vector gathering R color name or 
+#' hexadecimal code used to draw FSpe centroid (i.e. center of the 
+#' functional space) color. 
 #'
-#' @param size_centroid_asb2 a numeric value referring to the size of the
-#'  centroid point for the second assemblage to plot if there is one. Used for
-#'  FDiv, FSpe, FDis plotting. Default: `size_centroid = 1`.
+#' @param color_ch a vector gathering R color names or hexadecimal codes 
+#' referring to the color of the convex pool of the global pool and studied 
+#' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
+#' If several assemblages, names should be written as in `plot_asb_nm`.
+#' 
+#' @param color_sp_nm a R color name or hexadecimal code referring to the 
+#' color of names of species if plotted.
 #'
-#' @param size_vert a numeric value referring to the size of symbol for vertices
-#'  Default: `size_vert = 1`.
+#' @param fill_sp a vector gathering R color names or hexadecimal codes 
+#' referring to the filled color of species from the global pool and studied 
+#' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
+#' If several assemblages, names should be written as in `plot_asb_nm`.
+#' 
+#' @param fill_vert a vector gathering R color names or hexadecimal codes 
+#' referring to the filled color of vertices from the global pool and studied 
+#' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
+#' If several assemblages, names should be written as in `plot_asb_nm`.
 #'
-#' @param size_sp_nm a numeric value for size of species label. Default:
-#'  `size_sp_nm = 3`.
+#' @param fill_ch a vector gathering R color names or hexadecimal codes 
+#' referring to the color to fill the convex pool of the global pool and studied 
+#' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
+#' If several assemblages, names should be written as in `plot_asb_nm`.
 #'
-#' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage.  This color is also used for FRic
-#'  convex hull color. Default: `color_sp = "#0072B2"`.
+#' @param alpha_ch a vector gathering numeric values referring to the opacity of 
+#' convex hulls of the global pool and the plotted assemblage(s).
+#' It should be written  as c(pool = "...", asb1 = "...", ...).
+#' (0 = high transparency, 1 = no transparency). If several assemblages, names 
+#' should be written as in `plot_asb_nm`.
 #'
-#' @param color_sp_asb2 a R color name or an hexadecimal code referring to the
-#'  colour of species from the second assemblage to plot if there is one. This
-#'  color is also used for FRic convex hull color. Default is: 
-#'  `color_sp_asb2 = "#D55E00"`.
+#' @param shape_sp a vector gathering numeric values referring to the symbol 
+#' used to draw species from the global pool and the plotted assemblage(s).
+#' It should be written  as c(pool = "...", asb1 = "...", ...).
+#' (0 = high transparency, 1 = no transparency). If several assemblages, names 
+#' should be written as in `plot_asb_nm`.
 #'
-#' @param color_sp_gp a R color name or an hexadecimal code to give to species
-#'  that do not belong to the studied assemblages. Default is: 
-#'  `color_sp_global_pool = "gray80"`.
-#'
-#' @param color_segment a R color name or an hexadecimal code referring to the
-#'  color of segments linking species of the studied assemblage and/or centroid
-#'  for FDiv, FEve, FSpe, FOri, FNND, FDis computation. Defaut is the same than
-#'  \code{color_sp} ; Default: `color_segment = "#0072B2"`.
-#'
-#' @param color_segment_asb2 a R color name or an hexadecimal code referring to
-#'  the color of segments linking species and/or centroid of the second
-#'  assemblage to plot if there is one for FDiv, FEve, FSpe, FOri, FNND, FDis
-#'  computation. Defaut is the same than \code{color_sp_asb2} ; Default:
-#'  `color_segment = "#0072B2"`.
-#'
-#' @param color_centroid a R color name or an hexadecimal code referring to the
-#'  color of the centroid point. Used for FDiv, FSpe, FDis plotting. Default:
-#'  color_centroid = 1. Defaut is the same than \code{color_sp} ; Default:
-#'  `color_segment = "#0072B2"`.
-#'
-#' @param color_centroid_asb2 a R color name or an hexadecimal code referring to
-#'  the color of the centroid point for the second assemblage to plot if there
-#'  is one. Used for FDiv, FSpe, FDis plotting. Default: color_centroid = 1.
-#'  Defaut is the same than \code{color_sp_asb2} ; Default: 
-#'  `color_segment = "#0072B2"`.
-#'
-#' @param color_vert a R color name or an hexadecimal code referring to the
-#'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
-#'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-#'   must also be set to NA). Default: `color_vert =  NA`.
-#'
-#' @param color_vert_asb2 a R color name or an hexadecimal code referring to the
-#'  color of vertices if plotted for the second assemblage. If color_vert = NA,
-#'  vertices are not plotted (for shapes only defined by color, ie shape < 20.
-#'  Otherwise fill must also be set to NA). Default: `color_vert_asb2 =  NA`.
-#'
-#' @param color_ch a R color name or an hexadecimal code referring to the border
-#'  of the convex hull filled by the pool of species. Default: 
-#'  `color_ch = "black"`.
-#'
-#' @param color_sp_nm a R color name or an hexadecimal code referring to the
-#'  colour of species label. Default: `color_sp_nm = "black"`.
-#'
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-#'  hull. Default: `fill_sp = '#0072B2'`.
-#'
-#' @param fill_sp_gp a R color name or an hexadecimal code referring to the
-#'  colour to fill symbol for species from the global pool (if \code{shape_sp}
-#'   superior to 20). Default: `fill_sp_gp = "grey80"`.
-#'
-#' @param fill_sp_asb2 a R color name or an hexadecimal code referring to the
-#'   colour to fill species symbol for the second assemblage (if \code{shape_sp}
-#'   superior to 20) and its associated convex hull. Default: 
-#'   `fill_sp_asb2 = 'white'`.
-#'
-#' @param fill_vert a character value referring to the color for filling symbol
-#'   for vertices (if \code{shape_vert} >20). If `fill = NA` and `color = NA`,
-#'   vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-#'   `color_vert = NULL` is enough). Default is `NA.`
-#'
-#' @param fill_vert_asb2 a character value referring to the color for filling
-#'   symbol for vertices (if \code{shape_vert} superior to 20) for the second
-#'   assemblage. If `fill = NA` and `color = NA`, vertices are not plotted (if
-#'   \code{shape_vert} superior to 20. Otherwise `color_vert = NA` is enough).
-#'   Default is `NA`.
-#'
-#' @param fill_ch a R color name or an hexadecimal code referring to the filling
-#'  of the convex hull filled by the pool of species. Default is: 
-#'  `fill_ch = "white"`.
-#'
-#' @param fill_centroid a R color name or an hexadecimal code referring to the
-#'  filling of the centroid (if \code{shape_centroid} superior to 20). Default:
-#'  `fill_centroid = '#0072B2'`.
-#'
-#' @param fill_centroid_asb2 a R color name or an hexadecimal code referring to
-#'  the filling of the centroid of the second assemblage (if
-#'  \code{shape_centroid} superior to 20). Default: `fill_centroid = "#D55E00"`.
-#'
-#' @param alpha_ch a numeric value for transparency of the filling of the convex
-#'  hull (0 = high transparency, 1 = no transparency). Default is `0.3`.
-#'
-#' @param shape_sp_gp a numeric value referring to the shape used to plot
-#'   species belonging to the global pool but not to the studied assemblage(s).
-#'   Default: `shape_sp_global_pool = 3` (horizontal cross).
-#'
-#' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
-#'  (filled circle).
-#'
-#' @param shape_sp_asb2 a numeric value referring to the shape used to plot
-#'  species belonging to the second assemblage to plot if there is one. Default:
-#'  `shape_sp_asb2 = 15` (filled square).
-#'
-#' @param shape_vert a numeric value referring to the shape used to plot
-#'   vertices if vertices should be plotted in a different way than other
-#'   species. If `shape_vert = NA`, no vertices plotted. Default: 
-#'   `shape_vert = NA`.
-#'
-#' @param shape_vert_asb2 a numeric value referring to the shape used to plot
-#'  vertices of the second assemblage if vertices should be plotted in a
-#'  different way than other species. If `shape_vert = NA`, no vertices plotted.
-#'  Default: `shape_vert_asb2 = NA`.
-#'
-#' @param shape_centroid a numeric value referring to the shape used to plot
-#'  centroid for the given assemblage. Default: `shape_centroid = 10` 
-#'  (horizontal cross inside an empty circle).
-#'
-#' @param shape_centroid_asb2 a numeric value referring to the shape used to
-#'   plot centroid for the second assemblage to plot if there is one. Default:
-#'   `shape_centroid_asb2 = 12` (horizontal cross inside an empty square).
-#'
-#' @param shape_vert a numeric value referring to the symbol used to show
-#'  vertices position if \code{plot_vertices} = TRUE. Default is `23` (filled
-#'  diamond).
-#'
-#' @param segment_size a numeric value referring to the size of the segment used
-#'  to link species of a given assemblage and centroid. Default: 
-#'  `segment_size = 1`.
-#'
-#' @param segment_size_asb2 a numeric value referring to the size of the segment
-#'  used to link species of the second assemblage and centroid. Default:
-#'  `segment_size = 0.5`.
-#'
-#' @param linetype_segment a character string or the associated numeric value
-#'  referring the type of line used for segments linking species of the studied
-#'  assemblage and/or centroid for FDiv, FEve, FSpe, FOri, FNND, FDis
-#'  computation. Default: `linetype_segment = "solid"`.
-#'
-#' @param linetype_segment_asb2 a character string or the associated numeric
-#'  value referring the type of line used for segments linking species and/or
-#'  centroid of the second assemblage to plot if there is one. Used for FDiv,
-#'  FEve, FSpe, FOri, FNND, FDis computation. Default: 
-#'  `linetype_segment = "dashed"`.
-#'
-#' @param scale_inf a numeric value referring to the minimal size of a point in
-#'   a plot according to each species's relative weight. Default: 
-#'   `scale_inf = 1`.
-#'
-#' @param scale_sup a numeric value referring to the minimal size of a point in
-#'   a plot according to each species's relative weight. Default: 
-#'   `scale_inf = 3`.
+#' @param shape_centroid_fdis a vector gathering numeric value(s) used to draw 
+#' FDis centroid size. If several assemblages, names should be written as 
+#' in `plot_asb_nm`. 
+#'  
+#' @param shape_centroid_fdiv a vector gathering numeric value(s) used to draw 
+#' FDiv centroid size. If several assemblages, names should be written as 
+#' in `plot_asb_nm`. 
+#' 
+#' @param shape_centroid_fspe a vector gathering numeric value used to draw 
+#' FSpe centroid (i.e. center of the functional space) size. 
 #'
 #' @param plot_sp_nm a vector containing species names that are to be plotted.
 #'  Default: `plot_nm_sp = NULL` (no name plotted).
 #'
-#' @param plot_ch a logical value indicating whether the convex hull shaping the
-#'  pool of species should be illustrated. If plot_ch = TRUE, convex hull of all
-#'  species in the multidimensional space described in \code{sp_faxes_coord} is
-#'  computed and its projection in 2D spaces are drawn as polygons. Default:
-#' ` plot_ch = TRUE`.
+#' @param fontface_sp_nm a character string for font of species labels (e.g.
+#'  "italic", "bold"). Default: `fontface_sp_nm = 'plain'`.
 #'
-#' @param fontface_nm a character string for font of species labels (e.g.
-#'  "italic", "bold"). Default: `fontface_nm = 'plain'`.
-#'
-#' @param name_file a character string with name of file to save the figure
-#'  (without extension). Default is 'NULL' which means plot is displayed.
-#'  If several plots are to be saved (for several indices), then files are
-#'  named as follow "name_file1", "name_file2"...
+#' @param save_file a logical value telling if plots should be locally 
+#' saved or not.
 #'
 #' @param check_input a logical value indicating whether key features the inputs
 #'   are checked (e.g. class and/or mode of objects, names of rows and/or
@@ -239,21 +118,21 @@
 #'   four axes.
 #'
 #' @export
-#' 
-#' @author Camille Magneville and Sebastien Villeger
-#' 
+#'
+#' @author Camille Magneville and Sébastien Villéger
+#'
 #' @examples
 #' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
-#' 
-#' # Load Assemblages*Species dataframe:      
-#' data("baskets_fruits_weights", package = "mFD") 
-#' 
+#'
+#' # Load Assemblages*Species dataframe:
+#' data("baskets_fruits_weights", package = "mFD")
+#'
 #' # Load Traits categories dataframe:
-#' data("fruits_traits_cat", package = "mFD") 
-#'  
-#' # Compute functional distance 
+#' data("fruits_traits_cat", package = "mFD")
+#'
+#' # Compute functional distance
 #' sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
 #'                                   tr_cat        = fruits_traits_cat,
 #'                                   metric        = "gower",
@@ -261,2200 +140,152 @@
 #'                                   ordinal_var   = "classic",
 #'                                   weight_type   = "equal",
 #'                                   stop_if_NA    = TRUE)
-#'   
+#'
 #' # Compute functional spaces quality to retrieve species coordinates matrix:
-#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits, 
+#' fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
 #'  maxdim_pcoa         = 10,
 #'  deviation_weighting = "absolute",
 #'  fdist_scaling       = FALSE,
 #'  fdendro             = "average")
-#'  
+#'
 #' # Retrieve species coordinates matrix:
 #' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
-#' 
+#'
 #' # Compute alpha diversity indices:
 #' alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
 #'   sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
-#'   asb_sp_w         = baskets_fruits_weights, 
-#'   ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", 
+#'   asb_sp_w         = baskets_fruits_weights,
+#'   ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv",
 #'                        "fori", "fspe"),
-#'   scaling          = TRUE, 
-#'   check_input      = TRUE, 
+#'   scaling          = TRUE,
+#'   check_input      = TRUE,
 #'   details_returned = TRUE)
-#'   
+#'
 #' # Retrieve alpha diversity indices table:
 #' fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 #' fd_ind_values_fruits
-#' # Retrieve a list of details needed for plots:
-#' details_list_fruits <- alpha_fd_indices_fruits$details
-#' 
-#' # Compute the plots:
-#' mFD::alpha.multidim.plot(
-#'  sp_faxes_coord        = sp_faxes_coord_fruits, 
-#'  asb_sp_w              = baskets_fruits_weights,
-#'  ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", "fori", 
-#'                            "fspe"),
-#'  details_list          = details_list_fruits,
-#'  asb_vect              = c("basket_1"),
-#'  fd_ind_values         = fd_ind_values_fruits,
-#'  faxes                 = NULL, 
-#'  faxes_nm              = NULL,
-#'  range_faxes       = c(NA, NA),
-#'  color_bg              = "grey95",
-#'  size_sp               = 1,
-#'  size_centroid         = 1,
-#'  size_centroid_asb2    = 1,
-#'  size_vert             = 1,
-#'  size_sp_nm            = 3,
-#'  color_sp              = "#0072B2", 
-#'  color_sp_asb2         = "#D55E00",
-#'  color_sp_gp           = "gray80",
-#'  color_segment         = "#0072B2",
-#'  color_segment_asb2    = "#CC79A7",
-#'  color_centroid        = '#0072B2',
-#'  color_centroid_asb2   = "#D55E00",
-#'  color_vert            = NA, 
-#'  color_vert_asb2       = NA,
-#'  color_ch              = "black",
-#'  color_sp_nm           = "black",
-#'  fill_sp               = "white",
-#'  fill_sp_asb2          = "white",
-#'  fill_sp_gp            = "gray80",
-#'  fill_vert             = NA,
-#'  fill_vert_asb2        = NA,
-#'  fill_ch               = "white",
-#'  fill_centroid         = '#0072B2',
-#'  fill_centroid_asb2    = "#D55E00",
-#'  alpha_ch              = 0.3,
-#'  shape_sp_gp           = 3,
-#'  shape_sp              = 16,
-#'  shape_sp_asb2         = 15,
-#'  shape_vert            = NA,
-#'  shape_vert_asb2       = NA,
-#'  shape_centroid        = 10,
-#'  shape_centroid_asb2   = 12,
-#'  segment_size          = 1,
-#'  segment_size_asb2     = 0.5,
-#'  linetype_segment      = "solid",
-#'  linetype_segment_asb2 = "dashed",
-#'  scale_inf             = 1, 
-#'  scale_sup             = 3,
-#'  plot_sp_nm            = NULL,
-#'  plot_ch               = TRUE,
-#'  fontface_nm           = "plain",
-#'  name_file             = NULL,
-#'  check_input           = TRUE)
 #' }
 
-alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
-                                ind_vect = c("fdis","fnnd", "feve", "fric", 
-                                             "fdiv", "fori", "fspe"),
-                                details_list,
-                                asb_vect,
-                                fd_ind_values,
-                                faxes = NULL, faxes_nm = NULL,
-                                range_faxes = c(NA, NA),
-                                color_bg = "grey95",
-                                size_sp = 1,
-                                size_centroid = 1,
-                                size_centroid_asb2 = 1,
-                                size_vert = 1,
-                                size_sp_nm = 3,
-                                color_sp = "#0072B2", color_sp_asb2 = "#D55E00",
-                                color_sp_gp = "gray80",
-                                color_segment = "#0072B2",
-                                color_segment_asb2 = "#CC79A7",
-                                color_centroid = '#0072B2',
-                                color_centroid_asb2 = "#D55E00",
-                                color_vert = NA, color_vert_asb2 = NA,
-                                color_ch = "black",
-                                color_sp_nm = "black",
-                                fill_sp = "white",
-                                fill_sp_asb2 = "white",
-                                fill_sp_gp = "gray80",
-                                fill_vert = NA,
-                                fill_vert_asb2 = NA,
-                                fill_ch = "white",
-                                fill_centroid = '#0072B2',
-                                fill_centroid_asb2 = "#D55E00",
-                                alpha_ch = 0.3,
-                                shape_sp_gp = 3,
-                                shape_sp = 16,
-                                shape_sp_asb2 = 15,
-                                shape_vert = NA,
-                                shape_vert_asb2 = NA,
-                                shape_centroid = 10,
-                                shape_centroid_asb2 = 12,
-                                segment_size = 1,
-                                segment_size_asb2 = 0.5,
-                                linetype_segment = "solid",
-                                linetype_segment_asb2 = "dashed",
-                                scale_inf = 1, scale_sup = 3,
-                                plot_sp_nm = NULL,
-                                plot_ch = TRUE,
-                                fontface_nm = "plain",
-                                name_file = NULL,
-                                check_input = TRUE) {
+alpha.multidim.plot <- function(output_alpha_fd_multidim,
+                                plot_asb_nm,
+                                ind_nm              = c("fdis", "fnnd", "feve", 
+                                                        "fric", "fdiv", "fori", 
+                                                        "fspe"),
+                                faxes               = NULL,
+                                faxes_nm            = NULL,
+                                range_faxes         = c(NA, NA),
+                                color_bg            = "grey95",
+                                    
+                                shape_sp            = c(pool = 3, asb1 = 21, 
+                                                        asb2 = 21),
+                                size_sp             = c(pool = 0.7, asb1 = 1, 
+                                                        asb2 = 1),
+                                color_sp            = c(pool = "grey50", 
+                                                        asb1 = "#0072B2",
+                                                        asb2 = "#D55E00"),
+                                color_vert          = c(pool = "grey50", 
+                                                        asb1 = "#0072B2",
+                                                        asb2 = "#D55E00"),
+                                fill_sp             = c(pool =  NA, 
+                                                        asb1 = "#FFFFFF30",
+                                                        asb2 = "#FFFFFF30"),
+                                fill_vert           = c(pool = NA, 
+                                                        asb1 = "#0072B2",
+                                                        asb2 = "#D55E00"),
+                                color_ch            = c(pool = NA, 
+                                                        asb1 = "#0072B2",
+                                                        asb2 = "#D55E00"),
+                                fill_ch             = c(pool = "white", 
+                                                        asb1 = "#0072B2",
+                                                        asb2 = "#D55E00"),
+                                alpha_ch            = c(pool = 1, asb1 = 0.3, 
+                                                        asb2 = 0.3),
+                                    
+                                shape_centroid_fdis = c(asb1 = 22,  asb2 = 22),
+                                shape_centroid_fdiv = c(asb1 = 24,  asb2 = 25),
+                                shape_centroid_fspe = 23,
+                                color_centroid_fspe = "black",
+                                size_sp_nm          = 3, 
+                                color_sp_nm         = "black",
+                                plot_sp_nm          = NULL,
+                                fontface_sp_nm      = "plain",
+                                save_file           = FALSE,
+                                check_input         = TRUE) {
   
   
-  #### Retrieve all the needed elements from details_list ####
-  
-  asb_sp_relatw               <- details_list$asb_sp_relatw
-  asb_sp_relatw               <- t(asb_sp_relatw)
-  mst_list                    <- details_list$mst_list
-  grav_center_vert_coord_list <- details_list$grav_center_vert_coord_list
-  grav_center_global_pool     <- details_list$grav_center_global_pool
-  nm_nn_global_pool_list      <- details_list$nm_nn_global_pool_list
-  nm_nn_asb_list              <- details_list$nm_nn_asb_list
   
   
-  # Check inputs relative to this function (funct.space.plot, already done) ####
+  # compulsory check that indices values and details available in main input:
+  if (! identical(names(output_alpha_fd_multidim),
+                   c("functional_diversity_indices","details"))) {
+    
+    stop("Input 'output_alpha_fd_multidim' should be the output of the
+           'alpha/multidim' function run with 'details=TRUE'.")
+    
+  }
+  
+  # shorten names of main input: ####
+  asb_fd_ind <- output_alpha_fd_multidim$functional_diversity_indices
+  fd_details <- output_alpha_fd_multidim$details
+  
+  
+  # Check inputs relative to this function ...
+  # ... (funct.space.plot, already done) ####
   
   if (check_input) {
     
-    # check that functional indices have the right names:
-    for (ind in ind_vect) {
-      if (!ind %in% c("fdis","fnnd", "feve", "fric", "fdiv", "fori", "fspe")) {
-        stop("Provided names of functional indices are not well written. ", 
-             "Please re-write them. Be careful, they should all be written in ",
-             "lowercase letters.")
-      }
+    # check that all functional diversity indices have the right names:
+    if (any(! ind_nm %in%
+        c("fide", "fdis", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"))) {
+      
+      stop("Names of functional diversity indices in 'ind_nm' are not well written.",
+           "Please re-write them. Be careful, they should all be written in ",
+           "lowercase letters.")
+      
     }
     
+    # check that indices to plot are contained in the fd_ind_value table:
+    if (any(! ind_nm %in% colnames(asb_fd_ind) ) == TRUE) {
+      stop("Error: Functional diversity indices to plot must be contained in
+           'fd_ind_values' columns")
+    }
+    
+    
     # check that good number of assemblage(s) to plot:
-    if (!length(asb_vect) %in% c(1, 2)) {
-      stop("This function can only plot one or two assemblages. Please chose ", 
+    if (!length(plot_asb_nm) %in% c(1, 2)) {
+      stop("This function can only plot one or two assemblages. Please chose ",
            "two or less assemblages to plot.")
     }
     
     # check that assemblage(s) to plot has(ve) the right name(s):
-    for (asb in asb_vect) {
-      if (!asb %in% colnames(asb_sp_relatw)) {
-        stop("Provided name(s) of assemblage(s) to plot is(are) not well ", 
-             "written. Please re-write.")
-      }
+    if ( any( ! plot_asb_nm %in% row.names(asb_fd_ind)) ) {
+      stop("Name(s) of assemblage(s) to plot is(are) provided in 'plot_asb_nm' do not match those in 'output_alpha_fd_multidim$asb_fd_ind. Please re-write.")
     }
     
-    # check that indices to plot are contained in the fd_ind_value table:
-    if (any(!(ind_vect %in% colnames(fd_ind_values))) == TRUE) {
-      stop("Error: Functional indices to plot must be contained in 
-           'fd_ind_values' columns")
-    }
-    
-    check.sp.faxes.coord(sp_faxes_coord)
-    check.asb.sp.w(asb_sp_w)
-    
-    
-    if (any(!(colnames(asb_sp_w) %in% rownames(sp_faxes_coord)))) {
-      stop("Mismatch between names in species x weight and species x ",
-           "coordinates matrix. Please check.")
-    }
-    
+  } # end of check input
+  
+  
+  # Prepare data for plotting ####
+  
+  # get coordinates of species:
+  sp_faxes_coord <- fd_details$sp_faxes_coord
+  
+  # create a list ot store outputs:
+  list_panels <-list()
+  
+  # get names of assemblages:
+  asb1 <- plot_asb_nm[1]
+  nm_asb <- asb1
+  two_asb <- FALSE
+  
+  if (length(plot_asb_nm) == 2) {
+    two_asb <- TRUE
+    asb2 <- plot_asb_nm[2]
+    nm_asb <- paste(nm_asb, asb2, sep = "_")
   }
   
   
-  #### Diverse data manipulation ####
-  
-  # change sp_faxes_coord format to use colnames:
-  sp_faxes_coord <- as.data.frame(sp_faxes_coord)
-  
-  # give faxes identity if faxes set to NULL:
-  if (is.null(faxes)) {
-    faxes <- colnames(sp_faxes_coord)[1:min(c(4, ncol(sp_faxes_coord)))]
-  }
-  
-  # give faxes names if faxes set to NULL:
-  if (is.null(faxes_nm)) {
-    faxes_nm <- faxes
-  }
-  
-  # give a value to plot_vertices argument of funct.space.plot:
-  if (is.null(color_vert)) {
-    plot_vertices <- FALSE
-  } else {
-    plot_vertices <- TRUE
-  }
-  
-  
-  #### Plot functional space ####
-  
-  # change sp_faxes_coord format to use in funct.space.plot:
-  sp_faxes_coord <- as.matrix(sp_faxes_coord)
-  
-  # plot functional space using function plot.funct.space:
-  funct_space_output <- funct.space.plot(sp_faxes_coord, faxes = faxes, 
-                                         name_file = name_file,
-                                         faxes_nm = faxes_nm, 
-                                         range_faxes = c(NA, NA),
-                                         color_bg = color_bg,
-                                         color_pool = NA, fill_pool = NA,  
-                                         shape_pool = shape_sp_gp, 
-                                         size_pool = size_sp,
-                                         plot_ch = plot_ch,  
-                                         color_ch = color_ch, 
-                                         fill_ch = fill_ch, 
-                                         alpha_ch = alpha_ch,
-                                         plot_vertices = FALSE, 
-                                         color_vert = color_vert, 
-                                         fill_vert = fill_vert,
-                                         shape_vert = shape_vert,
-                                         size_vert = size_vert,
-                                         plot_sp_nm = plot_sp_nm, 
-                                         nm_size = size_sp_nm, 
-                                         nm_color = color_sp_nm, 
-                                         nm_fontface = fontface_nm,
-                                         check_input = check_input)
-  
-  
-  #### Retrieve information, create df and format data for the 1st asb ####
-  
-  # retrieve the number of plots done of axes combination...
-  # ... one plot is the summary of all the combination of plots, does not count:
-  plot_nb   <- length(funct_space_output)
-  
-  # retrieve assemblage name (1st one if 2 to plot):
-  asb_k <- asb_vect[1]
-  
-  # retrieve coordinates of species belonging to asb_k:
-  sp_filter <- sp.filter(asb_k, sp_faxes_coord, asb_sp_w)
-  sp_faxes_coord_k <- sp_filter$`species coordinates`
-  sp_faxes_coord_k <- data.matrix(sp_faxes_coord_k)
-  asb_sp_relatw_k <- sp_filter$`species relative weight`
-  asb_sp_relatw_k <- data.matrix(asb_sp_relatw_k)
-  
-  # save species coord of asb 1 (in case another one if asked to be plotted):
-  sp_coord_asb_1 <- sp_faxes_coord_k
-  
-  # format "asb_sp_relatw_k" so easy to plot:
-  sp_faxes_coord_k2 <- sp_faxes_coord_k
-  sp_faxes_coord_k2 <- as.data.frame(sp_faxes_coord_k2)
-  weight <- c()
-  
-  for (n in (1:ncol(asb_sp_relatw_k))) {
-    weight <- append(weight, asb_sp_relatw_k[1, n])
-  }
-  sp_faxes_coord_k2$w <- weight
-  sp_faxes_coord_k2 <- as.data.frame(sp_faxes_coord_k2)
-  
-  # keep species weight of asb 1 for plotting:
-  sp_coord_asb_w_1 <- sp_faxes_coord_k2$w
-  
-  # change again sp_faxes_coord format to use it easily:
-  sp_faxes_coord <- as.data.frame(sp_faxes_coord)
-  
-  # create a table that will sum up coordinates of all species to plot...
-  # ... (global pool) and add a column to know if there are...
-  # ... present on the assemblage to plot:
-  sp_coord2 <- sp_faxes_coord
-  sp_coord2$asb <- rownames(sp_coord2)
-  sp_coord2$asb[which(!sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- "no"
-  sp_coord2$asb[which(sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- asb_k
-  sp_coord2$asb <- as.factor(sp_coord2$asb)
-  # count the number of column of this dataframe used to retrieve last ...
-  # ... column when plotting:
-  col_nb <- ncol(sp_coord2)
-  
-  # set range of axes if c(NA, NA):
-  if (is.na(range_faxes[1]) && is.na(range_faxes[2])) {
-    range_sp_coord  <- range(sp_faxes_coord)
-    range_faxes <- range_sp_coord +
-      c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
-  }
-  
-  # create a return list for each index:
-  return_fric_list <- list()
-  return_fdiv_list <- list()
-  return_feve_list <- list()
-  return_fspe_list <- list()
-  return_fdis_list <- list()
-  return_fori_list <- list()
-  return_fnnd_list <- list()
-  
-  
-  # Do the plot for each index and along asked dimensions for the 1st asb ####
-  
-  
-  # span across the plots (up to 6 plots for 4 dimensions):
-  for (i in (1:(plot_nb - 1))) {
-    
-    ## retrieve information on the graph to plot:
-    
-    # retrieve the plot to work on:
-    assign(paste0("plot_funct", sep = "_", i), funct_space_output[[i]])
-    
-    # retrieve the combination of dimensions of the plot:
-    faxes_nm <- c(eval(parse(text = paste0("plot_funct", sep = "_", i,
-                                           "$labels$x"))), 
-                  eval(parse(text = (paste0("plot_funct", sep = "_", i, 
-                                            "$labels$y")))))
-    
-    # retrieve vertices names of asb_k along the 2 dimensions to be plotted ...
-    # ... before all indices and not just for FRic because needed if 
-    # ... vertices number  is to show in graphs caption for all indices:
-    vert_nm_asb_k <- vertices(sp_faxes_coord_k[ , c(faxes_nm[[1]], 
-                                                    faxes_nm[[2]])], 
-                              check_input = TRUE)
-    
-    # retrieve coordinates of species of asb_k along the 2 plotted dimensions:
-    vert_sp_faxes_coord_k <- sp_faxes_coord_k[which(rownames(
-                                        sp_faxes_coord_k) %in% vert_nm_asb_k),
-                                              c(faxes_nm[[1]], faxes_nm[[2]])]
-    
-    # then vertices must be ordered so that the convex hull...
-    #... can be printed (outside path): sort them clockwise:
-    # (https://stackoverflow.com/questions/48249540/plot-convex-hull-given-
-    # ... by-quickhull-algorithm-in-r-convhulln-function)
-    # find the gravity center of present species and then compute the ...
-    # ... angle value of each species to this points, then order angle values:
-    vert_sp_faxes_coord_k <- vert_sp_faxes_coord_k[order(-1 * atan2(
-      vert_sp_faxes_coord_k[, 
-                            faxes_nm[[2]]] - mean(range(vert_sp_faxes_coord_k[, 
-                                                          faxes_nm[[2]]])),
-      vert_sp_faxes_coord_k[, 
-                            faxes_nm[[1]]] - mean(range(vert_sp_faxes_coord_k[,
-                                                          faxes_nm[[1]]])))), ]
-    
-    # convert the format so that it can be used with ggplot2:
-    vert_sp_faxes_coord_k <- as.data.frame(vert_sp_faxes_coord_k)
-    sp_faxes_coord_k <- as.data.frame(sp_faxes_coord_k)
-    
-    # save the vert_sp_coord for caption (asb1)
-    vert_sp_coord_asb1 <- vert_sp_faxes_coord_k
-    
-    ## plot each index:
-    
-    # FRic index:
-    
-    if ("fric" %in% ind_vect) {
-      
-      # check that FRic can be computed for this asb:
-      if (is.na(fd_ind_values[asb_k, "fric"])) {
-        stop("FRic value can not be computed for ", asb_k, ". The associated ",
-             "figure can not be computed.")
-      }
-      
-      plot_k <- get(paste0("plot_funct", sep = '_', i)) +
-        
-        ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'), 
-                                             c(faxes_nm[[1]], faxes_nm[[2]])],
-                            ggplot2::aes_(x = sp_coord2[which(
-                                            sp_coord2[ , col_nb] == 'no'),
-                                                        c(faxes_nm[[1]])],
-                                          y = sp_coord2[which(
-                                            sp_coord2[ , col_nb] == 'no'),
-                                                        c(faxes_nm[[2]])]),
-                            colour = color_sp_gp, shape = shape_sp_gp, 
-                            fill = fill_sp_gp) +
-        
-        ggplot2::geom_polygon(data = vert_sp_faxes_coord_k,
-                              ggplot2::aes_(x = vert_sp_faxes_coord_k[ , 
-                                                              faxes_nm[[1]]],
-                                            y = vert_sp_faxes_coord_k[ , 
-                                                              faxes_nm[[2]]]),
-                              fill = color_sp, alpha = alpha_ch) +
-        
-        ggplot2::geom_point(data = sp_faxes_coord_k, 
-                          ggplot2::aes_(x = sp_faxes_coord_k[ , faxes_nm[[1]]],
-                                        y = sp_faxes_coord_k[ , faxes_nm[[2]]]),
-                          colour = color_sp, shape = shape_sp, fill = fill_sp) +
-        
-        ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-        
-        ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                          ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
-                          y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
-                            color = color_vert, fill = fill_vert, 
-                          shape = shape_vert, size = size_vert) +
-        ggplot2::theme(legend.position = "none")
-      
-      return_fric_list[[i]] <- plot_k
-      
-    }
-    
-    # FDiv index:
-    
-    if ("fdiv" %in% ind_vect) {
-      
-      # check that FDiv can be computed for this asb:
-      if (is.na(fd_ind_values[asb_k, "fdiv"])) {
-        stop("FDiv value can not be computed for ", asb_k, ". The associated ",
-             "figure can not be computed.")
-      }
-      
-      # retrieve gravity center of vertices for the studied assemblage:
-      grav_center_vert_coord_list <- as.data.frame(grav_center_vert_coord_list)
-      grav_center_vert_asb <- grav_center_vert_coord_list
-      grav_center_vert_asb <- grav_center_vert_asb[asb_k, drop = FALSE]
-      
-      # plot fdiv:
-      plot_k <- get(paste0("plot_funct", sep = '_', i)) +
-        
-        ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'),
-                                             c(faxes_nm[[1]], faxes_nm[[2]])],
-                            ggplot2::aes_(x = sp_coord2[which(
-                              sp_coord2[ , col_nb] == 'no'),
-                                                        c(faxes_nm[[1]])],
-                                          y = sp_coord2[which(
-                                            sp_coord2[ , col_nb] == 'no'),
-                                                        c(faxes_nm[[2]])]),
-                            colour = color_sp_gp, shape = shape_sp_gp, 
-                            fill = fill_sp_gp) +
-        
-        ggplot2::geom_point(data = sp_faxes_coord_k2, 
-                        ggplot2::aes_(x = sp_faxes_coord_k2[ , faxes_nm[[1]]],
-                                      y = sp_faxes_coord_k2[ , faxes_nm[[2]]],
-                                      size = sp_faxes_coord_k2$w),
-                          colour = color_sp, shape = shape_sp, fill = fill_sp) +
-        
-        ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-        
-        ggplot2::geom_segment(data = sp_faxes_coord_k, 
-                           ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
-                                         y = sp_faxes_coord_k[, faxes_nm[[2]]]),
-                              xend = grav_center_vert_asb[faxes_nm[[1]],
-                                             asb_k],
-                              yend = grav_center_vert_asb[faxes_nm[[2]],
-                                             asb_k],
-                              colour = color_segment, size = segment_size,
-                              linetype = linetype_segment) +
-        
-        ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                        ggplot2::aes_(x = vert_sp_coord_asb1[ , faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb1[ , faxes_nm[[2]]]),
-                            color = color_vert, fill = fill_vert, 
-                        shape = shape_vert, size = size_vert) +
-        
-        ggplot2::geom_point(data = grav_center_vert_asb,
-                        ggplot2::aes_(x = grav_center_vert_asb[faxes_nm[[1]], 
-                          asb_k],
-                                        y = grav_center_vert_asb[faxes_nm[[2]],
-                          asb_k]),
-                          colour = color_centroid, shape = shape_centroid, 
-                          size = size_centroid, fill = fill_centroid) +
-        
-        ggplot2::theme(legend.position = "none")
-      
-      return_fdiv_list[[i]] <- plot_k
-      
-    }
-    
-    # FEve index:
-    
-    if ("feve" %in% ind_vect) {
-      
-      # check that FEve can be computed for this asb:
-      if (is.na(fd_ind_values[asb_k, "feve"])) {
-        stop("FEve value can not be computed for ", asb_k, ". The associated ",
-             "figure can not be computed.")
-      }
-      
-      # retrieve mst information for the studied assemblage:
-      mst_asb_k <- eval(parse(text = paste0("mst_list[['mst", sep = '_', asb_k, 
-                                            "']]")))
-      mst_asb_k <- as.matrix(mst_asb_k)
-      mst_asb_k <- as.data.frame(mst_asb_k)
-      
-      # gather species coordinates into a big dataframe for plotting:
-      segment_coord <- data.frame(sp_start = NA, sp_stop = NA)
-      j <- 1
-      for (m1 in 1:(ncol(mst_asb_k) - 1)) {
-        for (m2 in (m1 + 1):nrow(mst_asb_k)) {
-          if (mst_asb_k[m2, m1] == 1) {
-            segment_coord[j, "sp_start"] <- rownames(mst_asb_k)[m2]
-            segment_coord[j, "sp_stop"]  <- colnames(mst_asb_k)[m1]
-            j <- j + 1
-          }
-        }
-      }
-      
-      for (n in (1:nrow(segment_coord))) {
-        segment_coord[n, paste0(faxes_nm[[1]], 
-            sep = "_", "start")] <- sp_faxes_coord_k[segment_coord$sp_start[n], 
-                                                     faxes_nm[[1]]]
-        segment_coord[n, paste0(faxes_nm[[2]], 
-            sep = "_", "start")] <- sp_faxes_coord_k[segment_coord$sp_start[n], 
-                                                      faxes_nm[[2]]]
-        segment_coord[n, paste0(faxes_nm[[1]], 
-            sep = "_", "stop")] <- sp_faxes_coord_k[segment_coord$sp_stop[n], 
-                                                      faxes_nm[[1]]]
-        segment_coord[n, paste0(faxes_nm[[2]], 
-            sep = "_", "stop")] <- sp_faxes_coord_k[segment_coord$sp_stop[n],
-                                                    faxes_nm[[2]]]
-      }
-      
-      # plot FEve:
-      plot_k <- get(paste0("plot_funct", sep = '_', i)) +
-        
-        ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'),
-                                             c(faxes_nm[[1]], faxes_nm[[2]])],
-                            colour = color_sp_gp, shape = shape_sp_gp, 
-                            fill = fill_sp_gp) +
-        
-        ggplot2::geom_segment(data = segment_coord, 
-                              ggplot2::aes_(x = segment_coord[, 3],
-                                            y = segment_coord[, 4]),
-                              xend =  segment_coord[, 5],
-                              yend =  segment_coord[, 6],
-                              colour = color_segment, size = segment_size,
-                              linetype = linetype_segment) +
-        
-        ggplot2::geom_point(data = sp_faxes_coord_k2,
-                            ggplot2::aes_(x = sp_faxes_coord_k2[, 
-                                                                faxes_nm[[1]]],
-                                          size = sp_faxes_coord_k2$w), 
-                            colour = color_sp,
-                            shape = shape_sp, fill = fill_sp) +
-        
-        ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-        
-        ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                        ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
-                            color = color_vert, fill = fill_vert, 
-                            shape = shape_vert, size = size_vert) +
-        ggplot2::theme(legend.position = 'none')
-      
-      return_feve_list[[i]] <- plot_k
-    
-    }
-    
-    
-    # FSpe index:
-    
-    if ("fspe" %in% ind_vect) {
-      
-      # check that FSpe can be computed for this asb:
-      if (is.na(fd_ind_values[asb_k, "fspe"])) {
-        stop("FSpe value can not be computed for ", asb_k, ". The associated ",
-             "figure can not be computed.")
-      }
-      
-      # retrieve coordinates of gravity center of the global pool:
-      grav_center_global_pool <- as.data.frame(grav_center_global_pool)
-      
-      # plot fspe:
-      plot_k <- get(paste0("plot_funct", sep = '_', i)) +
-        ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'),
-                                             c(faxes_nm[[1]], faxes_nm[[2]])],
-                            colour = color_sp_gp, shape = shape_sp_gp, 
-                            fill = fill_sp_gp) +
-        
-        ggplot2::geom_segment(data = sp_faxes_coord_k,
-                              ggplot2::aes_(x = sp_faxes_coord_k[ , 
-                                                                faxes_nm[[1]]],
-                                            y = sp_faxes_coord_k[ , 
-                                                                faxes_nm[[2]]]),
-                              xend = grav_center_global_pool[faxes_nm[[1]], ],
-                              yend = grav_center_global_pool[faxes_nm[[2]], ],
-                              colour = color_segment, size = segment_size,
-                              linetype = linetype_segment) +
-        
-        ggplot2::geom_point(data = sp_faxes_coord_k2,
-                            ggplot2::aes_(x = sp_faxes_coord_k2[ , 
-                                                                faxes_nm[[1]]],
-                                          y = sp_faxes_coord_k2[ , 
-                                                                faxes_nm[[2]]],
-                                          size = sp_faxes_coord_k2$w), 
-                            colour = color_sp,
-                            shape = shape_sp, fill = fill_sp) +
-        
-        ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-        
-        ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                      ggplot2::aes_(x = vert_sp_coord_asb1[ , faxes_nm[[1]]],
-                                    y = vert_sp_coord_asb1[ , faxes_nm[[2]]]),
-                            color = color_vert, fill = fill_vert, 
-                            shape = shape_vert, size = size_vert) +
-        
-        ggplot2::geom_point(data = grav_center_global_pool,
-                    ggplot2::aes_(x = grav_center_global_pool[faxes_nm[[1]], ],
-                                  y = grav_center_global_pool[faxes_nm[[2]], ]),
-                            colour = color_centroid, shape = shape_centroid,
-                            size = size_centroid, fill = fill_centroid) +
-        
-        ggplot2::theme(legend.position='none')
-      
-      return_fspe_list[[i]] <- plot_k
-    }
-    
-    
-    # FDis index:
-    
-    if ("fdis" %in% ind_vect) {
-      
-      # check that FDis can be computed for this asb:
-      if (is.na(fd_ind_values[asb_k, "fdis"])) {
-        stop("FDis value can not be computed for ", asb_k, ". The associated ",
-             "figure can not be computed.")
-      }
-      
-      # retrieve fdis values
-      fide_values <- fd_ind_values[asb_k, c(paste0("fide", sep = '_', 
-                                                   faxes_nm[[1]]), 
-                                            paste0("fide", sep = '_', 
-                                                   faxes_nm[[2]]))]
-      
-      # plot fdis:
-      plot_k <- get(paste0("plot_funct", sep = '_', i)) +
-        
-        ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'),
-                                             c(faxes_nm[[1]], faxes_nm[[2]])],
-                            colour = color_sp_gp, shape = shape_sp_gp, 
-                            fill = fill_sp_gp) +
-        
-        ggplot2::geom_segment(data = sp_faxes_coord_k,
-                              ggplot2::aes_(x = sp_faxes_coord_k[ , 
-                                                                faxes_nm[[1]]],
-                                            y = sp_faxes_coord_k[ , 
-                                                              faxes_nm[[2]]]),
-                              xend = fide_values[, paste0("fide", sep = "_", 
-                                                          faxes_nm[[1]])],
-                              yend = fide_values[, paste0("fide", sep = "_", 
-                                                          faxes_nm[[2]])],
-                              colour = color_segment, size = segment_size,
-                              linetype = linetype_segment) +
-        
-        ggplot2::geom_hline(yintercept = fide_values[, paste0("fide", sep = "_", 
-                                                              faxes_nm[[2]])],
-                            linetype = "dotted", color = "red", size = 1) +
-        
-        ggplot2::geom_vline(xintercept = fide_values[, paste0("fide", sep = "_", 
-                                                              faxes_nm[[1]])],
-                            linetype = "dotted", color = "red", size = 1) +
-        
-        ggplot2::geom_point(data = sp_faxes_coord_k2,
-                          ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                        y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                        size = sp_faxes_coord_k2$w), 
-                            colour = color_sp,
-                            shape = shape_sp, fill = fill_sp) +
-        
-        ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-        
-        
-        ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                         ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
-                                       y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
-                            color = color_vert, fill = fill_vert, 
-                            shape = shape_vert, size = size_vert) +
-        
-        ggplot2::geom_point(data = as.data.frame(grav_center_global_pool),
-                    ggplot2::aes_(x = fide_values[, 
-                                    paste0("fide", sep = "_", faxes_nm[[1]])],
-                                  y = fide_values[, 
-                                    paste0("fide", sep = "_", faxes_nm[[2]])]),
-                            colour = color_centroid, shape = shape_centroid, 
-                            size = size_centroid, fill = fill_centroid) +
-        
-        ggplot2::theme(legend.position = 'none')
-      
-      return_fdis_list[[i]] <- plot_k
-    }
-    
-    
-    # FOri index:
-    
-    if ('fori' %in% ind_vect) {
-      
-      # check that FOri can be computed for this asb:
-      if (is.na(fd_ind_values[asb_k, "fori"])) {
-        stop("FOri value can not be computed for ", asb_k, ". The associated ",
-             "figure can not be computed.")
-      }
-      
-      # retrieve nearest neighbor identity in the global pool...
-      # ... for species present in the studied assemblage:
-      nn_asb_k <- nm_nn_global_pool_list[asb_k]
-      # create a dataframe that will contain nn global pool id for each...
-      # ... sp of the asb:
-      nn_asb_k_coord <- data.frame(asb_nm = NA, species_nm = NA, nn_nm = NA,
-                                   coord_sp_1 = NA,
-                                   coord_sp_2 = NA,
-                                   coord_nn_1 = NA,
-                                   coord_nn_2 = NA)
-      
-      # complete the df:
-      n <- 1
-      for (m in (1:length(nn_asb_k[[1]]))) {
-        # complete the df for sp_nm and nn_nm:
-        sp_nm <- names(nn_asb_k[[1]][m])
-        nn_nm <- nn_asb_k[[1]][[m]]
-        # for all the nn of each species (can have several nn):
-        for(nn in 1:length(nn_nm)) {
-          nn_asb_k_coord[n, "asb_nm"] <- asb_k
-          nn_asb_k_coord[n, "species_nm"] <- as.character(sp_nm)
-          nn_asb_k_coord[n, "nn_nm"] <- as.character(nn_nm[nn])
-          # and add coord:
-          nn_asb_k_coord[n, "coord_sp_1"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "species_nm"], faxes_nm[[1]]]
-          nn_asb_k_coord[n, "coord_sp_2"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "species_nm"], faxes_nm[[2]]]
-          nn_asb_k_coord[n, "coord_nn_1"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "nn_nm"], faxes_nm[[1]]]
-          nn_asb_k_coord[n, "coord_nn_2"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "nn_nm"], faxes_nm[[2]]]
-          #Î n
-          n <- n + 1
-        }
-      }
-      
-      # plot fori:
-      plot_k <- get(paste0("plot_funct", sep = '_', i)) +
-        
-        ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'),
-                                             c(faxes_nm[[1]], faxes_nm[[2]])],
-                            colour = color_sp_gp, shape = shape_sp_gp, 
-                            fill = fill_sp_gp) +
-        
-        ggplot2::geom_segment(data = nn_asb_k_coord, 
-                              ggplot2::aes_(x = nn_asb_k_coord[, 4],
-                                            y = nn_asb_k_coord[, 5],
-                                            xend =  nn_asb_k_coord[, 6],
-                                            yend =  nn_asb_k_coord[, 7]),
-                              colour = color_segment, size = segment_size,
-                              linetype = linetype_segment,
-                              arrow = grid::arrow(length = grid::unit(0.10, 
-                                                                      "inches"),
-                                                  ends = "last", 
-                                                  type = "open")) +
-        
-        ggplot2::geom_point(data = sp_faxes_coord_k2,
-                          ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                        y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                        size = sp_faxes_coord_k2$w),
-                            colour = color_sp, shape = shape_sp, 
-                            fill = fill_sp) +
-        
-        ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                        ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
-                            color = color_vert, fill = fill_vert, 
-                            shape = shape_vert, size = size_vert) +
-        
-        ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-        
-        ggplot2::theme(legend.position = 'none')
-      
-      return_fori_list[[i]] <- plot_k
-    }
-    
-    
-    # FNND index:
-    
-    if ("fnnd" %in% ind_vect) {
-      
-      # check that FNND can be computed for this asb:
-      if (is.na(fd_ind_values[asb_k, "fnnd"])) {
-        stop("FNND value can not be computed for ", asb_k, ". The associated ",
-             "figure can not be computed.")
-      }
-      
-      # retrieve nearest neighbor identity in the asb...
-      # ... for species present in the studied assemblage:
-      nn_asb_k <- nm_nn_asb_list[asb_k]
-      # create a dataframe that will contain nn global pool id for each ...
-      # ... sp of the asb:
-      nn_asb_k_coord <- data.frame(asb_nm = NA, species_nm = NA, nn_nm = NA,
-                                   coord_sp_1 = NA,
-                                   coord_sp_2 = NA,
-                                   coord_nn_1 = NA,
-                                   coord_nn_2 = NA)
-      
-      # complete the df:
-      n <- 1
-      for (m in (1:length(nn_asb_k[[1]]))) {
-        # complete the df for sp_nm and nn_nm:
-        sp_nm <- names(nn_asb_k[[1]][m])
-        nn_nm <- nn_asb_k[[1]][[m]]
-        # for all the nn of each species (can have several nn):
-        for(nn in 1:length(nn_nm)) {
-          nn_asb_k_coord[n, "asb_nm"] <- asb_k
-          nn_asb_k_coord[n, "species_nm"] <- as.character(sp_nm)
-          nn_asb_k_coord[n, "nn_nm"] <- as.character(nn_nm[nn])
-          # and add coord:
-          nn_asb_k_coord[n, "coord_sp_1"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "species_nm"], faxes_nm[[1]]]
-          nn_asb_k_coord[n, "coord_sp_2"] <- sp_faxes_coord[nn_asb_k_coord[n,
-                                                  "species_nm"], faxes_nm[[2]]]
-          nn_asb_k_coord[n, "coord_nn_1"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "nn_nm"], faxes_nm[[1]]]
-          nn_asb_k_coord[n, "coord_nn_2"] <- sp_faxes_coord[nn_asb_k_coord[n,
-                                                  "nn_nm"], faxes_nm[[2]]]
-          # n
-          n <- n + 1
-        }
-      }
-      
-      
-      # plot fnnd:
-      plot_k <- get(paste0("plot_funct", sep = '_', i)) +
-        
-        ggplot2::geom_point(data = sp_coord2[which(sp_coord2[, col_nb] == 'no'),
-                                             c(faxes_nm[[1]], faxes_nm[[2]])],
-                            colour = color_sp_gp, shape = shape_sp_gp, 
-                            fill = fill_sp_gp) +
-        
-        ggplot2::geom_segment(data = nn_asb_k_coord, 
-                              ggplot2::aes_(x = nn_asb_k_coord[, 4],
-                                            y = nn_asb_k_coord[, 5],
-                                            xend =  nn_asb_k_coord[, 6],
-                                            yend =  nn_asb_k_coord[, 7]),
-                              colour = color_segment, size = segment_size,
-                              linetype = linetype_segment,
-                              arrow = grid::arrow(length = grid::unit(0.10, 
-                                                                      "inches"),
-                                                  ends = "last", 
-                                                  type = "open")) +
-        
-        ggplot2::geom_point(data = sp_faxes_coord_k2,
-                          ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                        y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                        size = sp_faxes_coord_k2$w),
-                            colour = color_sp, shape = shape_sp, 
-                            fill = fill_sp) +
-        
-        ggplot2::geom_point(data = vert_sp_coord_asb1, 
-                        ggplot2::aes_(x = vert_sp_coord_asb1[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb1[, faxes_nm[[2]]]),
-                            color = color_vert, fill = fill_vert, 
-                            shape = shape_vert, size = size_vert) +
-        
-        ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-        
-        ggplot2::theme(legend.position = 'none')
-      
-      return_fnnd_list[[i]] <- plot_k
-    }
-    
-  } # end of the loop for the 1st asb
-  
-  #### Retrieve information, create df and format data for the 2nd asb ####
-  
-  
-  # if there is a 2nd asb to plot:
-  if (length(asb_vect) == 2) {
-    
-    # retrieve assemblage name:
-    asb_k <- asb_vect[2]
-    
-    # retrieve coordinates of species belonging to asb_k:
-    sp_filter <- sp.filter(asb_k, sp_faxes_coord, asb_sp_w)
-    sp_faxes_coord_k <- sp_filter$`species coordinates`
-    asb_sp_relatw_k <- sp_filter$`species relative weight`
-    
-    # keep species coordinates of assemblage 2 for plotting caption:
-    sp_coord_asb_2 <- sp_faxes_coord_k
-    
-    # format "asb_sp_relatw_k" so easy to plot:
-    sp_faxes_coord_k2 <- sp_faxes_coord_k
-    sp_faxes_coord_k2 <- as.data.frame(sp_faxes_coord_k2)
-    weight <- c()
-    for (n in (1:ncol(asb_sp_relatw_k))) {
-      weight <- append(weight, asb_sp_relatw_k[1, n])
-    }
-    sp_faxes_coord_k2$w <- weight
-    sp_faxes_coord_k2 <- as.data.frame(sp_faxes_coord_k2)
-    
-    # keep species weight of assemblage 2 for plotting caption:
-    sp_coord_asb_w_2 <- sp_faxes_coord_k2$w
-    
-    # create a table that will sum up coordinates of all species to plot...
-    # ... (global pool) and add a column to know if there are...
-    # ... present on the assemblage to plot:
-    sp_coord2 <- sp_faxes_coord
-    sp_coord2$asb <- rownames(sp_coord2)
-    sp_coord2$asb[which(!sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- "no"
-    sp_coord2$asb[which(sp_coord2$asb %in% rownames(sp_faxes_coord_k))] <- asb_k
-    sp_coord2$asb <- as.factor(sp_coord2$asb)
-    
-    # count the number of column of this dataframe used to retrieve last ...
-    # ... column when plotting:
-    col_nb <- ncol(sp_coord2)
-    
-    
-    # Do the plot for each index and along asked dimensions for the 2nd asb ####
-    
-    
-    # span across the plots (up to 6 plots for 4 dimensions):
-    for (i in (1:(plot_nb - 1))) {
-      
-      ## retrieve information on the graph to plot:
-      
-      # retrieve the plot to work on:
-      assign(paste0("plot_funct", sep = "_", i), funct_space_output[[i]])
-      
-      # retrieve the combination of dimensions of the plot:
-      faxes_nm <- c(eval(parse(text = paste0("plot_funct", 
-                                             sep = "_", i, 
-                                             "$labels$x"))), 
-                    eval(parse(text = (paste0("plot_funct", sep = "_", i, 
-                                              "$labels$y")))))
-      
-      # retrieve vertices names of asb_k along the 2 dimensions to be ...
-      # ... plotted before all indices and not just for FRic because needed ...
-      # ... if vertices number is to show in graphs caption for all indices:
-      vert_nm_asb_k <- vertices(sp_faxes_coord_k[ , c(faxes_nm[[1]], 
-                                                      faxes_nm[[2]])], 
-                                check_input = TRUE)
-      
-      # retrieve coordinates of species of asb_k along the 2 plotted dimensions:
-      vert_sp_faxes_coord_k <- sp_faxes_coord_k[which(rownames(sp_faxes_coord_k) 
-                                                      %in% vert_nm_asb_k),
-                                                c(faxes_nm[[1]], faxes_nm[[2]])]
-      
-      # then vertices must be ordered so that the convex hull...
-      #... can be printed (outside path): sort them clockwise:
-      # (https://stackoverflow.com/questions/48249540/plot-convex-hull-given-
-      # ... by-quickhull-algorithm-in-r-convhulln-function)
-      # find the gravity center of present species and then compute the ...
-      # ... angle value of each species to this points, then order angle values:
-      vert_sp_faxes_coord_k <- vert_sp_faxes_coord_k[order(-1 * atan2(
-        vert_sp_faxes_coord_k[, 
-         faxes_nm[[2]]] - mean(range(vert_sp_faxes_coord_k[ , 
-                                                           faxes_nm[[2]]])),
-        vert_sp_faxes_coord_k[, 
-         faxes_nm[[1]]] - mean(range(vert_sp_faxes_coord_k[ , 
-                                                          faxes_nm[[1]]])))), ]
-      
-      # convert the format so that it can be used with ggplot2:
-      vert_sp_faxes_coord_k <- as.data.frame(vert_sp_faxes_coord_k)
-      sp_faxes_coord_k <- as.data.frame(sp_faxes_coord_k)
-      
-      # save the vert_sp_coord for caption (asb2)
-      vert_sp_coord_asb2 <- vert_sp_faxes_coord_k
-      
-      
-      ## plot each index:
-      
-      # FRic index:
-      
-      if ("fric" %in% ind_vect) {
-        
-        # check that FRic can be computed for this asb:
-        if (is.na(fd_ind_values[asb_k, "fric"])) {
-          stop("FRic value can not be computed for ", asb_k, ". ",
-               "The associated figure can not be computed.")
-        }
-        
-        plot_k <- get("return_fric_list")[[i]] +
-          
-          ggplot2::geom_polygon(data = vert_sp_faxes_coord_k,
-                      ggplot2::aes_(x = vert_sp_faxes_coord_k[, faxes_nm[[1]]],
-                                    y = vert_sp_faxes_coord_k[, faxes_nm[[2]]]),
-                                fill = color_sp_asb2, alpha = alpha_ch) +
-          
-          ggplot2::geom_point(data = sp_faxes_coord_k, 
-                      ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
-                                   y = sp_faxes_coord_k[, faxes_nm[[2]]]),
-                              colour = color_sp_asb2, shape = shape_sp_asb2, 
-                              fill = fill_sp_asb2) +
-          
-          ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-          
-          ggplot2::geom_point(data = vert_sp_coord_asb2, 
-                        ggplot2::aes_(x = vert_sp_coord_asb2[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb2[, faxes_nm[[2]]]),
-                              color = color_vert_asb2, fill = fill_vert_asb2, 
-                        shape = shape_vert_asb2, size = size_vert) +
-          
-          ggplot2::theme(legend.position = "none")
-        
-        return_fric_list[[i]] <- plot_k
-        
-      }
-      
-      # FDiv index:
-      
-      if ("fdiv" %in% ind_vect) {
-        
-        # check that FDiv can be computed for this asb:
-        if (is.na(fd_ind_values[asb_k, "fdiv"])) {
-          stop("FDiv value can not be computed for ", asb_k, ". ",
-               "The associated figure can not be computed.")
-        }
-        
-        # retrieve gravity center of vertices for the studied assemblage:
-        grav_center_vert_coord_list <- 
-          as.data.frame(grav_center_vert_coord_list)
-        grav_center_vert_asb <- grav_center_vert_coord_list
-        grav_center_vert_asb <- grav_center_vert_asb[, 
-                                        paste0("grav_center_vert_coord",
-                                        sep = "_", asb_k), drop = FALSE]
-        
-        # plot fdiv:
-        plot_k <- get("return_fdiv_list")[[i]] +
-          
-          ggplot2::geom_point(data = sp_faxes_coord_k2, 
-                    ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                  y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                  size = sp_faxes_coord_k2$w),
-                              colour = color_sp_asb2, shape = shape_sp_asb2, 
-                              fill = fill_sp_asb2) +
-          
-          ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-          
-          ggplot2::geom_segment(data = sp_faxes_coord_k, 
-                    ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
-                                  y = sp_faxes_coord_k[, faxes_nm[[2]]]),
-                                xend = grav_center_vert_asb[faxes_nm[[1]],
-                                             paste0("grav_center_vert_coord",
-                                             sep = "_", asb_k)],
-                                yend = grav_center_vert_asb[faxes_nm[[2]],
-                                             paste0("grav_center_vert_coord",
-                                             sep = "_", asb_k)],
-                                colour = color_segment_asb2, 
-                                size = segment_size_asb2,
-                                linetype = linetype_segment_asb2) +
-          
-          ggplot2::geom_point(data = vert_sp_coord_asb2, 
-                              ggplot2::aes_(x = vert_sp_coord_asb2[, 
-                                                                faxes_nm[[1]]],
-                                            y = vert_sp_coord_asb2[, 
-                                                                faxes_nm[[2]]]),
-                              color = color_vert_asb2, fill = fill_vert_asb2, 
-                              shape = shape_vert_asb2, size = size_vert) +
-          
-          ggplot2::geom_point(data = grav_center_vert_asb,
-                        ggplot2::aes_(x = grav_center_vert_asb[faxes_nm[[1]], 
-                          paste0("grav_center_vert_coord", sep = "_", asb_k)],
-                                      y = grav_center_vert_asb[faxes_nm[[2]], 
-                          paste0("grav_center_vert_coord", sep = "_", asb_k)]),
-                          colour = color_centroid_asb2, 
-                          shape = shape_centroid_asb2, 
-                          size = size_centroid_asb2,
-                          fill = fill_centroid_asb2) +
-          
-          ggplot2::theme(legend.position = "none")
-        
-        return_fdiv_list[[i]] <- plot_k
-        
-      }
-      
-      # FEve index:
-      
-      if ("feve" %in% ind_vect) {
-        
-        # check that FEve can be computed for this asb:
-        if (is.na(fd_ind_values[asb_k, "feve"])) {
-          stop("FEve value can not be computed for ", asb_k, ". ",
-               "The associated figure can not be computed.")
-        }
-        
-        # retrieve mst information for the studied assemblage:
-        mst_asb_k <- eval(parse(text = paste0('mst_list$mst', sep = '_', 
-                                              asb_k)))
-        mst_asb_k <- as.matrix(mst_asb_k)
-        mst_asb_k <- as.data.frame(mst_asb_k)
-        
-        # gather species coordinates into a big dataframe for plotting:
-        segment_coord <- data.frame(sp_start = NA, sp_stop = NA)
-        j <- 1
-        for (m1 in 1:(ncol(mst_asb_k) - 1)) {
-          for (m2 in (m1 + 1):nrow(mst_asb_k)) {
-            if (mst_asb_k[m2, m1] == 1) {
-              segment_coord[j, "sp_start"] <- rownames(mst_asb_k)[m2]
-              segment_coord[j, "sp_stop"]  <- colnames(mst_asb_k)[m1]
-              j <- j + 1
-            }
-          }
-        }
-        
-        for (n in (1:nrow(segment_coord))) {
-          segment_coord[n, 
-               paste0(faxes_nm[[1]], sep = '_', 
-                      "start")] <- sp_faxes_coord_k[segment_coord$sp_start[n], 
-                                                    faxes_nm[[1]]]
-          segment_coord[n,
-               paste0(faxes_nm[[2]], sep = '_', 
-                      "start")] <- sp_faxes_coord_k[segment_coord$sp_start[n], 
-                                                    faxes_nm[[2]]]
-          segment_coord[n,
-                paste0(faxes_nm[[1]], sep = '_', 
-                       "stop")] <- sp_faxes_coord_k[segment_coord$sp_stop[n], 
-                                                    faxes_nm[[1]]]
-          segment_coord[n, 
-                paste0(faxes_nm[[2]], sep = '_', 
-                       "stop")] <- sp_faxes_coord_k[segment_coord$sp_stop[n], 
-                                                    faxes_nm[[2]]]
-        }
-        
-        # plot FEve:
-        plot_k <- get("return_feve_list")[[i]] +
-          
-          ggplot2::geom_segment(data = segment_coord, 
-                                ggplot2::aes_(x = segment_coord[, 3],
-                                              y = segment_coord[, 4]),
-                                xend =  segment_coord[, 5],
-                                yend =  segment_coord[, 6],
-                                colour = color_segment_asb2, 
-                                size = segment_size_asb2,
-                                linetype = linetype_segment_asb2) +
-          
-          ggplot2::geom_point(data = sp_faxes_coord_k2,
-                           ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                        size = sp_faxes_coord_k2$w), 
-                              colour = color_sp_asb2,
-                              shape = shape_sp_asb2, fill = fill_sp_asb2) +
-          
-          ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-          
-          
-          ggplot2::geom_point(data = vert_sp_coord_asb2, 
-                        ggplot2::aes_(x = vert_sp_coord_asb2[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb2[, faxes_nm[[2]]]),
-                              color = color_vert_asb2, fill = fill_vert_asb2, 
-                              shape = shape_vert_asb2, size = size_vert) +
-          ggplot2::theme(legend.position = 'none')
-        
-        return_feve_list[[i]] <- plot_k
-        
-        
-      }
-      
-      
-      # FSpe index:
-      
-      if ("fspe" %in% ind_vect) {
-        
-        # check that FSpe can be computed for this asb:
-        if (is.na(fd_ind_values[asb_k, "fspe"])) {
-          stop("FSpe value can not be computed for ", asb_k, ". ",
-               "The associated figure can not be computed.")
-        }
-        
-        # retrieve coordinates of gravity center of the global pool:
-        grav_center_global_pool <- as.data.frame(grav_center_global_pool)
-        
-        # plot fspe:
-        plot_k <- get("return_fspe_list")[[i]] +
-          
-          ggplot2::geom_segment(data = sp_faxes_coord_k,
-                          ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
-                                        y = sp_faxes_coord_k[, faxes_nm[[2]]]),
-                                xend = grav_center_global_pool[faxes_nm[[1]], ],
-                                yend = grav_center_global_pool[faxes_nm[[2]], ],
-                                colour = color_segment_asb2, 
-                                size = segment_size_asb2,
-                                linetype = linetype_segment_asb2) +
-          
-          ggplot2::geom_point(data = sp_faxes_coord_k2,
-                        ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                      y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                      size = sp_faxes_coord_k2$w), 
-                                      colour = color_sp_asb2,
-                                      shape = shape_sp_asb2, 
-                                      fill = fill_sp_asb2) +
-          
-          ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-          
-          ggplot2::geom_point(data = vert_sp_coord_asb2, 
-                        ggplot2::aes_(x = vert_sp_coord_asb2[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb2[, faxes_nm[[2]]]),
-                              color = color_vert_asb2, fill = fill_vert_asb2, 
-                              shape = shape_vert_asb2, size = size_vert) +
-          
-          ggplot2::geom_point(data = grav_center_global_pool,
-                  ggplot2::aes_(x = grav_center_global_pool[faxes_nm[[1]], ],
-                                y = grav_center_global_pool[faxes_nm[[2]], ]),
-                              colour = color_centroid_asb2, 
-                              shape = shape_centroid_asb2,
-                              size = size_centroid_asb2, 
-                              fill = fill_centroid_asb2) +
-          
-          ggplot2::theme(legend.position='none')
-        
-        return_fspe_list[[i]] <- plot_k
-      }
-      
-      
-      # FDis index:
-      
-      if ("fdis" %in% ind_vect) {
-        
-        # check that FDis can be computed for this asb:
-        if (is.na(fd_ind_values[asb_k, "fdis"])) {
-          stop("FDis value can not be computed for ", asb_k, ". ",
-               "The associated figure can not be computed.")
-        }
-        
-        # retrieve fdis values
-        fide_values <- fd_ind_values[asb_k, 
-                                     c(paste0("fide", sep = '_', faxes_nm[[1]]), 
-                                      paste0("fide", sep = '_', faxes_nm[[2]]))]
-        
-        # plot fdis:
-        plot_k <- get("return_fdis_list")[[i]] +
-          
-          ggplot2::geom_segment(data = sp_faxes_coord_k,
-                           ggplot2::aes_(x = sp_faxes_coord_k[, faxes_nm[[1]]],
-                                         y = sp_faxes_coord_k[, faxes_nm[[2]]]),
-                xend = fide_values[, paste0("fide", sep = "_", faxes_nm[[1]])],
-                yend = fide_values[, paste0("fide", sep = "_", faxes_nm[[2]])],
-                colour = color_segment_asb2, size = segment_size_asb2,
-                linetype = linetype_segment_asb2) +
-          
-          ggplot2::geom_hline(yintercept = fide_values[, paste0("fide", 
-                                                                sep = "_", 
-                                                                faxes_nm[[2]])],
-                              linetype = "dotted", color = "red", size = 1) +
-          
-          ggplot2::geom_vline(xintercept = fide_values[, paste0("fide", 
-                                                                sep = "_", 
-                                                                faxes_nm[[1]])],
-                              linetype = "dotted", color = "red", size = 1) +
-          
-          ggplot2::geom_point(data = sp_faxes_coord_k2,
-                        ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                      y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                      size = sp_faxes_coord_k2$w), 
-                                      colour = color_sp_asb2,
-                                      shape = shape_sp_asb2, 
-                                      fill = fill_sp_asb2) +
-          
-          ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-          
-          
-          ggplot2::geom_point(data = vert_sp_coord_asb2, 
-                        ggplot2::aes_(x = vert_sp_coord_asb2[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb2[, faxes_nm[[2]]]),
-                              color = color_vert_asb2, fill = fill_vert_asb2, 
-                              shape = shape_vert_asb2, size = size_vert) +
-          
-          ggplot2::geom_point(data = grav_center_global_pool,
-                  ggplot2::aes_(x = fide_values[, 
-                                                paste0("fide", sep = "_", 
-                                                       faxes_nm[[1]])],
-                                y = fide_values[, paste0("fide", sep = "_",
-                                                         faxes_nm[[2]])]),
-                              colour = color_centroid_asb2, 
-                              shape = shape_centroid_asb2, 
-                              size = size_centroid_asb2,
-                              fill = fill_centroid_asb2) +
-          
-          ggplot2::theme(legend.position='none')
-        
-        return_fdis_list[[i]] <- plot_k
-      }
-      
-      
-      # FOri index:
-      
-      if ('fori' %in% ind_vect) {
-        
-        # check that FOri can be computed for this asb:
-        if (is.na(fd_ind_values[asb_k, "fori"])) {
-          stop("FOri value can not be computed for ", asb_k, ". ",
-               "The associated figure can not be computed.")
-        }
-        
-        # retrieve nearest neighbor identity in the global pool...
-        # ... for species present in the studied assemblage:
-        nn_asb_k <- nm_nn_global_pool_list[asb_k]
-        # create a dataframe that will contain nn global pool id for ...
-        # ... each sp of the asb:
-        nn_asb_k_coord <- data.frame(asb_nm = NA, species_nm = NA, nn_nm = NA,
-                                     coord_sp_1 = NA,
-                                     coord_sp_2 = NA,
-                                     coord_nn_1 = NA,
-                                     coord_nn_2 = NA)
-        
-        # complete the df:
-        n <- 1
-        for (m in (1:length(nn_asb_k[[1]]))) {
-          # complete the df for sp_nm and nn_nm:
-          sp_nm <- names(nn_asb_k[[1]][m])
-          nn_nm <- nn_asb_k[[1]][[m]]
-          # for all the nn of each species (can have several nn):
-          for(nn in 1:length(nn_nm)) {
-            nn_asb_k_coord[n, "asb_nm"] <- asb_k
-            nn_asb_k_coord[n, "species_nm"] <- as.character(sp_nm)
-            nn_asb_k_coord[n, "nn_nm"] <- as.character(nn_nm[nn])
-            # and add coord:
-            nn_asb_k_coord[n, "coord_sp_1"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "species_nm"], faxes_nm[[1]]]
-            nn_asb_k_coord[n, "coord_sp_2"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "species_nm"], faxes_nm[[2]]]
-            nn_asb_k_coord[n, "coord_nn_1"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "nn_nm"], faxes_nm[[1]]]
-            nn_asb_k_coord[n, "coord_nn_2"] <- sp_faxes_coord[nn_asb_k_coord[n,
-                                                  "nn_nm"], faxes_nm[[2]]]
-            #Î n
-            n <- n + 1
-          }
-        }
-        
-        
-        # plot fori:
-        plot_k <- get("return_fori_list")[[i]] +
-          
-          ggplot2::geom_segment(data = nn_asb_k_coord, 
-                                ggplot2::aes_(x = nn_asb_k_coord[, 4],
-                                              y = nn_asb_k_coord[, 5],
-                                              xend =  nn_asb_k_coord[, 6],
-                                              yend =  nn_asb_k_coord[, 7]),
-                                colour = color_segment_asb2, 
-                                size = segment_size_asb2,
-                                linetype = linetype_segment_asb2,
-                                arrow = grid::arrow(
-                                  length = grid::unit(0.10, "inches"),
-                                  ends = "last", type = "open")) +
-          
-          ggplot2::geom_point(data = sp_faxes_coord_k2,
-                          ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                        y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                            size = sp_faxes_coord_k2$w),
-                              colour = color_sp_asb2, shape = shape_sp_asb2, 
-                              fill = fill_sp_asb2) +
-          
-          ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-          
-          ggplot2::geom_point(data = vert_sp_coord_asb2, 
-                         ggplot2::aes_(x = vert_sp_coord_asb2[, faxes_nm[[1]]],
-                                       y = vert_sp_coord_asb2[, faxes_nm[[2]]]),
-                              color = color_vert_asb2, 
-                              fill = fill_vert_asb2, 
-                              shape = shape_vert_asb2, size = size_vert) +
-          
-          ggplot2::theme(legend.position='none')
-        
-        return_fori_list[[i]] <- plot_k
-      }
-      
-      
-      # FNND index:
-      
-      if ("fnnd" %in% ind_vect) {
-        
-        # check that FNND can be computed for this asb:
-        if (is.na(fd_ind_values[asb_k, "fnnd"])) {
-          stop("FNND value can not be computed for ", asb_k, ". ",
-               "The associated figure can not be computed.")
-        }
-        
-        # retrieve nearest neighbor identity in the asb...
-        # ... for species present in the studied assemblage:
-        nn_asb_k <- nm_nn_asb_list[asb_k]
-        # create a dataframe that will contain nn global pool id for each ...
-        # ... sp of the asb:
-        nn_asb_k_coord <- data.frame(asb_nm = NA, species_nm = NA, nn_nm = NA,
-                                     coord_sp_1 = NA,
-                                     coord_sp_2 = NA,
-                                     coord_nn_1 = NA,
-                                     coord_nn_2 = NA)
-        
-        # complete the df:
-        n <- 1
-        for (m in (1:length(nn_asb_k[[1]]))) {
-          # complete the df for sp_nm and nn_nm:
-          sp_nm <- names(nn_asb_k[[1]][m])
-          nn_nm <- nn_asb_k[[1]][[m]]
-          # for all the nn of each species (can have several nn):
-          for(nn in 1:length(nn_nm)) {
-            nn_asb_k_coord[n, "asb_nm"] <- asb_k
-            nn_asb_k_coord[n, "species_nm"] <- as.character(sp_nm)
-            nn_asb_k_coord[n, "nn_nm"] <- as.character(nn_nm[nn])
-            # and add coord:
-            nn_asb_k_coord[n, "coord_sp_1"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "species_nm"], faxes_nm[[1]]]
-            nn_asb_k_coord[n, "coord_sp_2"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "species_nm"], faxes_nm[[2]]]
-            nn_asb_k_coord[n, "coord_nn_1"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "nn_nm"], faxes_nm[[1]]]
-            nn_asb_k_coord[n, "coord_nn_2"] <- sp_faxes_coord[nn_asb_k_coord[n, 
-                                                  "nn_nm"], faxes_nm[[2]]]
-            n <- n + 1
-          }
-        }
-        
-        # plot fnnd:
-        plot_k <- get("return_fnnd_list")[[i]] +
-          
-          ggplot2::geom_segment(data = nn_asb_k_coord, 
-                                ggplot2::aes_(x = nn_asb_k_coord[, 4],
-                                              y = nn_asb_k_coord[, 5],
-                                              xend =  nn_asb_k_coord[, 6],
-                                              yend =  nn_asb_k_coord[, 7]),
-                                colour = color_segment_asb2, 
-                                size = segment_size_asb2,
-                                linetype = linetype_segment_asb2,
-                                arrow = grid::arrow(length = grid::unit(0.10, 
-                                                                      "inches"),
-                                                    ends = "last", 
-                                                    type = "open")) +
-          
-          ggplot2::geom_point(data = sp_faxes_coord_k2,
-                         ggplot2::aes_(x = sp_faxes_coord_k2[, faxes_nm[[1]]],
-                                       y = sp_faxes_coord_k2[, faxes_nm[[2]]],
-                                       size = sp_faxes_coord_k2$w),
-                              colour = color_sp_asb2, shape = shape_sp_asb2, 
-                         fill = fill_sp_asb2) +
-          
-          ggplot2::geom_point(data = vert_sp_coord_asb2, 
-                        ggplot2::aes_(x = vert_sp_coord_asb2[, faxes_nm[[1]]],
-                                      y = vert_sp_coord_asb2[, faxes_nm[[2]]]),
-                              color = color_vert_asb2, fill = fill_vert_asb2, 
-                        shape = shape_vert_asb2, size = size_vert) +
-          
-          ggplot2::scale_size(range = c(scale_inf, scale_sup)) +
-          
-          ggplot2::theme(legend.position='none')
-        
-        return_fnnd_list[[i]] <- plot_k
-      }
-      
-      
-    } # end of the loop on functional plots
-    
-  } # end of the loop if 2nd asb
-  
-  
-  #### Plot for caption (legend and summary) ####
-  
-  
-  ## If 1 asb to plot:
-  
-  if (length(asb_vect) == 1) {
-    
-    spread_faxes <- (range_faxes[2] - range_faxes[1])
-    
-    plot_caption0 <- ggplot2::ggplot(sp_faxes_coord) +
-      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0,0)) +
-      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0,0)) +
-      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
-      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
-                         ymin = range_faxes[1], ymax = range_faxes[2],
-                         fill = "white", colour = "black")
-    
-    # if indices to plot are not reduced to FRic:
-    plot_caption <- plot_caption0 +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.10,
-                          colour = color_sp, fill = fill_sp, shape = shape_sp,
-                          size = size_sp) +
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.10,
-                         label = paste0(nrow(sp_coord_asb_1), " species for ", 
-                                        asb_vect[1]),
-                         colour = color_sp, hjust = 0) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.25,
-                          colour = color_vert, shape = shape_vert,
-                          size = size_vert, fill = fill_vert) +
-      
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.25,
-                         label = c("vertices"),
-                         colour = color_vert, hjust = 0) +
-      
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.40,
-                         label = paste0("plotted along ", length(faxes),
-                                        "axes from the ",
-                                        ncol(sp_coord_asb_1), 
-                                        "-dimensional space"),  
-                         hjust = 0) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.55,
-                          colour = color_sp, shape = shape_sp,
-                          size = scale_inf, fill = fill_sp) +
-      
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.55,
-                         label = paste0("relative weight", sep = " ", 
-                                        min(sp_coord_asb_w_1)),
-                         colour = color_sp, hjust = 0) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.70,
-                          colour = color_sp, fill = fill_sp, shape = shape_sp,
-                          size = scale_sup) +
-      
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.70,
-                         label = paste0("relative weight", sep = " ", 
-                                        max(sp_coord_asb_w_1)),
-                         colour = color_sp, hjust = 0)
-    
-    # if FRic index to plot (caption different from other indices):
-    if ("fric" %in% ind_vect) {
-      
-      plot_caption_fric <- plot_caption0 +
-        
-        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                            y = range_faxes[2] - spread_faxes*0.25,
-                            colour = color_sp, fill = fill_sp, shape = shape_sp,
-                            size = size_sp) +
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                           y = range_faxes[2] - spread_faxes*0.25,
-                           label = paste0(nrow(sp_coord_asb_1), " species for ", 
-                                          asb_vect[1]),
-                           colour = color_sp, hjust = 0) +
-        
-        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                            y = range_faxes[2] - spread_faxes*0.45,
-                            colour = color_vert, shape = shape_vert,
-                            size = size_vert, fill = fill_vert) +
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                           y = range_faxes[2] - spread_faxes*0.45,
-                           label = c("vertices"),
-                           colour = color_vert, hjust = 0) +
-        
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                           y = range_faxes[2] - spread_faxes*0.65,
-                           label = paste0("plotted along ", length(faxes),
-                                          "axes from the ",
-                                          ncol(sp_coord_asb_1), 
-                                          "-dimensional space"),
-                           hjust = 0) +
-        
-        ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.05,
-                           xmax = range_faxes[1] + spread_faxes*0.15,
-                           ymin = range_faxes[2] - spread_faxes*0.88,
-                           ymax = range_faxes[2] - spread_faxes*0.92,
-                           fill = color_sp, alpha = alpha_ch) +
-        
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.20,
-                           y = range_faxes[2] - spread_faxes*0.90,
-                           label = paste0("convex hull of", sep = " ", 
-                                          asb_vect[1]),
-                           colour = color_sp, hjust = 0)
-    }
-    
-  } # end loop if one asb
-  
-  
-  ## If 2 asb to plot:
-  
-  if (length(asb_vect) == 2) {
-    spread_faxes <- (range_faxes[2]- range_faxes[1])
-    
-    plot_caption0 <- ggplot2::ggplot(sp_faxes_coord) +
-      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0,0)) +
-      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0,0)) +
-      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
-      ggplot2::geom_rect( xmin = range_faxes[1], xmax = range_faxes[2],
-                          ymin = range_faxes[1], ymax = range_faxes[2],
-                          fill = "white", colour = "black")
-    
-    # if indices to plot are not reduced to FRic:
-    
-    plot_caption <- plot_caption0 +
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.10,
-                          colour = color_sp, fill = fill_sp, shape = shape_sp,
-                          size = size_sp) +
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.10,
-                         label = paste0(nrow(sp_coord_asb_1), " species for ", 
-                                        asb_vect[1]),
-                         colour = color_sp, hjust = 0) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.20,
-                          colour = color_sp_asb2, fill = fill_sp_asb2,
-                          shape = shape_sp_asb2, size = size_sp) +
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.20,
-                         label = paste0(nrow(sp_coord_asb_2), " species for ", 
-                                        asb_vect[2]),
-                         colour = color_sp_asb2, hjust = 0) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.30,
-                          colour = color_vert, shape = shape_vert,
-                          size = size_vert, fill = fill_vert) +
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.30,
-                         label = paste0("vertices of", sep = " ", asb_vect[1]),
-                         colour = color_vert, hjust = 0) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.40,
-                          colour = color_vert_asb2, shape = shape_vert_asb2,
-                          size = size_vert, fill = fill_vert_asb2) +
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.40,
-                         label = paste0("vertices of", sep = " ", asb_vect[2]),
-                         colour = color_vert_asb2, hjust = 0) +
-      
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.60,
-                         label = paste0("plotted along ", length(faxes),
-                                        "axes from the ",
-                                        ncol(sp_faxes_coord), 
-                                        "-dimensional space"),
-                         hjust = 0) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.80,
-                          colour = "black", fill = "black", shape = shape_sp,
-                          size = scale_inf) +
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.80,
-                         label = paste0("relative weight", sep = " ",
-                                        min(min(sp_coord_asb_w_1), 
-                                            min(sp_coord_asb_w_2))),
-                         colour = "black", hjust = 0) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                          y = range_faxes[2] - spread_faxes*0.90,
-                          colour = "black", fill = "black", shape = shape_sp,
-                          size = scale_sup) +
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                         y = range_faxes[2] - spread_faxes*0.90,
-                         label = paste0("relative weight", sep = " ",
-                                        max(max(sp_coord_asb_w_1), 
-                                            max(sp_coord_asb_w_2))),
-                         colour = "black", hjust = 0)
-    
-    # if FRic index to plot (caption different from other indices):
-    if ("fric" %in% ind_vect) {
-      
-      plot_caption_fric <- plot_caption0 +
-        
-        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                            y = range_faxes[2] - spread_faxes*0.10,
-                            colour = color_sp, fill = fill_sp, shape = shape_sp,
-                            size = size_sp) +
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                           y = range_faxes[2] - spread_faxes*0.10,
-                           label = paste0(nrow(sp_coord_asb_1), " species"),
-                           colour = color_sp, hjust = 0) +
-        
-        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                            y = range_faxes[2] - spread_faxes*0.20,
-                            colour = color_sp_asb2, fill = fill_sp_asb2,
-                            shape = shape_sp_asb2,
-                            size = size_sp) +
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                           y = range_faxes[2] - spread_faxes*0.20,
-                           label = paste0(nrow(sp_coord_asb_2), " species"),
-                           colour = color_sp_asb2, hjust = 0) +
-        
-        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                            y = range_faxes[2] - spread_faxes*0.30,
-                            colour = color_vert, shape = shape_vert,
-                            size = size_vert, fill = fill_vert) +
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                           y = range_faxes[2] - spread_faxes*0.30,
-                           label = paste0("vertices of", sep = " ", 
-                                          asb_vect[1]),
-                           colour = color_vert, hjust = 0) +
-        
-        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.1,
-                            y = range_faxes[2] - spread_faxes*0.40,
-                            colour = color_vert_asb2, shape = shape_vert_asb2,
-                            size = size_vert, fill = fill_vert_asb2) +
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                           y = range_faxes[2] - spread_faxes*0.40,
-                           label = paste0("vertices of", sep = " ", 
-                                          asb_vect[2]),
-                           colour = color_vert_asb2, hjust = 0) +
-        
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.15,
-                           y = range_faxes[2] - spread_faxes*0.50,
-                           label = paste0("plotted along ", length(faxes),
-                                          "axes from the ",
-                                          ncol(sp_faxes_coord), 
-                                          "-dimensional space"),
-                           hjust = 0) +
-        
-        ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.05,
-                           xmax = range_faxes[1] + spread_faxes*0.15,
-                           ymin = range_faxes[2] - spread_faxes*0.63,
-                           ymax = range_faxes[2] - spread_faxes*0.67,
-                           fill = color_sp, alpha = alpha_ch) +
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.20,
-                           y = range_faxes[2] - spread_faxes*0.65,
-                           label = paste0("convex hull of", sep = " ", 
-                                          asb_vect[1]),
-                           colour = color_sp, hjust = 0) +
-        
-        ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.05,
-                           xmax = range_faxes[1] + spread_faxes*0.15,
-                           ymin = range_faxes[2] - spread_faxes*0.83,
-                           ymax = range_faxes[2] - spread_faxes*0.87,
-                           fill = color_sp_asb2, alpha = alpha_ch) +
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.20,
-                           y = range_faxes[2] - spread_faxes*0.85,
-                           label = paste0("convex hull of", sep = " ", 
-                                          asb_vect[2]),
-                           colour = color_sp_asb2, hjust = 0)
-    }
-  } # end of if 2 asb
-  
-  #### Create patchwork objects ####
-  
-  ## create a list that will contain all plots for given indices:
-  return_panels_list <- list()
-  
-  
-  # if fric asked:
-  if ("fric" %in% ind_vect) {
-    
-    # if 1 plot to return (combination of 2 dimensions only):
-    if (plot_nb == 2) {
-      return_plot_fric <- return_fric_list[[1]] + plot_caption_fric +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1,1),
-                               ncol = 2, nrow = 1 ) +
-        patchwork::plot_annotation(title = paste0("FRic representation for",
-                                                  sep = " ", asb_k,
-                                                  sep = " ","FRic =",
-                                                  sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fric"], 
-                                                        4)),
-                                   subtitle = 
-                                     "2D projection of the multidimensional 
-                                   convex-hull",
-                                   caption = "made with mFD package")
-    }
-    
-    # if 3 plots to return (combination of up to 3 dimensions):
-    if (plot_nb == 4) {
-      return_plot_fric <- (return_fric_list[[1]] + plot_caption_fric + 
-                             return_fric_list[[2]] + return_fric_list[[3]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1,1),
-                               ncol = 2, nrow = 2 ) +
-        patchwork::plot_annotation(title = paste0("FRic representation for",
-                                                  sep = " ", asb_k,
-                                                  sep = " ","FRic =",
-                                                  sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fric"], 
-                                                        4)),
-                                   subtitle = 
-                                     "2D projection of the multidimensional 
-                                   convex-hull",
-                                   caption = "made with mFD package")
-    }
-    
-    # if 6 plots to return (combination of up to 4 dimensions):
-    if (plot_nb == 7) {
-      return_plot_fric <- (return_fric_list[[1]] + plot_caption_fric +
-                             patchwork::plot_spacer() + return_fric_list[[2]] +
-                             return_fric_list[[3]] + patchwork::plot_spacer() +
-                             return_fric_list[[4]] + return_fric_list[[5]] +
-                             return_fric_list[[6]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3), 
-                               widths = rep(1, 3),
-                               ncol = 3, nrow = 3 ) +
-        patchwork::plot_annotation(title = paste0("FRic representation for",
-                                                  sep = " ", asb_k,
-                                                  sep = " ","FRic =",
-                                                  sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fric"], 
-                                                        4)),
-                                   subtitle = "2D projection of the 
-                                   multidimensional convex-hull",
-                                   caption = "made with mFD package")
-    }
-    
-    return_panels_list <- rlist::list.append(return_panels_list,
-                                             return_plot_fric)
-    
-  }
-  
-  
-  # if fdiv asked:
-  if ("fdiv" %in% ind_vect) {
-    
-    # if 1 plot to return (combination of 2 dimensions only):
-    if (plot_nb == 2) {
-      return_plot_fdiv <- return_fdiv_list[[1]] + plot_caption +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1,1),
-                               ncol = 2, nrow = 1 ) +
-        patchwork::plot_annotation(title = paste0("FDiv representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FDiv =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fdiv"], 
-                                                        4)),
-                                   subtitle = "Distances to the gravity center 
-                                   of the vertices of the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 3 plots to return (combination of up to 3 dimensions):
-    if (plot_nb == 4) {
-      return_plot_fdiv <- (return_fdiv_list[[1]] + plot_caption +
-                             return_fdiv_list[[2]] + return_fdiv_list[[3]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1,1),
-                               ncol = 2, nrow = 2 ) +
-        patchwork::plot_annotation(title = paste0("FDiv representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FDiv =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fdiv"], 
-                                                        4)),
-                                   subtitle = "Distances to the gravity center 
-                                   of the vertices of the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 6 plots to return (combination of up to 4 dimensions):
-    if (plot_nb == 7) {
-      return_plot_fdiv <- (return_fdiv_list[[1]] + plot_caption + 
-                             patchwork::plot_spacer() +
-                             return_fdiv_list[[2]] + return_fdiv_list[[3]] +
-                             patchwork::plot_spacer() + return_fdiv_list[[4]] +
-                             return_fdiv_list[[5]] +  return_fdiv_list[[6]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3), 
-                               widths = rep(1, 3),
-                               ncol = 3, nrow = 3 ) +
-        patchwork::plot_annotation(title = paste0("FDiv representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FDiv =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fdiv"], 
-                                                        4)),
-                                   subtitle = "Distances to the gravity center 
-                                   of the vertices of the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    return_panels_list <- rlist::list.append(return_panels_list, 
-                                             return_plot_fdiv)
-    
-  }
-  
-  
-  # if feve asked:
-  if ("feve" %in% ind_vect) {
-    
-    # if 1 plot to return (combination of 2 dimensions only):
-    if (plot_nb == 2) {
-      return_plot_feve <- return_feve_list[[1]] + plot_caption +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1,1),
-                               ncol = 2, nrow = 1 ) +
-        patchwork::plot_annotation(title = paste0("FEve representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FEve =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "feve"], 
-                                                        4)),
-                                   subtitle = "Minimum Spanning Tree linking 
-                                   species of the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 3 plots to return (combination of up to 3 dimensions):
-    if (plot_nb == 4) {
-      return_plot_feve <- (return_feve_list[[1]] + plot_caption +
-                             return_feve_list[[2]] + return_feve_list[[3]])+
-        patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1,1),
-                               ncol = 2, nrow = 2 ) +
-        patchwork::plot_annotation(title = paste0("FEve representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FEve =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "feve"], 
-                                                        4)),
-                                   subtitle = "Minimum Spanning Tree linking 
-                                   species of the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 6 plots to return (combination of up to 4 dimensions):
-    if (plot_nb == 7) {
-      return_plot_feve <- (return_feve_list[[1]] + plot_caption +
-                             patchwork::plot_spacer() + return_feve_list[[2]] +
-                             return_feve_list[[3]] +
-                             patchwork::plot_spacer() + return_feve_list[[4]] +
-                             return_feve_list[[5]] + return_feve_list[[6]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3), 
-                               widths = rep(1, 3),
-                               ncol = 3, nrow = 3 ) +
-        patchwork::plot_annotation(title = paste0("FEve representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FEve =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "feve"], 
-                                                        4)),
-                                   subtitle = "Minimum Spanning Tree linking 
-                                   species of the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    return_panels_list <- rlist::list.append(return_panels_list, 
-                                             return_plot_feve)
-    
-  }
-  
-  
-  # if fspe asked:
-  if ("fspe" %in% ind_vect) {
-    
-    # if 1 plot to return (combination of 2 dimensions only):
-    if (plot_nb == 2) {
-      return_plot_fspe <- return_fspe_list[[1]] + plot_caption +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1,1),
-                               ncol = 2, nrow = 1 ) +
-        patchwork::plot_annotation(title = paste0("FSpe representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FSpe =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fspe"], 
-                                                        4)),
-                                   subtitle = "Distances to the gravity center 
-                                   OF the vertices of the global pool", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 3 plots to return (combination of up to 3 dimensions):
-    if (plot_nb == 4) {
-      return_plot_fspe <- (return_fspe_list[[1]] + plot_caption +
-                             return_fspe_list[[2]] + return_fspe_list[[3]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1,1),
-                               ncol = 2, nrow = 2 ) +
-        patchwork::plot_annotation(title = paste0("FSpe representation for", 
-                                                  sep = " ",
-                                                  asb_k, sep = " ", "FSpe =",
-                                                  sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fspe"], 
-                                                        4)),
-                                   subtitle = "Distances to the gravity center 
-                                   of the vertices of the global pool",
-                                   caption = "made with mFD package")
-    }
-    
-    # if 6 plots to return (combination of up to 4 dimensions):
-    if (plot_nb == 7) {
-      return_plot_fspe <- (return_fspe_list[[1]] + plot_caption + 
-                             patchwork::plot_spacer() +
-                             return_fspe_list[[2]] + return_fspe_list[[3]] + 
-                             patchwork::plot_spacer() +
-                             return_fspe_list[[4]] + return_fspe_list[[5]] + 
-                             return_fspe_list[[6]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3), 
-                               widths = rep(1, 3),
-                               ncol = 3, nrow = 3 ) +
-        patchwork::plot_annotation(title = paste0("FSpe representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FSpe =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fspe"], 
-                                                        4)),
-                                   subtitle = "Distances to the gravity center 
-                                   of the vertices of the global pool", 
-                                   caption = "made with mFD package")
-    }
-    
-    return_panels_list <- rlist::list.append(return_panels_list, 
-                                             return_plot_fspe)
-    
-  }
-  
-  
-  # if fdis asked:
-  if ("fdis" %in% ind_vect) {
-    
-    # if 1 plot to return (combination of 2 dimensions only):
-    if (plot_nb == 2) {
-      return_plot_fdis <- return_fdis_list[[1]] + plot_caption +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1,1),
-                               ncol = 2, nrow = 1 ) +
-        patchwork::plot_annotation(title = paste0("FDis representation for", 
-                                                  sep = " ", asb_k, sep = " ", 
-                                                  "FDis =", sep = " ", 
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fdis"], 
-                                                        4)),
-                                   subtitle = "Distances to the average position 
-                                   of species present in the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 3 plots to return (combination of up to 3 dimensions):
-    if (plot_nb == 4) {
-      return_plot_fdis <- (return_fdis_list[[1]] + plot_caption + 
-                             return_fdis_list[[2]] +
-                             return_fdis_list[[3]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1,1),
-                               ncol = 2, nrow = 2 ) +
-        patchwork::plot_annotation(title = paste0("FDis representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FDis =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fdis"], 
-                                                        4)),
-                                   subtitle = "Distances to the average position 
-                                   of species present in the assemblage",
-                                   caption = "made with mFD package")
-    }
-    
-    # if 6 plots to return (combination of up to 4 dimensions):
-    if (plot_nb == 7) {
-      return_plot_fdis <- (return_fdis_list[[1]] + plot_caption + 
-                             patchwork::plot_spacer() +
-                             return_fdis_list[[2]] + return_fdis_list[[3]] + 
-                             patchwork::plot_spacer() +
-                             return_fdis_list[[4]] + return_fdis_list[[5]] + 
-                             return_fdis_list[[6]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3), 
-                               widths = rep(1, 3),
-                               ncol = 3, nrow = 3 ) +
-        patchwork::plot_annotation(title = paste0("FDis representation for", 
-                                                  sep = " ",
-                                                  asb_k, sep = " ", "FDis =",
-                                                  sep = " ", 
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fdis"], 
-                                                        4)),
-                                   subtitle = "Distances to the average position 
-                                   of species present in the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    return_panels_list <- rlist::list.append(return_panels_list, 
-                                             return_plot_fdis)
-    
-  }
-  
-  
-  # if fori asked:
-  if ("fori" %in% ind_vect) {
-    
-    # if 1 plot to return (combination of 2 dimensions only):
-    if (plot_nb == 2) {
-      return_plot_fori <- return_fori_list[[1]] + plot_caption +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1,1),
-                               ncol = 2, nrow = 1 ) +
-        patchwork::plot_annotation(title = paste0("FOri representation for", 
-                                                  sep = " ", asb_k, sep = " ", 
-                                                  "FOri =", sep = " ", 
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fori"], 
-                                                        4)), 
-                                   subtitle = "Distances to nearest neighbour 
-                                   from the global pool", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 3 plots to return (combination of up to 3 dimensions):
-    if (plot_nb == 4) {
-      return_plot_fori <- (return_fori_list[[1]] + plot_caption + 
-                             return_fori_list[[2]] +
-                             return_fori_list[[3]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1,1),
-                               ncol = 2, nrow = 2 ) +
-        patchwork::plot_annotation(title = paste0("FOri representation for", 
-                                                  sep = " ",
-                                                  asb_k, sep = " ", "FOri =", 
-                                                  sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fori"], 
-                                                        4)),
-                                   subtitle = "Distances to nearest neighbour 
-                                   from the global pool",
-                                   caption = "made with mFD package")
-    }
-    
-    # if 6 plots to return (combination of up to 4 dimensions):
-    if (plot_nb == 7) {
-      return_plot_fori <- (return_fori_list[[1]] + plot_caption + 
-                             patchwork::plot_spacer() +
-                             return_fori_list[[2]] + return_fori_list[[3]] + 
-                             patchwork::plot_spacer() +
-                             return_fori_list[[4]] + return_fori_list[[5]] + 
-                             return_fori_list[[6]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3), 
-                               widths = rep(1, 3),
-                               ncol = 3, nrow = 3 ) +
-        patchwork::plot_annotation(title = paste0("FOri representation for",
-                                                  sep = " ", asb_k, sep = " ",
-                                                  "FOri =", sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fori"], 
-                                                        4)),
-                                   subtitle = "Distances to nearest neighbour 
-                                   from the global pool",
-                                   caption = "made with mFD package")
-    }
-    
-    return_panels_list <- rlist::list.append(return_panels_list, 
-                                             return_plot_fori)
-    
-  }
-  
-  # if fnnd asked:
-  if ("fnnd" %in% ind_vect) {
-    
-    # if 1 plot to return (combination of 2 dimensions only):
-    if (plot_nb == 2) {
-      return_plot_fnnd <- return_fnnd_list[[1]] + plot_caption +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1), widths = c(1,1),
-                               ncol = 2, nrow = 1 ) +
-        patchwork::plot_annotation(title = paste0("FNND representation for", 
-                                                  sep = " ", asb_k, sep = " ", 
-                                                  "FNND =", sep = " ", 
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fnnd"], 
-                                                        4)), 
-                                   subtitle = "Distances to nearest neighbour 
-                                   from the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 3 plots to return (combination of up to 3 dimensions):
-    if (plot_nb == 4) {
-      return_plot_fnnd <- (return_fnnd_list[[1]] + plot_caption + 
-                             return_fnnd_list[[2]] +
-                             return_fnnd_list[[3]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = c(1, 1), widths = c(1,1),
-                               ncol = 2, nrow = 2 ) +
-        patchwork::plot_annotation(title = paste0("FNND representation for", 
-                                                  sep = " ",
-                                                  asb_k, sep = " ", "FNND =", 
-                                                  sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fnnd"], 
-                                                        4)),
-                                   subtitle = "Distances to nearest neighbour 
-                                   from the assemblage", 
-                                   caption = "made with mFD package")
-    }
-    
-    # if 6 plots to return (combination of up to 4 dimensions):
-    if (plot_nb == 7) {
-      return_plot_fnnd <- (return_fnnd_list[[1]] + plot_caption + 
-                             patchwork::plot_spacer() +
-                             return_fnnd_list[[2]] + return_fnnd_list[[3]] + 
-                             patchwork::plot_spacer() +
-                             return_fnnd_list[[4]] + return_fnnd_list[[5]] + 
-                             return_fnnd_list[[6]]) +
-        patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3), 
-                               widths = rep(1, 3),
-                               ncol = 3, nrow = 3 ) +
-        patchwork::plot_annotation(title = paste0("FNND representation for", 
-                                                  sep = " ",
-                                                  asb_k, sep = " ", "FNND =", 
-                                                  sep = " ",
-                                                  round(fd_ind_values[asb_k, 
-                                                                      "fnnd"], 
-                                                        4)),
-                                   subtitle = "Distances to nearest neighbour 
-                                   from the assemblage",
-                                   caption = "made with mFD package")
-    }
-    
-    return_panels_list <- rlist::list.append(return_panels_list, 
-                                             return_plot_fnnd)
-    
-  }
-  
-  ## returning output ####
-  
-  # only keep the summed up plots in return_panels_list ie the last 
-  # "nb of ind" ones:
-  return_panels_list <- utils::tail(return_panels_list, length(ind_vect))
-  
-  # type, resolution and dimensions of file if to be saved
+  # set type, resolution and dimensions of file if to be saved:
   device_file <- "png"
   res_file <- 300
   height_file <- 8 * c(2, 2, 3)
@@ -2462,20 +293,1321 @@ alpha.multidim.plot <- function(sp_faxes_coord, asb_sp_w,
   width_file  <- 10 * c(2, 2, 3)
   names(width_file) <- c("1", "3", "6")
   
-  # displaying or saving
-  if (is.null(name_file)) {
-    return(return_panels_list)
+  # get number of dimensions in input:
+  nb_dim <- ncol(sp_faxes_coord)
+  
+  # give faxes identity if faxes set to NULL:
+  if (is.null(faxes)) {
+    faxes <- colnames(sp_faxes_coord)[1:min(c(4, nb_dim))]
+  }
+  
+  # give faxes names if faxes set to NULL:
+  if (is.null(faxes_nm)) {
+    faxes_nm <- faxes
+  }
+  names(faxes_nm) <- faxes
+  
+  # get number of axes:
+  nb_faxes <- length(faxes)
+  
+  # get combinations of axes on plot:
+  axes_plot <- utils::combn(faxes, 2)
+  plot_nb   <- ncol(axes_plot)
+  
+  # set range of axes if c(NA, NA):
+  if (is.na(range_faxes[1]) && is.na(range_faxes[2])) {
+    range_sp_coord  <- range(sp_faxes_coord)
+    range_faxes <- range_sp_coord +
+      c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.1
+  }
+
+  # create a dataframe with species coordinates and option (vertices + label)...
+  # ... if required:
+  sp_faxes_coord_plot <- data.frame(sp_faxes_coord, label = "")
+  
+  # if some species names to be plotted, adding a character variable to ...
+  # ... sp_faxes_coord:
+  if (! is.null(plot_sp_nm)) {
+    sp_faxes_coord_plot[plot_sp_nm, "label"] <- plot_sp_nm
+  }
+  
+  # get vertices of the convex hull of the species pool:
+  vert_pool <- fd_details$pool_vert_nm
+  
+  # retrieve names and weights of species present in each assemblage:
+  sp_asb1 <- names(which(fd_details$asb_sp_occ[asb1, ] == 1))
+  if (two_asb){
+    sp_asb2 <- names(which(fd_details$asb_sp_occ[asb2, ] == 1))
+  }
+  
+  
+  # plot FRic if required: ####
+  if ("fric" %in% ind_nm) {
     
-  } else {
-    for (j in (1:length(return_panels_list))) {
-      ggplot2::ggsave(filename = paste0(name_file, j, ".", device_file),
-                      plot = return_panels_list[[j]],
+    # list to store ggplot
+    panels_fric <- list()
+    
+    
+    # loop on combinations:
+    for (k in (1:plot_nb)) {
+      
+      # names of axes
+      xy_k <- axes_plot[1:2, k]
+      
+      # get species coordinates along the 2 axes:
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      colnames(sp_coord_xy) <- c("x", "y")
+      
+      # list with dataframes for plot:
+      asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ])
+      vertices_nD_k <- list(asb1 = fd_details$asb_vert_nm[[asb1]])
+      
+      if (two_asb) {
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
+      }
+      
+      
+      # background = axes defined by range of values and names as specified:
+      plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+      
+      # add species pool:
+      plot_k <- pool.plot(ggplot_bg = plot_k,
+                          sp_coord2D = sp_coord_xy,
+                          vertices_nD = vert_pool,
+                          plot_pool = TRUE,
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
+      
+      # plot 2D convex hulls and points for the 2 assemblages:
+      plot_k <- fric.plot(ggplot_bg = plot_k,
+                          asb_sp_coord2D = asb_sp_coord2D_k,
+                          asb_vertices_nD = vertices_nD_k,
+                          plot_sp = TRUE,
+                          color_ch = color_ch[c("asb1", "asb2")],
+                          fill_ch = fill_ch[c("asb1", "asb2")],
+                          alpha_ch = alpha_ch[c("asb1", "asb2")],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          size_sp = size_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          shape_vert = shape_sp[c("asb1", "asb2")],
+                          size_vert = size_sp[c("asb1", "asb2")],
+                          color_vert = color_vert[c("asb1", "asb2")],
+                          fill_vert = fill_vert[c("asb1", "asb2")])
+      
+      # add species names if needed:
+      if (! is.null(plot_sp_nm)) {
+        x <- NULL
+        y <- NULL
+        plot_k <- plot_k +
+          ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                   ggplot2::aes_string(x = xy_k[1],
+                                                      y = xy_k[2],
+                                                      label = "label"),
+                                   size = size_sp_nm, colour= color_sp_nm,
+                                   fontface = fontface_sp_nm,
+                                   max.overlaps = Inf,
+                                   box.padding = grid::unit(2, 'lines'),
+                                   force = 5,
+                                   arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
+                                   segment.color = color_sp_nm)
+      }
+      
+      # save plot in a list:
+      panels_fric[[k]] <- plot_k
+      
+    } # end of k
+    
+    
+    # plot for indices values: #####
+    
+    # retrieve values to plot:
+    top_fric <- c("Functional richness", asb1, "")
+    values_fric <- c(asb_fd_ind[asb1, "fric"], "")
+    if (two_asb) {
+      top_fric[3] <- asb2
+      values_fric[2] <- asb_fd_ind[asb2,"fric"] 
+    }
+    
+    # customize position of texts in the plot
+    spread_faxes <- (range_faxes[2] - range_faxes[1])
+    hh <- c(1, 2.5, 4, 5.5)
+    vv <- 0.3
+    
+    # plot window:
+    x <- NULL
+    y <- NULL
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
+                                    ggplot2::aes(x = x, y = y)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
+                         fill = "white", colour ="black")
+    
+    # plot names of index and of assemblages:
+    h   <- NULL
+    v   <- NULL
+    top <- NULL
+    x <- NULL
+    y <- NULL
+    plot_caption <- plot_caption +
+      ggplot2::geom_text(data = data.frame(
+        h = range_faxes[1] + spread_faxes * 0.15 * hh[c(1,3:4)],
+        v = range_faxes[2] - spread_faxes * rep(0.2, 3),
+        top = top_fric),
+        ggplot2::aes(x = h, y = v, label = top),
+        size = 3, hjust = 0.5, fontface = "bold")
+    
+    # plot FRic values:
+    values_lab <- NULL
+    data_caption <- data.frame(
+      h = range_faxes[1] + spread_faxes * 0.15 * hh[2:4],
+      v = range_faxes[2] - spread_faxes*rep(vv, 3),
+      values_lab = c("FRic", values_fric))
+    plot_caption <- plot_caption +
+      ggplot2::geom_text(data = data_caption,
+        ggplot2::aes(x = h, y = v, label = values_lab),
+        size = 3, hjust = 0.5, fontface = "plain")
+    vv <- vv + 0.1
+    
+    # add text about dimensionality:
+    nb <- NULL
+    plot_caption<- plot_caption +
+      ggplot2::geom_text(data = data.frame(
+        h = range_faxes[1] + spread_faxes * 0.1,
+        v = range_faxes[2] - spread_faxes * vv,
+        nb = paste0("NB: Indices were computed in a ",
+                    nb_dim,"-dimensional space")),
+        ggplot2::aes(x = h, y = v, label = nb),
+        size = 3, hjust = 0, fontface = "italic")
+    
+    
+    # arrange panels ####
+    
+    # marge panels and caption:
+    patchwork_fric <- panels.to.patchwork(panels_fric, plot_caption)
+    
+    # title and caption
+    tit_fric <- paste0("Functional Richness of '", asb1, "'")
+    if (two_asb){
+      tit_fric<-paste0(tit_fric, " and '", asb2,"'")
+    }
+    
+    # create final patchwork object: 
+    patchwork_fric <- patchwork_fric +
+      patchwork::plot_annotation(title = tit_fric,
+                                 caption = "made with mFD package")
+    
+    
+    # saving as file or list
+    if (save_file == TRUE) {
+      
+      # name of file built with assemblage names and number of dimensions
+      file_fric <- paste0(nm_asb, "_", "FRic_", nb_dim, "D" , ".", device_file)
+      
+      ggplot2::ggsave(filename = file_fric ,
+                      plot = patchwork_fric,
                       device = device_file,
                       scale = 1,
                       height= height_file[as.character(plot_nb)],
                       width = width_file[as.character(plot_nb)],
                       units= "in",
                       dpi = res_file)
+    } else {
+      
+      # output = patchwork + list of panels and caption
+      names(panels_fric) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+      panels_fric[["caption"]] <- plot_caption
+      panels_fric[["patchwork"]] <- patchwork_fric
+      list_panels[["fric"]] <- panels_fric
+      
     }
-  }
-}
+    
+  } # end of plot FRic
+  
+  
+  ##############################################################################
+  
+  
+  # FDiv plot if required ####
+  if ("fdiv" %in% ind_nm) {
+    
+    # create a list to store ggplot:
+    panels_fdiv <- list()
+    
+    
+    # loop on combinations:
+    for (k in (1:plot_nb)) {
+      
+      # get names of axes
+      xy_k <- axes_plot[1:2, k]
+      
+      
+      # get species coordinates along the 2 axes:
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      colnames(sp_coord_xy)<-c("x", "y")
+      
+      # create a list with dataframes for plot:
+      asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ])
+      asb_sp_relw_k <- list(asb1 = fd_details$asb_sp_relatw[asb1, sp_asb1])
+      vertices_nD_k <- list(asb1 = fd_details$asb_vert_nm[[asb1]])
+      asb_vertG_coord2D_k <- list(asb1 = fd_details$asb_G_coord[[asb1]][xy_k])
+      asb_meanDtoG_k <- list(asb1 = fd_details$asb_mean_dist_G[[asb1]])
+      
+      if (two_asb){
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
+        asb_vertG_coord2D_k[["asb2"]] <- fd_details$asb_G_coord[[asb2]][xy_k]
+        asb_meanDtoG_k[["asb2"]] <- fd_details$asb_mean_dist_G[[asb2]]
+      }# end of if 2 assemblages
+      
+      
+      # background = axes defined by range of values and names as specified:
+      plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+      
+      # add species pool:
+      plot_k <- pool.plot(ggplot_bg = plot_k,
+                          sp_coord2D = sp_coord_xy,
+                          vertices_nD = vert_pool,
+                          plot_pool = TRUE,
+                          color_pool = color_ch["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
+      
+      # plot 2D convex hulls and points for the 2 assemblages:
+      plot_k <- fdiv.plot(ggplot_bg = plot_k,
+                          asb_sp_coord2D = asb_sp_coord2D_k,
+                          asb_sp_relatw = asb_sp_relw_k,
+                          asb_vertices_nD = vertices_nD_k,
+                          asb_vertG_coord2D = asb_vertG_coord2D_k,
+                          asb_meanDtoG = asb_meanDtoG_k,
+                          plot_sp = TRUE,
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          shape_vert = shape_sp[c("asb1", "asb2")],
+                          color_vert = color_vert[c("asb1", "asb2")],
+                          fill_vert = fill_vert[c("asb1", "asb2")],
+                          shape_vertG = c(asb1 = 23, asb2 = 24),
+                          size_vertG = c(asb1 = 3, asb2 = 3),
+                          color_vertG = color_sp[c("asb1", "asb2")],
+                          fill_vertG = color_sp[c("asb1", "asb2")],
+                          color_meanD = color_sp[c("asb1", "asb2")])
+
+      
+      # add species names if needed:
+      if (! is.null(plot_sp_nm)) {
+        x <- NULL
+        y <- NULL
+        plot_k <- plot_k +
+          ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                   ggplot2::aes_string(x = xy_k[1],
+                                                      y = xy_k[2],
+                                                      label = "label"),
+                                   size = size_sp_nm, colour = color_sp_nm,
+                                   fontface = fontface_sp_nm,
+                                   max.overlaps = Inf,
+                                   box.padding = grid::unit(2, 'lines'),
+                                   force = 5,
+                                   arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
+                                   segment.color = color_sp_nm)
+      }
+      
+      # saving plot in a list
+      panels_fdiv[[k]] <- plot_k
+      
+    } # end of k
+    
+    
+    # plot caption ####
+    x <- NULL
+    y <- NULL
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+                                    ggplot2::aes(x = x, y = y)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
+                         fill = "white", colour ="black")
+    
+
+    # arrange panels ####
+    
+    # marge panels and caption:
+    patchwork_fdiv <- panels.to.patchwork(panels_fdiv, plot_caption)
+    
+    # retrieve title and caption:
+    tit_fdiv <- paste0( "Functional Divergence of '", asb1, "'")
+    if (two_asb) {
+      tit_fdiv <- paste0(tit_fdiv, " and '", asb2,"'")
+    }
+
+    patchwork_fdiv <- patchwork_fdiv +
+    patchwork::plot_annotation(title = tit_fdiv,
+                               caption = "made with mFD package")
+    
+    
+    # save as file or in list:
+    if (save_file == TRUE) {
+      
+      # name of file built with assemblage names and number of dimensions:
+      file_fdiv <- paste0(nm_asb, "_", "FDiv_", nb_dim, "D" , ".", device_file)
+      
+      ggplot2::ggsave(filename = file_fdiv ,
+                      plot = patchwork_fdiv,
+                      device = device_file,
+                      scale = 1,
+                      height= height_file[as.character(plot_nb)],
+                      width = width_file[as.character(plot_nb)],
+                      units= "in",
+                      dpi = res_file)
+    } else {
+      
+      # output = patchwork + list of panels and caption:
+      names(panels_fdiv) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+      panels_fdiv[["caption"]] <- plot_caption
+      panels_fdiv[["patchwork"]] <- patchwork_fdiv
+      list_panels[["fdiv"]] <- panels_fdiv
+      
+    }
+
+  }# end of plotting FDiv
+  
+  
+  ##############################################################################
+  
+  
+  # FSpe plot if required ####
+  if ("fspe" %in% ind_nm) {
+    
+    # create a list to store ggplot:
+    panels_fspe <- list()
+
+    # loop on combinations:
+    for (k in (1:plot_nb)) {
+      
+      # get names of axes:
+      xy_k <- axes_plot[1:2, k]
+      
+      # retrieve coordinates of center of space:
+      pool_0_xy <- fd_details$pool_O_coord[xy_k]
+      
+      # get species coordinates along the 2 axes:
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      colnames(sp_coord_xy) <- c("x", "y")
+      
+      # get a list with dataframes for plot:
+      asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ])
+      asb_sp_relw_k <- list(asb1 = fd_details$asb_sp_relatw[asb1, sp_asb1])
+      
+      if (two_asb){
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2,]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+      }
+      
+      
+      # background = axes defined by range of values and names as specified:
+      plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+      
+      # add species pool
+      plot_k <- pool.plot(ggplot_bg = plot_k,
+                          sp_coord2D = sp_coord_xy,
+                          vertices_nD = vert_pool,
+                          plot_pool = TRUE,
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
+      
+      plot_k <-fspe.plot(ggplot_bg = plot_k,
+                          asb_sp_coord2D = asb_sp_coord2D_k,
+                          asb_sp_relatw = asb_sp_relw_k,
+                          center_coord2D = pool_0_xy,
+                          pool_coord2D = sp_coord_xy,
+                          plot_pool = FALSE,
+                          plot_sp = TRUE,
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = color_sp[c("asb1", "asb2")],
+                          color_center = color_centroid_fspe,
+                          fill_center = color_centroid_fspe,
+                          shape_center = shape_centroid_fspe,
+                          size_center = 3,
+                          color_segment = color_sp[c("asb1", "asb2")],
+                          width_segment = c(asb1 = 1, asb2 = 1),
+                          linetype_segment = c(asb1 = 1, asb2 = 1))
+      
+      
+      # add species names if needed:
+      if (!is.null(plot_sp_nm)) {
+        x <- NULL
+        y <- NULL
+        plot_k <- plot_k +
+          ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                   ggplot2::aes_string(x = xy_k[1],
+                                                      y = xy_k[2],
+                                                      label = "label"),
+                                   size = size_sp_nm, colour = color_sp_nm,
+                                   fontface = fontface_sp_nm,
+                                   max.overlaps = Inf,
+                                   box.padding = grid::unit(2, 'lines'),
+                                   force = 5,
+                                   arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
+                                   segment.color = color_sp_nm)
+      }
+      
+      # save plot in a list:
+      panels_fspe[[k]] <- plot_k
+      
+    } # end of k
+    
+    # plot caption:
+    x <- NULL
+    y <- NULL
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+                                    ggplot2::aes(x = x, y = y)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
+                         fill = "white", colour ="black")
+    
+    
+    
+    # arrange panels ####
+    
+    # merge panels and caption:
+    patchwork_fspe <- panels.to.patchwork(panels_fspe, plot_caption)
+    
+    # add title and caption:
+    tit_fspe <- paste0( "Functional Specialization of '", asb1, "'")
+    if (two_asb){
+      tit_fspe <- paste0(tit_fspe, " and '", asb2, "'")
+    }
+    
+    
+    patchwork_fspe <- patchwork_fspe +
+      patchwork::plot_annotation(title = tit_fspe,
+                                 caption = "made with mFD package")
+    
+    
+    # save as file or in a list:
+    if (save_file == TRUE) {
+      
+      # get name of file built with assemblage names and number of dimensions:
+      file_fspe <- paste0(nm_asb, "_", "fspe_", nb_dim, "D" , ".", device_file)
+      
+      ggplot2::ggsave(filename = file_fspe ,
+                      plot = patchwork_fspe,
+                      device = device_file,
+                      scale = 1,
+                      height= height_file[as.character(plot_nb)],
+                      width = width_file[as.character(plot_nb)],
+                      units = "in",
+                      dpi = res_file)
+    } else {
+      
+      # output = patchwork + list of panels and caption
+      names(panels_fspe) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+      panels_fspe[["caption"]] <- plot_caption
+      panels_fspe[["patchwork"]] <- patchwork_fspe
+      list_panels[["fspe"]] <- panels_fspe
+      
+    }
+    
+
+  }# end of plotting FSpe
+  
+  
+  ##############################################################################
+  
+
+  # FDis plot if required ####
+  if ("fdis" %in% ind_nm) {
+    
+    # create a list to store ggplot:
+    panels_fdis <- list()
+    
+    # loop on combinations:
+    for (k in (1:plot_nb)) {
+      
+      # get names of axes:
+      xy_k <- axes_plot[1:2, k]
+      
+      # get species coordinates along the 2 axes:
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      colnames(sp_coord_xy) <- c("x", "y")
+      
+      # create a list with dataframes for plot:
+      asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ])
+      asb_sp_relw_k <- list(asb1 = fd_details$asb_sp_relatw[asb1, sp_asb1])
+      asb_fide_coord2D <- list(asb1 = asb_fd_ind[asb1, paste0("fide", sep = "_", 
+                                                              xy_k)])
+      
+      if (two_asb){
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
+                                                                xy_k)]
+      }# end of if 2 assemblages
+      
+      
+      # background = axes defined by range of values and names as specified:
+      plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+      
+      # add species pool
+      plot_k <- pool.plot(ggplot_bg = plot_k,
+                          sp_coord2D = sp_coord_xy,
+                          vertices_nD = vert_pool,
+                          plot_pool = TRUE,
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
+      
+      plot_k <- fdis.plot(ggplot_bg = plot_k,
+                         asb_sp_coord2D = asb_sp_coord2D_k,
+                         asb_sp_relatw = asb_sp_relw_k,
+                         asb_fide_coord2D = asb_fide_coord2D,
+                         plot_sp = TRUE,
+                         shape_sp = shape_sp[c("asb1", "asb2")],
+                         color_sp = color_sp[c("asb1", "asb2")],
+                         fill_sp = fill_sp[c("asb1", "asb2")],
+                         color_fide = color_sp[c("asb1", "asb2")],
+                         fill_fide = fill_sp[c("asb1", "asb2")],
+                         shape_fide = shape_centroid_fdis,
+                         size_fide = size_sp[c("asb1", "asb2")],
+                         color_segment = color_sp[c("asb1", "asb2")],
+                         width_segment = c(asb1 = 1, asb2 = 1),
+                         linetype_segment = c(asb1 = 1, asb2 = 1))
+      
+      
+      # add species names if needed:
+      if (!is.null(plot_sp_nm)) {
+        x <- NULL
+        y <- NULL
+        plot_k <- plot_k +
+          ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                   ggplot2::aes_string(x = xy_k[1],
+                                                       y = xy_k[2],
+                                                       label = "label"),
+                                   size = size_sp_nm, colour = color_sp_nm,
+                                   fontface = fontface_sp_nm,
+                                   max.overlaps = Inf,
+                                   box.padding = grid::unit(2, 'lines'),
+                                   force = 5,
+                                   arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
+                                   segment.color = color_sp_nm)
+      }
+      
+      # save plot in a list:
+      panels_fdis[[k]] <- plot_k
+      
+    } # end of k
+    
+    # plot caption:
+    x <- NULL
+    y <- NULL
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+                                    ggplot2::aes(x = x, y = y)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
+                         fill = "white", colour ="black")
+    
+    
+    
+    # arrange panels ####
+    
+    # merge panels and caption:
+    patchwork_fdis <- panels.to.patchwork(panels_fdis, plot_caption)
+    
+    # add title and caption:
+    tit_fdis <- paste0( "Functional Dispersion of '", asb1, "'")
+    if (two_asb) {
+      tit_fdis <- paste0(tit_fdis, " and '", asb2, "'")
+    }
+    
+    
+    patchwork_fdis <- patchwork_fdis +
+      patchwork::plot_annotation(title = tit_fdis,
+                                 caption = "made with mFD package")
+    
+    
+    # save as file or in a list:
+    if (save_file == TRUE) {
+      
+      # get name of file built with assemblage names and number of dimensions:
+      file_fdis <- paste0(nm_asb, "_", "fdis_", nb_dim, "D" , ".", device_file)
+      
+      ggplot2::ggsave(filename = file_fdis,
+                      plot = patchwork_fdis,
+                      device = device_file,
+                      scale = 1,
+                      height= height_file[as.character(plot_nb)],
+                      width = width_file[as.character(plot_nb)],
+                      units = "in",
+                      dpi = res_file)
+    } else {
+      
+      # output = patchwork + list of panels and caption
+      names(panels_fdis) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+      panels_fdis[["caption"]] <- plot_caption
+      panels_fdis[["patchwork"]] <- patchwork_fdis
+      list_panels[["fdis"]] <- panels_fdis
+      
+    }
+
+  } # end of plotting FDis
+  
+  
+  ##############################################################################
+  
+  # FIde plot if required ####
+  if ("fide" %in% ind_nm) {
+    
+    # create a list to store ggplot:
+    panels_fide <- list()
+    
+    # loop on combinations:
+    for (k in (1:plot_nb)) {
+      
+      # get names of axes:
+      xy_k <- axes_plot[1:2, k]
+      
+      # get species coordinates along the 2 axes:
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      colnames(sp_coord_xy) <- c("x", "y")
+      
+      # create a list with dataframes for plot:
+      asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ])
+      asb_sp_relw_k <- list(asb1 = fd_details$asb_sp_relatw[asb1, sp_asb1])
+      asb_fide_coord2D <- list(asb1 = asb_fd_ind[asb1, paste0("fide", sep = "_", 
+                                                              xy_k)])
+      
+      if (two_asb){
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
+                                                              xy_k)]
+      }# end of if 2 assemblages
+      
+      
+      # background = axes defined by range of values and names as specified:
+      plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+      
+      # add species pool
+      plot_k <- pool.plot(ggplot_bg = plot_k,
+                          sp_coord2D = sp_coord_xy,
+                          vertices_nD = vert_pool,
+                          plot_pool = TRUE,
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
+      
+      plot_k <- fide.plot(ggplot_bg = plot_k,
+                          asb_sp_coord2D = asb_sp_coord2D_k,
+                          asb_sp_relatw = asb_sp_relw_k,
+                          asb_fide_coord2D = asb_fide_coord2D,
+                          plot_sp = TRUE,
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          color_fide = color_sp[c("asb1", "asb2")],
+                          fill_fide = fill_sp[c("asb1", "asb2")],
+                          shape_fide = shape_centroid_fdis,
+                          size_fide = size_sp[c("asb1", "asb2")],
+                          color_segment = color_sp[c("asb1", "asb2")],
+                          width_segment = c(asb1 = 1, asb2 = 1),
+                          linetype_segment = c(asb1 = 1, asb2 = 1))
+      
+      
+      # add species names if needed:
+      if (!is.null(plot_sp_nm)) {
+        x <- NULL
+        y <- NULL
+        plot_k <- plot_k +
+          ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                   ggplot2::aes_string(x = xy_k[1],
+                                                       y = xy_k[2],
+                                                       label = "label"),
+                                   size = size_sp_nm, colour = color_sp_nm,
+                                   fontface = fontface_sp_nm,
+                                   max.overlaps = Inf,
+                                   box.padding = grid::unit(2, 'lines'),
+                                   force = 5,
+                                   arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
+                                   segment.color = color_sp_nm)
+      }
+      
+      # save plot in a list:
+      panels_fide[[k]] <- plot_k 
+      
+    } # end of k
+    
+    # plot caption:
+    x <- NULL
+    y <- NULL
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+                                    ggplot2::aes(x = x, y = y)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
+                         fill = "white", colour ="black")
+    
+    
+    
+    # arrange panels ####
+    
+    # merge panels and caption:
+    patchwork_fide <- panels.to.patchwork(panels_fide, plot_caption)
+    
+    # add title and caption:
+    tit_fide <- paste0( "Functional Identity of '", asb1, "'")
+    if (two_asb) {
+      tit_fide <- paste0(tit_fide, " and '", asb2, "'")
+    }
+    
+    
+    patchwork_fide <- patchwork_fide +
+      patchwork::plot_annotation(title = tit_fide,
+                                 caption = "made with mFD package")
+    
+    
+    # save as file or in a list:
+    if (save_file == TRUE) {
+      
+      # get name of file built with assemblage names and number of dimensions:
+      file_fide <- paste0(nm_asb, "_", "fide_", nb_dim, "D" , ".", device_file)
+      
+      ggplot2::ggsave(filename = file_fide,
+                      plot = patchwork_fide,
+                      device = device_file,
+                      scale = 1,
+                      height= height_file[as.character(plot_nb)],
+                      width = width_file[as.character(plot_nb)],
+                      units = "in",
+                      dpi = res_file)
+    } else {
+      
+      # output = patchwork + list of panels and caption
+      names(panels_fide) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+      panels_fide[["caption"]] <- plot_caption
+      panels_fide[["patchwork"]] <- patchwork_fide
+      list_panels[["fide"]] <- panels_fide
+      
+    }
+    
+  } # end of plotting FIde
+  
+  
+  ##############################################################################
+  
+  
+  # FEve plot if required ####
+  if ("feve" %in% ind_nm) {
+    
+    # create a list to store ggplot:
+    panels_feve <- list()
+    
+    # loop on combinations:
+    for (k in (1:plot_nb)) {
+      
+      # get names of axes:
+      xy_k <- axes_plot[1:2, k]
+      
+      # get species coordinates along the 2 axes:
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      colnames(sp_coord_xy) <- c("x", "y")
+      
+      # create a list with dataframes for plot:
+      asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ])
+      asb_sp_relw_k <- list(asb1 = fd_details$asb_sp_relatw[asb1, sp_asb1])
+      asb_mst <- list(asb1 = fd_details$asb_mst[[asb1]])
+      
+      
+      if (two_asb){
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_mst[["asb2"]] <- fd_details$asb_mst[[asb2]]
+      }
+      
+      
+      # background = axes defined by range of values and names as specified:
+      plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+      
+      # add species pool
+      plot_k <- pool.plot(ggplot_bg = plot_k,
+                          sp_coord2D = sp_coord_xy,
+                          vertices_nD = vert_pool,
+                          plot_pool = TRUE,
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
+      
+      plot_k <- feve.plot(ggplot_bg = plot_k,
+                          asb_sp_coord2D = asb_sp_coord2D_k,
+                          asb_sp_relatw = asb_sp_relw_k,
+                          asb_mst = asb_mst,
+                          plot_sp = TRUE,
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          color_mst = color_sp[c("asb1", "asb2")],
+                          width_mst = c(asb1 = 1, asb2 = 1),
+                          linetype_mst = c(asb1 = 1, asb2 = 1))
+      
+      
+      # add species names if needed:
+      if (!is.null(plot_sp_nm)) {
+        x <- NULL
+        y <- NULL
+        plot_k <- plot_k +
+          ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                   ggplot2::aes_string(x = xy_k[1],
+                                                       y = xy_k[2],
+                                                       label = "label"),
+                                   size = size_sp_nm, colour = color_sp_nm,
+                                   fontface = fontface_sp_nm,
+                                   max.overlaps = Inf,
+                                   box.padding = grid::unit(2, 'lines'),
+                                   force = 5,
+                                   arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
+                                   segment.color = color_sp_nm)
+      }
+      
+      # save plot in a list:
+      panels_feve[[k]] <- plot_k 
+      
+    } # end of k
+    
+    # plot caption:
+    x <- NULL
+    y <- NULL
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
+                                    ggplot2::aes(x = x, y = y)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
+                         fill = "white", colour ="black")
+    
+    
+    
+    # arrange panels ####
+    
+    # merge panels and caption:
+    patchwork_fide <- panels.to.patchwork(panels_feve, plot_caption)
+    
+    # add title and caption:
+    tit_feve <- paste0( "Functional Evenness of '", asb1, "'")
+    if (two_asb) {
+      tit_feve <- paste0(tit_feve, " and '", asb2, "'")
+    }
+    
+    
+    patchwork_feve <- patchwork_feve +
+      patchwork::plot_annotation(title = tit_feve,
+                                 caption = "made with mFD package")
+    
+    
+    # save as file or in a list:
+    if (save_file == TRUE) {
+      
+      # get name of file built with assemblage names and number of dimensions:
+      file_feve <- paste0(nm_asb, "_", "feve_", nb_dim, "D" , ".", device_file)
+      
+      ggplot2::ggsave(filename = file_fide,
+                      plot = patchwork_fide,
+                      device = device_file,
+                      scale = 1,
+                      height= height_file[as.character(plot_nb)],
+                      width = width_file[as.character(plot_nb)],
+                      units = "in",
+                      dpi = res_file)
+    } else {
+      
+      # output = patchwork + list of panels and caption
+      names(panels_feve) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+      panels_feve[["caption"]] <- plot_caption
+      panels_feve[["patchwork"]] <- patchwork_feve
+      list_panels[["feve"]] <- panels_feve
+      
+    }
+    
+  } # end of plotting FEve
+  
+  
+  ##############################################################################
+  
+  
+  # FOri plot if required ####
+  if ("fori" %in% ind_nm) {
+    
+    # create a list to store ggplot:
+    panels_fori <- list()
+    
+    # loop on combinations:
+    for (k in (1:plot_nb)) {
+      
+      # get names of axes:
+      xy_k <- axes_plot[1:2, k]
+      
+      # get species coordinates along the 2 axes:
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      colnames(sp_coord_xy) <- c("x", "y")
+      
+      # create a list with dataframes for plot:
+      asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ])
+      asb_sp_relw_k <- list(asb1 = fd_details$asb_sp_relatw[asb1, sp_asb1])
+      asb_nn_pool <- list(asb1 = fd_details$asb_nm_nn_pool[[asb1]])
+      pool_coord2D <- sp_faxes_coord[, xy_k]
+      
+      if (two_asb){
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_nn_pool["asb2"] <- fd_details$asb_nm_nn_pool[[asb2]]
+      }
+      
+      
+      # background = axes defined by range of values and names as specified:
+      plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+      
+      # add species pool
+      plot_k <- pool.plot(ggplot_bg = plot_k,
+                          sp_coord2D = sp_coord_xy,
+                          vertices_nD = vert_pool,
+                          plot_pool = TRUE,
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
+      
+      plot_k <- fori.plot(ggplot_bg = plot_k,
+                          asb_sp_coord2D = asb_sp_coord2D_k,
+                          asb_sp_relatw = asb_sp_relw_k,
+                          asb_nn_pool = asb_nn_pool,
+                          pool_coord2D = pool_coord2D,
+                          plot_pool = TRUE,
+                          plot_sp = TRUE,
+                          shape_pool = shape_sp[c("pool")],
+                          size_pool = size_sp[c("pool")],
+                          color_pool = color_sp[c("pool")],
+                          fill_pool = fill_sp[c("pool")],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          color_segment = color_sp[c("asb1", "asb2")],
+                          width_segment = c(asb1 = 1, asb2 = 1),
+                          linetype_segment = c(asb1 = 1, asb2 = 1))
+                          
+
+      # add species names if needed:
+      if (!is.null(plot_sp_nm)) {
+        x <- NULL
+        y <- NULL
+        plot_k <- plot_k +
+          ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                   ggplot2::aes_string(x = xy_k[1],
+                                                       y = xy_k[2],
+                                                       label = "label"),
+                                   size = size_sp_nm, colour = color_sp_nm,
+                                   fontface = fontface_sp_nm,
+                                   max.overlaps = Inf,
+                                   box.padding = grid::unit(2, 'lines'),
+                                   force = 5,
+                                   arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
+                                   segment.color = color_sp_nm)
+      }
+      
+      # save plot in a list:
+      panels_fori[[k]] <- plot_k 
+      
+    } # end of k
+    
+    # plot caption:
+    x <- NULL
+    y <- NULL
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
+                                    ggplot2::aes(x = x, y = y)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
+                         fill = "white", colour ="black")
+    
+    
+    
+    # arrange panels ####
+    
+    # merge panels and caption:
+    patchwork_fori <- panels.to.patchwork(panels_fori, plot_caption)
+    
+    # add title and caption:
+    tit_fori <- paste0( "Functional Originality of '", asb1, "'")
+    if (two_asb) {
+      tit_fori <- paste0(tit_fori, " and '", asb2, "'")
+    }
+    
+    
+    patchwork_fori <- patchwork_fori +
+      patchwork::plot_annotation(title = tit_fori,
+                                 caption = "made with mFD package")
+    
+    
+    # save as file or in a list:
+    if (save_file == TRUE) {
+      
+      # get name of file built with assemblage names and number of dimensions:
+      file_fori <- paste0(nm_asb, "_", "fori_", nb_dim, "D" , ".", device_file)
+      
+      ggplot2::ggsave(filename = file_fori,
+                      plot = patchwork_fori,
+                      device = device_file,
+                      scale = 1,
+                      height= height_file[as.character(plot_nb)],
+                      width = width_file[as.character(plot_nb)],
+                      units = "in",
+                      dpi = res_file)
+    } else {
+      
+      # output = patchwork + list of panels and caption
+      names(panels_fori) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+      panels_fori[["caption"]] <- plot_caption
+      panels_fori[["patchwork"]] <- patchwork_fori
+      list_panels[["fori"]] <- panels_fori
+      
+    }
+    
+  } # end of plotting FOri
+  
+  ##############################################################################
+  
+  
+  
+  # FNND plot if required ####
+  if ("fnnd" %in% ind_nm) {
+    
+    # create a list to store ggplot:
+    panels_fnnd <- list()
+    
+    # loop on combinations:
+    for (k in (1:plot_nb)) {
+      
+      # get names of axes:
+      xy_k <- axes_plot[1:2, k]
+      
+      # get species coordinates along the 2 axes:
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      colnames(sp_coord_xy) <- c("x", "y")
+      
+      # create a list with dataframes for plot:
+      asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ])
+      asb_sp_relw_k <- list(asb1 = fd_details$asb_sp_relatw[asb1, sp_asb1])
+      asb_nn_asb <- list(asb1 = fd_details$asb_nm_nn_asb[[asb1]])
+
+      if (two_asb){
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_nn_asb[["asb2"]] <- fd_details$asb_nm_nn_asb[[asb2]]
+      }
+      
+      
+      # background = axes defined by range of values and names as specified:
+      plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+      
+      # add species pool
+      plot_k <- pool.plot(ggplot_bg = plot_k,
+                          sp_coord2D = sp_coord_xy,
+                          vertices_nD = vert_pool,
+                          plot_pool = TRUE,
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
+      
+      plot_k <- fnnd.plot(ggplot_bg = plot_k,
+                          asb_sp_coord2D = asb_sp_coord2D_k,
+                          asb_sp_relatw = asb_sp_relw_k,
+                          asb_nn_asb = asb_nn_asb,
+                          plot_sp = TRUE,
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          color_segment = color_sp[c("asb1", "asb2")],
+                          width_segment = c(asb1 = 1, asb2 = 1),
+                          linetype_segment = c(asb1 = 1, asb2 = 1))
+      
+      
+      # add species names if needed:
+      if (!is.null(plot_sp_nm)) {
+        x <- NULL
+        y <- NULL
+        plot_k <- plot_k +
+          ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
+                                   ggplot2::aes_string(x = xy_k[1],
+                                                       y = xy_k[2],
+                                                       label = "label"),
+                                   size = size_sp_nm, colour = color_sp_nm,
+                                   fontface = fontface_sp_nm,
+                                   max.overlaps = Inf,
+                                   box.padding = grid::unit(2, 'lines'),
+                                   force = 5,
+                                   arrow = grid::arrow(length = grid::unit(0.02,
+                                                                        'npc')),
+                                   segment.color = color_sp_nm)
+      }
+      
+      # save plot in a list:
+      panels_fnnd[[k]] <- plot_k 
+      
+    } # end of k
+    
+    # plot caption:
+    x <- NULL
+    y <- NULL
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
+                                    ggplot2::aes(x = x, y = y)) +
+      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+      ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
+                         ymin = range_faxes[1], ymax = range_faxes[2],
+                         fill = "white", colour ="black")
+    
+    
+    
+    # arrange panels ####
+    
+    # merge panels and caption:
+    patchwork_fnnd <- panels.to.patchwork(panels_fnnd, plot_caption)
+    
+    # add title and caption:
+    tit_fnnd <- paste0( "Functional Nearest Neighbor Distance of '", asb1, "'")
+    if (two_asb) {
+      tit_fnnd <- paste0(tit_fnnd, " and '", asb2, "'")
+    }
+    
+    
+    patchwork_fnnd <- patchwork_fnnd +
+      patchwork::plot_annotation(title = tit_fnnd,
+                                 caption = "made with mFD package")
+    
+    
+    # save as file or in a list:
+    if (save_file == TRUE) {
+      
+      # get name of file built with assemblage names and number of dimensions:
+      file_fnnd <- paste0(nm_asb, "_", "fnnd_", nb_dim, "D" , ".", device_file)
+      
+      ggplot2::ggsave(filename = file_fnnd,
+                      plot = patchwork_fnnd,
+                      device = device_file,
+                      scale = 1,
+                      height= height_file[as.character(plot_nb)],
+                      width = width_file[as.character(plot_nb)],
+                      units = "in",
+                      dpi = res_file)
+    } else {
+      
+      # output = patchwork + list of panels and caption
+      names(panels_fnnd) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
+      panels_fnnd[["caption"]] <- plot_caption
+      panels_fnnd[["patchwork"]] <- patchwork_fnnd
+      list_panels[["fnnd"]] <- panels_fnnd
+      
+    }
+    
+  } # end of plotting FNND
+  
+
+  ##############################################################################
+  
+
+  # return complete output  = list of list of panels: ####
+  
+  return(list_panels)
+  
+}   # end of function
