@@ -1555,7 +1555,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
       ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
                          ymin = range_faxes[1], ymax = range_faxes[2],
-                         fill = "white", colour ="black")
+                         fill = "white", colour = "black")
     
     
     
