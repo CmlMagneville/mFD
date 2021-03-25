@@ -34,7 +34,6 @@
 #' @param size_sp a vector gathering numeric values referring to the size of 
 #' species belonging to the global pool and the plotted assemblage(s).
 #' It should be written  as c(pool = "...", asb1 = "...", ...). 
-#' If several assemblages, names should be written as in `plot_asb_nm`.
 #' 
 #' @param size_sp_nm a numeric value referring to the size of species names 
 #' if plotted. 
@@ -42,12 +41,10 @@
 #' @param color_sp a vector gathering R color names or hexadecimal codes 
 #' referring to the color of species from the global pool and studied 
 #' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
-#' If several assemblages, names should be written as in `plot_asb_nm`.
 #' 
 #' @param color_vert a vector gathering R color names or hexadecimal codes 
 #' referring to the color of vertices from the global pool and studied 
 #' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
-#' If several assemblages, names should be written as in `plot_asb_nm`.
 #' 
 #' @param color_centroid_fspe a vector gathering R color name or 
 #' hexadecimal code used to draw FSpe centroid (i.e. center of the 
@@ -56,7 +53,6 @@
 #' @param color_ch a vector gathering R color names or hexadecimal codes 
 #' referring to the color of the convex pool of the global pool and studied 
 #' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
-#' If several assemblages, names should be written as in `plot_asb_nm`.
 #' 
 #' @param color_sp_nm a R color name or hexadecimal code referring to the 
 #' color of names of species if plotted.
@@ -64,37 +60,30 @@
 #' @param fill_sp a vector gathering R color names or hexadecimal codes 
 #' referring to the filled color of species from the global pool and studied 
 #' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
-#' If several assemblages, names should be written as in `plot_asb_nm`.
 #' 
 #' @param fill_vert a vector gathering R color names or hexadecimal codes 
 #' referring to the filled color of vertices from the global pool and studied 
 #' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
-#' If several assemblages, names should be written as in `plot_asb_nm`.
 #'
 #' @param fill_ch a vector gathering R color names or hexadecimal codes 
 #' referring to the color to fill the convex pool of the global pool and studied 
 #' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
-#' If several assemblages, names should be written as in `plot_asb_nm`.
 #'
 #' @param alpha_ch a vector gathering numeric values referring to the opacity of 
 #' convex hulls of the global pool and the plotted assemblage(s).
 #' It should be written  as c(pool = "...", asb1 = "...", ...).
-#' (0 = high transparency, 1 = no transparency). If several assemblages, names 
-#' should be written as in `plot_asb_nm`.
+#' (0 = high transparency, 1 = no transparency). 
 #'
 #' @param shape_sp a vector gathering numeric values referring to the symbol 
 #' used to draw species from the global pool and the plotted assemblage(s).
 #' It should be written  as c(pool = "...", asb1 = "...", ...).
-#' (0 = high transparency, 1 = no transparency). If several assemblages, names 
-#' should be written as in `plot_asb_nm`.
+#' (0 = high transparency, 1 = no transparency). 
 #'
 #' @param shape_centroid_fdis a vector gathering numeric value(s) used to draw 
-#' FDis centroid size. If several assemblages, names should be written as 
-#' in `plot_asb_nm`. 
+#' FDis centroid size. 
 #'  
 #' @param shape_centroid_fdiv a vector gathering numeric value(s) used to draw 
-#' FDiv centroid size. If several assemblages, names should be written as 
-#' in `plot_asb_nm`. 
+#' FDiv centroid size. 
 #' 
 #' @param shape_centroid_fspe a vector gathering numeric value used to draw 
 #' FSpe centroid (i.e. center of the functional space) size. 
@@ -360,13 +349,13 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # list with dataframes for plot:
       asb_sp_coord2D_k <- list()
-      asb_sp_coord2D_k[[asb1]] <- sp_coord_xy[sp_asb1, ]
+      asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       vertices_nD_k <- list()
-      vertices_nD_k[[asb1]] <- fd_details$asb_vert_nm[[asb1]]
+      vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
       
       if (two_asb) {
-        asb_sp_coord2D_k[[asb2]] <- sp_coord_xy[sp_asb2, ]
-        vertices_nD_k[[asb2]] <- fd_details$asb_vert_nm[[asb2]]
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
       }
       
       
@@ -378,34 +367,34 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_ch = color_ch[[pool]],
-                          fill_ch = fill_ch[[pool]],
-                          alpha_ch = alpha_ch[[pool]],
-                          shape_pool = shape_sp[[pool]],
-                          size_pool = size_sp[[pool]],
-                          color_pool = color_sp[[pool]],
-                          fill_pool = fill_sp[[pool]],
-                          shape_vert = shape_sp[[pool]],
-                          size_vert = size_sp[[pool]],
-                          color_vert = color_vert[[pool]],
-                          fill_vert = fill_vert[[pool]])
+                          color_ch = color_ch[["pool"]],
+                          fill_ch = fill_ch[["pool"]],
+                          alpha_ch = alpha_ch[["pool"]],
+                          shape_pool = shape_sp[["pool"]],
+                          size_pool = size_sp[["pool"]],
+                          color_pool = color_sp[["pool"]],
+                          fill_pool = fill_sp[["pool"]],
+                          shape_vert = shape_sp[["pool"]],
+                          size_vert = size_sp[["pool"]],
+                          color_vert = color_vert[["pool"]],
+                          fill_vert = fill_vert[["pool"]])
       
       # plot 2D convex hulls and points for the 2 assemblages:
       plot_k <- fric.plot(ggplot_bg = plot_k,
                           asb_sp_coord2D = asb_sp_coord2D_k,
                           asb_vertices_nD = vertices_nD_k,
                           plot_sp = TRUE,
-                          color_ch = color_ch[c(asb1, asb2)],
-                          fill_ch = fill_ch[c(asb1, asb2)],
-                          alpha_ch = alpha_ch[c(asb1, asb2)],
-                          shape_sp = shape_sp[c(asb1, asb2)],
-                          size_sp = size_sp[c(asb1, asb2)],
-                          color_sp = color_sp[c(asb1, asb2)],
-                          fill_sp = fill_sp[c(asb1, asb2)],
-                          shape_vert = shape_sp[c(asb1, asb2)],
-                          size_vert = size_sp[c(asb1, asb2)],
-                          color_vert = color_vert[c(asb1, asb2)],
-                          fill_vert = fill_vert[c(asb1, asb2)])
+                          color_ch = color_ch[c("asb1", "asb2")],
+                          fill_ch = fill_ch[c("asb1", "asb2")],
+                          alpha_ch = alpha_ch[c("asb1", "asb2")],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          size_sp = size_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          shape_vert = shape_sp[c("asb1", "asb2")],
+                          size_vert = size_sp[c("asb1", "asb2")],
+                          color_vert = color_vert[c("asb1", "asb2")],
+                          fill_vert = fill_vert[c("asb1", "asb2")])
       
       # add species names if needed:
       if (! is.null(plot_sp_nm)) {
@@ -508,24 +497,24 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                         xmax = range_faxes[1] + spread_faxes*0.15,
                         ymin = range_faxes[2] - spread_faxes*0.51,
                         ymax = range_faxes[2] - spread_faxes*0.55,
-                        fill = color_sp[[asb1]], alpha = alpha_ch[[asb1]]) + 
+                        fill = color_sp[["asb1"]], alpha = alpha_ch[["asb1"]]) + 
 
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
                          y = range_faxes[2] - spread_faxes*0.525,
                          label = paste0("convex hull of", sep = " ", 
                                         asb1),
-                         colour = color_sp[[asb1]], size = 3) + 
+                         colour = color_sp[["asb1"]], size = 3) + 
       
       ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
                           y = range_faxes[2] - spread_faxes*0.58,
-                          size = size_sp[[asb1]], shape = shape_sp[[asb1]],
-                          color = color_sp[[asb1]], fill = fill_sp[[asb1]]) + 
+                          size = size_sp[["asb1"]], shape = shape_sp[["asb1"]],
+                          color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
       
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
                          y = range_faxes[2] - spread_faxes*0.58,
                          label = paste0("shape of species from", sep = " ", 
                                         asb1),
-                         colour = color_sp[[asb1]], size = 3) 
+                         colour = color_sp[["asb1"]], size = 3) 
     
     ### if 2nd assemblage:
     if (two_asb) {
@@ -535,24 +524,27 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                            xmax = range_faxes[1] + spread_faxes*0.15,
                            ymin = range_faxes[2] - spread_faxes*0.64,
                            ymax = range_faxes[2] - spread_faxes*0.68,
-                           fill = color_sp[[asb2]], alpha = alpha_ch[[asb2]]) + 
+                           fill = color_sp[["asb2"]], 
+                           alpha = alpha_ch[["asb2"]]) + 
         
         ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
                            y = range_faxes[2] - spread_faxes*0.665,
                            label = paste0("convex hull of", sep = " ", 
                                           asb2),
-                           colour = color_sp[[asb2]], size = 3) + 
+                           colour = color_sp[["asb2"]], size = 3) + 
         
         ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
                             y = range_faxes[2] - spread_faxes*0.71,
-                            size = size_sp[[asb2]], shape = shape_sp[[asb2]],
-                            color = color_sp[[asb2]], fill = fill_sp[[asb2]]) + 
+                            size = size_sp[["asb2"]], 
+                            shape = shape_sp[["asb2"]],
+                            color = color_sp[["asb2"]], 
+                            fill = fill_sp[["asb2"]]) + 
         
         ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
                            y = range_faxes[2] - spread_faxes*0.71,
                            label = paste0("shape of species from", sep = " ", 
                                           asb2),
-                           colour = color_sp[[asb2]], size = 3) 
+                           colour = color_sp[["asb2"]], size = 3)
       
     }
 
@@ -624,23 +616,23 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
-      asb_sp_coord2D_k[[asb1]] <- sp_coord_xy[sp_asb1, ]
+      asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       asb_sp_relw_k <- list()
-      asb_sp_relw_k[[asb1]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
+      asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       vertices_nD_k <- list()
-      vertices_nD_k[[asb1]] <- fd_details$asb_vert_nm[[asb1]]
+      vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
       asb_vertG_coord2D_k <- list()
-      asb_vertG_coord2D_k[[asb1]] <- fd_details$asb_G_coord[[asb1]][xy_k]
+      asb_vertG_coord2D_k[["asb1"]] <- fd_details$asb_G_coord[[asb1]][xy_k]
       asb_meanDtoG_k <- list()
-      asb_meanDtoG_k[[asb1]] <- fd_details$asb_mean_dist_G[[asb1]]
+      asb_meanDtoG_k[["asb1"]] <- fd_details$asb_mean_dist_G[[asb1]]
       
       if (two_asb){
-        asb_sp_coord2D_k[[asb2]] <- sp_coord_xy[sp_asb2, ]
-        asb_sp_relw_k[[asb2]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
-        vertices_nD_k[[asb2]] <- fd_details$asb_vert_nm[[asb2]]
-        asb_vertG_coord2D_k[[asb2]] <- fd_details$asb_G_coord[[asb2]][xy_k]
-        asb_meanDtoG_k[[asb2]] <- fd_details$asb_mean_dist_G[[asb2]]
-      }# end of if 2 assemblages
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
+        asb_vertG_coord2D_k[["asb2"]] <- fd_details$asb_G_coord[[asb2]][xy_k]
+        asb_meanDtoG_k[["asb2"]] <- fd_details$asb_mean_dist_G[[asb2]]
+      }
       
       
       # background = axes defined by range of values and names as specified:
@@ -651,15 +643,15 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_pool = color_ch[pool],
-                          fill_pool = fill_ch[pool],
-                          alpha_ch = alpha_ch[pool],
-                          shape_pool = shape_sp[pool],
-                          size_pool = size_sp[pool],
-                          shape_vert = shape_sp[pool],
-                          size_vert = size_sp[pool],
-                          color_vert = color_vert[pool],
-                          fill_vert = fill_vert[pool])
+                          color_pool = color_ch["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
       
       # plot 2D convex hulls and points for the 2 assemblages:
       plot_k <- fdiv.plot(ggplot_bg = plot_k,
@@ -669,17 +661,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           asb_vertG_coord2D = asb_vertG_coord2D_k,
                           asb_meanDtoG = asb_meanDtoG_k,
                           plot_sp = TRUE,
-                          shape_sp = shape_sp[c(asb1, asb2)],
-                          color_sp = color_sp[c(asb1, asb2)],
-                          fill_sp = fill_sp[c(asb1, asb2)],
-                          shape_vert = shape_sp[c(asb1, asb2)],
-                          color_vert = color_vert[c(asb1, asb2)],
-                          fill_vert = fill_vert[c(asb1, asb2)],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          shape_vert = shape_sp[c("asb1", "asb2")],
+                          color_vert = color_vert[c("asb1", "asb2")],
+                          fill_vert = fill_vert[c("asb1", "asb2")],
                           shape_vertG = c(asb1 = 23, asb2 = 24),
                           size_vertG = c(asb1 = 3, asb2 = 3),
-                          color_vertG = color_sp[c(asb1, asb2)],
-                          fill_vertG = color_sp[c(asb1, asb2)],
-                          color_meanD = color_sp[c(asb1, asb2)])
+                          color_vertG = color_sp[c("asb1", "asb2")],
+                          fill_vertG = color_sp[c("asb1", "asb2")],
+                          color_meanD = color_sp[c("asb1", "asb2")])
 
       
       # add species names if needed:
@@ -773,7 +765,67 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
         ggplot2::aes(x = h, y = v, label = nb),
         size = 3, hjust = 0, fontface = "italic")
     
+    # add legend (convex hull, asb species and pool species):
     
+    ## plot legend:
+    values_lab <- NULL
+    
+    ### for 1st asb:
+    plot_caption <- plot_caption +
+      ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.10,
+                         xmax = range_faxes[1] + spread_faxes*0.15,
+                         ymin = range_faxes[2] - spread_faxes*0.51,
+                         ymax = range_faxes[2] - spread_faxes*0.55,
+                         fill = color_sp[[asb1]], alpha = alpha_ch[[asb1]]) + 
+      
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                         y = range_faxes[2] - spread_faxes*0.525,
+                         label = paste0("convex hull of", sep = " ", 
+                                        asb1),
+                         colour = color_sp[["asb1"]], size = 3) + 
+      
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                          y = range_faxes[2] - spread_faxes*0.58,
+                          size = size_sp[["asb1"]], shape = shape_sp[["asb1"]],
+                          color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
+      
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                         y = range_faxes[2] - spread_faxes*0.58,
+                         label = paste0("shape of species from", sep = " ", 
+                                        asb1),
+                         colour = color_sp[["asb1"]], size = 3) 
+    
+    ### if 2nd assemblage:
+    if (two_asb) {
+      
+      plot_caption <- plot_caption +
+        ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.10,
+                           xmax = range_faxes[1] + spread_faxes*0.15,
+                           ymin = range_faxes[2] - spread_faxes*0.64,
+                           ymax = range_faxes[2] - spread_faxes*0.68,
+                           fill = color_sp[["asb2"]], 
+                           alpha = alpha_ch[["asb2"]]) + 
+        
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                           y = range_faxes[2] - spread_faxes*0.665,
+                           label = paste0("convex hull of", sep = " ", 
+                                          asb2),
+                           colour = color_sp[["asb2"]], size = 3) + 
+        
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                            y = range_faxes[2] - spread_faxes*0.71,
+                            size = size_sp[["asb2"]], 
+                            shape = shape_sp[["asb2"]],
+                            color = color_sp[["asb2"]], 
+                            fill = fill_sp[["asb2"]]) + 
+        
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                           y = range_faxes[2] - spread_faxes*0.71,
+                           label = paste0("shape of species from", sep = " ", 
+                                          asb2),
+                           colour = color_sp[["asb2"]], size = 3) 
+      
+    }
 
     # arrange panels ####
     
@@ -842,13 +894,13 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # get a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
-      asb_sp_coord2D_k[[asb1]] <- sp_coord_xy[sp_asb1, ]
+      asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       asb_sp_relw_k <- list()
-      asb_sp_relw_k[[asb1]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
+      asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       
       if (two_asb){
-        asb_sp_coord2D_k[[asb2]] <- sp_coord_xy[sp_asb2,]
-        asb_sp_relw_k[[asb2]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2,]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
       }
       
       
@@ -860,17 +912,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_ch = color_ch[pool],
-                          fill_ch = fill_ch[pool],
-                          alpha_ch = alpha_ch[pool],
-                          shape_pool = shape_sp[pool],
-                          size_pool = size_sp[pool],
-                          color_pool = color_sp[pool],
-                          fill_pool = fill_sp[pool],
-                          shape_vert = shape_sp[pool],
-                          size_vert = size_sp[pool],
-                          color_vert = color_vert[pool],
-                          fill_vert = fill_vert[pool])
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
       
       plot_k <-fspe.plot(ggplot_bg = plot_k,
                           asb_sp_coord2D = asb_sp_coord2D_k,
@@ -879,14 +931,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           pool_coord2D = sp_coord_xy,
                           plot_pool = FALSE,
                           plot_sp = TRUE,
-                          shape_sp = shape_sp[c(asb1, asb2)],
-                          color_sp = color_sp[c(asb1, asb2)],
-                          fill_sp = color_sp[c(asb1, asb2)],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = color_sp[c("asb1", "asb2")],
                           color_center = color_centroid_fspe,
                           fill_center = color_centroid_fspe,
                           shape_center = shape_centroid_fspe,
                           size_center = 3,
-                          color_segment = color_sp[c(asb1, asb2)],
+                          color_segment = color_sp[c("asb1", "asb2")],
                           width_segment = c(asb1 = 1, asb2 = 1),
                           linetype_segment = c(asb1 = 1, asb2 = 1))
       
@@ -995,17 +1047,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
-      asb_sp_coord2D_k[[asb1]] <- sp_coord_xy[sp_asb1, ]
+      asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       asb_sp_relw_k <- list()
-      asb_sp_relw_k[[asb1]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
+      asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       asb_fide_coord2D <- list()
-      asb_fide_coord2D[[asb1]] <- asb_fd_ind[asb1, paste0("fide", sep = "_", 
+      asb_fide_coord2D[["asb1"]] <- asb_fd_ind[asb1, paste0("fide", sep = "_", 
                                                               xy_k)]
       
       if (two_asb){
-        asb_sp_coord2D_k[[asb2]] <- sp_coord_xy[sp_asb2, ]
-        asb_sp_relw_k[[asb2]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
-        asb_fide_coord2D[[asb2]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
                                                                 xy_k)]
       }# end of if 2 assemblages
       
@@ -1018,31 +1070,31 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_ch = color_ch[pool],
-                          fill_ch = fill_ch[pool],
-                          alpha_ch = alpha_ch[pool],
-                          shape_pool = shape_sp[pool],
-                          size_pool = size_sp[pool],
-                          color_pool = color_sp[pool],
-                          fill_pool = fill_sp[pool],
-                          shape_vert = shape_sp[pool],
-                          size_vert = size_sp[pool],
-                          color_vert = color_vert[pool],
-                          fill_vert = fill_vert[pool])
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
       
       plot_k <- fdis.plot(ggplot_bg = plot_k,
                          asb_sp_coord2D = asb_sp_coord2D_k,
                          asb_sp_relatw = asb_sp_relw_k,
                          asb_fide_coord2D = asb_fide_coord2D,
                          plot_sp = TRUE,
-                         shape_sp = shape_sp[c(asb1, asb2)],
-                         color_sp = color_sp[c(asb1, asb2)],
-                         fill_sp = fill_sp[c(asb1, asb2)],
-                         color_fide = color_sp[c(asb1, asb2)],
-                         fill_fide = fill_sp[c(asb1, asb2)],
+                         shape_sp = shape_sp[c("asb1", "asb2")],
+                         color_sp = color_sp[c("asb1", "asb2")],
+                         fill_sp = fill_sp[c("asb1", "asb2")],
+                         color_fide = color_sp[c("asb1", "asb2")],
+                         fill_fide = fill_sp[c("asb1", "asb2")],
                          shape_fide = shape_centroid_fdis,
-                         size_fide = size_sp[c(asb1, asb2)],
-                         color_segment = color_sp[c(asb1, asb2)],
+                         size_fide = size_sp[c("asb1", "asb2")],
+                         color_segment = color_sp[c("asb1", "asb2")],
                          width_segment = c(asb1 = 1, asb2 = 1),
                          linetype_segment = c(asb1 = 1, asb2 = 1))
       
@@ -1149,17 +1201,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
-      asb_sp_coord2D_k[[asb1]] <- sp_coord_xy[sp_asb1, ]
+      asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       asb_sp_relw_k <- list()
-      asb_sp_relw_k[[asb1]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
+      asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       asb_fide_coord2D <- list()
-      asb_fide_coord2D[[asb1]] <- asb_fd_ind[asb1, paste0("fide", sep = "_", 
+      asb_fide_coord2D[["asb1"]] <- asb_fd_ind[asb1, paste0("fide", sep = "_", 
                                                               xy_k)]
       
       if (two_asb){
-        asb_sp_coord2D_k[[asb2]] <- sp_coord_xy[sp_asb2, ]
-        asb_sp_relw_k[[asb2]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
-        asb_fide_coord2D[[asb2]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
                                                               xy_k)]
       }# end of if 2 assemblages
       
@@ -1172,31 +1224,31 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_ch = color_ch[pool],
-                          fill_ch = fill_ch[pool],
-                          alpha_ch = alpha_ch[pool],
-                          shape_pool = shape_sp[pool],
-                          size_pool = size_sp[pool],
-                          color_pool = color_sp[pool],
-                          fill_pool = fill_sp[pool],
-                          shape_vert = shape_sp[pool],
-                          size_vert = size_sp[pool],
-                          color_vert = color_vert[pool],
-                          fill_vert = fill_vert[pool])
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
       
       plot_k <- fide.plot(ggplot_bg = plot_k,
                           asb_sp_coord2D = asb_sp_coord2D_k,
                           asb_sp_relatw = asb_sp_relw_k,
                           asb_fide_coord2D = asb_fide_coord2D,
                           plot_sp = TRUE,
-                          shape_sp = shape_sp[c(asb1, asb2)],
-                          color_sp = color_sp[c(asb1, asb2)],
-                          fill_sp = fill_sp[c(asb1, asb2)],
-                          color_fide = color_sp[c(asb1, asb2)],
-                          fill_fide = fill_sp[c(asb1, asb2)],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          color_fide = color_sp[c("asb1", "asb2")],
+                          fill_fide = fill_sp[c("asb1", "asb2")],
                           shape_fide = shape_centroid_fdis,
-                          size_fide = size_sp[c(asb1, asb2)],
-                          color_segment = color_sp[c(asb1, asb2)],
+                          size_fide = size_sp[c("asb1", "asb2")],
+                          color_segment = color_sp[c("asb1", "asb2")],
                           width_segment = c(asb1 = 1, asb2 = 1),
                           linetype_segment = c(asb1 = 1, asb2 = 1))
       
@@ -1304,17 +1356,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
-      asb_sp_coord2D_k[[asb1]] <- sp_coord_xy[sp_asb1, ]
+      asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       asb_sp_relw_k <- list()
-      asb_sp_relw_k[[asb1]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
+      asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       asb_mst <- list()
-      asb_mst[[asb1]] <- fd_details$asb_mst[[asb1]]
+      asb_mst[["asb1"]] <- fd_details$asb_mst[[asb1]]
       
       
       if (two_asb){
-        asb_sp_coord2D_k[[asb2]] <- sp_coord_xy[sp_asb2, ]
-        asb_sp_relw_k[[asb2]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
-        asb_mst[[asb2]] <- fd_details$asb_mst[[asb2]]
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_mst[["asb2"]] <- fd_details$asb_mst[[asb2]]
       }
       
       
@@ -1326,27 +1378,27 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_ch = color_ch[pool],
-                          fill_ch = fill_ch[pool],
-                          alpha_ch = alpha_ch[pool],
-                          shape_pool = shape_sp[pool],
-                          size_pool = size_sp[pool],
-                          color_pool = color_sp[pool],
-                          fill_pool = fill_sp[pool],
-                          shape_vert = shape_sp[pool],
-                          size_vert = size_sp[pool],
-                          color_vert = color_vert[pool],
-                          fill_vert = fill_vert[pool])
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
       
       plot_k <- feve.plot(ggplot_bg = plot_k,
                           asb_sp_coord2D = asb_sp_coord2D_k,
                           asb_sp_relatw = asb_sp_relw_k,
                           asb_mst = asb_mst,
                           plot_sp = TRUE,
-                          shape_sp = shape_sp[c(asb1, asb2)],
-                          color_sp = color_sp[c(asb1, asb2)],
-                          fill_sp = fill_sp[c(asb1, asb2)],
-                          color_mst = color_sp[c(asb1, asb2)],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          color_mst = color_sp[c("asb1", "asb2")],
                           width_mst = c(asb1 = 1, asb2 = 1),
                           linetype_mst = c(asb1 = 1, asb2 = 1))
       
@@ -1455,17 +1507,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
-      asb_sp_coord2D_k[[asb1]] <- sp_coord_xy[sp_asb1, ]
+      asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       asb_sp_relw_k <- list()
-      asb_sp_relw_k[[asb1]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
+      asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       asb_nn_pool <- list()
-      asb_nn_pool[[asb1]] <- fd_details$asb_nm_nn_pool[[asb1]]
+      asb_nn_pool[["asb1"]] <- fd_details$asb_nm_nn_pool[[asb1]]
       pool_coord2D <- sp_faxes_coord[, xy_k]
       
       if (two_asb){
-        asb_sp_coord2D_k[[asb2]] <- sp_coord_xy[sp_asb2, ]
-        asb_sp_relw_k[[asb2]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
-        asb_nn_pool[asb2] <- fd_details$asb_nm_nn_pool[[asb2]]
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_nn_pool["asb2"] <- fd_details$asb_nm_nn_pool[[asb2]]
       }
       
       
@@ -1477,17 +1529,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_ch = color_ch[pool],
-                          fill_ch = fill_ch[pool],
-                          alpha_ch = alpha_ch[pool],
-                          shape_pool = shape_sp[pool],
-                          size_pool = size_sp[pool],
-                          color_pool = color_sp[pool],
-                          fill_pool = fill_sp[pool],
-                          shape_vert = shape_sp[pool],
-                          size_vert = size_sp[pool],
-                          color_vert = color_vert[pool],
-                          fill_vert = fill_vert[pool])
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
       
       plot_k <- fori.plot(ggplot_bg = plot_k,
                           asb_sp_coord2D = asb_sp_coord2D_k,
@@ -1496,14 +1548,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           pool_coord2D = pool_coord2D,
                           plot_pool = TRUE,
                           plot_sp = TRUE,
-                          shape_pool = shape_sp[c(pool)],
-                          size_pool = size_sp[c(pool)],
-                          color_pool = color_sp[c(pool)],
-                          fill_pool = fill_sp[c(pool)],
-                          shape_sp = shape_sp[c(asb1, asb2)],
-                          color_sp = color_sp[c(asb1, asb2)],
-                          fill_sp = fill_sp[c(asb1, asb2)],
-                          color_segment = color_sp[c(asb1, asb2)],
+                          shape_pool = shape_sp[c("pool")],
+                          size_pool = size_sp[c("pool")],
+                          color_pool = color_sp[c("pool")],
+                          fill_pool = fill_sp[c("pool")],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          color_segment = color_sp[c("asb1", "asb2")],
                           width_segment = c(asb1 = 1, asb2 = 1),
                           linetype_segment = c(asb1 = 1, asb2 = 1))
                           
@@ -1612,16 +1664,16 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
-      asb_sp_coord2D_k[[asb1]] <- sp_coord_xy[sp_asb1, ]
+      asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       asb_sp_relw_k <- list()
-      asb_sp_relw_k[[asb1]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
+      asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       asb_nn_asb <- list()
-      asb_nn_asb[[asb1]] <- fd_details$asb_nm_nn_asb[[asb1]]
+      asb_nn_asb[["asb1"]] <- fd_details$asb_nm_nn_asb[[asb1]]
 
       if (two_asb){
-        asb_sp_coord2D_k[[asb2]] <- sp_coord_xy[sp_asb2, ]
-        asb_sp_relw_k[[asb2]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
-        asb_nn_asb[[asb2]] <- fd_details$asb_nm_nn_asb[[asb2]]
+        asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
+        asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        asb_nn_asb[["asb2"]] <- fd_details$asb_nm_nn_asb[[asb2]]
       }
       
       
@@ -1633,27 +1685,27 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_ch = color_ch[pool],
-                          fill_ch = fill_ch[pool],
-                          alpha_ch = alpha_ch[pool],
-                          shape_pool = shape_sp[pool],
-                          size_pool = size_sp[pool],
-                          color_pool = color_sp[pool],
-                          fill_pool = fill_sp[pool],
-                          shape_vert = shape_sp[pool],
-                          size_vert = size_sp[pool],
-                          color_vert = color_vert[pool],
-                          fill_vert = fill_vert[pool])
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
       
       plot_k <- fnnd.plot(ggplot_bg = plot_k,
                           asb_sp_coord2D = asb_sp_coord2D_k,
                           asb_sp_relatw = asb_sp_relw_k,
                           asb_nn_asb = asb_nn_asb,
                           plot_sp = TRUE,
-                          shape_sp = shape_sp[c(asb1, asb2)],
-                          color_sp = color_sp[c(asb1, asb2)],
-                          fill_sp = fill_sp[c(asb1, asb2)],
-                          color_segment = color_sp[c(asb1, asb2)],
+                          shape_sp = shape_sp[c("asb1", "asb2")],
+                          color_sp = color_sp[c("asb1", "asb2")],
+                          fill_sp = fill_sp[c("asb1", "asb2")],
+                          color_segment = color_sp[c("asb1", "asb2")],
                           width_segment = c(asb1 = 1, asb2 = 1),
                           linetype_segment = c(asb1 = 1, asb2 = 1))
       
