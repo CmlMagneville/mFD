@@ -273,6 +273,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   list_panels <-list()
   
   # get names of assemblages:
+  pool <- "pool"
   asb1 <- plot_asb_nm[1]
   nm_asb <- asb1
   two_asb <- FALSE
