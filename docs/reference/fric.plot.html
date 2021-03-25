@@ -191,15 +191,13 @@ should be plotted or not. Default: plot_sp = TRUE.</p></td>
       <th>color_ch</th>
       <td><p>a R color name or an hexadecimal code referring to the border
 of the convex hull filled by the pool of species. Default:
-<code>color_ch = "black"</code>. If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+<code>color_ch = "black"</code>.</p></td>
     </tr>
     <tr>
       <th>fill_ch</th>
       <td><p>a R color name or an hexadecimal code referring to the filling
 of the convex hull filled by the pool of species. Default is:
-<code>fill_ch = "white"</code>. If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+<code>fill_ch = "white"</code>.</p></td>
     </tr>
     <tr>
       <th>alpha_ch</th>
@@ -211,58 +209,50 @@ hull (0 = high transparency, 1 = no transparency). Default:
       <th>shape_sp</th>
       <td><p>a numeric value referring to the shape used to plot species
 belonging to the studied assemblage. Default: <code>shape_sp = 16</code>
-(filled circle). If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+(filled circle).</p></td>
     </tr>
     <tr>
       <th>size_sp</th>
       <td><p>a numeric value referring to the size of species belonging to
-the plotted assemblage. Default: <code>size_sp = 1</code>. If
-several assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+the plotted assemblage. Default: <code>size_sp = 1</code>.</p></td>
     </tr>
     <tr>
       <th>color_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the color
 of species from the studied assemblage.  This color is also used for FRic
-convex hull color. Default: <code>color_sp = "#0072B2"</code>. If several assemblages
-it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+convex hull color. Default: <code>color_sp = "#0072B2"</code>.</p></td>
     </tr>
     <tr>
       <th>fill_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if <code>shape_sp</code> &gt; 20) and the assemblage convex
-hull. Default: <code>fill_sp = '#0072B2'</code>. If several assemblages it should
-be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+hull. Default: <code>fill_sp = '#0072B2'</code>.</p></td>
     </tr>
     <tr>
       <th>shape_vert</th>
       <td><p>a numeric value referring to the shape used to plot
 vertices if vertices should be plotted in a different way than other
 species. If <code>shape_vert = NA</code>, no vertices plotted. Default:
-<code>shape_vert = NA</code>. If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+<code>shape_vert = NA</code>.</p></td>
     </tr>
     <tr>
       <th>size_vert</th>
       <td><p>a numeric value referring to the size of symbol for vertices
-Default: <code>size_vert = 1</code>.  If several assemblages it should be a vector
-with names as in <code>asb_sp_coord2D</code>.</p></td>
+Default: <code>size_vert = 1</code>.</p></td>
     </tr>
     <tr>
       <th>color_vert</th>
       <td><p>a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
 (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA). Default: <code>color_vert =  NA</code>. If several
-assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+must also be set to NA). Default: <code>color_vert =  NA</code>.</p></td>
     </tr>
     <tr>
       <th>fill_vert</th>
       <td><p>a character value referring to the color for filling symbol
 for vertices (if <code>shape_vert</code> &gt;20). If <code>fill = NA</code> and <code>color = NA</code>,
 vertices are not plotted (if <code>shape_vert</code> superior to 20. Otherwise
-<code>color_vert = NULL</code> is enough). Default is <code>NA</code>. If several assemblages
-it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+<code>color_vert = NULL</code> is enough). Default is <code>NA</code>.</p></td>
     </tr>
     </table>
 
@@ -272,9 +262,9 @@ it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
 FRic convex hulls</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>first convex hull (2D projection) of all assemblages are added to
-the background ggplot object (<code>ggplot_bg</code>), then species not being vertices
-in n Dimensions-space and lastly species being vertices are plotted</p>
+    <p>If several assemblages are to be represented, aesthetics inputs should
+be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
+being "asb1" and "asb2".</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sébastien Villéger</p>
