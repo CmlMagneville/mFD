@@ -31,8 +31,7 @@ species present in each assemblage for a given pair of functional axes.}
 
 \item{asb_sp_relatw}{a list of vector gathering species relative weight in
 each assemblage. It can be retrieved through the
-\code{\link{alpha.fd.multidim}}. If several assemblages it should be a
-vector with names as in \code{asb_sp_coord2D}.}
+\code{\link{alpha.fd.multidim}}.}
 
 \item{asb_fide_coord2D}{a list (with names as in asb_sp_coord2D) of
 vectors with coordinates of the centroid of species for each assemblage
@@ -43,50 +42,37 @@ should be plotted or not. Default: \code{plot_sp = TRUE}}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
 belonging to the studied assemblage. Default: \code{shape_sp = 16}
-(filled circle). If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+(filled circle).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.
-If several assemblages it should be a vector with names as in
-\code{asb_sp_coord2D}.}
+of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if \code{shape_sp} > 20). Default:
-\code{fill_sp = '#0072B2'}. If several assemblages it should  be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{fill_sp = '#0072B2'}.}
 
 \item{shape_fide}{a numeric value referring to the shape used to
 plot fide centroid of the studied assemblage. Default: \code{shape_centroid = 18}
-(filled diamond). If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+(filled diamond).}
 
 \item{size_fide}{a numeric value referring to the size of species fide
-centroid but not the plotted assemblage. Default: \code{size_sp = 1}. If
-several assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
+centroid but not the plotted assemblage. Default: \code{size_sp = 1}.}
 
 \item{color_fide}{a R color name or an hexadecimal code referring to the
-color of the species centroid from the studied assemblage. If several
-assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
+color of the species centroid from the studied assemblage.}
 
 \item{fill_fide}{a R color name or an hexadecimal code referring to
-the colour to fill assemblage centroid symbol (if \code{shape_sp} > 20).
-If several assemblages it should be a vector with names as in
-\code{asb_sp_coord2D}.}
+the colour to fill assemblage centroid symbol (if \code{shape_sp} > 20).}
 
 \item{color_segment}{a R color name or an hexadecimal code referring to the
-color of the segment linking axes and centroid from the studied assemblage.
-If several assemblages it should be a vector with names as in
-\code{asb_sp_coord2D}.}
+color of the segment linking axes and centroid from the studied assemblage.}
 
 \item{width_segment}{a numeric value referring to the size of the segment
-linking fide centroid and functional axes. Default: \code{width_segment = 1}.  If
-several assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
+linking fide centroid and functional axes. Default: \code{width_segment = 1}.}
 
 \item{linetype_segment}{a character string referring to the linetype used to
 draw the segment linking fide centroid and functional axes.
-Default: \code{linetype_segment = "dashed"}.  If several assemblages it should be a
-vector with names as in \code{asb_sp_coord2D}.}
+Default: \code{linetype_segment = "dashed"}.}
 }
 \value{
 a ggplot object with FIde index, species and background
@@ -96,6 +82,11 @@ Plot FIde index given a pair of functional axes for one or several
 assemblages. It adds the centroid of species for each assemblage and
 segments showing centroid coordinates on functional axes on the background
 plot.
+}
+\note{
+If several assemblages are to be represented, aesthetics inputs should
+be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
+being "asb1" and "asb2".
 }
 \examples{
 \dontrun{

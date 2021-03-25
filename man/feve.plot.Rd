@@ -27,52 +27,47 @@ species present in each assemblage for a given pair of functional axes.}
 
 \item{asb_sp_relatw}{a list of vector gathering species relative weight in
 each assemblage. It can be retrieved through the
-\code{\link{alpha.fd.multidim}}. If several assemblages it should be a
-vector with names as in \code{asb_sp_coord2D}.}
+\code{\link{alpha.fd.multidim}}.}
 
 \item{asb_mst}{a list (with names as in \code{asb_sp_coord2D}) of
 vectors with names of species linked in the MST of the
-studied assemblage. If several assemblages it should be a vector with names
-as in \code{asb_sp_coord2D}.}
+studied assemblage.}
 
 \item{plot_sp}{a logical value indicating whether species of each assemblage
 should be plotted or not. Default: \code{plot_sp = TRUE}}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
 belonging to the studied assemblage. Default: \code{shape_sp = 16}
-(filled circle). If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+(filled circle).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.
-If several assemblages it should be a vector with names as in
-\code{asb_sp_coord2D}.}
+of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if \code{shape_sp} > 20). Default:
-\code{fill_sp = '#0072B2'}. If several assemblages it should  be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{fill_sp = '#0072B2'}.}
 
 \item{color_mst}{a R color name or an hexadecimal code referring to the color
-of the MST from the studied assemblage. Default: \code{color_MST = "#0072B2"}.
-If several assemblages it should be a vector with names as in
-\code{asb_sp_coord2D}.}
+of the MST from the studied assemblage. Default: \code{color_MST = "#0072B2"}.}
 
 \item{width_mst}{a numeric value referring to the size of the line
-representing MST. Default: \code{width_mst = 1}.  If
-several assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
+representing MST. Default: \code{width_mst = 1}.}
 
 \item{linetype_mst}{a character string referring to the linetype used to
-draw the MST. Default: \verb{linetype_mst = "dashed}.  If several assemblages it should be a
-vector with names as in \code{asb_sp_coord2D}.}
+draw the MST. Default: \verb{linetype_mst = "dashed}.}
 }
 \value{
-a ggplot object showing FEve index on the backrgound plot
+a ggplot object showing FEve index on the background plot
 }
 \description{
 This function plots FEve index for a given pair of functional axes and one
 or several assemblages. It adds Minimum Spanning Tree (MST) of a given
 assemblage on the background plot.
+}
+\note{
+If several assemblages are to be represented, aesthetics inputs should
+be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
+being "asb1" and "asb2".
 }
 \examples{
 \dontrun{

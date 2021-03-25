@@ -64,57 +64,46 @@ background. Default: \code{color_bg = "grey95"}.}
 \item{shape_sp}{a vector gathering numeric values referring to the symbol
 used to draw species from the global pool and the plotted assemblage(s).
 It should be written  as c(pool = "...", asb1 = "...", ...).
-(0 = high transparency, 1 = no transparency). If several assemblages, names
-should be written as in \code{plot_asb_nm}.}
+(0 = high transparency, 1 = no transparency).}
 
 \item{size_sp}{a vector gathering numeric values referring to the size of
 species belonging to the global pool and the plotted assemblage(s).
-It should be written  as c(pool = "...", asb1 = "...", ...).
-If several assemblages, names should be written as in \code{plot_asb_nm}.}
+It should be written  as c(pool = "...", asb1 = "...", ...).}
 
 \item{color_sp}{a vector gathering R color names or hexadecimal codes
 referring to the color of species from the global pool and studied
-assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).
-If several assemblages, names should be written as in \code{plot_asb_nm}.}
+assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).}
 
 \item{color_vert}{a vector gathering R color names or hexadecimal codes
 referring to the color of vertices from the global pool and studied
-assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).
-If several assemblages, names should be written as in \code{plot_asb_nm}.}
+assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).}
 
 \item{fill_sp}{a vector gathering R color names or hexadecimal codes
 referring to the filled color of species from the global pool and studied
-assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).
-If several assemblages, names should be written as in \code{plot_asb_nm}.}
+assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).}
 
 \item{fill_vert}{a vector gathering R color names or hexadecimal codes
 referring to the filled color of vertices from the global pool and studied
-assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).
-If several assemblages, names should be written as in \code{plot_asb_nm}.}
+assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).}
 
 \item{color_ch}{a vector gathering R color names or hexadecimal codes
 referring to the color of the convex pool of the global pool and studied
-assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).
-If several assemblages, names should be written as in \code{plot_asb_nm}.}
+assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).}
 
 \item{fill_ch}{a vector gathering R color names or hexadecimal codes
 referring to the color to fill the convex pool of the global pool and studied
-assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).
-If several assemblages, names should be written as in \code{plot_asb_nm}.}
+assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).}
 
 \item{alpha_ch}{a vector gathering numeric values referring to the opacity of
 convex hulls of the global pool and the plotted assemblage(s).
 It should be written  as c(pool = "...", asb1 = "...", ...).
-(0 = high transparency, 1 = no transparency). If several assemblages, names
-should be written as in \code{plot_asb_nm}.}
+(0 = high transparency, 1 = no transparency).}
 
 \item{shape_centroid_fdis}{a vector gathering numeric value(s) used to draw
-FDis centroid size. If several assemblages, names should be written as
-in \code{plot_asb_nm}.}
+FDis centroid size.}
 
 \item{shape_centroid_fdiv}{a vector gathering numeric value(s) used to draw
-FDiv centroid size. If several assemblages, names should be written as
-in \code{plot_asb_nm}.}
+FDiv centroid size.}
 
 \item{shape_centroid_fspe}{a vector gathering numeric value used to draw
 FSpe centroid (i.e. center of the functional space) size.}

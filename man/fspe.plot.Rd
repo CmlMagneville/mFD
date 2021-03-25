@@ -37,8 +37,7 @@ species present in each assemblage for a given pair of functional axes.}
 
 \item{asb_sp_relatw}{a list of vector gathering species relative weight in
 each assemblage. It can be retrieved through the
-\code{\link{alpha.fd.multidim}}. If several assemblages it should be a
-vector with names as in \code{asb_sp_coord2D}.}
+\code{\link{alpha.fd.multidim}}.}
 
 \item{center_coord2D}{a list containing the coordinates of the center of the
 global pool for two given functional axes}
@@ -68,8 +67,7 @@ convex hull. Default: \code{fill_pool = '#0072B2'}.}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
 belonging to the studied assemblage. Default: \code{shape_sp = 16}
-(filled circle). If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+(filled circle).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
 of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.
@@ -78,8 +76,7 @@ If several assemblages it should be a vector with names as in
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if \code{shape_sp} > 20). Default:
-\code{fill_sp = '#0072B2'}. If several assemblages it should  be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{fill_sp = '#0072B2'}.}
 
 \item{color_center}{a R color name or an hexadecimal code referring to the
 color of the center of the global pool. Default: \code{color_center = "#0072B2"}.}
@@ -101,13 +98,11 @@ If several assemblages it should be a vector with names as in
 
 \item{width_segment}{a numeric value referring to the size of the segment
 linking nearest neighbors in the global pool. Default:
-\code{width_segment = 1}. If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{width_segment = 1}.}
 
 \item{linetype_segment}{a character string referring to the linetype used to
 link nearest neighbors in the global pool.
-Default: \verb{linetype_segment = "dashed}.  If several assemblages it should be a
-vector with names as in \code{asb_sp_coord2D}.}
+Default: \verb{linetype_segment = "dashed}.}
 }
 \value{
 a ggplot object with FSpe index on the background plot
@@ -117,6 +112,11 @@ This function plots FSpe index for a given pair of functional axes and for
 one or several assemblages. It adds the mean position of species from the
 global pool and the distance of each species from the studied assemblage(s)
 on the background plot
+}
+\note{
+If several assemblages are to be represented, aesthetics inputs should
+be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
+being "asb1" and "asb2".
 }
 \examples{
 \dontrun{

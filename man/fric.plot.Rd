@@ -38,13 +38,11 @@ should be plotted or not. Default: plot_sp = TRUE.}
 
 \item{color_ch}{a R color name or an hexadecimal code referring to the border
 of the convex hull filled by the pool of species. Default:
-\code{color_ch = "black"}. If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{color_ch = "black"}.}
 
 \item{fill_ch}{a R color name or an hexadecimal code referring to the filling
 of the convex hull filled by the pool of species. Default is:
-\code{fill_ch = "white"}. If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{fill_ch = "white"}.}
 
 \item{alpha_ch}{a numeric value for transparency of the filling of the convex
 hull (0 = high transparency, 1 = no transparency). Default:
@@ -52,44 +50,36 @@ hull (0 = high transparency, 1 = no transparency). Default:
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
 belonging to the studied assemblage. Default: \code{shape_sp = 16}
-(filled circle). If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+(filled circle).}
 
 \item{size_sp}{a numeric value referring to the size of species belonging to
-the plotted assemblage. Default: \code{size_sp = 1}. If
-several assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
+the plotted assemblage. Default: \code{size_sp = 1}.}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
 of species from the studied assemblage.  This color is also used for FRic
-convex hull color. Default: \code{color_sp = "#0072B2"}. If several assemblages
-it should be a vector with names as in \code{asb_sp_coord2D}.}
+convex hull color. Default: \code{color_sp = "#0072B2"}.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-hull. Default: \code{fill_sp = '#0072B2'}. If several assemblages it should
-be a vector with names as in \code{asb_sp_coord2D}.}
+hull. Default: \code{fill_sp = '#0072B2'}.}
 
 \item{shape_vert}{a numeric value referring to the shape used to plot
 vertices if vertices should be plotted in a different way than other
 species. If \code{shape_vert = NA}, no vertices plotted. Default:
-\code{shape_vert = NA}. If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{shape_vert = NA}.}
 
 \item{size_vert}{a numeric value referring to the size of symbol for vertices
-Default: \code{size_vert = 1}.  If several assemblages it should be a vector
-with names as in \code{asb_sp_coord2D}.}
+Default: \code{size_vert = 1}.}
 
 \item{color_vert}{a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
 (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA). Default: \code{color_vert =  NA}. If several
-assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
+must also be set to NA). Default: \code{color_vert =  NA}.}
 
 \item{fill_vert}{a character value referring to the color for filling symbol
 for vertices (if \code{shape_vert} >20). If \code{fill = NA} and \code{color = NA},
 vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-\code{color_vert = NULL} is enough). Default is \code{NA}. If several assemblages
-it should be a vector with names as in \code{asb_sp_coord2D}.}
+\code{color_vert = NULL} is enough). Default is \code{NA}.}
 }
 \value{
 a ggplot object plotting background of multidimensional graphs and
@@ -101,9 +91,9 @@ or several assemblages. It adds convex hull(s), points and vertices of
 1:N assemblages on the background plot
 }
 \note{
-first convex hull (2D projection) of all assemblages are added to
-the background ggplot object (\code{ggplot_bg}), then species not being vertices
-in n Dimensions-space and lastly species being vertices are plotted
+If several assemblages are to be represented, aesthetics inputs should
+be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
+being "asb1" and "asb2".
 }
 \examples{
 \dontrun{

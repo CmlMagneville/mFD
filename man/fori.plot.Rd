@@ -33,14 +33,12 @@ species present in each assemblage for a given pair of functional axes.}
 
 \item{asb_sp_relatw}{a list of vector gathering species relative weight in
 each assemblage. It can be retrieved through the
-\code{\link{alpha.fd.multidim}}. If several assemblages it should be a
-vector with names as in \code{asb_sp_coord2D}.}
+\code{\link{alpha.fd.multidim}}.}
 
 \item{asb_nn_pool}{a list gathering for each species of a studied assemblage
-its nearest neighbour(s) in the global pool. If several assemblages it
-should  be a vector with names as in \code{asb_sp_coord2D}.}
+its nearest neighbour(s) in the global pool.}
 
-\item{pool_coord2D}{a list of matrix (ncol = 2) with coordinates of
+\item{pool_coord2D}{a matrix (ncol = 2) with coordinates of
 species present in the global pool for a given pair of functional axes.}
 
 \item{plot_pool}{a logical value indicating whether species of each
@@ -65,33 +63,25 @@ hull. Default: \code{fill_pool = '#0072B2'}.}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
 belonging to the studied assemblage. Default: \code{shape_sp = 16}
-(filled circle). If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+(filled circle).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.
-If several assemblages it should be a vector with names as in
-\code{asb_sp_coord2D}.}
+of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if \code{shape_sp} > 20). Default:
-\code{fill_sp = '#0072B2'}. If several assemblages it should  be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{fill_sp = '#0072B2'}.}
 
 \item{color_segment}{a R color name or an hexadecimal code referring to the
-color of the segment linking nearest neighbors in the global pool.
-If several assemblages it should be a vector with names as in
-\code{asb_sp_coord2D}.}
+color of the segment linking nearest neighbors in the global pool.}
 
 \item{width_segment}{a numeric value referring to the size of the segment
 linking nearest neighbors in the global pool. Default:
-\code{width_segment = 1}. If several assemblages it should be a vector with
-names as in \code{asb_sp_coord2D}.}
+\code{width_segment = 1}.}
 
 \item{linetype_segment}{a character string referring to the linetype used to
 link nearest neighbors in the global pool.
-Default: \verb{linetype_segment = "dashed}.  If several assemblages it should be a
-vector with names as in \code{asb_sp_coord2D}.}
+Default: \verb{linetype_segment = "dashed}.}
 }
 \value{
 a ggplot object with FOri index
@@ -100,6 +90,11 @@ a ggplot object with FOri index
 This function plots FOri index for a given pair of functional axes and for
 one or several assemblages. It adds the distance of species from the studied
 to their nearest neighbour(s) from the global pool.
+}
+\note{
+If several assemblages are to be represented, aesthetics inputs should
+be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
+being "asb1" and "asb2".
 }
 \examples{
 \dontrun{
