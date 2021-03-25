@@ -182,18 +182,16 @@ species present in each assemblage for a given pair of functional axes.</p></td>
       <th>asb_sp_relatw</th>
       <td><p>a list of vector gathering species relative weight in
 each assemblage. It can be retrieved through the
-<code><a href='alpha.fd.multidim.html'>alpha.fd.multidim</a></code>. If several assemblages it should be a
-vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+<code><a href='alpha.fd.multidim.html'>alpha.fd.multidim</a></code>.</p></td>
     </tr>
     <tr>
       <th>asb_nn_pool</th>
       <td><p>a list gathering for each species of a studied assemblage
-its nearest neighbour(s) in the global pool. If several assemblages it
-should  be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+its nearest neighbour(s) in the global pool.</p></td>
     </tr>
     <tr>
       <th>pool_coord2D</th>
-      <td><p>a list of matrix (ncol = 2) with coordinates of
+      <td><p>a matrix (ncol = 2) with coordinates of
 species present in the global pool for a given pair of functional axes.</p></td>
     </tr>
     <tr>
@@ -232,49 +230,46 @@ hull. Default: <code>fill_pool = '#0072B2'</code>.</p></td>
       <th>shape_sp</th>
       <td><p>a numeric value referring to the shape used to plot species
 belonging to the studied assemblage. Default: <code>shape_sp = 16</code>
-(filled circle). If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+(filled circle).</p></td>
     </tr>
     <tr>
       <th>color_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage. Default: <code>color_sp = "#0072B2"</code>.
-If several assemblages it should be a vector with names as in
-<code>asb_sp_coord2D</code>.</p></td>
+of species from the studied assemblage. Default: <code>color_sp = "#0072B2"</code>.</p></td>
     </tr>
     <tr>
       <th>fill_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if <code>shape_sp</code> &gt; 20). Default:
-<code>fill_sp = '#0072B2'</code>. If several assemblages it should  be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+<code>fill_sp = '#0072B2'</code>.</p></td>
     </tr>
     <tr>
       <th>color_segment</th>
       <td><p>a R color name or an hexadecimal code referring to the
-color of the segment linking nearest neighbors in the global pool.
-If several assemblages it should be a vector with names as in
-<code>asb_sp_coord2D</code>.</p></td>
+color of the segment linking nearest neighbors in the global pool.</p></td>
     </tr>
     <tr>
       <th>width_segment</th>
       <td><p>a numeric value referring to the size of the segment
 linking nearest neighbors in the global pool. Default:
-<code>width_segment = 1</code>. If several assemblages it should be a vector with
-names as in <code>asb_sp_coord2D</code>.</p></td>
+<code>width_segment = 1</code>.</p></td>
     </tr>
     <tr>
       <th>linetype_segment</th>
       <td><p>a character string referring to the linetype used to
 link nearest neighbors in the global pool.
-Default: <code>linetype_segment = "dashed</code>.  If several assemblages it should be a
-vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+Default: <code>linetype_segment = "dashed</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a ggplot object with FOri index</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>If several assemblages are to be represented, aesthetics inputs should
+be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
+being "asb1" and "asb2".</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sébastien Villéger</p>
