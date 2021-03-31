@@ -1247,7 +1247,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                          color_fide = color_sp[c("asb1", "asb2")],
                          fill_fide = fill_sp[c("asb1", "asb2")],
                          shape_fide = shape_centroid_fdis,
-                         size_fide = size_sp[c("asb1", "asb2")],
+                         size_fide = c(asb1 = 2, asb2 = 2),
                          color_segment = color_sp[c("asb1", "asb2")],
                          width_segment = c(asb1 = 1, asb2 = 1),
                          linetype_segment = c(asb1 = 1, asb2 = 1))
@@ -1278,8 +1278,23 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     } # end of k
     
     # plot caption:
+    
+    # retrieve values to plot:
+    top_fdis <- c("Functional Dispersion", asb1, "")
+    values_fdis <- c(round(asb_fd_ind[asb1, "fdis"], 3), "")
+    if (two_asb) {
+      top_fdis[3] <- asb2
+      values_fdis[2] <- round(asb_fd_ind[asb2,"fdis"], 3) 
+    }
+    
+    # customize position of texts in the plot:
+    spread_faxes <- (range_faxes[2] - range_faxes[1])
+    hh <- c(1, 2.5, 4, 5.5)
+    vv <- 0.3
     x <- NULL
     y <- NULL
+    
+    # plot window:
     plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
                                     ggplot2::aes(x = x, y = y)) +
       ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
@@ -1289,7 +1304,121 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                          ymin = range_faxes[1], ymax = range_faxes[2],
                          fill = "white", colour ="black")
     
+    # plot names of index and of assemblages:
+    h   <- NULL
+    v   <- NULL
+    top <- NULL
+    x <- NULL
+    y <- NULL
+    plot_caption <- plot_caption +
+      ggplot2::geom_text(data = data.frame(
+        h = range_faxes[1] + spread_faxes * 0.15 * hh[c(1,3:4)],
+        v = range_faxes[2] - spread_faxes * rep(0.2, 3),
+        top = top_fdis),
+        ggplot2::aes(x = h, y = v, label = top),
+        size = 3, hjust = 0.5, fontface = "bold")
     
+    # plot FDis values:
+    values_lab <- NULL
+    data_caption <- data.frame(
+      h = range_faxes[1] + spread_faxes * 0.15 * hh[2:4],
+      v = range_faxes[2] - spread_faxes*rep(vv, 3),
+      values_lab = c("FDis", values_fdis))
+    plot_caption <- plot_caption +
+      ggplot2::geom_text(data = data_caption,
+                         ggplot2::aes(x = h, y = v, label = values_lab),
+                         size = 3, hjust = 0.5, fontface = "plain")
+    vv <- vv + 0.1
+    
+    # add text about dimensionality:
+    nb <- NULL
+    plot_caption<- plot_caption +
+      ggplot2::geom_text(data = data.frame(
+        h = range_faxes[1] + spread_faxes * 0.1,
+        v = range_faxes[2] - spread_faxes * vv,
+        nb = paste0("NB: Indices were computed in a ",
+                    nb_dim,"-dimensional space")),
+        ggplot2::aes(x = h, y = v, label = nb),
+        size = 3, hjust = 0, fontface = "italic")
+    
+    # add legend (convex hull, asb species and pool species):
+    
+    ## plot legend:
+    values_lab <- NULL
+    
+    ### for 1st asb:
+    plot_caption <- plot_caption +
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                          y = range_faxes[2] - spread_faxes*0.51,
+                          fill = color_sp[["asb1"]], 
+                          color = color_sp[["asb1"]],
+                          shape = shape_sp[["asb1"]],
+                          size = size_sp[["asb1"]]) + 
+      
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                         y = range_faxes[2] - spread_faxes*0.51,
+                         label = paste0("relative weight of", sep = " ", 
+                                        asb1),
+                         colour = color_sp[["asb1"]], size = 3) + 
+      
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                        y = range_faxes[2] - spread_faxes*0.58,
+                        size = 2, shape = shape_centroid_fdis[["asb1"]],
+                        color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
+      
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                         y = range_faxes[2] - spread_faxes*0.58,
+                         label = paste0("gravity center of", 
+                                        sep = " ", asb1), 
+                         colour = color_sp[["asb1"]], size = 3) 
+    
+    ### if 2nd assemblage:
+    if (two_asb) {
+      
+      plot_caption <- plot_caption +
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                            y = range_faxes[2] - spread_faxes*0.665,
+                            fill = color_sp[["asb2"]], 
+                            color = color_sp[["asb2"]],
+                            shape = shape_sp[["asb2"]],
+                            size = size_sp[["asb2"]]) + 
+        
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                           y = range_faxes[2] - spread_faxes*0.665,
+                           label = paste0("relative weight of", sep = " ", 
+                                          asb2),
+                           colour = color_sp[["asb2"]], size = 3) + 
+        
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                            y = range_faxes[2] - spread_faxes*0.735,
+                            size = 2, 
+                            shape = shape_centroid_fdis[["asb2"]],
+                            color = color_sp[["asb2"]], 
+                            fill = fill_sp[["asb2"]]) + 
+        
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                           y = range_faxes[2] - spread_faxes*0.735,
+                           label = paste0("gravity center of", 
+                                          sep = " ", asb2),
+                           colour = color_sp[["asb2"]], size = 3)
+      
+    }
+    
+    ### for global pool:
+    
+    plot_caption <- plot_caption +
+      
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                          y = range_faxes[2] - spread_faxes*0.80,
+                          size = size_sp[["pool"]], 
+                          shape = shape_sp[["pool"]],
+                          color = color_sp[["pool"]], 
+                          fill = fill_sp[["pool"]]) + 
+      
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.38,
+                         y = range_faxes[2] - spread_faxes*0.80,
+                         label = "shape of species from the global pool",
+                         colour = color_sp[["pool"]], size = 3)
     
     # arrange panels ####
     
