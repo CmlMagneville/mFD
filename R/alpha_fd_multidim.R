@@ -496,7 +496,6 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       asb_ind_values[k, "fspe"] <- fspe
     }
     
-    print(paste0(k, sep = " ", "done"))
     print(paste0(k, sep = " ", "done ", round((n/nrow(asb_sp_w)) * 
                                                 100, digits = 1), "%"))
   }  # end loop on assemblages
