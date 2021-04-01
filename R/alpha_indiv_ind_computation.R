@@ -351,7 +351,7 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
   # compute fdiv values if vertices have been
   # computed (no coplanearity pbs):
   
-  if (is.character(vert_nm)) {
+  if (! is.null(vert_nm)) {
     # get the coordinates of the vertices center of
     # gravity (named B):
     B_coord <- apply(sp_faxes_coord_k[vert_nm, ], 2, mean)
@@ -374,7 +374,7 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
   }
   
   # if vertices have not been computed (coplanearity pb):
-  if (!is.character(vert_nm)) {
+  if (is.null(vert_nm)) {
     fdiv_asb_k <- NA
     B_coord <- NA
     mean_dtoB <- NA
