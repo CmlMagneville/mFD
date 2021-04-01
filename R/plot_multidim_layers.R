@@ -325,7 +325,7 @@ pool.plot <-function(ggplot_bg,
 #' 
 #' 
 
-sp.plot <-function(ggplot_bg,
+sp.plot <- function(ggplot_bg,
                   asb_sp_coord2D,
                   asb_vertices_nD = NULL,
                   asb_sp_relatw = NULL,
@@ -367,7 +367,7 @@ sp.plot <-function(ggplot_bg,
     if (! is.null (asb_vertices_nD)) {
       data_z[asb_vertices_nD[[z]], "vert"] <- "vert"
       
-      if(is.null (asb_sp_relatw)) {
+      if (is.null (asb_sp_relatw)) {
         data_z[asb_vertices_nD[[z]], "w"] <- size_vert[[z]]/100
       }
     }
@@ -474,9 +474,9 @@ panels.to.patchwork <- function(panels, plot_caption) {
   if (plot_nb == 6) {
     patchwork_plots_all <- (panels[[1]] + patchwork::plot_spacer() +
                               plot_caption +
-                              panels[[2]] + panels[[3]] +
+                              panels[[2]] + panels[[4]] +
                               patchwork::plot_spacer() +
-                              panels[[4]] + panels[[5]] + panels[[6]]) +
+                              panels[[3]] + panels[[5]] + panels[[6]]) +
       patchwork::plot_layout(byrow = TRUE, heights = rep(1, 3),
                              widths = rep(1, 3), ncol = 3, nrow = 3,
                              guides = "collect")
