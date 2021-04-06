@@ -2616,7 +2616,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     patchwork_fnnd <- panels.to.patchwork(panels_fnnd, plot_caption)
     
     # add title and caption:
-    tit_fnnd <- paste0( "Functional Nearest Neighbor Distance of '", asb1, "'")
+    tit_fnnd <- paste0( "Functional Nearest Neighbour Distance of '", asb1, "'")
     if (two_asb) {
       tit_fnnd <- paste0(tit_fnnd, " and '", asb2, "'")
     }
