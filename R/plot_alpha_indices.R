@@ -207,7 +207,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                    c("functional_diversity_indices","details"))) {
     
     stop("Input 'output_alpha_fd_multidim' should be the output of the
-           'alpha/multidim' function run with 'details=TRUE'.")
+           'alpha/multidim' function run with 'details = TRUE'.")
     
   }
   
@@ -232,7 +232,12 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     }
     
     # check that indices to plot are contained in the fd_ind_value table:
-    if (any(! ind_nm %in% colnames(asb_fd_ind) ) == TRUE) {
+    #remove fide (if plotted) from the indices names because it as differents...
+    # ...names in the dataframe: fide_PC1, fide_PC2...
+    if ("fide" %in% ind_nm) {
+      ind_nm2 <- ind_nm[! ind_nm %in% "fide"] 
+    }
+    if (any(! ind_nm2 %in% colnames(asb_fd_ind)) == TRUE) {
       stop("Error: Functional diversity indices to plot must be contained in
            'fd_ind_values' columns")
     }
@@ -800,12 +805,25 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                          colour = color_sp[["asb1"]], size = 3) + 
       
       ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
-                          y = range_faxes[2] - spread_faxes*0.58,
+                          y = range_faxes[2] - spread_faxes*0.56,
+                          fill = color_sp[["asb1"]], 
+                          color = color_sp[["asb1"]],
+                          shape = shape_centroid_fdiv[["asb1"]],
+                          size = 3) + 
+      
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                         y = range_faxes[2] - spread_faxes*0.56,
+                         label = paste0("gravity center of", sep = " ", 
+                                        asb1),
+                         colour = color_sp[["asb1"]], size = 3) +
+      
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                          y = range_faxes[2] - spread_faxes*0.61,
                           size = 5, shape = 21,
                           color = color_sp[["asb1"]], fill = NA) + 
       
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
-                         y = range_faxes[2] - spread_faxes*0.58,
+                         y = range_faxes[2] - spread_faxes*0.61,
         label = paste0("mean distance to the gravity center of species from", 
                        sep = " ", asb1), colour = color_sp[["asb1"]], size = 3) 
     
@@ -814,27 +832,40 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       plot_caption <- plot_caption +
         ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
-                           y = range_faxes[2] - spread_faxes*0.665,
+                           y = range_faxes[2] - spread_faxes*0.68,
                            fill = color_sp[["asb2"]], 
                            color = color_sp[["asb2"]],
                            shape = shape_sp[["asb2"]],
                            size = 3) + 
         
         ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
-                           y = range_faxes[2] - spread_faxes*0.665,
+                           y = range_faxes[2] - spread_faxes*0.68,
                            label = paste0("relative weight of", sep = " ", 
                                           asb2),
                            colour = color_sp[["asb2"]], size = 3) + 
         
         ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
-                            y = range_faxes[2] - spread_faxes*0.735,
+                            y = range_faxes[2] - spread_faxes*0.73,
+                            fill = color_sp[["asb2"]], 
+                            color = color_sp[["asb2"]],
+                            shape = shape_centroid_fdiv[["asb2"]],
+                            size = 3) + 
+        
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                           y = range_faxes[2] - spread_faxes*0.73,
+                           label = paste0("gravity center of", sep = " ", 
+                                          asb2),
+                           colour = color_sp[["asb2"]], size = 3) +
+        
+        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                            y = range_faxes[2] - spread_faxes*0.78,
                             size = 5, 
                             shape = 21,
                             color = color_sp[["asb2"]], 
-                            fill = fill_sp[["asb2"]]) + 
+                            fill = NA) + 
         
         ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
-                           y = range_faxes[2] - spread_faxes*0.735,
+                           y = range_faxes[2] - spread_faxes*0.78,
           label = paste0("mean distance to the gravity center of species from", 
                          sep = " ", asb2),
                            colour = color_sp[["asb2"]], size = 3)
@@ -846,14 +877,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     plot_caption <- plot_caption +
       
       ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
-                          y = range_faxes[2] - spread_faxes*0.80,
+                          y = range_faxes[2] - spread_faxes*0.85,
                           size = size_sp[["pool"]], 
                           shape = shape_sp[["pool"]],
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.40,
-                         y = range_faxes[2] - spread_faxes*0.80,
+                         y = range_faxes[2] - spread_faxes*0.85,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
 
