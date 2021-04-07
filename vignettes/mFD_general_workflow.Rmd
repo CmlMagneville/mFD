@@ -805,7 +805,7 @@ axis**:
 
 <br />
 
-```{r, fig.height = 10, fig.width = 10, fig.align = "center"}
+```{r, fig.height = 15, fig.width = 20, fig.align = "center"}
 
 big_plot <- mFD::funct.space.plot(
   sp_faxes_coord  = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
@@ -833,9 +833,8 @@ big_plot <- mFD::funct.space.plot(
   nm_fontface     = "plain",
   check_input     = TRUE)
 # Plot the graph with all pairs of axes:
-big_plot[[7]]
+big_plot$patchwork
 ```
-
 
 <br />
 
@@ -867,7 +866,7 @@ alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", 
-                       "fori", "fspe"),
+                       "fori", "fspe", "fide"),
   scaling          = TRUE,
   check_input      = TRUE,
   details_returned = TRUE)
@@ -972,61 +971,50 @@ function as follows:
 **USAGE**
 
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
-# plots_alpha <- mFD::alpha.multidim.plot(
-#   sp_faxes_coord        = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
-#   asb_sp_w              = baskets_fruits_weights,
-#   ind_vect              = c("fdis", "fnnd", "feve", "fric", "fdiv", 
-#                        "fori", "fspe"),
-#   details_list          = details_list_fruits,
-#   asb_vect              = "basket_1",
-#   fd_ind_values         = fd_ind_values_fruits,
-#   faxes                 = NULL,
-#   faxes_nm              = NULL,
-#   range_faxes_lim       = c(NA, NA),
-#   color_bg              = "grey95",
-#   size_sp               = 1,
-#   size_centroid         = 1,
-#   size_centroid_asb2    = 1,
-#   size_vert             = 1,
-#   size_sp_nm            = 3,
-#   color_sp              = "#0072B2",
-#   color_sp_asb2         = "#D55E00",
-#   color_sp_gp           = "gray80",
-#   color_segment         = "#0072B2",
-#   color_segment_asb2    = "#CC79A7",
-#   color_centroid        = '#0072B2',
-#   color_centroid_asb2   = "#D55E00",
-#   color_vert            = NA,
-#   color_vert_asb2       = NA,
-#   color_ch              = "black",
-#   color_sp_nm           = "black",
-#   fill_sp               = "white",
-#   fill_sp_asb2          = "white",
-#   fill_sp_gp            = "gray80",
-#   fill_vert             = NA,
-#   fill_vert_asb2        = NA,
-#   fill_ch               = "white",
-#   fill_centroid         = '#0072B2',
-#   fill_centroid_asb2    = "#D55E00",
-#   alpha_ch              = 0.3,
-#   shape_sp_gp           = 3,
-#   shape_sp              = 16,
-#   shape_sp_asb2         = 15,
-#   shape_vert            = NA,
-#   shape_vert_asb2       = NA,
-#   shape_centroid        = 10,
-#   shape_centroid_asb2   = 12,
-#   segment_size          = 1,
-#   segment_size_asb2     = 0.5,
-#   linetype_segment      = "solid",
-#   linetype_segment_asb2 = "dashed",
-#   scale_inf             = 1,
-#   scale_sup             = 3,
-#   plot_sp_nm            = NULL,
-#   plot_ch               = TRUE,
-#   fontface_nm           = "plain",
-#   name_file             = NULL,
-#   check_input           = TRUE)
+plots_alpha <- alpha.multidim.plot(
+      output_alpha_fd_multidim = alpha_fd_indices_fruits,
+      plot_asb_nm              = c("basket_1", "basket_5"),
+      ind_nm                   = c("fdis", "fide", "fnnd", "feve", 
+                                                        "fric", "fdiv", "fori", 
+                                                        "fspe"),
+      faxes                    = NULL,
+      faxes_nm                 = NULL,
+      range_faxes              = c(NA, NA),
+      color_bg                 = "grey95",
+      shape_sp                 = c(pool = 3, asb1 = 21, 
+                              asb2 = 21),
+      size_sp                  = c(pool = 0.7, asb1 = 1, 
+                              asb2 = 1),
+      color_sp                 = c(pool = "grey50", 
+                              asb1 = "#1F968BFF",
+                              asb2 = "#DCE319FF"),
+      color_vert               = c(pool = "grey50", 
+                              asb1 = "#1F968BFF",
+                              asb2 = "#DCE319FF"),
+      fill_sp                 = c(pool =  NA, 
+                              asb1 = "#1F968BFF",
+                              asb2 = "#DCE319FF"),
+      fill_vert               = c(pool = NA, 
+                              asb1 = "#1F968BFF",
+                              asb2 = "#DCE319FF"),
+      color_ch                = c(pool = NA, 
+                              asb1 = "#1F968BFF",
+                              asb2 = "#DCE319FF"),
+      fill_ch                 = c(pool = "white", 
+                              asb1 = "#1F968BFF",
+                              asb2 = "#DCE319FF"),
+      alpha_ch                = c(pool = 1, asb1 = 0.3, 
+                              asb2 = 0.3),
+      shape_centroid_fdis     = c(asb1 = 22,  asb2 = 24),
+      shape_centroid_fdiv     = c(asb1 = 22,  asb2 = 24),
+      shape_centroid_fspe     = 23,
+      color_centroid_fspe     = "black",
+      size_sp_nm              = 3, 
+      color_sp_nm             = "black",
+      plot_sp_nm              = NULL,
+      fontface_sp_nm          = "plain",
+      save_file               = FALSE,
+      check_input             = TRUE) 
 ```
 
 <br />
@@ -1037,24 +1025,13 @@ tutorial only presents main arguments. To learn about the use of graphical
 arguments, check the function help file. The main arguments of this function are
 listed below:
 
-* `sp_faxes_coord` is the species coordinates matrix. This dataframe gathers
-**only** axis of the functional space you have chosen based on **step 4**
+* `output_alpha_fd_multidim` is the output of the ``mFD::alpha.fd.multidim()` 
+function.
 
-* `asb_sp_w` is the dataframe linking species and assemblages they belong to
-(summarized in **step 1**).
+* `plot_asb_nm` is a vector gathering name(s) of assemblage(s) to plot.
 
 * `ind_vect` is a vector gathering FD indices to plot. Plots are available for
-`FDis`, `FEve`, `FRic`, `FDiv`, `FOri`, `FSpe`, and `FNND.`
-
-* `details_list` is one of the output of the `mFD::alpha.fd.multidim()` function
-and it can be retrieved as shown above.
-
-* `asb_vect` is used as the user can plot one or two assemblages FD indices in
-the same plot. By using this argument, the user choose which assemblage(s)
-should be plotted by entering its/their name(s).
-
-* `fd_ind_values` is one of the output of the `mFD::alpha.fd.multidim()`
-function and it can be retrieved as shown above.
+`FDis`, `FIde`, `FEve`, `FRic`, `FDiv`, `FOri`, `FSpe`, and `FNND.`
 
 * `faxes` is a vector containing names of axes to plot. You can only plot from
 two to four axes labels for graphical reasons.
@@ -1062,21 +1039,21 @@ two to four axes labels for graphical reasons.
 * `faxes_nm` is a vector with axes labels if the user ants different axes labels
 than `faxes` ones.
 
-* `range_faxes_lim` is a vector with minimum and maximum values for axes.
-If `range_faxes_lim = c(NA, NA)`, the range is computed according to the range
+* `range_faxes` is a vector with minimum and maximum values for axes.
+If `range_faxes = c(NA, NA)`, the range is computed according to the range
 of values among all axes, all axes having thus the same range. To have a fair
 representation of species positions in all plots, all axes must have the same
 range.
-
-* `convex_pool` is an argument used to plot or not the convex hull filled by the
-global pool of species.
 
 * `plot_sp_nm` is a vector containing species names to plot. If `NULL`, then no
 name is plotted.
 
 * size, color, fill, and shape arguments for each component of the graphs *i.e.*
 species of the global pool, species of the studied assemblage(s), vertices,
-centroids and segments.
+centroids and segments. If you have to plot two assemblages, then inputs
+should be formatted as follow: `c(pool = ..., asb1 = ..., asb2 = ...)` for
+inputs used for global pool and studied assemblages and 
+`c(asb1 = ..., asb2 = ...)` for inputs used for studied assemblages only.
 
 * `check_input` is a recurrent argument in `mFD`. It defines whether inputs
 should be checked before computation or not. Possible error messages will thus
@@ -1090,70 +1067,89 @@ baskets** dataset:
 
 <br />
 
-* `FRic` representation: the blue shape reflects the convex-hull of the studied
-assemblage and the white shape reflects the convex-hull of the global pool of
-species:
+* `FRic` representation: the colored shapes reflect the convex-hull of the 
+studied assemblages and the white shape reflects the convex-hull of the global 
+pool of species:
 
-```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-# plots_alpha[[1]]
+```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
+plots_alpha[[1]]$patchwork
 ```
 
 <br />
 
-* `FDiv` representation: traits represent the distances of each species from the
-assemblage to the gravity center of the vertices of the assemblage
+* `FDiv` representation: the gravity centers of **vertices** (i.e. species with the
+most extreme functional traits) of each assemblages are plotted as a square and 
+a triangle. The two colored circles represent the mean distance of species to 
+the gravity center for each assemblage. Species of each assemblage have 
+different size given their relative weight into the assemblage.
 
-```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-#plots_alpha[[2]]
+
+```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
+plots_alpha[[2]]$patchwork
 ```
 
 <br />
 
-* `FEve` representation: traits represent the Minimum Spanning Tree linking
-species of the assemblage
+* `FSpe` representation: colored traits represent distances of each species from
+a given assemblage to the center of gravity of the global pool (i.e center of 
+the functional space). the center of gravity is plotted with a purple diamond.
+Species of each assemblage have different size given their relative weight into 
+the assemblage.
 
-```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-#plots_alpha[[3]]
+```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
+plots_alpha[[3]]$patchwork
 ```
 
 <br />
 
-* `FSpe` representation: traits represent distances of each species from the
-assemblage to the mean position of species from the global pool
-(present in all assemblages)
+* `FDis` representation: colored traits represent distances of each species from
+a given assemblage to the center of gravity of species of the assemblage
+(defined by FIde values). The center of gravity of each assemblage is plotted 
+using a square and a triangle. Species of each assemblage havedifferent size 
+given their relative weight into the assemblage.
 
-```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-#plots_alpha[[4]]
+```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
+plots_alpha[[4]]$patchwork
 ```
 
 <br />
 
-* `FDis` representation: traits represent distances of each species from the
-assemblage to the biomass-weighted mean trait values of the assemblage. Red
-dotted lines refer to `FIde` values.
+* `FIde` representation:colored lines refer to the weighted average position of 
+species of each assemblage along each axis. Species of each assemblage have 
+different size given their relative weight into the assemblage.
 
-```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-#plots_alpha[[5]]
+```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
+plots_alpha[[5]]$patchwork
 ```
 
 <br />
 
-* `FOri` representation: traits represent distances of each species from the
-assemblage nearest species from the global species pool
+* `FEve` representation: colored traits represent the Minimum Spanning Tree 
+linking species of each assemblage. Species of each assemblage have different 
+size given their relative weight into the assemblage.
 
-```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-#plots_alpha[[6]]
+```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
+plots_alpha[[6]]$patchwork
 ```
 
 <br />
 
-* `FNND` representation: arrows represent the link between each species and its
-nearest neighbor
-
-```{r, fig.height = 10, fig.width = 10, fig.align = "center", warning = FALSE}
-#plots_alpha[[7]]
+* `FOri` representation: colored arrows represent the distances of each species 
+from each assemblage to the nearest species in the global species pool. Species 
+of each assemblage have different size given their relative weight into the 
+assemblage.
+```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
+plots_alpha[[7]]$patchwork
 ```
 
+* `FNND` representation: colored arrows represent the distances of each species 
+from each assemblage to the nearest species in the studied assemblage. Species 
+of each assemblage have different size given their relative weight into the 
+assemblage. 
+
+```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
+plots_alpha[[8]]$patchwork
+```
 
 <br />
 
