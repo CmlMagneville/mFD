@@ -57,7 +57,7 @@ the plotted assemblage. Default: \code{size_sp = 1}.}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
 of species from the studied assemblage.  This color is also used for FRic
-convex hull color. Default: \code{color_sp = "#0072B2"}.}
+convex hull color.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
@@ -74,7 +74,7 @@ Default: \code{size_vert = 1}.}
 \item{color_vert}{a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
 (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA). Default: \code{color_vert =  NA}.}
+must also be set to NA).}
 
 \item{fill_vert}{a character value referring to the color for filling symbol
 for vertices (if \code{shape_vert} >20). If \code{fill = NA} and \code{color = NA},
@@ -92,8 +92,7 @@ or several assemblages. It adds convex hull(s), points and vertices of
 }
 \note{
 If several assemblages are to be represented, aesthetics inputs should
-be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
-being "asb1" and "asb2".
+be formated as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{

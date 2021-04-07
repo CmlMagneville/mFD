@@ -15,9 +15,9 @@ fdiv.plot(
   shape_sp,
   color_sp,
   fill_sp,
-  shape_vert = NA,
-  color_vert = NA,
-  fill_vert = NA,
+  shape_vert,
+  color_vert,
+  fill_vert,
   shape_vertG,
   size_vertG,
   color_vertG,
@@ -47,34 +47,32 @@ given pair of axes}
 for each assemblage the mean distance to the center of gravity of vertices}
 
 \item{plot_sp}{a logical value indicating whether species of each assemblage
-should be plotted or not. Default: plot_sp = TRUE.}
+should be plotted or not. Default: \code{plot_sp = TRUE}.}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage. Default: \code{shape_sp = 16}
+belonging to the studied assemblage.
 (filled circle).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.}
+of species from the studied assemblage.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20). Default:
-\code{fill_sp = '#0072B2'}.}
+to fill species symbol (if \code{shape_sp} > 20).}
 
 \item{shape_vert}{a numeric value referring to the shape used to plot
 vertices if vertices should be plotted in a different way than other
-species. If \code{shape_vert = NA}, no vertices plotted. Default:
-\code{shape_vert = NA}.}
+species. If \code{shape_vert = NA}, no vertices plotted.}
 
 \item{color_vert}{a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
 (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA). Default: \code{color_vert =  NA}.}
+must also be set to NA).}
 
 \item{fill_vert}{a R color name or an hexadecimal code referring to the
 color for filling symbol
 for vertices (if \code{shape_vert} >20). If \code{fill = NA} and \code{color = NA},
 vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-\code{color_vert = NULL} is enough). Default is \code{NA}.}
+\code{color_vert = NULL} is enough).}
 
 \item{shape_vertG}{a numeric value referring to the shape to use to
 plot the center of gravity of vertices.}
@@ -103,8 +101,7 @@ vertices, points and vertices of 1:N assemblages on the background plot
 }
 \note{
 If several assemblages are to be represented, aesthetics inputs should
-be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
-being "asb1" and "asb2".
+be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{

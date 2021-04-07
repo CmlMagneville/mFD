@@ -287,25 +287,25 @@ pool.plot <-function(ggplot_bg,
 #' Default: `shape_sp = 16`.
 #' 
 #' @param shape_vert a numeric value referring to the shape of symbol for 
-#' vertices Default: `shape_vert = NA`.
+#' vertices.
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
 #'  of species from the studied assemblage.  This color is also used for FRic
-#'  convex hull color. Default: `color_sp = "#0072B2"`. 
+#'  convex hull color. 
 #' 
 #' @param color_vert a R color name or an hexadecimal code referring to the
 #'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
 #'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-#'   must also be set to NA). Default: `color_vert =  NA`.
+#'   must also be set to NA). 
 #'
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
 #'  to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-#'  hull. Default: `fill_sp = '#0072B2'`.
+#'  hull. 
 #' 
 #' @param fill_vert a character value referring to the color for filling symbol
 #'   for vertices (if \code{shape_vert} >20). If `fill = NA` and `color = NA`,
 #'   vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-#'   `color_vert = NULL` is enough). Default is `NA`.
+#'   `color_vert = NULL` is enough).
 #' 
 #' @param limits_relatw a vector of two numbers giving the limits to set for 
 #' the scale of species relative weights.
@@ -577,7 +577,7 @@ sp.plot <- function(ggplot_bg,
 #'
 #' ## Create patchwork:
 #' patchwork_fric <- mFD::panels.to.patchwork(list(ggplot_fric), plot_caption)
-#'
+#'}
 
 panels.to.patchwork <- function(panels, plot_caption) {
   
@@ -644,12 +644,12 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
 #'  of species from the studied assemblage.  This color is also used for FRic
-#'  convex hull color. Default: `color_sp = "#0072B2"`.
+#'  convex hull color. 
 #'  
 #' @param color_vert a R color name or an hexadecimal code referring to the
 #'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
 #'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-#'   must also be set to NA). Default: `color_vert =  NA`. 
+#'   must also be set to NA). 
 #'
 #' @param fill_ch a R color name or an hexadecimal code referring to the filling
 #'  of the convex hull filled by the pool of species. Default is: 
@@ -863,15 +863,15 @@ fric.plot <- function(ggplot_bg,
 #' for each assemblage the mean distance to the center of gravity of vertices
 #' 
 #' @param plot_sp a logical value indicating whether species of each assemblage 
-#'  should be plotted or not. Default: plot_sp = TRUE.
+#'  should be plotted or not. Default: `plot_sp = TRUE`.
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage. Default: `color_sp = "#0072B2"`. 
+#'  of species from the studied assemblage.  
 #' 
 #' @param color_vert a R color name or an hexadecimal code referring to the
 #'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
 #'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-#'   must also be set to NA). Default: `color_vert =  NA`.
+#'   must also be set to NA).
 #'   
 #' @param color_vertG a R color name or an hexadecimal code referring to the
 #'   color of the center of gravity of vertices.
@@ -881,26 +881,24 @@ fric.plot <- function(ggplot_bg,
 #'   the center of gravity of the vertices.
 #' 
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). Default: 
-#'  `fill_sp = '#0072B2'`.
+#'  to fill species symbol (if \code{shape_sp} > 20). 
 #' 
 #' @param fill_vert a R color name or an hexadecimal code referring to the 
 #'   color for filling symbol
 #'   for vertices (if \code{shape_vert} >20). If `fill = NA` and `color = NA`,
 #'   vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-#'   `color_vert = NULL` is enough). Default is `NA`.
+#'   `color_vert = NULL` is enough).
 #'   
 #' @param fill_vertG a R color name or an hexadecimal code 
 #' referring to the color to fill the center of gravity of vertices.
 #'  
 #' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
+#'  belonging to the studied assemblage. 
 #'  (filled circle).
 #' 
 #' @param shape_vert a numeric value referring to the shape used to plot
 #'   vertices if vertices should be plotted in a different way than other
-#'   species. If `shape_vert = NA`, no vertices plotted. Default: 
-#'   `shape_vert = NA`.
+#'   species. If `shape_vert = NA`, no vertices plotted.
 #'   
 #' @param shape_vertG a numeric value referring to the shape to use to
 #' plot the center of gravity of vertices.
@@ -912,7 +910,7 @@ fric.plot <- function(ggplot_bg,
 #' FDiv indice
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formated as c(pool = ..., asb1 = ..., asb2 = ...).
+#' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
 #' @author Camille Magneville and Sébastien Villéger
 #' 
@@ -1026,7 +1024,7 @@ fdiv.plot <- function(ggplot_bg,
                       asb_meanDtoG,
                       plot_sp = TRUE,
                       shape_sp, color_sp, fill_sp,
-                      shape_vert = NA, color_vert = NA, fill_vert = NA,
+                      shape_vert, color_vert, fill_vert,
                       shape_vertG, size_vertG,
                       color_vertG, fill_vertG,
                       color_meanD) {
@@ -1117,7 +1115,7 @@ fdiv.plot <- function(ggplot_bg,
 #'  should be plotted or not. Default: `plot_sp = TRUE`
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage. Default: `color_sp = "#0072B2"`. 
+#'  of species from the studied assemblage.  
 #'  
 #' @param color_fide a R color name or an hexadecimal code referring to the 
 #' color of the species centroid from the studied assemblage. 
@@ -1126,34 +1124,30 @@ fdiv.plot <- function(ggplot_bg,
 #' color of the segment linking axes and centroid from the studied assemblage. 
 #' 
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). Default: 
-#'  `fill_sp = '#0072B2'`.
+#'  to fill species symbol (if \code{shape_sp} > 20). 
 #'  
 #' @param fill_fide a R color name or an hexadecimal code referring to 
 #' the colour to fill assemblage centroid symbol (if \code{shape_sp} > 20).
 #' 
 #' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
-#'  (filled circle). 
+#'  belonging to the studied assemblage. 
 #' 
 #' @param shape_fide a numeric value referring to the shape used to 
-#' plot fide centroid of the studied assemblage. Default: `shape_centroid = 18` 
-#'  (filled diamond).
+#' plot fide centroid of the studied assemblage. 
 #' 
 #' @param size_fide a numeric value referring to the size of species fide
-#' centroid but not the plotted assemblage. Default: `size_sp = 1`.
+#' centroid but not the plotted assemblage. 
 #' 
 #' @param width_segment a numeric value referring to the size of the segment 
-#' linking fide centroid and functional axes. Default: `width_segment = 1`.  
+#' linking fide centroid and functional axes.   
 #' 
 #' @param linetype_segment a character string referring to the linetype used to 
 #' draw the segment linking fide centroid and functional axes. 
-#' Default: `linetype_segment = "dashed"`.  
 #' 
 #' @return a ggplot object with FIde index, species and background
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formated as c(pool = ..., asb1 = ..., asb2 = ...).
+#' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
 #' @author Camille Magneville and Sébastien Villéger
 #' 
@@ -1362,12 +1356,10 @@ fide.plot <-function(ggplot_bg,
 #'  should be plotted or not. Default: `plot_sp = TRUE`
 #' 
 #' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
-#'  (filled circle).
+#'  belonging to the studied assemblage. 
 #' 
 #' @param shape_fide a numeric value referring to the shape used to 
-#' plot fide centroid of the studied assemblage. Default: `shape_fide = 18` 
-#'  (filled diamond).
+#' plot fide centroid of the studied assemblage.
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
 #'  of species from the studied assemblage. Default: `color_sp = "#0072B2"`. 
@@ -1384,21 +1376,19 @@ fide.plot <-function(ggplot_bg,
 #' `asb_sp_coord2D`.
 #' 
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). Default: 
-#'  `fill_sp = '#0072B2'`.
+#'  to fill species symbol (if \code{shape_sp} > 20). 
 #' 
 #' @param fill_fide a R color name or an hexadecimal code referring to the
 #'   colour to fill assemblage fide centroid symbol (if \code{shape_fide} > 20).
 #' 
 #' @param size_fide a numeric value referring to the size of assemblage 
-#' fide centroid. Default: `size_fide = 1`. 
+#' fide centroid.  
 #' 
 #' @param width_segment a numeric value referring to the size of the segment 
-#' linking fide centroid and functional axes. Default: `width_segment = 1`.  
+#' linking fide centroid and functional axes.  
 #' 
 #' @param linetype_segment a character string referring to the linetype used to 
 #' draw the segment linking fide centroid and functional axes. 
-#' Default: `linetype_segment = "dashed`.  
 #' 
 #' @return a ggplot object showing FDis index for one or several assemblage(s) 
 #' and a given pair of functional axes.
@@ -1612,24 +1602,22 @@ fdis.plot <- function(ggplot_bg,
 #'  should be plotted or not. Default: `plot_sp = TRUE`
 #' 
 #' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
-#'  (filled circle). 
+#'  belonging to the studied assemblage.
 #'  
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage. Default: `color_sp = "#0072B2"`. 
+#'  of species from the studied assemblage. 
 #'  
 #' @param color_mst a R color name or an hexadecimal code referring to the color
-#'  of the MST from the studied assemblage. Default: `color_MST = "#0072B2"`. 
+#'  of the MST from the studied assemblage.  
 #' 
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). Default: 
-#'  `fill_sp = '#0072B2'`.
+#'  to fill species symbol (if \code{shape_sp} > 20). 
 #'  
 #' @param width_mst a numeric value referring to the size of the line 
-#' representing MST. Default: `width_mst = 1`.
+#' representing MST. .
 #' 
 #' @param linetype_mst a character string referring to the linetype used to 
-#' draw the MST. Default: `linetype_mst = "dashed`. 
+#' draw the MST.  
 #' 
 #' @return a ggplot object showing FEve index on the background plot
 #' 
@@ -1808,26 +1796,22 @@ feve.plot <- function(ggplot_bg,
 #'  should be plotted or not. Default: `plot_sp = TRUE`
 #' 
 #' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
-#'  (filled circle).
+#'  belonging to the studied assemblage.
 #'  
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage. Default: `color_sp = "#0072B2"`. 
+#'  of species from the studied assemblage. 
 #'  
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). Default: 
-#'  `fill_sp = '#0072B2'`.
+#'  to fill species symbol (if \code{shape_sp} > 20). 
 #'  
 #' @param color_segment a R color name or an hexadecimal code referring to the 
 #' color of the segment linking nearest neighbors in the studied assemblage. 
 #' 
 #' @param width_segment a numeric value referring to the size of the segment 
-#' linking nearest neighbors in the studied assemblage. Default: 
-#' `width_segment = 1`. 
+#' linking nearest neighbors in the studied assemblage. 
 #' 
 #' @param linetype_segment a character string referring to the linetype used to 
 #' link nearest neighbors in the studied assemblages. 
-#' Default: `linetype_segment = "dashed`. 
 #' 
 #' @return a ggplot object with FNND index
 #' 
@@ -2025,39 +2009,34 @@ fnnd.plot <- function(ggplot_bg,
 #' 
 #' @param color_pool a R color name or an hexadecimal code referring to the 
 #' color of the pool.  This color is also used for FRic convex hull color. 
-#' Default: `color_pool = "#0072B2"`.
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#' of species from the studied assemblage. Default: `color_sp = "#0072B2"`. 
+#' of species from the studied assemblage. 
 #' 
 #' @param fill_pool a R color name or an hexadecimal code referring to the colour
 #'  to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-#'  hull. Default: `fill_pool = '#0072B2'`.
+#'  hull. 
 #'  
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). Default: 
-#'  `fill_sp = '#0072B2'`.
+#'  to fill species symbol (if \code{shape_sp} > 20). 
 #' 
 #' @param shape_pool a numeric value referring to the shape used to plot species
-#'  pool. Default: `shape_pool = 16`(filled circle). 
+#'  pool. 
 #'  
 #' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
-#'  (filled circle). 
+#'  belonging to the studied assemblage. 
 #' 
 #' @param size_pool a numeric value referring to the size of species belonging 
-#' to the global pool. Default: `size_pool = 1`.
+#' to the global pool. 
 #' 
 #' @param color_segment a R color name or an hexadecimal code referring to the 
 #' color of the segment linking nearest neighbors in the global pool. 
 #' 
 #' @param width_segment a numeric value referring to the size of the segment 
-#' linking nearest neighbors in the global pool. Default: 
-#' `width_segment = 1`.
+#' linking nearest neighbors in the global pool. 
 #' 
 #' @param linetype_segment a character string referring to the linetype used to 
 #' link nearest neighbors in the global pool. 
-#' Default: `linetype_segment = "dashed`.  
 #' 
 #' @return a ggplot object with FOri index
 #' 
@@ -2274,12 +2253,10 @@ fori.plot <- function(ggplot_bg,
 #' Default: `color_pool = "#0072B2"`.
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#' of species from the studied assemblage. Default: `color_sp = "#0072B2"`. 
-#' If several assemblages it should be a vector with names as in 
-#' `asb_sp_coord2D`.
+#' of species from the studied assemblage. 
 #' 
 #' @param color_center a R color name or an hexadecimal code referring to the 
-#' color of the center of the global pool. Default: `color_center = "#0072B2"`. 
+#' color of the center of the global pool. 
 #' 
 #' @param color_segment a R color name or an hexadecimal code referring to the 
 #' color of the segment linking nearest neighbors in the global pool. 
@@ -2288,39 +2265,34 @@ fori.plot <- function(ggplot_bg,
 #' 
 #' @param fill_pool a R color name or an hexadecimal code referring to the 
 #' colour to fill species symbol (if \code{shape_sp} > 20) and the assemblage 
-#' convex hull. Default: `fill_pool = '#0072B2'`.
+#' convex hull. 
 #'  
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). Default: 
-#'  `fill_sp = '#0072B2'`. 
+#'  to fill species symbol (if \code{shape_sp} > 20). 
 #'  
 #' @param fill_center a R color name or an hexadecimal code referring to the 
 #' colour to fill the center of the global pool (if \code{shape_sp} > 20). 
-#' Default: `fill_center = '#0072B2'`.
 #' 
 #' @param shape_pool a numeric value referring to the shape used to plot species
-#'  pool. Default: `shape_pool = 16`(filled circle). 
+#'  pool. 
 #'  
 #' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
-#'  (filled circle).
+#'  belonging to the studied assemblage. 
 #'  
 #' @param shape_center a numeric value referring to the shape used to plot the 
-#' center of the global pool.Default: `shape_center = 16`(filled circle).
+#' center of the global pool.
 #' 
 #' @param size_pool a numeric value referring to the size of species belonging 
-#' to the global pool. Default: `size_pool = 1`.
+#' to the global pool.
 #' 
 #' @param size_center a numeric value referring to the size of the center of the
-#' global pool. Default: `size_center = 1`.
+#' global pool. 
 #' 
 #' @param width_segment a numeric value referring to the size of the segment 
-#' linking nearest neighbors in the global pool. Default: 
-#' `width_segment = 1`. 
+#' linking nearest neighbors in the global pool. 
 #' 
 #' @param linetype_segment a character string referring to the linetype used to 
 #' link nearest neighbors in the global pool. 
-#' Default: `linetype_segment = "dashed`. 
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).

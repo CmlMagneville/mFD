@@ -36,26 +36,22 @@ its nearest neighbour(s) in the assemblage.}
 should be plotted or not. Default: \code{plot_sp = TRUE}}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage. Default: \code{shape_sp = 16}
-(filled circle).}
+belonging to the studied assemblage.}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.}
+of species from the studied assemblage.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20). Default:
-\code{fill_sp = '#0072B2'}.}
+to fill species symbol (if \code{shape_sp} > 20).}
 
 \item{color_segment}{a R color name or an hexadecimal code referring to the
 color of the segment linking nearest neighbors in the studied assemblage.}
 
 \item{width_segment}{a numeric value referring to the size of the segment
-linking nearest neighbors in the studied assemblage. Default:
-\code{width_segment = 1}.}
+linking nearest neighbors in the studied assemblage.}
 
 \item{linetype_segment}{a character string referring to the linetype used to
-link nearest neighbors in the studied assemblages.
-Default: \verb{linetype_segment = "dashed}.}
+link nearest neighbors in the studied assemblages.}
 }
 \value{
 a ggplot object with FNND index
@@ -66,8 +62,7 @@ one or several assemblages
 }
 \note{
 If several assemblages are to be represented, aesthetics inputs should
-be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
-being "asb1" and "asb2".
+be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{

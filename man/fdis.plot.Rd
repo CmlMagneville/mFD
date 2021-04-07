@@ -41,8 +41,7 @@ for a given pair of axes.}
 should be plotted or not. Default: \code{plot_sp = TRUE}}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage. Default: \code{shape_sp = 16}
-(filled circle).}
+belonging to the studied assemblage.}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
 of species from the studied assemblage. Default: \code{color_sp = "#0072B2"}.
@@ -50,15 +49,13 @@ If several assemblages it should be a vector with names as in
 \code{asb_sp_coord2D}.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20). Default:
-\code{fill_sp = '#0072B2'}.}
+to fill species symbol (if \code{shape_sp} > 20).}
 
 \item{shape_fide}{a numeric value referring to the shape used to
-plot fide centroid of the studied assemblage. Default: \code{shape_fide = 18}
-(filled diamond).}
+plot fide centroid of the studied assemblage.}
 
 \item{size_fide}{a numeric value referring to the size of assemblage
-fide centroid. Default: \code{size_fide = 1}.}
+fide centroid.}
 
 \item{color_fide}{a R color name or an hexadecimal code referring to the
 color of the species fide centroid from the studied assemblage. If several
@@ -73,11 +70,10 @@ If several assemblages it should be a vector with names as in
 \code{asb_sp_coord2D}.}
 
 \item{width_segment}{a numeric value referring to the size of the segment
-linking fide centroid and functional axes. Default: \code{width_segment = 1}.}
+linking fide centroid and functional axes.}
 
 \item{linetype_segment}{a character string referring to the linetype used to
-draw the segment linking fide centroid and functional axes.
-Default: \verb{linetype_segment = "dashed}.}
+draw the segment linking fide centroid and functional axes.}
 }
 \value{
 a ggplot object showing FDis index for one or several assemblage(s)
@@ -90,8 +86,7 @@ and assemblage cenntroid on the background plot.
 }
 \note{
 If several assemblages are to be represented, aesthetics inputs should
-be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
-being "asb1" and "asb2".
+be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{
