@@ -44,27 +44,27 @@ Default: \code{shape_sp = 16}.}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
 of species from the studied assemblage.  This color is also used for FRic
-convex hull color. Default: \code{color_sp = "#0072B2"}.}
+convex hull color.}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the colour
 to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-hull. Default: \code{fill_sp = '#0072B2'}.}
+hull.}
 
 \item{size_vert}{a numeric value referring to the size of symbol for vertices
 Default: \code{size_vert = 1}.}
 
 \item{shape_vert}{a numeric value referring to the shape of symbol for
-vertices Default: \code{shape_vert = NA}.}
+vertices.}
 
 \item{color_vert}{a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
 (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA). Default: \code{color_vert =  NA}.}
+must also be set to NA).}
 
 \item{fill_vert}{a character value referring to the color for filling symbol
 for vertices (if \code{shape_vert} >20). If \code{fill = NA} and \code{color = NA},
 vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-\code{color_vert = NULL} is enough). Default is \code{NA}.}
+\code{color_vert = NULL} is enough).}
 
 \item{limits_relatw}{a vector of two numbers giving the limits to set for
 the scale of species relative weights.}
@@ -83,7 +83,7 @@ if \code{asb_vertices_nD = NULL}, all arguments for vertices are
 ignored and if \code{asb_sp_relatw != NULL}, \code{size_sp} and
 \code{size_vert} are ignored. And if several assemblages are to be
 represented, aesthetics inputs should be formatted as c(pool = ..., asb1 =
-..., asb2 = ...) with asb1 and asb2 being "asb1" and "asb2".
+..., asb2 = ...).
 }
 \author{
 Camille Magneville and Sébastien Villéger
