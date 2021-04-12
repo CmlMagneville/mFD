@@ -1109,7 +1109,7 @@ Basic framework of the mFD package
 <code>FRic</code> representation: the colored shapes reflect the convex-hull of the studied assemblages and the white shape reflects the convex-hull of the global pool of species:</li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fric</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-31-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1117,7 +1117,7 @@ Basic framework of the mFD package
 <code>FDiv</code> representation: the gravity centers of <strong>vertices</strong> (i.e. species with the most extreme functional traits) of each assemblages are plotted as a square and a triangle. The two colored circles represent the mean distance of species to the gravity center for each assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fdiv</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-32-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1125,7 +1125,7 @@ Basic framework of the mFD package
 <code>FSpe</code> representation: colored traits represent distances of each species from a given assemblage to the center of gravity of the global pool (i.e center of the functional space). the center of gravity is plotted with a purple diamond. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fspe</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-33-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1133,7 +1133,7 @@ Basic framework of the mFD package
 <code>FDis</code> representation: colored traits represent distances of each species from a given assemblage to the center of gravity of species of the assemblage (defined by FIde values). The center of gravity of each assemblage is plotted using a square and a triangle. Species of each assemblage havedifferent size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fdis</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-34-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1141,7 +1141,7 @@ Basic framework of the mFD package
 <code>FIde</code> representation:colored lines refer to the weighted average position of species of each assemblage along each axis. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fide</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-35-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1149,7 +1149,7 @@ Basic framework of the mFD package
 <code>FEve</code> representation: colored traits represent the Minimum Spanning Tree linking species of each assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">feve</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-36-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1157,14 +1157,14 @@ Basic framework of the mFD package
 <code>FOri</code> representation: colored arrows represent the distances of each species from each assemblage to the nearest species in the global species pool. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fori</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-37-1.png" width="1920" style="display: block; margin: auto;"></p>
 <ul>
 <li>
 <code>FNND</code> representation: colored arrows represent the distances of each species from each assemblage to the nearest species in the studied assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">[[</span><span class="fl">8</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fnnd</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-38-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
