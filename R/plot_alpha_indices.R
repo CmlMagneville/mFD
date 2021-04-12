@@ -251,7 +251,9 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # check that assemblage(s) to plot has(ve) the right name(s):
     if ( any( ! plot_asb_nm %in% row.names(asb_fd_ind)) ) {
-      stop("Name(s) of assemblage(s) to plot is(are) provided in 'plot_asb_nm' do not match those in 'output_alpha_fd_multidim$asb_fd_ind. Please re-write.")
+      stop("Name(s) of assemblage(s) to plot is(are) provided in 'plot_asb_nm' 
+           do not match those in 'output_alpha_fd_multidim$asb_fd_ind. 
+           Please re-write.")
     }
     
   } # end of check input
