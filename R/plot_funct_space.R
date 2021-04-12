@@ -97,17 +97,19 @@
 #'   columns, missing values). If an error is detected, a detailed message is
 #'   returned. Default: `check.input = TRUE`.
 #'
-#' @return A list containing \code{ggplot2} objects that were built before
-#'   assembling them in the figure using the library \code{patchwork}. If
-#'   \code{name_file} is not \code{NULL} a 300dpi png file is saved in the
-#'   working directory. Ranges of axes are the same for all panels and if
-#'   required projection of the convex hull computed in the multidimensional
-#'   space provided as input \code{sp_faxes_coord} is illustrated with a
-#'   polygon. Species being vertices of this convex hull are shown with
-#'   aesthetics provided as inputs \code{..._vert}. Labels for species listed in
-#'   \code{plot_sp_nm} are added with if required arrows using \code{ggrepel}.
-#'   Summary about species and dimensionality are printed on top-right corner of
-#'   the figure.
+#' @return A list containing \code{ggplot2} objects : plots of functional space
+#'   along all pairs of axes (named according to axes names, e.g. "PC1_PC2"),
+#'   figure 'caption', and the full figure 'patchwork' built using the library
+#'   \code{patchwork}. 
+#'   If \code{name_file} is not \code{NULL} a 300dpi png file
+#'   is saved in the working directory. Ranges of axes are the same for all
+#'   panels and if required projection of the convex hull computed in the
+#'   multidimensional space provided as input \code{sp_faxes_coord} is
+#'   illustrated with a polygon. Species being vertices of this convex hull are
+#'   shown with aesthetics provided as inputs \code{..._vert}. Labels for
+#'   species listed in \code{plot_sp_nm} are added with if required arrows using
+#'   \code{ggrepel}. Summary about species and dimensionality are printed on
+#'   top-right corner of the figure.
 #'
 #' @author Camille Magneville and Sebastien Villeger
 #'
@@ -203,14 +205,19 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
            "want to plot.")
     }
     
-    if (!is.null(faxes)) {
+    if (! is.null(faxes)) {
+      
+      if(length(faxes) == 1) {
+        stop("Number of functional axes should be more than one. Please change",
+             " the number of functional axes to plot.")
+      }
       
       if (length(faxes) > 4) {
         stop("Number of functional axes should be less than 4. Please change ",
              "the number of functional axes to plot.")
       }
       
-      if (!any(faxes %in% colnames(sp_faxes_coord))) {
+      if (any(! faxes %in% colnames(sp_faxes_coord))) {
         stop("Names of axes to plot can not be found in 'sp_faxes_coord' ",
              "columns names. Please check names of axes you want to plot.")
       }
@@ -248,7 +255,9 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
   # set graphical parameters #####
   
   # range of axes:
+  user_range <- "ok"
   if (is.na(range_faxes[1]) && is.na(range_faxes[2])) {
+    user_range <- NA
     range_sp_coord  <- range(sp_faxes_coord)
     range_faxes <- range_sp_coord +
       c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
@@ -261,8 +270,56 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
     # names of vertices of the convex hull of all species
     vert_nm    <- vertices(sp_faxes_coord)
     
+    # check that the range is ok if the user chose it:
+    if (! is.na(user_range)) {
+      min_user <- range_faxes[1]
+      max_user <- range_faxes[2]
+      range_sp_coord  <- range(sp_faxes_coord)
+      range_faxes <- range_sp_coord +
+        c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
+      min_graph <- range_faxes[1]
+      max_graph <- range_faxes[2]
+      
+      if (min_user > min_user) {
+        stop("Error: The minimum value of functional axes range (range_faxes)",
+        "is too high. The convex hull can not be fully plotted. Please change",
+        " the minimal value of range_faxes.")
+      }
+      
+      if (max_user < max_graph) {
+        stop("Error: The maximum value of functional axes range (range_faxes)",
+             "is too low. The convex hull can not be fully plotted.",
+             "Please change the minimal value of range_faxes.")
+      }
+    }
+    
+    
   } else {
     vert_nm <- NULL
+    
+    # warn the user if user faxes range not wide enough:
+    
+    if (! is.na(user_range)) {
+      min_user <- range_faxes[1]
+      max_user <- range_faxes[2]
+      range_sp_coord  <- range(sp_faxes_coord)
+      range_faxes <- range_sp_coord +
+        c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
+      min_graph <- range_faxes[1]
+      max_graph <- range_faxes[2]
+      
+      if (min_user > min_user) {
+      warning("Error: The minimum value of functional axes range (range_faxes)",
+            "is too high. The convex hull can not be fully plotted. Please change",
+             " the minimal value of range_faxes.")
+      }
+      
+      if (max_user < max_graph) {
+      warning("Error: The maximum value of functional axes range (range_faxes)",
+             "is too low. The convex hull can not be fully plotted.",
+             "Please change the minimal value of range_faxes.")
+      }
+    }
   }
   
   # dataframe with species coordinates and column for label
@@ -290,8 +347,11 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
     sp_coord_xy <- as.matrix(sp_coord_plot[, axes_plot[1:2, k]])
     colnames(sp_coord_xy) <- c("x", "y")
     
+    # names of axes
+    xy_k <- axes_plot[1:2, k]
+    
     # background = axes defined by range of values and names as specified  ----
-    plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+    plot_k <- background.plot(range_faxes, faxes_nm = xy_k, color_bg)
     
     
     # if required adding convex hull and/or vertices projected in 2D ----
@@ -452,10 +512,10 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
     output <- NULL
     output <- panels
     names(output) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
-    panels[["caption"]] <- plot_caption
-    panels[["patchwork"]] <- patchwork_plots_all
+    output[["caption"]] <- plot_caption
+    output[["patchwork"]] <- patchwork_plots_all
     
-    return(panels)
+    return(output)
   }
   
 } 
