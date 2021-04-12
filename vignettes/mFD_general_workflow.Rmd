@@ -767,7 +767,7 @@ axis**:
 
 big_plot <- mFD::funct.space.plot(
   sp_faxes_coord  = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
-  faxes           = NULL,
+  faxes           = c("PC1", "PC2", "PC3", "PC4"),
   name_file       = NULL,
   faxes_nm        = NULL,
   range_faxes     = c(NA, NA),
@@ -971,7 +971,7 @@ function as follows:
 **USAGE**
 
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
-plots_alpha <- alpha.multidim.plot(
+plots_alpha <- mFD::alpha.multidim.plot(
       output_alpha_fd_multidim = alpha_fd_indices_fruits,
       plot_asb_nm              = c("basket_1", "basket_5"),
       ind_nm                   = c("fdis", "fide", "fnnd", "feve", 
