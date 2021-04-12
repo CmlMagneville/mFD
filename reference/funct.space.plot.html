@@ -319,17 +319,19 @@ returned. Default: <code>check.input = TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list containing <code>ggplot2</code> objects that were built before
-assembling them in the figure using the library <code>patchwork</code>. If
-<code>name_file</code> is not <code>NULL</code> a 300dpi png file is saved in the
-working directory. Ranges of axes are the same for all panels and if
-required projection of the convex hull computed in the multidimensional
-space provided as input <code>sp_faxes_coord</code> is illustrated with a
-polygon. Species being vertices of this convex hull are shown with
-aesthetics provided as inputs <code>..._vert</code>. Labels for species listed in
-<code>plot_sp_nm</code> are added with if required arrows using <code>ggrepel</code>.
-Summary about species and dimensionality are printed on top-right corner of
-the figure.</p>
+    <p>A list containing <code>ggplot2</code> objects : plots of functional space
+along all pairs of axes (named according to axes names, e.g. "PC1_PC2"),
+figure 'caption', and the full figure 'patchwork' built using the library
+<code>patchwork</code>.
+If <code>name_file</code> is not <code>NULL</code> a 300dpi png file
+is saved in the working directory. Ranges of axes are the same for all
+panels and if required projection of the convex hull computed in the
+multidimensional space provided as input <code>sp_faxes_coord</code> is
+illustrated with a polygon. Species being vertices of this convex hull are
+shown with aesthetics provided as inputs <code>..._vert</code>. Labels for
+species listed in <code>plot_sp_nm</code> are added with if required arrows using
+<code>ggrepel</code>. Summary about species and dimensionality are printed on
+top-right corner of the figure.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sebastien Villeger</p>
