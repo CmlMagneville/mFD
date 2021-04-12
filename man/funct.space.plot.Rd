@@ -127,17 +127,19 @@ columns, missing values). If an error is detected, a detailed message is
 returned. Default: \code{check.input = TRUE}.}
 }
 \value{
-A list containing \code{ggplot2} objects that were built before
-assembling them in the figure using the library \code{patchwork}. If
-\code{name_file} is not \code{NULL} a 300dpi png file is saved in the
-working directory. Ranges of axes are the same for all panels and if
-required projection of the convex hull computed in the multidimensional
-space provided as input \code{sp_faxes_coord} is illustrated with a
-polygon. Species being vertices of this convex hull are shown with
-aesthetics provided as inputs \code{..._vert}. Labels for species listed in
-\code{plot_sp_nm} are added with if required arrows using \code{ggrepel}.
-Summary about species and dimensionality are printed on top-right corner of
-the figure.
+A list containing \code{ggplot2} objects : plots of functional space
+along all pairs of axes (named according to axes names, e.g. "PC1_PC2"),
+figure 'caption', and the full figure 'patchwork' built using the library
+\code{patchwork}.
+If \code{name_file} is not \code{NULL} a 300dpi png file
+is saved in the working directory. Ranges of axes are the same for all
+panels and if required projection of the convex hull computed in the
+multidimensional space provided as input \code{sp_faxes_coord} is
+illustrated with a polygon. Species being vertices of this convex hull are
+shown with aesthetics provided as inputs \code{..._vert}. Labels for
+species listed in \code{plot_sp_nm} are added with if required arrows using
+\code{ggrepel}. Summary about species and dimensionality are printed on
+top-right corner of the figure.
 }
 \description{
 This function computes plots of functional spaces showing the position of
