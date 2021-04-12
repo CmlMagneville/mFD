@@ -156,9 +156,9 @@ vertices, points and vertices of 1:N assemblages on the background plot</p>
   <span class='va'>shape_sp</span>,
   <span class='va'>color_sp</span>,
   <span class='va'>fill_sp</span>,
-  shape_vert <span class='op'>=</span> <span class='cn'>NA</span>,
-  color_vert <span class='op'>=</span> <span class='cn'>NA</span>,
-  fill_vert <span class='op'>=</span> <span class='cn'>NA</span>,
+  <span class='va'>shape_vert</span>,
+  <span class='va'>color_vert</span>,
+  <span class='va'>fill_vert</span>,
   <span class='va'>shape_vertG</span>,
   <span class='va'>size_vertG</span>,
   <span class='va'>color_vertG</span>,
@@ -204,38 +204,36 @@ for each assemblage the mean distance to the center of gravity of vertices</p></
     <tr>
       <th>plot_sp</th>
       <td><p>a logical value indicating whether species of each assemblage
-should be plotted or not. Default: plot_sp = TRUE.</p></td>
+should be plotted or not. Default: <code>plot_sp = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>shape_sp</th>
       <td><p>a numeric value referring to the shape used to plot species
-belonging to the studied assemblage. Default: <code>shape_sp = 16</code>
+belonging to the studied assemblage.
 (filled circle).</p></td>
     </tr>
     <tr>
       <th>color_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage. Default: <code>color_sp = "#0072B2"</code>.</p></td>
+of species from the studied assemblage.</p></td>
     </tr>
     <tr>
       <th>fill_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if <code>shape_sp</code> &gt; 20). Default:
-<code>fill_sp = '#0072B2'</code>.</p></td>
+to fill species symbol (if <code>shape_sp</code> &gt; 20).</p></td>
     </tr>
     <tr>
       <th>shape_vert</th>
       <td><p>a numeric value referring to the shape used to plot
 vertices if vertices should be plotted in a different way than other
-species. If <code>shape_vert = NA</code>, no vertices plotted. Default:
-<code>shape_vert = NA</code>.</p></td>
+species. If <code>shape_vert = NA</code>, no vertices plotted.</p></td>
     </tr>
     <tr>
       <th>color_vert</th>
       <td><p>a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
 (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA). Default: <code>color_vert =  NA</code>.</p></td>
+must also be set to NA).</p></td>
     </tr>
     <tr>
       <th>fill_vert</th>
@@ -243,7 +241,7 @@ must also be set to NA). Default: <code>color_vert =  NA</code>.</p></td>
 color for filling symbol
 for vertices (if <code>shape_vert</code> &gt;20). If <code>fill = NA</code> and <code>color = NA</code>,
 vertices are not plotted (if <code>shape_vert</code> superior to 20. Otherwise
-<code>color_vert = NULL</code> is enough). Default is <code>NA</code>.</p></td>
+<code>color_vert = NULL</code> is enough).</p></td>
     </tr>
     <tr>
       <th>shape_vertG</th>
@@ -280,8 +278,7 @@ FDiv indice</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>If several assemblages are to be represented, aesthetics inputs should
-be formated as c(pool = ..., asb1 = ..., asb2 = ...) with asb1 and asb2
-being "asb1" and "asb2".</p>
+be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sébastien Villéger</p>

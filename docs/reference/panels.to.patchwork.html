@@ -168,6 +168,134 @@ final patchwork plot.</p></td>
 
     <p>Camille Magneville and Sébastien Villéger</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'>## Retrieve FRic plot:</span>
+<span class='co'># Load Species*Traits dataframe:</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
+
+<span class='co'># Load Assemblages*Species dataframe:      </span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
+
+<span class='co'># Load Traits categories dataframe:</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
+ 
+<span class='co'># Compute functional distance </span>
+<span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
+                                  tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
+                                  metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
+                                  scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
+                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
+                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
+                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  
+<span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span>
+<span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>sp_dist <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
+ maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
+ deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,
+ fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
+ fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
+ 
+<span class='co'># Retrieve species coordinates matrix:</span>
+  <span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> 
+    <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
+    
+ <span class='co'># Retrieve species coordinates matrix for the assemblage "basket_1":</span>
+  <span class='va'>sp_filter</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='sp.filter.html'>sp.filter</a></span><span class='op'>(</span>asb_nm          <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span><span class='op'>)</span>, 
+                              sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, 
+                              asb_sp_w       <span class='op'>=</span> <span class='va'>baskets_fruits_weight</span><span class='op'>)</span>
+  <span class='va'>sp_faxes_coord_fruits_b1</span> <span class='op'>&lt;-</span> <span class='va'>sp_filter</span><span class='op'>$</span><span class='va'>`species coordinates`</span>
+ 
+ <span class='co'># Reduce it to the two studed axes: PC1 and PC2:</span>
+ <span class='va'>sp_faxes_coord_fruits_b1_2D</span> <span class='op'>&lt;-</span> <span class='va'>sp_faxes_coord_fruits_b1</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># Set faxes limits:</span>
+<span class='co'># set range of axes if c(NA, NA):</span>
+ <span class='va'>range_sp_coord</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span><span class='op'>)</span>
+ <span class='va'>range_faxes_lim</span> <span class='op'>&lt;-</span> <span class='va'>range_sp_coord</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>*</span><span class='op'>(</span><span class='va'>range_sp_coord_fruits</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> 
+ <span class='va'>range_sp_coord_fruits</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>0.05</span>
+ 
+ <span class='co'># Retrieve the background plot:</span>
+ <span class='va'>ggplot_bg_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='background.plot.html'>background.plot</a></span><span class='op'>(</span>
+                               range_faxes <span class='op'>=</span> <span class='va'>ranges_faxes_lim</span>, 
+                               faxes_nm    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC 1"</span>, <span class='st'>"PC 2"</span><span class='op'>)</span>, 
+                               color_bg    <span class='op'>=</span> <span class='st'>"grey90"</span><span class='op'>)</span> 
+                               
+ <span class='co'># Retrieve vertices names:</span>
+ <span class='va'>vert_nm_fruits</span> <span class='op'>&lt;-</span> <span class='fu'><a href='vertices.html'>vertices</a></span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits_b1</span>, 
+  order_2D <span class='op'>=</span> <span class='cn'>TRUE</span>, check_input <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+                               
+ <span class='co'># Plot in white the convex hull of all fruits species:</span>
+ <span class='va'>ggplot_fric</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='fric.plot.html'>fric.plot</a></span><span class='op'>(</span>
+           ggplot_bg       <span class='op'>=</span> <span class='va'>ggplot_bg_fruits</span>,
+           asb_sp_coord2D  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits_b1_2D</span><span class='op'>)</span>,
+           asb_vertices_nD <span class='op'>=</span> <span class='va'>vert_nm_fruits</span>,
+           plot_sp         <span class='op'>=</span> <span class='cn'>TRUE</span>,
+           color_ch        <span class='op'>=</span> <span class='st'>"black"</span>, 
+           fill_ch         <span class='op'>=</span> <span class='st'>"white"</span>, 
+           alpha_ch        <span class='op'>=</span> <span class='fl'>0.3</span>,
+           size_sp <span class='op'>=</span> <span class='fl'>1</span>,
+           shape_sp <span class='op'>=</span> <span class='fl'>16</span>,
+           color_sp <span class='op'>=</span> <span class='st'>"red"</span>,
+           fill_sp <span class='op'>=</span> <span class='st'>"red"</span>,
+           size_vert <span class='op'>=</span> <span class='fl'>1</span>,
+           color_vert <span class='op'>=</span> <span class='st'>"red"</span>,
+           fill_vert <span class='op'>=</span> <span class='st'>"red"</span>,
+           shape_vert <span class='op'>=</span> <span class='fl'>16</span><span class='op'>)</span>
+ <span class='va'>ggplot_fric</span>
+ 
+<span class='co'>## Create a caption summing up FRic values </span>
+<span class='co'># retrieve values to plot:</span>
+<span class='va'>top_fric</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Functional richness"</span>, <span class='va'>asb1</span>, <span class='st'>""</span><span class='op'>)</span>
+<span class='va'>values_fric</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>asb_fd_ind</span><span class='op'>[</span><span class='va'>asb1</span>, <span class='st'>"fric"</span><span class='op'>]</span>, <span class='fl'>3</span><span class='op'>)</span>, <span class='st'>""</span><span class='op'>)</span>
+
+<span class='co'># customize position of texts in the plot:</span>
+<span class='va'>spread_faxes</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>hh</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2.5</span>, <span class='fl'>4</span>, <span class='fl'>5.5</span><span class='op'>)</span>
+<span class='va'>vv</span> <span class='op'>&lt;-</span> <span class='fl'>0.3</span>
+
+<span class='co'># plot window:</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>plot_caption</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>range_sp_coord</span>, 
+                                          y <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>)</span>,
+                               <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>limits <span class='op'>=</span> <span class='va'>range_sp_coord</span>, expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>limits <span class='op'>=</span> <span class='va'>range_sp_coord</span>, expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"none"</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>geom_rect</a></span><span class='op'>(</span>xmin <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, xmax <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>,
+                    ymin <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, ymax <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>,
+                    fill <span class='op'>=</span> <span class='st'>"white"</span>, colour <span class='op'>=</span><span class='st'>"black"</span><span class='op'>)</span>
+
+<span class='co'># plot names of index and of assemblages:</span>
+<span class='va'>h</span>   <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>v</span>   <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>top</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>plot_caption</span> <span class='op'>&lt;-</span> <span class='va'>plot_caption</span> <span class='op'>+</span>
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_text</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+   h <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>+</span> <span class='va'>spread_faxes</span> <span class='op'>*</span> <span class='fl'>0.15</span> <span class='op'>*</span> <span class='va'>hh</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>,
+   v <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>spread_faxes</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0.2</span>, <span class='fl'>3</span><span class='op'>)</span>,
+   top <span class='op'>=</span> <span class='va'>top_fric</span><span class='op'>)</span>,
+   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>h</span>, y <span class='op'>=</span> <span class='va'>v</span>, label <span class='op'>=</span> <span class='va'>top</span><span class='op'>)</span>,
+   size <span class='op'>=</span> <span class='fl'>3</span>, hjust <span class='op'>=</span> <span class='fl'>0.5</span>, fontface <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>
+
+<span class='co'># plot FRic values:</span>
+<span class='va'>values_lab</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>data_caption</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  h <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>+</span> <span class='va'>spread_faxes</span> <span class='op'>*</span> <span class='fl'>0.15</span> <span class='op'>*</span> <span class='va'>hh</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>,
+  v <span class='op'>=</span> <span class='va'>range_sp_coord</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>spread_faxes</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>vv</span>, <span class='fl'>3</span><span class='op'>)</span>,
+  values_lab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"FRic"</span>, <span class='va'>values_fric</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>plot_caption</span> <span class='op'>&lt;-</span> <span class='va'>plot_caption</span> <span class='op'>+</span>
+  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_text</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data_caption</span>,
+                    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>h</span>, y <span class='op'>=</span> <span class='va'>v</span>, label <span class='op'>=</span> <span class='va'>values_lab</span><span class='op'>)</span>,
+                    size <span class='op'>=</span> <span class='fl'>3</span>, hjust <span class='op'>=</span> <span class='fl'>0.5</span>, fontface <span class='op'>=</span> <span class='st'>"plain"</span><span class='op'>)</span>
+
+<span class='co'>## Create patchwork:</span>
+<span class='va'>patchwork_fric</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>panels.to.patchwork</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>ggplot_fric</span><span class='op'>)</span>, <span class='va'>plot_caption</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

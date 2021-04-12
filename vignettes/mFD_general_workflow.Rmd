@@ -969,7 +969,6 @@ function as follows:
 <br />
 
 **USAGE**
-
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
 plots_alpha <- mFD::alpha.multidim.plot(
       output_alpha_fd_multidim = alpha_fd_indices_fruits,
@@ -1016,6 +1015,7 @@ plots_alpha <- mFD::alpha.multidim.plot(
       save_file               = FALSE,
       check_input             = TRUE) 
 ```
+
 
 <br />
 
@@ -1072,7 +1072,7 @@ studied assemblages and the white shape reflects the convex-hull of the global
 pool of species:
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha[[1]]$patchwork
+plots_alpha$fric$patchwork
 ```
 
 <br />
@@ -1085,7 +1085,7 @@ different size given their relative weight into the assemblage.
 
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha[[2]]$patchwork
+plots_alpha$fdiv$patchwork
 ```
 
 <br />
@@ -1097,7 +1097,7 @@ Species of each assemblage have different size given their relative weight into
 the assemblage.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha[[3]]$patchwork
+plots_alpha$fspe$patchwork
 ```
 
 <br />
@@ -1109,7 +1109,7 @@ using a square and a triangle. Species of each assemblage havedifferent size
 given their relative weight into the assemblage.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha[[4]]$patchwork
+plots_alpha$fdis$patchwork
 ```
 
 <br />
@@ -1119,7 +1119,7 @@ species of each assemblage along each axis. Species of each assemblage have
 different size given their relative weight into the assemblage.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha[[5]]$patchwork
+plots_alpha$fide$patchwork
 ```
 
 <br />
@@ -1129,7 +1129,7 @@ linking species of each assemblage. Species of each assemblage have different
 size given their relative weight into the assemblage.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha[[6]]$patchwork
+plots_alpha$feve$patchwork
 ```
 
 <br />
@@ -1139,7 +1139,7 @@ from each assemblage to the nearest species in the global species pool. Species
 of each assemblage have different size given their relative weight into the 
 assemblage.
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha[[7]]$patchwork
+plots_alpha$fori$patchwork
 ```
 
 * `FNND` representation: colored arrows represent the distances of each species 
@@ -1148,7 +1148,7 @@ of each assemblage have different size given their relative weight into the
 assemblage. 
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha[[8]]$patchwork
+plots_alpha$fnnd$patchwork
 ```
 
 <br />
