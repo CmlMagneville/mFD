@@ -11,7 +11,8 @@ beta.fd.multidim(
   check_input = TRUE,
   beta_family = "Jaccard",
   details_returned = TRUE,
-  betapart_step = FALSE,
+  betapart_step = TRUE,
+  betapart_chullopt = list(conv1 = "Qt", conv2 = "QJ"),
   betapart_para = FALSE,
   betapart_para_opt = betapart::beta.para.control()
 )
@@ -38,10 +39,14 @@ wants to details_returned. Details are used in the graphical function
 graphical outputs for the computed indices.}
 
 \item{betapart_step}{a logical value indicating whether the
-computation progress tracking file 'step.fbc.txt' should be created.
-Setting it to FALSE will speed up the function. Default: betapart_step =
-FALSE, and it is automatically turned to FALSE when 'betapart_para' is
-TRUE.}
+computation progress should be displayed in the R console. Default:
+betapart_step = TRUE.}
+
+\item{betapart_chullopt}{a A list of two named vectors of character conv1 and
+conv2 defining the options that will be used to compute the convex hulls
+(through the options of geometry::convhulln function). For further details
+see help of \code{\link[betapart]{functional.betapart.core.pairwise}}.
+Default: betapart_chullopt = c(conv1='Qt', conv2='QJ').}
 
 \item{betapart_para}{a logical value indicating whether internal
 parallelization should be used to compute pairwise dissimilarities. Default:
@@ -54,19 +59,23 @@ is a character string with code of method used (default PSOCK), \code{LB}
 is a boolean specifying whether load-balancing is applied (default is TRUE)
 and \code{size} is a numeric value for number of tasks performed at each
 time (default is 1). See help of
-\code{\link[betapart]{functional.betapart.core}} for more details.}
+\code{\link[betapart]{functional.betapart.core.pairwise}} for more details.}
 }
 \value{
-a list with: \itemize{ \item \emph{beta_fd_ind} a list with for each
+a list with: \itemize{ \item \emph{pairasb_fbd_indices} a list with
+for each
 index a \emph{dist} object with values for all pairs of assemblages.
 Indices names start with the abbreviation of the type of dissimilarity
 index ('jac' for Jaccard-like and 'sor' for Sorensen-like dissimilarity)
 and end with abbreviation of component ('diss': dissimilarity, 'turn' its
 turnover component, and 'nest' its nestedness-resultant component).
 \item if \emph{store_details} is TRUE, \item \emph{details_beta} list:
-inputs a list with \emph{sp_faxes_coord} and \emph{asb_sp_occ} on which
-indices were computed (convenient for drawing graphics) a \strong{asb_FRic}
-a vectors with volume of the convex hull shaping each assemblage ; a
+\strong{inputs} a list with \emph{sp_faxes_coord} and \emph{asb_sp_occ}
+on which indices were computed (required for drawing graphics),
+\strong{pool_vertices} a list of vectors (1 per assemblage) with names of
+species being vertices of the convex hull shaping all species;
+\strong{asb_FRic} a vector with volume of the convex hull shaping each
+assemblage (relative to volume filled by all species) ;
 \strong{asb_vertices} a list of vectors (1 per assemblage) with names of
 species being vertices of the convex hull}
 }
@@ -74,14 +83,15 @@ species being vertices of the convex hull}
 Computes a set of indices of pairwise functional beta-diversity
 (dissimilarity and its turnover and nestedness-resultant components) based on
 overlap between convex hulls in a multidimensional space. For details about
-indices formulas see Villéger \emph{et al.} (2013).
+indices formulas see Villéger \emph{et al.} (2013). This functions stands on
+\code{\link[betapart]{functional.betapart.core.pairwise}}.
 }
 \note{
 all assemblages should have a number of species strictly higher than
 the number of functional axes.
 Computing intersection of convex hulls in space of >5 dimensions is yet
 impossible with most computers.
-This function uses R libraries 'betapart' (> =1.5.2) for indices computation.
+This function uses R libraries 'betapart' (> =1.5.4) for indices computation.
 Indices values are stored as \emph{dist} objects to optimize memory.
 See below example of how merging distance values in a \emph{dataframe} with
 \code{dist.to.df}.
@@ -128,6 +138,10 @@ beta_fd_fruits <- mFD::beta.fd.multidim(
   check_input      = TRUE,
   beta_family      = c('Jaccard'),
   details_returned = TRUE)
+
+# merging pairwise beta-diversity indices in a data.frame
+dist.to.df(beta_fd_fruits$pairasb_fbd_indices)
+
 }
 }
 \references{
