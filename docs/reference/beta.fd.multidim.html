@@ -45,7 +45,8 @@ Multidimensional Space — beta.fd.multidim" />
 <meta property="og:description" content="Computes a set of indices of pairwise functional beta-diversity
 (dissimilarity and its turnover and nestedness-resultant components) based on
 overlap between convex hulls in a multidimensional space. For details about
-indices formulas see Villéger et al. (2013)." />
+indices formulas see Villéger et al. (2013). This functions stands on
+functional.betapart.core.pairwise." />
 
 
 
@@ -147,7 +148,8 @@ Multidimensional Space</h1>
     <p>Computes a set of indices of pairwise functional beta-diversity
 (dissimilarity and its turnover and nestedness-resultant components) based on
 overlap between convex hulls in a multidimensional space. For details about
-indices formulas see Villéger <em>et al.</em> (2013).</p>
+indices formulas see Villéger <em>et al.</em> (2013). This functions stands on
+<code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>beta.fd.multidim</span><span class='op'>(</span>
@@ -156,7 +158,8 @@ indices formulas see Villéger <em>et al.</em> (2013).</p>
   check_input <span class='op'>=</span> <span class='cn'>TRUE</span>,
   beta_family <span class='op'>=</span> <span class='st'>"Jaccard"</span>,
   details_returned <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  betapart_step <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  betapart_step <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  betapart_chullopt <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>conv1 <span class='op'>=</span> <span class='st'>"Qt"</span>, conv2 <span class='op'>=</span> <span class='st'>"QJ"</span><span class='op'>)</span>,
   betapart_para <span class='op'>=</span> <span class='cn'>FALSE</span>,
   betapart_para_opt <span class='op'>=</span> <span class='fu'>betapart</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/betapart/man/beta.para.control.html'>beta.para.control</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
@@ -197,10 +200,16 @@ graphical outputs for the computed indices.</p></td>
     <tr>
       <th>betapart_step</th>
       <td><p>a logical value indicating whether the
-computation progress tracking file 'step.fbc.txt' should be created.
-Setting it to FALSE will speed up the function. Default: betapart_step =
-FALSE, and it is automatically turned to FALSE when 'betapart_para' is
-TRUE.</p></td>
+computation progress should be displayed in the R console. Default:
+betapart_step = TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>betapart_chullopt</th>
+      <td><p>a A list of two named vectors of character conv1 and
+conv2 defining the options that will be used to compute the convex hulls
+(through the options of geometry::convhulln function). For further details
+see help of <code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code>.
+Default: betapart_chullopt = c(conv1='Qt', conv2='QJ').</p></td>
     </tr>
     <tr>
       <th>betapart_para</th>
@@ -217,14 +226,15 @@ is a character string with code of method used (default PSOCK), <code>LB</code>
 is a boolean specifying whether load-balancing is applied (default is TRUE)
 and <code>size</code> is a numeric value for number of tasks performed at each
 time (default is 1). See help of
-<code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.html'>functional.betapart.core</a></code> for more details.</p></td>
+<code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code> for more details.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a list with:</p><ul>
-<li><p><em>beta_fd_ind</em> a list with for each
+<li><p><em>pairasb_fbd_indices</em> a list with
+for each
 index a <em>dist</em> object with values for all pairs of assemblages.
 Indices names start with the abbreviation of the type of dissimilarity
 index ('jac' for Jaccard-like and 'sor' for Sorensen-like dissimilarity)
@@ -232,9 +242,12 @@ and end with abbreviation of component ('diss': dissimilarity, 'turn' its
 turnover component, and 'nest' its nestedness-resultant component).</p></li>
 <li><p>if <em>store_details</em> is TRUE,</p></li>
 <li><p><em>details_beta</em> list:
-inputs a list with <em>sp_faxes_coord</em> and <em>asb_sp_occ</em> on which
-indices were computed (convenient for drawing graphics) a <strong>asb_FRic</strong>
-a vectors with volume of the convex hull shaping each assemblage ; a
+<strong>inputs</strong> a list with <em>sp_faxes_coord</em> and <em>asb_sp_occ</em>
+on which indices were computed (required for drawing graphics),
+<strong>pool_vertices</strong> a list of vectors (1 per assemblage) with names of
+species being vertices of the convex hull shaping all species;
+<strong>asb_FRic</strong> a vector with volume of the convex hull shaping each
+assemblage (relative to volume filled by all species) ;
 <strong>asb_vertices</strong> a list of vectors (1 per assemblage) with names of
 species being vertices of the convex hull</p></li>
 </ul>
@@ -245,7 +258,7 @@ species being vertices of the convex hull</p></li>
 the number of functional axes.
 Computing intersection of convex hulls in space of &gt;5 dimensions is yet
 impossible with most computers.
-This function uses R libraries 'betapart' (&gt; =1.5.2) for indices computation.
+This function uses R libraries 'betapart' (&gt; =1.5.4) for indices computation.
 Indices values are stored as <em>dist</em> objects to optimize memory.
 See below example of how merging distance values in a <em>dataframe</em> with
 <code>dist.to.df</code>.</p>
@@ -300,6 +313,10 @@ fish assemblages. <em>Global Ecology and Biogeography</em>, <strong>22</strong>,
   check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>,
   beta_family      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Jaccard'</span><span class='op'>)</span>,
   details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='co'># merging pairwise beta-diversity indices in a data.frame</span>
+<span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span><span class='va'>beta_fd_fruits</span><span class='op'>$</span><span class='va'>pairasb_fbd_indices</span><span class='op'>)</span>
+
 <span class='op'>}</span>
 </div></pre>
   </div>
