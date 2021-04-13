@@ -4,7 +4,8 @@
 #' Computes a set of indices of pairwise functional beta-diversity
 #' (dissimilarity and its turnover and nestedness-resultant components) based on
 #' overlap between convex hulls in a multidimensional space. For details about
-#' indices formulas see Villéger _et al._ (2013).
+#' indices formulas see Villéger _et al._ (2013). This functions stands on 
+#' \code{\link[betapart]{functional.betapart.core.pairwise}}.
 #'
 #' @param sp_faxes_coord a matrix with coordinates of species (rows) on
 #'  functional axes (columns). Species coordinates have been retrieved thanks to
@@ -27,10 +28,14 @@
 #'   graphical outputs for the computed indices.
 #'   
 #' @param betapart_step a logical value indicating whether the
-#'   computation progress tracking file 'step.fbc.txt' should be created.
-#'   Setting it to FALSE will speed up the function. Default: betapart_step =
-#'   FALSE, and it is automatically turned to FALSE when 'betapart_para' is
-#'   TRUE.
+#'   computation progress should be displayed in the R console. Default: 
+#'   betapart_step = TRUE.
+#'
+#' @param betapart_chullopt a A list of two named vectors of character conv1 and
+#'  conv2 defining the options that will be used to compute the convex hulls
+#'  (through the options of geometry::convhulln function). For further details 
+#'  see help of \code{\link[betapart]{functional.betapart.core.pairwise}}.
+#'  Default: betapart_chullopt = c(conv1='Qt', conv2='QJ').
 #'
 #' @param betapart_para a logical value indicating whether internal
 #'  parallelization should be used to compute pairwise dissimilarities. Default:
@@ -43,18 +48,22 @@
 #'   is a boolean specifying whether load-balancing is applied (default is TRUE)
 #'   and \code{size} is a numeric value for number of tasks performed at each
 #'   time (default is 1). See help of
-#'   \code{\link[betapart]{functional.betapart.core}} for more details.
+#'   \code{\link[betapart]{functional.betapart.core.pairwise}} for more details.
 #'
-#' @return a list with: \itemize{ \item \emph{beta_fd_ind} a list with for each
+#' @return a list with: \itemize{ \item \emph{pairasb_fbd_indices} a list with 
+#' for each
 #'   index a \emph{dist} object with values for all pairs of assemblages.
 #'   Indices names start with the abbreviation of the type of dissimilarity
 #'   index ('jac' for Jaccard-like and 'sor' for Sorensen-like dissimilarity)
 #'   and end with abbreviation of component ('diss': dissimilarity, 'turn' its
 #'   turnover component, and 'nest' its nestedness-resultant component).
-#'  \item if \emph{store_details} is TRUE, \item \emph{details_beta} list:
-#'  inputs a list with \emph{sp_faxes_coord} and \emph{asb_sp_occ} on which
-#'  indices were computed (convenient for drawing graphics) a \strong{asb_FRic}
-#'  a vectors with volume of the convex hull shaping each assemblage ; a
+#'   \item if \emph{store_details} is TRUE, \item \emph{details_beta} list:
+#'  \strong{inputs} a list with \emph{sp_faxes_coord} and \emph{asb_sp_occ} 
+#'  on which indices were computed (required for drawing graphics), 
+#'  \strong{pool_vertices} a list of vectors (1 per assemblage) with names of
+#'  species being vertices of the convex hull shaping all species; 
+#'  \strong{asb_FRic} a vector with volume of the convex hull shaping each
+#'  assemblage (relative to volume filled by all species) ;
 #'  \strong{asb_vertices} a list of vectors (1 per assemblage) with names of
 #'  species being vertices of the convex hull}
 #'
@@ -62,7 +71,7 @@
 #' the number of functional axes.
 #' Computing intersection of convex hulls in space of >5 dimensions is yet
 #' impossible with most computers.
-#' This function uses R libraries 'betapart' (> =1.5.2) for indices computation.
+#' This function uses R libraries 'betapart' (> =1.5.4) for indices computation.
 #' Indices values are stored as \emph{dist} objects to optimize memory.
 #' See below example of how merging distance values in a \emph{dataframe} with
 #' \code{dist.to.df}.
@@ -118,15 +127,22 @@
 #'   check_input      = TRUE,
 #'   beta_family      = c('Jaccard'),
 #'   details_returned = TRUE)
+#' 
+#' # merging pairwise beta-diversity indices in a data.frame
+#' dist.to.df(beta_fd_fruits$pairasb_fbd_indices)
+#' 
 #' }
 
+
 beta.fd.multidim <- function(sp_faxes_coord, 
-                             asb_sp_occ, check_input = TRUE, 
+                             asb_sp_occ, 
+                             check_input = TRUE, 
                              beta_family = "Jaccard", 
-                             details_returned = TRUE, betapart_step = FALSE, 
+                             details_returned = TRUE, 
+                             betapart_step = TRUE, 
+                             betapart_chullopt = list(conv1='Qt', conv2='QJ'),
                              betapart_para = FALSE, 
                              betapart_para_opt = betapart::beta.para.control()){
-  
   
   
   ## check_input if asked:
@@ -172,14 +188,17 @@ beta.fd.multidim <- function(sp_faxes_coord,
   # their intersections for all pairs of
   # assemblages 2 last parameters are for
   # parallelization
-  F_betapart_core <- betapart::functional.betapart.core(x = asb_sp_occ, 
-                                              traits = sp_faxes_coord, 
-                                              multi = FALSE, 
-                                              return.details = TRUE, 
-                                              fbc.step = betapart_step, 
-                                              parallel = betapart_para, 
-                                              opt.parallel = betapart_para_opt)
+  F_betapart_core <- betapart::functional.betapart.core.pairwise(
+    x = asb_sp_occ,
+    traits = sp_faxes_coord,
+    return.details = TRUE,
+    convhull.opt = betapart_chullopt,
+    parallel = betapart_para,
+    opt.parallel = betapart_para_opt,
+    progress = betapart_step)
   
+  # list to store dist objects with beta-diversity values
+  beta_fd_ind<-list()
   
   # computing functional beta diversity
   # indices for all pairs of assemblages
@@ -189,21 +208,9 @@ beta.fd.multidim <- function(sp_faxes_coord,
     F_beta_jac <- betapart::functional.beta.pair(F_betapart_core, 
                                                  index.family = "jaccard")
     
-    # indices values in a dataframe where
-    # rows are pairs of assemblages
-    F_beta_jac_df <- dendextend::dist_long(F_beta_jac$funct.beta.jac)
-    names(F_beta_jac_df) <- c("asb.2", "asb.1", "jac_diss")
-    
-    F_beta_jac_df <- data.frame(F_beta_jac_df, 
-           jac_turn = dendextend::dist_long(F_beta_jac$funct.beta.jtu)$distance, 
-           jac_nest = dendextend::dist_long(F_beta_jac$funct.beta.jne)$distance)
-    
-    # dataframe after reordering columns and
-    # proper row names
-    pairasb_fbd_indices <- F_beta_jac_df[, 
-                                         c("asb.1", "asb.2", "jac_diss", 
-                                           "jac_turn", "jac_nest")]
-    row.names(pairasb_fbd_indices) <- NULL
+    beta_fd_ind$jac_diss<-F_beta_jac$funct.beta.jac
+    beta_fd_ind$jac_turn<-F_beta_jac$funct.beta.jtu
+    beta_fd_ind$jac_nest<-F_beta_jac$funct.beta.jne
     
   }
   
@@ -211,70 +218,52 @@ beta.fd.multidim <- function(sp_faxes_coord,
     F_beta_sor <- betapart::functional.beta.pair(F_betapart_core, 
                                                  index.family = "sorensen")
     
-    # indices values in a dataframe where
-    # rows are pairs of assemblages
-    F_beta_sor_df <- dendextend::dist_long(F_beta_sor$funct.beta.sor)
-    names(F_beta_sor_df) <- c("asb.2", "asb.1", "sor_diss")
-    
-    F_beta_sor_df <- data.frame(F_beta_sor_df, 
-          sor_turn = dendextend::dist_long(F_beta_sor$funct.beta.sim)$distance, 
-          sor_nest = dendextend::dist_long(F_beta_sor$funct.beta.sne)$distance)
-    
-    # dataframe after reordering columns and
-    # proper row names
-    pairasb_fbd_indices <- F_beta_sor_df[, 
-                                         c("asb.1", "asb.2", "sor_diss", 
-                                           "sor_turn", "sor_nest")]
-    row.names(pairasb_fbd_indices) <- NULL
+    beta_fd_ind$sor_diss<-F_beta_sor$funct.beta.sor
+    beta_fd_ind$sor_turn<-F_beta_sor$funct.beta.sim
+    beta_fd_ind$sor_nest<-F_beta_sor$funct.beta.sne
     
   }
   
-  # if both families of indices should be
-  # returned
-  if (("Sorensen" %in% beta_family) && ("Jaccard" %in% beta_family)) {
-    pairasb_fbd_indices <- cbind.data.frame(F_beta_jac_df[, 
-                                                          c("asb.1", "asb.2", 
-                                                          "jac_diss", 
-                                                          "jac_turn", 
-                                                          "jac_nest")], 
-                                            F_beta_sor_df[, c("sor_diss", 
-                                                              "sor_turn", 
-                                                              "sor_nest")])
-    row.names(pairasb_fbd_indices) <- NULL
-    
-  }  #end of if both indices
   
-  # compute the volume of the convex hull
-  # of the gp to compute real FRic value:
-  conv_fa_all <- tryCatch(geometry::convhulln(sp_faxes_coord, 
-                                              option = "FA"), 
-                          error = function(err) "NA")
-  # if convex hull of the gp can be
-  # computed:
-  if (!is.character(conv_fa_all)) {
-    fric <- F_betapart_core$details$CH$FRi/conv_fa_all$vol
+  # names of species being vertices in each assemblage
+  asb_vertices <- lapply(F_betapart_core$details$CH$coord_vertices, row.names)
+  
+  # volume of convex hull filled by each assemblage (FRic)
+  asb_FRic <- F_betapart_core$details$CH$FRi[,"FRi"]
+  names(asb_FRic)<-row.names(F_betapart_core$details$CH$FRi)
+  
+  # compute the volume of the convex hull of the species pool
+  ch_pool <- tryCatch(geometry::convhulln(sp_faxes_coord, 
+                                          option = "FA"), 
+                      error = function(err) "NA")
+  
+  # if convex hull of the species pool computed, scaling FRic values:
+  if (!is.character(ch_pool)) {
+    pool_vertices <-row.names(ch_pool$p)
+    asb_FRic <- asb_FRic/ch_pool$vol 
+  } else 
+  {
+    pool_vertices <- NA
+    asb_FRic <- NA
   }
-  
-  # if convex hull of the gp can not be
-  # computed:
-  if (is.character(conv_fa_all)) fric <- NA
   
   
   ## results to return
   if (details_returned) {
     
-    return_list <- list(pairasb_fbd_indices = pairasb_fbd_indices, 
-              details = list(inputs = list(sp_faxes_coord = sp_faxes_coord, 
-                asb_sp_occ = asb_sp_occ), 
-                asb_FRic_raw = F_betapart_core$details$CH$FRi, 
-                asb_FRic = fric, 
-                asb_vertices = lapply(F_betapart_core$details$CH$coord_vertices, 
-                                                                    row.names)))
+    return_list <- list(pairasb_fbd_indices = beta_fd_ind, 
+                        details = list(inputs = list(sp_faxes_coord = sp_faxes_coord, 
+                                                     asb_sp_occ = asb_sp_occ), 
+                                       pool_vertices = pool_vertices, 
+                                       asb_FRic = asb_FRic, 
+                                       asb_vertices = asb_vertices) 
+    )
   } else {
     
-    return_list <- (pairasb_fbd_indices = pairasb_fbd_indices)
+    return_list <- (pairasb_fbd_indices = beta_fd_ind)
   }
   
   return(return_list)
   
 }  # end function
+
