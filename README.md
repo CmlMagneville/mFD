@@ -1,4 +1,4 @@
-# mFD <img src="man/figures/mFDsticker.png" height="120" align="right" alt = "mFD sticker"/>
+# mFD <img src="man/figures/hexasticker_mFD.png" height="120" align="right" alt = "hexasticker mFD"/>
 
 <!-- badges: start -->
 
