@@ -218,6 +218,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   # get indices values:
   beta_fd <- output_beta_fd_multidim$pairasb_fbd_indices
   beta_nm <- names(beta_fd)
+  beta_fd_df <- dist.to.df(beta_fd)
   
   
   # check_inputs if asked: ####
@@ -313,7 +314,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   
   
   # compute convex hull of the species pool and its vertices:
-  vert_pool <- vertices(sp_faxes_coord)
+  vert_pool<- output_beta_fd_multidim$pool_vertices  
   
   # get names of species present in each assemblage:
   sp_asb1 <- names( which(asb_sp_occ[plot_asb_nm[1], ] == 1))
@@ -439,9 +440,9 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   # plot values of Jaccard indices if any:
   if ("Jaccard" %in% beta_family) {
     
-    betajac_asb1_asb2 <- as.numeric(signif(beta_fd[
-      which(beta_fd$asb.1 == plot_asb_nm[1] & beta_fd$asb.2 == plot_asb_nm[2]),
-      which("jac" == substr(beta_nm, 1, 3))], 4))
+    betajac_asb1_asb2 <- beta_fd_df[
+      which(beta_fd_df$x1 == plot_asb_nm[1] & beta_fd_df$x2 == plot_asb_nm[2]), ]
+    betajac_asb1_asb2 <- as.numeric(round(betajac_asb1_asb2[, -c(1, 2)], 4))
     
     values_jac <- NULL
     values_sor <- NULL
@@ -461,9 +462,9 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   # plot values of Sorensen indices if any:
   if ("Sorensen" %in% beta_family) {
     
-    betasor_asb1_asb2 <- as.numeric(signif(beta_fd[
-      which(beta_fd$asb.1 == plot_asb_nm[1] & beta_fd$asb.2 == plot_asb_nm[2]),
-      which("sor" == substr(beta_nm, 1, 3))], 4))
+    betasor_asb1_asb2 <- beta_fd_df[
+      which(beta_fd_df$x1 == plot_asb_nm[1] & beta_fd_df$x2 == plot_asb_nm[2]), ]
+    betasor_asb1_asb2 <- as.numeric(round(betasor_asb1_asb2[, -c(1, 2)], 4))
     
     label <- NULL
     x <- NULL
@@ -491,6 +492,82 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
                   ncol(sp_faxes_coord),"-dimensional space")),
       ggplot2::aes(x = h, y = v, label = nb),
       size = 3, hjust = 0, fontface = "italic")
+  
+  # add legend (convex hull, asb species and pool species):
+  
+  ## plot legend:
+  values_lab <- NULL
+  
+  ### for 1st asb:
+  plot_caption <- plot_caption +
+    ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.10,
+                       xmax = range_faxes[1] + spread_faxes*0.15,
+                       ymin = range_faxes[2] - spread_faxes*0.51,
+                       ymax = range_faxes[2] - spread_faxes*0.55,
+                       fill = color_sp[["asb1"]], alpha = alpha_ch[["asb1"]]) + 
+    
+    ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                       y = range_faxes[2] - spread_faxes*0.525,
+                       label = paste0("convex hull of", sep = " ", 
+                                      plot_asb_nm[1]),
+                       colour = color_sp[["asb1"]], size = 3) + 
+    
+    ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                        y = range_faxes[2] - spread_faxes*0.58,
+                        size = size_sp[["asb1"]], shape = shape_sp[["asb1"]],
+                        color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
+    
+    ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                       y = range_faxes[2] - spread_faxes*0.58,
+                       label = paste0("shape of species from", sep = " ", 
+                                      plot_asb_nm[1]),
+                       colour = color_sp[["asb1"]], size = 3) 
+  
+  
+  ### asb2:
+  
+    plot_caption <- plot_caption +
+      ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.10,
+                         xmax = range_faxes[1] + spread_faxes*0.15,
+                         ymin = range_faxes[2] - spread_faxes*0.64,
+                         ymax = range_faxes[2] - spread_faxes*0.68,
+                         fill = color_sp[["asb2"]], 
+                         alpha = alpha_ch[["asb2"]]) + 
+      
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                         y = range_faxes[2] - spread_faxes*0.665,
+                         label = paste0("convex hull of", sep = " ", 
+                                        plot_asb_nm[2]),
+                         colour = color_sp[["asb2"]], size = 3) + 
+      
+      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                          y = range_faxes[2] - spread_faxes*0.71,
+                          size = size_sp[["asb2"]], 
+                          shape = shape_sp[["asb2"]],
+                          color = color_sp[["asb2"]], 
+                          fill = fill_sp[["asb2"]]) + 
+      
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                         y = range_faxes[2] - spread_faxes*0.71,
+                         label = paste0("shape of species from", sep = " ", 
+                                        plot_asb_nm[2]),
+                         colour = color_sp[["asb2"]], size = 3)
+  
+  ### for global pool:
+  
+  plot_caption <- plot_caption +
+    
+    ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                        y = range_faxes[2] - spread_faxes*0.77,
+                        size = size_sp[["pool"]], 
+                        shape = shape_sp[["pool"]],
+                        color = color_sp[["pool"]], 
+                        fill = fill_sp[["pool"]]) + 
+    
+    ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                       y = range_faxes[2] - spread_faxes*0.77,
+                       label = "shape of species from the global pool",
+                       colour = color_sp[["pool"]], size = 3)
   
   
   # arrange panels #######
@@ -533,10 +610,10 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     output <- NULL
     output <- panels
     names(output) <- paste(axes_plot[1, ], axes_plot[2, ], sep = "_")
-    panels[["caption"]] <- plot_caption
-    panels[["patchwork"]] <- patchwork_plots_all
+    output[["caption"]] <- plot_caption
+    output[["patchwork"]] <- patchwork_plots_all
     
-    return(panels)
+    return(output)
   }
   
 }
