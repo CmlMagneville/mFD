@@ -733,20 +733,26 @@ rank). If `NULL`, labels follow `faxes` vector names.
 limits for functional axes. If `range_faxes = c(NA, NA)`, the range is
 computed according to the range of values among all axes.
 
-* `convex_pool` is a logical value used to draw or not the 2D convex-hull filled
-by the global pool of species.
-
-* `color_bg`, `sp_symb`, `size_sp`, `color_sp`, `color_cv`, `vert_symb` are
-arguments referring to shapes and colors of objects (check function help for
-further information).
+* `plot_ch` is a logical value used to draw or not the 2D convex-hull filled
+by the global pool of species. Color, fill and opacity of the convex hull
+can be chosen through other inputs , please refer to the function's help.
 
 * `plot_sp_nm` is a vector containing species names to plot. If `NULL`, no
-species names plotted.
+species names plotted. Name size, color and font can be chosen through other 
+inputs, please refer to the function's help.
 
 * `plot_vertices` is a logical value used to plot or not vertices with a
 different shape than other species. **Be careful:** these representations are
 2D representations, thus vertices of the convex-hull in the n-multidimensional
-space can be close to the center of the hull projected in 2D.
+space can be close to the center of the hull projected in 2D. Color, fill, 
+shape and size of vertices can be chosen through other inputs, please refer to 
+the function's help.
+
+* `color_bg` is a R color or an hexadecimal color code referring to the 
+color of the background of the plot.
+
+* other inputs are used to chose color, fill, size, and shape of species from
+the global pool, please refer to the function's help.
 
 * `check_input` is a recurrent argument in the `mFD` package. It defines
 whether inputs should be checked before computation or not. Possible error
