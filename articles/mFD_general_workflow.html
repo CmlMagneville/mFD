@@ -884,10 +884,11 @@ Basic framework of the mFD package
 <li><p><code>faxes</code> is a vector containing names of axes to plot. If set to <code>NULL</code>, the first four functional axes will be plotted.</p></li>
 <li><p><code>faxes_nm</code> is a vector containing labels of <code>faxes</code> (following faxes vector rank). If <code>NULL</code>, labels follow <code>faxes</code> vector names.</p></li>
 <li><p><code>range_faxes</code> is a vector to complete if the user wants to set specific limits for functional axes. If <code>range_faxes = c(NA, NA)</code>, the range is computed according to the range of values among all axes.</p></li>
-<li><p><code>convex_pool</code> is a logical value used to draw or not the 2D convex-hull filled by the global pool of species.</p></li>
-<li><p><code>color_bg</code>, <code>sp_symb</code>, <code>size_sp</code>, <code>color_sp</code>, <code>color_cv</code>, <code>vert_symb</code> are arguments referring to shapes and colors of objects (check function help for further information).</p></li>
-<li><p><code>plot_sp_nm</code> is a vector containing species names to plot. If <code>NULL</code>, no species names plotted.</p></li>
-<li><p><code>plot_vertices</code> is a logical value used to plot or not vertices with a different shape than other species. <strong>Be careful:</strong> these representations are 2D representations, thus vertices of the convex-hull in the n-multidimensional space can be close to the center of the hull projected in 2D.</p></li>
+<li><p><code>plot_ch</code> is a logical value used to draw or not the 2D convex-hull filled by the global pool of species. Color, fill and opacity of the convex hull can be chosen through other inputs , please refer to the function’s help.</p></li>
+<li><p><code>plot_sp_nm</code> is a vector containing species names to plot. If <code>NULL</code>, no species names plotted. Name size, color and font can be chosen through other inputs, please refer to the function’s help.</p></li>
+<li><p><code>plot_vertices</code> is a logical value used to plot or not vertices with a different shape than other species. <strong>Be careful:</strong> these representations are 2D representations, thus vertices of the convex-hull in the n-multidimensional space can be close to the center of the hull projected in 2D. Color, fill, shape and size of vertices can be chosen through other inputs, please refer to the function’s help.</p></li>
+<li><p><code>color_bg</code> is a R color or an hexadecimal color code referring to the color of the background of the plot.</p></li>
+<li><p>other inputs are used to chose color, fill, size, and shape of species from the global pool, please refer to the function’s help.</p></li>
 <li><p><code>check_input</code> is a recurrent argument in the <code>mFD</code> package. It defines whether inputs should be checked before computation or not. Possible error messages will thus be more understandable for the user than R error messages (<strong>Recommendation:</strong> set it as <code>TRUE</code>).</p></li>
 </ul>
 <p><br></p>
