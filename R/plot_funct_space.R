@@ -1,7 +1,7 @@
-#' Plot Functional Space with Different Functional Axes Pairs
+#' Plot Species Position in a Functional Space 
 #'
-#' This function computes plots of functional spaces showing the position of
-#' species along pairs of axes.
+#' This function illustrates the position of species along pairs of axes of a 
+#' functional space
 #'
 #' @param sp_faxes_coord a matrix of species coordinates in a
 #'  multidimensional functional space. Species coordinates have been retrieved
@@ -19,10 +19,12 @@
 #' @param faxes_nm a vector with axes labels for figure. Default: as
 #'  \code{faxes}).
 #'
-#' @param range_faxes a vector with minimum and maximum values of axes. Note
-#'  that to have a fair representation of position of species in all plots, have
-#'  the same range. Default: `faxes_lim = c(NA, NA)` (the range is computed
-#'  according to the range of values among all axes).
+#' @param range_faxes a vector with minimum and maximum values of axes 
+#' used for all plots to have a fair representation of position of species. 
+#' Default: `range_faxes = c(NA, NA)` (the range is computed
+#'  according to the range of values among all axes). If at least one of the 
+#'  value provided is within the range of coordinates, then convex hull could 
+#'  not be plotted so `plot_ch` should be `FALSE`.
 #'
 #' @param color_bg a R color name or an hexadecimal code used to fill plot
 #'   background. Default: `color_bg = "grey95"`.
@@ -48,7 +50,7 @@
 #'
 #' @param color_ch a R color name or an hexadecimal code referring to the border
 #'   of the convex hull filled by the pool of species. Default:
-#'   `color_ch = "black"`.
+#'   `color_ch = "darkblue"`.
 #'
 #' @param fill_ch a R color name or an hexadecimal code referring to the filling
 #'   of the convex hull filled by the pool of species. Default:
@@ -56,7 +58,7 @@
 #'
 #' @param alpha_ch a numeric value for transparency of the filling of the convex
 #'   hull (0 = high transparency, 1 = no transparency). Default:
-#'   `alpha_ch = 0.3`.
+#'   `alpha_ch = 1`.
 #'
 #' @param plot_vertices a logical value defining whether vertices of the convex
 #'   hull shaping the pool of species should be illustrated. If
@@ -67,11 +69,11 @@
 #'   `plot_vertices = TRUE`.
 #'
 #' @param color_vert a character value referring to the color of symbol for
-#'   vertices if `plot_vertices = TRUE`. Default: `color_vert = 'blueviolet'`.
+#'   vertices if `plot_vertices = TRUE`. Default: `color_vert = 'darkturquoise'`.
 #'
 #' @param fill_vert a character value referring to the color for filling symbol
 #'  for vertices  (if \code{shape_vert} >20). Default:
-#'  `fill_vert = 'blueviolet'`.
+#'  `fill_vert = 'darkturquoise'`.
 #'
 #' @param shape_vert a numeric value referring to the symbol used to show
 #'   vertices position if `plot_vertices = TRUE`. Default: `shape_vert = 23`
@@ -154,18 +156,18 @@
 #'   faxes_nm          = NULL,
 #'   range_faxes       = c(NA, NA),
 #'   color_bg          = "grey95",
-#'   color_pool          = "darkgreen",
+#'   color_pool          = "darkturquoise",
 #'   fill_pool           = "white",
 #'   shape_pool          = 21,
 #'   size_pool           = 1,
 #'   plot_ch           = TRUE,
-#'   color_ch          = "black",
+#'   color_ch          = "darkblue",
 #'   fill_ch           = "white",
-#'   alpha_ch          = 0.5,
+#'   alpha_ch          = 1,
 #'   plot_vertices     = TRUE,
-#'   color_vert        = "blueviolet",
-#'   fill_vert         = "blueviolet",
-#'   shape_vert        = 23,
+#'   color_vert        = "darkturquoise",
+#'   fill_vert         = "darkturquoise",
+#'   shape_vert        = 22,
 #'   size_vert         = 1,
 #'  plot_sp_nm         = NULL,
 #'  nm_size            = 3,
@@ -174,29 +176,28 @@
 #'  check_input        = TRUE)
 #' }
 
-funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
-                                 faxes_nm = NULL, range_faxes = c(NA, NA),
-                                 color_bg = "grey95",
-                                 color_pool = "darkgreen", fill_pool = "white",
-                                 shape_pool = 21, size_pool = 1,
-                                 plot_ch = TRUE, color_ch = "black",
-                                 fill_ch = "white", alpha_ch = 0.3,
-                                 plot_vertices = TRUE, 
-                                 color_vert = "blueviolet",
-                                 fill_vert = "blueviolet", shape_vert = 23,
-                                 size_vert = 1,
-                                 plot_sp_nm = NULL, nm_size = 3, 
-                                 nm_color = "black",
-                                 nm_fontface = "plain",
-                                 check_input = TRUE) {
+funct.space.plot <- function(sp_faxes_coord, faxes = NULL, 
+                             name_file = NULL,
+                             faxes_nm = NULL, 
+                             range_faxes = c(NA, NA),
+                             color_bg = "grey95",
+                             color_pool = "darkturquoise", fill_pool = "white",
+                             shape_pool = 21, size_pool = 1,
+                             plot_ch = TRUE, color_ch = "darkblue",
+                             fill_ch = "white", alpha_ch = 1,
+                             plot_vertices = TRUE, 
+                             color_vert = "darkturquoise",
+                             fill_vert = "darkturquoise", shape_vert = 22,
+                             size_vert = 1,
+                             plot_sp_nm = NULL, nm_size = 3, 
+                             nm_color = "black",
+                             nm_fontface = "plain",
+                             check_input = TRUE) {
   
   # check_inputs if asked: ####
   if (check_input) {
     
     check.sp.faxes.coord(sp_faxes_coord)
-    
-    # so ok when ggploting:
-    sp_faxes_coord <- as.data.frame(sp_faxes_coord)
     
     if ((!is.null(plot_sp_nm)) && any(!plot_sp_nm %in%
                                       rownames(sp_faxes_coord))) {
@@ -256,71 +257,42 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
   
   # range of axes:
   user_range <- "ok"
+  range_sp_coord  <- range(sp_faxes_coord)
+  
   if (is.na(range_faxes[1]) && is.na(range_faxes[2])) {
     user_range <- NA
-    range_sp_coord  <- range(sp_faxes_coord)
     range_faxes <- range_sp_coord +
       c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
   }
   
+  # vertices
+  vert_nm <- NULL
   
-  # if convex hull to be plotted
+  # if convex hull or vertices to be plotted
   if (plot_ch || plot_vertices) {
     
     # names of vertices of the convex hull of all species
-    vert_nm    <- vertices(sp_faxes_coord)
+    vert_nm <- vertices(sp_faxes_coord)
     
-    # check that the range is ok if the user chose it:
-    if (! is.na(user_range)) {
-      min_user <- range_faxes[1]
-      max_user <- range_faxes[2]
-      range_sp_coord  <- range(sp_faxes_coord)
-      range_faxes <- range_sp_coord +
-        c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
-      min_graph <- range_faxes[1]
-      max_graph <- range_faxes[2]
-      
-      if (min_user > min_user) {
-        stop("Error: The minimum value of functional axes range (range_faxes)",
-        "is too high. The convex hull can not be fully plotted. Please change",
-        " the minimal value of range_faxes.")
-      }
-      
-      if (max_user < max_graph) {
-        stop("Error: The maximum value of functional axes range (range_faxes)",
-             "is too low. The convex hull can not be fully plotted.",
-             "Please change the minimal value of range_faxes.")
-      }
-    }
-    
-    
-  } else {
-    vert_nm <- NULL
-    
-    # warn the user if user faxes range not wide enough:
-    
-    if (! is.na(user_range)) {
-      min_user <- range_faxes[1]
-      max_user <- range_faxes[2]
-      range_sp_coord  <- range(sp_faxes_coord)
-      range_faxes <- range_sp_coord +
-        c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
-      min_graph <- range_faxes[1]
-      max_graph <- range_faxes[2]
-      
-      if (min_user > min_user) {
-      warning("Error: The minimum value of functional axes range (range_faxes)",
-            "is too high. The convex hull can not be fully plotted. Please change",
-             " the minimal value of range_faxes.")
-      }
-      
-      if (max_user < max_graph) {
-      warning("Error: The maximum value of functional axes range (range_faxes)",
-             "is too low. The convex hull can not be fully plotted.",
-             "Please change the minimal value of range_faxes.")
-      }
-    }
   }
+  
+  
+  # check that the range is ok if the user chose it and convex hull:
+  if (! is.na(user_range) && plot_ch) {
+    
+    if (range_faxes[1] > range_sp_coord[1]) {
+      stop("Error: The first value of 'range_faxes', is higher than minimum 
+        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
+        change the minimal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+    }
+    
+    if (range_faxes[2] < range_sp_coord[2]) {
+      stop("Error: The second value of 'range_faxes', is lower than maximum 
+        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
+        change the maximal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+    }
+    
+  } 
   
   # dataframe with species coordinates and column for label
   label  <- NULL
@@ -352,7 +324,6 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
     
     # background = axes defined by range of values and names as specified  ----
     plot_k <- background.plot(range_faxes, faxes_nm = xy_k, color_bg)
-    
     
     # if required adding convex hull and/or vertices projected in 2D ----
     if (! plot_ch) {
@@ -402,7 +373,7 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
                                  box.padding = grid::unit(2, 'lines'),
                                  force = 5,
                                  arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                                                         'npc')),
                                  segment.color = nm_color)
     }
     
@@ -420,10 +391,7 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL, name_file = NULL,
     ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
     ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
     ggplot2::theme_void() +
-    ggplot2::theme(legend.position = "none") +
-    ggplot2::geom_rect(xmin = range_faxes[1], xmax = range_faxes[2],
-                       ymin = range_faxes[1], ymax = range_faxes[2],
-                       fill = "white", colour = "black")
+    ggplot2::theme(legend.position = "none")
   
   
   if (! plot_vertices) {
