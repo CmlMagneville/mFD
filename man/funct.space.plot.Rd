@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_funct_space.R
 \name{funct.space.plot}
 \alias{funct.space.plot}
-\title{Plot Functional Space with Different Functional Axes Pairs}
+\title{Plot Species Position in a Functional Space}
 \usage{
 funct.space.plot(
   sp_faxes_coord,
@@ -11,18 +11,18 @@ funct.space.plot(
   faxes_nm = NULL,
   range_faxes = c(NA, NA),
   color_bg = "grey95",
-  color_pool = "darkgreen",
+  color_pool = "darkturquoise",
   fill_pool = "white",
   shape_pool = 21,
   size_pool = 1,
   plot_ch = TRUE,
-  color_ch = "black",
+  color_ch = "darkblue",
   fill_ch = "white",
-  alpha_ch = 0.3,
+  alpha_ch = 1,
   plot_vertices = TRUE,
-  color_vert = "blueviolet",
-  fill_vert = "blueviolet",
-  shape_vert = 23,
+  color_vert = "darkturquoise",
+  fill_vert = "darkturquoise",
+  shape_vert = 22,
   size_vert = 1,
   plot_sp_nm = NULL,
   nm_size = 3,
@@ -48,10 +48,12 @@ displayed.}
 \item{faxes_nm}{a vector with axes labels for figure. Default: as
 \code{faxes}).}
 
-\item{range_faxes}{a vector with minimum and maximum values of axes. Note
-that to have a fair representation of position of species in all plots, have
-the same range. Default: \code{faxes_lim = c(NA, NA)} (the range is computed
-according to the range of values among all axes).}
+\item{range_faxes}{a vector with minimum and maximum values of axes
+used for all plots to have a fair representation of position of species.
+Default: \code{range_faxes = c(NA, NA)} (the range is computed
+according to the range of values among all axes). If at least one of the
+value provided is within the range of coordinates, then convex hull could
+not be plotted so \code{plot_ch} should be \code{FALSE}.}
 
 \item{color_bg}{a R color name or an hexadecimal code used to fill plot
 background. Default: \code{color_bg = "grey95"}.}
@@ -77,7 +79,7 @@ as polygons. Default: \code{plot_ch = TRUE}.}
 
 \item{color_ch}{a R color name or an hexadecimal code referring to the border
 of the convex hull filled by the pool of species. Default:
-\code{color_ch = "black"}.}
+\code{color_ch = "darkblue"}.}
 
 \item{fill_ch}{a R color name or an hexadecimal code referring to the filling
 of the convex hull filled by the pool of species. Default:
@@ -85,7 +87,7 @@ of the convex hull filled by the pool of species. Default:
 
 \item{alpha_ch}{a numeric value for transparency of the filling of the convex
 hull (0 = high transparency, 1 = no transparency). Default:
-\code{alpha_ch = 0.3}.}
+\code{alpha_ch = 1}.}
 
 \item{plot_vertices}{a logical value defining whether vertices of the convex
 hull shaping the pool of species should be illustrated. If
@@ -96,11 +98,11 @@ with aesthetics described above for '.._sp'. Default:
 \code{plot_vertices = TRUE}.}
 
 \item{color_vert}{a character value referring to the color of symbol for
-vertices if \code{plot_vertices = TRUE}. Default: \code{color_vert = 'blueviolet'}.}
+vertices if \code{plot_vertices = TRUE}. Default: \code{color_vert = 'darkturquoise'}.}
 
 \item{fill_vert}{a character value referring to the color for filling symbol
 for vertices  (if \code{shape_vert} >20). Default:
-\code{fill_vert = 'blueviolet'}.}
+\code{fill_vert = 'darkturquoise'}.}
 
 \item{shape_vert}{a numeric value referring to the symbol used to show
 vertices position if \code{plot_vertices = TRUE}. Default: \code{shape_vert = 23}
@@ -142,8 +144,8 @@ species listed in \code{plot_sp_nm} are added with if required arrows using
 top-right corner of the figure.
 }
 \description{
-This function computes plots of functional spaces showing the position of
-species along pairs of axes.
+This function illustrates the position of species along pairs of axes of a
+functional space
 }
 \examples{
 \dontrun{
@@ -184,18 +186,18 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
   faxes_nm          = NULL,
   range_faxes       = c(NA, NA),
   color_bg          = "grey95",
-  color_pool          = "darkgreen",
+  color_pool          = "darkturquoise",
   fill_pool           = "white",
   shape_pool          = 21,
   size_pool           = 1,
   plot_ch           = TRUE,
-  color_ch          = "black",
+  color_ch          = "darkblue",
   fill_ch           = "white",
-  alpha_ch          = 0.5,
+  alpha_ch          = 1,
   plot_vertices     = TRUE,
-  color_vert        = "blueviolet",
-  fill_vert         = "blueviolet",
-  shape_vert        = 23,
+  color_vert        = "darkturquoise",
+  fill_vert         = "darkturquoise",
+  shape_vert        = 22,
   size_vert         = 1,
  plot_sp_nm         = NULL,
  nm_size            = 3,

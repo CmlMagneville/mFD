@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Functional Space with Different Functional Axes Pairs — funct.space.plot • mFD</title>
+<title>Plot Species Position in a Functional Space — funct.space.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Plot Functional Space with Different Functional Axes Pairs — funct.space.plot" />
-<meta property="og:description" content="This function computes plots of functional spaces showing the position of
-species along pairs of axes." />
+<meta property="og:title" content="Plot Species Position in a Functional Space — funct.space.plot" />
+<meta property="og:description" content="This function illustrates the position of species along pairs of axes of a
+functional space" />
 
 
 
@@ -133,14 +133,14 @@ species along pairs of axes." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot Functional Space with Different Functional Axes Pairs</h1>
+    <h1>Plot Species Position in a Functional Space</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_funct_space.R'><code>R/plot_funct_space.R</code></a></small>
     <div class="hidden name"><code>funct.space.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function computes plots of functional spaces showing the position of
-species along pairs of axes.</p>
+    <p>This function illustrates the position of species along pairs of axes of a
+functional space</p>
     </div>
 
     <pre class="usage"><span class='fu'>funct.space.plot</span><span class='op'>(</span>
@@ -150,18 +150,18 @@ species along pairs of axes.</p>
   faxes_nm <span class='op'>=</span> <span class='cn'>NULL</span>,
   range_faxes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
   color_bg <span class='op'>=</span> <span class='st'>"grey95"</span>,
-  color_pool <span class='op'>=</span> <span class='st'>"darkgreen"</span>,
+  color_pool <span class='op'>=</span> <span class='st'>"darkturquoise"</span>,
   fill_pool <span class='op'>=</span> <span class='st'>"white"</span>,
   shape_pool <span class='op'>=</span> <span class='fl'>21</span>,
   size_pool <span class='op'>=</span> <span class='fl'>1</span>,
   plot_ch <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  color_ch <span class='op'>=</span> <span class='st'>"black"</span>,
+  color_ch <span class='op'>=</span> <span class='st'>"darkblue"</span>,
   fill_ch <span class='op'>=</span> <span class='st'>"white"</span>,
-  alpha_ch <span class='op'>=</span> <span class='fl'>0.3</span>,
+  alpha_ch <span class='op'>=</span> <span class='fl'>1</span>,
   plot_vertices <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  color_vert <span class='op'>=</span> <span class='st'>"blueviolet"</span>,
-  fill_vert <span class='op'>=</span> <span class='st'>"blueviolet"</span>,
-  shape_vert <span class='op'>=</span> <span class='fl'>23</span>,
+  color_vert <span class='op'>=</span> <span class='st'>"darkturquoise"</span>,
+  fill_vert <span class='op'>=</span> <span class='st'>"darkturquoise"</span>,
+  shape_vert <span class='op'>=</span> <span class='fl'>22</span>,
   size_vert <span class='op'>=</span> <span class='fl'>1</span>,
   plot_sp_nm <span class='op'>=</span> <span class='cn'>NULL</span>,
   nm_size <span class='op'>=</span> <span class='fl'>3</span>,
@@ -199,10 +199,12 @@ displayed.</p></td>
     </tr>
     <tr>
       <th>range_faxes</th>
-      <td><p>a vector with minimum and maximum values of axes. Note
-that to have a fair representation of position of species in all plots, have
-the same range. Default: <code>faxes_lim = c(NA, NA)</code> (the range is computed
-according to the range of values among all axes).</p></td>
+      <td><p>a vector with minimum and maximum values of axes
+used for all plots to have a fair representation of position of species.
+Default: <code>range_faxes = c(NA, NA)</code> (the range is computed
+according to the range of values among all axes). If at least one of the
+value provided is within the range of coordinates, then convex hull could
+not be plotted so <code>plot_ch</code> should be <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>color_bg</th>
@@ -242,7 +244,7 @@ as polygons. Default: <code>plot_ch = TRUE</code>.</p></td>
       <th>color_ch</th>
       <td><p>a R color name or an hexadecimal code referring to the border
 of the convex hull filled by the pool of species. Default:
-<code>color_ch = "black"</code>.</p></td>
+<code>color_ch = "darkblue"</code>.</p></td>
     </tr>
     <tr>
       <th>fill_ch</th>
@@ -254,7 +256,7 @@ of the convex hull filled by the pool of species. Default:
       <th>alpha_ch</th>
       <td><p>a numeric value for transparency of the filling of the convex
 hull (0 = high transparency, 1 = no transparency). Default:
-<code>alpha_ch = 0.3</code>.</p></td>
+<code>alpha_ch = 1</code>.</p></td>
     </tr>
     <tr>
       <th>plot_vertices</th>
@@ -269,13 +271,13 @@ with aesthetics described above for '.._sp'. Default:
     <tr>
       <th>color_vert</th>
       <td><p>a character value referring to the color of symbol for
-vertices if <code>plot_vertices = TRUE</code>. Default: <code>color_vert = 'blueviolet'</code>.</p></td>
+vertices if <code>plot_vertices = TRUE</code>. Default: <code>color_vert = 'darkturquoise'</code>.</p></td>
     </tr>
     <tr>
       <th>fill_vert</th>
       <td><p>a character value referring to the color for filling symbol
 for vertices  (if <code>shape_vert</code> &gt;20). Default:
-<code>fill_vert = 'blueviolet'</code>.</p></td>
+<code>fill_vert = 'darkturquoise'</code>.</p></td>
     </tr>
     <tr>
       <th>shape_vert</th>
@@ -375,18 +377,18 @@ top-right corner of the figure.</p>
   faxes_nm          <span class='op'>=</span> <span class='cn'>NULL</span>,
   range_faxes       <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
   color_bg          <span class='op'>=</span> <span class='st'>"grey95"</span>,
-  color_pool          <span class='op'>=</span> <span class='st'>"darkgreen"</span>,
+  color_pool          <span class='op'>=</span> <span class='st'>"darkturquoise"</span>,
   fill_pool           <span class='op'>=</span> <span class='st'>"white"</span>,
   shape_pool          <span class='op'>=</span> <span class='fl'>21</span>,
   size_pool           <span class='op'>=</span> <span class='fl'>1</span>,
   plot_ch           <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  color_ch          <span class='op'>=</span> <span class='st'>"black"</span>,
+  color_ch          <span class='op'>=</span> <span class='st'>"darkblue"</span>,
   fill_ch           <span class='op'>=</span> <span class='st'>"white"</span>,
-  alpha_ch          <span class='op'>=</span> <span class='fl'>0.5</span>,
+  alpha_ch          <span class='op'>=</span> <span class='fl'>1</span>,
   plot_vertices     <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  color_vert        <span class='op'>=</span> <span class='st'>"blueviolet"</span>,
-  fill_vert         <span class='op'>=</span> <span class='st'>"blueviolet"</span>,
-  shape_vert        <span class='op'>=</span> <span class='fl'>23</span>,
+  color_vert        <span class='op'>=</span> <span class='st'>"darkturquoise"</span>,
+  fill_vert         <span class='op'>=</span> <span class='st'>"darkturquoise"</span>,
+  shape_vert        <span class='op'>=</span> <span class='fl'>22</span>,
   size_vert         <span class='op'>=</span> <span class='fl'>1</span>,
  plot_sp_nm         <span class='op'>=</span> <span class='cn'>NULL</span>,
  nm_size            <span class='op'>=</span> <span class='fl'>3</span>,
