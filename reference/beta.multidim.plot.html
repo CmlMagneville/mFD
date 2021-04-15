@@ -236,26 +236,26 @@ plot background. Default: <code>color_bg = "grey95"</code>.</p></td>
       <td><p>a vector with 3 numeric values referring to the shape of
 symbol used for species from the 'pool' absent from the 2 assemblages, and
 for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-Default: <code>shape_sp = c("pool" = 3, "asb1" = 22, "asb2" = 21)</code> so cross,
+Default: <code>shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)</code> so cross,
 square and circle.</p></td>
     </tr>
     <tr>
       <th>size_sp</th>
       <td><p>a numeric value referring to the size of symbols for
-species. Default: <code>is size_sp = c("pool" = 0.8, "asb1" = 1, "asb2" = 1)</code>.</p></td>
+species. Default: <code>is size_sp = c(pool = 0.8, asb1 = 1, asb2 = 1)</code>.</p></td>
     </tr>
     <tr>
       <th>color_sp</th>
       <td><p>a vector with 3 names or hexadecimal codes referring to the
 colour of symbol for species. Default is:
-<code>color_sp = c("pool" = "grey50", "asb1" = "blue", "asb2" = "red")</code>.</p></td>
+<code>color_sp = c(pool = "grey50", asb1 = "blue", asb2 = "red")</code>.</p></td>
     </tr>
     <tr>
       <th>fill_sp</th>
       <td><p>a vector with 3 names or hexadecimal codes referring to the
 color to fill symbol (if <code>shape_sp</code> &gt; 20) for species of the pool and
 of the 2 assemblages. Default is:
-<code>fill_sp = c("pool" = NA, "asb1" = "white", "asb2" = "white")</code>.</p></td>
+<code>fill_sp = c(pool = NA, asb1 = "white", asb2 = "white")</code>.</p></td>
     </tr>
     <tr>
       <th>fill_vert</th>
@@ -263,26 +263,26 @@ of the 2 assemblages. Default is:
 referring to the colour to fill symbol (if <code>shape_sp</code> &gt; 20) for
 species being vertices of the convex hulls of the pool of species and of
 the 2 assemblages. Default is:
-<code>fill_vert = c("pool" = NA, "asb1" = "blue", "asb2" = "red")</code>.</p></td>
+<code>fill_vert = c(pool = NA, asb1 = "blue", asb2 = "red")</code>.</p></td>
     </tr>
     <tr>
       <th>color_ch</th>
       <td><p>a vector with 3 names or hexadecimal codes referring to the
 border of the convex hulls of the pool of species and by the 2 assemblages.
-Default is: <code>color_ch = c("pool" = NA, "asb1" = "blue", "asb2" = "red")</code>.</p></td>
+Default is: <code>color_ch = c(pool = NA, asb1 = "blue", asb2 = "red")</code>.</p></td>
     </tr>
     <tr>
       <th>fill_ch</th>
       <td><p>a vector with 3 names or hexadecimal codes referring to the
 filling of the convex hull of the pool of species and of the 2 assemblages.
-Default is <code>fill_ch = c("pool" = "white", "asb1" = "blue", "asb2" = "red")</code>.</p></td>
+Default is <code>fill_ch = c(pool = "white", asb1 = "blue", asb2 = "red")</code>.</p></td>
     </tr>
     <tr>
       <th>alpha_ch</th>
       <td><p>a vector with 3 numeric value for transparency of
 the filling of the convex hulls (0 = high transparency, 1 = no
 transparency). Default is:
-<code>alpha_ch = c("pool" = 1, "asb1" = 0.3, "asb2" = 0.3)</code>.</p></td>
+<code>alpha_ch = c(pool = 1, asb1 = 0.3, asb2 = 0.3)</code>.</p></td>
     </tr>
     <tr>
       <th>nm_size</th>
@@ -372,16 +372,16 @@ figure.</p>
    faxes_nm                <span class='op'>=</span> <span class='cn'>NULL</span>,
    range_faxes             <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
    color_bg                <span class='op'>=</span> <span class='st'>"grey95"</span>,
-   shape_sp                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='fl'>3</span>, asb1 <span class='op'>=</span> <span class='fl'>22</span>, asb2 <span class='op'>=</span> <span class='fl'>21</span><span class='op'>)</span>,
-   size_sp                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='fl'>0.8</span>, asb1 <span class='op'>=</span> <span class='fl'>1</span>, asb2 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
-   color_sp                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='st'>"grey50"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>,
+   shape_sp                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='fl'>3</span>, asb1 <span class='op'>=</span> <span class='fl'>22</span>, asb2 <span class='op'>=</span> <span class='fl'>21</span><span class='op'>)</span>,
+   size_sp                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='fl'>0.8</span>, asb1 <span class='op'>=</span> <span class='fl'>1</span>, asb2 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+   color_sp                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='st'>"grey50"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>,
                                asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
-   fill_sp                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"white"</span>, asb2 <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span>,
-   fill_vert               <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
-   color_ch                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
-   fill_ch                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='st'>"white"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>,
+   fill_sp                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"white"</span>, asb2 <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span>,
+   fill_vert               <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
+   color_ch                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='cn'>NA</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>, asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
+   fill_ch                 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='st'>"white"</span>, asb1 <span class='op'>=</span> <span class='st'>"blue"</span>,
                                asb2 <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>,
-   alpha_ch                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pool"</span> <span class='op'>=</span> <span class='fl'>1</span>, asb1 <span class='op'>=</span> <span class='fl'>0.3</span>, asb2 <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>,
+   alpha_ch                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>pool <span class='op'>=</span> <span class='fl'>1</span>, asb1 <span class='op'>=</span> <span class='fl'>0.3</span>, asb2 <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>,
    nm_size                 <span class='op'>=</span> <span class='fl'>3</span>,
    nm_color                <span class='op'>=</span> <span class='st'>"black"</span>,
    nm_fontface             <span class='op'>=</span> <span class='st'>"plain"</span>,
