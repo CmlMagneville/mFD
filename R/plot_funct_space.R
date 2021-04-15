@@ -111,7 +111,7 @@
 #'   shown with aesthetics provided as inputs \code{..._vert}. Labels for
 #'   species listed in \code{plot_sp_nm} are added with if required arrows using
 #'   \code{ggrepel}. Summary about species and dimensionality are printed on
-#'   top-right corner of the figure.
+#'   top-right corner of the figure. 
 #'
 #' @author Camille Magneville and Sebastien Villeger
 #'
