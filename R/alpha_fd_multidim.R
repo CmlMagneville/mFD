@@ -31,7 +31,7 @@
 #'   must be kept if the user want to have graphical outputs for the computed
 #'   indices.
 #'
-#' @return a list with: \itemize{
+#' @return The following list is returned: \itemize{
 #'
 #'  \item \emph{functional_diversity_indices} matrix containing indices values
 #'  (columns) for each assemblage (rows)
@@ -56,6 +56,7 @@
 #'  neighbor of each species present in a given assemblage ; a
 #'  \strong{dist_nn_all_asb} data.frame containing distance of each species
 #'  present in a given assemblage to its nearest neighbor.}
+#'  
 #'  
 #' @author Camille Magneville and Sebastien Villeger
 #' 
