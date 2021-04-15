@@ -42,7 +42,7 @@ must be kept if the user want to have graphical outputs for the computed
 indices.}
 }
 \value{
-a list with: \itemize{
+The following list is returned: \itemize{
 
 \item \emph{functional_diversity_indices} matrix containing indices values
 (columns) for each assemblage (rows)
