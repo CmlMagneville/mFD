@@ -69,39 +69,39 @@ plot background. Default: \code{color_bg = "grey95"}.}
 \item{shape_sp}{a vector with 3 numeric values referring to the shape of
 symbol used for species from the 'pool' absent from the 2 assemblages, and
 for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-Default: \code{shape_sp = c("pool" = 3, "asb1" = 22, "asb2" = 21)} so cross,
+Default: \code{shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)} so cross,
 square and circle.}
 
 \item{size_sp}{a numeric value referring to the size of symbols for
-species. Default: \verb{is size_sp = c("pool" = 0.8, "asb1" = 1, "asb2" = 1)}.}
+species. Default: \verb{is size_sp = c(pool = 0.8, asb1 = 1, asb2 = 1)}.}
 
 \item{color_sp}{a vector with 3 names or hexadecimal codes referring to the
 colour of symbol for species. Default is:
-\code{color_sp = c("pool" = "grey50", "asb1" = "blue", "asb2" = "red")}.}
+\code{color_sp = c(pool = "grey50", asb1 = "blue", asb2 = "red")}.}
 
 \item{fill_sp}{a vector with 3 names or hexadecimal codes referring to the
 color to fill symbol (if \code{shape_sp} > 20) for species of the pool and
 of the 2 assemblages. Default is:
-\code{fill_sp = c("pool" = NA, "asb1" = "white", "asb2" = "white")}.}
+\code{fill_sp = c(pool = NA, asb1 = "white", asb2 = "white")}.}
 
 \item{fill_vert}{a vector with 3 names or hexadecimal codes
 referring to the colour to fill symbol (if \code{shape_sp} > 20) for
 species being vertices of the convex hulls of the pool of species and of
 the 2 assemblages. Default is:
-\code{fill_vert = c("pool" = NA, "asb1" = "blue", "asb2" = "red")}.}
+\code{fill_vert = c(pool = NA, asb1 = "blue", asb2 = "red")}.}
 
 \item{color_ch}{a vector with 3 names or hexadecimal codes referring to the
 border of the convex hulls of the pool of species and by the 2 assemblages.
-Default is: \code{color_ch = c("pool" = NA, "asb1" = "blue", "asb2" = "red")}.}
+Default is: \code{color_ch = c(pool = NA, asb1 = "blue", asb2 = "red")}.}
 
 \item{fill_ch}{a vector with 3 names or hexadecimal codes referring to the
 filling of the convex hull of the pool of species and of the 2 assemblages.
-Default is \code{fill_ch = c("pool" = "white", "asb1" = "blue", "asb2" = "red")}.}
+Default is \code{fill_ch = c(pool = "white", asb1 = "blue", asb2 = "red")}.}
 
 \item{alpha_ch}{a vector with 3 numeric value for transparency of
 the filling of the convex hulls (0 = high transparency, 1 = no
 transparency). Default is:
-\code{alpha_ch = c("pool" = 1, "asb1" = 0.3, "asb2" = 0.3)}.}
+\code{alpha_ch = c(pool = 1, asb1 = 0.3, asb2 = 0.3)}.}
 
 \item{nm_size}{a numeric value for size of species label. Default is \code{3}
 (in points).}
@@ -183,16 +183,16 @@ diversity indices should have been computed using the}
    faxes_nm                = NULL,
    range_faxes             = c(NA, NA),
    color_bg                = "grey95",
-   shape_sp                = c("pool" = 3, asb1 = 22, asb2 = 21),
-   size_sp                 = c("pool" = 0.8, asb1 = 1, asb2 = 1),
-   color_sp                = c("pool" = "grey50", asb1 = "blue",
+   shape_sp                = c(pool = 3, asb1 = 22, asb2 = 21),
+   size_sp                 = c(pool = 0.8, asb1 = 1, asb2 = 1),
+   color_sp                = c(pool = "grey50", asb1 = "blue",
                                asb2 = "red"),
-   fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
-   fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-   color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-   fill_ch                 = c("pool" = "white", asb1 = "blue",
+   fill_sp                 = c(pool = NA, asb1 = "white", asb2 = "white"),
+   fill_vert               = c(pool = NA, asb1 = "blue", asb2 = "red"),
+   color_ch                = c(pool = NA, asb1 = "blue", asb2 = "red"),
+   fill_ch                 = c(pool = "white", asb1 = "blue",
                                asb2 = "red"),
-   alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
+   alpha_ch                = c(pool = 1, asb1 = 0.3, asb2 = 0.3),
    nm_size                 = 3,
    nm_color                = "black",
    nm_fontface             = "plain",
