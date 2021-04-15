@@ -129,10 +129,10 @@ columns, missing values). If an error is detected, a detailed message is
 returned. Default: \code{check.input = TRUE}.}
 }
 \value{
-A list containing \code{ggplot2} objects : plots of functional space
-along all pairs of axes (named according to axes names, e.g. "PC1_PC2"),
-figure 'caption', and the full figure 'patchwork' built using the library
-\code{patchwork}.
+If \code{name_file} is \code{NULL}, a list containing \code{ggplot2}
+objects is returned: plots of functional space along all pairs of axes
+(named according to axes names, e.g. "PC1_PC2"), figure 'caption', and the
+full figure 'patchwork' built using the library \code{patchwork}.
 If \code{name_file} is not \code{NULL} a 300dpi png file
 is saved in the working directory. Ranges of axes are the same for all
 panels and if required projection of the convex hull computed in the
