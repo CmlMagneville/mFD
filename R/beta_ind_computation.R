@@ -239,7 +239,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
   
   # if convex hull of the species pool computed, scaling FRic values:
   if (!is.character(ch_pool)) {
-    pool_vertices <-row.names(ch_pool$p)
+    pool_vertices <-unique(row.names(sp_faxes_coord)[ch_pool$hull])
     asb_FRic <- asb_FRic/ch_pool$vol 
   } else 
   {
