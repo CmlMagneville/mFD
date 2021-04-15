@@ -331,9 +331,11 @@ returned. Default: <code>check.input = TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>For the given assemblage, return a list of one <code>patchwork</code>
-figure per functional indice containing plots for combinations of up to
-four axes.</p>
+    <p>If  <code>name_file</code> is <code>NULL</code>, it returns a list of one
+<code>ggplot2</code> plots per functional index containing plots for combinations
+of up to four axes, a <code>patchwork</code> figure gathering all combinations of
+axes and a <code>ggplot2</code> figure showing the plot caption. If
+<code>name_file</code> is not <code>NULL</code>, then those plots are saved locally.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sébastien Villéger</p>
