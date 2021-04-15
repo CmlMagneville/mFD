@@ -152,9 +152,55 @@
 #'   check_input      = TRUE,
 #'   details_returned = TRUE)
 #'
-#' # Retrieve alpha diversity indices table:
-#' fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
-#' fd_ind_values_fruits
+#' # Plot all fd alpha indices:
+#' plots_alpha <- mFD::alpha.multidim.plot(
+#' output_alpha_fd_multidim = alpha_fd_indices_fruits,
+#' plot_asb_nm              = c("basket_1", "basket_5"),
+#' ind_nm                   = c("fdis", "fide", "fnnd", "feve", 
+#'                              "fric", "fdiv", "fori", 
+#'                              "fspe"),
+#' faxes                    = NULL,
+#' faxes_nm                 = NULL,
+#' range_faxes              = c(NA, NA),
+#' color_bg                 = "grey95",
+#' shape_sp                 = c(pool = 3, asb1 = 21, 
+#'                              asb2 = 21),
+#' size_sp                  = c(pool = 0.7, asb1 = 1, 
+#'                              asb2 = 1),
+#' color_sp                 = c(pool = "grey50", 
+#'                              asb1 = "#1F968BFF",
+#'                              asb2 = "#DCE319FF"),
+#' color_vert               = c(pool = "grey50", 
+#'                              asb1 = "#1F968BFF",
+#'                              asb2 = "#DCE319FF"),
+#' fill_sp                 = c(pool =  NA, 
+#'                             asb1 = "#1F968BFF",
+#'                             asb2 = "#DCE319FF"),
+#' fill_vert               = c(pool = NA, 
+#'                             asb1 = "#1F968BFF",
+#'                             asb2 = "#DCE319FF"),
+#' color_ch                = c(pool = NA, 
+#'                             asb1 = "#1F968BFF",
+#'                             asb2 = "#DCE319FF"),
+#' fill_ch                 = c(pool = "white", 
+#'                             asb1 = "#1F968BFF",
+#'                             asb2 = "#DCE319FF"),
+#' alpha_ch                = c(pool = 1, asb1 = 0.3, 
+#'                             asb2 = 0.3),
+#' shape_centroid_fdis     = c(asb1 = 22,  asb2 = 24),
+#' shape_centroid_fdiv     = c(asb1 = 22,  asb2 = 24),
+#' shape_centroid_fspe     = 23,
+#' color_centroid_fspe     = "black",
+#' size_sp_nm              = 3, 
+#' color_sp_nm             = "black",
+#' plot_sp_nm              = NULL,
+#' fontface_sp_nm          = "plain",
+#' save_file               = FALSE,
+#' check_input             = TRUE) 
+#' 
+#' # Check FRic plot:
+#' plots_alpha$fric$patchwork
+#' 
 #' }
 
 alpha.multidim.plot <- function(output_alpha_fd_multidim,
