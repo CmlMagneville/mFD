@@ -242,7 +242,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
              the number of functional axes to plot.")
       }
       
-      if ( any(! faxes %in% colnames(sp_faxes_coord))) {
+      if (any(! faxes %in% colnames(sp_faxes_coord))) {
         stop("Names of axes to plot can not be found in 'sp_faxes_coord' ",
              "columns names. Please check names of axes you want to plot.")
       }
