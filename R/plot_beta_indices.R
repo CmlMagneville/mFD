@@ -45,39 +45,39 @@
 #'@param shape_sp a vector with 3 numeric values referring to the shape of
 #'  symbol used for species from the 'pool' absent from the 2 assemblages, and
 #'  for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-#'  Default: `shape_sp = c("pool" = 3, "asb1" = 22, "asb2" = 21)` so cross,
+#'  Default: `shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)` so cross,
 #'  square and circle.
 #'
 #' @param size_sp a numeric value referring to the size of symbols for
-#'  species. Default: `is size_sp = c("pool" = 0.8, "asb1" = 1, "asb2" = 1)`.
+#'  species. Default: `is size_sp = c(pool = 0.8, asb1 = 1, asb2 = 1)`.
 #'
 #' @param color_sp a vector with 3 names or hexadecimal codes referring to the
 #'  colour of symbol for species. Default is:
-#'  `color_sp = c("pool" = "grey50", "asb1" = "blue", "asb2" = "red")`.
+#'  `color_sp = c(pool = "grey50", asb1 = "blue", asb2 = "red")`.
 #'
 #' @param fill_sp a vector with 3 names or hexadecimal codes referring to the
 #'   color to fill symbol (if \code{shape_sp} > 20) for species of the pool and
 #'   of the 2 assemblages. Default is:
-#'   `fill_sp = c("pool" = NA, "asb1" = "white", "asb2" = "white")`.
+#'   `fill_sp = c(pool = NA, asb1 = "white", asb2 = "white")`.
 #'
 #' @param fill_vert a vector with 3 names or hexadecimal codes
 #'   referring to the colour to fill symbol (if \code{shape_sp} > 20) for
 #'   species being vertices of the convex hulls of the pool of species and of
 #'   the 2 assemblages. Default is:
-#'   `fill_vert = c("pool" = NA, "asb1" = "blue", "asb2" = "red")`.
+#'   `fill_vert = c(pool = NA, asb1 = "blue", asb2 = "red")`.
 #'
 #' @param color_ch a vector with 3 names or hexadecimal codes referring to the
 #'  border of the convex hulls of the pool of species and by the 2 assemblages.
-#'  Default is: `color_ch = c("pool" = NA, "asb1" = "blue", "asb2" = "red")`.
+#'  Default is: `color_ch = c(pool = NA, asb1 = "blue", asb2 = "red")`.
 #'
 #' @param fill_ch a vector with 3 names or hexadecimal codes referring to the
 #'  filling of the convex hull of the pool of species and of the 2 assemblages.
-#'  Default is `fill_ch = c("pool" = "white", "asb1" = "blue", "asb2" = "red")`.
+#'  Default is `fill_ch = c(pool = "white", asb1 = "blue", asb2 = "red")`.
 #'
 #' @param alpha_ch a vector with 3 numeric value for transparency of
 #'   the filling of the convex hulls (0 = high transparency, 1 = no
 #'   transparency). Default is:
-#'   `alpha_ch = c("pool" = 1, "asb1" = 0.3, "asb2" = 0.3)`.
+#'   `alpha_ch = c(pool = 1, asb1 = 0.3, asb2 = 0.3)`.
 #'
 #' @param nm_size a numeric value for size of species label. Default is `3`
 #'   (in points).
@@ -156,16 +156,16 @@
 #'    faxes_nm                = NULL,
 #'    range_faxes             = c(NA, NA),
 #'    color_bg                = "grey95",
-#'    shape_sp                = c("pool" = 3, asb1 = 22, asb2 = 21),
-#'    size_sp                 = c("pool" = 0.8, asb1 = 1, asb2 = 1),
-#'    color_sp                = c("pool" = "grey50", asb1 = "blue",
+#'    shape_sp                = c(pool = 3, asb1 = 22, asb2 = 21),
+#'    size_sp                 = c(pool = 0.8, asb1 = 1, asb2 = 1),
+#'    color_sp                = c(pool = "grey50", asb1 = "blue",
 #'                                asb2 = "red"),
-#'    fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
-#'    fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#'    color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#'    fill_ch                 = c("pool" = "white", asb1 = "blue",
+#'    fill_sp                 = c(pool = NA, asb1 = "white", asb2 = "white"),
+#'    fill_vert               = c(pool = NA, asb1 = "blue", asb2 = "red"),
+#'    color_ch                = c(pool = NA, asb1 = "blue", asb2 = "red"),
+#'    fill_ch                 = c(pool = "white", asb1 = "blue",
 #'                                asb2 = "red"),
-#'    alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
+#'    alpha_ch                = c(pool = 1, asb1 = 0.3, asb2 = 0.3),
 #'    nm_size                 = 3,
 #'    nm_color                = "black",
 #'    nm_fontface             = "plain",
@@ -173,33 +173,33 @@
 #' }
 
 beta.multidim.plot <- function(output_beta_fd_multidim,
-                                   plot_asb_nm,
-                                   beta_family,
-                                   plot_sp_nm = NULL,
-                                   faxes = NULL,
-                                   name_file = NULL,
-                                   faxes_nm = NULL, range_faxes = c(NA, NA),
-                                   color_bg = "grey95",
-                                   shape_sp = c("pool" = 3, asb1 = 22, 
-                                                asb2 = 21),
-                                   size_sp = c("pool" = 0.7, asb1 = 1.2, 
-                                               asb2 = 1),
-                                   color_sp = c("pool" = "grey50", 
-                                                asb1 = "blue",
-                                                asb2 = "red"),
-                                   fill_sp = c("pool" = NA, asb1 = "white",
-                                               asb2 = "white"),
-                                   fill_vert = c("pool" = NA, asb1 = "blue",
-                                                 asb2 = "red"),
-                                   color_ch = c("pool" = NA, asb1 = "blue",
-                                                asb2 = "red"),
-                                   fill_ch = c("pool" = "white", asb1 = "blue",
-                                               asb2 = "red"),
-                                   alpha_ch = c("pool" = 1, asb1 = 0.3, 
-                                                asb2 = 0.3),
-                                   nm_size = 3, nm_color = "black",
-                                   nm_fontface = "plain",
-                                   check_input = TRUE) {
+                               plot_asb_nm,
+                               beta_family,
+                               plot_sp_nm = NULL,
+                               faxes = NULL,
+                               name_file = NULL,
+                               faxes_nm = NULL, range_faxes = c(NA, NA),
+                               color_bg = "grey95",
+                               shape_sp = c(pool = 3, asb1 = 22, 
+                                            asb2 = 21),
+                               size_sp = c(pool = 0.7, asb1 = 1.2, 
+                                           asb2 = 1),
+                               color_sp = c(pool = "grey50", 
+                                            asb1 = "blue",
+                                            asb2 = "red"),
+                               fill_sp = c(pool = NA, asb1 = "white",
+                                           asb2 = "white"),
+                               fill_vert = c(pool = NA, asb1 = "blue",
+                                             asb2 = "red"),
+                               color_ch = c(pool = NA, asb1 = "blue",
+                                            asb2 = "red"),
+                               fill_ch = c(pool = "white", asb1 = "blue",
+                                           asb2 = "red"),
+                               alpha_ch = c(pool = 1, asb1 = 0.3, 
+                                            asb2 = 0.3),
+                               nm_size = 3, nm_color = "black",
+                               nm_fontface = "plain",
+                               check_input = TRUE) {
   
   
   # extract dataset from inputs ####
@@ -242,7 +242,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
              the number of functional axes to plot.")
       }
       
-      if (! any(faxes %in% colnames(sp_faxes_coord))) {
+      if ( any(! faxes %in% colnames(sp_faxes_coord))) {
         stop("Names of axes to plot can not be found in 'sp_faxes_coord' ",
              "columns names. Please check names of axes you want to plot.")
       }
@@ -314,7 +314,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   
   
   # compute convex hull of the species pool and its vertices:
-  vert_pool<- output_beta_fd_multidim$pool_vertices  
+  vert_pool<- output_beta_fd_multidim$details$pool_vertices  
   
   # get names of species present in each assemblage:
   sp_asb1 <- names( which(asb_sp_occ[plot_asb_nm[1], ] == 1))
@@ -389,14 +389,14 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
         ggrepel::geom_text_repel(data = sp_faxes_coord_plot,
                                  ggplot2::aes_string(x = axes_plot[1, k],
                                                      y = axes_plot[2, k],
-                                                      label = "label"),
+                                                     label = "label"),
                                  size = nm_size, colour = nm_color,
                                  fontface = nm_fontface,
                                  max.overlaps = Inf,
                                  box.padding = grid::unit(2, 'lines'),
                                  force = 5,
                                  arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                                                         'npc')),
                                  segment.color = nm_color)
     }
     
@@ -526,32 +526,32 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   
   ### asb2:
   
-    plot_caption <- plot_caption +
-      ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.10,
-                         xmax = range_faxes[1] + spread_faxes*0.15,
-                         ymin = range_faxes[2] - spread_faxes*0.64,
-                         ymax = range_faxes[2] - spread_faxes*0.68,
-                         fill = color_sp[["asb2"]], 
-                         alpha = alpha_ch[["asb2"]]) + 
-      
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
-                         y = range_faxes[2] - spread_faxes*0.665,
-                         label = paste0("convex hull of", sep = " ", 
-                                        plot_asb_nm[2]),
-                         colour = color_sp[["asb2"]], size = 3) + 
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
-                          y = range_faxes[2] - spread_faxes*0.71,
-                          size = size_sp[["asb2"]], 
-                          shape = shape_sp[["asb2"]],
-                          color = color_sp[["asb2"]], 
-                          fill = fill_sp[["asb2"]]) + 
-      
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
-                         y = range_faxes[2] - spread_faxes*0.71,
-                         label = paste0("shape of species from", sep = " ", 
-                                        plot_asb_nm[2]),
-                         colour = color_sp[["asb2"]], size = 3)
+  plot_caption <- plot_caption +
+    ggplot2::geom_rect(xmin = range_faxes[1] + spread_faxes*0.10,
+                       xmax = range_faxes[1] + spread_faxes*0.15,
+                       ymin = range_faxes[2] - spread_faxes*0.64,
+                       ymax = range_faxes[2] - spread_faxes*0.68,
+                       fill = color_sp[["asb2"]], 
+                       alpha = alpha_ch[["asb2"]]) + 
+    
+    ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                       y = range_faxes[2] - spread_faxes*0.665,
+                       label = paste0("convex hull of", sep = " ", 
+                                      plot_asb_nm[2]),
+                       colour = color_sp[["asb2"]], size = 3) + 
+    
+    ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
+                        y = range_faxes[2] - spread_faxes*0.71,
+                        size = size_sp[["asb2"]], 
+                        shape = shape_sp[["asb2"]],
+                        color = color_sp[["asb2"]], 
+                        fill = fill_sp[["asb2"]]) + 
+    
+    ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+                       y = range_faxes[2] - spread_faxes*0.71,
+                       label = paste0("shape of species from", sep = " ", 
+                                      plot_asb_nm[2]),
+                       colour = color_sp[["asb2"]], size = 3)
   
   ### for global pool:
   
