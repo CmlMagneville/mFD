@@ -1,5 +1,5 @@
 Package: mFD
-Title: A Computation of Functional Spaces and Functional Indices
+Title: Computing Functional Spaces and illustrating the multiple facets of Functional Diversity
 Version: 1.0.0
 Authors@R: c(
     person(given   = "Camille",
