@@ -306,7 +306,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   }
   
   # check that the range is ok if the user chose it and convex hull:
-  if (! is.na(user_range) && plot_ch) {
+  if (! is.na(user_range)) {
     
     if (range_faxes[1] > range_sp_coord[1]) {
       stop("Error: The first value of 'range_faxes', is higher than minimum 
