@@ -301,6 +301,23 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
       c(-1, 1) * (range_sp_faxes_coord[2] - range_sp_faxes_coord[1]) * 0.1
   }
   
+  # check that the range is ok if the user chose it and convex hull:
+  if (! is.na(user_range) && plot_ch) {
+    
+    if (range_faxes[1] > range_sp_coord[1]) {
+      stop("Error: The first value of 'range_faxes', is higher than minimum 
+        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
+        change the minimal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+    }
+    
+    if (range_faxes[2] < range_sp_coord[2]) {
+      stop("Error: The second value of 'range_faxes', is lower than maximum 
+        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
+        change the maximal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+    }
+    
+  } 
+
   # build dataframe with species coordinates and option (vertices + label) ...
   # ... if required:
   sp_faxes_coord_plot <- data.frame(sp_faxes_coord,
