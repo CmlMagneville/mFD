@@ -522,7 +522,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                         ymax = range_faxes[2] - spread_faxes*0.55,
                         fill = color_sp[["asb1"]], alpha = alpha_ch[["asb1"]]) + 
 
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.525,
                          label = paste0("convex hull of", sep = " ", 
                                         asb1),
@@ -533,7 +533,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           size = size_sp[["asb1"]], shape = shape_sp[["asb1"]],
                           color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.58,
                          label = paste0("shape of species from", sep = " ", 
                                         asb1),
@@ -550,7 +550,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                            fill = color_sp[["asb2"]], 
                            alpha = alpha_ch[["asb2"]]) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.665,
                            label = paste0("convex hull of", sep = " ", 
                                           asb2),
@@ -563,7 +563,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             color = color_sp[["asb2"]], 
                             fill = fill_sp[["asb2"]]) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.71,
                            label = paste0("shape of species from", sep = " ", 
                                           asb2),
@@ -582,7 +582,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.77,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
