@@ -159,7 +159,8 @@
 
 alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                 plot_asb_nm,
-                                ind_nm              = c("fdis", "fnnd", "feve", 
+                                ind_nm              = c("fide", "fdis", "fnnd", 
+                                                        "feve", 
                                                         "fric", "fdiv", "fori", 
                                                         "fspe"),
                                 faxes               = NULL,
@@ -234,15 +235,28 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     }
     
     # check that indices to plot are contained in the fd_ind_value table:
-    #remove fide (if plotted) from the indices names because it as differents...
+    # remove fide (if plotted) from the indices names because it as differents...
     # ...names in the dataframe: fide_PC1, fide_PC2...
     if ("fide" %in% ind_nm) {
-      ind_nm2 <- ind_nm[! ind_nm %in% "fide"] 
-    }
-    if (any(! ind_nm2 %in% colnames(asb_fd_ind)) == TRUE) {
-      stop("Error: Functional diversity indices to plot must be contained in
+      
+      ind_nm2 <- ind_nm[! ind_nm %in% "fide"]
+
+      if (any(! ind_nm2 %in% colnames(asb_fd_ind)) == TRUE) {
+        stop("Error: Functional diversity indices to plot must be contained in
            'fd_ind_values' columns")
+      }
+      
     }
+    
+    if (! "fide" %in% ind_nm) {
+      
+      if (any(! ind_nm %in% colnames(asb_fd_ind)) == TRUE) {
+        stop("Error: Functional diversity indices to plot must be contained in
+           'fd_ind_values' columns")
+      }
+      
+    }
+    
     
     
     # check that good number of assemblage(s) to plot:
