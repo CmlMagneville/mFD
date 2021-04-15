@@ -133,9 +133,11 @@ columns, missing values). If an error is detected, a detailed message is
 returned. Default: \code{check.input = TRUE}.}
 }
 \value{
-For the given assemblage, return a list of one \code{patchwork}
-figure per functional indice containing plots for combinations of up to
-four axes.
+If  \code{name_file} is \code{NULL}, it returns a list of one
+\code{ggplot2} plots per functional index containing plots for combinations
+of up to four axes, a \code{patchwork} figure gathering all combinations of
+axes and a \code{ggplot2} figure showing the plot caption. If
+\code{name_file} is not \code{NULL}, then those plots are saved locally.
 }
 \description{
 Compute a graphical representation of functional indices. \strong{To plot

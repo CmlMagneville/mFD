@@ -295,11 +295,14 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   
   # set graphical parameters #####
   
-  # set range of axes:
+  # range of axes:
+  user_range <- "ok"
+  range_sp_coord  <- range(sp_faxes_coord)
+  
   if (is.na(range_faxes[1]) && is.na(range_faxes[2])) {
-    range_sp_faxes_coord <- range(sp_faxes_coord)
-    range_faxes <- range_sp_faxes_coord +
-      c(-1, 1) * (range_sp_faxes_coord[2] - range_sp_faxes_coord[1]) * 0.1
+    user_range <- NA
+    range_faxes <- range_sp_coord +
+      c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
   }
   
   # check that the range is ok if the user chose it and convex hull:

@@ -311,11 +311,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   axes_plot <- utils::combn(faxes, 2)
   plot_nb   <- ncol(axes_plot)
   
-  # set range of axes if c(NA, NA):
+  # range of axes:
+  user_range <- "ok"
+  range_sp_coord  <- range(sp_faxes_coord)
+  
   if (is.na(range_faxes[1]) && is.na(range_faxes[2])) {
-    range_sp_coord  <- range(sp_faxes_coord)
+    user_range <- NA
     range_faxes <- range_sp_coord +
-      c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.1
+      c(-1, 1) * (range_sp_coord[2] - range_sp_coord[1]) * 0.05
   }
 
   # check that the range is ok if the user chose it and convex hull:

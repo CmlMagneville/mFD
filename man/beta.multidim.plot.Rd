@@ -118,10 +118,11 @@ columns, missing values). If an error is detected, a detailed message is
 returned. Default: \code{check.input = TRUE}.}
 }
 \value{
-For the given pair of assemblages, returns a \code{patchwork} figure
-with overlap between convex hulls projected in 2-dimensional spaces. Values
-of functional beta-diversity indices are shown on top-right corner of the
-figure.
+If \code{name_file} is \code{NULL}, it returns a \code{patchwork}
+figure with overlap between convex hulls projected in 2-dimensional spaces
+for the given pair of assemblages. Values of functional beta-diversity
+indices are shown on top-right corner of the figure. If \code{name_file} is
+not \code{NULL}, the plot is saved locally.
 }
 \description{
 Illustrate overlap between convex hulls shaping species assemblages in a
