@@ -773,8 +773,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           shape_vertG = c(asb1 = 23, asb2 = 24),
                           size_vertG = c(asb1 = 3, asb2 = 3),
                           color_vertG = color_sp[c("asb1", "asb2")],
-                          fill_vertG = color_sp[c("asb1", "asb2")],
-                          color_meanD = color_sp[c("asb1", "asb2")])
+                          fill_vertG = color_sp[c("asb1", "asb2")])
 
       
       # add species names if needed:
@@ -899,17 +898,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                          y = range_faxes[2] - spread_faxes*0.56,
                          label = paste0("gravity center of", sep = " ", 
                                         asb1),
-                         colour = color_sp[["asb1"]], size = 3) +
-      
-      ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
-                          y = range_faxes[2] - spread_faxes*0.61,
-                          size = 5, shape = 21,
-                          color = color_sp[["asb1"]], fill = NA) + 
-      
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
-                         y = range_faxes[2] - spread_faxes*0.61,
-        label = paste0("mean distance to the gravity center of species from", 
-                       sep = " ", asb1), colour = color_sp[["asb1"]], size = 3) 
+                         colour = color_sp[["asb1"]], size = 3) 
     
     ### if 2nd assemblage:
     if (two_asb) {
@@ -939,19 +928,6 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                            y = range_faxes[2] - spread_faxes*0.73,
                            label = paste0("gravity center of", sep = " ", 
                                           asb2),
-                           colour = color_sp[["asb2"]], size = 3) +
-        
-        ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
-                            y = range_faxes[2] - spread_faxes*0.78,
-                            size = 5, 
-                            shape = 21,
-                            color = color_sp[["asb2"]], 
-                            fill = NA) + 
-        
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
-                           y = range_faxes[2] - spread_faxes*0.78,
-          label = paste0("mean distance to the gravity center of species from", 
-                         sep = " ", asb2),
                            colour = color_sp[["asb2"]], size = 3)
       
     }

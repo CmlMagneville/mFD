@@ -21,8 +21,7 @@ fdiv.plot(
   shape_vertG,
   size_vertG,
   color_vertG,
-  fill_vertG,
-  color_meanD
+  fill_vertG
 )
 }
 \arguments{
@@ -85,10 +84,6 @@ color of the center of gravity of vertices.}
 
 \item{fill_vertG}{a R color name or an hexadecimal code
 referring to the color to fill the center of gravity of vertices.}
-
-\item{color_meanD}{a R color name or an hexadecimal code referring to the
-color of the circle representing the mean distance of species to
-the center of gravity of the vertices.}
 }
 \value{
 a ggplot object plotting background of multidimensional graphs and
@@ -193,8 +188,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            shape_vertG       = list(basket_1 = 18),
            size_vertG        = list(basket_1 = 2),
            color_vertG       = list(basket_1 = "blue"),
-           fill_vertG        = list(basket_1 = "blue"),
-           color_meanD       = list(basket_1 = "red"))
+           fill_vertG        = list(basket_1 = "blue"))
  fdiv_plot
  
 

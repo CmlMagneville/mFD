@@ -878,10 +878,6 @@ fric.plot <- function(ggplot_bg,
 #' @param color_vertG a R color name or an hexadecimal code referring to the
 #'   color of the center of gravity of vertices.
 #' 
-#' @param color_meanD a R color name or an hexadecimal code referring to the
-#'   color of the circle representing the mean distance of species to
-#'   the center of gravity of the vertices.
-#' 
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
 #'  to fill species symbol (if \code{shape_sp} > 20). 
 #' 
@@ -1008,8 +1004,7 @@ fric.plot <- function(ggplot_bg,
 #'            shape_vertG       = list(basket_1 = 18),
 #'            size_vertG        = list(basket_1 = 2),
 #'            color_vertG       = list(basket_1 = "blue"),
-#'            fill_vertG        = list(basket_1 = "blue"),
-#'            color_meanD       = list(basket_1 = "red"))
+#'            fill_vertG        = list(basket_1 = "blue"))
 #'  fdiv_plot
 #'  
 #'
@@ -1028,8 +1023,7 @@ fdiv.plot <- function(ggplot_bg,
                       shape_sp, color_sp, fill_sp,
                       shape_vert, color_vert, fill_vert,
                       shape_vertG, size_vertG,
-                      color_vertG, fill_vertG,
-                      color_meanD) {
+                      color_vertG, fill_vertG) {
   
   # get the names of assemblages:
   asb_nm <- names(asb_sp_coord2D)
@@ -1077,12 +1071,7 @@ fdiv.plot <- function(ggplot_bg,
       ggplot2::geom_point(data = asb_vertG_xyr[[k]], 
                           ggplot2::aes(x = x , y = y),
                           colour = color_vertG[[k]], fill = fill_vertG[[k]],
-                          shape = shape_vertG[[k]], size = size_vertG[[k]]) +
-      ggforce::geom_circle(data = asb_vertG_xyr[[k]], ggplot2::aes(x0 = x, 
-                                                                   y0 = y, 
-                                                                    r = r),
-                           colour = color_meanD[[k]],
-                           show.legend = FALSE, inherit.aes = FALSE)
+                          shape = shape_vertG[[k]], size = size_vertG[[k]])
   }
   
   return(ggplot_fdiv)
