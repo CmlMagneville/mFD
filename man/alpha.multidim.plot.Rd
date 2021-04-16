@@ -7,7 +7,7 @@
 alpha.multidim.plot(
   output_alpha_fd_multidim,
   plot_asb_nm,
-  ind_nm = c("fide", "fdis", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
+  ind_nm = c("fide", "fric", "fdiv", "fdis", "feve", "fori", "fspe", "fnnd"),
   faxes = NULL,
   faxes_nm = NULL,
   range_faxes = c(NA, NA),
