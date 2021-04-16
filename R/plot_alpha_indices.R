@@ -205,10 +205,9 @@
 
 alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                 plot_asb_nm,
-                                ind_nm              = c("fide", "fdis", "fnnd", 
-                                                        "feve", 
-                                                        "fric", "fdiv", "fori", 
-                                                        "fspe"),
+                                ind_nm              = c("fide", "fric", "fdiv", 
+                                                        "fdis", "feve","fori", 
+                                                        "fspe", "fnnd"),
                                 faxes               = NULL,
                                 faxes_nm            = NULL,
                                 range_faxes         = c(NA, NA),
@@ -326,7 +325,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   # get coordinates of species:
   sp_faxes_coord <- fd_details$sp_faxes_coord
   
-  # create a list ot store outputs:
+  # create a list of store outputs:
   list_panels <-list()
   
   # get names of assemblages:
@@ -1247,7 +1246,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       # get name of file built with assemblage names and number of dimensions:
       
-      file_fspe <- paste0(nm_asb, "_", "fspe_", nb_dim, "D" , ".", device_file)
+      file_fspe <- paste0(nm_asb, "_", "FSpe_", nb_dim, "D" , ".", device_file)
       
       ggplot2::ggsave(filename = file_fspe ,
                       plot = patchwork_fspe,
@@ -1532,7 +1531,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     if (save_file == TRUE) {
       
       # get name of file built with assemblage names and number of dimensions:
-      file_fdis <- paste0(nm_asb, "_", "fdis_", nb_dim, "D" , ".", device_file)
+      file_fdis <- paste0(nm_asb, "_", "FDis_", nb_dim, "D" , ".", device_file)
       
       ggplot2::ggsave(filename = file_fdis,
                       plot = patchwork_fdis,
@@ -1656,19 +1655,19 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # retrieve values to plot:
     top_fide <- c("Functional Identity", asb1, "")
-    if (ncol(sp_faxes_coord) == 2) {
+    if (nb_faxes == 2) {
       values_fide_PC1 <- c(round(asb_fd_ind[asb1,"fide_PC1"], 3), "")
       values_fide_PC2 <- c(round(asb_fd_ind[asb1,"fide_PC2"], 3), "")
       values_fide_PC3 <- NULL
       values_fide_PC4 <- NULL
     }
-    if (ncol(sp_faxes_coord) == 3) {
+    if (nb_faxes == 3) {
       values_fide_PC1 <- c(round(asb_fd_ind[asb1,"fide_PC1"], 3), "")
       values_fide_PC2 <- c(round(asb_fd_ind[asb1,"fide_PC2"], 3), "")
       values_fide_PC3 <- c(round(asb_fd_ind[asb1,"fide_PC3"], 3), "")
       values_fide_PC4 <- NULL
     }
-    if (ncol(sp_faxes_coord) == 4) {
+    if (nb_faxes == 4) {
       values_fide_PC1 <- c(round(asb_fd_ind[asb1,"fide_PC1"], 3), "")
       values_fide_PC2 <- c(round(asb_fd_ind[asb1,"fide_PC2"], 3), "")
       values_fide_PC3 <- c(round(asb_fd_ind[asb1,"fide_PC3"], 3), "")
@@ -1885,7 +1884,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     if (save_file == TRUE) {
       
       # get name of file built with assemblage names and number of dimensions:
-      file_fide <- paste0(nm_asb, "_", "fide_", nb_dim, "D" , ".", device_file)
+      file_fide <- paste0(nm_asb, "_", "FIde_", nb_dim, "D" , ".", device_file)
       
       ggplot2::ggsave(filename = file_fide,
                       plot = patchwork_fide,
@@ -2168,7 +2167,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     if (save_file == TRUE) {
       
       # get name of file built with assemblage names and number of dimensions:
-      file_feve <- paste0(nm_asb, "_", "feve_", nb_dim, "D" , ".", device_file)
+      file_feve <- paste0(nm_asb, "_", "FEve_", nb_dim, "D" , ".", device_file)
       
       ggplot2::ggsave(filename = file_feve,
                       plot = patchwork_feve,
@@ -2465,7 +2464,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     if (save_file == TRUE) {
       
       # get name of file built with assemblage names and number of dimensions:
-      file_fori <- paste0(nm_asb, "_", "fori_", nb_dim, "D" , ".", device_file)
+      file_fori <- paste0(nm_asb, "_", "FOri_", nb_dim, "D" , ".", device_file)
       
       ggplot2::ggsave(filename = file_fori,
                       plot = patchwork_fori,
@@ -2754,7 +2753,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     if (save_file == TRUE) {
       
       # get name of file built with assemblage names and number of dimensions:
-      file_fnnd <- paste0(nm_asb, "_", "fnnd_", nb_dim, "D" , ".", device_file)
+      file_fnnd <- paste0(nm_asb, "_", "FNND_", nb_dim, "D" , ".", device_file)
       
       ggplot2::ggsave(filename = file_fnnd,
                       plot = patchwork_fnnd,
