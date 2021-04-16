@@ -1656,43 +1656,61 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     # retrieve values to plot:
     top_fide <- c("Functional Identity", asb1, "")
     if (nb_faxes == 2) {
-      values_fide_PC1 <- c(round(asb_fd_ind[asb1,"fide_PC1"], 3), "")
-      values_fide_PC2 <- c(round(asb_fd_ind[asb1,"fide_PC2"], 3), "")
+      values_fide_PC1 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), "")
+      values_fide_PC2 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3), "")
       values_fide_PC3 <- NULL
       values_fide_PC4 <- NULL
     }
     if (nb_faxes == 3) {
-      values_fide_PC1 <- c(round(asb_fd_ind[asb1,"fide_PC1"], 3), "")
-      values_fide_PC2 <- c(round(asb_fd_ind[asb1,"fide_PC2"], 3), "")
-      values_fide_PC3 <- c(round(asb_fd_ind[asb1,"fide_PC3"], 3), "")
+      values_fide_PC1 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), "")
+      values_fide_PC2 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3), "")
+      values_fide_PC3 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[3])], 3), "")
       values_fide_PC4 <- NULL
     }
     if (nb_faxes == 4) {
-      values_fide_PC1 <- c(round(asb_fd_ind[asb1,"fide_PC1"], 3), "")
-      values_fide_PC2 <- c(round(asb_fd_ind[asb1,"fide_PC2"], 3), "")
-      values_fide_PC3 <- c(round(asb_fd_ind[asb1,"fide_PC3"], 3), "")
-      values_fide_PC4 <- c(round(asb_fd_ind[asb1,"fide_PC4"], 3), "")
+      values_fide_PC1 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), "")
+      values_fide_PC2 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3), "")
+      values_fide_PC3 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[3])], 3), "")
+      values_fide_PC4 <- c(round(asb_fd_ind[asb1,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[4])], 3), "")
     }
     
     if (two_asb) {
       top_fide[3] <- asb2
-      if (ncol(sp_faxes_coord) == 2) {
-        values_fide_PC1[2] <- round(asb_fd_ind[asb2,"fide_PC1"], 3)
-        values_fide_PC2[2] <- round(asb_fd_ind[asb2,"fide_PC2"], 3)
+      if (nb_faxes == 2) {
+        values_fide_PC1[2] <- round(asb_fd_ind[asb2,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3)
+        values_fide_PC2[2] <- round(asb_fd_ind[asb2,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3)
         values_fide_PC3[2] <- NULL
         values_fide_PC4[2] <- NULL
       }
-      if (ncol(sp_faxes_coord) == 3) {
-        values_fide_PC1[2] <- round(asb_fd_ind[asb2,"fide_PC1"], 3)
-        values_fide_PC2[2] <- round(asb_fd_ind[asb2,"fide_PC2"], 3)
-        values_fide_PC3[2] <- round(asb_fd_ind[asb2,"fide_PC3"], 3)
+      if (nb_faxes == 3) {
+        values_fide_PC1[2] <- round(asb_fd_ind[asb2,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3)
+        values_fide_PC2[2] <- round(asb_fd_ind[asb2,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3)
+        values_fide_PC3[2] <- round(asb_fd_ind[asb2,
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[3])], 3)
         values_fide_PC4[2] <- NULL
       }
-      if (ncol(sp_faxes_coord) == 4) {
-        values_fide_PC1[2] <- round(asb_fd_ind[asb2,"fide_PC1"], 3)
-        values_fide_PC2[2] <- round(asb_fd_ind[asb2,"fide_PC2"], 3)
-        values_fide_PC3[2] <- round(asb_fd_ind[asb2,"fide_PC3"], 3)
-        values_fide_PC4[2] <- round(asb_fd_ind[asb2,"fide_PC4"], 3)
+      if (nb_faxes == 4) {
+        values_fide_PC1[2] <- round(asb_fd_ind[asb2,
+               paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3)
+        values_fide_PC2[2] <- round(asb_fd_ind[asb2,
+               paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3)
+        values_fide_PC3[2] <- round(asb_fd_ind[asb2,
+               paste0("fide", sep = "_", colnames(sp_faxes_coord)[3])], 3)
+        values_fide_PC4[2] <- round(asb_fd_ind[asb2,
+               paste0("fide", sep = "_", colnames(sp_faxes_coord)[4])], 3)
       }
 
     }
