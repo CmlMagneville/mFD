@@ -1,5 +1,5 @@
 Package: mFD
-Title: Computing Functional Spaces and illustrating the multiple facets of Functional Diversity
+Title: Compute and illustrate the multiple facets of Functional Diversity
 Version: 1.0.0
 Authors@R: c(
     person(given   = "Camille",

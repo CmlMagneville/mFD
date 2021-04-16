@@ -4,7 +4,7 @@
 \name{mFD-package}
 \alias{mFD}
 \alias{mFD-package}
-\title{mFD: Computing Functional Spaces and illustrating the multiple facets of Functional Diversity}
+\title{mFD: Compute and illustrate the multiple facets of Functional Diversity}
 \description{
 A computation of functional traits-based distances between pairs
     of species for species gathered in assemblages allowing to build several
