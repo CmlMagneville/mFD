@@ -861,9 +861,6 @@ fric.plot <- function(ggplot_bg,
 #' for each assemblage the coordinates of center of gravity of vertices for a 
 #' given pair of axes
 #' 
-#' @param asb_meanDtoG a list (with names as in asb_sp_coord2D) containing 
-#' for each assemblage the mean distance to the center of gravity of vertices
-#' 
 #' @param plot_sp a logical value indicating whether species of each assemblage 
 #'  should be plotted or not. Default: `plot_sp = TRUE`.
 #' 
@@ -983,8 +980,6 @@ fric.plot <- function(ggplot_bg,
 #'                       alpha_fd_indices_fruits$details$asb_G_coord["basket_1"]
 #'  fruits_asb_vertG_coord_b1_2D <- 
 #'              fruits_asb_vertG_coord_b1[[1]][c("PC1", "PC2")]
-#'  fruits_asb_meanDtoG_b1 <- 
-#'                   alpha_fd_indices_fruits$details$asb_mean_dist_G["basket_1"]
 #'  
 #'  # Retrieve FDiv plot:
 #'  fdiv_plot <- fdiv.plot(
@@ -993,7 +988,6 @@ fric.plot <- function(ggplot_bg,
 #'            asb_sp_relatw     = list(basket_1 = fruits_asb_sp_relatw_b1),
 #'            asb_vertices_nD   = fruits_asb_vertices_nD,
 #'            asb_vertG_coord2D = list(basket_1 = fruits_asb_vertG_coord_b1_2D),
-#'            asb_meanDtoG      = fruits_asb_meanDtoG,
 #'            plot_sp           = TRUE,
 #'            shape_sp          = 16,
 #'            color_sp          = "red",
