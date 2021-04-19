@@ -336,12 +336,6 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
            "check congruence between these inputs.")
     }
     
-    if (any(!plot_asb_nm %in% row.names(asb_sp_occ))) {
-      stop("Assemblages names in 'plot_asb_nm' can not be found in ",
-           "'output_beta_fd_multidim'. Please check multidimensional ",
-           "functional beta-diversity has been computed on these assemblages.")
-    }
-    
   } # end of check input
   
   
