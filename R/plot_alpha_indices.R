@@ -260,7 +260,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                    c("functional_diversity_indices","details"))) {
     
     stop("Input 'output_alpha_fd_multidim' should be the output of the
-           'alpha/multidim' function run with 'details = TRUE'.")
+           'alpha.fd.multidim' function run with 'details = TRUE'.")
     
   }
   
@@ -278,8 +278,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     if (any(! ind_nm %in%
         c("fide", "fdis", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"))) {
       
-      stop("Names of functional diversity indices in 'ind_nm' are not well written.",
-           "Please re-write them. Be careful, they should all be written in ",
+  stop("Names of functional diversity indices in 'ind_nm' are not well written.",
+           " Please re-write them. Be careful, they should all be written in ",
            "lowercase letters.")
       
     }
@@ -321,6 +321,30 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       stop("Name(s) of assemblage(s) to plot is(are) provided in 'plot_asb_nm' 
            do not match those in 'output_alpha_fd_multidim$asb_fd_ind. 
            Please re-write.")
+    }
+    
+    if (! is.null(faxes)) {
+      
+      if (length(faxes) > 4) {
+        stop("Number of functional axes should be less than 4. Please change
+             the number of functional axes to plot.")
+      }
+      
+      if (any(! faxes %in% colnames(sp_faxes_coord))) {
+        stop("Names of axes to plot can not be found in 'sp_faxes_coord' ",
+             "columns names. Please check names of axes you want to plot.")
+      }
+    }
+    
+    if ((! is.null(faxes_nm)) && (length(faxes_nm) != length(faxes))) {
+      stop("Length of 'faxes_nm' should be equal to length of 'faxes'. Please ",
+           "check congruence between these inputs.")
+    }
+    
+    if (any(!plot_asb_nm %in% row.names(asb_sp_occ))) {
+      stop("Assemblages names in 'plot_asb_nm' can not be found in ",
+           "'output_beta_fd_multidim'. Please check multidimensional ",
+           "functional beta-diversity has been computed on these assemblages.")
     }
     
   } # end of check input
