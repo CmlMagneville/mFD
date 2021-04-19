@@ -90,6 +90,9 @@
 #'
 #' @param plot_sp_nm a vector containing species names that are to be plotted.
 #'  Default: `plot_nm_sp = NULL` (no name plotted).
+#'  
+#' @param plot_vert a logical value indicating whether vertices should be 
+#' plotted differently than other species. Default: plot_vert = TRUE.
 #'
 #' @param fontface_sp_nm a character string for font of species labels (e.g.
 #'  "italic", "bold"). Default: `fontface_sp_nm = 'plain'`.
@@ -194,6 +197,7 @@
 #' size_sp_nm              = 3, 
 #' color_sp_nm             = "black",
 #' plot_sp_nm              = NULL,
+#' plot_vert               = TRUE, 
 #' fontface_sp_nm          = "plain",
 #' save_file               = FALSE,
 #' check_input             = TRUE) 
@@ -243,6 +247,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                 size_sp_nm          = 3, 
                                 color_sp_nm         = "black",
                                 plot_sp_nm          = NULL,
+                                plot_vert           = FALSE,
                                 fontface_sp_nm      = "plain",
                                 save_file           = FALSE,
                                 check_input         = TRUE) {
@@ -344,9 +349,9 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   # set type, resolution and dimensions of file if to be saved:
   device_file <- "png"
   res_file <- 300
-  height_file <- 8 * c(2, 2, 3)
+  height_file <- 4 * c(1, 2, 3)
   names(height_file) <- c("1", "3", "6")
-  width_file  <- 10 * c(2, 2, 3)
+  width_file  <- 4 * c(2, 2, 3)
   names(width_file) <- c("1", "3", "6")
   
   # get number of dimensions in input:
@@ -454,17 +459,18 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_ch = color_ch[["pool"]],
-                          fill_ch = fill_ch[["pool"]],
-                          alpha_ch = alpha_ch[["pool"]],
-                          shape_pool = shape_sp[["pool"]],
-                          size_pool = size_sp[["pool"]],
-                          color_pool = color_sp[["pool"]],
-                          fill_pool = fill_sp[["pool"]],
-                          shape_vert = shape_sp[["pool"]],
-                          size_vert = size_sp[["pool"]],
-                          color_vert = color_vert[["pool"]],
-                          fill_vert = fill_vert[["pool"]])
+                          plot_vert = plot_vert,
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
+                          shape_pool = shape_sp["pool"],
+                          size_pool = size_sp["pool"],
+                          shape_vert = shape_sp["pool"],
+                          size_vert = size_sp["pool"],
+                          color_vert = color_vert["pool"],
+                          fill_vert = fill_vert["pool"])
       
       # plot 2D convex hulls and points for the 2 assemblages:
       plot_k <- fric.plot(ggplot_bg = plot_k,
@@ -716,6 +722,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
       colnames(sp_coord_xy)<-c("x", "y")
       
+      
+      
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
       asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
@@ -725,15 +733,13 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
       asb_vertG_coord2D_k <- list()
       asb_vertG_coord2D_k[["asb1"]] <- fd_details$asb_G_coord[[asb1]][xy_k]
-      asb_meanDtoG_k <- list()
-      asb_meanDtoG_k[["asb1"]] <- fd_details$asb_mean_dist_G[[asb1]]
+     
       
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
         vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
         asb_vertG_coord2D_k[["asb2"]] <- fd_details$asb_G_coord[[asb2]][xy_k]
-        asb_meanDtoG_k[["asb2"]] <- fd_details$asb_mean_dist_G[[asb2]]
       }
       
       
@@ -745,9 +751,12 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
-                          color_pool = color_ch["pool"],
+                          plot_vert = plot_vert,
+                          color_pool = color_sp["pool"],
                           fill_pool = fill_ch["pool"],
                           alpha_ch = alpha_ch["pool"],
+                          color_ch = color_ch["pool"],
+                          fill_ch = fill_ch["pool"],
                           shape_pool = shape_sp["pool"],
                           size_pool = size_sp["pool"],
                           shape_vert = shape_sp["pool"],
@@ -761,7 +770,6 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           asb_sp_relatw = asb_sp_relw_k,
                           asb_vertices_nD = vertices_nD_k,
                           asb_vertG_coord2D = asb_vertG_coord2D_k,
-                          asb_meanDtoG = asb_meanDtoG_k,
                           plot_sp = TRUE,
                           shape_sp = shape_sp[c("asb1", "asb2")],
                           color_sp = color_sp[c("asb1", "asb2")],
@@ -1012,6 +1020,13 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
       colnames(sp_coord_xy) <- c("x", "y")
       
+      # warn the user: if the asb contains only one species, then can not be ...
+      # ... computed:
+      if (nrow(sp_coord_xy) == 1) {
+        stop("Error: Plotted assemblage(s) contain(s) only one species,
+             FIde can not be plotted.")
+      }
+      
       # get a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
       asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
@@ -1032,13 +1047,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
+                          plot_vert = plot_vert,
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
                           color_ch = color_ch["pool"],
                           fill_ch = fill_ch["pool"],
-                          alpha_ch = alpha_ch["pool"],
                           shape_pool = shape_sp["pool"],
                           size_pool = size_sp["pool"],
-                          color_pool = color_sp["pool"],
-                          fill_pool = fill_sp["pool"],
                           shape_vert = shape_sp["pool"],
                           size_vert = size_sp["pool"],
                           color_vert = color_vert["pool"],
@@ -1289,6 +1305,13 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
       colnames(sp_coord_xy) <- c("x", "y")
       
+      # warn the user: if the asb contains only one species, then can not be ...
+      # ... computed:
+      if (nrow(sp_coord_xy) == 1) {
+        stop("Error: Plotted assemblage(s) contain(s) only one species,
+             FDis can not be plotted.")
+      }
+      
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
       asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
@@ -1314,13 +1337,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
+                          plot_vert = plot_vert,
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
                           color_ch = color_ch["pool"],
                           fill_ch = fill_ch["pool"],
-                          alpha_ch = alpha_ch["pool"],
                           shape_pool = shape_sp["pool"],
                           size_pool = size_sp["pool"],
-                          color_pool = color_sp["pool"],
-                          fill_pool = fill_sp["pool"],
                           shape_vert = shape_sp["pool"],
                           size_vert = size_sp["pool"],
                           color_vert = color_vert["pool"],
@@ -1572,6 +1596,13 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
       colnames(sp_coord_xy) <- c("x", "y")
       
+      # warn the user: if the asb contains only one species, then can not be ...
+      # ... computed:
+      if (nrow(sp_coord_xy) == 1) {
+        stop("Error: Plotted assemblage(s) contain(s) only one species,
+             FIde can not be plotted.")
+      }
+      
       # create a list with dataframes for plot:
       asb_sp_coord2D_k <- list()
       asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
@@ -1597,13 +1628,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
+                          plot_vert = plot_vert,
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
                           color_ch = color_ch["pool"],
                           fill_ch = fill_ch["pool"],
-                          alpha_ch = alpha_ch["pool"],
                           shape_pool = shape_sp["pool"],
                           size_pool = size_sp["pool"],
-                          color_pool = color_sp["pool"],
-                          fill_pool = fill_sp["pool"],
                           shape_vert = shape_sp["pool"],
                           size_vert = size_sp["pool"],
                           color_vert = color_vert["pool"],
@@ -1968,13 +2000,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
+                          plot_vert = plot_vert,
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
                           color_ch = color_ch["pool"],
                           fill_ch = fill_ch["pool"],
-                          alpha_ch = alpha_ch["pool"],
                           shape_pool = shape_sp["pool"],
                           size_pool = size_sp["pool"],
-                          color_pool = color_sp["pool"],
-                          fill_pool = fill_sp["pool"],
                           shape_vert = shape_sp["pool"],
                           size_vert = size_sp["pool"],
                           color_vert = color_vert["pool"],
@@ -2251,13 +2284,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
+                          plot_vert = plot_vert,
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
                           color_ch = color_ch["pool"],
                           fill_ch = fill_ch["pool"],
-                          alpha_ch = alpha_ch["pool"],
                           shape_pool = shape_sp["pool"],
                           size_pool = size_sp["pool"],
-                          color_pool = color_sp["pool"],
-                          fill_pool = fill_sp["pool"],
                           shape_vert = shape_sp["pool"],
                           size_vert = size_sp["pool"],
                           color_vert = color_vert["pool"],
@@ -2547,13 +2581,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           sp_coord2D = sp_coord_xy,
                           vertices_nD = vert_pool,
                           plot_pool = TRUE,
+                          plot_vert = plot_vert,
+                          color_pool = color_sp["pool"],
+                          fill_pool = fill_ch["pool"],
+                          alpha_ch = alpha_ch["pool"],
                           color_ch = color_ch["pool"],
                           fill_ch = fill_ch["pool"],
-                          alpha_ch = alpha_ch["pool"],
                           shape_pool = shape_sp["pool"],
                           size_pool = size_sp["pool"],
-                          color_pool = color_sp["pool"],
-                          fill_pool = fill_sp["pool"],
                           shape_vert = shape_sp["pool"],
                           size_vert = size_sp["pool"],
                           color_vert = color_vert["pool"],
