@@ -151,7 +151,6 @@ vertices, points and vertices of 1:N assemblages on the background plot</p>
   <span class='va'>asb_sp_relatw</span>,
   <span class='va'>asb_vertices_nD</span>,
   <span class='va'>asb_vertG_coord2D</span>,
-  <span class='va'>asb_meanDtoG</span>,
   plot_sp <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>shape_sp</span>,
   <span class='va'>color_sp</span>,
@@ -194,11 +193,6 @@ with names of species being vertices in n dimensions.</p></td>
       <td><p>a list (with names as in asb_sp_coord2D) containing
 for each assemblage the coordinates of center of gravity of vertices for a
 given pair of axes</p></td>
-    </tr>
-    <tr>
-      <th>asb_meanDtoG</th>
-      <td><p>a list (with names as in asb_sp_coord2D) containing
-for each assemblage the mean distance to the center of gravity of vertices</p></td>
     </tr>
     <tr>
       <th>plot_sp</th>
@@ -345,8 +339,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
                       <span class='va'>alpha_fd_indices_fruits</span><span class='op'>$</span><span class='va'>details</span><span class='op'>$</span><span class='va'>asb_G_coord</span><span class='op'>[</span><span class='st'>"basket_1"</span><span class='op'>]</span>
  <span class='va'>fruits_asb_vertG_coord_b1_2D</span> <span class='op'>&lt;-</span> 
              <span class='va'>fruits_asb_vertG_coord_b1</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>
- <span class='va'>fruits_asb_meanDtoG_b1</span> <span class='op'>&lt;-</span> 
-                  <span class='va'>alpha_fd_indices_fruits</span><span class='op'>$</span><span class='va'>details</span><span class='op'>$</span><span class='va'>asb_mean_dist_G</span><span class='op'>[</span><span class='st'>"basket_1"</span><span class='op'>]</span>
  
  <span class='co'># Retrieve FDiv plot:</span>
  <span class='va'>fdiv_plot</span> <span class='op'>&lt;-</span> <span class='fu'>fdiv.plot</span><span class='op'>(</span>
@@ -355,7 +347,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
            asb_sp_relatw     <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='va'>fruits_asb_sp_relatw_b1</span><span class='op'>)</span>,
            asb_vertices_nD   <span class='op'>=</span> <span class='va'>fruits_asb_vertices_nD</span>,
            asb_vertG_coord2D <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='va'>fruits_asb_vertG_coord_b1_2D</span><span class='op'>)</span>,
-           asb_meanDtoG      <span class='op'>=</span> <span class='va'>fruits_asb_meanDtoG</span>,
            plot_sp           <span class='op'>=</span> <span class='cn'>TRUE</span>,
            shape_sp          <span class='op'>=</span> <span class='fl'>16</span>,
            color_sp          <span class='op'>=</span> <span class='st'>"red"</span>,
