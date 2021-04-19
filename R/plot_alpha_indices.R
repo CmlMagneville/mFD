@@ -292,8 +292,9 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       ind_nm2 <- ind_nm[! ind_nm %in% "fide"]
 
       if (any(! ind_nm2 %in% colnames(asb_fd_ind)) == TRUE) {
-        stop("Error: Functional diversity indices to plot must be contained in
-           'fd_ind_values' columns")
+        stop("Error: Functional diversity indices to plot must have been 
+             computed with alpha.fd.multidim() function and thus be in 
+             output_alpha_fd_multidim object.")
       }
       
     }
