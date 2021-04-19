@@ -993,7 +993,7 @@ plots_alpha <- mFD::alpha.multidim.plot(
       color_sp                 = c(pool = "grey50", 
                               asb1 = "#1F968BFF",
                               asb2 = "#DCE319FF"),
-      color_vert               = c(pool = "grey50", 
+      color_vert              = c(pool = "grey50", 
                               asb1 = "#1F968BFF",
                               asb2 = "#DCE319FF"),
       fill_sp                 = c(pool =  NA, 

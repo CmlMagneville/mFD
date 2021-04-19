@@ -67,9 +67,6 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #' @param plot_pool a logical value indicating whether species of each 
 #' assemblage should be plotted or not. Default: plot_pool = TRUE.
 #' 
-#' @param plot_vert a logical value indicating whether vertices should be 
-#' plotted differently than other species. Default: plot_vert = FALSE.
-#' 
 #' @param color_ch a R color name or an hexadecimal code referring to the border
 #'  of the convex hull filled by the pool of species. Default: 
 #'  `color_ch = "black"`.
@@ -184,8 +181,7 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #'            shape_vert    = 3, 
 #'            size_vert     = 1, 
 #'            color_vert    = "black", 
-#'            fill_vert     = NA,
-#'            plot_vert     = FALSE) 
+#'            fill_vert     = NA) 
 #'  plot_pool_fruits
 #'                                
 #' }
@@ -197,7 +193,7 @@ pool.plot <-function(ggplot_bg,
                     shape_pool = 3, size_pool = 0.8, color_pool = "grey95", 
                     fill_pool = NA, color_ch = NA, fill_ch = "white", 
                     alpha_ch = 1, shape_vert = 3, size_vert = 1, 
-                    color_vert = "black", fill_vert = NA, plot_vert = FALSE) {
+                    color_vert = "black", fill_vert = NA) {
   
   
   # prepare data for plotting ####
@@ -248,7 +244,7 @@ pool.plot <-function(ggplot_bg,
                           colour = color_pool, fill = fill_pool)
     
     # plotting species being vertices
-    if (plot_vert == TRUE) {
+    if (! is.null(vertices_nD)) {
       ggplot_pool <- ggplot_pool +
         ggplot2::geom_point(data = sp_xyv[sp_xyv$vert == "vert", ],
                             ggplot2::aes(x = x, y = y),
@@ -370,7 +366,7 @@ sp.plot <- function(ggplot_bg,
     }
 
     # if needed, adding vertex status and size if fixed
-    if (! is.null (asb_vertices_nD)) {
+    if (! is.null(asb_vertices_nD)) {
       data_z[asb_vertices_nD[[z]], "vert"] <- "vert"
       
       if (is.null (asb_sp_relatw)) {
