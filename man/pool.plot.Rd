@@ -19,7 +19,8 @@ pool.plot(
   shape_vert = 3,
   size_vert = 1,
   color_vert = "black",
-  fill_vert = NA
+  fill_vert = NA,
+  plot_vert = FALSE
 )
 }
 \arguments{
@@ -78,6 +79,9 @@ must also be set to NA). Default: \code{color_vert =  NA}.}
 for vertices (if \code{shape_vert} >20). If \code{fill = NA} and \code{color = NA},
 vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
 \code{color_vert = NULL} is enough). Default is \code{NA}.}
+
+\item{plot_vert}{a logical value indicating whether vertices should be
+plotted differently than other species. Default: plot_vert = FALSE.}
 }
 \value{
 a ggplot object plotting background of multidimensional graphs and
@@ -149,7 +153,8 @@ sp_faxes_coord_fruits_2D <-
            shape_vert    = 3, 
            size_vert     = 1, 
            color_vert    = "black", 
-           fill_vert     = NA) 
+           fill_vert     = NA,
+           plot_vert     = FALSE) 
  plot_pool_fruits
                                
 }

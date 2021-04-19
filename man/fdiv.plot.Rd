@@ -10,7 +10,6 @@ fdiv.plot(
   asb_sp_relatw,
   asb_vertices_nD,
   asb_vertG_coord2D,
-  asb_meanDtoG,
   plot_sp = TRUE,
   shape_sp,
   color_sp,
@@ -41,9 +40,6 @@ with names of species being vertices in n dimensions.}
 \item{asb_vertG_coord2D}{a list (with names as in asb_sp_coord2D) containing
 for each assemblage the coordinates of center of gravity of vertices for a
 given pair of axes}
-
-\item{asb_meanDtoG}{a list (with names as in asb_sp_coord2D) containing
-for each assemblage the mean distance to the center of gravity of vertices}
 
 \item{plot_sp}{a logical value indicating whether species of each assemblage
 should be plotted or not. Default: \code{plot_sp = TRUE}.}
@@ -84,6 +80,9 @@ color of the center of gravity of vertices.}
 
 \item{fill_vertG}{a R color name or an hexadecimal code
 referring to the color to fill the center of gravity of vertices.}
+
+\item{asb_meanDtoG}{a list (with names as in asb_sp_coord2D) containing
+for each assemblage the mean distance to the center of gravity of vertices}
 }
 \value{
 a ggplot object plotting background of multidimensional graphs and

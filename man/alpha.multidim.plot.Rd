@@ -28,6 +28,7 @@ alpha.multidim.plot(
   size_sp_nm = 3,
   color_sp_nm = "black",
   plot_sp_nm = NULL,
+  plot_vert = FALSE,
   fontface_sp_nm = "plain",
   save_file = FALSE,
   check_input = TRUE
@@ -120,6 +121,9 @@ color of names of species if plotted.}
 
 \item{plot_sp_nm}{a vector containing species names that are to be plotted.
 Default: \code{plot_nm_sp = NULL} (no name plotted).}
+
+\item{plot_vert}{a logical value indicating whether vertices should be
+plotted differently than other species. Default: plot_vert = TRUE.}
 
 \item{fontface_sp_nm}{a character string for font of species labels (e.g.
 "italic", "bold"). Default: \code{fontface_sp_nm = 'plain'}.}
@@ -226,6 +230,7 @@ color_centroid_fspe     = "black",
 size_sp_nm              = 3, 
 color_sp_nm             = "black",
 plot_sp_nm              = NULL,
+plot_vert               = TRUE, 
 fontface_sp_nm          = "plain",
 save_file               = FALSE,
 check_input             = TRUE) 
