@@ -526,7 +526,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # customize position of texts in the plot
     spread_faxes <- (range_faxes[2] - range_faxes[1])
-    hh <- c(1, 2.5, 4, 5.5)
+    hh <- c(1.5, 2.5, 4, 5.5)
     vv <- 0.3
     
     # plot window:
@@ -652,7 +652,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.48,
                          y = range_faxes[2] - spread_faxes*0.77,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
@@ -821,7 +821,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # customize position of texts in the plot:
     spread_faxes <- (range_faxes[2] - range_faxes[1])
-    hh <- c(1, 2.5, 4, 5.5)
+    hh <- c(1.5, 2.5, 4, 5.5)
     vv <- 0.3
     
     # plot window:
@@ -888,7 +888,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                          shape = shape_sp[["asb1"]],
                          size = 3) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.51,
                          label = paste0("relative weight of", sep = " ", 
                                         asb1),
@@ -901,7 +901,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           shape = shape_centroid_fdiv[["asb1"]],
                           size = 3) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.56,
                          label = paste0("gravity center of", sep = " ", 
                                         asb1),
@@ -918,7 +918,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                            shape = shape_sp[["asb2"]],
                            size = 3) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.68,
                            label = paste0("relative weight of", sep = " ", 
                                           asb2),
@@ -931,7 +931,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             shape = shape_centroid_fdiv[["asb2"]],
                             size = 3) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.73,
                            label = paste0("gravity center of", sep = " ", 
                                           asb2),
@@ -950,7 +950,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.40,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
                          y = range_faxes[2] - spread_faxes*0.85,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
@@ -1115,7 +1115,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # customize position of texts in the plot:
     spread_faxes <- (range_faxes[2] - range_faxes[1])
-    hh <- c(1, 2.5, 4, 5.5)
+    hh <- c(1.5, 2.5, 4, 5.5)
     vv <- 0.3
     
     # plot window:
@@ -1182,7 +1182,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           shape = shape_sp[["asb1"]],
                           size = 3) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.51,
                          label = paste0("relative weight of", sep = " ", 
                                         asb1),
@@ -1199,7 +1199,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             shape = shape_sp[["asb2"]],
                             size = 3) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.58,
                            label = paste0("relative weight of", sep = " ", 
                                           asb2),
@@ -1217,7 +1217,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_centroid_fspe, 
                           fill = color_centroid_fspe) +
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.36,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
                          y = range_faxes[2] - spread_faxes*0.65,
                          label = "gravity center of functional space",
                          colour = color_centroid_fspe, size = 3)
@@ -1235,7 +1235,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.36,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
                          y = range_faxes[2] - spread_faxes*0.72,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
@@ -1403,7 +1403,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # customize position of texts in the plot:
     spread_faxes <- (range_faxes[2] - range_faxes[1])
-    hh <- c(1, 2.5, 4, 5.5)
+    hh <- c(1.5, 2.5, 4, 5.5)
     vv <- 0.3
     x <- NULL
     y <- NULL
@@ -1469,7 +1469,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           shape = shape_sp[["asb1"]],
                           size = 3) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.51,
                          label = paste0("relative weight of", sep = " ", 
                                         asb1),
@@ -1480,7 +1480,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                         size = 2, shape = shape_centroid_fdis[["asb1"]],
                         color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.58,
                          label = paste0("gravity center of", 
                                         sep = " ", asb1), 
@@ -1497,7 +1497,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             shape = shape_sp[["asb2"]],
                             size = 3) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.665,
                            label = paste0("relative weight of", sep = " ", 
                                           asb2),
@@ -1510,7 +1510,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             color = color_sp[["asb2"]], 
                             fill = fill_sp[["asb2"]]) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.735,
                            label = paste0("gravity center of", 
                                           sep = " ", asb2),
@@ -1529,7 +1529,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.38,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
                          y = range_faxes[2] - spread_faxes*0.80,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
@@ -1749,7 +1749,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # customize position of texts in the plot:
     spread_faxes <- (range_faxes[2] - range_faxes[1])
-    hh <- c(1, 2.5, 4, 5.5)
+    hh <- c(1.5, 2.5, 4, 5.5)
     vv <- 0.3
     x <- NULL
     y <- NULL
@@ -1848,7 +1848,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           shape = shape_sp[["asb1"]],
                           size = 3) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.68,
                          label = paste0("relative weight of", sep = " ", 
                                         asb1),
@@ -1859,7 +1859,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           size = 2, shape = shape_centroid_fdis[["asb1"]],
                           color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.75,
                          label = paste0("gravity center of", 
                                         sep = " ", asb1), 
@@ -1876,7 +1876,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             shape = shape_sp[["asb2"]],
                             size = 3) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.83,
                            label = paste0("relative weight of", sep = " ", 
                                           asb2),
@@ -1889,7 +1889,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             color = color_sp[["asb2"]], 
                             fill = fill_sp[["asb2"]]) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.90,
                            label = paste0("gravity center of", 
                                           sep = " ", asb2),
@@ -1908,7 +1908,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.38,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
                          y = range_faxes[2] - spread_faxes*0.97,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
@@ -2060,7 +2060,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # customize position of texts in the plot:
     spread_faxes <- (range_faxes[2] - range_faxes[1])
-    hh <- c(1, 2.5, 4, 5.5)
+    hh <- c(1.5, 2.5, 4, 5.5)
     vv <- 0.3
     x <- NULL
     y <- NULL
@@ -2126,7 +2126,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           shape = shape_sp[["asb1"]],
                           size = 3) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.51,
                          label = paste0("relative weight of", sep = " ", 
                                         asb1),
@@ -2140,7 +2140,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             color = color_sp[["asb1"]],
                             linetype = 1) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.58,
                          label = paste0("mst of", 
                                         sep = " ", asb1), 
@@ -2157,7 +2157,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             shape = shape_sp[["asb2"]],
                             size = 3) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.665,
                            label = paste0("relative weight of", sep = " ", 
                                           asb2),
@@ -2171,7 +2171,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             color = color_sp[["asb2"]], 
                             linetype = 1) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.735,
                            label = paste0("mst of", 
                                           sep = " ", asb2),
@@ -2190,7 +2190,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.38,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
                          y = range_faxes[2] - spread_faxes*0.80,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
@@ -2350,7 +2350,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # customize position of texts in the plot:
     spread_faxes <- (range_faxes[2] - range_faxes[1])
-    hh <- c(1, 2.5, 4, 5.5)
+    hh <- c(1.5, 2.5, 4, 5.5)
     vv <- 0.3
     x <- NULL
     y <- NULL
@@ -2416,7 +2416,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           shape = shape_sp[["asb1"]],
                           size = 3) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.51,
                          label = paste0("relative weight of", sep = " ", 
                                         asb1),
@@ -2434,10 +2434,10 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             color = color_sp[["asb1"]],
                             linetype = 1) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.58,
                          y = range_faxes[2] - spread_faxes*0.58,
-                         label = paste0("nearest neighbour for each species of", 
-                                        sep = " ", asb1, " in the global pool"), 
+                      label = paste0("nearest neighbour in the global pool for", 
+                                        sep = " ", asb1), 
                          colour = color_sp[["asb1"]], size = 3) 
     
     ### if 2nd assemblage:
@@ -2451,7 +2451,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             shape = shape_sp[["asb2"]],
                             size = 3) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.665,
                            label = paste0("relative weight of", sep = " ", 
                                           asb2),
@@ -2469,10 +2469,10 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                               color = color_sp[["asb2"]], 
                               linetype = 1) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.58,
                            y = range_faxes[2] - spread_faxes*0.735,
-                        label = paste0("nearest neighbour for each species of", 
-                                        sep = " ", asb2, " in the global pool"),
+                      label = paste0("nearest neighbour in the global pool for", 
+                                        sep = " ", asb2),
                            colour = color_sp[["asb2"]], size = 3)
       
     }
@@ -2488,7 +2488,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.38,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
                          y = range_faxes[2] - spread_faxes*0.80,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
@@ -2633,7 +2633,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     
     # retrieve values to plot:
-    top_fnnd <- c("Functional Nearest Neighbour Distance", asb1, "")
+    top_fnnd <- c("FNND", asb1, "")
     values_fnnd <- c(round(asb_fd_ind[asb1, "fnnd"], 3), "")
     if (two_asb) {
       top_fnnd[3] <- asb2
@@ -2642,7 +2642,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # customize position of texts in the plot:
     spread_faxes <- (range_faxes[2] - range_faxes[1])
-    hh <- c(1, 2.5, 4, 5.5)
+    hh <- c(1.5, 2.5, 4, 5.5)
     vv <- 0.3
     x <- NULL
     y <- NULL
@@ -2708,7 +2708,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           shape = shape_sp[["asb1"]],
                           size = 3) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.51,
                          label = paste0("relative weight of", sep = " ", 
                                         asb1),
@@ -2726,10 +2726,10 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             color = color_sp[["asb1"]],
                             linetype = 1) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.58,
                          y = range_faxes[2] - spread_faxes*0.58,
-                         label = paste0("nearest neighbour for each species of", 
-                                        sep = " ", asb1, " in the assemblage"), 
+                         label = paste0("nearest neighbour in the assemblage for", 
+                                        sep = " ", asb1), 
                          colour = color_sp[["asb1"]], size = 3) 
     
     ### if 2nd assemblage:
@@ -2743,7 +2743,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             shape = shape_sp[["asb2"]],
                             size = 3) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.665,
                            label = paste0("relative weight of", sep = " ", 
                                           asb2),
@@ -2761,10 +2761,10 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                               color = color_sp[["asb2"]], 
                               linetype = 1) + 
         
-        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.35,
+        ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.58,
                            y = range_faxes[2] - spread_faxes*0.735,
-                           label = paste0("nearest neighbour for each species of", 
-                                          sep = " ", asb2, " in the assemblage"),
+                           label = paste0("nearest neighbour in the assemblage for", 
+                                          sep = " ", asb2),
                            colour = color_sp[["asb2"]], size = 3)
       
     }
@@ -2780,7 +2780,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color = color_sp[["pool"]], 
                           fill = fill_sp[["pool"]]) + 
       
-      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.38,
+      ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.50,
                          y = range_faxes[2] - spread_faxes*0.80,
                          label = "shape of species from the global pool",
                          colour = color_sp[["pool"]], size = 3)
