@@ -13,16 +13,18 @@ sp.tr.summary(tr_cat, sp_tr, stop_if_NA = TRUE)
 frame;
 \item \strong{trait_type}: the category code for each trait as followed:
 \code{N} for Nominal traits (factor variable), \code{O} for Ordinal traits
-(ordered variable), \code{C} for Circular traits (integer values), \code{Q}
+(ordered variable), \code{C} for Circular traits (integer values)(circular
+traits can not be used in mFD function used to compute functional distance
+but ok for summary function and function to group species into Functional
+Entities), \code{Q}
 for quantitative traits (numeric values), and \code{F} for
 fuzzy traits (i.e. described with several values defined with several
 column);
 \item \strong{fuzzy_name}: name of fuzzy-coded trait to which 'sub-trait'
 belongs (if trait is not fuzzy, ignored so could be trait name or NA).
-}
-
-An option is to add a fourth column with a numeric vector of length n
-(traits number) to specify a weight for each trait.}
+\item \strong{trait_weight}: weights of each traits if the user wants to
+specify a weight for each trait.
+}}
 
 \item{sp_tr}{a data frame of traits values (columns) for each species (rows).
 Note that species names \strong{must be} specified in the row names.}
@@ -38,14 +40,14 @@ If there is no fuzzy-coded trait, a three-elements list with:
 number of species per modality for non-continuous trait and min, max,
 mean, median, and quartiles for continuous traits.}
 \item{tr_types}{a list containing traits type.}
-\item{non_conttr_mod_list}{a list containing modalities for non-continuous
-trait.}
+\item{mod_list}{a list containing modalities for all traits.}
 
 If there is fuzzy-coded trait, a four-elements list with:
 \item{tr_summary_non_fuzzy_list}{a table summarizing for each trait the
 number of species per modality for non-continuous trait and min, max,
 mean, median, and quartiles for continuous traits.}
-\item{tr_summary_fuzzy_list}{\strong{MISSING DESCRIPTION}}
+\item{tr_summary_fuzzy_list}{a table summarizing for each subtrait min, max,
+mean, median and quartiles}
 \item{tr_types}{a list containing traits type.}
 \item{mod_list}{a list containing modalities for non-continuous trait.}
 }
