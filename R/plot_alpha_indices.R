@@ -471,10 +471,10 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       # add species pool:
       plot_k <- pool.plot(ggplot_bg = plot_k,
                           sp_coord2D = sp_coord_xy,
-                          vertices_nD = NULL,
+                          vertices_nD = vert_pool,
                           plot_pool = TRUE,
                           color_pool = color_sp["pool"],
-                          fill_pool = fill_ch["pool"],
+                          fill_pool = fill_sp["pool"],
                           alpha_ch = alpha_ch["pool"],
                           color_ch = color_ch["pool"],
                           fill_ch = fill_ch["pool"],
@@ -762,7 +762,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       # add species pool:
       plot_k <- pool.plot(ggplot_bg = plot_k,
                           sp_coord2D = sp_coord_xy,
-                          vertices_nD = NULL,
+                          vertices_nD = vert_pool,
                           plot_pool = TRUE,
                           color_pool = color_sp["pool"],
                           fill_pool = fill_ch["pool"],
@@ -1044,10 +1044,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       asb_sp_coord2D_k[["asb1"]] <- sp_coord_xy[sp_asb1, ]
       asb_sp_relw_k <- list()
       asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
+      vertices_nD_k <- list()
+      vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
       
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2,]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
+        
       }
       
       
@@ -1057,7 +1061,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       # add species pool
       plot_k <- pool.plot(ggplot_bg = plot_k,
                           sp_coord2D = sp_coord_xy,
-                          vertices_nD = NULL,
+                          vertices_nD = vert_pool,
                           plot_pool = TRUE,
                           color_pool = color_sp["pool"],
                           fill_pool = fill_ch["pool"],
@@ -1331,12 +1335,16 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       asb_fide_coord2D <- list()
       asb_fide_coord2D[["asb1"]] <- asb_fd_ind[asb1, paste0("fide", sep = "_", 
                                                               xy_k)]
+      vertices_nD_k <- list()
+      vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
+      
       
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
         asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
                                                                 xy_k)]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
       }# end of if 2 assemblages
       
       
@@ -1346,7 +1354,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       # add species pool
       plot_k <- pool.plot(ggplot_bg = plot_k,
                           sp_coord2D = sp_coord_xy,
-                          vertices_nD = NULL,
+                          vertices_nD = vert_pool,
                           plot_pool = TRUE,
                           color_pool = color_sp["pool"],
                           fill_pool = fill_ch["pool"],
@@ -1621,12 +1629,15 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       asb_fide_coord2D <- list()
       asb_fide_coord2D[["asb1"]] <- asb_fd_ind[asb1, paste0("fide", sep = "_", 
                                                               xy_k)]
+      vertices_nD_k <- list()
+      vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
       
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
         asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
                                                               xy_k)]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
       }# end of if 2 assemblages
       
       
@@ -1636,7 +1647,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       # add species pool
       plot_k <- pool.plot(ggplot_bg = plot_k,
                           sp_coord2D = sp_coord_xy,
-                          vertices_nD = NULL,
+                          vertices_nD = vert_pool,
                           plot_pool = TRUE,
                           color_pool = color_sp["pool"],
                           fill_pool = fill_ch["pool"],
@@ -1992,12 +2003,15 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       asb_mst <- list()
       asb_mst[["asb1"]] <- fd_details$asb_mst[[asb1]]
+      vertices_nD_k <- list()
+      vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
       
       
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
         asb_mst[["asb2"]] <- fd_details$asb_mst[[asb2]]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
       }
       
       
@@ -2007,7 +2021,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       # add species pool
       plot_k <- pool.plot(ggplot_bg = plot_k,
                           sp_coord2D = sp_coord_xy,
-                          vertices_nD = NULL,
+                          vertices_nD = vert_pool,
                           plot_pool = TRUE,
                           color_pool = color_sp["pool"],
                           fill_pool = fill_ch["pool"],
@@ -2276,11 +2290,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       asb_nn_pool <- list()
       asb_nn_pool[["asb1"]] <- fd_details$asb_nm_nn_pool[[asb1]]
       pool_coord2D <- sp_faxes_coord[, xy_k]
+      vertices_nD_k <- list()
+      vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
       
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
         asb_nn_pool[["asb2"]] <- fd_details$asb_nm_nn_pool[[asb2]]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
       }
       
       
@@ -2290,7 +2307,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       # add species pool
       plot_k <- pool.plot(ggplot_bg = plot_k,
                           sp_coord2D = sp_coord_xy,
-                          vertices_nD = NULL,
+                          vertices_nD = vert_pool,
                           plot_pool = TRUE,
                           color_pool = color_sp["pool"],
                           fill_pool = fill_ch["pool"],
@@ -2572,11 +2589,14 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       asb_sp_relw_k[["asb1"]] <- fd_details$asb_sp_relatw[asb1, sp_asb1]
       asb_nn_asb <- list()
       asb_nn_asb[["asb1"]] <- fd_details$asb_nm_nn_asb[[asb1]]
+      vertices_nD_k <- list()
+      vertices_nD_k[["asb1"]] <- fd_details$asb_vert_nm[[asb1]]
 
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
         asb_nn_asb[["asb2"]] <- fd_details$asb_nm_nn_asb[[asb2]]
+        vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
       }
       
       
@@ -2586,7 +2606,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       # add species pool
       plot_k <- pool.plot(ggplot_bg = plot_k,
                           sp_coord2D = sp_coord_xy,
-                          vertices_nD = NULL,
+                          vertices_nD = vert_pool,
                           plot_pool = TRUE,
                           color_pool = color_sp["pool"],
                           fill_pool = fill_ch["pool"],

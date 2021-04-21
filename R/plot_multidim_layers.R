@@ -186,7 +186,7 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #'                                
 #' }
 
-pool.plot <-function(ggplot_bg,
+pool.plot <- function(ggplot_bg,
                     sp_coord2D,
                     vertices_nD,
                     plot_pool = TRUE,
