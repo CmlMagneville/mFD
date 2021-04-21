@@ -157,16 +157,18 @@ your <code>sp_tr</code> data frame.</p>
 frame;</p></li>
 <li><p><strong>trait_type</strong>: the category code for each trait as followed:
 <code>N</code> for Nominal traits (factor variable), <code>O</code> for Ordinal traits
-(ordered variable), <code>C</code> for Circular traits (integer values), <code>Q</code>
+(ordered variable), <code>C</code> for Circular traits (integer values)(circular
+traits can not be used in mFD function used to compute functional distance
+but ok for summary function and function to group species into Functional
+Entities), <code>Q</code>
 for quantitative traits (numeric values), and <code>F</code> for
 fuzzy traits (i.e. described with several values defined with several
 column);</p></li>
 <li><p><strong>fuzzy_name</strong>: name of fuzzy-coded trait to which 'sub-trait'
 belongs (if trait is not fuzzy, ignored so could be trait name or NA).</p></li>
-</ul>
-
-<p>An option is to add a fourth column with a numeric vector of length n
-(traits number) to specify a weight for each trait.</p></td>
+<li><p><strong>trait_weight</strong>: weights of each traits if the user wants to
+specify a weight for each trait.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>sp_tr</th>
@@ -189,14 +191,14 @@ sensitive to missing traits</p></td>
 number of species per modality for non-continuous trait and min, max,
 mean, median, and quartiles for continuous traits.</p></dd>
 <dt>tr_types</dt><dd><p>a list containing traits type.</p></dd>
-<dt>non_conttr_mod_list</dt><dd><p>a list containing modalities for non-continuous
-trait.</p></dd>
+<dt>mod_list</dt><dd><p>a list containing modalities for all traits.</p></dd>
 
 If there is fuzzy-coded trait, a four-elements list with:
 <dt>tr_summary_non_fuzzy_list</dt><dd><p>a table summarizing for each trait the
 number of species per modality for non-continuous trait and min, max,
 mean, median, and quartiles for continuous traits.</p></dd>
-<dt>tr_summary_fuzzy_list</dt><dd><p><strong>MISSING DESCRIPTION</strong></p></dd>
+<dt>tr_summary_fuzzy_list</dt><dd><p>a table summarizing for each subtrait min, max,
+mean, median and quartiles</p></dd>
 <dt>tr_types</dt><dd><p>a list containing traits type.</p></dd>
 <dt>mod_list</dt><dd><p>a list containing modalities for non-continuous trait.</p></dd>
 
