@@ -1,13 +1,17 @@
 ---
-title: "mFD"
-author:
-  - "Camille Magneville"
-date: "`r Sys.Date()`"
-output:
-  md_document:
-    variant: gfm
-    toc: false
+output: github_document
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse  = TRUE,
+  comment   = "#>",
+  fig.path  = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+
 
 mFD <img src="man/figures/hexasticker_mFD.png" height="120" align="right" alt = "hexasticker mFD"/>
 =========================================================
