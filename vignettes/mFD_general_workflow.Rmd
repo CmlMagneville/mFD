@@ -54,7 +54,7 @@ The use of the `mFD` package is based on two datasets:
 data("fruits_traits", package = "mFD")
 
 # Remove fuzzy traits in this tutorial:
-fruits_traits <- fruits_traits[, -c(6:8)]
+fruits_traits <- fruits_traits[ , -c(6:8)]
 
 # Display the table:
 knitr::kable(head(fruits_traits),
@@ -75,7 +75,7 @@ a fruit in a basket) and this matrix looks as follows:
 data("baskets_fruits_weights", package = "mFD")
 
 # Display the table:
-knitr::kable(as.data.frame(baskets_fruits_weights[c(1:6), c(1:6)]), 
+knitr::kable(as.data.frame(baskets_fruits_weights[1:6, 1:6]), 
       centering = TRUE,
       caption = "Species x assemblages matrix based on the **fruits** dataset")
 
@@ -122,7 +122,7 @@ data("fruits_traits_cat", package = "mFD")
 # Remove fuzzy traits in this tutorial:
 fruits_traits_cat <- fruits_traits_cat[-c(6:8), ]
 # Thus remove the "fuzzy_name" column:
-fruits_traits_cat <- fruits_traits_cat[, -3]
+fruits_traits_cat <- fruits_traits_cat[ , -3]
 
 # Display the table:
 knitr::kable(head(fruits_traits_cat), 
@@ -425,12 +425,12 @@ For that, we will use the `mFD::quality.fspaces()` function:
 **USAGE**
 
 ```{r, results = "hide"}
- fspaces_quality_fruits <- mFD::quality.fspaces(
-   sp_dist             = sp_dist_fruits,
-   maxdim_pcoa         = 10,
-   deviation_weighting = "absolute",
-   fdist_scaling       = FALSE,
-   fdendro             = "average")
+fspaces_quality_fruits <- mFD::quality.fspaces(
+  sp_dist             = sp_dist_fruits,
+  maxdim_pcoa         = 10,
+  deviation_weighting = "absolute",
+  fdist_scaling       = FALSE,
+  fdendro             = "average")
 ```
 
 
@@ -650,12 +650,10 @@ non-continuous traits.
 **USAGE**
 
 ```{r, results = "hide"}
-
 fruits_tr_faxes <- mFD::traits.faxes.cor(
-            sp_tr          = fruits_traits, 
-            sp_faxes_coord = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3",                                                                             "PC4")], 
-            plot           = TRUE)
-
+  sp_tr          = fruits_traits, 
+  sp_faxes_coord = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")], 
+  plot           = TRUE)
 ```
 <br />
 We can print only traits with significant effect on position along one of the
@@ -770,7 +768,6 @@ axis**:
 **USAGE**
 
 ```{r, results = "hide"}
-
 big_plot <- mFD::funct.space.plot(
   sp_faxes_coord  = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
   faxes           = c("PC1", "PC2", "PC3", "PC4"),
@@ -812,7 +809,6 @@ axis**:
 <br />
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center"}
-
 big_plot <- mFD::funct.space.plot(
   sp_faxes_coord  = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
   faxes           = NULL,
@@ -838,6 +834,7 @@ big_plot <- mFD::funct.space.plot(
   nm_color        = "black",
   nm_fontface     = "plain",
   check_input     = TRUE)
+
 # Plot the graph with all pairs of axes:
 big_plot$patchwork
 ```
@@ -867,12 +864,11 @@ The `mFD::alpha.fd.multidim()` function allows computing many alpha FD indices:
 **USAGE**
 
 ```{r, results = "hide"}
-
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
-  ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", 
-                       "fori", "fspe", "fide"),
+  ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", 
+                       "fspe", "fide"),
   scaling          = TRUE,
   check_input      = TRUE,
   details_returned = TRUE)
@@ -977,49 +973,33 @@ function as follows:
 **USAGE**
 ```{r, results = "hide",  fig.show = 'hide', message = FALSE}
 plots_alpha <- mFD::alpha.multidim.plot(
-      output_alpha_fd_multidim = alpha_fd_indices_fruits,
-      plot_asb_nm              = c("basket_1", "basket_5"),
-      ind_nm                   = c("fdis", "fide", "fnnd", "feve", 
-                                                        "fric", "fdiv", "fori", 
-                                                        "fspe"),
-      faxes                    = NULL,
-      faxes_nm                 = NULL,
-      range_faxes              = c(NA, NA),
-      color_bg                 = "grey95",
-      shape_sp                 = c(pool = 3, asb1 = 21, 
-                              asb2 = 21),
-      size_sp                  = c(pool = 0.7, asb1 = 1, 
-                              asb2 = 1),
-      color_sp                 = c(pool = "grey50", 
-                              asb1 = "#1F968BFF",
-                              asb2 = "#DCE319FF"),
-      color_vert              = c(pool = "grey50", 
-                              asb1 = "#1F968BFF",
-                              asb2 = "#DCE319FF"),
-      fill_sp                 = c(pool =  NA, 
-                              asb1 = "#1F968BFF",
-                              asb2 = "#DCE319FF"),
-      fill_vert               = c(pool = NA, 
-                              asb1 = "#1F968BFF",
-                              asb2 = "#DCE319FF"),
-      color_ch                = c(pool = NA, 
-                              asb1 = "#1F968BFF",
-                              asb2 = "#DCE319FF"),
-      fill_ch                 = c(pool = "white", 
-                              asb1 = "#1F968BFF",
-                              asb2 = "#DCE319FF"),
-      alpha_ch                = c(pool = 1, asb1 = 0.3, 
-                              asb2 = 0.3),
-      shape_centroid_fdis     = c(asb1 = 22,  asb2 = 24),
-      shape_centroid_fdiv     = c(asb1 = 22,  asb2 = 24),
-      shape_centroid_fspe     = 23,
-      color_centroid_fspe     = "black",
-      size_sp_nm              = 3, 
-      color_sp_nm             = "black",
-      plot_sp_nm              = NULL,
-      fontface_sp_nm          = "plain",
-      save_file               = FALSE,
-      check_input             = TRUE) 
+  output_alpha_fd_multidim = alpha_fd_indices_fruits,
+  plot_asb_nm              = c("basket_1", "basket_5"),
+  ind_nm                   = c("fdis", "fide", "fnnd", "feve", "fric", 
+                               "fdiv", "fori", "fspe"),
+  faxes                    = NULL,
+  faxes_nm                 = NULL,
+  range_faxes              = c(NA, NA),
+  color_bg                 = "grey95",
+  shape_sp                 = c(pool = 3, asb1 = 21, asb2 = 21),
+  size_sp                  = c(pool = 0.7, asb1 = 1, asb2 = 1),
+  color_sp                 = c(pool = "grey50", asb1 = "#1F968BFF", asb2 = "#DCE319FF"),
+  color_vert               = c(pool = "grey50", asb1 = "#1F968BFF", asb2 = "#DCE319FF"),
+  fill_sp                  = c(pool = NA, asb1 = "#1F968BFF", asb2 = "#DCE319FF"),
+  fill_vert                = c(pool = NA, asb1 = "#1F968BFF", asb2 = "#DCE319FF"),
+  color_ch                 = c(pool = NA, asb1 = "#1F968BFF", asb2 = "#DCE319FF"),
+  fill_ch                  = c(pool = "white", asb1 = "#1F968BFF", asb2 = "#DCE319FF"),
+  alpha_ch                 = c(pool = 1, asb1 = 0.3, asb2 = 0.3),
+  shape_centroid_fdis      = c(asb1 = 22,  asb2 = 24),
+  shape_centroid_fdiv      = c(asb1 = 22,  asb2 = 24),
+  shape_centroid_fspe      = 23,
+  color_centroid_fspe      = "black",
+  size_sp_nm               = 3, 
+  color_sp_nm              = "black",
+  plot_sp_nm               = NULL,
+  fontface_sp_nm           = "plain",
+  save_file                = FALSE,
+  check_input              = TRUE) 
 ```
 
 
@@ -1194,7 +1174,7 @@ The `mFD::beta.fd.multidim()` function has the main following arguments:
 
 ```{r, results = "hide", message=FALSE}
 beta_fd_indices_fruits <- mFD::beta.fd.multidim(
-      sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+      sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
       asb_sp_occ       = asb_sp_fruits_occ,
       check_input      = TRUE,
       beta_family      = c("Jaccard"),
@@ -1231,7 +1211,7 @@ The function returns a list containing:
 * a dist object with beta indices values for each pair of assemblages:
 
 ```{r}
-head(beta_fd_indices_fruits$pairasb_fbd_indices, 10)
+head(beta_fd_indices_fruits$"pairasb_fbd_indices", 10)
 ```
 
 <br />
@@ -1242,7 +1222,7 @@ each assemblage and FRic values for each assemblage
  <br />
 
 ```{r}
-beta_fd_indices_fruits$details
+beta_fd_indices_fruits$"details"
 ```
 
 <br />
@@ -1294,7 +1274,7 @@ beta_plot_fruits <- mFD::beta.multidim.plot(
   color_bg                = "grey95",
   shape_sp                = c("pool" = 3.0, asb1 = 22, asb2 = 21),
   size_sp                 = c("pool" = 0.8, asb1 =  1, asb2 =  1),
-  color_sp                = c("pool" = "grey50", asb1="blue", asb2= "red"),
+  color_sp                = c("pool" = "grey50", asb1 = "blue", asb2 = "red"),
   fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
   fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
   color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
@@ -1304,7 +1284,6 @@ beta_plot_fruits <- mFD::beta.multidim.plot(
   nm_color                = "black",
   nm_fontface             = "plain",
   check_input             = TRUE)
-
 ```
 
 <br />

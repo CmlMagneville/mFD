@@ -68,7 +68,7 @@ Depends: R (>= 3.5)
 Imports: 
     ade4,
     ape,
-    betapart,
+    betapart (>= 1.5.4),
     cluster,
     dendextend,
     FactoMineR,

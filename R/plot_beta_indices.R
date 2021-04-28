@@ -274,7 +274,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   }
   
   # if no faxes_nm provided, default names as in coordinates table:
-  if (! is.null(faxes) && is.null(faxes_nm)) {
+  if (!is.null(faxes) && is.null(faxes_nm)) {
     faxes_nm <- faxes
   }
   
@@ -306,7 +306,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   }
   
   # check that the range is ok if the user chose it and convex hull:
-  if (! is.na(user_range)) {
+  if (!is.na(user_range)) {
     
     if (range_faxes[1] > range_sp_coord[1]) {
       stop("The first value of 'range_faxes', is higher than minimum value ", 
@@ -331,17 +331,17 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   
   # if some species names to be plotted, adding a character variable to ...
   # ... sp_faxes_coord:
-  if(! is.null(plot_sp_nm)) {
+  if (!is.null(plot_sp_nm)) {
     sp_faxes_coord_plot[plot_sp_nm, "label"] <- plot_sp_nm
   }
   
   
   # compute convex hull of the species pool and its vertices:
-  vert_pool<- output_beta_fd_multidim$details$pool_vertices  
+  vert_pool<- output_beta_fd_multidim$"details"$"pool_vertices"  
   
   # get names of species present in each assemblage:
-  sp_asb1 <- names( which(asb_sp_occ[plot_asb_nm[1], ] == 1))
-  sp_asb2 <- names( which(asb_sp_occ[plot_asb_nm[2], ] == 1))
+  sp_asb1 <- names(which(asb_sp_occ[plot_asb_nm[1], ] == 1))
+  sp_asb2 <- names(which(asb_sp_occ[plot_asb_nm[2], ] == 1))
   
   # retrieve vertices of each assemblage in the n-dimensional space:
   vert_asb1 <- output_beta_fd_multidim$details$asb_vertices[[plot_asb_nm[1]]]

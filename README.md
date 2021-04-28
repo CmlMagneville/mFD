@@ -1,13 +1,3 @@
----
-author:
-- Camille Magneville
-date: 2021-04-28
-output:
-  md_document:
-    toc: false
-    variant: gfm
-title: mFD
----
 
 # mFD <img src="man/figures/hexasticker_mFD.png" height="120" align="right" alt = "hexasticker mFD"/>
 

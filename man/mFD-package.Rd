@@ -12,7 +12,7 @@ A computation of functional traits-based distances between pairs
     indices assessing the distribution of species (and of their dominance) in a
     given functional space for each assemblage and the overlap between
     assemblages in a given functional space. Graphical outputs included. See
-    the mFD website for more informations, documentation and examples.
+    the mFD website for more information, documentation and examples.
 }
 \seealso{
 Useful links:
@@ -23,7 +23,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Camille Magneville \email{camille.magneville@umontpellier.fr} (\href{https://orcid.org/0000-0003-0489-3822}{ORCID})
+\strong{Maintainer}: Camille Magneville \email{camille.magneville@umontpellier.fr} (\href{https://orcid.org/0000-0003-0489-3822}{ORCID}) [copyright holder]
 
 Authors:
 \itemize{
