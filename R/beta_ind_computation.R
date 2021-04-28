@@ -177,14 +177,12 @@ beta.fd.multidim <- function(sp_faxes_coord,
       stop("beta diversity index should be 'Jaccard' and/or 'Sorensen'. ", 
            "Please check.")
     }
-    
   }
   
   
   # ensuring species are in the same order
   # in both matrices
-  sp_faxes_coord <- sp_faxes_coord[colnames(asb_sp_occ), 
-  ]
+  sp_faxes_coord <- sp_faxes_coord[colnames(asb_sp_occ), ]
   
   # calling functional.betapart.core
   # function to compute beta functional
@@ -193,13 +191,13 @@ beta.fd.multidim <- function(sp_faxes_coord,
   # assemblages 2 last parameters are for
   # parallelization
   F_betapart_core <- betapart::functional.betapart.core.pairwise(
-    x = asb_sp_occ,
-    traits = sp_faxes_coord,
+    x              = asb_sp_occ,
+    traits         = sp_faxes_coord,
     return.details = TRUE,
-    convhull.opt = betapart_chullopt,
-    parallel = betapart_para,
-    opt.parallel = betapart_para_opt,
-    progress = betapart_step)
+    convhull.opt   = betapart_chullopt,
+    parallel       = betapart_para,
+    opt.parallel   = betapart_para_opt,
+    progress       = betapart_step)
   
   # list to store dist objects with beta-diversity values
   beta_fd_ind <- list()
@@ -209,32 +207,34 @@ beta.fd.multidim <- function(sp_faxes_coord,
   # according to the type of index
   # (indices) selected
   if ("Jaccard" %in% beta_family) {
+    
     F_beta_jac <- betapart::functional.beta.pair(F_betapart_core, 
                                                  index.family = "jaccard")
     
-    beta_fd_ind$jac_diss<-F_beta_jac$funct.beta.jac
-    beta_fd_ind$jac_turn<-F_beta_jac$funct.beta.jtu
-    beta_fd_ind$jac_nest<-F_beta_jac$funct.beta.jne
+    beta_fd_ind$jac_diss <- F_beta_jac$funct.beta.jac
+    beta_fd_ind$jac_turn <- F_beta_jac$funct.beta.jtu
+    beta_fd_ind$jac_nest <- F_beta_jac$funct.beta.jne
     
   }
   
   if ("Sorensen" %in% beta_family) {
+    
     F_beta_sor <- betapart::functional.beta.pair(F_betapart_core, 
                                                  index.family = "sorensen")
     
-    beta_fd_ind$sor_diss<-F_beta_sor$funct.beta.sor
-    beta_fd_ind$sor_turn<-F_beta_sor$funct.beta.sim
-    beta_fd_ind$sor_nest<-F_beta_sor$funct.beta.sne
-    
+    beta_fd_ind$sor_diss <- F_beta_sor$funct.beta.sor
+    beta_fd_ind$sor_turn <- F_beta_sor$funct.beta.sim
+    beta_fd_ind$sor_nest <- F_beta_sor$funct.beta.sne
   }
   
   
   # names of species being vertices in each assemblage
-  asb_vertices <- lapply(F_betapart_core$details$CH$coord_vertices, row.names)
+  asb_vertices <- lapply(F_betapart_core$details$CH$coord_vertices, 
+                         function(x) rownames(x))
   
   # volume of convex hull filled by each assemblage (FRic)
-  asb_FRic <- F_betapart_core$details$CH$FRi[,"FRi"]
-  names(asb_FRic)<-row.names(F_betapart_core$details$CH$FRi)
+  asb_FRic <- F_betapart_core$details$CH$FRi$"FRi"
+  names(asb_FRic) <- row.names(F_betapart_core$details$CH$FRi)
   
   # compute the volume of the convex hull of the species pool
   ch_pool <- tryCatch(geometry::convhulln(sp_faxes_coord, 
@@ -243,10 +243,12 @@ beta.fd.multidim <- function(sp_faxes_coord,
   
   # if convex hull of the species pool computed, scaling FRic values:
   if (!is.character(ch_pool)) {
-    pool_vertices <-unique(row.names(sp_faxes_coord)[ch_pool$hull])
-    asb_FRic <- asb_FRic/ch_pool$vol 
-  } else 
-  {
+    
+    pool_vertices <- unique(row.names(sp_faxes_coord)[ch_pool$hull])
+    asb_FRic <- asb_FRic / ch_pool$vol 
+    
+  } else {
+    
     pool_vertices <- NA
     asb_FRic <- NA
   }
@@ -255,14 +257,15 @@ beta.fd.multidim <- function(sp_faxes_coord,
   ## results to return
   if (details_returned) {
     
-    return_list <- list(pairasb_fbd_indices = beta_fd_ind, 
-                        details = list(inputs = list(
-                          sp_faxes_coord = sp_faxes_coord, 
-                          asb_sp_occ = asb_sp_occ), 
-                          pool_vertices = pool_vertices, 
-                          asb_FRic = asb_FRic, 
-                          asb_vertices = asb_vertices) 
-    )
+    return_list <- list("pairasb_fbd_indices" = beta_fd_ind, 
+                        "details" = list(
+                          "inputs" = list(
+                            "sp_faxes_coord" = sp_faxes_coord, 
+                            "asb_sp_occ" = asb_sp_occ), 
+                          "pool_vertices" = pool_vertices, 
+                          "asb_FRic" = asb_FRic, 
+                          "asb_vertices" = asb_vertices))
+    
   } else {
     
     return_list <- list("pairasb_fbd_indices" = beta_fd_ind)
