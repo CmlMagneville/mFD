@@ -36,16 +36,16 @@ with names of species being vertices in n dimensions.}
 \item{plot_sp}{a logical value indicating whether species of each assemblage
 should be plotted or not. Default: plot_sp = TRUE.}
 
-\item{color_ch}{a R color name or an hexadecimal code referring to the border
-of the convex hull filled by the pool of species. Default:
+\item{color_ch}{a R color name or an hexadecimal code referring to the
+border of the convex hull filled by the pool of species. Default:
 \code{color_ch = "black"}.}
 
-\item{fill_ch}{a R color name or an hexadecimal code referring to the filling
-of the convex hull filled by the pool of species. Default is:
+\item{fill_ch}{a R color name or an hexadecimal code referring to the
+filling of the convex hull filled by the pool of species. Default is:
 \code{fill_ch = "white"}.}
 
-\item{alpha_ch}{a numeric value for transparency of the filling of the convex
-hull (0 = high transparency, 1 = no transparency). Default:
+\item{alpha_ch}{a numeric value for transparency of the filling of the
+convex hull (0 = high transparency, 1 = no transparency). Default:
 \code{alpha_ch = 0.3}.}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
@@ -68,8 +68,8 @@ vertices if vertices should be plotted in a different way than other
 species. If \code{shape_vert = NA}, no vertices plotted. Default:
 \code{shape_vert = NA}.}
 
-\item{size_vert}{a numeric value referring to the size of symbol for vertices
-Default: \code{size_vert = 1}.}
+\item{size_vert}{a numeric value referring to the size of symbol for
+vertices. Default: \code{size_vert = 1}.}
 
 \item{color_vert}{a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
@@ -82,8 +82,8 @@ vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
 \code{color_vert = NULL} is enough). Default is \code{NA}.}
 }
 \value{
-a ggplot object plotting background of multidimensional graphs and
-FRic convex hulls
+A ggplot object plotting background of multidimensional graphs and
+FRic convex hulls.
 }
 \description{
 This function plots FRic index for a given pair of functional axes and one
@@ -174,5 +174,5 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
 
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

@@ -40,7 +40,8 @@ check.tr.cat <- function(tr_cat) {
     valid_names  <- c("trait_name", "trait_type","trait_weight")
     if (!identical(colnames(tr_cat), valid_names)) {
       stop("The 3 first columns of the traits x category data frame must be ",
-           "'trait_name', 'trait_type', and 'trait_weight' in this exact order.")
+           "'trait_name', 'trait_type', and 'trait_weight' in this exact ", 
+           "order.")
     }
   }
   
@@ -53,8 +54,8 @@ check.tr.cat <- function(tr_cat) {
   valid_traits <- c("N", "O", "C", "Q", "F")
   
   if (any(!(tr_cat$"trait_type" %in% valid_traits))) {
-    stop("Trait type in traits x category should be among 'N', 'O', 'C', 'Q', ",
-         "'F'. Please check type of all traits.")
+    stop("Trait type in traits x category should be among 'N', 'O', 'C', ",
+         "'Q', 'F'. Please check type of all traits.")
   }
   
   if (any(tr_cat$"trait_type" == "F")) {
@@ -63,7 +64,8 @@ check.tr.cat <- function(tr_cat) {
       stop("Missing trait names in 'fuzzy_name' for fuzzy traits.")
     }
     
-    if (any(table(tr_cat[which(tr_cat$"trait_type" == "F"), "fuzzy_name"]) < 2)) {
+    if (any(table(tr_cat[which(tr_cat$"trait_type" == "F"), "fuzzy_name"]) < 
+            2)) {
       stop("Fuzzy traits need to have at least two categories.")
     }
   }
@@ -238,8 +240,8 @@ check.circular <- function(tr_cat, sp_tr) {
   if ("C" %in% tr_cat$"trait_type") {
     for (k in tr_cat$"trait_name"[which(tr_cat$"trait_type" == "C")]) {
       if (!is.integer(sp_tr[ , k])) {
-        stop("Trait '", k, "' is supposed to be circular but is not described ",
-             "with an 'integer' variable.")
+        stop("Trait '", k, "' is supposed to be circular but is not ",
+             "described with an 'integer' variable.")
       }
     }
   }
@@ -334,4 +336,3 @@ check.asb.sp.w.occ <- function(asb_sp_occ) {
   
   invisible(NULL)
 }
-

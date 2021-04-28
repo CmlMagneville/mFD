@@ -1,11 +1,11 @@
 Package: mFD
-Title: Compute and illustrate the multiple facets of Functional Diversity
+Title: Compute and Illustrate the Multiple Facets of Functional Diversity
 Version: 1.0.0
 Authors@R: c(
     person(given   = "Camille",
            family  = "Magneville",
            email   = "camille.magneville@umontpellier.fr",
-           role    = c("aut", "cre"),
+           role    = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0003-0489-3822")),
     person(given   = "Nicolas",
            family  = "Loiseau",
@@ -58,7 +58,7 @@ Description: A computation of functional traits-based distances between pairs
     indices assessing the distribution of species (and of their dominance) in a
     given functional space for each assemblage and the overlap between
     assemblages in a given functional space. Graphical outputs included. See
-    the mFD website for more informations, documentation and examples.
+    the mFD website for more information, documentation and examples.
 URL: https://github.com/CmlMagneville/mFD
 BugReports: https://github.com/CmlMagneville/mFD/issues
 License: GPL-2
@@ -74,14 +74,12 @@ Imports:
     FactoMineR,
     gawdis,
     geometry,
-    ggforce,
     ggplot2,
     ggrepel,
     grid,
     Hmisc,
     patchwork,
     reshape2,
-    rlist,
     rstatix,
     stats,
     utils,

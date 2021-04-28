@@ -2,7 +2,7 @@
 % Please edit documentation in R/fcts_used_for_ind_comp.R
 \name{dist.point}
 \alias{dist.point}
-\title{Compute Distances of All Points to a Given Point in the Functional Space}
+\title{Compute distances of all points to a given point in the functional space}
 \usage{
 dist.point(sp_faxes_coord, ref_sp)
 }
@@ -12,10 +12,10 @@ space. Species coordinates have been retrieved thanks to
 \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
 \item{ref_sp}{a character string referring to the name of the reference
-species}
+species.}
 }
 \value{
-A vector of species distances to the reference species
+A vector of species distances to the reference species.
 }
 \description{
 This function computes the distances of all species to a reference species.
@@ -56,7 +56,6 @@ It is used in FSpe, FOri and FNND computation.
  dist_pear <- dist.point(sp_faxes_coord_fruits, ref_sp = "pear")
  dist_pear
 }
-
 }
 \author{
 Camille Magneville and Sebastien Villeger

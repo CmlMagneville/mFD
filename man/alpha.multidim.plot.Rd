@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_alpha_indices.R
 \name{alpha.multidim.plot}
 \alias{alpha.multidim.plot}
-\title{Plot Functional Space and Chosen Functional Indices}
+\title{Plot functional space and chosen functional indices}
 \usage{
 alpha.multidim.plot(
   output_alpha_fd_multidim,
@@ -37,7 +37,7 @@ alpha.multidim.plot(
 \item{output_alpha_fd_multidim}{a list of objects retrieved through the
 \code{\link{alpha.fd.multidim}} function.}
 
-\item{plot_asb_nm}{a vector containing name(s) of assemblage(s) to plot}
+\item{plot_asb_nm}{a vector containing name(s) of assemblage(s) to plot.}
 
 \item{ind_nm}{a vector of character string of the name of functional
 indices to plot. \strong{Indices names must be written in lower case
@@ -53,10 +53,10 @@ labels than \code{faxes} ones. Default: faxes_nm = faxes (labels will the
 the same that \code{faxes} ones).}
 
 \item{range_faxes}{a vector with minimum and maximum for values for axes.
-Note that to have a fair representation of position of species in all plots,
-all axes must have the same range. Default: faxes_lim = c(NA, NA) (the range
-is computed according to the range of values among all axes, all axes having
-the same range).}
+Note that to have a fair representation of position of species in all
+plots, all axes must have the same range. Default: faxes_lim = c(NA, NA)
+(the range is computed according to the range of values among all axes, all
+axes having the same range).}
 
 \item{color_bg}{a R color name  or an hexadecimal code used to fill plot
 background. Default: \code{color_bg = "grey95"}.}
@@ -91,11 +91,12 @@ referring to the color of the convex pool of the global pool and studied
 assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).}
 
 \item{fill_ch}{a vector gathering R color names or hexadecimal codes
-referring to the color to fill the convex pool of the global pool and studied
-assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).}
+referring to the color to fill the convex pool of the global pool and
+studied assemblage(s).
+It should be written as c(pool = "...", asb1 = "...", ...).}
 
-\item{alpha_ch}{a vector gathering numeric values referring to the opacity of
-convex hulls of the global pool and the plotted assemblage(s).
+\item{alpha_ch}{a vector gathering numeric values referring to the opacity
+of convex hulls of the global pool and the plotted assemblage(s).
 It should be written  as c(pool = "...", asb1 = "...", ...).
 (0 = high transparency, 1 = no transparency).}
 
@@ -127,10 +128,10 @@ Default: \code{plot_nm_sp = NULL} (no name plotted).}
 \item{save_file}{a logical value telling if plots should be locally
 saved or not.}
 
-\item{check_input}{a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: \code{check.input = TRUE}.}
+\item{check_input}{a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: \code{check.input = TRUE}.}
 }
 \value{
 If  \code{name_file} is \code{NULL}, it returns a list of one
@@ -141,8 +142,8 @@ axes and a \code{ggplot2} figure showing the plot caption. If
 }
 \description{
 Compute a graphical representation of functional indices. \strong{To plot
-functional indices, functional indices values must have been retrieve through
-the use of the} \code{\link{alpha.fd.multidim}} \strong{function}.
+functional indices, functional indices values must have been retrieve
+through the use of the} \code{\link{alpha.fd.multidim}} \strong{function}.
 }
 \examples{
 \dontrun{
@@ -176,7 +177,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 # Compute alpha diversity indices:
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv",
                        "fori", "fspe"),
@@ -232,9 +233,8 @@ check_input             = TRUE)
 
 # Check FRic plot:
 plots_alpha$fric$patchwork
-
 }
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

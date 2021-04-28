@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_funct_space.R
 \name{funct.space.plot}
 \alias{funct.space.plot}
-\title{Plot Species Position in a Functional Space}
+\title{Plot species position in a functional space}
 \usage{
 funct.space.plot(
   sp_faxes_coord,
@@ -42,8 +42,8 @@ graphical reasons}. Default: \code{faxes = NULL} (the four first axes will be
 plotted).}
 
 \item{name_file}{a character string with name of file to save the
-figure (without extension). Default: \code{name_file = NULL} which means plot is
-displayed.}
+figure (without extension). Default: \code{name_file = NULL} which means plot
+is displayed.}
 
 \item{faxes_nm}{a vector with axes labels for figure. Default: as
 \code{faxes}).}
@@ -58,35 +58,35 @@ not be plotted so \code{plot_ch} should be \code{FALSE}.}
 \item{color_bg}{a R color name or an hexadecimal code used to fill plot
 background. Default: \code{color_bg = "grey95"}.}
 
-\item{color_pool}{a R color name or an hexadecimal code referring to the color
-of symbol for species. Default: \code{color_pool = 'darkgreen'}.}
+\item{color_pool}{a R color name or an hexadecimal code referring to the
+color of symbol for species. Default: \code{color_pool = 'darkgreen'}.}
 
-\item{fill_pool}{a R color name or an hexadecimal code referring to the color
-to fill species symbol (if \code{shape_pool} >20). Default:
+\item{fill_pool}{a R color name or an hexadecimal code referring to the
+color to fill species symbol (if \code{shape_pool} >20). Default:
 \code{fill_pool = 'white'}.}
 
 \item{shape_pool}{a numeric value referring to the shape of symbol used for
 species. Default: \code{shape_pool = 21} (filled circle).}
 
-\item{size_pool}{a numeric value referring to the size of symbol for species.
-Default: \code{size_pool = 1}.}
+\item{size_pool}{a numeric value referring to the size of symbol for
+species. Default: \code{size_pool = 1}.}
 
-\item{plot_ch}{a logical value indicating whether the convex hull shaping the
-pool of species should be illustrated. If \code{plot_ch = TRUE}, convex hull of
-all species in the multidimensional space described in
-\code{sp_faxes_coord} is computed and its projection in 2D spaces are drawn
-as polygons. Default: \code{plot_ch = TRUE}.}
+\item{plot_ch}{a logical value indicating whether the convex hull shaping
+the pool of species should be illustrated. If \code{plot_ch = TRUE}, convex
+hull of all species in the multidimensional space described in
+\code{sp_faxes_coord} is computed and its projection in 2D spaces are
+drawn as polygons. Default: \code{plot_ch = TRUE}.}
 
-\item{color_ch}{a R color name or an hexadecimal code referring to the border
-of the convex hull filled by the pool of species. Default:
+\item{color_ch}{a R color name or an hexadecimal code referring to the
+border of the convex hull filled by the pool of species. Default:
 \code{color_ch = "darkblue"}.}
 
-\item{fill_ch}{a R color name or an hexadecimal code referring to the filling
-of the convex hull filled by the pool of species. Default:
+\item{fill_ch}{a R color name or an hexadecimal code referring to the
+filling of the convex hull filled by the pool of species. Default:
 \code{fill_ch = "white"}.}
 
-\item{alpha_ch}{a numeric value for transparency of the filling of the convex
-hull (0 = high transparency, 1 = no transparency). Default:
+\item{alpha_ch}{a numeric value for transparency of the filling of the
+convex hull (0 = high transparency, 1 = no transparency). Default:
 \code{alpha_ch = 1}.}
 
 \item{plot_vertices}{a logical value defining whether vertices of the convex
@@ -98,7 +98,8 @@ with aesthetics described above for '.._sp'. Default:
 \code{plot_vertices = TRUE}.}
 
 \item{color_vert}{a character value referring to the color of symbol for
-vertices if \code{plot_vertices = TRUE}. Default: \code{color_vert = 'darkturquoise'}.}
+vertices if \code{plot_vertices = TRUE}.
+Default: \code{color_vert = 'darkturquoise'}.}
 
 \item{fill_vert}{a character value referring to the color for filling symbol
 for vertices  (if \code{shape_vert} >20). Default:
@@ -123,10 +124,10 @@ of species label. Default: \code{nm_color = 'black'}.}
 \item{nm_fontface}{a character string for font of species labels (e.g.
 "italic", "bold"). Default: \code{nm_fontface = 'plain'}.}
 
-\item{check_input}{a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: \code{check.input = TRUE}.}
+\item{check_input}{a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: \code{check_input = TRUE}.}
 }
 \value{
 If \code{name_file} is \code{NULL}, a list containing \code{ggplot2}
@@ -139,9 +140,9 @@ panels and if required projection of the convex hull computed in the
 multidimensional space provided as input \code{sp_faxes_coord} is
 illustrated with a polygon. Species being vertices of this convex hull are
 shown with aesthetics provided as inputs \code{..._vert}. Labels for
-species listed in \code{plot_sp_nm} are added with if required arrows using
-\code{ggrepel}. Summary about species and dimensionality are printed on
-top-right corner of the figure.
+species listed in \code{plot_sp_nm} are added with if required arrows
+using \code{ggrepel}. Summary about species and dimensionality are printed
+on top-right corner of the figure.
 }
 \description{
 This function illustrates the position of species along pairs of axes of a
@@ -179,8 +180,8 @@ functional space
 sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 # Plot functional spaces:
- mFD::funct.space.plot(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+mFD::funct.space.plot(
+ sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   faxes             = NULL,
   name_file         = NULL,
   faxes_nm          = NULL,

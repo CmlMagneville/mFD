@@ -2,8 +2,8 @@
 % Please edit documentation in R/plot_beta_indices.R
 \name{beta.multidim.plot}
 \alias{beta.multidim.plot}
-\title{Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
-Multidimensional Space}
+\title{Illustrate Functional beta-Diversity indices for pairs of assemblages in a
+multidimensional space}
 \usage{
 beta.multidim.plot(
   output_beta_fd_multidim,
@@ -32,8 +32,8 @@ beta.multidim.plot(
 \arguments{
 \item{output_beta_fd_multidim}{the list returned by
 \code{\link{beta.fd.multidim}} when \code{details_returned = TRUE}.
-Thus, even if this function will illustrate functional beta-diversity for a
-single pair of assemblages, plots will be scaled according to all
+Thus, even if this function will illustrate functional beta-diversity for
+a single pair of assemblages, plots will be scaled according to all
 assemblages for which indices were computed.}
 
 \item{plot_asb_nm}{a vector with names of the 2 assemblages for which
@@ -48,8 +48,8 @@ Default: \code{plot_nm_sp = NULL} (no name plotted).}
 
 \item{faxes}{a vector with names of axes to plot (as columns names in
 \code{output_beta_fd_multidim$details$input$sp_faxes_coord} ). \strong{You
-can only plot from 2 to 4 axes for graphical reasons}. Default: faxes = NULL
-(the four first axes will be plotted).}
+can only plot from 2 to 4 axes for graphical reasons}.
+Default: \code{faxes = NULL} (the four first axes will be plotted).}
 
 \item{name_file}{a character string with name of file to save the figure
 (without extension). Default: \code{name_file = NULL} which means plot is
@@ -68,9 +68,9 @@ plot background. Default: \code{color_bg = "grey95"}.}
 
 \item{shape_sp}{a vector with 3 numeric values referring to the shape of
 symbol used for species from the 'pool' absent from the 2 assemblages, and
-for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-Default: \code{shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)} so cross,
-square and circle.}
+for species present in the 2 assemblages ('asb1', and 'asb2'),
+respectively. Default: \code{shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)} so
+cross, square and circle.}
 
 \item{size_sp}{a numeric value referring to the size of symbols for
 species. Default: \verb{is size_sp = c(pool = 0.8, asb1 = 1, asb2 = 1)}.}
@@ -112,10 +112,10 @@ of species label. Default is \code{black.}}
 \item{nm_fontface}{a character string for font of species labels (e.g.
 "italic", "bold"). Default is \code{'plain'}.}
 
-\item{check_input}{a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: \code{check.input = TRUE}.}
+\item{check_input}{a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: \code{check.input = TRUE}.}
 }
 \value{
 If \code{name_file} is \code{NULL}, it returns a \code{patchwork}
@@ -167,7 +167,7 @@ diversity indices should have been computed using the}
 
 # Compute beta diversity indices:
  beta_fd_fruits <- mFD::beta.fd.multidim(
-  sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_occ       = asb_sp_fruits_occ,
   check_input      = TRUE,
   beta_family      = c("Jaccard"),
@@ -201,5 +201,5 @@ diversity indices should have been computed using the}
 }
 }
 \author{
-Sebastien Villeger & Camille Magneville
+Sebastien Villeger and Camille Magneville
 }

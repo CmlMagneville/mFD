@@ -2,7 +2,7 @@
 % Please edit documentation in R/alpha_fd_multidim.R
 \name{alpha.fd.multidim}
 \alias{alpha.fd.multidim}
-\title{Compute a Set of alpha Functional Indices for a Set of Assemblages}
+\title{Compute a set of alpha functional indices for a set of assemblages}
 \usage{
 alpha.fd.multidim(
   sp_faxes_coord,
@@ -24,17 +24,17 @@ set of assemblages (rows).}
 \item{ind_vect}{a vector of character string of the name of
 functional indices to compute. \strong{Indices names must be written in
 lower case letters}. Possible indices to compute are: 'fide', fdis',
-'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 'fori' and 'fspe'. Default: all the
-indices are computed.}
+'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 'fori' and 'fspe'. Default: all
+the indices are computed.}
 
 \item{scaling}{a logical value indicating if scaling is to be done
 (TRUE) or not (FALSE) on functional indices. Scaling is used to be able to
 compare indices values between assemblages. Default: scaling = TRUE.}
 
-\item{check_input}{a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: \code{check.input = TRUE}.}
+\item{check_input}{a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: \code{check.input = TRUE}.}
 
 \item{details_returned}{a logical value indicating whether the user
 want to store details. Details are used in graphical functions and thus
@@ -53,12 +53,12 @@ relative weight of species in each assemblage ; a \strong{sp_coord_all_asb}
 list of matrices of species coordinates along functional axes for species
 present in each assemblage ; a \strong{vert_nm_all_asb} list of vectors of
 species names being vertices of the convex hull for each assemblage ; a
-\strong{mst_all_asb} list of data.frames summarizing link between species in
-the minimum spanning tree of each assemblage ; a
+\strong{mst_all_asb} list of data.frames summarizing link between species
+in the minimum spanning tree of each assemblage ; a
 \strong{grav_center_vert_coord_all_asb} list of vectors of coordinates of
 the vertices gravity center for each assemblage ; a
-\strong{mean_dtogravcenter_all_asb} list of vectors containing mean distance
-to the species gravity center for each assemblage ; a
+\strong{mean_dtogravcenter_all_asb} list of vectors containing mean
+distance to the species gravity center for each assemblage ; a
 \strong{dist_gravcenter_global_pool} vector containing the distance of each
 species to the gravity center of all species from the global pool ; a
 \strong{dist_nn_global_pool} data.frame showing the distances of each
@@ -69,8 +69,8 @@ neighbor of each species present in a given assemblage ; a
 present in a given assemblage to its nearest neighbor.}
 }
 \description{
-This function computes a set of multidimensional space based indices of alpha
-functional diversity. The user can choose which functional indices to
+This function computes a set of multidimensional space based indices of
+alpha functional diversity. The user can choose which functional indices to
 compute.
 }
 \examples{
@@ -106,7 +106,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 # Compute alpha diversity indices
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord   = sp_faxes_coord_fruits[ , c('PC1', 'PC2', 'PC3', 'PC4')],
+  sp_faxes_coord   = sp_faxes_coord_fruits[, c('PC1', 'PC2', 'PC3', 'PC4')],
   asb_sp_w         = baskets_fruits_weights, 
   ind_vect         = c('fdis', 'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 
                        'fori', 'fspe'),

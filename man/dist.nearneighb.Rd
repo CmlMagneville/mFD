@@ -2,8 +2,8 @@
 % Please edit documentation in R/fcts_used_for_ind_comp.R
 \name{dist.nearneighb}
 \alias{dist.nearneighb}
-\title{Compute Distance of a Given Point to its Nearest Neighbor in the Functional
-Space and the Identity of the Nearest Neighbor}
+\title{Compute distance of a given point to its nearest neighbor in the functional
+space and the identity of the nearest neighbor}
 \usage{
 dist.nearneighb(sp_faxes_coord, ref_sp)
 }
@@ -13,7 +13,7 @@ functional space. Species coordinates have been retrieved thanks to
 \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
 \item{ref_sp}{a character string referring to the name of the reference
-species}
+species.}
 }
 \value{
 A list containing the nearest neighbor identity \code{nn_id} and a
@@ -58,7 +58,6 @@ This function is used in functional indices computation.
  dist_nn_pear <- dist.nearneighb(sp_faxes_coord_fruits, ref_sp = "pear")
  dist_nn_pear
 }
-
 }
 \author{
 Camille Magneville and Sebastien Villeger

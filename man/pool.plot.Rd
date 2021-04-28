@@ -35,8 +35,8 @@ names of species being vertices in n dimensions.}
 \item{plot_pool}{a logical value indicating whether species of each
 assemblage should be plotted or not. Default: plot_pool = TRUE.}
 
-\item{shape_pool}{a numeric value referring to the shape used to plot species
-pool. Default: \code{shape_pool = 16}(filled circle).}
+\item{shape_pool}{a numeric value referring to the shape used to plot
+species pool. Default: \code{shape_pool = 16}(filled circle).}
 
 \item{size_pool}{a numeric value referring to the size of species belonging
 to the global pool. Default: \code{size_pool = 1}.}
@@ -45,20 +45,20 @@ to the global pool. Default: \code{size_pool = 1}.}
 color of the pool.  This color is also used for FRic convex hull color.
 Default: \code{color_pool = "#0072B2"}.}
 
-\item{fill_pool}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-hull. Default: \code{fill_pool = '#0072B2'}.}
+\item{fill_pool}{a R color name or an hexadecimal code referring to the
+colour to fill species symbol (if \code{shape_sp} > 20) and the assemblage
+convex hull. Default: \code{fill_pool = '#0072B2'}.}
 
-\item{color_ch}{a R color name or an hexadecimal code referring to the border
-of the convex hull filled by the pool of species. Default:
+\item{color_ch}{a R color name or an hexadecimal code referring to the
+border of the convex hull filled by the pool of species. Default:
 \code{color_ch = "black"}.}
 
-\item{fill_ch}{a R color name or an hexadecimal code referring to the filling
-of the convex hull filled by the pool of species. Default is:
+\item{fill_ch}{a R color name or an hexadecimal code referring to the
+filling of the convex hull filled by the pool of species. Default is:
 \code{fill_ch = "white"}.}
 
-\item{alpha_ch}{a numeric value for transparency of the filling of the convex
-hull (0 = high transparency, 1 = no transparency). Default:
+\item{alpha_ch}{a numeric value for transparency of the filling of the
+convex hull (0 = high transparency, 1 = no transparency). Default:
 \code{alpha_ch = 0.3}.}
 
 \item{shape_vert}{a numeric value referring to the shape used to plot
@@ -66,8 +66,8 @@ vertices if vertices should be plotted in a different way than other
 species. If \code{shape_vert = NA}, no vertices plotted. Default:
 \code{shape_vert = NA}.}
 
-\item{size_vert}{a numeric value referring to the size of symbol for vertices
-Default: \code{size_vert = 1}.}
+\item{size_vert}{a numeric value referring to the size of symbol for
+vertices. Default: \code{size_vert = 1}.}
 
 \item{color_vert}{a R color name or an hexadecimal code referring to the
 color of vertices if plotted. If color_vert = NA, vertices are not plotted
@@ -80,8 +80,8 @@ vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
 \code{color_vert = NULL} is enough). Default is \code{NA}.}
 }
 \value{
-a ggplot object plotting background of multidimensional graphs and
-species from the global pool (associated convex hull if asked)
+A ggplot object plotting background of multidimensional graphs and
+species from the global pool (associated convex hull if asked).
 }
 \description{
 Plot all species from the study case and associated convex hull
@@ -115,7 +115,7 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
  
 # Retrieve species coordinates matrix:
 sp_faxes_coord_fruits_2D <- 
-  fspaces_quality_fruits$details_fspaces$sp_pc_coord[, c("PC1", "PC2")]
+  fspaces_quality_fruits$details_fspaces$sp_pc_coord[ , c("PC1", "PC2")]
 
 # Set faxes limits:
 # set range of axes if c(NA, NA):
@@ -151,9 +151,8 @@ sp_faxes_coord_fruits_2D <-
            color_vert    = "black", 
            fill_vert     = NA) 
  plot_pool_fruits
-                               
 }
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

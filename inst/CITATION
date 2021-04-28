@@ -10,5 +10,5 @@ bibentry(
               person("David", "Mouillot"), person("Sebastien", "Villeger")),
   year    = "2021",
   note    = "R package version 1.0.0",
-  url     = "https://CRAN.R-project.org/package=mFD"
+  url     = "https://github.com/CmlMagneville/mFD"
 )

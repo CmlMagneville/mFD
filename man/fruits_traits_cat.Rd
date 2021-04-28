@@ -9,8 +9,8 @@ A data frame with 8 rows (traits) and the following three columns:
 \describe{
 \item{trait_name}{a character giving the trait name}
 \item{trait_type}{a character giving the trait type (\strong{O} for Ordinal
-trait, \strong{N} for Nominal trait, \strong{Q} for Quantitative trait, and \strong{F} for
-Fuzzy-coded trait)}
+trait, \strong{N} for Nominal trait, \strong{Q} for Quantitative trait, and \strong{F}
+for Fuzzy-coded trait)}
 \item{fuzzy_name}{a character giving the name of fuzzy-coded traits
 (i.e. \code{Use}) to  which 'sub-traits' (i.e. \code{raw}, \code{pastry}, and \code{jam})
 belongs}

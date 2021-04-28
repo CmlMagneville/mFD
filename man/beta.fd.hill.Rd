@@ -2,7 +2,7 @@
 % Please edit documentation in R/beta_fhill_ind_computation.R
 \name{beta.fd.hill}
 \alias{beta.fd.hill}
-\title{Compute Functional beta-Diversity Indices based on Hill Numbers}
+\title{Compute Functional beta-Diversity indices based on Hill Numbers}
 \usage{
 beta.fd.hill(
   asb_sp_w,
@@ -27,33 +27,33 @@ NA are not allowed.}
 diversity to use}
 
 \item{tau}{a character string with name of function to apply to
-distance matrix (i.e. among all pairs of species) to get the threshold used
-to define 'functionally indistinct set of species'. Could be qet to 'mean'
-(default), 'min' or 'max'.}
+distance matrix (i.e. among all pairs of species) to get the threshold
+used to define 'functionally indistinct set of species'. Could be qet to
+'mean' (default), 'min' or 'max'.}
 
 \item{beta_type}{a character string with name of framework used for
 computing beta-diversity, either 'Jaccard' (default) or 'Sorensen'.}
 
-\item{check_input}{a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.}
+\item{check_input}{a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: \code{check_input = TRUE}.}
 
 \item{details_returned}{a logical value indicating whether the user
 want to store values used for computing indices (see list below)}
 }
 \value{
-a list with:
+A list with:
 \itemize{
-\item \emph{asb_FDbeta} a list with for each value of q a \emph{dist} object
-with beta functional diversity indices for all pairs of assemblages
+\item \emph{asb_FDbeta} a list with for each value of q a \emph{dist}
+object with beta functional diversity indices for all pairs of assemblages
 item if \strong{store.details} turned to TRUE a list \emph{details} with
 \itemize{
 \item \emph{malpha_fd_q} a list with for each value of q a \emph{dist}
 object with mean alpha functional diversity indices for all pairs of
 assemblages
-\item \emph{gamma_fd_q} a list with for each value of q a \emph{dist} object
-with gamma functional diversity indices for all pairs of assemblages
+\item \emph{gamma_fd_q} a list with for each value of q a \emph{dist}
+object with gamma functional diversity indices for all pairs of assemblages
 }
 }
 }
@@ -108,8 +108,8 @@ mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
 }
 \references{
 Chao \emph{et al.} (2019) An attribute-diversity approach to functional
-diversity, functional beta diversity, and related (dis)similarity measures.
-\emph{Ecological Monographs}, \strong{89}.
+diversity, functional beta diversity, and related (dis)similarity
+measures. \emph{Ecological Monographs}, \strong{89}, e01343.
 }
 \author{
 Sebastien Villeger and Camille Magneville

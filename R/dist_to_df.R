@@ -1,12 +1,12 @@
-#' Merge Distance Object(s) into a Single Data Frame
+#' Merge distance object(s) into a single data frame
 #' 
 #' This function merges distance object(s) into a single data frame which rows 
 #' are pairs of elements and column(s) distance metric(s). It stands on the 
 #' \code{\link[dendextend]{dist_long}} function.
 #' 
 #' @param list_dist a list of dist object(s). All dist objects should have a
-#'   name (e.g. name of distance metric) and the same labels (i.e. names of sets
-#'   between which distance was computed).
+#'   name (e.g. name of distance metric) and the same labels (i.e. names of 
+#'   sets between which distance was computed).
 #'
 #' @return A data frame which first and second columns (names `x1` and `x2`)
 #' contain names of the 2 sets involved in each pair, and with one column for
@@ -48,7 +48,7 @@ dist.to.df <- function(list_dist) {
   # checking list contains only dist
   # objects:
   if (any(unlist(lapply(list_dist, class)) != "dist")) {
-    stop("Input 'list_dist' should contain only 'dist' object Correct using ", 
+    stop("Input 'list_dist' should contain only 'dist' object. Correct using ", 
          "'as.dist()' if necessary.")
   }
   
@@ -102,8 +102,8 @@ dist.to.df <- function(list_dist) {
       # checking same labels than first dist
       # object:
       if (is.null(k_labels) || any(dist1_labels != k_labels)) {
-        stop("Element ", k_nm, " does not have the same labels than first ", "
-             dist object ", dist_nm[1], ". Check labels of inputs.")
+        stop("Element ", k_nm, " does not have the same labels than first ", 
+             "dist object ", dist_nm[1], ". Check labels of inputs.")
       }
       
       # applying dist_long:

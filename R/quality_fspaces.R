@@ -1,4 +1,4 @@
-#' Compute Functional Spaces their Quality
+#' Compute functional spaces and their quality
 #'
 #' Compute a Principal Coordinates Analysis (PCoA) using functional distance
 #' between species. Then the function evaluates the quality of spaces built
@@ -6,15 +6,15 @@
 #' the (absolute or squared) deviation between trait-based distance (input) and
 #' distance in the PCoA-based space (raw Euclidean distance or scaled distance
 #' according to its maximum value and maximum of trait-based distance). Option
-#' to compute a functional dendrogram and its quality. This function is based on
-#' the framework presented in Maire _et al._ (2015).
+#' to compute a functional dendrogram and its quality. This function is based 
+#' on the framework presented in Maire _et al._ (2015).
 #'
 #' @param sp_dist a dist object with pairwise distance among all species (at 
 #'   least 3 species needed). Functional distance matrix from trait values can 
 #'   be computed using \code{\link{funct.dist}} function.
 #'
-#' @param maxdim_pcoa a single numeric value with maximum number of PCoA axes to 
-#'   consider to build multidimensional functional spaces. Default: 
+#' @param maxdim_pcoa a single numeric value with maximum number of PCoA axes 
+#'   to consider to build multidimensional functional spaces. Default: 
 #'   `maxdim_pcoa = 10`. See below about number of axes actually considered.
 #'
 #' @param deviation_weighting a character string referring to the
@@ -26,9 +26,10 @@
 #'   values could be provided to compare quality metrics.
 #'
 #' @param fdist_scaling a vector with logical value(s) specifying
-#'   whether distances in the functional space should be scaled before computing
-#'   differences with trait-based distances. Scaling ensures that trait-based
-#'   distances and distances in the functional space have the same maximum.
+#'   whether distances in the functional space should be scaled before 
+#'   computing differences with trait-based distances. Scaling ensures that 
+#'   trait-based distances and distances in the functional space have the same 
+#'   maximum.
 #'   Default: `FALSE`. Both values could be provided to compare quality metrics.
 #'
 #' @param fdendro a character string indicating the clustering
@@ -38,12 +39,13 @@
 #'
 #' @return A list with:
 #' \itemize{
-#'   \item \code{$quality_fspaces}: a data frame with quality metric(s) for each
-#'     functional space. Functional spaces are named as 'pcoa_.d' and if 
+#'   \item \code{$quality_fspaces}: a data frame with quality metric(s) for 
+#'     each functional space. Functional spaces are named as 'pcoa_.d' and if 
 #'     required 'tree_clustering method'. Quality metrics are named after 
 #'     deviation_weighting ('mad' for 'absolute' and and 'rmsd' for 'squared')
 #'     and if fdist_scaling is TRUE with suffix '_scaled'.
-#'   \item \code{$details_trdist} a list with 2 elements: \code{$trdist_summary} 
+#'   \item \code{$details_trdist} a list with 2 elements: 
+#'     \code{$trdist_summary} 
 #'     a vector with minimum (min), maximum (max), mean (mean) and standard 
 #'     deviation (sd) of \code{sp_dist}; \code{$trdist_euclidean} a logical 
 #'     value indicating whether \code{sp_dist} checks Euclidean properties.
@@ -55,15 +57,17 @@
 #'     \code{$pairsp_fspaces_dist} a dataframe containing for each pair of
 #'     species (rows), their names in the 2 first columns ('sp.x' and 'sp.y'),
 #'     their distance based on trait-values ('tr'), and their Euclidean 
-#'     (for PCoA) or cophenetic (for dendrogram if computed) distance in each of
-#'     the functional space computed ('pcoa_1d', 'pcoa_2d', ... , 'tree_clust');
+#'     (for PCoA) or cophenetic (for dendrogram if computed) distance in each 
+#'     of the functional space computed ('pcoa_1d', 'pcoa_2d', ... , 
+#'     'tree_clust');
 #'     if `fdist_scaling = TRUE`, \code{$pairsp_fspaces_dist_scaled} a data 
 #'     frame with scaled values of distances in functional spaces.
 #'   \item \code{$details_deviation} a list of data frames:
 #'     \code{$dev_distsp} a dataframe containing for each space (columns) the
-#'     difference for all species pairs (rows) of the distance in the functional
-#'     space and trait-based distance (i.e. positive deviation indicates
-#'     overestimation of actual distance) ; \code{$abs_dev_distsp} and/or
+#'     difference for all species pairs (rows) of the distance in the 
+#'     functional space and trait-based distance (i.e. positive deviation 
+#'     indicates overestimation of actual distance) ; \code{$abs_dev_distsp} 
+#'     and/or
 #'     \code{$sqr_dev_distsp}, dataframes with for each space (columns) and all
 #'     species pairs (rows) the absolute or squared deviation of distance ; if
 #'     `fdist_scaling = TRUE` \code{$dev_distsp_scaled}, and 
@@ -84,7 +88,7 @@
 #' functional diversity? A pragmatic approach for assessing the quality of 
 #' functional spaces _Global Ecology and Biogeography_, **24**, 728-740.
 #'
-#' @author Sebastien Villeger, Eva Maire & Camille Magneville
+#' @author Sebastien Villeger, Eva Maire, and Camille Magneville
 #'
 #' @export
 #'
@@ -277,16 +281,17 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
       details_deviation$sqr_dev_distsp <- sqr_dev_distsp
 
       # root of mean squared deviation:
-      q_fspaces[fspaces_nm, "rmsd"] <- sqrt(apply(sqr_dev_distsp[ , fspaces_nm],
+      q_fspaces[fspaces_nm, "rmsd"] <- sqrt(apply(sqr_dev_distsp[, fspaces_nm],
                                                  2, mean))
     }
   }
 
-  # if required, computing metrics on scaled distances in the functional spaces----
+  # if required, computing metrics on scaled distances in the functional 
+  # spaces----
   if (TRUE %in% fdist_scaling) {
 
-    # scaling distance in each functional space according to maximum distance...
-    # ... in the functional space and maxium trait-based distance :
+    # scaling distance in each functional space according to maximum...
+    # ... distance in the functional space and maxium trait-based distance :
     df_distsp_scaled <- data.frame(
       df_distsp[ , c("sp.x", "sp.y", "tr")],
       apply(df_distsp[ , fspaces_nm], 2, function(x) { 
@@ -296,7 +301,8 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
 
     # compute deviation between scaled distance and trait-based distance:
     dev_distsp_scaled <- data.frame(df_distsp_scaled[ , c("sp.x", "sp.y")],
-                     df_distsp_scaled[, fspaces_nm] - df_distsp_scaled[ , "tr"])
+                     df_distsp_scaled[ , fspaces_nm] - 
+                       df_distsp_scaled[ , "tr"])
     details_deviation$dev_distsp_scaled <- dev_distsp_scaled
 
     # if required based on absolute deviation
@@ -323,9 +329,8 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
       details_deviation$sqr_dev_distsp_scaled <- sqr_dev_distsp_scaled
 
       # root of mean squared deviation:
-      q_fspaces[fspaces_nm, "rmsd_scaled"] <- sqrt(apply(sqr_dev_distsp_scaled[, 
-                                                                    fspaces_nm],
-                                                        2, mean))
+      q_fspaces[fspaces_nm, "rmsd_scaled"] <- sqrt(
+        apply(sqr_dev_distsp_scaled[ , fspaces_nm], 2, mean))
     }
   }
 

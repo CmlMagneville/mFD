@@ -71,7 +71,7 @@ linking fide centroid and functional axes.}
 draw the segment linking fide centroid and functional axes.}
 }
 \value{
-a ggplot object with FIde index, species and background
+A ggplot object with FIde index, species and background.
 }
 \description{
 Plot FIde index given a pair of functional axes for one or several
@@ -85,7 +85,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{
-
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -127,7 +126,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
                                
- # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+ # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
                              sp_faxes_coord = sp_faxes_coord_fruits, 
                              asb_sp_w       = baskets_fruits_weights)
@@ -136,7 +135,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                
  # Use alpha.fd.multidim() function to get inputs to plot FIde:
  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+ sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fide"),
   scaling          = TRUE,
@@ -175,5 +174,5 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 }
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

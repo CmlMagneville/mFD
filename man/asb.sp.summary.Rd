@@ -2,7 +2,7 @@
 % Please edit documentation in R/matrix_summaries.R
 \name{asb.sp.summary}
 \alias{asb.sp.summary}
-\title{Summarize Assemblage x Species Data Frame}
+\title{Summarize Assemblage x Species data frame}
 \usage{
 asb.sp.summary(asb_sp_w)
 }
@@ -20,11 +20,12 @@ species.}
 assemblage.}
 \item{asb_sp_richn}{a vector gathering species richness per
 assemblage.}
-\item{asb_sp_nm}{a list gathering the names of species of each assemblage.}
+\item{asb_sp_nm}{a list gathering the names of species of each
+assemblage.}
 }
 \description{
-This function computes a summary helping you to picture assemblages. For this
-function to work, there must be no NA in your \code{asb_sp_w} data frame.
+This function computes a summary helping you to picture assemblages. For
+this function to work, there must be no NA in your \code{asb_sp_w} data frame.
 }
 \examples{
 \dontrun{
@@ -36,5 +37,5 @@ mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 }
 }
 \author{
-Camille Magneville & Sebastien Villeger
+Camille Magneville and Sebastien Villeger
 }

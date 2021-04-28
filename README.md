@@ -1,9 +1,18 @@
+---
+author:
+- Camille Magneville
+date: 2021-04-28
+output:
+  md_document:
+    toc: false
+    variant: gfm
+title: mFD
+---
+
 # mFD <img src="man/figures/hexasticker_mFD.png" height="120" align="right" alt = "hexasticker mFD"/>
 
 <!-- badges: start -->
 
-[![CRAN
-status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/package=mFD)
 [![R-CMD-check](https://github.com/CmlMagneville/mFD/workflows/R-CMD-check/badge.svg)](https://github.com/CmlMagneville/mFD/actions)
 [![Website](https://img.shields.io/badge/Website-visit-blue?style=flat&logo=html5)](https://cmlmagneville.github.io/mFD/index.html)
 <!-- badges: end -->
@@ -39,15 +48,15 @@ library(mFD)
 
 To compute functional diversity indices, the user needs:
 
-  - a data frame summarizing species traits (species in rows, traits in
+-   a data frame summarizing species traits (species in rows, traits in
     columns). The `mFD` package works with all kind of traits:
     quantitative, ordinal, nominal, circular and fuzzy-coded.
 
-  - a matrix summarizing species gathering into assemblages (assemblages
+-   a matrix summarizing species gathering into assemblages (assemblages
     in rows, species in columns). All assemblages must at least contain
     one species.
 
-  - a data frame summarizing traits category (first column with traits
+-   a data frame summarizing traits category (first column with traits
     name, second column with traits type, third column with fuzzy name
     of fuzzy traits - if no fuzzy traits: NA).
 

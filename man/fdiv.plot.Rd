@@ -82,8 +82,8 @@ color of the center of gravity of vertices.}
 referring to the color to fill the center of gravity of vertices.}
 }
 \value{
-a ggplot object plotting background of multidimensional graphs and
-FDiv indice
+A ggplot object plotting background of multidimensional graphs and
+FDiv indice.
 }
 \description{
 This plot fDiv indice for a given pair of functional axes and one or several
@@ -137,7 +137,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
                                
- # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+ # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
                              sp_faxes_coord = sp_faxes_coord_fruits, 
                              asb_sp_w       = baskets_fruits_weights)
@@ -146,21 +146,21 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                
  # Use alpha.fd.multidim() function to get inputs to plot FDiv:
  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+ sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fdiv"),
   scaling          = TRUE,
   check_input      = TRUE,
   details_returned = TRUE)
   
- # Retrieve inputs of the fdiv.plot() function for "basket_1" and PC1, PC2...
+ # Retrieve inputs of the fdiv.plot() function for "basket_1" and PC1, PC2
  # ... through alpha.fd.multidim outputs:
  fruits_asb_sp_relatw_b1 <- 
          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
  fruits_asb_vertices_nD_b1_2D <- 
-                      alpha_fd_indices_fruits$details$asb_vert_nm["basket_1"]
+                     alpha_fd_indices_fruits$details$asb_vert_nm["basket_1"]
  fruits_asb_vertG_coord_b1 <- 
-                      alpha_fd_indices_fruits$details$asb_G_coord["basket_1"]
+                     alpha_fd_indices_fruits$details$asb_G_coord["basket_1"]
  fruits_asb_vertG_coord_b1_2D <- 
              fruits_asb_vertG_coord_b1[[1]][c("PC1", "PC2")]
  
@@ -183,12 +183,8 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            color_vertG       = list(basket_1 = "blue"),
            fill_vertG        = list(basket_1 = "blue"))
  fdiv_plot
- 
-
 }
-
-
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

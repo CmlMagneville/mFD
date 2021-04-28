@@ -2,7 +2,8 @@
 #' 
 #' This dataset represents the abundance of 25 fruits species in 10 baskets.
 #'   
-#' @format A matrix of integers with 10 rows (baskets) and 25 columns (species).
+#' @format A matrix of integers with 10 rows (baskets) and 25 columns 
+#'   (species).
 #' 
 #' @seealso `fruits_traits`, `fruits_traits_cat`
 #' 

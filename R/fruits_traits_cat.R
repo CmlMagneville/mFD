@@ -7,8 +7,8 @@
 #' \describe{
 #'   \item{trait_name}{a character giving the trait name}
 #'   \item{trait_type}{a character giving the trait type (**O** for Ordinal 
-#'   trait, **N** for Nominal trait, **Q** for Quantitative trait, and **F** for
-#'   Fuzzy-coded trait)}
+#'   trait, **N** for Nominal trait, **Q** for Quantitative trait, and **F** 
+#'   for Fuzzy-coded trait)}
 #'   \item{fuzzy_name}{a character giving the name of fuzzy-coded traits 
 #'   (i.e. `Use`) to  which 'sub-traits' (i.e. `raw`, `pastry`, and `jam`) 
 #'   belongs}

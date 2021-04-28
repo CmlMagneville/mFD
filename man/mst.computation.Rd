@@ -2,17 +2,18 @@
 % Please edit documentation in R/fcts_used_for_ind_comp.R
 \name{mst.computation}
 \alias{mst.computation}
-\title{Compute the Minimum Spanning Tree (MST) Linking Species of a Given Assemblage}
+\title{Compute the Minimum Spanning Tree (MST) linking species of a given
+assemblage}
 \usage{
 mst.computation(sp_faxes_coord_k)
 }
 \arguments{
 \item{sp_faxes_coord_k}{a matrix relating species coordinates for species
-present in a given assemblage}
+present in a given assemblage.}
 }
 \value{
-a dist object summarizing the MST for all species of a given
-assemblage \code{mst_asb_k}
+A dist object summarizing the MST for all species of a given
+assemblage \code{mst_asb_k}.
 }
 \description{
 This function computes the MST linking species of a given assemblage and is
@@ -53,7 +54,6 @@ used to compute FEve index.
  mst_fruits <- mst.computation(sp_faxes_coord_fruits)
  mst_fruits
 }
-
 }
 \author{
 Camille Magneville and Sebastien Villeger

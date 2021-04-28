@@ -13,9 +13,9 @@
 #' @param color_bg a R color name  or an hexadecimal code used to fill plot
 #'  background. Default: `color_bg = "grey95"`.
 #'
-#' @return a ggplot object plotting background of multidimensional graphs
+#' @return A ggplot object plotting background of multidimensional graphs.
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
@@ -25,27 +25,24 @@
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #' }
-#'
 
 
 
 background.plot <- function(range_faxes, faxes_nm, color_bg) {
   
-    ggplot_bg <- ggplot2::ggplot( ) +
-      ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
-      ggplot2::xlab(faxes_nm[1]) +
-      ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
-      ggplot2::ylab(faxes_nm[2]) +
-      ggplot2::theme(panel.grid.minor = ggplot2::element_blank(),
-                     panel.grid.major = ggplot2::element_blank(),
-                     panel.background = ggplot2::element_rect(fill = color_bg),
-                     axis.line = ggplot2::element_line(colour = "grey50", 
-                                                       size = 1)) +
-      ggplot2::coord_fixed()
-    
-    return(ggplot_bg)
-    
+  ggplot_bg <- ggplot2::ggplot( ) +
+    ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
+    ggplot2::xlab(faxes_nm[1]) +
+    ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
+    ggplot2::ylab(faxes_nm[2]) +
+    ggplot2::theme(panel.grid.minor = ggplot2::element_blank(),
+                   panel.grid.major = ggplot2::element_blank(),
+                   panel.background = ggplot2::element_rect(fill = color_bg),
+                   axis.line = ggplot2::element_line(colour = "grey50", 
+                                                     size = 1)) +
+    ggplot2::coord_fixed()
   
+  return(ggplot_bg)
 } 
 
 
@@ -67,8 +64,8 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #' @param plot_pool a logical value indicating whether species of each 
 #' assemblage should be plotted or not. Default: plot_pool = TRUE.
 #' 
-#' @param color_ch a R color name or an hexadecimal code referring to the border
-#'  of the convex hull filled by the pool of species. Default: 
+#' @param color_ch a R color name or an hexadecimal code referring to the 
+#'   border of the convex hull filled by the pool of species. Default: 
 #'  `color_ch = "black"`.
 #' 
 #' @param color_pool a R color name or an hexadecimal code referring to the 
@@ -80,21 +77,21 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
 #'   must also be set to NA). Default: `color_vert =  NA`. 
 #'   
-#' @param fill_ch a R color name or an hexadecimal code referring to the filling
-#'  of the convex hull filled by the pool of species. Default is: 
+#' @param fill_ch a R color name or an hexadecimal code referring to the 
+#'   filling of the convex hull filled by the pool of species. Default is: 
 #'  `fill_ch = "white"`.
 #' 
-#' @param fill_pool a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-#'  hull. Default: `fill_pool = '#0072B2'`.
+#' @param fill_pool a R color name or an hexadecimal code referring to the 
+#'   colour to fill species symbol (if \code{shape_sp} > 20) and the assemblage 
+#'   convex hull. Default: `fill_pool = '#0072B2'`.
 #' 
 #' @param fill_vert a character value referring to the color for filling symbol
 #'   for vertices (if \code{shape_vert} >20). If `fill = NA` and `color = NA`,
 #'   vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
 #'   `color_vert = NULL` is enough). Default is `NA`. 
 #' 
-#' @param shape_pool a numeric value referring to the shape used to plot species
-#'  pool. Default: `shape_pool = 16`(filled circle). 
+#' @param shape_pool a numeric value referring to the shape used to plot 
+#'   species pool. Default: `shape_pool = 16`(filled circle). 
 #' 
 #' @param shape_vert a numeric value referring to the shape used to plot
 #'   vertices if vertices should be plotted in a different way than other
@@ -104,17 +101,17 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #' @param size_pool a numeric value referring to the size of species belonging 
 #' to the global pool. Default: `size_pool = 1`.
 #' 
-#' @param size_vert a numeric value referring to the size of symbol for vertices
-#'  Default: `size_vert = 1`. 
+#' @param size_vert a numeric value referring to the size of symbol for 
+#'   vertices. Default: `size_vert = 1`. 
 #' 
-#' @param alpha_ch a numeric value for transparency of the filling of the convex
-#'  hull (0 = high transparency, 1 = no transparency). Default: 
+#' @param alpha_ch a numeric value for transparency of the filling of the 
+#'   convex hull (0 = high transparency, 1 = no transparency). Default: 
 #'  `alpha_ch = 0.3`.
 #'
-#' @return a ggplot object plotting background of multidimensional graphs and
-#' species from the global pool (associated convex hull if asked)
+#' @return A ggplot object plotting background of multidimensional graphs and
+#'   species from the global pool (associated convex hull if asked).
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
@@ -147,7 +144,7 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #'  
 #' # Retrieve species coordinates matrix:
 #' sp_faxes_coord_fruits_2D <- 
-#'   fspaces_quality_fruits$details_fspaces$sp_pc_coord[, c("PC1", "PC2")]
+#'   fspaces_quality_fruits$details_fspaces$sp_pc_coord[ , c("PC1", "PC2")]
 #' 
 #' # Set faxes limits:
 #' # set range of axes if c(NA, NA):
@@ -183,7 +180,6 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #'            color_vert    = "black", 
 #'            fill_vert     = NA) 
 #'  plot_pool_fruits
-#'                                
 #' }
 
 pool.plot <- function(ggplot_bg,
@@ -281,8 +277,8 @@ pool.plot <- function(ggplot_bg,
 #' @param size_sp a numeric value referring to the size of species belonging to
 #'  the plotted assemblage. Default: `size_sp = 1`.
 #' 
-#' @param size_vert a numeric value referring to the size of symbol for vertices
-#'  Default: `size_vert = 1`. 
+#' @param size_vert a numeric value referring to the size of symbol for 
+#'   vertices. Default: `size_vert = 1`. 
 #' 
 #' @param shape_sp a numeric value referring to the shape of species 
 #' belonging to the plotted assemblage. 
@@ -291,9 +287,9 @@ pool.plot <- function(ggplot_bg,
 #' @param shape_vert a numeric value referring to the shape of symbol for 
 #' vertices.
 #' 
-#' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage.  This color is also used for FRic
-#'  convex hull color. 
+#' @param color_sp a R color name or an hexadecimal code referring to the 
+#'   color of species from the studied assemblage.  This color is also used 
+#'   for FRic convex hull color. 
 #' 
 #' @param color_vert a R color name or an hexadecimal code referring to the
 #'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
@@ -315,26 +311,26 @@ pool.plot <- function(ggplot_bg,
 #' @param range_size_relatw a vector of two numbers specifying the minimum and 
 #' the maximum size of the plotting symbol for relative weights.
 #' 
-#' @return a ggplot object with species plotted on the background plot
+#' @return A ggplot object with species plotted on the background plot.
 #' 
-#' @note if \code{asb_vertices_nD = NULL}, all arguments for vertices are 
+#' @author Camille Magneville and Sebastien Villeger
+#' 
+#' @note If \code{asb_vertices_nD = NULL}, all arguments for vertices are 
 #' ignored and if \code{asb_sp_relatw != NULL}, \code{size_sp} and 
 #' \code{size_vert} are ignored. And if several assemblages are to be 
 #' represented, aesthetics inputs should be formatted as c(pool = ..., asb1 =
 #' ..., asb2 = ...).
 #' 
-#' @author Camille Magneville and Sébastien Villéger
-#' 
-#' 
+#' @noRd
 
 sp.plot <- function(ggplot_bg,
-                  asb_sp_coord2D,
-                  asb_vertices_nD = NULL,
-                  asb_sp_relatw = NULL,
-                  size_sp, shape_sp, color_sp, fill_sp,
-                  size_vert, shape_vert, color_vert, fill_vert,
-                  limits_relatw = c(0, 1),
-                  range_size_relatw = c(1, 10)) {
+                    asb_sp_coord2D,
+                    asb_vertices_nD = NULL,
+                    asb_sp_relatw = NULL,
+                    size_sp, shape_sp, color_sp, fill_sp,
+                    size_vert, shape_vert, color_vert, fill_vert,
+                    limits_relatw = c(0, 1),
+                    range_size_relatw = c(1, 10)) {
   
   # names of assemblages:
   asb_nm <- names(asb_sp_coord2D)
@@ -438,7 +434,7 @@ sp.plot <- function(ggplot_bg,
 #' Plot individual plots along a pair of functional axes into a unique graph
 #' 
 #' This function gathers panels into a unique \code{patchwork} graph 
-#' with caption
+#' with caption.
 #' 
 #' @param panels a list of ggplot objects illustrating an index on two given 
 #' functional axes. There must be either one, three or six ggplot objects given
@@ -447,9 +443,9 @@ sp.plot <- function(ggplot_bg,
 #' @param plot_caption a ggplot object illustrating the caption of the 
 #' final patchwork plot.
 #' 
-#' @return a unique ggplot object gathering functional ppanels and caption
+#' @return A unique ggplot object gathering functional panels and caption.
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
@@ -579,7 +575,7 @@ sp.plot <- function(ggplot_bg,
 #'
 #' ## Create patchwork:
 #' patchwork_fric <- mFD::panels.to.patchwork(list(ggplot_fric), plot_caption)
-#'}
+#' }
 
 panels.to.patchwork <- function(panels, plot_caption) {
   
@@ -619,8 +615,6 @@ panels.to.patchwork <- function(panels, plot_caption) {
 
 
 
-
-
 #' Plot FRic index
 #'
 #' This function plots FRic index for a given pair of functional axes and one 
@@ -640,8 +634,8 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #' @param plot_sp a logical value indicating whether species of each assemblage 
 #'  should be plotted or not. Default: plot_sp = TRUE.
 #' 
-#' @param color_ch a R color name or an hexadecimal code referring to the border
-#'  of the convex hull filled by the pool of species. Default: 
+#' @param color_ch a R color name or an hexadecimal code referring to the 
+#'   border of the convex hull filled by the pool of species. Default: 
 #'  `color_ch = "black"`.
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
@@ -653,8 +647,8 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
 #'   must also be set to NA). 
 #'
-#' @param fill_ch a R color name or an hexadecimal code referring to the filling
-#'  of the convex hull filled by the pool of species. Default is: 
+#' @param fill_ch a R color name or an hexadecimal code referring to the 
+#'   filling of the convex hull filled by the pool of species. Default is: 
 #'  `fill_ch = "white"`.
 #' 
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
@@ -678,20 +672,20 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #' @param size_sp a numeric value referring to the size of species belonging to
 #'  the plotted assemblage. Default: `size_sp = 1`.
 #' 
-#' @param size_vert a numeric value referring to the size of symbol for vertices
-#'  Default: `size_vert = 1`.
+#' @param size_vert a numeric value referring to the size of symbol for 
+#'   vertices. Default: `size_vert = 1`.
 #' 
-#' @param alpha_ch a numeric value for transparency of the filling of the convex
-#'  hull (0 = high transparency, 1 = no transparency). Default: 
+#' @param alpha_ch a numeric value for transparency of the filling of the 
+#'   convex hull (0 = high transparency, 1 = no transparency). Default: 
 #'  `alpha_ch = 0.3`.
 #'
-#' @return a ggplot object plotting background of multidimensional graphs and
-#' FRic convex hulls
+#' @return A ggplot object plotting background of multidimensional graphs and
+#' FRic convex hulls.
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formated as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
@@ -832,9 +826,7 @@ fric.plot <- function(ggplot_bg,
   }# end of if plot_sp
 
   return(ggplot_fric)
-  
 }
-
 
 
 
@@ -901,13 +893,13 @@ fric.plot <- function(ggplot_bg,
 #' @param size_vertG a numeric value referring to the size to use to
 #' plot the center of gravity of vertices. 
 #'
-#' @return a ggplot object plotting background of multidimensional graphs and
-#' FDiv indice
+#' @return A ggplot object plotting background of multidimensional graphs and
+#'   FDiv indice.
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
@@ -954,7 +946,7 @@ fric.plot <- function(ggplot_bg,
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
-#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
 #'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
 #'                              sp_faxes_coord = sp_faxes_coord_fruits, 
 #'                              asb_sp_w       = baskets_fruits_weights)
@@ -963,21 +955,21 @@ fric.plot <- function(ggplot_bg,
 #'                                
 #'  # Use alpha.fd.multidim() function to get inputs to plot FDiv:
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
 #'   ind_vect         = c("fdiv"),
 #'   scaling          = TRUE,
 #'   check_input      = TRUE,
 #'   details_returned = TRUE)
 #'   
-#'  # Retrieve inputs of the fdiv.plot() function for "basket_1" and PC1, PC2...
+#'  # Retrieve inputs of the fdiv.plot() function for "basket_1" and PC1, PC2
 #'  # ... through alpha.fd.multidim outputs:
 #'  fruits_asb_sp_relatw_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
 #'  fruits_asb_vertices_nD_b1_2D <- 
-#'                       alpha_fd_indices_fruits$details$asb_vert_nm["basket_1"]
+#'                      alpha_fd_indices_fruits$details$asb_vert_nm["basket_1"]
 #'  fruits_asb_vertG_coord_b1 <- 
-#'                       alpha_fd_indices_fruits$details$asb_G_coord["basket_1"]
+#'                      alpha_fd_indices_fruits$details$asb_G_coord["basket_1"]
 #'  fruits_asb_vertG_coord_b1_2D <- 
 #'              fruits_asb_vertG_coord_b1[[1]][c("PC1", "PC2")]
 #'  
@@ -1000,12 +992,7 @@ fric.plot <- function(ggplot_bg,
 #'            color_vertG       = list(basket_1 = "blue"),
 #'            fill_vertG        = list(basket_1 = "blue"))
 #'  fdiv_plot
-#'  
-#'
 #' }
-#'
-#'
-
 
 fdiv.plot <- function(ggplot_bg,
                       asb_sp_coord2D,
@@ -1071,7 +1058,6 @@ fdiv.plot <- function(ggplot_bg,
 
 
 
-
 #' Plot FIde index
 #' 
 #' Plot FIde index given a pair of functional axes for one or several 
@@ -1126,18 +1112,17 @@ fdiv.plot <- function(ggplot_bg,
 #' @param linetype_segment a character string referring to the linetype used to 
 #' draw the segment linking fide centroid and functional axes. 
 #' 
-#' @return a ggplot object with FIde index, species and background
+#' @return A ggplot object with FIde index, species and background.
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
 #' @examples 
 #' \dontrun{
-#' 
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1179,7 +1164,7 @@ fdiv.plot <- function(ggplot_bg,
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
-#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
 #'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
 #'                              sp_faxes_coord = sp_faxes_coord_fruits, 
 #'                              asb_sp_w       = baskets_fruits_weights)
@@ -1188,7 +1173,7 @@ fdiv.plot <- function(ggplot_bg,
 #'                                
 #'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
 #'   ind_vect         = c("fide"),
 #'   scaling          = TRUE,
@@ -1225,7 +1210,6 @@ fdiv.plot <- function(ggplot_bg,
 #'  fide_plot
 #'  
 #' }
-
 
 fide.plot <-function(ggplot_bg,
                     asb_sp_coord2D,
@@ -1307,18 +1291,15 @@ fide.plot <-function(ggplot_bg,
   }
 
   return(ggplot_fide)
-  
 }
-
-
 
 
 
 #' Plot FDis index
 #' 
 #' This function plots FDis index for a given pair of functional axes and for
-#' one or several assemblages. It adds segments between species relative weights
-#' and assemblage cenntroid on the background plot.
+#' one or several assemblages. It adds segments between species relative 
+#' weights and assemblage cenntroid on the background plot.
 #' 
 #' @param ggplot_bg a ggplot object of the plot background retrieved through
 #' the \code{\link{background.plot}} function.
@@ -1361,7 +1342,8 @@ fide.plot <-function(ggplot_bg,
 #'  to fill species symbol (if \code{shape_sp} > 20). 
 #' 
 #' @param fill_fide a R color name or an hexadecimal code referring to the
-#'   colour to fill assemblage fide centroid symbol (if \code{shape_fide} > 20).
+#'   colour to fill assemblage fide centroid symbol 
+#'   (if \code{shape_fide} > 20).
 #' 
 #' @param size_fide a numeric value referring to the size of assemblage 
 #' fide centroid.  
@@ -1372,19 +1354,18 @@ fide.plot <-function(ggplot_bg,
 #' @param linetype_segment a character string referring to the linetype used to 
 #' draw the segment linking fide centroid and functional axes. 
 #' 
-#' @return a ggplot object showing FDis index for one or several assemblage(s) 
+#' @return A ggplot object showing FDis index for one or several assemblage(s) 
 #' and a given pair of functional axes.
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
 #' @examples 
 #' \dontrun{
-#' 
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1426,7 +1407,7 @@ fide.plot <-function(ggplot_bg,
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
-#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
 #'  sp_filter <- mFD::sp.filter(asb_nm         = "basket_1", 
 #'                              sp_faxes_coord = sp_faxes_coord_fruits, 
 #'                              asb_sp_w       = baskets_fruits_weights)
@@ -1435,7 +1416,7 @@ fide.plot <-function(ggplot_bg,
 #'                                
 #'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
 #'   ind_vect         = c("fdis"),
 #'   scaling          = TRUE,
@@ -1450,8 +1431,6 @@ fide.plot <-function(ggplot_bg,
 #'  fruits_asb_sp_relatw_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
 #'
-#'
-#'  
 #'  # Retrieve FDis plot:
 #'  fdis_plot <- fdis.plot(ggplot_bg = ggplot_bg_fruits,
 #'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -1471,7 +1450,6 @@ fide.plot <-function(ggplot_bg,
 #'            
 #'  fdis_plot
 #' }
-#' 
 
 fdis.plot <- function(ggplot_bg,
                     asb_sp_coord2D,
@@ -1551,12 +1529,8 @@ fdis.plot <- function(ggplot_bg,
                           shape = shape_fide[[k]], size = size_fide[[k]])
   }
   
-  
-  
   return(ggplot_fdis)
-  
 }
-
 
 
 
@@ -1589,10 +1563,10 @@ fdis.plot <- function(ggplot_bg,
 #' @param color_sp a R color name or an hexadecimal code referring to the color
 #'  of species from the studied assemblage. 
 #'  
-#' @param color_mst a R color name or an hexadecimal code referring to the color
-#'  of the MST from the studied assemblage.  
+#' @param color_mst a R color name or an hexadecimal code referring to the 
+#'   color of the MST from the studied assemblage.  
 #' 
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
+#' @param fill_sp a R color name or an hexadecimal code referring to the color
 #'  to fill species symbol (if \code{shape_sp} > 20). 
 #'  
 #' @param width_mst a numeric value referring to the size of the line 
@@ -1601,18 +1575,17 @@ fdis.plot <- function(ggplot_bg,
 #' @param linetype_mst a character string referring to the linetype used to 
 #' draw the MST.  
 #' 
-#' @return a ggplot object showing FEve index on the background plot
+#' @return A ggplot object showing FEve index on the background plot.
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
-#' @author Camille Magneville and sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
 #' @examples 
 #' \dontrun{
-#' 
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1654,7 +1627,7 @@ fdis.plot <- function(ggplot_bg,
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
-#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
 #'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
 #'                              sp_faxes_coord = sp_faxes_coord_fruits, 
 #'                              asb_sp_w       = baskets_fruits_weights)
@@ -1663,7 +1636,7 @@ fdis.plot <- function(ggplot_bg,
 #'                                
 #'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
 #'   ind_vect         = c("feve"),
 #'   scaling          = TRUE,
@@ -1674,8 +1647,6 @@ fdis.plot <- function(ggplot_bg,
 #'  fruits_asb_mst_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_mst["basket_1"]
 #'
-#'
-#'  
 #'  # Retrieve FEve plot:
 #'  feve_plot <- feve.plot(ggplot_bg = ggplot_bg_fruits,
 #'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -1690,10 +1661,7 @@ fdis.plot <- function(ggplot_bg,
 #'            linetype_mst = list(basket_1 = "solid"))
 #'            
 #'  feve_plot
-#' 
 #' }
-#'  
-#'  
 
 feve.plot <- function(ggplot_bg,
                       asb_sp_coord2D,
@@ -1742,7 +1710,8 @@ feve.plot <- function(ggplot_bg,
     
     ggplot_feve <- ggplot_feve +
       ggplot2::geom_segment(data = k_branches_xyxy,
-                          ggplot2::aes(x = x , y = y, xend = xend, yend = yend),
+                          ggplot2::aes(x = x , y = y, xend = xend, 
+                                       yend = yend),
                           colour = color_mst[[k]],
                           size = width_mst[[k]],
                           linetype = linetype_mst[[k]])
@@ -1752,7 +1721,6 @@ feve.plot <- function(ggplot_bg,
   return(ggplot_feve)
   
 }# end of function
-
 
 
 
@@ -1795,18 +1763,17 @@ feve.plot <- function(ggplot_bg,
 #' @param linetype_segment a character string referring to the linetype used to 
 #' link nearest neighbors in the studied assemblages. 
 #' 
-#' @return a ggplot object with FNND index
+#' @return A ggplot object with FNND index.
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
 #' @examples 
 #' \dontrun{
-#' 
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1848,7 +1815,7 @@ feve.plot <- function(ggplot_bg,
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
-#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
 #'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
 #'                              sp_faxes_coord = sp_faxes_coord_fruits, 
 #'                              asb_sp_w       = baskets_fruits_weights)
@@ -1857,7 +1824,7 @@ feve.plot <- function(ggplot_bg,
 #'                                
 #'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
 #'   ind_vect         = c("fnnd"),
 #'   scaling          = TRUE,
@@ -1868,7 +1835,6 @@ feve.plot <- function(ggplot_bg,
 #'  fruits_asb_nn_asb_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_nm_nn_asb["basket_1"]
 #'
-#'  
 #'  # Retrieve FNND plot:
 #'  fnnd_plot <- fnnd.plot(ggplot_bg = ggplot_bg_fruits,
 #'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -1883,9 +1849,7 @@ feve.plot <- function(ggplot_bg,
 #'            linetype_segment = list(basket_1 = "solid"))
 #'            
 #'  fnnd_plot
-#' 
 #' }
-
 
 fnnd.plot <- function(ggplot_bg,
                     asb_sp_coord2D,
@@ -1921,8 +1885,8 @@ fnnd.plot <- function(ggplot_bg,
     k_sp_xy <- asb_sp_coord2D[[k]]
     k_nn <- asb_nn_asb[[k]]
     
-    k_segments_xyxy <- data.frame(sp_f = NULL, sp_nn = NULL, x = NULL, y = NULL,
-                                xend = NULL, yend = NULL)
+    k_segments_xyxy <- data.frame(sp_f = NULL, sp_nn = NULL, x = NULL, 
+                                  y = NULL, xend = NULL, yend = NULL)
     
     for (i in names(k_nn)) {
       
@@ -1955,13 +1919,11 @@ fnnd.plot <- function(ggplot_bg,
   }
 
   return(ggplot_fnnd)
-  
 }
 
 
 
-
-#' Plot Fori
+#' Plot FOri
 #' 
 #' This function plots FOri index for a given pair of functional axes and for 
 #' one or several assemblages. It adds the distance of species from the studied
@@ -1995,9 +1957,9 @@ fnnd.plot <- function(ggplot_bg,
 #' @param color_sp a R color name or an hexadecimal code referring to the color
 #' of species from the studied assemblage. 
 #' 
-#' @param fill_pool a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-#'  hull. 
+#' @param fill_pool a R color name or an hexadecimal code referring to the 
+#'   colour to fill species symbol (if \code{shape_sp} > 20) and the assemblage 
+#'   convex hull. 
 #'  
 #' @param fill_sp a R color name or an hexadecimal code referring to the colour
 #'  to fill species symbol (if \code{shape_sp} > 20). 
@@ -2020,18 +1982,17 @@ fnnd.plot <- function(ggplot_bg,
 #' @param linetype_segment a character string referring to the linetype used to 
 #' link nearest neighbors in the global pool. 
 #' 
-#' @return a ggplot object with FOri index
+#' @return A ggplot object with FOri index.
 #' 
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
 #' @examples
 #' \dontrun{
-#' 
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -2073,7 +2034,7 @@ fnnd.plot <- function(ggplot_bg,
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
-#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
 #'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
 #'                              sp_faxes_coord = sp_faxes_coord_fruits, 
 #'                              asb_sp_w       = baskets_fruits_weights)
@@ -2082,7 +2043,7 @@ fnnd.plot <- function(ggplot_bg,
 #'                                
 #'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
 #'   ind_vect         = c("fori"),
 #'   scaling          = TRUE,
@@ -2093,7 +2054,6 @@ fnnd.plot <- function(ggplot_bg,
 #'  fruits_asb_nn_pool_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_nm_nn_pool["basket_1"]
 #'
-#'  
 #'  # Retrieve FNND plot:
 #'  fori_plot <- fori.plot(ggplot_bg = ggplot_bg_fruits,
 #'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -2115,18 +2075,17 @@ fnnd.plot <- function(ggplot_bg,
 #'            
 #'  fori_plot
 #' }
-#' 
 
 fori.plot <- function(ggplot_bg,
-                    asb_sp_coord2D,
-                    asb_sp_relatw,
-                    asb_nn_pool,
-                    pool_coord2D,
-                    plot_pool = TRUE,
-                    plot_sp = TRUE,
-                    shape_pool, size_pool, color_pool, fill_pool,
-                    shape_sp, color_sp, fill_sp,
-                    color_segment, width_segment, linetype_segment) {
+                      asb_sp_coord2D,
+                      asb_sp_relatw,
+                      asb_nn_pool,
+                      pool_coord2D,
+                      plot_pool = TRUE,
+                      plot_sp = TRUE,
+                      shape_pool, size_pool, color_pool, fill_pool,
+                      shape_sp, color_sp, fill_sp,
+                      color_segment, width_segment, linetype_segment) {
   
   # names of assemblages:
   asb_nm <- names(asb_sp_coord2D)
@@ -2163,8 +2122,8 @@ fori.plot <- function(ggplot_bg,
     
     k_nn <- asb_nn_pool[[k]]
     
-    k_segments_xyxy <- data.frame(sp_f = NULL, sp_nn = NULL, x = NULL, y= NULL,
-                                  xend = NULL,  yend = NULL)
+    k_segments_xyxy <- data.frame(sp_f = NULL, sp_nn = NULL, x = NULL, 
+                                  y = NULL, xend = NULL,  yend = NULL)
     
     for (i in names(k_nn)) {
       i_nn <- k_nn[[i]]
@@ -2195,9 +2154,7 @@ fori.plot <- function(ggplot_bg,
   }
   
   return(ggplot_fori)
-  
 }
-
 
 
 
@@ -2255,8 +2212,8 @@ fori.plot <- function(ggplot_bg,
 #' @param fill_center a R color name or an hexadecimal code referring to the 
 #' colour to fill the center of the global pool (if \code{shape_sp} > 20). 
 #' 
-#' @param shape_pool a numeric value referring to the shape used to plot species
-#'  pool. 
+#' @param shape_pool a numeric value referring to the shape used to plot 
+#'   species pool. 
 #'  
 #' @param shape_sp a numeric value referring to the shape used to plot species
 #'  belonging to the studied assemblage. 
@@ -2267,8 +2224,8 @@ fori.plot <- function(ggplot_bg,
 #' @param size_pool a numeric value referring to the size of species belonging 
 #' to the global pool.
 #' 
-#' @param size_center a numeric value referring to the size of the center of the
-#' global pool. 
+#' @param size_center a numeric value referring to the size of the center of 
+#'   the global pool. 
 #' 
 #' @param width_segment a numeric value referring to the size of the segment 
 #' linking nearest neighbors in the global pool. 
@@ -2279,15 +2236,14 @@ fori.plot <- function(ggplot_bg,
 #' @note If several assemblages are to be represented, aesthetics inputs should
 #' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
-#' @return a ggplot object with FSpe index on the background plot
+#' @return A ggplot object with FSpe index on the background plot.
 #' 
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
 #' 
 #' @examples 
 #' \dontrun{
-#' 
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -2329,7 +2285,7 @@ fori.plot <- function(ggplot_bg,
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
-#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+#'  # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
 #'  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
 #'                              sp_faxes_coord = sp_faxes_coord_fruits, 
 #'                              asb_sp_w       = baskets_fruits_weights)
@@ -2338,7 +2294,7 @@ fori.plot <- function(ggplot_bg,
 #'                                
 #'  # Use alpha.fd.multidim() function to get inputs to plot FIde:
 #'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
 #'   ind_vect         = c("fspe"),
 #'   scaling          = TRUE,
@@ -2374,22 +2330,20 @@ fori.plot <- function(ggplot_bg,
 #'            linetype_segment = list(basket_1 = "solid"))
 #'            
 #'  fspe_plot
-#' 
 #' }
 
-
 fspe.plot <- function(ggplot_bg,
-                    asb_sp_coord2D,
-                    asb_sp_relatw,
-                    center_coord2D,
-                    pool_coord2D,
-                    plot_pool = TRUE,
-                    plot_sp = TRUE,
-                    shape_pool, size_pool, color_pool, fill_pool,
-                    shape_sp, color_sp, fill_sp,
-                    color_center, fill_center,
-                    shape_center, size_center,
-                    color_segment, width_segment, linetype_segment) {
+                      asb_sp_coord2D,
+                      asb_sp_relatw,
+                      center_coord2D,
+                      pool_coord2D,
+                      plot_pool = TRUE,
+                      plot_sp = TRUE,
+                      shape_pool, size_pool, color_pool, fill_pool,
+                      shape_sp, color_sp, fill_sp,
+                      color_center, fill_center,
+                      shape_center, size_center,
+                      color_segment, width_segment, linetype_segment) {
   
   # names of assemblages:
   asb_nm <- names(asb_sp_coord2D)
@@ -2453,5 +2407,4 @@ fspe.plot <- function(ggplot_bg,
                         shape = shape_center, size = size_center)
   
   return(ggplot_fspe)
-  
 }

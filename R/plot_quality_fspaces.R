@@ -1,4 +1,4 @@
-#' Plot Functional Space Quality with a Chosen Quality Metric
+#' Plot functional space quality with a chosen quality metric
 #'
 #' @param fspaces_quality output from the \code{\link{quality.fspaces}}
 #'   function, that is a list with all data needed to illustrate quality of
@@ -13,17 +13,17 @@
 #' @param quality_metric a character string with the name of the quality metric
 #'   to illustrate. Should be one of the column names of
 #'   \code{fspaces_quality$quality_fspaces}. See help of
-#'   \code{\link{quality.fspaces}} for the meaning of these names regarding type
-#'   of deviation and scaling of distance in functional space. Default: `'mad'`
-#'   (Mean absolute deviation).
+#'   \code{\link{quality.fspaces}} for the meaning of these names regarding 
+#'   type of deviation and scaling of distance in functional space. Default:
+#'   `'mad'` (Mean absolute deviation).
 #'
 #' @param name_file a character string with name of file to save the
 #'   figure (without extension). Default: `NULL` which means plot is displayed.
 #'
 #' @param range_dist a vector with minimum and maximum values to
-#'   display for species pairwise distances (x-axis for all panels and y-axes of
-#'   top panel). Default: NULL, which means range is 0 to maximum distance among
-#'   all the functional spaces to plot.
+#'   display for species pairwise distances (x-axis for all panels and y-axes 
+#'   of top panel). Default: NULL, which means range is 0 to maximum distance 
+#'   among all the functional spaces to plot.
 #'
 #' @param range_dev a vector with minimum and maximum values to display
 #'   for deviation to trait-based distance (y-axis of middle panel). Default:
@@ -38,8 +38,9 @@
 #' @param gradient_deviation a vector of 3 colors for illustrating raw
 #'   deviation with \code{\link[ggplot2]{scale_colour_gradient2}}. The first
 #'   value ('neg') is for the lowest negative deviation, the second value
-#'   ('nul')is for null deviation and the third value ('pos') is for the highest
-#'   positive deviation. Default gradient is from darkblue to grey to red.
+#'   ('nul')is for null deviation and the third value ('pos') is for the 
+#'   highest positive deviation. Default gradient is from darkblue to grey to 
+#'   red.
 #'
 #' @param gradient_deviation_quality 2 colors (named 'low' and 'high') for
 #'   illustrating transformed deviation used to compute quality metric with
@@ -52,8 +53,8 @@
 #' @return A png file (resolution 300dpi) saved in the current working
 #'   directory. Quality of each functional space is illustrated with three
 #'   panels : - top row shows trait-based distance between species vs.
-#'   space-based distance. - middle row shows trait-based distance vs. deviation
-#'   between space-based and trait-based distances - bottom row shows
+#'   space-based distance. - middle row shows trait-based distance vs. 
+#'   deviation between space-based and trait-based distances - bottom row shows
 #'   trait-based distance between species vs. transformed deviation used to
 #'   compute the quality metric All plots have the same X axis. All plots on a
 #'   given row have the same Y axis and color palette. Type of distance in
@@ -275,9 +276,10 @@ quality.fspaces.plot <- function(
     # subtitle = name of metric + rounded value
     tit_k <- fspaces_nm_plot[k]
     subtit_k <- paste0(nm_qual_metrics[quality_metric], " = ",
-                       round(as.numeric(fspaces_quality$quality_fspaces[k, quality_metric]), 3))
+                       round(as.numeric(fspaces_quality$quality_fspaces[k, 
+                                                        quality_metric]), 3))
     
-    # plotting trait-based distance versus raw distance in functional spaces ---
+    # plotting trait-based distance versus raw distance in functional spaces 
     plot_dist_k <- ggplot2::ggplot(data = df_plot_k, 
                                    ggplot2::aes(x = d_tr, y = d_sp_k )) +
       ggplot2::labs(x = NULL, y = y_lab_dist_k,
@@ -295,14 +297,14 @@ quality.fspaces.plot <- function(
       ggplot2::guides(colour = "none")
     
     
-    # plotting  plot for looking at raw deviation along values of distances ----
+    # plotting  plot for looking at raw deviation along values of distances
     plot_dev_k <- ggplot2::ggplot(data = df_plot_k, 
                                   ggplot2::aes(x = d_tr, y = dev_k )) +
       ggplot2::labs(x = NULL, y = y_lab_dev_k) +
       ggplot2::scale_x_continuous(limits = range_dist, expand = c(0, 0)) +
       ggplot2::scale_y_continuous(limits = range_dev, 
-                                  expand = ggplot2::expansion(mult = c(0.03,
-                                                                       0.03))) +
+                                  expand = ggplot2::expansion(
+                                    mult = c(0.03, 0.03))) +
       ggplot2::theme_bw(base_size = scaling_text) +
       ggplot2::theme(aspect.ratio = 1, 
                      plot.margin = ggplot2::margin(2, 8, 2, 2, "pt")) +
@@ -326,8 +328,8 @@ quality.fspaces.plot <- function(
       ggplot2::labs(x = x_lab, y = y_lab_qdev_k) +
       ggplot2::scale_x_continuous(limits = range_dist, expand = c(0, 0)) +
       ggplot2::scale_y_continuous(limits = range_qdev,
-                                  expand = ggplot2::expansion(mult = c(0, 
-                                                                       0.03))) +
+                                  expand = ggplot2::expansion(
+                                    mult = c(0, 0.03))) +
       ggplot2::theme_bw(base_size = scaling_text) +
       ggplot2::theme(aspect.ratio = 1, 
                      plot.margin = ggplot2::margin(2, 8, 2, 2, "pt")) +

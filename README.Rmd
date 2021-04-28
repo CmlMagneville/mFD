@@ -13,7 +13,6 @@ mFD <img src="man/figures/hexasticker_mFD.png" height="120" align="right" alt = 
 =========================================================
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/package=mFD)
 [![R-CMD-check](https://github.com/CmlMagneville/mFD/workflows/R-CMD-check/badge.svg)](https://github.com/CmlMagneville/mFD/actions)
 [![Website](https://img.shields.io/badge/Website-visit-blue?style=flat&logo=html5)](https://cmlmagneville.github.io/mFD/index.html)
 <!-- badges: end -->

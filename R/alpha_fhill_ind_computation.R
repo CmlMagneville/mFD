@@ -1,4 +1,4 @@
-#' Compute Functional alpha-Diversity Indices based on Hill Numbers
+#' Compute Functional alpha-Diversity indices based on Hill Numbers
 #'
 #' Compute functional alpha diversity applied to distance between species
 #' following the framework from Chao _et al._(2019).
@@ -8,28 +8,28 @@
 #'   allowed.
 #'
 #' @param sp_dist a matrix or dist object with distance between
-#'   species. Species names should be provided and match those in 'asb_sp_w'. NA
-#'   are not allowed.
+#'   species. Species names should be provided and match those in 'asb_sp_w'. 
+#'   NA are not allowed.
 #'
 #' @param q a vector containing values referring to the order of
 #'   diversity to consider, could be 0, 1 and/or 2.
 #'
 #' @param tau a character string with name of function to apply to
-#'   distance matrix (i.e. among all pairs of species) to get the threshold used
-#'   to define 'functionally indistinct set of species'. Could be 'mean'
+#'   distance matrix (i.e. among all pairs of species) to get the threshold 
+#'   used to define 'functionally indistinct set of species'. Could be 'mean'
 #'   (default), 'min' or 'max'. If tau = 'min" and there are null values in
 #'   \code{sp_dist}, the threshold is the lowest strictly positive value and a
 #'   warning message is displayed.
 #'
-#' @param check_input a logical value indicating whether key features the inputs
-#'   are checked (e.g. class and/or mode of objects, names of rows and/or
-#'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: `check.input = TRUE`.
+#' @param check_input a logical value indicating whether key features the 
+#'   inputs are checked (e.g. class and/or mode of objects, names of rows 
+#'   and/or columns, missing values). If an error is detected, a detailed 
+#'   message is returned. Default: `check.input = TRUE`.
 #'
 #' @param details_returned a logical value indicating whether the user
 #'   want to store values used for computing indices (see list below)
 #'
-#' @return a list with: \itemize{
+#' @return A list with: \itemize{
 #'
 #'  \item \emph{asb_FD_Hill} a matrix containing indices values for each level
 #'  of q (columns, named as 'FD_qx') for each assemblage (rows, named as in
@@ -37,7 +37,8 @@
 #'  \item \emph{tau_dist} the threshold value applied to distance between
 #'  species to compute diversity according to function provided in \strong{tau}
 #'
-#'  \item if \strong{details_returned} turned to TRUE a list \emph{details} with
+#'  \item if \strong{details_returned} turned to TRUE a list \emph{details} 
+#'  with
 #'  \itemize{
 #'  \item \emph{asb_totw} a vector with total weight of each assemblage
 #'  \item \emph{asb_sp_relw} a matrix with relative weight of species in
@@ -45,24 +46,24 @@
 #'  }
 #'  }
 #'
-#' @note FD is computed applying the special case where function 'f' in equation
-#'   3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
-#'   FD computed with q=2 and tau = 'max' is equivalent to the Rao's
-#'   quadratic entropy from Ricotta & Szeidl (2009, J Theor Biol). FD computed
-#'   with tau = 'min' is equivalent to Hill number taxonomic diversity, thus
-#'   with q=0 it is species richness (S), with q = 1 it is exponential of
-#'   Shannon entropy (H) and with q = 2 it is 1/(1-D) where D is Simpson
-#'   diversity.  Note that even when q=0, weights of species are accounted for
-#'   in FD. Hence to compute FD based only on distance between species present
-#'   in an assemblage (i.e. a richness-like index) , asb_sp_w has to contain
-#'   only species presence/absence coded as 0/1 with q=0 and tau=”mean”. If
-#'   asb_sp_w contains only 0/1 and q>0, it means that all species have the same
-#'   contribution to FD.
+#' @note FD is computed applying the special case where function 'f' in 
+#'   equation 3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 
+#'   and f(tau) = 1. FD computed with q=2 and tau = 'max' is equivalent to 
+#'   the Rao's quadratic entropy from Ricotta & Szeidl (2009, J Theor Biol). 
+#'   FD computed with tau = 'min' is equivalent to Hill number taxonomic 
+#'   diversity, thus with q=0 it is species richness (S), with q = 1 it is
+#'   exponential of Shannon entropy (H) and with q = 2 it is 1/(1-D) where D is 
+#'   Simpson diversity.  Note that even when q=0, weights of species are 
+#'   accounted for in FD. Hence to compute FD based only on distance between 
+#'   species present in an assemblage (i.e. a richness-like index) , asb_sp_w 
+#'   has to contain only species presence/absence coded as 0/1 with q=0 and 
+#'   tau=”mean”. If asb_sp_w contains only 0/1 and q>0, it means that all 
+#'   species have the same contribution to FD.
 #'   
 #' @references 
 #' Chao _et al._ (2019) An attribute‐diversity approach to functional
-#'   diversity, functional beta diversity, and related (dis)similarity measures.
-#'   _Ecological Monographs_, **89**.\cr
+#'   diversity, functional beta diversity, and related (dis)similarity 
+#'   measures. _Ecological Monographs_, **89**, e01343.
 #'
 #' @author Sebastien Villeger and Camille Magneville
 #'
@@ -148,7 +149,7 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
   # computing total weight per assemblage and
   # relative weights of species ----
   asb_totw <- apply(asb_sp_w, 1, sum)
-  asb_sp_relw <- asb_sp_w/asb_totw
+  asb_sp_relw <- asb_sp_w / asb_totw
   
   # computing tau as mean or max on distances ----
   tau_dist <- NULL
@@ -181,7 +182,8 @@ alpha.fd.hill <- function(asb_sp_w, sp_dist,
   
   # empty matrix to store outputs
   asb_FD_Hill <- matrix(NA, nrow(asb_sp_w), length(q), 
-                        dimnames = list(row.names(asb_sp_w), paste0("FD_q", q)))
+                        dimnames = list(row.names(asb_sp_w), 
+                                        paste0("FD_q", q)))
   
   # loop on assemblages (equations id refers to those
   # in Chao et al 2019

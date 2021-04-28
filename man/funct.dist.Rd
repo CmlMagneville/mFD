@@ -2,7 +2,7 @@
 % Please edit documentation in R/funct_dist_computation.R
 \name{funct.dist}
 \alias{funct.dist}
-\title{Compute Functional Distance between Species}
+\title{Compute functional distance between species}
 \usage{
 funct.dist(
   sp_tr,
@@ -15,7 +15,8 @@ funct.dist(
 )
 }
 \arguments{
-\item{sp_tr}{a data frame of traits values (columns) for each species (rows).}
+\item{sp_tr}{a data frame of traits values (columns) for each species
+(rows).}
 
 \item{tr_cat}{a data frame containing three columns for each trait (rows):
 \itemize{
@@ -23,20 +24,20 @@ funct.dist(
 frame;
 \item \strong{trait_type}: the category code for each trait as followed:
 \code{N} for Nominal traits (factor variable), \code{O} for Ordinal traits
-(ordered variable), \code{C} for Circular traits (integer values), \code{Q}
-for quantitative traits (numeric values) that is allowed \strong{only} if
-there are at least 2 species with the same value, and \code{F} for fuzzy
-traits (i.e. described with several values defined with several column);
-\item \strong{fuzzy_name}: name of fuzzy-coded trait to which 'sub-trait'
-belongs (if trait is not fuzzy, ignored so could be trait name or NA).
-\item \strong{trait_weight}: Optional, a numeric vector of length n (traits
-number) to specify a weight for each trait.
+(ordered variable), \code{C} for Circular traits (integer values),
+\code{Q} for quantitative traits (numeric values) that is allowed
+\strong{only} if there are at least 2 species with the same value, and
+\code{F} for fuzzy traits (i.e. described with several values defined with
+several column); \item \strong{fuzzy_name}: name of fuzzy-coded trait to
+which 'sub-trait' belongs (if trait is not fuzzy, ignored so could be
+trait name or NA). \item \strong{trait_weight}: Optional, a numeric vector
+of length n (traits number) to specify a weight for each trait.
 }}
 
 \item{metric}{the distance to be computed:
 \code{euclidean}, the Euclidean distance,
-\code{gower}, the Classical Gower distance as defined by Gower (1971), extent by
-de Bello \emph{et al.} (2021) and based on the \code{\link[gawdis]{gawdis}}
+\code{gower}, the Classical Gower distance as defined by Gower (1971), extent
+by de Bello \emph{et al.} (2021) and based on the \code{\link[gawdis]{gawdis}}
 function.}
 
 \item{scale_euclid}{only when computing euclidean distance a string value to
@@ -62,9 +63,9 @@ Both options convert ordinal variables to ranks. Default is \code{classic}.}
 \item{weight_type}{the type of used method to weight traits.
 \code{user} – user defined weights in tr_cat,
 \code{equal} – all traits having the same weight.
-More methods are available using \code{\link[gawdis]{gawdis}} from \code{gawdis}
-package. To compute gower distance with fuzzy trait and traits weight
-please refer to \code{\link[gawdis]{gawdis}}. Default is \code{equal}.}
+More methods are available using \code{\link[gawdis]{gawdis}} from
+\code{gawdis} package. To compute gower distance with fuzzy trait and
+weight please refer to \code{\link[gawdis]{gawdis}}. Default is \code{equal}.}
 
 \item{stop_if_NA}{a logical value to stop or not the process if the
 \code{sp_tr} data frame contains NA. Functional measures are sensitive to
@@ -111,8 +112,7 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
 \references{
 de Bello \emph{et al.} (2021) Towards a more balanced combination of multiple
 traits when computing functional differences between species.
-\emph{Method in Ecology and Evolution}, accepted,
-doi: https://doi.org/10.1111/2041-210X.13537.
+\emph{Method in Ecology and Evolution}, \strong{12}, 443-448.\cr
 Gower (1971 ) A general coefficient of similarity and some of its
 properties. \emph{Biometrics}, \strong{27}, 857-871.\cr
 Johnson \emph{et al.} (2020) Handling missing values in trait data.
@@ -121,5 +121,5 @@ Podani (1999) Extending Gower's general coefficient of similarity to ordinal
 characters, \emph{Taxon}, \strong{48}, 331-340.
 }
 \author{
-Nicolas Loiseau & Sebastien Villeger
+Nicolas Loiseau and Sebastien Villeger
 }

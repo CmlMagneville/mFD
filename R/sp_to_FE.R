@@ -1,4 +1,4 @@
-#' Compute Functional Entities Composition based on a Species x Traits Matrix
+#' Compute Functional Entities composition based on a Species x Traits matrix
 #'
 #' @param sp_tr a data frame containing species as rows and traits as columns.
 #'
@@ -25,10 +25,10 @@
 #'   names of traits and of trait values for each FE, if possible, \emph{see
 #'   details below}). Default: `fe_nm_type = "fe_rank"`.
 #'
-#' @param check_input a logical value indicating whether key features the inputs
-#'   are checked (e.g. class and/or mode of objects, names of rows and/or
-#'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: `check.input = TRUE`.
+#' @param check_input a logical value indicating whether key features the 
+#'   inputs are checked (e.g. class and/or mode of objects, names of rows 
+#'   and/or columns, missing values). If an error is detected, a detailed 
+#'   message is returned. Default: `check.input = TRUE`.
 #'
 #' @details `fe_nm_type = "tr_val"` is allowed \strong{only} if: 
 #' \itemize{
@@ -38,16 +38,17 @@
 #' }
 #' 
 #' If these 3 conditions are met, names of Functional Entities are made as a 
-#' character string of up to 2 letters for trait name in upper case font then up 
-#' to 2 letters for trait value in lower case font, separated by "_" between 
+#' character string of up to 2 letters for trait name in upper case font then 
+#' up to 2 letters for trait value in lower case font, separated by "_" between 
 #' traits. Trait names are abbreviated to a single letter whenever possible.
 #' \emph{Examples:} ("TAc2_TBxx_TCyy", "TAc3_TBff_TCyy") or 
 #' ("A2_Bx_Cy", "A3_Bf_Cy")
 #'
 #' @return A list of objects containing: 
 #' \itemize{
-#'   \item \strong{fe_nm}: a vector with names of all FE (following fe_nm_type).
-#'     FE are ordered according to the decreasing number of species they gather. 
+#'   \item \strong{fe_nm}: a vector with names of all FE (following 
+#'     fe_nm_type). FE are ordered according to the decreasing number of 
+#'     species they gather. 
 #'   \item \strong{sp_fe}: a vector containing for each species the name of the 
 #'     FE it belongs to. FE order is done according to decreasing number of 
 #'     species.
@@ -61,15 +62,15 @@
 #'     containing character referring to traits values (like a barcode) with 
 #'     names as in \code{fe_nm_type} and sorted according to \code{fe_nb_sp}; 
 #'     \emph{tr_uval} a list containing for each trait a vector of its unique 
-#'     values or a data frame for fuzzy-coded traits; \emph{fuzzy_E} a list with 
-#'     for each fuzzy-coded trait a data frame with names of entities (E) and 
-#'     names of species (sp); \emph{tr_nb_uval} a vector with number of unique 
-#'     values per trait (or combinations for fuzzy-coded traits); 
-#'     \emph{max_nb_fe} the maximum number of FE possible given number of unique
-#'     values per trait.
+#'     values or a data frame for fuzzy-coded traits; \emph{fuzzy_E} a list 
+#'     with for each fuzzy-coded trait a data frame with names of entities (E) 
+#'     and names of species (sp); \emph{tr_nb_uval} a vector with number of 
+#'     unique values per trait (or combinations for fuzzy-coded traits); 
+#'     \emph{max_nb_fe} the maximum number of FE possible given number of 
+#'     unique values per trait.
 #' }
 #'
-#' @author Sebastien Villeger, Nicolas Loiseau and Camille Magneville
+#' @author Sebastien Villeger, Nicolas Loiseau, and Camille Magneville
 #'
 #' @export
 #' 
@@ -95,14 +96,18 @@
 #'       sp_tr      = fruits_traits, 
 #'       tr_cat     = fruits_traits_cat, 
 #'       fe_nm_type = "fe_rank")
+#' 
 #' ## display FEs names:
-#'  sp_FEs$fe_nm
+#' sp_FEs$fe_nm
+#' 
 #' ## display for each species the name of the FE it belongs to:
-#'  sp_FEs$sp_fe
+#' sp_FEs$sp_fe
+#' 
 #' ## display trait values for each FE:
-#'  sp_FEs$fe_tr
+#' sp_FEs$fe_tr
+#'  
 #' ## display the number of species per FEs:
-#'  sp_FEs$fe_nb_sp
+#' sp_FEs$fe_nb_sp
 #' }
 
 sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", 
@@ -160,8 +165,8 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   }
   
   if (any(tr_nm != tr_cat$trait_name)) {
-    stop("Trait names differ between species x traits data frame and traits x ",
-         "category data.frame. Please check.")
+    stop("Trait names differ between species x traits data frame and traits ",
+         "x category data.frame. Please check.")
   }
   
   if (any(is.na(tr_cat$trait_type))) {
@@ -170,8 +175,8 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   }
   
   if (any(!(tr_cat$trait_type %in% c("N", "O", "C", "Q", "F")))) {
-    stop("Trait type in traits x category should be among 'N', 'O', 'C', 'Q', ",
-         "'F'. Please check type of all traits.")
+    stop("Trait type in traits x category should be among 'N', 'O', 'C', ",
+         "'Q', 'F'. Please check type of all traits.")
   }
   
   # check nominal traits:
@@ -221,7 +226,7 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   
   # code a function to paste name of a trait (uppercase) ...
   #... to its values (lowercase):
-  paste_tr_val <- function(tr, x) {
+  paste.tr.val <- function(tr, x) {
     paste0(toupper(x), tolower(as.character(tr[, x])))
   }
   
@@ -239,7 +244,7 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
       # get traits unique values:
       tr_uval[[k]] <- unique(as.character(sp_tr[, k]))
       # retrieve traits values:
-      sp_fbarcode <- paste(sp_fbarcode, paste_tr_val(sp_tr, k) , sep = "_")
+      sp_fbarcode <- paste(sp_fbarcode, paste.tr.val(sp_tr, k) , sep = "_")
     }
   }
   
@@ -250,12 +255,12 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
     # complete fuzzy_E list for all fuzzy traits, output list and vector:
     for (k in nm_fuzzy) {
       # retrieve variables for fuzzy trait k for each species:
-      fuzzy_k <- sp_tr[, tr_cat$trait_name[which(tr_cat$fuzzy_name == k)]]
+      fuzzy_k <- sp_tr[ , tr_cat$trait_name[which(tr_cat$fuzzy_name == k)]]
       # create a vector for first variable:
       val_k <- rep("", sp_nb)
       # loop on other variables:
       for (z in colnames(fuzzy_k)) {
-        val_k <- paste(val_k, paste_tr_val(fuzzy_k, z), sep = "_")
+        val_k <- paste(val_k, paste.tr.val(fuzzy_k, z), sep = "_")
       }
       # removing useless first "_":
       val_k <- substr(val_k, 2, nchar(val_k))
@@ -313,7 +318,7 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
   fe_nb <- length(fe_codes)
   
   # retrieve the number of species per FE:
-  fe_nb_sp <- unlist(lapply(fe_codes, function(x) {length(which(sp_fe == x))}))
+  fe_nb_sp <- unlist(lapply(fe_codes, function(x) length(which(sp_fe == x))))
   names(fe_nb_sp) <- fe_codes
   
   # return a warning if all species are different (i.e. only 1 sp per FE):
@@ -321,7 +326,8 @@ sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank",
     warning("All Functional Entities have a single species.")
   }
   
-  # decrease order of FE according to their number of species to order fe codes:
+  # decrease order of FE according to their number of species to order fe... 
+  # ... codes:
   # order fe with increasing species number
   order_fe <- order(fe_nb_sp, decreasing = TRUE)
   # reorder vectors with increasing number of species per FE:

@@ -1,15 +1,15 @@
-#' Compute Functional beta-Diversity Indices for Pairs of Assemblages in a
-#' Multidimensional Space
+#' Compute Functional beta-Diversity indices for pairs of assemblages in a
+#' multidimensional space
 #'
 #' Computes a set of indices of pairwise functional beta-diversity
-#' (dissimilarity and its turnover and nestedness-resultant components) based on
-#' overlap between convex hulls in a multidimensional space. For details about
-#' indices formulas see Villéger _et al._ (2013). This functions stands on 
-#' \code{\link[betapart]{functional.betapart.core.pairwise}}.
+#' (dissimilarity and its turnover and nestedness-resultant components) based 
+#' on overlap between convex hulls in a multidimensional space. For details 
+#' about indices formulas see Villéger _et al._ (2013). This functions stands 
+#' on \code{\link[betapart]{functional.betapart.core.pairwise}}.
 #'
 #' @param sp_faxes_coord a matrix with coordinates of species (rows) on
-#'  functional axes (columns). Species coordinates have been retrieved thanks to
-#'  \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
+#'  functional axes (columns). Species coordinates have been retrieved thanks 
+#'  to \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
 #' @param asb_sp_occ a matrix with presence/absence (coded as 0/1)
 #'  of species (columns) in a set of assemblages (rows).
@@ -17,10 +17,10 @@
 #' @param check_input a logical value defining whether inputs are
 #'   checked before computation of indices. Possible error messages will thus
 #'   may be more understandable for the user than R error messages. Default:
-#'   check_input = TRUE.
+#'   `check_input = TRUE`.
 #'   
 #' @param beta_family a character string for the type of beta-diversity
-#'   index to use, 'Jaccard' (default) and/or 'Sorensen'
+#'   index to use, 'Jaccard' (default) and/or 'Sorensen'.
 #'
 #' @param details_returned a logical value indicating whether the user
 #'   wants to details_returned. Details are used in the graphical function
@@ -29,28 +29,30 @@
 #'   
 #' @param betapart_step a logical value indicating whether the
 #'   computation progress should be displayed in the R console. Default: 
-#'   betapart_step = TRUE.
+#'   `betapart_step = TRUE`.
 #'
-#' @param betapart_chullopt a A list of two named vectors of character conv1 and
-#'  conv2 defining the options that will be used to compute the convex hulls
-#'  (through the options of geometry::convhulln function). For further details 
-#'  see help of \code{\link[betapart]{functional.betapart.core.pairwise}}.
-#'  Default: betapart_chullopt = c(conv1='Qt', conv2='QJ').
+#' @param betapart_chullopt a A list of two named vectors of character conv1 
+#'   and conv2 defining the options that will be used to compute the convex 
+#'   hulls (through the options of geometry::convhulln function). For further 
+#'   details  see help of 
+#'   \code{\link[betapart]{functional.betapart.core.pairwise}}.
+#'   Default: `betapart_chullopt = c(conv1 = 'Qt', conv2 = 'QJ')`.
 #'
 #' @param betapart_para a logical value indicating whether internal
-#'  parallelization should be used to compute pairwise dissimilarities. Default:
-#'  betapart_para = FALSE.
+#'  parallelization should be used to compute pairwise dissimilarities. 
+#'  Default: `betapart_para = FALSE`.
 #'
 #' @param betapart_para_opt a list with details about parallelization.
 #'   Default value means those parameters are set according to computer
-#'   specifications. \code{nc} is the number of cores (default = 4), \code{type}
-#'   is a character string with code of method used (default PSOCK), \code{LB}
-#'   is a boolean specifying whether load-balancing is applied (default is TRUE)
-#'   and \code{size} is a numeric value for number of tasks performed at each
-#'   time (default is 1). See help of
-#'   \code{\link[betapart]{functional.betapart.core.pairwise}} for more details.
+#'   specifications. \code{nc} is the number of cores (default = 4), 
+#'   \code{type} is a character string with code of method used 
+#'   (default PSOCK), \code{LB} is a boolean specifying whether load-balancing 
+#'   is applied (default is TRUE) and \code{size} is a numeric value for number 
+#'   of tasks performed at each time (default is 1). See help of
+#'   \code{\link[betapart]{functional.betapart.core.pairwise}} for more 
+#'   details.
 #'
-#' @return a list with: \itemize{ \item \emph{pairasb_fbd_indices} a list with 
+#' @return A list with: \itemize{ \item \emph{pairasb_fbd_indices} a list with 
 #' for each
 #'   index a \emph{dist} object with values for all pairs of assemblages.
 #'   Indices names start with the abbreviation of the type of dissimilarity
@@ -67,11 +69,12 @@
 #'  \strong{asb_vertices} a list of vectors (1 per assemblage) with names of
 #'  species being vertices of the convex hull}
 #'
-#' @note all assemblages should have a number of species strictly higher than
+#' @note All assemblages should have a number of species strictly higher than
 #' the number of functional axes.
 #' Computing intersection of convex hulls in space of >5 dimensions is yet
 #' impossible with most computers.
-#' This function uses R libraries 'betapart' (> =1.5.4) for indices computation.
+#' This function uses R libraries 'betapart' (> =1.5.4) for indices 
+#' computation.
 #' Indices values are stored as \emph{dist} objects to optimize memory.
 #' See below example of how merging distance values in a \emph{dataframe} with
 #' \code{dist.to.df}.
@@ -114,7 +117,7 @@
 #'  fdendro             = 'average')
 #'  
 #' # Retrieve species coordinates matrix:
-#' sp_faxes_coord_fruits <- fspaces_quality_fruits$'details_fspaces'$'sp_pc_coord'
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 #' 
 #' # Get the occurrence dataframe:
 #' asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights) 
@@ -122,7 +125,7 @@
 #' 
 #' # Compute beta diversity indices:
 #' beta_fd_fruits <- mFD::beta.fd.multidim(
-#'   sp_faxes_coord   = sp_faxes_coord_fruits[ , c('PC1', 'PC2', 'PC3', 'PC4')], 
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c('PC1', 'PC2', 'PC3', 'PC4')], 
 #'   asb_sp_occ       = asb_sp_fruits_occ,
 #'   check_input      = TRUE,
 #'   beta_family      = c('Jaccard'),
@@ -130,7 +133,6 @@
 #' 
 #' # merging pairwise beta-diversity indices in a data.frame
 #' dist.to.df(beta_fd_fruits$pairasb_fbd_indices)
-#' 
 #' }
 
 
@@ -140,9 +142,11 @@ beta.fd.multidim <- function(sp_faxes_coord,
                              beta_family = "Jaccard", 
                              details_returned = TRUE, 
                              betapart_step = TRUE, 
-                             betapart_chullopt = list(conv1='Qt', conv2='QJ'),
+                             betapart_chullopt = list(conv1 = 'Qt', 
+                                                      conv2 = 'QJ'),
                              betapart_para = FALSE, 
-                             betapart_para_opt = betapart::beta.para.control()){
+                             betapart_para_opt = betapart::beta.para.control())
+  {
   
   
   ## check_input if asked:
@@ -198,7 +202,7 @@ beta.fd.multidim <- function(sp_faxes_coord,
     progress = betapart_step)
   
   # list to store dist objects with beta-diversity values
-  beta_fd_ind<-list()
+  beta_fd_ind <- list()
   
   # computing functional beta diversity
   # indices for all pairs of assemblages
@@ -252,18 +256,18 @@ beta.fd.multidim <- function(sp_faxes_coord,
   if (details_returned) {
     
     return_list <- list(pairasb_fbd_indices = beta_fd_ind, 
-                        details = list(inputs = list(sp_faxes_coord = sp_faxes_coord, 
-                                                     asb_sp_occ = asb_sp_occ), 
-                                       pool_vertices = pool_vertices, 
-                                       asb_FRic = asb_FRic, 
-                                       asb_vertices = asb_vertices) 
+                        details = list(inputs = list(
+                          sp_faxes_coord = sp_faxes_coord, 
+                          asb_sp_occ = asb_sp_occ), 
+                          pool_vertices = pool_vertices, 
+                          asb_FRic = asb_FRic, 
+                          asb_vertices = asb_vertices) 
     )
   } else {
     
-    return_list <- (pairasb_fbd_indices = beta_fd_ind)
+    return_list <- list("pairasb_fbd_indices" = beta_fd_ind)
   }
   
   return(return_list)
   
 }  # end function
-

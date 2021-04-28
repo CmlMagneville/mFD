@@ -1,4 +1,4 @@
-#' Plot Species Position in a Functional Space 
+#' Plot species position in a functional space 
 #'
 #' This function illustrates the position of species along pairs of axes of a 
 #' functional space
@@ -13,8 +13,8 @@
 #'  plotted).
 #'
 #' @param name_file a character string with name of file to save the
-#'   figure (without extension). Default: `name_file = NULL` which means plot is
-#'   displayed.
+#'   figure (without extension). Default: `name_file = NULL` which means plot 
+#'   is displayed.
 #'
 #' @param faxes_nm a vector with axes labels for figure. Default: as
 #'  \code{faxes}).
@@ -29,35 +29,35 @@
 #' @param color_bg a R color name or an hexadecimal code used to fill plot
 #'   background. Default: `color_bg = "grey95"`.
 #'
-#' @param color_pool a R color name or an hexadecimal code referring to the color
-#'   of symbol for species. Default: `color_pool = 'darkgreen'`.
+#' @param color_pool a R color name or an hexadecimal code referring to the 
+#'   color of symbol for species. Default: `color_pool = 'darkgreen'`.
 #'
-#' @param fill_pool a R color name or an hexadecimal code referring to the color
-#'   to fill species symbol (if \code{shape_pool} >20). Default:
+#' @param fill_pool a R color name or an hexadecimal code referring to the 
+#'   color to fill species symbol (if \code{shape_pool} >20). Default:
 #'   `fill_pool = 'white'`.
 #'
 #' @param shape_pool a numeric value referring to the shape of symbol used for
 #'   species. Default: `shape_pool = 21` (filled circle).
 #'
-#' @param size_pool a numeric value referring to the size of symbol for species.
-#'   Default: `size_pool = 1`.
+#' @param size_pool a numeric value referring to the size of symbol for 
+#'   species. Default: `size_pool = 1`.
 #'
-#' @param plot_ch a logical value indicating whether the convex hull shaping the
-#'   pool of species should be illustrated. If `plot_ch = TRUE`, convex hull of
-#'   all species in the multidimensional space described in
-#'   \code{sp_faxes_coord} is computed and its projection in 2D spaces are drawn
-#'   as polygons. Default: `plot_ch = TRUE`.
+#' @param plot_ch a logical value indicating whether the convex hull shaping 
+#'   the pool of species should be illustrated. If `plot_ch = TRUE`, convex 
+#'   hull of all species in the multidimensional space described in
+#'   \code{sp_faxes_coord} is computed and its projection in 2D spaces are 
+#'   drawn as polygons. Default: `plot_ch = TRUE`.
 #'
-#' @param color_ch a R color name or an hexadecimal code referring to the border
-#'   of the convex hull filled by the pool of species. Default:
+#' @param color_ch a R color name or an hexadecimal code referring to the 
+#'   border of the convex hull filled by the pool of species. Default:
 #'   `color_ch = "darkblue"`.
 #'
-#' @param fill_ch a R color name or an hexadecimal code referring to the filling
-#'   of the convex hull filled by the pool of species. Default:
+#' @param fill_ch a R color name or an hexadecimal code referring to the 
+#'   filling of the convex hull filled by the pool of species. Default:
 #'   `fill_ch = "white"`.
 #'
-#' @param alpha_ch a numeric value for transparency of the filling of the convex
-#'   hull (0 = high transparency, 1 = no transparency). Default:
+#' @param alpha_ch a numeric value for transparency of the filling of the 
+#'   convex hull (0 = high transparency, 1 = no transparency). Default:
 #'   `alpha_ch = 1`.
 #'
 #' @param plot_vertices a logical value defining whether vertices of the convex
@@ -69,7 +69,8 @@
 #'   `plot_vertices = TRUE`.
 #'
 #' @param color_vert a character value referring to the color of symbol for
-#'   vertices if `plot_vertices = TRUE`. Default: `color_vert = 'darkturquoise'`.
+#'   vertices if `plot_vertices = TRUE`. 
+#'   Default: `color_vert = 'darkturquoise'`.
 #'
 #' @param fill_vert a character value referring to the color for filling symbol
 #'  for vertices  (if \code{shape_vert} >20). Default:
@@ -94,10 +95,10 @@
 #' @param nm_fontface a character string for font of species labels (e.g.
 #'   "italic", "bold"). Default: `nm_fontface = 'plain'`.
 #'
-#' @param check_input a logical value indicating whether key features the inputs
-#'   are checked (e.g. class and/or mode of objects, names of rows and/or
-#'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: `check.input = TRUE`.
+#' @param check_input a logical value indicating whether key features the 
+#'   inputs are checked (e.g. class and/or mode of objects, names of rows 
+#'   and/or columns, missing values). If an error is detected, a detailed 
+#'   message is returned. Default: `check_input = TRUE`.
 #'
 #' @return If \code{name_file} is \code{NULL}, a list containing \code{ggplot2}
 #'   objects is returned: plots of functional space along all pairs of axes
@@ -109,9 +110,9 @@
 #'   multidimensional space provided as input \code{sp_faxes_coord} is
 #'   illustrated with a polygon. Species being vertices of this convex hull are
 #'   shown with aesthetics provided as inputs \code{..._vert}. Labels for
-#'   species listed in \code{plot_sp_nm} are added with if required arrows using
-#'   \code{ggrepel}. Summary about species and dimensionality are printed on
-#'   top-right corner of the figure. 
+#'   species listed in \code{plot_sp_nm} are added with if required arrows 
+#'   using \code{ggrepel}. Summary about species and dimensionality are printed 
+#'   on top-right corner of the figure. 
 #'
 #' @author Camille Magneville and Sebastien Villeger
 #'
@@ -149,8 +150,8 @@
 #' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 #'
 #' # Plot functional spaces:
-#'  mFD::funct.space.plot(
-#'   sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+#' mFD::funct.space.plot(
+#'  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   faxes             = NULL,
 #'   name_file         = NULL,
 #'   faxes_nm          = NULL,
@@ -209,13 +210,13 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL,
     if (! is.null(faxes)) {
       
       if(length(faxes) == 1) {
-        stop("Number of functional axes should be more than one. Please change",
-             " the number of functional axes to plot.")
+        stop("Number of functional axes should be more than one. Please ",
+             "change the number of functional axes to plot.")
       }
       
       if (length(faxes) > 4) {
-        stop("Number of functional axes should be less than 4. Please change ",
-             "the number of functional axes to plot.")
+        stop("Number of functional axes should be less than 4. Please ",
+             "change the number of functional axes to plot.")
       }
       
       if (any(! faxes %in% colnames(sp_faxes_coord))) {
@@ -225,8 +226,8 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL,
     }
     
     if ((!is.null(faxes_nm)) && (length(faxes_nm) != length(faxes))) {
-      stop("Length of 'faxes_nm' should be equal to length of 'faxes'. Please ",
-           "check congruence between these inputs.")
+      stop("Length of 'faxes_nm' should be equal to length of 'faxes'. ",
+           "Please check congruence between these inputs.")
     }
     
   }# end of checking inputs
@@ -281,17 +282,18 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL,
   if (! is.na(user_range) && plot_ch) {
     
     if (range_faxes[1] > range_sp_coord[1]) {
-      stop("Error: The first value of 'range_faxes', is higher than minimum 
-        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
-        change the minimal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+      stop("The first value of 'range_faxes', is higher than minimum value ", 
+           "of 'sp_faxes_coord' so the convex hull can not be plotted. ", 
+           "Please change the minimal value of 'range_faxes' or set ", 
+           "'plot_ch' to FALSE.")
     }
     
     if (range_faxes[2] < range_sp_coord[2]) {
-      stop("Error: The second value of 'range_faxes', is lower than maximum 
-        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
-        change the maximal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+      stop("The second value of 'range_faxes', is lower than maximum value ", 
+           "of 'sp_faxes_coord' so the convex hull can not be plotted. ", 
+           "Please change the maximal value of 'range_faxes' or set ", 
+           "'plot_ch' to FALSE.")
     }
-    
   } 
   
   # dataframe with species coordinates and column for label
@@ -372,8 +374,8 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL,
                                  fontface = nm_fontface,
                                  box.padding = grid::unit(2, 'lines'),
                                  force = 5,
-                                 arrow = grid::arrow(length = grid::unit(0.02,
-                                                                         'npc')),
+                                 arrow = grid::arrow(
+                                   length = grid::unit(0.02, 'npc')),
                                  segment.color = nm_color)
     }
     
@@ -399,7 +401,8 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL,
     plot_caption <- plot_caption +
       ggplot2::geom_point(x = range_faxes[1] + spread_faxes * 0.1,
                           y = range_faxes[2] - spread_faxes * 0.5,
-                          colour = color_pool, fill = fill_pool, shape = shape_pool,
+                          colour = color_pool, fill = fill_pool, 
+                          shape = shape_pool,
                           size = size_pool) +
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes * 0.15,
                          y = range_faxes[2] - spread_faxes * 0.5,
@@ -485,5 +488,4 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL,
     
     return(output)
   }
-  
 } 

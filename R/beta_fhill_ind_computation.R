@@ -1,4 +1,4 @@
-#' Compute Functional beta-Diversity Indices based on Hill Numbers 
+#' Compute Functional beta-Diversity indices based on Hill Numbers 
 #'
 #' Compute functional beta-diversity indices based on Hill numbers applied to
 #' distance between species following the framework from Chao _et al._ (2019).
@@ -15,32 +15,32 @@
 #'   diversity to use
 #'
 #' @param tau a character string with name of function to apply to
-#'   distance matrix (i.e. among all pairs of species) to get the threshold used
-#'   to define 'functionally indistinct set of species'. Could be qet to 'mean'
-#'   (default), 'min' or 'max'.
+#'   distance matrix (i.e. among all pairs of species) to get the threshold 
+#'   used to define 'functionally indistinct set of species'. Could be qet to 
+#'   'mean' (default), 'min' or 'max'.
 #'
 #' @param beta_type a character string with name of framework used for
 #'   computing beta-diversity, either 'Jaccard' (default) or 'Sorensen'.
 #'
-#' @param check_input a logical value indicating whether key features the inputs
-#'   are checked (e.g. class and/or mode of objects, names of rows and/or
-#'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: check.input = TRUE.
+#' @param check_input a logical value indicating whether key features the 
+#'   inputs are checked (e.g. class and/or mode of objects, names of rows 
+#'   and/or columns, missing values). If an error is detected, a detailed 
+#'   message is returned. Default: `check_input = TRUE`.
 #'
 #' @param details_returned a logical value indicating whether the user
 #'   want to store values used for computing indices (see list below)
 #'
-#' @return a list with: 
+#' @return A list with: 
 #' \itemize{
-#'  \item \emph{asb_FDbeta} a list with for each value of q a \emph{dist} object
-#'  with beta functional diversity indices for all pairs of assemblages
+#'  \item \emph{asb_FDbeta} a list with for each value of q a \emph{dist} 
+#'  object with beta functional diversity indices for all pairs of assemblages
 #'  item if \strong{store.details} turned to TRUE a list \emph{details} with
 #'  \itemize{
 #'  \item \emph{malpha_fd_q} a list with for each value of q a \emph{dist}
 #'  object with mean alpha functional diversity indices for all pairs of
 #'  assemblages
-#'  \item \emph{gamma_fd_q} a list with for each value of q a \emph{dist} object
-#'  with gamma functional diversity indices for all pairs of assemblages
+#'  \item \emph{gamma_fd_q} a list with for each value of q a \emph{dist} 
+#'  object with gamma functional diversity indices for all pairs of assemblages
 #'  }
 #'  }
 #'
@@ -54,8 +54,8 @@
 #'
 #' @references 
 #'   Chao _et al._ (2019) An attribute-diversity approach to functional
-#'   diversity, functional beta diversity, and related (dis)similarity measures.
-#'   _Ecological Monographs_, **89**.
+#'   diversity, functional beta diversity, and related (dis)similarity 
+#'   measures. _Ecological Monographs_, **89**, e01343.
 #'
 #' @author Sebastien Villeger and Camille Magneville
 #' 

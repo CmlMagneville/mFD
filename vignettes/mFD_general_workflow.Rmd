@@ -372,7 +372,7 @@ traits. You can either chose to define weights using the `tr_cat` dataframe (cf
 **step 1.1**) (`user` option) or you can chose to give the same weight to all
 traits (`equal` option). (⚠️ Using `mFD`, you can not define weights for fuzzy
 traits, use
-[`gawdis`](https://cran.r-project.org/web/packages/gawdis/index.html) package
+[`gawdis`](https://cran.r-project.org/package=gawdis) package
 instead)
 
 * `stop_if_NA` is a logical value  to stop or not the process if the `sp_tr`

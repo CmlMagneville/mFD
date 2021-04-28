@@ -1,5 +1,5 @@
-#' Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
-#' Multidimensional Space
+#' Illustrate Functional beta-Diversity indices for pairs of assemblages in a
+#' multidimensional space
 #'
 #' Illustrate overlap between convex hulls shaping species assemblages in a
 #' multidimensional functional space.\strong{Before plotting beta functional
@@ -8,8 +8,8 @@
 #'
 #' @param output_beta_fd_multidim the list returned by
 #'   \code{\link{beta.fd.multidim}} when `details_returned = TRUE`.
-#'   Thus, even if this function will illustrate functional beta-diversity for a
-#'   single pair of assemblages, plots will be scaled according to all
+#'   Thus, even if this function will illustrate functional beta-diversity for 
+#'   a single pair of assemblages, plots will be scaled according to all
 #'   assemblages for which indices were computed.
 #'
 #' @param plot_asb_nm a vector with names of the 2 assemblages for which
@@ -21,8 +21,8 @@
 #'
 #' @param faxes a vector with names of axes to plot (as columns names in
 #'  \code{output_beta_fd_multidim$details$input$sp_faxes_coord} ). \strong{You
-#'  can only plot from 2 to 4 axes for graphical reasons}. Default: faxes = NULL
-#'  (the four first axes will be plotted).
+#'  can only plot from 2 to 4 axes for graphical reasons}. 
+#'  Default: `faxes = NULL` (the four first axes will be plotted).
 #'
 #' @param plot_sp_nm a vector containing species names that are to be plotted.
 #'  Default: `plot_nm_sp = NULL` (no name plotted).
@@ -44,9 +44,9 @@
 #'
 #'@param shape_sp a vector with 3 numeric values referring to the shape of
 #'  symbol used for species from the 'pool' absent from the 2 assemblages, and
-#'  for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-#'  Default: `shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)` so cross,
-#'  square and circle.
+#'  for species present in the 2 assemblages ('asb1', and 'asb2'), 
+#'  respectively. Default: `shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)` so 
+#'  cross, square and circle.
 #'
 #' @param size_sp a numeric value referring to the size of symbols for
 #'  species. Default: `is size_sp = c(pool = 0.8, asb1 = 1, asb2 = 1)`.
@@ -88,10 +88,10 @@
 #' @param nm_fontface a character string for font of species labels (e.g.
 #'   "italic", "bold"). Default is `'plain'`.
 #'
-#' @param check_input a logical value indicating whether key features the inputs
-#'   are checked (e.g. class and/or mode of objects, names of rows and/or
-#'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: `check.input = TRUE`.
+#' @param check_input a logical value indicating whether key features the 
+#'   inputs are checked (e.g. class and/or mode of objects, names of rows 
+#'   and/or columns, missing values). If an error is detected, a detailed 
+#'   message is returned. Default: `check.input = TRUE`.
 #'
 #' @return If \code{name_file} is \code{NULL}, it returns a \code{patchwork} 
 #' figure with overlap between convex hulls projected in 2-dimensional spaces
@@ -99,7 +99,7 @@
 #' indices are shown on top-right corner of the figure. If \code{name_file} is 
 #' not \code{NULL}, the plot is saved locally.
 #'
-#' @author Sebastien Villeger & Camille Magneville
+#' @author Sebastien Villeger and Camille Magneville
 #'
 #' @export
 #'
@@ -140,7 +140,7 @@
 #'
 #' # Compute beta diversity indices:
 #'  beta_fd_fruits <- mFD::beta.fd.multidim(
-#'   sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_occ       = asb_sp_fruits_occ,
 #'   check_input      = TRUE,
 #'   beta_family      = c("Jaccard"),
@@ -208,8 +208,8 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   # basic check of the core input:
   if (any(names(output_beta_fd_multidim) != c("pairasb_fbd_indices",
                                               "details"))) {
-    stop("'output_beta_fd_multidim' does not have elements of an output from ",
-         "'beta.fd.multidim' function. Please check.")
+    stop("Argument 'output_beta_fd_multidim' does not have elements of an ", 
+         "output from 'beta.fd.multidim()' function. Please check.")
   }
   
   # get species occurrences and position in the functional space:
@@ -239,8 +239,8 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     if (! is.null(faxes)) {
       
       if (length(faxes) > 4) {
-        stop("Number of functional axes should be less than 4. Please change
-             the number of functional axes to plot.")
+        stop("Number of functional axes should be less than 4. Please change ", 
+             "the number of functional axes to plot.")
       }
       
       if (any(! faxes %in% colnames(sp_faxes_coord))) {
@@ -250,8 +250,8 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     }
     
     if ((! is.null(faxes_nm)) && (length(faxes_nm) != length(faxes))) {
-      stop("Length of 'faxes_nm' should be equal to length of 'faxes'. Please ",
-           "check congruence between these inputs.")
+      stop("Length of 'faxes_nm' should be equal to length of 'faxes'. ",
+           "Please check congruence between these inputs.")
     }
     
     if (any(!plot_asb_nm %in% row.names(asb_sp_occ))) {
@@ -309,15 +309,17 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   if (! is.na(user_range)) {
     
     if (range_faxes[1] > range_sp_coord[1]) {
-      stop("Error: The first value of 'range_faxes', is higher than minimum 
-        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
-        change the minimal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+      stop("The first value of 'range_faxes', is higher than minimum value ", 
+           "of 'sp_faxes_coord' so the convex hull can not be plotted. ", 
+           "Please change the minimal value of 'range_faxes' or set ", 
+           "'plot_ch' to FALSE.")
     }
     
     if (range_faxes[2] < range_sp_coord[2]) {
-      stop("Error: The second value of 'range_faxes', is lower than maximum 
-        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
-        change the maximal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+      stop("The second value of 'range_faxes', is lower than maximum value ", 
+           "of 'sp_faxes_coord' so the convex hull can not be plotted. ", 
+           "Please change the maximal value of 'range_faxes' or set ", 
+           "'plot_ch' to FALSE.")
     }
     
   } 
@@ -416,8 +418,8 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
                                  max.overlaps = Inf,
                                  box.padding = grid::unit(2, 'lines'),
                                  force = 5,
-                                 arrow = grid::arrow(length = grid::unit(0.02,
-                                                                         'npc')),
+                                 arrow = grid::arrow(
+                                   length = grid::unit(0.02, 'npc')),
                                  segment.color = nm_color)
     }
     
@@ -462,12 +464,13 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   if ("Jaccard" %in% beta_family) {
     
     betajac_asb1_asb2 <- beta_fd_df[
-      which(beta_fd_df$x1 == plot_asb_nm[1] & beta_fd_df$x2 == plot_asb_nm[2]), ]
+      which(beta_fd_df$x1 == plot_asb_nm[1] & 
+              beta_fd_df$x2 == plot_asb_nm[2]), ]
     betajac_asb1_asb2 <- as.numeric(round(betajac_asb1_asb2[, -c(1, 2)], 4))
     
     values_jac <- NULL
     values_sor <- NULL
-    label = NULL
+    label <- NULL
     x <- NULL
     y <- NULL
     plot_caption <- plot_caption +
@@ -484,7 +487,8 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
   if ("Sorensen" %in% beta_family) {
     
     betasor_asb1_asb2 <- beta_fd_df[
-      which(beta_fd_df$x1 == plot_asb_nm[1] & beta_fd_df$x2 == plot_asb_nm[2]), ]
+      which(beta_fd_df$x1 == plot_asb_nm[1] & 
+              beta_fd_df$x2 == plot_asb_nm[2]), ]
     betasor_asb1_asb2 <- as.numeric(round(betasor_asb1_asb2[, -c(1, 2)], 4))
     
     label <- NULL
@@ -636,5 +640,4 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     
     return(output)
   }
-  
 }
