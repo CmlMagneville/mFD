@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute a Set of alpha Functional Indices for a Set of Assemblages — alpha.fd.multidim • mFD</title>
+<title>Compute a set of alpha functional indices for a set of assemblages — alpha.fd.multidim • mFD</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Compute a Set of alpha Functional Indices for a Set of Assemblages — alpha.fd.multidim" />
-<meta property="og:description" content="This function computes a set of multidimensional space based indices of alpha
-functional diversity. The user can choose which functional indices to
+<meta property="og:title" content="Compute a set of alpha functional indices for a set of assemblages — alpha.fd.multidim" />
+<meta property="og:description" content="This function computes a set of multidimensional space based indices of
+alpha functional diversity. The user can choose which functional indices to
 compute." />
 
 
@@ -134,14 +134,14 @@ compute." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute a Set of alpha Functional Indices for a Set of Assemblages</h1>
+    <h1>Compute a set of alpha functional indices for a set of assemblages</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/alpha_fd_multidim.R'><code>R/alpha_fd_multidim.R</code></a></small>
     <div class="hidden name"><code>alpha.fd.multidim.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function computes a set of multidimensional space based indices of alpha
-functional diversity. The user can choose which functional indices to
+    <p>This function computes a set of multidimensional space based indices of
+alpha functional diversity. The user can choose which functional indices to
 compute.</p>
     </div>
 
@@ -173,8 +173,8 @@ set of assemblages (rows).</p></td>
       <td><p>a vector of character string of the name of
 functional indices to compute. <strong>Indices names must be written in
 lower case letters</strong>. Possible indices to compute are: 'fide', fdis',
-'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 'fori' and 'fspe'. Default: all the
-indices are computed.</p></td>
+'fmpd', 'fnnd', 'feve', 'fric', 'fdiv', 'fori' and 'fspe'. Default: all
+the indices are computed.</p></td>
     </tr>
     <tr>
       <th>scaling</th>
@@ -184,10 +184,10 @@ compare indices values between assemblages. Default: scaling = TRUE.</p></td>
     </tr>
     <tr>
       <th>check_input</th>
-      <td><p>a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: <code>check.input = TRUE</code>.</p></td>
+      <td><p>a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: <code>check.input = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>details_returned</th>
@@ -209,12 +209,12 @@ relative weight of species in each assemblage ; a <strong>sp_coord_all_asb</stro
 list of matrices of species coordinates along functional axes for species
 present in each assemblage ; a <strong>vert_nm_all_asb</strong> list of vectors of
 species names being vertices of the convex hull for each assemblage ; a
-<strong>mst_all_asb</strong> list of data.frames summarizing link between species in
-the minimum spanning tree of each assemblage ; a
+<strong>mst_all_asb</strong> list of data.frames summarizing link between species
+in the minimum spanning tree of each assemblage ; a
 <strong>grav_center_vert_coord_all_asb</strong> list of vectors of coordinates of
 the vertices gravity center for each assemblage ; a
-<strong>mean_dtogravcenter_all_asb</strong> list of vectors containing mean distance
-to the species gravity center for each assemblage ; a
+<strong>mean_dtogravcenter_all_asb</strong> list of vectors containing mean
+distance to the species gravity center for each assemblage ; a
 <strong>dist_gravcenter_global_pool</strong> vector containing the distance of each
 species to the gravity center of all species from the global pool ; a
 <strong>dist_nn_global_pool</strong> data.frame showing the distances of each
@@ -262,7 +262,7 @@ present in a given assemblage to its nearest neighbor.</p></li>
 
 <span class='co'># Compute alpha diversity indices</span>
 <span class='va'>alpha_fd_indices_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>alpha.fd.multidim</span><span class='op'>(</span>
-  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PC1'</span>, <span class='st'>'PC2'</span>, <span class='st'>'PC3'</span>, <span class='st'>'PC4'</span><span class='op'>)</span><span class='op'>]</span>,
+  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PC1'</span>, <span class='st'>'PC2'</span>, <span class='st'>'PC3'</span>, <span class='st'>'PC4'</span><span class='op'>)</span><span class='op'>]</span>,
   asb_sp_w         <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span>, 
   ind_vect         <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'fdis'</span>, <span class='st'>'fmpd'</span>, <span class='st'>'fnnd'</span>, <span class='st'>'feve'</span>, <span class='st'>'fric'</span>, <span class='st'>'fdiv'</span>, 
                        <span class='st'>'fori'</span>, <span class='st'>'fspe'</span><span class='op'>)</span>,

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Functional beta-Diversity Indices based on Hill Numbers — beta.fd.hill • mFD</title>
+<title>Compute Functional beta-Diversity indices based on Hill Numbers — beta.fd.hill • mFD</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Compute Functional beta-Diversity Indices based on Hill Numbers — beta.fd.hill" />
+<meta property="og:title" content="Compute Functional beta-Diversity indices based on Hill Numbers — beta.fd.hill" />
 <meta property="og:description" content="Compute functional beta-diversity indices based on Hill numbers applied to
 distance between species following the framework from Chao et al. (2019)." />
 
@@ -133,7 +133,7 @@ distance between species following the framework from Chao et al. (2019)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Functional beta-Diversity Indices based on Hill Numbers</h1>
+    <h1>Compute Functional beta-Diversity indices based on Hill Numbers</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/beta_fhill_ind_computation.R'><code>R/beta_fhill_ind_computation.R</code></a></small>
     <div class="hidden name"><code>beta.fd.hill.Rd</code></div>
     </div>
@@ -176,9 +176,9 @@ diversity to use</p></td>
     <tr>
       <th>tau</th>
       <td><p>a character string with name of function to apply to
-distance matrix (i.e. among all pairs of species) to get the threshold used
-to define 'functionally indistinct set of species'. Could be qet to 'mean'
-(default), 'min' or 'max'.</p></td>
+distance matrix (i.e. among all pairs of species) to get the threshold
+used to define 'functionally indistinct set of species'. Could be qet to
+'mean' (default), 'min' or 'max'.</p></td>
     </tr>
     <tr>
       <th>beta_type</th>
@@ -187,10 +187,10 @@ computing beta-diversity, either 'Jaccard' (default) or 'Sorensen'.</p></td>
     </tr>
     <tr>
       <th>check_input</th>
-      <td><p>a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: check.input = TRUE.</p></td>
+      <td><p>a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: <code>check_input = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>details_returned</th>
@@ -201,15 +201,15 @@ want to store values used for computing indices (see list below)</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list with:</p><ul>
-<li><p><em>asb_FDbeta</em> a list with for each value of q a <em>dist</em> object
-with beta functional diversity indices for all pairs of assemblages
+    <p>A list with:</p><ul>
+<li><p><em>asb_FDbeta</em> a list with for each value of q a <em>dist</em>
+object with beta functional diversity indices for all pairs of assemblages
 item if <strong>store.details</strong> turned to TRUE a list <em>details</em> with</p><ul>
 <li><p><em>malpha_fd_q</em> a list with for each value of q a <em>dist</em>
 object with mean alpha functional diversity indices for all pairs of
 assemblages</p></li>
-<li><p><em>gamma_fd_q</em> a list with for each value of q a <em>dist</em> object
-with gamma functional diversity indices for all pairs of assemblages</p></li>
+<li><p><em>gamma_fd_q</em> a list with for each value of q a <em>dist</em>
+object with gamma functional diversity indices for all pairs of assemblages</p></li>
 </ul></li>
 </ul>
 
@@ -225,8 +225,8 @@ See below example of how merging distance values in a <em>dataframe</em> with
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chao <em>et al.</em> (2019) An attribute-diversity approach to functional
-diversity, functional beta diversity, and related (dis)similarity measures.
-<em>Ecological Monographs</em>, <strong>89</strong>.</p>
+diversity, functional beta diversity, and related (dis)similarity
+measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Sebastien Villeger and Camille Magneville</p>

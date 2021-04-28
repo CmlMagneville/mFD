@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Functional Space Quality with a Chosen Quality Metric — quality.fspaces.plot • mFD</title>
+<title>Plot functional space quality with a chosen quality metric — quality.fspaces.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Plot Functional Space Quality with a Chosen Quality Metric — quality.fspaces.plot" />
-<meta property="og:description" content="Plot Functional Space Quality with a Chosen Quality Metric" />
+<meta property="og:title" content="Plot functional space quality with a chosen quality metric — quality.fspaces.plot" />
+<meta property="og:description" content="Plot functional space quality with a chosen quality metric" />
 
 
 
@@ -132,13 +132,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot Functional Space Quality with a Chosen Quality Metric</h1>
+    <h1>Plot functional space quality with a chosen quality metric</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_quality_fspaces.R'><code>R/plot_quality_fspaces.R</code></a></small>
     <div class="hidden name"><code>quality.fspaces.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot Functional Space Quality with a Chosen Quality Metric</p>
+    <p>Plot functional space quality with a chosen quality metric</p>
     </div>
 
     <pre class="usage"><span class='fu'>quality.fspaces.plot</span><span class='op'>(</span>
@@ -169,9 +169,9 @@ and distance in functional spaces built using PCoA (and dendrogram).</p></td>
       <td><p>a character string with the name of the quality metric
 to illustrate. Should be one of the column names of
 <code>fspaces_quality$quality_fspaces</code>. See help of
-<code><a href='quality.fspaces.html'>quality.fspaces</a></code> for the meaning of these names regarding type
-of deviation and scaling of distance in functional space. Default: <code>'mad'</code>
-(Mean absolute deviation).</p></td>
+<code><a href='quality.fspaces.html'>quality.fspaces</a></code> for the meaning of these names regarding
+type of deviation and scaling of distance in functional space. Default:
+<code>'mad'</code> (Mean absolute deviation).</p></td>
     </tr>
     <tr>
       <th>fspaces_plot</th>
@@ -188,9 +188,9 @@ figure (without extension). Default: <code>NULL</code> which means plot is displ
     <tr>
       <th>range_dist</th>
       <td><p>a vector with minimum and maximum values to
-display for species pairwise distances (x-axis for all panels and y-axes of
-top panel). Default: NULL, which means range is 0 to maximum distance among
-all the functional spaces to plot.</p></td>
+display for species pairwise distances (x-axis for all panels and y-axes
+of top panel). Default: NULL, which means range is 0 to maximum distance
+among all the functional spaces to plot.</p></td>
     </tr>
     <tr>
       <th>range_dev</th>
@@ -211,8 +211,9 @@ deviation among all the functional spaces to plot.</p></td>
       <td><p>a vector of 3 colors for illustrating raw
 deviation with <code><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_colour_gradient2</a></code>. The first
 value ('neg') is for the lowest negative deviation, the second value
-('nul')is for null deviation and the third value ('pos') is for the highest
-positive deviation. Default gradient is from darkblue to grey to red.</p></td>
+('nul')is for null deviation and the third value ('pos') is for the
+highest positive deviation. Default gradient is from darkblue to grey to
+red.</p></td>
     </tr>
     <tr>
       <th>gradient_deviation_quality</th>
@@ -233,8 +234,8 @@ Default is 'Trait-based distance'.</p></td>
     <p>A png file (resolution 300dpi) saved in the current working
 directory. Quality of each functional space is illustrated with three
 panels : - top row shows trait-based distance between species vs.
-space-based distance. - middle row shows trait-based distance vs. deviation
-between space-based and trait-based distances - bottom row shows
+space-based distance. - middle row shows trait-based distance vs.
+deviation between space-based and trait-based distances - bottom row shows
 trait-based distance between species vs. transformed deviation used to
 compute the quality metric All plots have the same X axis. All plots on a
 given row have the same Y axis and color palette. Type of distance in

@@ -94,7 +94,7 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-04-21</h4>
+            <h4 class="date">2021-04-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -575,7 +575,7 @@ Basic framework of the mFD package
 </li>
 <li><p><code>scale_euclid</code> is a character string referring to the way the user wants to scale <strong>euclidean</strong> traits. You can either chose to scale by range <code>range</code>, use the center transformation <code>center</code>, use the scale transformation <code>scale</code>, use the scale-center transformation <code>scale_center</code> or you can chose not to scale <code>noscale</code>.</p></li>
 <li><p><code>ordinal_var</code> is a character string specifying the method to be used for ordinal variables (<em>i.e.</em> ordered). You can either chose to treat ordinal variables as continuous variables (with <code>"classic"</code> option) or to treat ordinal variables as ranks (with <code>metric</code> or <code>podani</code> options, see <code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code> help file for details).</p></li>
-<li><p><code>weight_type</code> is a character string referring to the type of method to weight traits. You can either chose to define weights using the <code>tr_cat</code> dataframe (cf <strong>step 1.1</strong>) (<code>user</code> option) or you can chose to give the same weight to all traits (<code>equal</code> option). (⚠️ Using <code>mFD</code>, you can not define weights for fuzzy traits, use <a href="https://cran.r-project.org/web/packages/gawdis/index.html"><code>gawdis</code></a> package instead)</p></li>
+<li><p><code>weight_type</code> is a character string referring to the type of method to weight traits. You can either chose to define weights using the <code>tr_cat</code> dataframe (cf <strong>step 1.1</strong>) (<code>user</code> option) or you can chose to give the same weight to all traits (<code>equal</code> option). (⚠️ Using <code>mFD</code>, you can not define weights for fuzzy traits, use <a href="https://cran.r-project.org/package=gawdis"><code>gawdis</code></a> package instead)</p></li>
 <li><p><code>stop_if_NA</code> is a logical value to stop or not the process if the <code>sp_tr</code> data frame contains NA. If the <code>sp_tr</code> data frame contains <code>NA</code> you can either chose to compute anyway functional distances (but keep in mind that <strong>Functional measures are sensitive to missing traits!</strong>) or you can delete species with missing or extrapolate missing traits (see <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.13185">Johnson <em>et al.</em> (2020)</a>).</p></li>
 </ul>
 <p><br></p>

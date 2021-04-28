@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Compute FUSE (Functionally Unique, Specialized and Endangered) — fuse" />
 <meta property="og:description" content="This index takes into account species functional uniqueness (also called
-Functional Originality), species specialisation and species IUCN status" />
+Functional Originality), species specialisation and species IUCN status." />
 
 
 
@@ -140,7 +140,7 @@ Functional Originality), species specialisation and species IUCN status" />
 
     <div class="ref-description">
     <p>This index takes into account species functional uniqueness (also called
-Functional Originality), species specialisation and species IUCN status</p>
+Functional Originality), species specialisation and species IUCN status.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fuse</span><span class='op'>(</span><span class='va'>sp_dist</span>, <span class='va'>sp_faxes_coord</span>, nb_NN <span class='op'>=</span> <span class='fl'>5</span>, <span class='va'>GE</span>, standGE <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
@@ -183,8 +183,8 @@ and CR = 0.999).</p></td>
 
     <p>A data frame with species in rows and the following metrics in
 columns:</p><ul>
-<li><p>FUSE: functionally unique, specialized and endangered (see Pimiento
-<em>et al.</em> (2020) and Griffin <em>et al.</em> (2020));</p></li>
+<li><p>FUSE: functionally unique, specialized and endangered (see
+Pimiento <em>et al.</em> (2020);</p></li>
 <li><p>FDGE: functionally distinctive and endangered</p></li>
 <li><p>FUn_std: functional uniqueness standardized between 0 and 1 (see
 Mouillot <em>et al.</em> (2013) and Griffin <em>et al.</em> (2020));</p></li>
@@ -255,7 +255,8 @@ Violle <em>et al.</em> (2007) Let the concept of trait be functional! <em>Oikos<
   type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>symm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>, weights <span class='op'>=</span> <span class='va'>v</span><span class='op'>)</span>
   
 <span class='co'># Principal coordinate analyses</span>
-<span class='va'>Pcoa</span> <span class='op'>&lt;-</span> <span class='fu'>ade4</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ade4/man/dudi.pco.html'>dudi.pco</a></span><span class='op'>(</span><span class='fu'>ade4</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ade4/man/quasieuclid.html'>quasieuclid</a></span><span class='op'>(</span><span class='va'>sp_dist_tr</span><span class='op'>)</span>, scann <span class='op'>=</span> <span class='cn'>FALSE</span>, nf <span class='op'>=</span> <span class='fl'>40</span><span class='op'>)</span>
+<span class='va'>Pcoa</span> <span class='op'>&lt;-</span> <span class='fu'>ade4</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ade4/man/dudi.pco.html'>dudi.pco</a></span><span class='op'>(</span><span class='fu'>ade4</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ade4/man/quasieuclid.html'>quasieuclid</a></span><span class='op'>(</span><span class='va'>sp_dist_tr</span><span class='op'>)</span>, scann <span class='op'>=</span> <span class='cn'>FALSE</span>, 
+                       nf <span class='op'>=</span> <span class='fl'>40</span><span class='op'>)</span>
 
 <span class='va'>sp_faxes_coord</span> <span class='op'>&lt;-</span> <span class='va'>Pcoa</span><span class='op'>$</span><span class='va'>li</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>40</span><span class='op'>]</span>
  

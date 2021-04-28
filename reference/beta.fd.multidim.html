@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Functional beta-Diversity Indices for Pairs of Assemblages in a
-Multidimensional Space — beta.fd.multidim • mFD</title>
+<title>Compute Functional beta-Diversity indices for pairs of assemblages in a
+multidimensional space — beta.fd.multidim • mFD</title>
 
 
 <!-- jquery -->
@@ -40,13 +40,13 @@ Multidimensional Space — beta.fd.multidim • mFD</title>
 
 
 
-<meta property="og:title" content="Compute Functional beta-Diversity Indices for Pairs of Assemblages in a
-Multidimensional Space — beta.fd.multidim" />
+<meta property="og:title" content="Compute Functional beta-Diversity indices for pairs of assemblages in a
+multidimensional space — beta.fd.multidim" />
 <meta property="og:description" content="Computes a set of indices of pairwise functional beta-diversity
-(dissimilarity and its turnover and nestedness-resultant components) based on
-overlap between convex hulls in a multidimensional space. For details about
-indices formulas see Villéger et al. (2013). This functions stands on
-functional.betapart.core.pairwise." />
+(dissimilarity and its turnover and nestedness-resultant components) based
+on overlap between convex hulls in a multidimensional space. For details
+about indices formulas see Villéger et al. (2013). This functions stands
+on functional.betapart.core.pairwise." />
 
 
 
@@ -138,18 +138,18 @@ functional.betapart.core.pairwise." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Functional beta-Diversity Indices for Pairs of Assemblages in a
-Multidimensional Space</h1>
+    <h1>Compute Functional beta-Diversity indices for pairs of assemblages in a
+multidimensional space</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/beta_ind_computation.R'><code>R/beta_ind_computation.R</code></a></small>
     <div class="hidden name"><code>beta.fd.multidim.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Computes a set of indices of pairwise functional beta-diversity
-(dissimilarity and its turnover and nestedness-resultant components) based on
-overlap between convex hulls in a multidimensional space. For details about
-indices formulas see Villéger <em>et al.</em> (2013). This functions stands on
-<code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code>.</p>
+(dissimilarity and its turnover and nestedness-resultant components) based
+on overlap between convex hulls in a multidimensional space. For details
+about indices formulas see Villéger <em>et al.</em> (2013). This functions stands
+on <code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>beta.fd.multidim</span><span class='op'>(</span>
@@ -170,8 +170,8 @@ indices formulas see Villéger <em>et al.</em> (2013). This functions stands on
     <tr>
       <th>sp_faxes_coord</th>
       <td><p>a matrix with coordinates of species (rows) on
-functional axes (columns). Species coordinates have been retrieved thanks to
-<code><a href='tr.cont.fspace.html'>tr.cont.fspace</a></code> or <code><a href='quality.fspaces.html'>quality.fspaces</a></code>.</p></td>
+functional axes (columns). Species coordinates have been retrieved thanks
+to <code><a href='tr.cont.fspace.html'>tr.cont.fspace</a></code> or <code><a href='quality.fspaces.html'>quality.fspaces</a></code>.</p></td>
     </tr>
     <tr>
       <th>asb_sp_occ</th>
@@ -183,12 +183,12 @@ of species (columns) in a set of assemblages (rows).</p></td>
       <td><p>a logical value defining whether inputs are
 checked before computation of indices. Possible error messages will thus
 may be more understandable for the user than R error messages. Default:
-check_input = TRUE.</p></td>
+<code>check_input = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>beta_family</th>
       <td><p>a character string for the type of beta-diversity
-index to use, 'Jaccard' (default) and/or 'Sorensen'</p></td>
+index to use, 'Jaccard' (default) and/or 'Sorensen'.</p></td>
     </tr>
     <tr>
       <th>details_returned</th>
@@ -201,38 +201,40 @@ graphical outputs for the computed indices.</p></td>
       <th>betapart_step</th>
       <td><p>a logical value indicating whether the
 computation progress should be displayed in the R console. Default:
-betapart_step = TRUE.</p></td>
+<code>betapart_step = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>betapart_chullopt</th>
-      <td><p>a A list of two named vectors of character conv1 and
-conv2 defining the options that will be used to compute the convex hulls
-(through the options of geometry::convhulln function). For further details
-see help of <code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code>.
-Default: betapart_chullopt = c(conv1='Qt', conv2='QJ').</p></td>
+      <td><p>a A list of two named vectors of character conv1
+and conv2 defining the options that will be used to compute the convex
+hulls (through the options of geometry::convhulln function). For further
+details  see help of
+<code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code>.
+Default: <code>betapart_chullopt = c(conv1 = 'Qt', conv2 = 'QJ')</code>.</p></td>
     </tr>
     <tr>
       <th>betapart_para</th>
       <td><p>a logical value indicating whether internal
-parallelization should be used to compute pairwise dissimilarities. Default:
-betapart_para = FALSE.</p></td>
+parallelization should be used to compute pairwise dissimilarities.
+Default: <code>betapart_para = FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>betapart_para_opt</th>
       <td><p>a list with details about parallelization.
 Default value means those parameters are set according to computer
-specifications. <code>nc</code> is the number of cores (default = 4), <code>type</code>
-is a character string with code of method used (default PSOCK), <code>LB</code>
-is a boolean specifying whether load-balancing is applied (default is TRUE)
-and <code>size</code> is a numeric value for number of tasks performed at each
-time (default is 1). See help of
-<code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code> for more details.</p></td>
+specifications. <code>nc</code> is the number of cores (default = 4),
+<code>type</code> is a character string with code of method used
+(default PSOCK), <code>LB</code> is a boolean specifying whether load-balancing
+is applied (default is TRUE) and <code>size</code> is a numeric value for number
+of tasks performed at each time (default is 1). See help of
+<code><a href='https://rdrr.io/pkg/betapart/man/functional.betapart.core.pairwise.html'>functional.betapart.core.pairwise</a></code> for more
+details.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list with:</p><ul>
+    <p>A list with:</p><ul>
 <li><p><em>pairasb_fbd_indices</em> a list with
 for each
 index a <em>dist</em> object with values for all pairs of assemblages.
@@ -254,11 +256,12 @@ species being vertices of the convex hull</p></li>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>all assemblages should have a number of species strictly higher than
+    <p>All assemblages should have a number of species strictly higher than
 the number of functional axes.
 Computing intersection of convex hulls in space of &gt;5 dimensions is yet
 impossible with most computers.
-This function uses R libraries 'betapart' (&gt; =1.5.4) for indices computation.
+This function uses R libraries 'betapart' (&gt; =1.5.4) for indices
+computation.
 Indices values are stored as <em>dist</em> objects to optimize memory.
 See below example of how merging distance values in a <em>dataframe</em> with
 <code>dist.to.df</code>.</p>
@@ -300,7 +303,7 @@ fish assemblages. <em>Global Ecology and Biogeography</em>, <strong>22</strong>,
  fdendro             <span class='op'>=</span> <span class='st'>'average'</span><span class='op'>)</span>
  
 <span class='co'># Retrieve species coordinates matrix:</span>
-<span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='st'>'details_fspaces'</span><span class='op'>$</span><span class='st'>'sp_pc_coord'</span>
+<span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
 
 <span class='co'># Get the occurrence dataframe:</span>
 <span class='va'>asb_sp_fruits_summ</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='asb.sp.summary.html'>asb.sp.summary</a></span><span class='op'>(</span>asb_sp_w <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span> 
@@ -308,7 +311,7 @@ fish assemblages. <em>Global Ecology and Biogeography</em>, <strong>22</strong>,
 
 <span class='co'># Compute beta diversity indices:</span>
 <span class='va'>beta_fd_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>beta.fd.multidim</span><span class='op'>(</span>
-  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PC1'</span>, <span class='st'>'PC2'</span>, <span class='st'>'PC3'</span>, <span class='st'>'PC4'</span><span class='op'>)</span><span class='op'>]</span>, 
+  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PC1'</span>, <span class='st'>'PC2'</span>, <span class='st'>'PC3'</span>, <span class='st'>'PC4'</span><span class='op'>)</span><span class='op'>]</span>, 
   asb_sp_occ       <span class='op'>=</span> <span class='va'>asb_sp_fruits_occ</span>,
   check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>,
   beta_family      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Jaccard'</span><span class='op'>)</span>,
@@ -316,7 +319,6 @@ fish assemblages. <em>Global Ecology and Biogeography</em>, <strong>22</strong>,
 
 <span class='co'># merging pairwise beta-diversity indices in a data.frame</span>
 <span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span><span class='va'>beta_fd_fruits</span><span class='op'>$</span><span class='va'>pairasb_fbd_indices</span><span class='op'>)</span>
-
 <span class='op'>}</span>
 </div></pre>
   </div>

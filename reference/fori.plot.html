@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Fori — fori.plot • mFD</title>
+<title>Plot FOri — fori.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Plot Fori — fori.plot" />
+<meta property="og:title" content="Plot FOri — fori.plot" />
 <meta property="og:description" content="This function plots FOri index for a given pair of functional axes and for
 one or several assemblages. It adds the distance of species from the studied
 to their nearest neighbour(s) from the global pool." />
@@ -134,7 +134,7 @@ to their nearest neighbour(s) from the global pool." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot Fori</h1>
+    <h1>Plot FOri</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_multidim_layers.R'><code>R/plot_multidim_layers.R</code></a></small>
     <div class="hidden name"><code>fori.plot.Rd</code></div>
     </div>
@@ -221,9 +221,9 @@ color of the pool.  This color is also used for FRic convex hull color.</p></td>
     </tr>
     <tr>
       <th>fill_pool</th>
-      <td><p>a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if <code>shape_sp</code> &gt; 20) and the assemblage convex
-hull.</p></td>
+      <td><p>a R color name or an hexadecimal code referring to the
+colour to fill species symbol (if <code>shape_sp</code> &gt; 20) and the assemblage
+convex hull.</p></td>
     </tr>
     <tr>
       <th>shape_sp</th>
@@ -259,18 +259,17 @@ link nearest neighbors in the global pool.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a ggplot object with FOri index</p>
+    <p>A ggplot object with FOri index.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>If several assemblages are to be represented, aesthetics inputs should
 be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Camille Magneville and Sébastien Villéger</p>
+    <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-
 <span class='co'># Load Species*Traits dataframe:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
 
@@ -312,7 +311,7 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
                                faxes_nm    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC 1"</span>, <span class='st'>"PC 2"</span><span class='op'>)</span>, 
                                color_bg    <span class='op'>=</span> <span class='st'>"grey90"</span><span class='op'>)</span> 
                                
- <span class='co'># Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:</span>
+ <span class='co'># Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2</span>
  <span class='va'>sp_filter</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='sp.filter.html'>sp.filter</a></span><span class='op'>(</span>asb_nm          <span class='op'>=</span> <span class='st'>"basket_1"</span>, 
                              sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, 
                              asb_sp_w       <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span>
@@ -321,7 +320,7 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
                                
  <span class='co'># Use alpha.fd.multidim() function to get inputs to plot FIde:</span>
  <span class='va'>alpha_fd_indices_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='alpha.fd.multidim.html'>alpha.fd.multidim</a></span><span class='op'>(</span>
-  sp_faxes_coord    <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
+  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
   asb_sp_w         <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span>,
   ind_vect         <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fori"</span><span class='op'>)</span>,
   scaling          <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -332,7 +331,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
  <span class='va'>fruits_asb_nn_pool_b1</span> <span class='op'>&lt;-</span> 
          <span class='va'>alpha_fd_indices_fruits</span><span class='op'>$</span><span class='va'>details</span><span class='op'>$</span><span class='va'>asb_nm_nn_pool</span><span class='op'>[</span><span class='st'>"basket_1"</span><span class='op'>]</span>
 
- 
  <span class='co'># Retrieve FNND plot:</span>
  <span class='va'>fori_plot</span> <span class='op'>&lt;-</span> <span class='fu'>fori.plot</span><span class='op'>(</span>ggplot_bg <span class='op'>=</span> <span class='va'>ggplot_bg_fruits</span>,
            asb_sp_coord2D <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='va'>fruits_asb_sp_coord2D_b1</span><span class='op'>)</span>,
@@ -354,7 +352,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
            
  <span class='va'>fori_plot</span>
 <span class='op'>}</span>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

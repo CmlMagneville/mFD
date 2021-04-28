@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scale Continuous Traits — tr.cont.scale • mFD</title>
+<title>Scale continuous traits — tr.cont.scale • mFD</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,11 @@
 
 
 
-<meta property="og:title" content="Scale Continuous Traits — tr.cont.scale" />
+<meta property="og:title" content="Scale continuous traits — tr.cont.scale" />
 <meta property="og:description" content="This function standardizes continuous traits. It can be useful before
-computing functional space. You will have to choose which standardized method
-to use based on your data. For this function to work, there must be no NA in
-your sp_tr data frame." />
+computing functional space. You will have to choose which standardized
+method to use based on your data. For this function to work, there must be
+no NA in your sp_tr data frame." />
 
 
 
@@ -135,16 +135,16 @@ your sp_tr data frame." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scale Continuous Traits</h1>
+    <h1>Scale continuous traits</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/cont_tr_fspace.R'><code>R/cont_tr_fspace.R</code></a></small>
     <div class="hidden name"><code>tr.cont.scale.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>This function standardizes continuous traits. It can be useful before
-computing functional space. You will have to choose which standardized method
-to use based on your data. For this function to work, there must be no NA in
-your <code>sp_tr</code> data frame.</p>
+computing functional space. You will have to choose which standardized
+method to use based on your data. For this function to work, there must be
+no NA in your <code>sp_tr</code> data frame.</p>
     </div>
 
     <pre class="usage"><span class='fu'>tr.cont.scale</span><span class='op'>(</span><span class='va'>sp_tr</span>, std_method <span class='op'>=</span> <span class='st'>"scale_center"</span><span class='op'>)</span></pre>
@@ -154,14 +154,14 @@ your <code>sp_tr</code> data frame.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>sp_tr</th>
-      <td><p>a data frame of traits values (columns) for each species (rows).
-Note that species names <strong>must be</strong> specified in the row names and traits
-must be <strong>continuous</strong>.</p></td>
+      <td><p>a data frame of traits values (columns) for each species
+(rows). Note that species names <strong>must be</strong> specified in the row names and
+traits must be <strong>continuous</strong>.</p></td>
     </tr>
     <tr>
       <th>std_method</th>
-      <td><p>a character string referring to the standardization method.
-Possible values:
+      <td><p>a character string referring to the standardization
+method. Possible values:
 <code>range</code> (standardize by the range),
 <code>center</code> (use the center transformation: \(x' = x - mean(x)\)),
 <code>scale</code> (use the scale transformation: \(x' = \frac{x}{sd(x)}\)), or
@@ -177,7 +177,7 @@ Default is <code>scale_center</code>.</p></td>
 (rows).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Camille Magneville &amp; Sebastien Villeger</p>
+    <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

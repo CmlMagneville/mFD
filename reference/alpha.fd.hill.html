@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Functional alpha-Diversity Indices based on Hill Numbers — alpha.fd.hill • mFD</title>
+<title>Compute Functional alpha-Diversity indices based on Hill Numbers — alpha.fd.hill • mFD</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Compute Functional alpha-Diversity Indices based on Hill Numbers — alpha.fd.hill" />
+<meta property="og:title" content="Compute Functional alpha-Diversity indices based on Hill Numbers — alpha.fd.hill" />
 <meta property="og:description" content="Compute functional alpha diversity applied to distance between species
 following the framework from Chao et al.(2019)." />
 
@@ -133,7 +133,7 @@ following the framework from Chao et al.(2019)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Functional alpha-Diversity Indices based on Hill Numbers</h1>
+    <h1>Compute Functional alpha-Diversity indices based on Hill Numbers</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/alpha_fhill_ind_computation.R'><code>R/alpha_fhill_ind_computation.R</code></a></small>
     <div class="hidden name"><code>alpha.fd.hill.Rd</code></div>
     </div>
@@ -164,8 +164,8 @@ allowed.</p></td>
     <tr>
       <th>sp_dist</th>
       <td><p>a matrix or dist object with distance between
-species. Species names should be provided and match those in 'asb_sp_w'. NA
-are not allowed.</p></td>
+species. Species names should be provided and match those in 'asb_sp_w'.
+NA are not allowed.</p></td>
     </tr>
     <tr>
       <th>q</th>
@@ -175,18 +175,18 @@ diversity to consider, could be 0, 1 and/or 2.</p></td>
     <tr>
       <th>tau</th>
       <td><p>a character string with name of function to apply to
-distance matrix (i.e. among all pairs of species) to get the threshold used
-to define 'functionally indistinct set of species'. Could be 'mean'
+distance matrix (i.e. among all pairs of species) to get the threshold
+used to define 'functionally indistinct set of species'. Could be 'mean'
 (default), 'min' or 'max'. If tau = 'min" and there are null values in
 <code>sp_dist</code>, the threshold is the lowest strictly positive value and a
 warning message is displayed.</p></td>
     </tr>
     <tr>
       <th>check_input</th>
-      <td><p>a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: <code>check.input = TRUE</code>.</p></td>
+      <td><p>a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: <code>check.input = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>details_returned</th>
@@ -197,13 +197,14 @@ want to store values used for computing indices (see list below)</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list with:</p><ul>
+    <p>A list with:</p><ul>
 <li><p><em>asb_FD_Hill</em> a matrix containing indices values for each level
 of q (columns, named as 'FD_qx') for each assemblage (rows, named as in
 <strong>asb_sp_w</strong>)</p></li>
 <li><p><em>tau_dist</em> the threshold value applied to distance between
 species to compute diversity according to function provided in <strong>tau</strong></p></li>
-<li><p>if <strong>details_returned</strong> turned to TRUE a list <em>details</em> with</p><ul>
+<li><p>if <strong>details_returned</strong> turned to TRUE a list <em>details</em>
+with</p><ul>
 <li><p><em>asb_totw</em> a vector with total weight of each assemblage</p></li>
 <li><p><em>asb_sp_relw</em> a matrix with relative weight of species in
 assemblages</p></li>
@@ -212,24 +213,24 @@ assemblages</p></li>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>FD is computed applying the special case where function 'f' in equation
-3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0 and f(tau) = 1.
-FD computed with q=2 and tau = 'max' is equivalent to the Rao's
-quadratic entropy from Ricotta &amp; Szeidl (2009, J Theor Biol). FD computed
-with tau = 'min' is equivalent to Hill number taxonomic diversity, thus
-with q=0 it is species richness (S), with q = 1 it is exponential of
-Shannon entropy (H) and with q = 2 it is 1/(1-D) where D is Simpson
-diversity.  Note that even when q=0, weights of species are accounted for
-in FD. Hence to compute FD based only on distance between species present
-in an assemblage (i.e. a richness-like index) , asb_sp_w has to contain
-only species presence/absence coded as 0/1 with q=0 and tau=”mean”. If
-asb_sp_w contains only 0/1 and q&gt;0, it means that all species have the same
-contribution to FD.</p>
+    <p>FD is computed applying the special case where function 'f' in
+equation 3c is linear:f(dij(tau)) = dij(tau)/tau, hence f(0) = 0
+and f(tau) = 1. FD computed with q=2 and tau = 'max' is equivalent to
+the Rao's quadratic entropy from Ricotta &amp; Szeidl (2009, J Theor Biol).
+FD computed with tau = 'min' is equivalent to Hill number taxonomic
+diversity, thus with q=0 it is species richness (S), with q = 1 it is
+exponential of Shannon entropy (H) and with q = 2 it is 1/(1-D) where D is
+Simpson diversity.  Note that even when q=0, weights of species are
+accounted for in FD. Hence to compute FD based only on distance between
+species present in an assemblage (i.e. a richness-like index) , asb_sp_w
+has to contain only species presence/absence coded as 0/1 with q=0 and
+tau=”mean”. If asb_sp_w contains only 0/1 and q&gt;0, it means that all
+species have the same contribution to FD.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chao <em>et al.</em> (2019) An attribute‐diversity approach to functional
-diversity, functional beta diversity, and related (dis)similarity measures.
-<em>Ecological Monographs</em>, <strong>89</strong>.<br /></p>
+diversity, functional beta diversity, and related (dis)similarity
+measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Sebastien Villeger and Camille Magneville</p>

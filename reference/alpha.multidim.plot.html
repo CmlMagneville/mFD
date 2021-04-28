@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Functional Space and Chosen Functional Indices — alpha.multidim.plot • mFD</title>
+<title>Plot functional space and chosen functional indices — alpha.multidim.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,10 @@
 
 
 
-<meta property="og:title" content="Plot Functional Space and Chosen Functional Indices — alpha.multidim.plot" />
+<meta property="og:title" content="Plot functional space and chosen functional indices — alpha.multidim.plot" />
 <meta property="og:description" content="Compute a graphical representation of functional indices. To plot
-functional indices, functional indices values must have been retrieve through
-the use of the alpha.fd.multidim function." />
+functional indices, functional indices values must have been retrieve
+through the use of the alpha.fd.multidim function." />
 
 
 
@@ -134,15 +134,15 @@ the use of the alpha.fd.multidim function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot Functional Space and Chosen Functional Indices</h1>
+    <h1>Plot functional space and chosen functional indices</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_alpha_indices.R'><code>R/plot_alpha_indices.R</code></a></small>
     <div class="hidden name"><code>alpha.multidim.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Compute a graphical representation of functional indices. <strong>To plot
-functional indices, functional indices values must have been retrieve through
-the use of the</strong> <code><a href='alpha.fd.multidim.html'>alpha.fd.multidim</a></code> <strong>function</strong>.</p>
+functional indices, functional indices values must have been retrieve
+through the use of the</strong> <code><a href='alpha.fd.multidim.html'>alpha.fd.multidim</a></code> <strong>function</strong>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>alpha.multidim.plot</span><span class='op'>(</span>
@@ -184,7 +184,7 @@ the use of the</strong> <code><a href='alpha.fd.multidim.html'>alpha.fd.multidim
     </tr>
     <tr>
       <th>plot_asb_nm</th>
-      <td><p>a vector containing name(s) of assemblage(s) to plot</p></td>
+      <td><p>a vector containing name(s) of assemblage(s) to plot.</p></td>
     </tr>
     <tr>
       <th>ind_nm</th>
@@ -208,10 +208,10 @@ the same that <code>faxes</code> ones).</p></td>
     <tr>
       <th>range_faxes</th>
       <td><p>a vector with minimum and maximum for values for axes.
-Note that to have a fair representation of position of species in all plots,
-all axes must have the same range. Default: faxes_lim = c(NA, NA) (the range
-is computed according to the range of values among all axes, all axes having
-the same range).</p></td>
+Note that to have a fair representation of position of species in all
+plots, all axes must have the same range. Default: faxes_lim = c(NA, NA)
+(the range is computed according to the range of values among all axes, all
+axes having the same range).</p></td>
     </tr>
     <tr>
       <th>color_bg</th>
@@ -264,13 +264,14 @@ assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).</p><
     <tr>
       <th>fill_ch</th>
       <td><p>a vector gathering R color names or hexadecimal codes
-referring to the color to fill the convex pool of the global pool and studied
-assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).</p></td>
+referring to the color to fill the convex pool of the global pool and
+studied assemblage(s).
+It should be written as c(pool = "...", asb1 = "...", ...).</p></td>
     </tr>
     <tr>
       <th>alpha_ch</th>
-      <td><p>a vector gathering numeric values referring to the opacity of
-convex hulls of the global pool and the plotted assemblage(s).
+      <td><p>a vector gathering numeric values referring to the opacity
+of convex hulls of the global pool and the plotted assemblage(s).
 It should be written  as c(pool = "...", asb1 = "...", ...).
 (0 = high transparency, 1 = no transparency).</p></td>
     </tr>
@@ -322,10 +323,10 @@ saved or not.</p></td>
     </tr>
     <tr>
       <th>check_input</th>
-      <td><p>a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: <code>check.input = TRUE</code>.</p></td>
+      <td><p>a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: <code>check.input = TRUE</code>.</p></td>
     </tr>
     </table>
 
@@ -338,7 +339,7 @@ axes and a <code>ggplot2</code> figure showing the plot caption. If
 <code>name_file</code> is not <code>NULL</code>, then those plots are saved locally.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Camille Magneville and Sébastien Villéger</p>
+    <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
@@ -372,7 +373,7 @@ axes and a <code>ggplot2</code> figure showing the plot caption. If
 
 <span class='co'># Compute alpha diversity indices:</span>
 <span class='va'>alpha_fd_indices_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='alpha.fd.multidim.html'>alpha.fd.multidim</a></span><span class='op'>(</span>
-  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
+  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
   asb_sp_w         <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span>,
   ind_vect         <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fdis"</span>, <span class='st'>"fmpd"</span>, <span class='st'>"fnnd"</span>, <span class='st'>"feve"</span>, <span class='st'>"fric"</span>, <span class='st'>"fdiv"</span>,
                        <span class='st'>"fori"</span>, <span class='st'>"fspe"</span><span class='op'>)</span>,
@@ -428,7 +429,6 @@ check_input             <span class='op'>=</span> <span class='cn'>TRUE</span><s
 
 <span class='co'># Check FRic plot:</span>
 <span class='va'>plots_alpha</span><span class='op'>$</span><span class='va'>fric</span><span class='op'>$</span><span class='va'>patchwork</span>
-
 <span class='op'>}</span>
 </div></pre>
   </div>

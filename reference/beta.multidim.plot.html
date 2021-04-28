@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
-Multidimensional Space — beta.multidim.plot • mFD</title>
+<title>Illustrate Functional beta-Diversity indices for pairs of assemblages in a
+multidimensional space — beta.multidim.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -40,8 +40,8 @@ Multidimensional Space — beta.multidim.plot • mFD</title>
 
 
 
-<meta property="og:title" content="Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
-Multidimensional Space — beta.multidim.plot" />
+<meta property="og:title" content="Illustrate Functional beta-Diversity indices for pairs of assemblages in a
+multidimensional space — beta.multidim.plot" />
 <meta property="og:description" content="Illustrate overlap between convex hulls shaping species assemblages in a
 multidimensional functional space.Before plotting beta functional
 diversity indices should have been computed using the
@@ -137,8 +137,8 @@ beta.fd.multidim function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Illustrate Functional beta-Diversity Indices for Pairs of Assemblages in a
-Multidimensional Space</h1>
+    <h1>Illustrate Functional beta-Diversity indices for pairs of assemblages in a
+multidimensional space</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_beta_indices.R'><code>R/plot_beta_indices.R</code></a></small>
     <div class="hidden name"><code>beta.multidim.plot.Rd</code></div>
     </div>
@@ -181,8 +181,8 @@ diversity indices should have been computed using the</strong>
       <th>output_beta_fd_multidim</th>
       <td><p>the list returned by
 <code><a href='beta.fd.multidim.html'>beta.fd.multidim</a></code> when <code>details_returned = TRUE</code>.
-Thus, even if this function will illustrate functional beta-diversity for a
-single pair of assemblages, plots will be scaled according to all
+Thus, even if this function will illustrate functional beta-diversity for
+a single pair of assemblages, plots will be scaled according to all
 assemblages for which indices were computed.</p></td>
     </tr>
     <tr>
@@ -205,8 +205,8 @@ Default: <code>plot_nm_sp = NULL</code> (no name plotted).</p></td>
       <th>faxes</th>
       <td><p>a vector with names of axes to plot (as columns names in
 <code>output_beta_fd_multidim$details$input$sp_faxes_coord</code> ). <strong>You
-can only plot from 2 to 4 axes for graphical reasons</strong>. Default: faxes = NULL
-(the four first axes will be plotted).</p></td>
+can only plot from 2 to 4 axes for graphical reasons</strong>.
+Default: <code>faxes = NULL</code> (the four first axes will be plotted).</p></td>
     </tr>
     <tr>
       <th>name_file</th>
@@ -235,9 +235,9 @@ plot background. Default: <code>color_bg = "grey95"</code>.</p></td>
       <th>shape_sp</th>
       <td><p>a vector with 3 numeric values referring to the shape of
 symbol used for species from the 'pool' absent from the 2 assemblages, and
-for species present in the 2 assemblages ('asb1', and 'asb2'), respectively.
-Default: <code>shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)</code> so cross,
-square and circle.</p></td>
+for species present in the 2 assemblages ('asb1', and 'asb2'),
+respectively. Default: <code>shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)</code> so
+cross, square and circle.</p></td>
     </tr>
     <tr>
       <th>size_sp</th>
@@ -301,10 +301,10 @@ of species label. Default is <code>black.</code></p></td>
     </tr>
     <tr>
       <th>check_input</th>
-      <td><p>a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: <code>check.input = TRUE</code>.</p></td>
+      <td><p>a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: <code>check.input = TRUE</code>.</p></td>
     </tr>
     </table>
 
@@ -317,7 +317,7 @@ indices are shown on top-right corner of the figure. If <code>name_file</code> i
 not <code>NULL</code>, the plot is saved locally.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Sebastien Villeger &amp; Camille Magneville</p>
+    <p>Sebastien Villeger and Camille Magneville</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
@@ -356,7 +356,7 @@ not <code>NULL</code>, the plot is saved locally.</p>
 
 <span class='co'># Compute beta diversity indices:</span>
  <span class='va'>beta_fd_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='beta.fd.multidim.html'>beta.fd.multidim</a></span><span class='op'>(</span>
-  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
+  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span>, <span class='st'>"PC3"</span>, <span class='st'>"PC4"</span><span class='op'>)</span><span class='op'>]</span>,
   asb_sp_occ       <span class='op'>=</span> <span class='va'>asb_sp_fruits_occ</span>,
   check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>,
   beta_family      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Jaccard"</span><span class='op'>)</span>,

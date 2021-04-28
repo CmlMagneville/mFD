@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Build a Functional Space based on Continuous Traits Only — tr.cont.fspace • mFD</title>
+<title>Build a functional space based on continuous traits only — tr.cont.fspace • mFD</title>
 
 
 <!-- jquery -->
@@ -39,14 +39,14 @@
 
 
 
-<meta property="og:title" content="Build a Functional Space based on Continuous Traits Only — tr.cont.fspace" />
+<meta property="og:title" content="Build a functional space based on continuous traits only — tr.cont.fspace" />
 <meta property="og:description" content="This function computes a functional space based on continuous standardized
 traits or continuous raw traits matrix. User can either choose to compute
 functional space based on PCA analysis or using one trait for one functional
-axis. For PCA analysis, center and scale arguments are considered FALSE: if
-you want to center, scale or standardize by any mean your data, please use
-tr.cont.scale function. Option makes it possible to compute
-correlation between traits." />
+axis. For PCA analysis, center and scale arguments are considered FALSE:
+if you want to center, scale or standardize by any mean your data, please
+use tr.cont.scale function. Option makes it possible to
+compute correlation between traits." />
 
 
 
@@ -138,7 +138,7 @@ correlation between traits." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Build a Functional Space based on Continuous Traits Only</h1>
+    <h1>Build a functional space based on continuous traits only</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/cont_tr_fspace.R'><code>R/cont_tr_fspace.R</code></a></small>
     <div class="hidden name"><code>tr.cont.fspace.Rd</code></div>
     </div>
@@ -147,10 +147,10 @@ correlation between traits." />
     <p>This function computes a functional space based on continuous standardized
 traits or continuous raw traits matrix. User can either choose to compute
 functional space based on PCA analysis or using one trait for one functional
-axis. For PCA analysis, center and scale arguments are considered <code>FALSE</code>: if
-you want to center, scale or standardize by any mean your data, please use
-<code><a href='tr.cont.scale.html'>tr.cont.scale</a></code> function. Option makes it possible to compute
-correlation between traits.</p>
+axis. For PCA analysis, center and scale arguments are considered <code>FALSE</code>:
+if you want to center, scale or standardize by any mean your data, please
+use <code><a href='tr.cont.scale.html'>tr.cont.scale</a></code> function. Option makes it possible to
+compute correlation between traits.</p>
     </div>
 
     <pre class="usage"><span class='fu'>tr.cont.fspace</span><span class='op'>(</span>
@@ -166,9 +166,9 @@ correlation between traits.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>sp_tr</th>
-      <td><p>a data frame of traits values (columns) for each species (rows).
-Note that species names <strong>must be</strong> specified in the row names and traits
-must be <strong>continuous</strong> (raw or standardized).</p></td>
+      <td><p>a data frame of traits values (columns) for each species
+(rows). Note that species names <strong>must be</strong> specified in the row names and
+traits must be <strong>continuous</strong> (raw or standardized).</p></td>
     </tr>
     <tr>
       <th>pca</th>
@@ -180,13 +180,13 @@ Default is <code>TRUE</code>.</p></td>
       <th>nb_dim</th>
       <td><p>an integer referring to the maximum number of dimensions for
 multidimensional functional spaces. Final number of dimensions depends
-on the number of positive eigenvalues obtained with the PCA. High value for
-<code>nb_dim</code> can increase computation time. Default is <code>nb_dim = 7</code>.</p></td>
+on the number of positive eigenvalues obtained with the PCA. High value
+for <code>nb_dim</code> can increase computation time. Default is <code>nb_dim = 7</code>.</p></td>
     </tr>
     <tr>
       <th>scaling</th>
-      <td><p>a string value to compute (or not) scaling of traits using the
-<code><a href='tr.cont.scale.html'>tr.cont.scale</a></code> function. Possible options are:
+      <td><p>a string value to compute (or not) scaling of traits using
+the <code><a href='tr.cont.scale.html'>tr.cont.scale</a></code> function. Possible options are:
 <code>range</code> (standardize by the range),
 <code>center</code> (use the center transformation: \(x' = x - mean(x)\)),
 <code>scale</code> (use the scale transformation: \(x' = \frac{x}{sd(x)}\)),
@@ -199,7 +199,8 @@ Default is <code>scale_center</code>.</p></td>
       <th>compute_corr</th>
       <td><p>a string value to compute Pearson correlation
 coefficients between traits (<code>compute_corr = 'pearson'</code>). You can choose
-not to compute correlation coefficient by setting <code>compute_corr</code> to <code>none</code>.</p></td>
+not to compute correlation coefficient by setting <code>compute_corr</code> to
+<code>none</code>.</p></td>
     </tr>
     </table>
 
@@ -210,7 +211,7 @@ functional axis, a species distance matrix, and a correlation coefficients
 between traits (if asked).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Camille Magneville &amp; Sebastien Villeger</p>
+    <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

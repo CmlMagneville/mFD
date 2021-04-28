@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Vertices of the Minimal Convex Hull Shaping Species from a Single
-Assemblage in a Multidimensional Functional Space — vertices • mFD</title>
+<title>Compute vertices of the Minimal Convex Hull shaping species from a single
+assemblage in a multidimensional functional space — vertices • mFD</title>
 
 
 <!-- jquery -->
@@ -40,11 +40,11 @@ Assemblage in a Multidimensional Functional Space — vertices • mFD</title>
 
 
 
-<meta property="og:title" content="Compute Vertices of the Minimal Convex Hull Shaping Species from a Single
-Assemblage in a Multidimensional Functional Space — vertices" />
-<meta property="og:description" content="This function identifies species that are vertices of the minimal convex hull
-enclosing a community in a multidimensional functional space. This function
-is using the convhulln function." />
+<meta property="og:title" content="Compute vertices of the Minimal Convex Hull shaping species from a single
+assemblage in a multidimensional functional space — vertices" />
+<meta property="og:description" content="This function identifies species that are vertices of the minimal convex
+hull enclosing a community in a multidimensional functional space. This
+function is using the convhulln function." />
 
 
 
@@ -136,16 +136,16 @@ is using the convhulln function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Vertices of the Minimal Convex Hull Shaping Species from a Single
-Assemblage in a Multidimensional Functional Space</h1>
+    <h1>Compute vertices of the Minimal Convex Hull shaping species from a single
+assemblage in a multidimensional functional space</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/fcts_used_for_ind_comp.R'><code>R/fcts_used_for_ind_comp.R</code></a></small>
     <div class="hidden name"><code>vertices.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function identifies species that are vertices of the minimal convex hull
-enclosing a community in a multidimensional functional space. This function
-is using the <code><a href='https://rdrr.io/pkg/geometry/man/convhulln.html'>convhulln</a></code> function.</p>
+    <p>This function identifies species that are vertices of the minimal convex
+hull enclosing a community in a multidimensional functional space. This
+function is using the <code><a href='https://rdrr.io/pkg/geometry/man/convhulln.html'>convhulln</a></code> function.</p>
     </div>
 
     <pre class="usage"><span class='fu'>vertices</span><span class='op'>(</span><span class='va'>sp_faxes_coord</span>, order_2D <span class='op'>=</span> <span class='cn'>FALSE</span>, check_input <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
@@ -161,23 +161,23 @@ space. Species coordinates have been retrieved thanks to
     </tr>
     <tr>
       <th>order_2D</th>
-      <td><p>a logical value defining whether vertices names are reordered
-so that they define a convex polygon in 2D which is convenient for
-plotting. Default is <code>FALSE</code>, vertices ordered as in row names of
-'sp_faxes_coord'</p></td>
+      <td><p>a logical value defining whether vertices names are
+reordered so that they define a convex polygon in 2D which is convenient
+for plotting. Default is <code>FALSE</code>, vertices ordered as in row names of
+'sp_faxes_coord'.</p></td>
     </tr>
     <tr>
       <th>check_input</th>
-      <td><p>a logical value defining whether inputs are checked before
-computation: species names must be put as row.names, there must be no NA
-and species number must be superior to (axes number + 1). Default:
+      <td><p>a logical value defining whether inputs are checked
+before computation: species names must be put as row.names, there must be
+no NA and species number must be superior to (axes number + 1). Default:
 <code>check_input = TRUE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector containing names of species being vertices <code>vert_nm</code></p>
+    <p>A vector containing names of species being vertices <code>vert_nm</code>.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sebastien Villeger</p>
@@ -211,7 +211,7 @@ and species number must be superior to (axes number + 1). Default:
                                   fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
  
 <span class='co'># Retrieve species coordinates matrix:</span>
- <span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
+<span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
 
 <span class='co'># Compute vertices and order them clockwise:</span>
  <span class='va'>vert_nm</span> <span class='op'>&lt;-</span> <span class='fu'>vertices</span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>, 

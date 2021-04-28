@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Illustrate Functional Diversity Indices based on Functional Entities — alpha.fd.fe.plot • mFD</title>
+<title>Illustrate Functional Diversity indices based on Functional Entities — alpha.fd.fe.plot • mFD</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Illustrate Functional Diversity Indices based on Functional Entities — alpha.fd.fe.plot" />
+<meta property="og:title" content="Illustrate Functional Diversity indices based on Functional Entities — alpha.fd.fe.plot" />
 <meta property="og:description" content="Graphical representation of distribution of species in Functional
 Entities (FE) and of indices from Mouillot et al. (2014). To plot
 functional indices, functional indices values must have been computed first
@@ -135,7 +135,7 @@ through the use of the alpha.fd.fe function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Illustrate Functional Diversity Indices based on Functional Entities</h1>
+    <h1>Illustrate Functional Diversity indices based on Functional Entities</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_FE_multidim.R'><code>R/plot_FE_multidim.R</code></a></small>
     <div class="hidden name"><code>alpha.fd.fe.plot.Rd</code></div>
     </div>
@@ -167,8 +167,8 @@ through the use of the</strong> <code><a href='alpha.fd.fe.html'>alpha.fd.fe</a>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>alpha_fd_fe</th>
-      <td><p>output from the function <code><a href='alpha.fd.fe.html'>alpha.fd.fe</a></code> applied
-on assemblage of interest with <code>details_returned = TRUE</code>.</p></td>
+      <td><p>output from the function <code><a href='alpha.fd.fe.html'>alpha.fd.fe</a></code>
+applied on assemblage of interest with <code>details_returned = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>plot_asb_nm</th>
@@ -196,8 +196,8 @@ in species-rich FEs. It refers to the FORed value. Default:
     </tr>
     <tr>
       <th>color_line_fred</th>
-      <td><p>a R color name or an hexadecimal code referring to the
-color used to draw the horizontal line referring to the FRed value.
+      <td><p>a R color name or an hexadecimal code referring to
+the color used to draw the horizontal line referring to the FRed value.
 Default: <code>color_line_fred = "darkolivegreen4"</code>.</p></td>
     </tr>
     <tr>
@@ -208,8 +208,8 @@ color used to draw barplots. Default: <code>color_fill_bar = "grey80"</code>.</p
     <tr>
       <th>color_fill_fvuln</th>
       <td><p>a R color name or an hexadecimal code referring to
-the color used to fill barplot containing only one species for illustrating
-FVuln. Default: <code>color_fill_fvuln = "lightcoral"</code>.</p></td>
+the color used to fill barplot containing only one species for
+illustrating FVuln. Default: <code>color_fill_fvuln = "lightcoral"</code>.</p></td>
     </tr>
     <tr>
       <th>color_arrow_fvuln</th>
@@ -221,8 +221,8 @@ one FE containing one species, the arrow will be a point. Default:
     </tr>
     <tr>
       <th>size_line_fred</th>
-      <td><p>a numeric value referring to the size of the horizontal
-line illustrating FRed. Default: <code>size_line_fred = 1.5.</code></p></td>
+      <td><p>a numeric value referring to the size of the
+horizontal line illustrating FRed. Default: <code>size_line_fred = 1.5.</code></p></td>
     </tr>
     <tr>
       <th>size_arrow_fvuln</th>
@@ -232,26 +232,26 @@ showing the proportion of FEs containing only one species. Default:
     </tr>
     <tr>
       <th>check_input</th>
-      <td><p>a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: <code>check.input = TRUE</code>.</p></td>
+      <td><p>a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: <code>check_input = TRUE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>patchwork</code> object with a barplot of number of species per FE.
-Indices names provided in 'plot_ind_nm' are illustrated. Functional
+    <p>A <code>patchwork</code> object with a barplot of number of species per
+FE. Indices names provided in 'plot_ind_nm' are illustrated. Functional
 Redundancy (average number of species per FE) is illustrated with a
-horizontal line. Functional Over-redundancy (proportion of species in excess
-in FE richer than average) is illustrated with top part of these bars filled
-with
-'color_fill_fored'. Functional Vulnerability (proportion of FE with a single
-species) is illustrated with bars of these vulnerable FE filled with
-'color_fill_fvuln' and the double-head arrow highlighting their number.
-FE-based indices values on top of the plot. if <code>name_file</code> is provided,
-plot saved as a 300dpi png file in the working directory.</p>
+horizontal line. Functional Over-redundancy (proportion of species in
+excess in FE richer than average) is illustrated with top part of these
+bars filled with 'color_fill_fored'. Functional Vulnerability (proportion
+of FE with a single species) is illustrated with bars of these vulnerable
+FE filled with 'color_fill_fvuln' and the double-head arrow highlighting
+their number. FE-based indices values on top of the plot. if
+<code>name_file</code> is provided, plot saved as a 300dpi png file in the
+working directory.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Mouillot <em>et al.</em> (2014) Functional over-redundancy and high functional

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Functional Distance between Species — funct.dist • mFD</title>
+<title>Compute functional distance between species — funct.dist • mFD</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Compute Functional Distance between Species — funct.dist" />
+<meta property="og:title" content="Compute functional distance between species — funct.dist" />
 <meta property="og:description" content="For a given combination of traits, this function returns the functional
 distance matrix between species." />
 
@@ -133,7 +133,7 @@ distance matrix between species." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Functional Distance between Species</h1>
+    <h1>Compute functional distance between species</h1>
     <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/funct_dist_computation.R'><code>R/funct_dist_computation.R</code></a></small>
     <div class="hidden name"><code>funct.dist.Rd</code></div>
     </div>
@@ -158,7 +158,8 @@ distance matrix between species.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>sp_tr</th>
-      <td><p>a data frame of traits values (columns) for each species (rows).</p></td>
+      <td><p>a data frame of traits values (columns) for each species
+(rows).</p></td>
     </tr>
     <tr>
       <th>tr_cat</th>
@@ -167,22 +168,24 @@ distance matrix between species.</p>
 frame;</p></li>
 <li><p><strong>trait_type</strong>: the category code for each trait as followed:
 <code>N</code> for Nominal traits (factor variable), <code>O</code> for Ordinal traits
-(ordered variable), <code>C</code> for Circular traits (integer values), <code>Q</code>
-for quantitative traits (numeric values) that is allowed <strong>only</strong> if
-there are at least 2 species with the same value, and <code>F</code> for fuzzy
-traits (i.e. described with several values defined with several column);</p></li>
-<li><p><strong>fuzzy_name</strong>: name of fuzzy-coded trait to which 'sub-trait'
-belongs (if trait is not fuzzy, ignored so could be trait name or NA).</p></li>
-<li><p><strong>trait_weight</strong>: Optional, a numeric vector of length n (traits
-number) to specify a weight for each trait.</p></li>
+(ordered variable), <code>C</code> for Circular traits (integer values),
+<code>Q</code> for quantitative traits (numeric values) that is allowed
+<strong>only</strong> if there are at least 2 species with the same value, and
+<code>F</code> for fuzzy traits (i.e. described with several values defined with
+several column);</p></li>
+<li><p><strong>fuzzy_name</strong>: name of fuzzy-coded trait to
+which 'sub-trait' belongs (if trait is not fuzzy, ignored so could be
+trait name or NA).</p></li>
+<li><p><strong>trait_weight</strong>: Optional, a numeric vector
+of length n (traits number) to specify a weight for each trait.</p></li>
 </ul></td>
     </tr>
     <tr>
       <th>metric</th>
       <td><p>the distance to be computed:
 <code>euclidean</code>, the Euclidean distance,
-<code>gower</code>, the Classical Gower distance as defined by Gower (1971), extent by
-de Bello <em>et al.</em> (2021) and based on the <code><a href='https://rdrr.io/pkg/gawdis/man/gawdis.html'>gawdis</a></code>
+<code>gower</code>, the Classical Gower distance as defined by Gower (1971), extent
+by de Bello <em>et al.</em> (2021) and based on the <code><a href='https://rdrr.io/pkg/gawdis/man/gawdis.html'>gawdis</a></code>
 function.</p></td>
     </tr>
     <tr>
@@ -214,9 +217,9 @@ Both options convert ordinal variables to ranks. Default is <code>classic</code>
       <td><p>the type of used method to weight traits.
 <code>user</code> – user defined weights in tr_cat,
 <code>equal</code> – all traits having the same weight.
-More methods are available using <code><a href='https://rdrr.io/pkg/gawdis/man/gawdis.html'>gawdis</a></code> from <code>gawdis</code>
-package. To compute gower distance with fuzzy trait and traits weight
-please refer to <code><a href='https://rdrr.io/pkg/gawdis/man/gawdis.html'>gawdis</a></code>. Default is <code>equal</code>.</p></td>
+More methods are available using <code><a href='https://rdrr.io/pkg/gawdis/man/gawdis.html'>gawdis</a></code> from
+<code>gawdis</code> package. To compute gower distance with fuzzy trait and
+weight please refer to <code><a href='https://rdrr.io/pkg/gawdis/man/gawdis.html'>gawdis</a></code>. Default is <code>equal</code>.</p></td>
     </tr>
     <tr>
       <th>stop_if_NA</th>
@@ -241,8 +244,7 @@ Johnson <em>et al.</em> (2020)).</p>
 
     <p>de Bello <em>et al.</em> (2021) Towards a more balanced combination of multiple
 traits when computing functional differences between species.
-<em>Method in Ecology and Evolution</em>, accepted,
-doi: https://doi.org/10.1111/2041-210X.13537.
+<em>Method in Ecology and Evolution</em>, <strong>12</strong>, 443-448.<br />
 Gower (1971 ) A general coefficient of similarity and some of its
 properties. <em>Biometrics</em>, <strong>27</strong>, 857-871.<br />
 Johnson <em>et al.</em> (2020) Handling missing values in trait data.
@@ -251,7 +253,7 @@ Podani (1999) Extending Gower's general coefficient of similarity to ordinal
 characters, <em>Taxon</em>, <strong>48</strong>, 331-340.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Nicolas Loiseau &amp; Sebastien Villeger</p>
+    <p>Nicolas Loiseau and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
