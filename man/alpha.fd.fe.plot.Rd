@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_FE_multidim.R
 \name{alpha.fd.fe.plot}
 \alias{alpha.fd.fe.plot}
-\title{Illustrate Functional Diversity Indices based on Functional Entities}
+\title{Illustrate Functional Diversity indices based on Functional Entities}
 \usage{
 alpha.fd.fe.plot(
   alpha_fd_fe,
@@ -20,8 +20,8 @@ alpha.fd.fe.plot(
 )
 }
 \arguments{
-\item{alpha_fd_fe}{output from the function \code{\link{alpha.fd.fe}} applied
-on assemblage of interest with \code{details_returned = TRUE}.}
+\item{alpha_fd_fe}{output from the function \code{\link{alpha.fd.fe}}
+applied on assemblage of interest with \code{details_returned = TRUE}.}
 
 \item{plot_asb_nm}{a vector containing the name of the assemblage to plot.}
 
@@ -39,16 +39,16 @@ the color used to fill the part of barplots that contain species in excess
 in species-rich FEs. It refers to the FORed value. Default:
 \code{color_fill_fored = "darkolivegreen2"}.}
 
-\item{color_line_fred}{a R color name or an hexadecimal code referring to the
-color used to draw the horizontal line referring to the FRed value.
+\item{color_line_fred}{a R color name or an hexadecimal code referring to
+the color used to draw the horizontal line referring to the FRed value.
 Default: \code{color_line_fred = "darkolivegreen4"}.}
 
 \item{color_fill_bar}{a R color name or an hexadecimal code referring to the
 color used to draw barplots. Default: \code{color_fill_bar = "grey80"}.}
 
 \item{color_fill_fvuln}{a R color name or an hexadecimal code referring to
-the color used to fill barplot containing only one species for illustrating
-FVuln. Default: \code{color_fill_fvuln = "lightcoral"}.}
+the color used to fill barplot containing only one species for
+illustrating FVuln. Default: \code{color_fill_fvuln = "lightcoral"}.}
 
 \item{color_arrow_fvuln}{a R color name or an hexadecimal code referring to
 the color used to draw the horizontal arrow showing the proportion of FEs
@@ -56,30 +56,30 @@ containing only one species for illustrating FVuln. If there is only
 one FE containing one species, the arrow will be a point. Default:
 \code{color_arrow_fvuln = "indianred4"}.}
 
-\item{size_line_fred}{a numeric value referring to the size of the horizontal
-line illustrating FRed. Default: \verb{size_line_fred = 1.5.}}
+\item{size_line_fred}{a numeric value referring to the size of the
+horizontal line illustrating FRed. Default: \verb{size_line_fred = 1.5.}}
 
 \item{size_arrow_fvuln}{a numeric value referring to the size of the arrow
 showing the proportion of FEs containing only one species. Default:
 \code{size_arrow_fvuln = 1}.}
 
-\item{check_input}{a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: \code{check.input = TRUE}.}
+\item{check_input}{a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: \code{check_input = TRUE}.}
 }
 \value{
-A \code{patchwork} object with a barplot of number of species per FE.
-Indices names provided in 'plot_ind_nm' are illustrated. Functional
+A \code{patchwork} object with a barplot of number of species per
+FE. Indices names provided in 'plot_ind_nm' are illustrated. Functional
 Redundancy (average number of species per FE) is illustrated with a
-horizontal line. Functional Over-redundancy (proportion of species in excess
-in FE richer than average) is illustrated with top part of these bars filled
-with
-'color_fill_fored'. Functional Vulnerability (proportion of FE with a single
-species) is illustrated with bars of these vulnerable FE filled with
-'color_fill_fvuln' and the double-head arrow highlighting their number.
-FE-based indices values on top of the plot. if \code{name_file} is provided,
-plot saved as a 300dpi png file in the working directory.
+horizontal line. Functional Over-redundancy (proportion of species in
+excess in FE richer than average) is illustrated with top part of these
+bars filled with 'color_fill_fored'. Functional Vulnerability (proportion
+of FE with a single species) is illustrated with bars of these vulnerable
+FE filled with 'color_fill_fvuln' and the double-head arrow highlighting
+their number. FE-based indices values on top of the plot. if
+\code{name_file} is provided, plot saved as a 300dpi png file in the
+working directory.
 }
 \description{
 Graphical representation of distribution of species in Functional

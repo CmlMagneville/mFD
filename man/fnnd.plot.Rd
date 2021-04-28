@@ -54,7 +54,7 @@ linking nearest neighbors in the studied assemblage.}
 link nearest neighbors in the studied assemblages.}
 }
 \value{
-a ggplot object with FNND index
+A ggplot object with FNND index.
 }
 \description{
 This function plots FNND index for a given pair of functional axes and for
@@ -66,7 +66,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{
-
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -108,7 +107,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
                                
- # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+ # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
                              sp_faxes_coord = sp_faxes_coord_fruits, 
                              asb_sp_w       = baskets_fruits_weights)
@@ -117,7 +116,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                
  # Use alpha.fd.multidim() function to get inputs to plot FIde:
  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fnnd"),
   scaling          = TRUE,
@@ -128,7 +127,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
  fruits_asb_nn_asb_b1 <- 
          alpha_fd_indices_fruits$details$asb_nm_nn_asb["basket_1"]
 
- 
  # Retrieve FNND plot:
  fnnd_plot <- fnnd.plot(ggplot_bg = ggplot_bg_fruits,
            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -143,9 +141,8 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            linetype_segment = list(basket_1 = "solid"))
            
  fnnd_plot
-
 }
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

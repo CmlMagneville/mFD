@@ -51,8 +51,8 @@ assemblage should be plotted or not. Default: \code{plot_pool = TRUE}.}
 \item{plot_sp}{a logical value indicating whether species of each assemblage
 should be plotted or not. Default: \code{plot_sp = TRUE}}
 
-\item{shape_pool}{a numeric value referring to the shape used to plot species
-pool.}
+\item{shape_pool}{a numeric value referring to the shape used to plot
+species pool.}
 
 \item{size_pool}{a numeric value referring to the size of species belonging
 to the global pool.}
@@ -83,8 +83,8 @@ colour to fill the center of the global pool (if \code{shape_sp} > 20).}
 \item{shape_center}{a numeric value referring to the shape used to plot the
 center of the global pool.}
 
-\item{size_center}{a numeric value referring to the size of the center of the
-global pool.}
+\item{size_center}{a numeric value referring to the size of the center of
+the global pool.}
 
 \item{color_segment}{a R color name or an hexadecimal code referring to the
 color of the segment linking nearest neighbors in the global pool.
@@ -98,7 +98,7 @@ linking nearest neighbors in the global pool.}
 link nearest neighbors in the global pool.}
 }
 \value{
-a ggplot object with FSpe index on the background plot
+A ggplot object with FSpe index on the background plot.
 }
 \description{
 This function plots FSpe index for a given pair of functional axes and for
@@ -112,7 +112,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{
-
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -154,7 +153,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
                                
- # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+ # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
                              sp_faxes_coord = sp_faxes_coord_fruits, 
                              asb_sp_w       = baskets_fruits_weights)
@@ -163,7 +162,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                
  # Use alpha.fd.multidim() function to get inputs to plot FIde:
  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fspe"),
   scaling          = TRUE,
@@ -199,9 +198,8 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            linetype_segment = list(basket_1 = "solid"))
            
  fspe_plot
-
 }
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

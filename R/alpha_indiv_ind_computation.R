@@ -1,11 +1,11 @@
 #' Compute Functional Identity
 #'
-#' This function computes the weighted average position along each axis. FIde is
-#' computed using relative weight so that it is not affected by unit (e.g. g or
-#' kg for biomass). In the special case where 'weight' is filled with only 0/1
-#' (absence/presence), then FIde will be computed assuming that all species have
-#' the same weight. The results of this function are used in FSpe, FOri and FNND
-#' computation.
+#' This function computes the weighted average position along each axis. FIde 
+#' is computed using relative weight so that it is not affected by unit 
+#' (e.g. g or kg for biomass). In the special case where 'weight' is filled 
+#' with only 0/1 (absence/presence), then FIde will be computed assuming that
+#' all species have the same weight. The results of this function are used in 
+#' FSpe, FOri and FNND computation.
 #'
 #' @param sp_faxes_coord_k a matrix of species coordinates present in a
 #'   given assemblage in a chosen functional space with only needed axes.
@@ -21,12 +21,13 @@
 #' @param check_input a logical value allowing to test or not the
 #'   inputs. Possible error messages will thus may be more understandable for
 #'   the user than R error messages. Species coordinates matrix and
-#'   species*weight data frame must not contain NA, their rownames must be filled
-#'   and they must have similar names values. Default: `check_input = FALSE`.
+#'   species*weight data frame must not contain NA, their rownames must be 
+#'   filled and they must have similar names values. 
+#'   Default: `check_input = FALSE`.
 #'
-#' @return A matrix containing functional identity values for a given assemblage
-#'   along the dimensions (columns). Number of dimensions is fixed to the number
-#'   of dimensions in \code{sp_faxes_coord} data frame.
+#' @return A matrix containing functional identity values for a given 
+#'   assemblage along the dimensions (columns). Number of dimensions is fixed 
+#'   to the number of dimensions in \code{sp_faxes_coord} data frame.
 #'   
 #' @author Camille Magneville and Sebastien Villeger
 #' 
@@ -72,12 +73,12 @@ fide.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 
 #' Compute Functional Dispersion
 #'
-#' This function computes the weighted deviation to center of gravity of species
-#' present in a given assemblage. It is the weighted mean distance to the
-#' weighted centroid. Its calculation requires FIde computation that can be
-#' achieved thanks to \code{fide.computation} function. FDis value can be scaled
-#' by the maximum value possible given species pool (i.e. the most distant
-#' species pair have half of total weight) to standardize values.
+#' This function computes the weighted deviation to center of gravity of 
+#' species present in a given assemblage. It is the weighted mean distance 
+#' to the weighted centroid. Its calculation requires FIde computation that 
+#' can be achieved thanks to \code{fide.computation} function. FDis value can 
+#' be scaled by the maximum value possible given species pool (i.e. the most 
+#' distant species pair have half of total weight) to standardize values.
 #'
 #' @param sp_faxes_coord_k a matrix of species coordinates present in a
 #'   given assemblage in a chosen functional space with only needed axes.
@@ -183,9 +184,9 @@ fdis.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #' @param check_input a logical value allowing to test or not the inputs.
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix must not contain NA, its
-#'   rownames must be filled and the number of species should strictly be higher
-#'   than the number of axes to compute the convex hull. Default: check_input =
-#'   FALSE.
+#'   rownames must be filled and the number of species should strictly be 
+#'   higher than the number of axes to compute the convex hull. 
+#'   Default: `check_input = FALSE`.
 #'
 #' @return a list containing: \strong{$fric} a vector with fric value for a
 #'   given assemblage and \strong{vertices_nm} a vector containing names of the
@@ -255,12 +256,12 @@ fric.computation <- function(sp_faxes_coord_k, check_input = check_input) {
 #' This function to compute Functional Divergence (FDiv) index for one
 #' assemblage. FDiv indice accounts for deviation of biomass to the center of
 #' gravity of the vertices shaping the convex hull.
-#' FDiv is scaled between 0 and 1. For details about FDiv index see Villeger _et
-#' al._ 2008. Use \code{\link{alpha.fd.multidim}} to compute FDiv over multiple
-#' assemblages (and together with other FD indices) .
+#' FDiv is scaled between 0 and 1. For details about FDiv index see 
+#' Villeger _et al._ 2008. Use \code{\link{alpha.fd.multidim}} to compute FDiv 
+#' over multiple assemblages (and together with other FD indices) .
 #'
-#' @param sp_faxes_coord_k a matrix with species coordinates for species present
-#'   in a given assemblage along functional axes.
+#' @param sp_faxes_coord_k a matrix with species coordinates for species 
+#'   present in a given assemblage along functional axes.
 #'
 #' @param asb_sp_relatw_k a matrix containing species relative weight
 #'   (columns) for a given assemblage.
@@ -332,8 +333,8 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
     
     if (is.null(vert_nm)) {
       if (nrow(sp_faxes_coord_k) <= ncol(sp_faxes_coord_k)) {
-        stop("Number of species should strictly be higher than number of axes ", 
-             "for computing the convex hull. Please check.")
+        stop("Number of species should strictly be higher than number of ", 
+             "axes for computing the convex hull. Please check.")
       }
     }
     
@@ -411,8 +412,8 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled, they must
-#'   have similar names values, and the number of species in the assemblage must
-#'   be higher than three to compute feve. Default: check_input = FALSE.
+#'   have similar names values, and the number of species in the assemblage 
+#'   must be higher than three to compute feve. Default: `check_input = FALSE`.
 #'
 #' @return a matrix containing functional evenness for a given assemblage.
 #' 
@@ -522,9 +523,9 @@ feve.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #' Compute Functional mMan Pairwise Distance (FMPD)
 #'
 #' This function computes the mean weighted distance between all pairs of
-#' species. FMPD value can be scaled by the maximum value possible given species
-#' pool (i.e. the most distant species pair have total weight) to standardize
-#' values.
+#' species. FMPD value can be scaled by the maximum value possible given 
+#' species pool (i.e. the most distant species pair have total weight) to 
+#' standardize values.
 #'
 #' @param sp_faxes_coord_k a \strong{matrix} of species coordinates present in 
 #'   a given
@@ -624,7 +625,7 @@ fmpd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #'   Possible error messages will thus may be more understandable for the user
 #'   than R error messages. Species coordinates matrix and species*weight
 #'   dataframe must not contain NA, their rownames must be filled and they must
-#'   have similar names values. Default: check_input = FALSE.
+#'   have similar names values. Default: `check_input = FALSE`.
 #'
 #' @return A matrix containing functional mean nearest neighbor distance for a
 #'   given assemblage.
@@ -703,10 +704,10 @@ fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 
 #' Compute Functional Originality
 #'
-#' This function computes the weighted mean distance to nearest species from the
-#' species pool. FOri value can be scaled by the maximum distance to the nearest
-#' neighbour possible in the global species pool (i.e. an assemblage hosting
-#' only the most original species).
+#' This function computes the weighted mean distance to nearest species from 
+#' the species pool. FOri value can be scaled by the maximum distance to the 
+#' nearest neighbour possible in the global species pool (i.e. an assemblage 
+#' hosting only the most original species).
 #'
 #' @param dist_nn_global_pool a \strong{vector} containing the minimal distance 
 #'   to the nearest neighbor for each species of the global pool of species.
@@ -719,8 +720,8 @@ fnnd.computation <- function(asb_sp_relatw_k, sp_faxes_coord_k,
 #' @param check_input a \strong{logical value} allowing to test or not the 
 #'   inputs.
 #'   Possible error messages will thus may be more understandable for the user
-#'   than R error messages. Species*weight dataframe must not contain NA and its
-#'   rownames must be filled. Default: check_input = FALSE.
+#'   than R error messages. Species*weight dataframe must not contain NA and 
+#'   its rownames must be filled. Default: `check_input = FALSE`.
 #'
 #' @return a matrix containing functional originality for a given assemblage.
 #'
@@ -759,8 +760,8 @@ fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k,
 #'
 #' This function computes the weighted mean distance to the centroid of the
 #' global species pool. It computes the average position of all the species
-#' present given assemblage. FSpe value can be scaled by the maximum distance to
-#' the global pool centroid (i.e. an assemblage hosting only the most
+#' present given assemblage. FSpe value can be scaled by the maximum distance 
+#' to the global pool centroid (i.e. an assemblage hosting only the most
 #' specialized species).
 #'
 #' @param special_sp_global_pool a \strong{vector} containing the distance to 
@@ -775,10 +776,11 @@ fori.computation <- function(dist_nn_global_pool, asb_sp_relatw_k,
 #' @param check_input a \strong{logical value} allowing to test or not the 
 #'   inputs.
 #'   Possible error messages will thus may be more understandable for the user
-#'   than R error messages. Species*weight dataframe must not contain NA and its
-#'   rownames must be filled. Default: check_input = FALSE.
+#'   than R error messages. Species*weight dataframe must not contain NA and 
+#'   its rownames must be filled. Default: `check_input = FALSE`.
 #'
-#' @return A matrix containing functional specialization for a given assemblage.
+#' @return A matrix containing functional specialization for a given 
+#'   assemblage.
 #'
 #' @author Camille Magneville and Sebastien Villeger
 #' 

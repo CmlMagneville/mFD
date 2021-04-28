@@ -30,8 +30,8 @@ and CR = 0.999).}
 A data frame with species in rows and the following metrics in
 columns:
 \itemize{
-\item FUSE: functionally unique, specialized and endangered (see Pimiento
-\emph{et al.} (2020) and Griffin \emph{et al.} (2020));
+\item FUSE: functionally unique, specialized and endangered (see
+Pimiento \emph{et al.} (2020);
 \item FDGE: functionally distinctive and endangered
 \item FUn_std: functional uniqueness standardized between 0 and 1 (see
 Mouillot \emph{et al.} (2013) and Griffin \emph{et al.} (2020));
@@ -43,7 +43,7 @@ Mouillot \emph{et al.} (2013) and Griffin \emph{et al.} (2020));
 }
 \description{
 This index takes into account species functional uniqueness (also called
-Functional Originality), species specialisation and species IUCN status
+Functional Originality), species specialisation and species IUCN status.
 }
 \examples{
 \dontrun{
@@ -91,7 +91,8 @@ sp_dist_tr <- cluster::daisy(sp_tr_end, metric = c('gower'),
   type = list(symm = c(4)), weights = v)
   
 # Principal coordinate analyses
-Pcoa <- ade4::dudi.pco(ade4::quasieuclid(sp_dist_tr), scann = FALSE, nf = 40)
+Pcoa <- ade4::dudi.pco(ade4::quasieuclid(sp_dist_tr), scann = FALSE, 
+                       nf = 40)
 
 sp_faxes_coord <- Pcoa$li[1:40]
  

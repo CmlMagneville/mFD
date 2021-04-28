@@ -2,7 +2,7 @@
 % Please edit documentation in R/sp_filtering.R
 \name{sp.filter}
 \alias{sp.filter}
-\title{Retrieve Information about Species in a Given Assemblage}
+\title{Retrieve information about species in a given assemblage}
 \usage{
 sp.filter(asb_nm, sp_faxes_coord, asb_sp_w)
 }
@@ -18,16 +18,16 @@ set of assemblages (rows).}
 }
 \value{
 A vector containing names of species present in a given assemblage
-\code{sp_name_asb_k}, a matrix containing coordinates of species present in
-a given assemblage \code{sp_faxes_coord_k}, a matrix containing weight of
-species present in a given assemblage \code{asb_sp_w_k}, a matrix
+\code{sp_name_asb_k}, a matrix containing coordinates of species present
+in a given assemblage \code{sp_faxes_coord_k}, a matrix containing weight
+of species present in a given assemblage \code{asb_sp_w_k}, a matrix
 containing relative weight of species present in a given assemblage
 \code{asb_sp_relatw_k}.
 }
 \description{
-This function computes names of species present in an given assemblage, their
-coordinates in the functional space and their weights. It is used in the
-\code{alpha_FD_multidim} function to filter species and compute each
+This function computes names of species present in an given assemblage,
+their coordinates in the functional space and their weights. It is used in
+the \code{alpha_FD_multidim} function to filter species and compute each
 functional indices for each community.
 }
 \examples{

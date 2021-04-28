@@ -2,7 +2,7 @@
 % Please edit documentation in R/matrix_summaries.R
 \name{sp.tr.summary}
 \alias{sp.tr.summary}
-\title{Summarize Species x Traits Data Frame}
+\title{Summarize Species x Traits data frame}
 \usage{
 sp.tr.summary(tr_cat, sp_tr, stop_if_NA = TRUE)
 }
@@ -26,8 +26,8 @@ belongs (if trait is not fuzzy, ignored so could be trait name or NA).
 specify a weight for each trait.
 }}
 
-\item{sp_tr}{a data frame of traits values (columns) for each species (rows).
-Note that species names \strong{must be} specified in the row names.}
+\item{sp_tr}{a data frame of traits values (columns) for each species
+(rows). Note that species names \strong{must be} specified in the row names.}
 
 \item{stop_if_NA}{a logical value indicating whether the process should stop
 if there is some NA in the \code{sp_tr} dataframe. If you continue with
@@ -46,8 +46,8 @@ If there is fuzzy-coded trait, a four-elements list with:
 \item{tr_summary_non_fuzzy_list}{a table summarizing for each trait the
 number of species per modality for non-continuous trait and min, max,
 mean, median, and quartiles for continuous traits.}
-\item{tr_summary_fuzzy_list}{a table summarizing for each subtrait min, max,
-mean, median and quartiles}
+\item{tr_summary_fuzzy_list}{a table summarizing for each subtrait min,
+max, mean, median and quartiles}
 \item{tr_types}{a list containing traits type.}
 \item{mod_list}{a list containing modalities for non-continuous trait.}
 }
@@ -69,5 +69,5 @@ mFD::sp.tr.summary(tr_cat = fruits_traits_cat, sp_tr = fruits_traits)
 }
 }
 \author{
-Camille Magneville & Sebastien Villeger
+Camille Magneville and Sebastien Villeger
 }

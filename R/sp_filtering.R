@@ -1,8 +1,8 @@
-#' Retrieve Information about Species in a Given Assemblage
+#' Retrieve information about species in a given assemblage
 #'
-#' This function computes names of species present in an given assemblage, their
-#' coordinates in the functional space and their weights. It is used in the
-#' \code{alpha_FD_multidim} function to filter species and compute each
+#' This function computes names of species present in an given assemblage, 
+#' their coordinates in the functional space and their weights. It is used in 
+#' the \code{alpha_FD_multidim} function to filter species and compute each
 #' functional indices for each community.
 #'
 #' @param asb_nm a string object referring to the name of a given community.
@@ -15,9 +15,9 @@
 #'   set of assemblages (rows).
 #'
 #' @return A vector containing names of species present in a given assemblage
-#'   \code{sp_name_asb_k}, a matrix containing coordinates of species present in
-#'   a given assemblage \code{sp_faxes_coord_k}, a matrix containing weight of
-#'   species present in a given assemblage \code{asb_sp_w_k}, a matrix
+#'   \code{sp_name_asb_k}, a matrix containing coordinates of species present 
+#'   in a given assemblage \code{sp_faxes_coord_k}, a matrix containing weight 
+#'   of species present in a given assemblage \code{asb_sp_w_k}, a matrix
 #'   containing relative weight of species present in a given assemblage
 #'   \code{asb_sp_relatw_k}.
 #'

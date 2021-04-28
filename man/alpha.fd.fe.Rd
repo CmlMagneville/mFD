@@ -2,7 +2,7 @@
 % Please edit documentation in R/FE_multidim_ind_computation.R
 \name{alpha.fd.fe}
 \alias{alpha.fd.fe}
-\title{Compute the Set of Indices based on Number of Species in Functional Entities}
+\title{Compute the set of indices based on number of species in Functional Entities}
 \usage{
 alpha.fd.fe(
   asb_sp_occ,
@@ -25,14 +25,14 @@ functional diversity indices to compute among 'fred', 'fored' and 'fvuln'.
 \bold{Indices names must be written in lower case letters}. Default: all
 the indices are computed.}
 
-\item{check_input}{a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: \code{check.input = TRUE}.}
+\item{check_input}{a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: \code{check.input = TRUE}.}
 
 \item{details_returned}{a logical value indicating whether details
-about indices computation should be returned. These details are required by
-\code{\link{alpha.fd.fe.plot}} to plot FEs indices.}
+about indices computation should be returned. These details are required
+by \code{\link{alpha.fd.fe.plot}} to plot FEs indices.}
 }
 \value{
 A list with:

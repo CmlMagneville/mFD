@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_quality_fspaces.R
 \name{quality.fspaces.plot}
 \alias{quality.fspaces.plot}
-\title{Plot Functional Space Quality with a Chosen Quality Metric}
+\title{Plot functional space quality with a chosen quality metric}
 \usage{
 quality.fspaces.plot(
   fspaces_quality,
@@ -26,9 +26,9 @@ and distance in functional spaces built using PCoA (and dendrogram).}
 \item{quality_metric}{a character string with the name of the quality metric
 to illustrate. Should be one of the column names of
 \code{fspaces_quality$quality_fspaces}. See help of
-\code{\link{quality.fspaces}} for the meaning of these names regarding type
-of deviation and scaling of distance in functional space. Default: \code{'mad'}
-(Mean absolute deviation).}
+\code{\link{quality.fspaces}} for the meaning of these names regarding
+type of deviation and scaling of distance in functional space. Default:
+\code{'mad'} (Mean absolute deviation).}
 
 \item{fspaces_plot}{a vector with names of functional spaces to consider.
 Should be a subset of the row names of
@@ -39,9 +39,9 @@ keep decent plot size.}
 figure (without extension). Default: \code{NULL} which means plot is displayed.}
 
 \item{range_dist}{a vector with minimum and maximum values to
-display for species pairwise distances (x-axis for all panels and y-axes of
-top panel). Default: NULL, which means range is 0 to maximum distance among
-all the functional spaces to plot.}
+display for species pairwise distances (x-axis for all panels and y-axes
+of top panel). Default: NULL, which means range is 0 to maximum distance
+among all the functional spaces to plot.}
 
 \item{range_dev}{a vector with minimum and maximum values to display
 for deviation to trait-based distance (y-axis of middle panel). Default:
@@ -56,8 +56,9 @@ deviation among all the functional spaces to plot.}
 \item{gradient_deviation}{a vector of 3 colors for illustrating raw
 deviation with \code{\link[ggplot2]{scale_colour_gradient2}}. The first
 value ('neg') is for the lowest negative deviation, the second value
-('nul')is for null deviation and the third value ('pos') is for the highest
-positive deviation. Default gradient is from darkblue to grey to red.}
+('nul')is for null deviation and the third value ('pos') is for the
+highest positive deviation. Default gradient is from darkblue to grey to
+red.}
 
 \item{gradient_deviation_quality}{2 colors (named 'low' and 'high') for
 illustrating transformed deviation used to compute quality metric with
@@ -71,8 +72,8 @@ Default is 'Trait-based distance'.}
 A png file (resolution 300dpi) saved in the current working
 directory. Quality of each functional space is illustrated with three
 panels : - top row shows trait-based distance between species vs.
-space-based distance. - middle row shows trait-based distance vs. deviation
-between space-based and trait-based distances - bottom row shows
+space-based distance. - middle row shows trait-based distance vs.
+deviation between space-based and trait-based distances - bottom row shows
 trait-based distance between species vs. transformed deviation used to
 compute the quality metric All plots have the same X axis. All plots on a
 given row have the same Y axis and color palette. Type of distance in
@@ -81,7 +82,7 @@ as well as type of transformation of distance (scaling) and of deviation
 (Absolute or Squared)
 }
 \description{
-Plot Functional Space Quality with a Chosen Quality Metric
+Plot functional space quality with a chosen quality metric
 }
 \examples{
 \dontrun{

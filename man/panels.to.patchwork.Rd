@@ -15,11 +15,11 @@ the number of studied functional axes.}
 final patchwork plot.}
 }
 \value{
-a unique ggplot object gathering functional ppanels and caption
+A unique ggplot object gathering functional panels and caption.
 }
 \description{
 This function gathers panels into a unique \code{patchwork} graph
-with caption
+with caption.
 }
 \examples{
 \dontrun{
@@ -150,5 +150,5 @@ patchwork_fric <- mFD::panels.to.patchwork(list(ggplot_fric), plot_caption)
 }
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

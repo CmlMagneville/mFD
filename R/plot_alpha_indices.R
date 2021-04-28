@@ -1,13 +1,13 @@
-#' Plot Functional Space and Chosen Functional Indices
+#' Plot functional space and chosen functional indices
 #'
 #' Compute a graphical representation of functional indices. \strong{To plot
-#' functional indices, functional indices values must have been retrieve through
-#' the use of the} \code{\link{alpha.fd.multidim}} \strong{function}.
+#' functional indices, functional indices values must have been retrieve 
+#' through the use of the} \code{\link{alpha.fd.multidim}} \strong{function}.
 #'
 #' @param output_alpha_fd_multidim a list of objects retrieved through the 
 #' \code{\link{alpha.fd.multidim}} function.
 #' 
-#' @param plot_asb_nm a vector containing name(s) of assemblage(s) to plot 
+#' @param plot_asb_nm a vector containing name(s) of assemblage(s) to plot.
 #'
 #' @param ind_nm a vector of character string of the name of functional
 #'   indices to plot. \strong{Indices names must be written in lower case
@@ -23,10 +23,10 @@
 #'  the same that \code{faxes} ones).
 #'
 #' @param range_faxes a vector with minimum and maximum for values for axes.
-#'  Note that to have a fair representation of position of species in all plots,
-#'  all axes must have the same range. Default: faxes_lim = c(NA, NA) (the range
-#'  is computed according to the range of values among all axes, all axes having
-#'  the same range).
+#'  Note that to have a fair representation of position of species in all 
+#'  plots, all axes must have the same range. Default: faxes_lim = c(NA, NA) 
+#'  (the range is computed according to the range of values among all axes, all 
+#'  axes having the same range).
 #'
 #' @param color_bg a R color name  or an hexadecimal code used to fill plot
 #'  background. Default: `color_bg = "grey95"`.
@@ -66,11 +66,12 @@
 #' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
 #'
 #' @param fill_ch a vector gathering R color names or hexadecimal codes 
-#' referring to the color to fill the convex pool of the global pool and studied 
-#' assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...). 
+#' referring to the color to fill the convex pool of the global pool and 
+#' studied assemblage(s). 
+#' It should be written as c(pool = "...", asb1 = "...", ...). 
 #'
-#' @param alpha_ch a vector gathering numeric values referring to the opacity of 
-#' convex hulls of the global pool and the plotted assemblage(s).
+#' @param alpha_ch a vector gathering numeric values referring to the opacity 
+#' of convex hulls of the global pool and the plotted assemblage(s).
 #' It should be written  as c(pool = "...", asb1 = "...", ...).
 #' (0 = high transparency, 1 = no transparency). 
 #'
@@ -97,10 +98,10 @@
 #' @param save_file a logical value telling if plots should be locally 
 #' saved or not.
 #'
-#' @param check_input a logical value indicating whether key features the inputs
-#'   are checked (e.g. class and/or mode of objects, names of rows and/or
-#'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: `check.input = TRUE`.
+#' @param check_input a logical value indicating whether key features the 
+#'   inputs are checked (e.g. class and/or mode of objects, names of rows 
+#'   and/or columns, missing values). If an error is detected, a detailed 
+#'   message is returned. Default: `check.input = TRUE`.
 #'
 #' @return  If  \code{name_file} is \code{NULL}, it returns a list of one 
 #' \code{ggplot2} plots per functional index containing plots for combinations
@@ -110,7 +111,7 @@
 #'
 #' @export
 #'
-#' @author Camille Magneville and Sébastien Villéger
+#' @author Camille Magneville and Sebastien Villeger
 #'
 #' @examples
 #' \dontrun{
@@ -144,7 +145,7 @@
 #'
 #' # Compute alpha diversity indices:
 #' alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'   sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+#'   sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
 #'   asb_sp_w         = baskets_fruits_weights,
 #'   ind_vect         = c("fdis", "fmpd", "fnnd", "feve", "fric", "fdiv",
 #'                        "fori", "fspe"),
@@ -200,7 +201,6 @@
 #' 
 #' # Check FRic plot:
 #' plots_alpha$fric$patchwork
-#' 
 #' }
 
 alpha.multidim.plot <- function(output_alpha_fd_multidim,
@@ -251,11 +251,11 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   
   
   # compulsory check that indices values and details available in main input:
-  if (! identical(names(output_alpha_fd_multidim),
-                   c("functional_diversity_indices","details"))) {
+  if (!identical(names(output_alpha_fd_multidim),
+                 c("functional_diversity_indices","details"))) {
     
-    stop("Input 'output_alpha_fd_multidim' should be the output of the
-           'alpha.fd.multidim' function run with 'details = TRUE'.")
+    stop("Input 'output_alpha_fd_multidim' should be the output of the ", 
+         "'alpha.fd.multidim' function run with 'details = TRUE'.")
     
   }
   
@@ -273,23 +273,22 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     if (any(! ind_nm %in%
         c("fide", "fdis", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"))) {
       
-  stop("Names of functional diversity indices in 'ind_nm' are not well written.",
-           " Please re-write them. Be careful, they should all be written in ",
-           "lowercase letters.")
-      
+      stop("Names of functional diversity indices in 'ind_nm' are not well ",
+           "written. Please re-write them. Be careful, they should all be ",
+           "written in lowercase letters.")
     }
     
     # check that indices to plot are contained in the fd_ind_value table:
-    # remove fide (if plotted) from the indices names because it as differents...
-    # ...names in the dataframe: fide_PC1, fide_PC2...
+    # remove fide (if plotted) from the indices names because it as...
+    # ...differents names in the dataframe: fide_PC1, fide_PC2, ...
     if ("fide" %in% ind_nm) {
       
       ind_nm2 <- ind_nm[! ind_nm %in% "fide"]
 
       if (any(! ind_nm2 %in% colnames(asb_fd_ind)) == TRUE) {
-        stop("Error: Functional diversity indices to plot must have been 
-             computed with alpha.fd.multidim() function and thus be in 
-             output_alpha_fd_multidim object.")
+        stop("Functional diversity indices to plot must have been ", 
+             "computed with alpha.fd.multidim() function and thus be in ", 
+             "output_alpha_fd_multidim object.")
       }
       
     }
@@ -297,8 +296,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     if (! "fide" %in% ind_nm) {
       
       if (any(! ind_nm %in% colnames(asb_fd_ind)) == TRUE) {
-        stop("Error: Functional diversity indices to plot must be contained in
-           'fd_ind_values' columns")
+        stop("Functional diversity indices to plot must be contained in ", 
+             "'fd_ind_values' columns.")
       }
       
     }
@@ -313,16 +312,16 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
     # check that assemblage(s) to plot has(ve) the right name(s):
     if ( any( ! plot_asb_nm %in% row.names(asb_fd_ind)) ) {
-      stop("Name(s) of assemblage(s) to plot is(are) provided in 'plot_asb_nm' 
-           do not match those in 'output_alpha_fd_multidim$asb_fd_ind. 
-           Please re-write.")
+      stop("Name(s) of assemblage(s) to plot is(are) provided in ", 
+           "'plot_asb_nm' do not match those in ", 
+           "'output_alpha_fd_multidim$asb_fd_ind. Please re-write.")
     }
     
     if (! is.null(faxes)) {
       
       if (length(faxes) > 4) {
-        stop("Number of functional axes should be less than 4. Please change
-             the number of functional axes to plot.")
+        stop("Number of functional axes should be less than 4. Please change ", 
+             "the number of functional axes to plot.")
       }
       
       if (any(! faxes %in% colnames(sp_faxes_coord))) {
@@ -332,8 +331,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     }
     
     if ((! is.null(faxes_nm)) && (length(faxes_nm) != length(faxes))) {
-      stop("Length of 'faxes_nm' should be equal to length of 'faxes'. Please ",
-           "check congruence between these inputs.")
+      stop("Length of 'faxes_nm' should be equal to length of 'faxes'. ",
+           "Please check congruence between these inputs.")
     }
     
   } # end of check input
@@ -403,20 +402,22 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   if (! is.na(user_range)) {
     
     if (range_faxes[1] > range_sp_coord[1]) {
-      stop("Error: The first value of 'range_faxes', is higher than minimum 
-        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
-        change the minimal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+      stop("The first value of 'range_faxes', is higher than minimum value ",
+           "of 'sp_faxes_coord' so the convex hull can not be plotted. ", 
+           "Please change the minimal value of 'range_faxes' or set ", 
+           "'plot_ch' to FALSE.")
     }
     
     if (range_faxes[2] < range_sp_coord[2]) {
-      stop("Error: The second value of 'range_faxes', is lower than maximum 
-        value of 'sp_faxes_coord' so the convex hull can not be plotted. Please 
-        change the maximal value of 'range_faxes' or set 'plot_ch' to FALSE.")
+      stop("The second value of 'range_faxes', is lower than maximum value ", 
+           "of 'sp_faxes_coord' so the convex hull can not be plotted. ", 
+           "Please change the maximal value of 'range_faxes' or set ", 
+           "'plot_ch' to FALSE.")
     }
     
   } 
 
-  # create a dataframe with species coordinates and option (vertices + label)...
+  # create a dataframe with species coordinates and option (vertices + label)
   # ... if required:
   sp_faxes_coord_plot <- data.frame(sp_faxes_coord, label = "")
   
@@ -516,8 +517,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                    max.overlaps = Inf,
                                    box.padding = grid::unit(2, 'lines'),
                                    force = 5,
-                                   arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                   arrow = grid::arrow(
+                                     length = grid::unit(0.02, 'npc')),
                                    segment.color = color_sp_nm)
       }
       
@@ -603,7 +604,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                         xmax = range_faxes[1] + spread_faxes*0.15,
                         ymin = range_faxes[2] - spread_faxes*0.51,
                         ymax = range_faxes[2] - spread_faxes*0.55,
-                        fill = color_sp[["asb1"]], alpha = alpha_ch[["asb1"]]) + 
+                        fill = color_sp[["asb1"]], 
+                        alpha = alpha_ch[["asb1"]]) + 
 
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.525,
@@ -614,7 +616,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
                           y = range_faxes[2] - spread_faxes*0.58,
                           size = size_sp[["asb1"]], shape = shape_sp[["asb1"]],
-                          color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
+                          color = color_sp[["asb1"]], 
+                          fill = fill_sp[["asb1"]]) + 
       
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.58,
@@ -714,7 +717,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   } # end of plot FRic
   
   
-  ##############################################################################
+  ############################################################################
   
   
   # FDiv plot if required ####
@@ -809,8 +812,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                    max.overlaps = Inf,
                                    box.padding = grid::unit(2, 'lines'),
                                    force = 5,
-                                   arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                   arrow = grid::arrow(
+                                     length = grid::unit(0.02, 'npc')),
                                    segment.color = color_sp_nm)
       }
       
@@ -1010,7 +1013,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   }# end of plotting FDiv
   
   
-  ##############################################################################
+  ############################################################################
   
   
   # FSpe plot if required ####
@@ -1032,11 +1035,11 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
       colnames(sp_coord_xy) <- c("x", "y")
       
-      # warn the user: if the asb contains only one species, then can not be ...
+      # warn the user: if the asb contains only one species, then can not be
       # ... computed:
       if (nrow(sp_coord_xy) == 1) {
-        stop("Error: Plotted assemblage(s) contain(s) only one species,
-             FIde can not be plotted.")
+        stop("Plotted assemblage(s) contain(s) only one species, FIde can ", 
+             "not be plotted.")
       }
       
       # get a list with dataframes for plot:
@@ -1075,7 +1078,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                           color_vert = color_vert["pool"],
                           fill_vert = fill_vert["pool"])
       
-      plot_k <-fspe.plot(ggplot_bg = plot_k,
+      plot_k <- fspe.plot(ggplot_bg = plot_k,
                           asb_sp_coord2D = asb_sp_coord2D_k,
                           asb_sp_relatw = asb_sp_relw_k,
                           center_coord2D = pool_0_xy,
@@ -1108,8 +1111,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                    max.overlaps = Inf,
                                    box.padding = grid::unit(2, 'lines'),
                                    force = 5,
-                                   arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                   arrow = grid::arrow(
+                                     length = grid::unit(0.02, 'npc')),
                                    segment.color = color_sp_nm)
       }
       
@@ -1136,7 +1139,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     # plot window:
     x <- NULL
     y <- NULL
-    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
                                     ggplot2::aes(x = x, y = y)) +
       ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
       ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
@@ -1301,7 +1305,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   } # end of plotting FSpe
   
   
-  ##############################################################################
+  ############################################################################
   
 
   # FDis plot if required ####
@@ -1320,11 +1324,11 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
       colnames(sp_coord_xy) <- c("x", "y")
       
-      # warn the user: if the asb contains only one species, then can not be ...
+      # warn the user: if the asb contains only one species, then can not be
       # ... computed:
       if (nrow(sp_coord_xy) == 1) {
-        stop("Error: Plotted assemblage(s) contain(s) only one species,
-             FDis can not be plotted.")
+        stop("Plotted assemblage(s) contain(s) only one species, FDis can ", 
+             "not be plotted.")
       }
       
       # create a list with dataframes for plot:
@@ -1342,8 +1346,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
-        asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
-                                                                xy_k)]
+        asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", 
+                                                              sep = "_", xy_k)]
         vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
       }# end of if 2 assemblages
       
@@ -1399,8 +1403,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                    max.overlaps = Inf,
                                    box.padding = grid::unit(2, 'lines'),
                                    force = 5,
-                                   arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                   arrow = grid::arrow(
+                                     length = grid::unit(0.02, 'npc')),
                                    segment.color = color_sp_nm)
       }
       
@@ -1427,7 +1431,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     y <- NULL
     
     # plot window:
-    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
                                     ggplot2::aes(x = x, y = y)) +
       ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
       ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
@@ -1444,7 +1449,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     y <- NULL
     plot_caption <- plot_caption +
       ggplot2::geom_text(data = data.frame(
-        h = range_faxes[1] + spread_faxes * 0.15 * hh[c(1,3:4)],
+        h = range_faxes[1] + spread_faxes * 0.15 * hh[c(1, 3:4)],
         v = range_faxes[2] - spread_faxes * rep(0.2, 3),
         top = top_fdis),
         ggplot2::aes(x = h, y = v, label = top),
@@ -1596,7 +1601,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   } # end of plotting FDis
   
   
-  ##############################################################################
+  ############################################################################
   
   # FIde plot if required ####
   if ("fide" %in% ind_nm) {
@@ -1614,11 +1619,11 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
       colnames(sp_coord_xy) <- c("x", "y")
       
-      # warn the user: if the asb contains only one species, then can not be ...
+      # warn the user: if the asb contains only one species, then can not be
       # ... computed:
       if (nrow(sp_coord_xy) == 1) {
-        stop("Error: Plotted assemblage(s) contain(s) only one species,
-             FIde can not be plotted.")
+        stop("Plotted assemblage(s) contain(s) only one species, FIde ", 
+             "can not be plotted.")
       }
       
       # create a list with dataframes for plot:
@@ -1635,8 +1640,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       if (two_asb){
         asb_sp_coord2D_k[["asb2"]] <- sp_coord_xy[sp_asb2, ]
         asb_sp_relw_k[["asb2"]] <- fd_details$asb_sp_relatw[asb2, sp_asb2]
-        asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", sep = "_", 
-                                                              xy_k)]
+        asb_fide_coord2D[["asb2"]] <- asb_fd_ind[asb2, paste0("fide", 
+                                                              sep = "_", xy_k)]
         vertices_nD_k[["asb2"]] <- fd_details$asb_vert_nm[[asb2]]
       }# end of if 2 assemblages
       
@@ -1692,8 +1697,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                    max.overlaps = Inf,
                                    box.padding = grid::unit(2, 'lines'),
                                    force = 5,
-                                   arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                   arrow = grid::arrow(
+                                     length = grid::unit(0.02, 'npc')),
                                    segment.color = color_sp_nm)
       }
       
@@ -1709,30 +1714,39 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     top_fide <- c("Functional Identity", asb1, "")
     if (nb_faxes == 2) {
       values_fide_PC1 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), 
+                "")
       values_fide_PC2 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3),
+                "")
       values_fide_PC3 <- NULL
       values_fide_PC4 <- NULL
     }
     if (nb_faxes == 3) {
       values_fide_PC1 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), 
+                "")
       values_fide_PC2 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3), 
+                "")
       values_fide_PC3 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[3])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[3])], 3),
+                "")
       values_fide_PC4 <- NULL
     }
     if (nb_faxes == 4) {
       values_fide_PC1 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[1])], 3), 
+                "")
       values_fide_PC2 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[2])], 3), 
+                "")
       values_fide_PC3 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[3])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[3])], 3), 
+                "")
       values_fide_PC4 <- c(round(asb_fd_ind[asb1,
-                paste0("fide", sep = "_", colnames(sp_faxes_coord)[4])], 3), "")
+                paste0("fide", sep = "_", colnames(sp_faxes_coord)[4])], 3), 
+                "")
     }
     
     if (two_asb) {
@@ -1775,7 +1789,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     y <- NULL
     
     # plot window:
-    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
                                     ggplot2::aes(x = x, y = y)) +
       ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
       ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
@@ -1792,7 +1807,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     y <- NULL
     plot_caption <- plot_caption +
       ggplot2::geom_text(data = data.frame(
-        h = range_faxes[1] + spread_faxes * 0.15 * hh[c(1,3:4)],
+        h = range_faxes[1] + spread_faxes * 0.15 * hh[c(1, 3:4)],
         v = range_faxes[2] - spread_faxes * rep(0.2, 3),
         top = top_fide),
         ggplot2::aes(x = h, y = v, label = top),
@@ -1877,7 +1892,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       ggplot2::geom_point(x = range_faxes[1] + spread_faxes*0.125,
                           y = range_faxes[2] - spread_faxes*0.75,
                           size = 2, shape = shape_centroid_fdis[["asb1"]],
-                          color = color_sp[["asb1"]], fill = fill_sp[["asb1"]]) + 
+                          color = color_sp[["asb1"]], 
+                          fill = fill_sp[["asb1"]]) + 
       
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.75,
@@ -1977,7 +1993,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   } # end of plotting FIde
   
   
-  ##############################################################################
+  ############################################################################
   
   
   # FEve plot if required ####
@@ -2062,8 +2078,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                    max.overlaps = Inf,
                                    box.padding = grid::unit(2, 'lines'),
                                    force = 5,
-                                   arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                   arrow = grid::arrow(
+                                     length = grid::unit(0.02, 'npc')),
                                    segment.color = color_sp_nm)
       }
       
@@ -2088,7 +2104,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     y <- NULL
     
     # plot window:
-    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
                                     ggplot2::aes(x = x, y = y)) +
       ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
       ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
@@ -2263,7 +2280,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   } # end of plotting FEve
   
   
-  ##############################################################################
+  ############################################################################
   
   
   # FOri plot if required ####
@@ -2279,7 +2296,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       xy_k <- axes_plot[1:2, k]
       
       # get species coordinates along the 2 axes:
-      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[ , xy_k])
       colnames(sp_coord_xy) <- c("x", "y")
       
       # create a list with dataframes for plot:
@@ -2354,8 +2371,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                    max.overlaps = Inf,
                                    box.padding = grid::unit(2, 'lines'),
                                    force = 5,
-                                   arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                   arrow = grid::arrow(
+                                     length = grid::unit(0.02, 'npc')),
                                    segment.color = color_sp_nm)
       }
       
@@ -2380,7 +2397,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     y <- NULL
     
     # plot window:
-    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
                                     ggplot2::aes(x = x, y = y)) +
       ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
       ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
@@ -2459,9 +2477,9 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                             linetype = 1) + 
       
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.58,
-                         y = range_faxes[2] - spread_faxes*0.58,
-                      label = paste0("nearest neighbour in the global pool for", 
-                                        sep = " ", asb1), 
+                         y = range_faxes[2] - spread_faxes*0.58, 
+                         label = paste0("nearest neighbour in the global ", 
+                                        "pool for", sep = " ", asb1), 
                          colour = color_sp[["asb1"]], size = 3) 
     
     ### if 2nd assemblage:
@@ -2485,18 +2503,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                               xend = range_faxes[1] + spread_faxes*0.135,
                               y = range_faxes[2] - spread_faxes*0.735,
                               yend = range_faxes[2] - spread_faxes*0.735,
-                              arrow = grid::arrow(length = grid::unit(0.07,
-                                                                      "inches"),
-                                                  ends = "last",
-                                                  type = "open"),
+                              arrow = grid::arrow(
+                                length = grid::unit(0.07,"inches"),
+                                ends = "last", type = "open"),
                               size = 1, 
                               color = color_sp[["asb2"]], 
                               linetype = 1) + 
         
         ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.58,
                            y = range_faxes[2] - spread_faxes*0.735,
-                      label = paste0("nearest neighbour in the global pool for", 
-                                        sep = " ", asb2),
+                           label = paste0("nearest neighbour in the global", 
+                                          " pool for", sep = " ", asb2),
                            colour = color_sp[["asb2"]], size = 3)
       
     }
@@ -2562,7 +2579,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     
   } # end of plotting FOri
   
-  ##############################################################################
+  ############################################################################
   
   
   
@@ -2579,7 +2596,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       xy_k <- axes_plot[1:2, k]
       
       # get species coordinates along the 2 axes:
-      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, xy_k])
+      sp_coord_xy <- as.matrix(sp_faxes_coord_plot[ , xy_k])
       colnames(sp_coord_xy) <- c("x", "y")
       
       # create a list with dataframes for plot:
@@ -2647,8 +2664,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                                    max.overlaps = Inf,
                                    box.padding = grid::unit(2, 'lines'),
                                    force = 5,
-                                   arrow = grid::arrow(length = grid::unit(0.02,
-                                                                        'npc')),
+                                   arrow = grid::arrow(
+                                     length = grid::unit(0.02, 'npc')),
                                    segment.color = color_sp_nm)
       }
       
@@ -2674,7 +2691,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     y <- NULL
     
     # plot window:
-    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, y = range_faxes),
+    plot_caption <- ggplot2::ggplot(data.frame(x = range_faxes, 
+                                               y = range_faxes),
                                     ggplot2::aes(x = x, y = y)) +
       ggplot2::scale_x_continuous(limits = range_faxes, expand = c(0, 0)) +
       ggplot2::scale_y_continuous(limits = range_faxes, expand = c(0, 0)) +
@@ -2754,8 +2772,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.58,
                          y = range_faxes[2] - spread_faxes*0.58,
-                         label = paste0("nearest neighbour in the assemblage for", 
-                                        sep = " ", asb1), 
+                         label = paste0("nearest neighbour in the assemblage ", 
+                                        "for", sep = " ", asb1), 
                          colour = color_sp[["asb1"]], size = 3) 
     
     ### if 2nd assemblage:
@@ -2779,18 +2797,17 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
                               xend = range_faxes[1] + spread_faxes*0.135,
                               y = range_faxes[2] - spread_faxes*0.735,
                               yend = range_faxes[2] - spread_faxes*0.735,
-                              arrow = grid::arrow(length = grid::unit(0.07,
-                                                                      "inches"),
-                                                  ends = "last",
-                                                  type = "open"),
+                              arrow = grid::arrow(
+                                length = grid::unit(0.07, "inches"),
+                                ends = "last", type = "open"),
                               size = 1, 
                               color = color_sp[["asb2"]], 
                               linetype = 1) + 
         
         ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.58,
                            y = range_faxes[2] - spread_faxes*0.735,
-                           label = paste0("nearest neighbour in the assemblage for", 
-                                          sep = " ", asb2),
+                           label = paste0("nearest neighbour in the ", 
+                                          "assemblage for", sep = " ", asb2),
                            colour = color_sp[["asb2"]], size = 3)
       
     }
@@ -2817,7 +2834,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
     patchwork_fnnd <- panels.to.patchwork(panels_fnnd, plot_caption)
     
     # add title and caption:
-    tit_fnnd <- paste0( "Functional Nearest Neighbour Distance of '", asb1, "'")
+    tit_fnnd <- paste0( "Functional Nearest Neighbour Distance of '", 
+                        asb1, "'")
     if (two_asb) {
       tit_fnnd <- paste0(tit_fnnd, " and '", asb2, "'")
     }
@@ -2855,7 +2873,7 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   } # end of plotting FNND
   
 
-  ##############################################################################
+  ############################################################################
   
 
   # return complete output  = list of list of panels: ####

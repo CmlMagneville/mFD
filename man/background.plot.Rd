@@ -18,7 +18,7 @@ range is computed according to the range of values among all axes).}
 background. Default: \code{color_bg = "grey95"}.}
 }
 \value{
-a ggplot object plotting background of multidimensional graphs
+A ggplot object plotting background of multidimensional graphs.
 }
 \description{
 This function creates a ggplot object with customized axes range
@@ -30,8 +30,7 @@ This function creates a ggplot object with customized axes range
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
 }
-
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

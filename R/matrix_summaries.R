@@ -1,4 +1,4 @@
-#' Summarize Species x Traits Data Frame
+#' Summarize Species x Traits data frame
 #'
 #' This function computes a summary data helping to choose the type of analysis
 #' you can do with your data. For this function to work, there must be no NA in
@@ -23,8 +23,8 @@
 #'   specify a weight for each trait.
 #'   }
 #'
-#' @param sp_tr a data frame of traits values (columns) for each species (rows).
-#'   Note that species names **must be** specified in the row names.
+#' @param sp_tr a data frame of traits values (columns) for each species 
+#'   (rows). Note that species names **must be** specified in the row names.
 #'   
 #' @param stop_if_NA a logical value indicating whether the process should stop
 #'   if there is some NA in the `sp_tr` dataframe. If you continue with
@@ -43,12 +43,12 @@
 #'   \item{tr_summary_non_fuzzy_list}{a table summarizing for each trait the
 #'   number of species per modality for non-continuous trait and min, max,
 #'   mean, median, and quartiles for continuous traits.}
-#'   \item{tr_summary_fuzzy_list}{a table summarizing for each subtrait min, max,
-#'   mean, median and quartiles}
+#'   \item{tr_summary_fuzzy_list}{a table summarizing for each subtrait min, 
+#'   max, mean, median and quartiles}
 #'   \item{tr_types}{a list containing traits type.}
 #'   \item{mod_list}{a list containing modalities for non-continuous trait.}
 #'
-#' @author Camille Magneville & Sebastien Villeger
+#' @author Camille Magneville and Sebastien Villeger
 #'
 #' @export
 #'
@@ -162,10 +162,10 @@ sp.tr.summary <- function(tr_cat, sp_tr,
 
 
 
-#' Summarize Assemblage x Species Data Frame
+#' Summarize Assemblage x Species data frame
 #'
-#' This function computes a summary helping you to picture assemblages. For this
-#' function to work, there must be no NA in your `asb_sp_w` data frame.
+#' This function computes a summary helping you to picture assemblages. For 
+#' this function to work, there must be no NA in your `asb_sp_w` data frame.
 #'
 #' @param asb_sp_w a matrix showing assemblages (rows) composition in species
 #'   (columns). Note that species names **must be** the names of rows.
@@ -179,9 +179,10 @@ sp.tr.summary <- function(tr_cat, sp_tr,
 #'   assemblage.}
 #'   \item{asb_sp_richn}{a vector gathering species richness per
 #'   assemblage.}
-#'   \item{asb_sp_nm}{a list gathering the names of species of each assemblage.}
+#'   \item{asb_sp_nm}{a list gathering the names of species of each
+#'   assemblage.}
 #'
-#' @author Camille Magneville & Sebastien Villeger
+#' @author Camille Magneville and Sebastien Villeger
 #'
 #' @export
 #'

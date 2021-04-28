@@ -2,7 +2,7 @@
 % Please edit documentation in R/sp_to_FE.R
 \name{sp.to.fe}
 \alias{sp.to.fe}
-\title{Compute Functional Entities Composition based on a Species x Traits Matrix}
+\title{Compute Functional Entities composition based on a Species x Traits matrix}
 \usage{
 sp.to.fe(sp_tr, tr_cat, fe_nm_type = "fe_rank", check_input = TRUE)
 }
@@ -32,16 +32,17 @@ is the one gathering most species) and \emph{"tr_val"} (FE are named after
 names of traits and of trait values for each FE, if possible, \emph{see
 details below}). Default: \code{fe_nm_type = "fe_rank"}.}
 
-\item{check_input}{a logical value indicating whether key features the inputs
-are checked (e.g. class and/or mode of objects, names of rows and/or
-columns, missing values). If an error is detected, a detailed message is
-returned. Default: \code{check.input = TRUE}.}
+\item{check_input}{a logical value indicating whether key features the
+inputs are checked (e.g. class and/or mode of objects, names of rows
+and/or columns, missing values). If an error is detected, a detailed
+message is returned. Default: \code{check.input = TRUE}.}
 }
 \value{
 A list of objects containing:
 \itemize{
-\item \strong{fe_nm}: a vector with names of all FE (following fe_nm_type).
-FE are ordered according to the decreasing number of species they gather.
+\item \strong{fe_nm}: a vector with names of all FE (following
+fe_nm_type). FE are ordered according to the decreasing number of
+species they gather.
 \item \strong{sp_fe}: a vector containing for each species the name of the
 FE it belongs to. FE order is done according to decreasing number of
 species.
@@ -55,16 +56,16 @@ according to the decreasing number of species they gather.
 containing character referring to traits values (like a barcode) with
 names as in \code{fe_nm_type} and sorted according to \code{fe_nb_sp};
 \emph{tr_uval} a list containing for each trait a vector of its unique
-values or a data frame for fuzzy-coded traits; \emph{fuzzy_E} a list with
-for each fuzzy-coded trait a data frame with names of entities (E) and
-names of species (sp); \emph{tr_nb_uval} a vector with number of unique
-values per trait (or combinations for fuzzy-coded traits);
-\emph{max_nb_fe} the maximum number of FE possible given number of unique
-values per trait.
+values or a data frame for fuzzy-coded traits; \emph{fuzzy_E} a list
+with for each fuzzy-coded trait a data frame with names of entities (E)
+and names of species (sp); \emph{tr_nb_uval} a vector with number of
+unique values per trait (or combinations for fuzzy-coded traits);
+\emph{max_nb_fe} the maximum number of FE possible given number of
+unique values per trait.
 }
 }
 \description{
-Compute Functional Entities Composition based on a Species x Traits Matrix
+Compute Functional Entities composition based on a Species x Traits matrix
 }
 \details{
 \code{fe_nm_type = "tr_val"} is allowed \strong{only} if:
@@ -75,8 +76,8 @@ Compute Functional Entities Composition based on a Species x Traits Matrix
 }
 
 If these 3 conditions are met, names of Functional Entities are made as a
-character string of up to 2 letters for trait name in upper case font then up
-to 2 letters for trait value in lower case font, separated by "_" between
+character string of up to 2 letters for trait name in upper case font then
+up to 2 letters for trait value in lower case font, separated by "_" between
 traits. Trait names are abbreviated to a single letter whenever possible.
 \emph{Examples:} ("TAc2_TBxx_TCyy", "TAc3_TBff_TCyy") or
 ("A2_Bx_Cy", "A3_Bf_Cy")
@@ -103,16 +104,20 @@ traits. Trait names are abbreviated to a single letter whenever possible.
       sp_tr      = fruits_traits, 
       tr_cat     = fruits_traits_cat, 
       fe_nm_type = "fe_rank")
+
 ## display FEs names:
- sp_FEs$fe_nm
+sp_FEs$fe_nm
+
 ## display for each species the name of the FE it belongs to:
- sp_FEs$sp_fe
+sp_FEs$sp_fe
+
 ## display trait values for each FE:
- sp_FEs$fe_tr
+sp_FEs$fe_tr
+ 
 ## display the number of species per FEs:
- sp_FEs$fe_nb_sp
+sp_FEs$fe_nb_sp
 }
 }
 \author{
-Sebastien Villeger, Nicolas Loiseau and Camille Magneville
+Sebastien Villeger, Nicolas Loiseau, and Camille Magneville
 }

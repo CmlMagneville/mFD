@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_multidim_layers.R
 \name{fori.plot}
 \alias{fori.plot}
-\title{Plot Fori}
+\title{Plot FOri}
 \usage{
 fori.plot(
   ggplot_bg,
@@ -56,9 +56,9 @@ to the global pool.}
 \item{color_pool}{a R color name or an hexadecimal code referring to the
 color of the pool.  This color is also used for FRic convex hull color.}
 
-\item{fill_pool}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-hull.}
+\item{fill_pool}{a R color name or an hexadecimal code referring to the
+colour to fill species symbol (if \code{shape_sp} > 20) and the assemblage
+convex hull.}
 
 \item{shape_sp}{a numeric value referring to the shape used to plot species
 belonging to the studied assemblage.}
@@ -79,7 +79,7 @@ linking nearest neighbors in the global pool.}
 link nearest neighbors in the global pool.}
 }
 \value{
-a ggplot object with FOri index
+A ggplot object with FOri index.
 }
 \description{
 This function plots FOri index for a given pair of functional axes and for
@@ -92,7 +92,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{
-
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -134,7 +133,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
                                
- # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+ # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
  sp_filter <- mFD::sp.filter(asb_nm          = "basket_1", 
                              sp_faxes_coord = sp_faxes_coord_fruits, 
                              asb_sp_w       = baskets_fruits_weights)
@@ -143,7 +142,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                
  # Use alpha.fd.multidim() function to get inputs to plot FIde:
  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord   = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fori"),
   scaling          = TRUE,
@@ -154,7 +153,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
  fruits_asb_nn_pool_b1 <- 
          alpha_fd_indices_fruits$details$asb_nm_nn_pool["basket_1"]
 
- 
  # Retrieve FNND plot:
  fori_plot <- fori.plot(ggplot_bg = ggplot_bg_fruits,
            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -176,8 +174,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            
  fori_plot
 }
-
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

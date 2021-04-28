@@ -1,9 +1,10 @@
-#' Compute Functional Distance between Species
+#' Compute functional distance between species
 #'
 #' For a given combination of traits, this function returns the functional
 #' distance matrix between species.
 #'
-#' @param sp_tr a data frame of traits values (columns) for each species (rows).
+#' @param sp_tr a data frame of traits values (columns) for each species 
+#'   (rows).
 #' 
 #' @param tr_cat a data frame containing three columns for each trait (rows):
 #'   \itemize{
@@ -11,20 +12,20 @@
 #'   frame;
 #'   \item \strong{trait_type}: the category code for each trait as followed:
 #'   \code{N} for Nominal traits (factor variable), \code{O} for Ordinal traits
-#'   (ordered variable), \code{C} for Circular traits (integer values), \code{Q}
-#'   for quantitative traits (numeric values) that is allowed \strong{only} if
-#'   there are at least 2 species with the same value, and \code{F} for fuzzy 
-#'   traits (i.e. described with several values defined with several column);
-#'   \item \strong{fuzzy_name}: name of fuzzy-coded trait to which 'sub-trait'
-#'   belongs (if trait is not fuzzy, ignored so could be trait name or NA).
-#'  \item \strong{trait_weight}: Optional, a numeric vector of length n (traits
-#'  number) to specify a weight for each trait.
+#'   (ordered variable), \code{C} for Circular traits (integer values), 
+#'   \code{Q} for quantitative traits (numeric values) that is allowed 
+#'   \strong{only} if there are at least 2 species with the same value, and 
+#'   \code{F} for fuzzy traits (i.e. described with several values defined with 
+#'   several column); \item \strong{fuzzy_name}: name of fuzzy-coded trait to 
+#'   which 'sub-trait' belongs (if trait is not fuzzy, ignored so could be 
+#'   trait name or NA). \item \strong{trait_weight}: Optional, a numeric vector 
+#'   of length n (traits number) to specify a weight for each trait.
 #'   }
 #'   
 #' @param metric the distance to be computed:
 #'   `euclidean`, the Euclidean distance, 
-#'   `gower`, the Classical Gower distance as defined by Gower (1971), extent by
-#'   de Bello _et al._ (2021) and based on the \code{\link[gawdis]{gawdis}} 
+#'   `gower`, the Classical Gower distance as defined by Gower (1971), extent 
+#'   by de Bello _et al._ (2021) and based on the \code{\link[gawdis]{gawdis}} 
 #'   function.
 #'   
 #' @param scale_euclid only when computing euclidean distance a string value to
@@ -50,9 +51,9 @@
 #' @param weight_type the type of used method to weight traits. 
 #'   `user` – user defined weights in tr_cat, 
 #'   `equal` – all traits having the same weight.
-#'   More methods are available using \code{\link[gawdis]{gawdis}} from `gawdis` 
-#'   package. To compute gower distance with fuzzy trait and traits weight 
-#'   please refer to \code{\link[gawdis]{gawdis}}. Default is `equal`.
+#'   More methods are available using \code{\link[gawdis]{gawdis}} from 
+#'   `gawdis` package. To compute gower distance with fuzzy trait and 
+#'   weight please refer to \code{\link[gawdis]{gawdis}}. Default is `equal`.
 #' 
 #' @param stop_if_NA a logical value to stop or not the process if the
 #'   `sp_tr` data frame contains NA. Functional measures are sensitive to
@@ -70,8 +71,7 @@
 #' @references 
 #' de Bello _et al._ (2021) Towards a more balanced combination of multiple
 #'   traits when computing functional differences between species. 
-#'   _Method in Ecology and Evolution_, accepted, 
-#'   doi: https://doi.org/10.1111/2041-210X.13537.
+#'   _Method in Ecology and Evolution_, **12**, 443-448.\cr
 #' Gower (1971 ) A general coefficient of similarity and some of its 
 #'   properties. _Biometrics_, **27**, 857-871.\cr
 #' Johnson _et al._ (2020) Handling missing values in trait data. 
@@ -79,7 +79,7 @@
 #' Podani (1999) Extending Gower's general coefficient of similarity to ordinal 
 #'   characters, _Taxon_, **48**, 331-340.
 #'     
-#' @author Nicolas Loiseau & Sebastien Villeger
+#' @author Nicolas Loiseau and Sebastien Villeger
 #'
 #' @export
 #' 
@@ -132,7 +132,8 @@ funct.dist <- function(sp_tr,
   ordinal_var <- match.arg(ordinal_var, c("classic", "metric", "podani"))
   
   
-  if (weight_type == "user" && sum(colnames(tr_cat) %in% "trait_weight") == 0) {
+  if (weight_type == "user" && 
+      sum(colnames(tr_cat) %in% "trait_weight") == 0) {
     stop("A fourth colunm trait_weight must be added in tr_cat to specify ", 
          "weight for each trait.")
   }
@@ -196,8 +197,8 @@ funct.dist <- function(sp_tr,
   if (metric == "gower") {
     
     if (any(apply(sp_tr, 2, is.numeric))) {
-      warning("Species x traits data frame contains only numerical variables. ", 
-              "Euclidean can be used.")
+      warning("Species x traits data frame contains only numerical ", 
+              "variables. Euclidean can be used.")
       # Not a stop because user may want to weight traits
     }
     
@@ -212,7 +213,8 @@ funct.dist <- function(sp_tr,
       
       # Fill all fuzzy names of traits
       tr_cat[is.na(tr_cat$fuzzy_name), ]$fuzzy_name <- tr_cat[is.na(
-                                                tr_cat$fuzzy_name), ]$trait_name 
+                                                tr_cat$fuzzy_name), 
+                                                ]$trait_name 
       
       tab_dist <- gawdis::gawdis(sp_tr,
                                  W                 = tr_weights, 
@@ -249,8 +251,8 @@ funct.dist <- function(sp_tr,
     }
   }    
   
-  # if some species have a functional distance equal to 0, tell the user that it
-  # could be a god idea to gather species into FEs:
+  # if some species have a functional distance equal to 0, tell the user that 
+  # it could be a god idea to gather species into FEs:
   
   if (min(tab_dist) == 0) {
     warning("Functional distance between some species is equal to 0. You can ",

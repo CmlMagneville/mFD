@@ -1,7 +1,7 @@
 #' Compute FUSE (Functionally Unique, Specialized and Endangered)
 #' 
 #' This index takes into account species functional uniqueness (also called
-#' Functional Originality), species specialisation and species IUCN status
+#' Functional Originality), species specialisation and species IUCN status.
 #'
 #' @param sp_dist a dist object provided by \code{\link{funct.dist}}, 
 #'   \code{\link[cluster]{daisy}} or \code{\link[ade4]{dist.ktab}}.
@@ -25,8 +25,8 @@
 #' @return A data frame with species in rows and the following metrics in
 #'   columns: 
 #'   \itemize{
-#'     \item FUSE: functionally unique, specialized and endangered (see Pimiento
-#'       _et al._ (2020) and Griffin _et al._ (2020));
+#'     \item FUSE: functionally unique, specialized and endangered (see 
+#'     Pimiento _et al._ (2020);
 #'     \item FDGE: functionally distinctive and endangered
 #'     \item FUn_std: functional uniqueness standardized between 0 and 1 (see
 #'       Mouillot _et al._ (2013) and Griffin _et al._ (2020));
@@ -97,7 +97,8 @@
 #'   type = list(symm = c(4)), weights = v)
 #'   
 #' # Principal coordinate analyses
-#' Pcoa <- ade4::dudi.pco(ade4::quasieuclid(sp_dist_tr), scann = FALSE, nf = 40)
+#' Pcoa <- ade4::dudi.pco(ade4::quasieuclid(sp_dist_tr), scann = FALSE, 
+#'                        nf = 40)
 #' 
 #' sp_faxes_coord <- Pcoa$li[1:40]
 #'  
@@ -183,26 +184,25 @@ fuse <- function(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = FALSE) {
   FUGE <- log(1 + (FUn_std * GE))
   FSp_std <- as.vector(vegan::decostand(spe, "range"))
   FSGE <- log(1 + (FSp_std * GE))
-  FUS <- FUn_std + FSp_std
   FDist_std <- as.vector(vegan::decostand(Fdistinct, "range"))
   FUSE <- stats::setNames(FUGE + FSGE, nm = nm)
-  FUSE_alt <- log(1 + FUS * GE)
   FDGE <- log(1 + (FDist_std * GE))
   
-  data.frame(cbind(FUSE, FUSE_alt, FUGE, FDGE, FSGE, FUn_std, FSp_std, 
+  data.frame(cbind(FUSE, FUGE, FDGE, FSGE, FUn_std, FSp_std, 
                    FDist_std))
   
 }
 
 
 
-#' Compute the Nearest Neighbors for All Considered Species for FUSE Computation
+#' Compute the nearest neighbors for all considered species for FUSE 
+#' computation
 #'
 #' @param sp_dist a matrix object representing the distance in an euclidean
-#'   space between species based on species traits
+#'   space between species based on species traits.
 #'
 #' @param nb_NN a numerical value giving the number of nearest neighbor to
-#'   consider
+#'   consider.
 #'   
 #' @author Fabien Leprieur and Camille Albouy
 #' 
@@ -226,18 +226,17 @@ get.indicator <- function(sp_dist, nb_NN) {
 }
 
 
-#' Calculate the Nearest Neighbors for a Given Species
+#' Calculate the nearest neighbors for a given species
 #'
 #' @param nb_NN a numerical value giving the number of nearest neighbor to
-#'   consider
+#'   consider.
 #'
 #' @param data a data frame considering all the distance between the considered
-#'  species and all of these neighbors
+#'  species and all of these neighbors.
 #'
 #' @author Fabien Leprieur and Camille Albouy
 #' 
 #' @noRd
-
 
 get.dist.func <- function(nb_NN, data) {
   

@@ -2,7 +2,7 @@
 % Please edit documentation in R/cont_tr_fspace.R
 \name{tr.cont.fspace}
 \alias{tr.cont.fspace}
-\title{Build a Functional Space based on Continuous Traits Only}
+\title{Build a functional space based on continuous traits only}
 \usage{
 tr.cont.fspace(
   sp_tr,
@@ -13,9 +13,9 @@ tr.cont.fspace(
 )
 }
 \arguments{
-\item{sp_tr}{a data frame of traits values (columns) for each species (rows).
-Note that species names \strong{must be} specified in the row names and traits
-must be \strong{continuous} (raw or standardized).}
+\item{sp_tr}{a data frame of traits values (columns) for each species
+(rows). Note that species names \strong{must be} specified in the row names and
+traits must be \strong{continuous} (raw or standardized).}
 
 \item{pca}{a logical value. If \code{TRUE} a PCA analysis is computed, elsewhere
 the functional space is computed with one trait for each dimension.
@@ -23,11 +23,11 @@ Default is \code{TRUE}.}
 
 \item{nb_dim}{an integer referring to the maximum number of dimensions for
 multidimensional functional spaces. Final number of dimensions depends
-on the number of positive eigenvalues obtained with the PCA. High value for
-\code{nb_dim} can increase computation time. Default is \code{nb_dim = 7}.}
+on the number of positive eigenvalues obtained with the PCA. High value
+for \code{nb_dim} can increase computation time. Default is \code{nb_dim = 7}.}
 
-\item{scaling}{a string value to compute (or not) scaling of traits using the
-\code{\link{tr.cont.scale}} function. Possible options are:
+\item{scaling}{a string value to compute (or not) scaling of traits using
+the \code{\link{tr.cont.scale}} function. Possible options are:
 \code{range} (standardize by the range),
 \code{center} (use the center transformation: \eqn{x' = x - mean(x)}),
 \code{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}}),
@@ -38,7 +38,8 @@ Default is \code{scale_center}.}
 
 \item{compute_corr}{a string value to compute Pearson correlation
 coefficients between traits (\code{compute_corr = 'pearson'}). You can choose
-not to compute correlation coefficient by setting \code{compute_corr} to \code{none}.}
+not to compute correlation coefficient by setting \code{compute_corr} to
+\code{none}.}
 }
 \value{
 A list with a data frame containing species coordinates on each
@@ -49,10 +50,10 @@ between traits (if asked).
 This function computes a functional space based on continuous standardized
 traits or continuous raw traits matrix. User can either choose to compute
 functional space based on PCA analysis or using one trait for one functional
-axis. For PCA analysis, center and scale arguments are considered \code{FALSE}: if
-you want to center, scale or standardize by any mean your data, please use
-\code{\link{tr.cont.scale}} function. Option makes it possible to compute
-correlation between traits.
+axis. For PCA analysis, center and scale arguments are considered \code{FALSE}:
+if you want to center, scale or standardize by any mean your data, please
+use \code{\link{tr.cont.scale}} function. Option makes it possible to
+compute correlation between traits.
 }
 \examples{
 \dontrun{
@@ -67,5 +68,5 @@ mFD::tr.cont.fspace(
 }
 }
 \author{
-Camille Magneville & Sebastien Villeger
+Camille Magneville and Sebastien Villeger
 }

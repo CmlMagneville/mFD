@@ -62,7 +62,8 @@ color of the species fide centroid from the studied assemblage. If several
 assemblages it should be a vector with names as in \code{asb_sp_coord2D}.}
 
 \item{fill_fide}{a R color name or an hexadecimal code referring to the
-colour to fill assemblage fide centroid symbol (if \code{shape_fide} > 20).}
+colour to fill assemblage fide centroid symbol
+(if \code{shape_fide} > 20).}
 
 \item{color_segment}{a R color name or an hexadecimal code referring to the
 color of the segment linking axes and centroid from the studied assemblage.
@@ -76,13 +77,13 @@ linking fide centroid and functional axes.}
 draw the segment linking fide centroid and functional axes.}
 }
 \value{
-a ggplot object showing FDis index for one or several assemblage(s)
+A ggplot object showing FDis index for one or several assemblage(s)
 and a given pair of functional axes.
 }
 \description{
 This function plots FDis index for a given pair of functional axes and for
-one or several assemblages. It adds segments between species relative weights
-and assemblage cenntroid on the background plot.
+one or several assemblages. It adds segments between species relative
+weights and assemblage cenntroid on the background plot.
 }
 \note{
 If several assemblages are to be represented, aesthetics inputs should
@@ -90,7 +91,6 @@ be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{
-
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -132,7 +132,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
                                
- # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2:
+ # Retrieve the matrix of species coordinates for "basket_1" and PC1 and PC2
  sp_filter <- mFD::sp.filter(asb_nm         = "basket_1", 
                              sp_faxes_coord = sp_faxes_coord_fruits, 
                              asb_sp_w       = baskets_fruits_weights)
@@ -141,7 +141,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
                                
  # Use alpha.fd.multidim() function to get inputs to plot FIde:
  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
+ sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
   ind_vect         = c("fdis"),
   scaling          = TRUE,
@@ -156,8 +156,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
  fruits_asb_sp_relatw_b1 <- 
          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
 
-
- 
  # Retrieve FDis plot:
  fdis_plot <- fdis.plot(ggplot_bg = ggplot_bg_fruits,
            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -177,8 +175,7 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            
  fdis_plot
 }
-
 }
 \author{
-Camille Magneville and Sébastien Villéger
+Camille Magneville and Sebastien Villeger
 }

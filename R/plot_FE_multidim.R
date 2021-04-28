@@ -1,12 +1,12 @@
-#' Illustrate Functional Diversity Indices based on Functional Entities
+#' Illustrate Functional Diversity indices based on Functional Entities
 #' 
 #' Graphical representation of distribution of species in Functional
 #' Entities (FE) and of indices from Mouillot _et al._ (2014). \strong{To plot
 #' functional indices, functional indices values must have been computed first
 #' through the use of the} \code{\link{alpha.fd.fe}} function.
 #'
-#' @param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} applied
-#'   on assemblage of interest with \code{details_returned = TRUE}.
+#' @param alpha_fd_fe output from the function \code{\link{alpha.fd.fe}} 
+#'   applied on assemblage of interest with \code{details_returned = TRUE}.
 #'
 #' @param plot_asb_nm a vector containing the name of the assemblage to plot.
 #'
@@ -24,16 +24,16 @@
 #'   in species-rich FEs. It refers to the FORed value. Default:
 #'   `color_fill_fored = "darkolivegreen2"`.
 #'
-#' @param color_line_fred a R color name or an hexadecimal code referring to the
-#'  color used to draw the horizontal line referring to the FRed value.
-#'  Default: `color_line_fred = "darkolivegreen4"`.
+#' @param color_line_fred a R color name or an hexadecimal code referring to 
+#'   the color used to draw the horizontal line referring to the FRed value.
+#'   Default: `color_line_fred = "darkolivegreen4"`.
 #'
 #' @param color_fill_bar a R color name or an hexadecimal code referring to the
 #'  color used to draw barplots. Default: `color_fill_bar = "grey80"`.
 #'
 #' @param color_fill_fvuln a R color name or an hexadecimal code referring to
-#'   the color used to fill barplot containing only one species for illustrating
-#'   FVuln. Default: `color_fill_fvuln = "lightcoral"`.
+#'   the color used to fill barplot containing only one species for 
+#'   illustrating FVuln. Default: `color_fill_fvuln = "lightcoral"`.
 #'
 #' @param color_arrow_fvuln  a R color name or an hexadecimal code referring to
 #'  the color used to draw the horizontal arrow showing the proportion of FEs
@@ -41,34 +41,34 @@
 #'  one FE containing one species, the arrow will be a point. Default:
 #'  `color_arrow_fvuln = "indianred4"`.
 #'
-#' @param size_line_fred a numeric value referring to the size of the horizontal
-#'  line illustrating FRed. Default: `size_line_fred = 1.5.`
+#' @param size_line_fred a numeric value referring to the size of the 
+#'   horizontal line illustrating FRed. Default: `size_line_fred = 1.5.`
 #'
 #' @param size_arrow_fvuln a numeric value referring to the size of the arrow
 #'  showing the proportion of FEs containing only one species. Default:
 #'  `size_arrow_fvuln = 1`.
 #'
-#' @param check_input a logical value indicating whether key features the inputs
-#'   are checked (e.g. class and/or mode of objects, names of rows and/or
-#'   columns, missing values). If an error is detected, a detailed message is
-#'   returned. Default: `check.input = TRUE`.
+#' @param check_input a logical value indicating whether key features the 
+#'   inputs are checked (e.g. class and/or mode of objects, names of rows 
+#'   and/or columns, missing values). If an error is detected, a detailed 
+#'   message is returned. Default: `check_input = TRUE`.
 #'
-#' @return A \code{patchwork} object with a barplot of number of species per FE.
-#'  Indices names provided in 'plot_ind_nm' are illustrated. Functional
-#'  Redundancy (average number of species per FE) is illustrated with a
-#'  horizontal line. Functional Over-redundancy (proportion of species in excess
-#'  in FE richer than average) is illustrated with top part of these bars filled
-#'  with
-#'  'color_fill_fored'. Functional Vulnerability (proportion of FE with a single
-#'  species) is illustrated with bars of these vulnerable FE filled with
-#'  'color_fill_fvuln' and the double-head arrow highlighting their number.
-#'  FE-based indices values on top of the plot. if \code{name_file} is provided,
-#'  plot saved as a 300dpi png file in the working directory.
+#' @return A \code{patchwork} object with a barplot of number of species per 
+#'   FE. Indices names provided in 'plot_ind_nm' are illustrated. Functional
+#'   Redundancy (average number of species per FE) is illustrated with a
+#'   horizontal line. Functional Over-redundancy (proportion of species in 
+#'   excess in FE richer than average) is illustrated with top part of these 
+#'   bars filled with 'color_fill_fored'. Functional Vulnerability (proportion 
+#'   of FE with a single species) is illustrated with bars of these vulnerable 
+#'   FE filled with 'color_fill_fvuln' and the double-head arrow highlighting 
+#'   their number. FE-based indices values on top of the plot. if 
+#'   \code{name_file} is provided, plot saved as a 300dpi png file in the 
+#'   working directory.
 #'
 #' @references
 #' Mouillot _et al._ (2014) Functional over-redundancy and high functional 
-#' vulnerability in global fish faunas on tropical reefs. _PNAS_, **111**, 
-#' 13757-13762.
+#'   vulnerability in global fish faunas on tropical reefs. _PNAS_, **111**, 
+#'   13757-13762.
 #'
 #' @author Camille Magneville and Sebastien Villeger
 #'
@@ -170,7 +170,7 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
   
   
   # number of species per FE present in assemblage to plot
-  fe_nbsp_k <-alpha_fd_fe$details_fdfe$asb_fe_nbsp[plot_asb_nm, ]
+  fe_nbsp_k <- alpha_fd_fe$details_fdfe$asb_fe_nbsp[plot_asb_nm, ]
   fe_nbsp_k <- fe_nbsp_k[which(fe_nbsp_k > 0)]
   
   # FE sorted according to decreasing number of species
@@ -187,7 +187,8 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
   # plotting number of species for all FE
   plot_k <- ggplot2::ggplot(data = data_k, 
                             ggplot2::aes(
-                            x = stats::reorder(fe_nm, -fe_nbsp), y = fe_nbsp)) +
+                            x = stats::reorder(fe_nm, -fe_nbsp), 
+                            y = fe_nbsp)) +
     ggplot2::geom_bar(stat = "identity", fill = color_fill_bar) +
     ggplot2::scale_y_continuous(breaks = breaks) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90),
@@ -215,13 +216,14 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
     
     if (length(fe_vuln_k) > 0) {
       plot_k <- plot_k +
-        ggplot2::geom_bar(data = data_k[fe_vuln_k, ], ggplot2::aes(x = fe_nm, 
-                                                                   y = fe_nbsp),
+        ggplot2::geom_bar(data = data_k[fe_vuln_k, ], 
+                          ggplot2::aes(x = fe_nm, y = fe_nbsp),
                           stat = "identity", fill = color_fill_fvuln)
       if (length(fe_vuln_k) > 1) {
         plot_k <- plot_k +
           ggplot2::geom_segment(ggplot2::aes(x = fe_vuln_k[1] , y = 0.5,
-                                            xend = fe_vuln_k[length(fe_vuln_k)], 
+                                            xend = fe_vuln_k[
+                                              length(fe_vuln_k)], 
                                             yend = 0.5),
                                 arrow = grid::arrow(ends = "both", 
                                                     length = grid::unit(0.25, 
@@ -244,8 +246,8 @@ alpha.fd.fe.plot <- function(alpha_fd_fe,
     
     if (length(fe_ored_k)>0) {
       plot_k <- plot_k +
-        ggplot2::geom_bar(data = data_k[fe_ored_k, ], ggplot2::aes(x = fe_nm, 
-                                                                   y = fe_nbsp),
+        ggplot2::geom_bar(data = data_k[fe_ored_k, ], 
+                          ggplot2::aes(x = fe_nm, y = fe_nbsp),
                           stat = "identity", fill = color_fill_fored) +
         ggplot2::geom_bar(data = data_k[fe_ored_k, ], ggplot2::aes(x = fe_nm, 
                                                                    y = fred_k),

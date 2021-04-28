@@ -2,8 +2,8 @@
 % Please edit documentation in R/fcts_used_for_ind_comp.R
 \name{vertices}
 \alias{vertices}
-\title{Compute Vertices of the Minimal Convex Hull Shaping Species from a Single
-Assemblage in a Multidimensional Functional Space}
+\title{Compute vertices of the Minimal Convex Hull shaping species from a single
+assemblage in a multidimensional functional space}
 \usage{
 vertices(sp_faxes_coord, order_2D = FALSE, check_input = FALSE)
 }
@@ -12,23 +12,23 @@ vertices(sp_faxes_coord, order_2D = FALSE, check_input = FALSE)
 space. Species coordinates have been retrieved thanks to
 \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.}
 
-\item{order_2D}{a logical value defining whether vertices names are reordered
-so that they define a convex polygon in 2D which is convenient for
-plotting. Default is \code{FALSE}, vertices ordered as in row names of
-'sp_faxes_coord'}
+\item{order_2D}{a logical value defining whether vertices names are
+reordered so that they define a convex polygon in 2D which is convenient
+for plotting. Default is \code{FALSE}, vertices ordered as in row names of
+'sp_faxes_coord'.}
 
-\item{check_input}{a logical value defining whether inputs are checked before
-computation: species names must be put as row.names, there must be no NA
-and species number must be superior to (axes number + 1). Default:
+\item{check_input}{a logical value defining whether inputs are checked
+before computation: species names must be put as row.names, there must be
+no NA and species number must be superior to (axes number + 1). Default:
 \code{check_input = TRUE}.}
 }
 \value{
-A vector containing names of species being vertices \code{vert_nm}
+A vector containing names of species being vertices \code{vert_nm}.
 }
 \description{
-This function identifies species that are vertices of the minimal convex hull
-enclosing a community in a multidimensional functional space. This function
-is using the \code{\link[geometry]{convhulln}} function.
+This function identifies species that are vertices of the minimal convex
+hull enclosing a community in a multidimensional functional space. This
+function is using the \code{\link[geometry]{convhulln}} function.
 }
 \examples{
 \dontrun{
@@ -59,7 +59,7 @@ is using the \code{\link[geometry]{convhulln}} function.
                                   fdendro             = "average")
  
 # Retrieve species coordinates matrix:
- sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 
 # Compute vertices and order them clockwise:
  vert_nm <- vertices(sp_faxes_coord_fruits[ , c("PC1", "PC2")], 

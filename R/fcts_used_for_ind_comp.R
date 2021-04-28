@@ -1,4 +1,4 @@
-#' Compute Distances of All Points to a Given Point in the Functional Space
+#' Compute distances of all points to a given point in the functional space
 #'
 #' This function computes the distances of all species to a reference species.
 #' It is used in FSpe, FOri and FNND computation.
@@ -8,9 +8,11 @@
 #'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
 #' @param ref_sp a character string referring to the name of the reference
-#'   species
+#'   species.
 #'
-#' @return A vector of species distances to the reference species 
+#' @return A vector of species distances to the reference species.
+#' 
+#' @export
 #' 
 #' @author Camille Magneville and Sebastien Villeger
 #' 
@@ -49,7 +51,6 @@
 #'  dist_pear <- dist.point(sp_faxes_coord_fruits, ref_sp = "pear")
 #'  dist_pear
 #' }
-#'
 
 dist.point <- function(sp_faxes_coord, ref_sp) {
   # build the matrix of distances between species to
@@ -65,8 +66,8 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 
 
 
-#' Compute Distance of a Given Point to its Nearest Neighbor in the Functional
-#' Space and the Identity of the Nearest Neighbor
+#' Compute distance of a given point to its nearest neighbor in the functional
+#' space and the identity of the nearest neighbor
 #'
 #' This function is used in functional indices computation.
 #'
@@ -75,7 +76,7 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 #'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
 #' @param ref_sp a character string referring to the name of the reference
-#'   species
+#'   species.
 #'
 #' @return A list containing the nearest neighbor identity \code{nn_id} and a
 #'   list of the distance of the reference point to its nearest neighbor
@@ -120,7 +121,6 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 #'  dist_nn_pear <- dist.nearneighb(sp_faxes_coord_fruits, ref_sp = "pear")
 #'  dist_nn_pear
 #' }
-#' 
 
 dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
   
@@ -150,16 +150,17 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
 
 
 
-#' Compute the Minimum Spanning Tree (MST) Linking Species of a Given Assemblage
+#' Compute the Minimum Spanning Tree (MST) linking species of a given 
+#' assemblage
 #'
 #' This function computes the MST linking species of a given assemblage and is
 #' used to compute FEve index.
 #'
 #' @param sp_faxes_coord_k a matrix relating species coordinates for species
-#'   present in a given assemblage
+#'   present in a given assemblage.
 #'
-#' @return a dist object summarizing the MST for all species of a given
-#'   assemblage \code{mst_asb_k}
+#' @return A dist object summarizing the MST for all species of a given
+#'   assemblage \code{mst_asb_k}.
 #'   
 #' @author Camille Magneville and Sebastien Villeger
 #' 
@@ -200,7 +201,6 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
 #'  mst_fruits <- mst.computation(sp_faxes_coord_fruits)
 #'  mst_fruits
 #' }
-#' 
 
 mst.computation <- function(sp_faxes_coord_k) {
   
@@ -213,28 +213,28 @@ mst.computation <- function(sp_faxes_coord_k) {
 
 
 
-#' Compute Vertices of the Minimal Convex Hull Shaping Species from a Single
-#' Assemblage in a Multidimensional Functional Space
+#' Compute vertices of the Minimal Convex Hull shaping species from a single
+#' assemblage in a multidimensional functional space
 #'
-#' This function identifies species that are vertices of the minimal convex hull
-#' enclosing a community in a multidimensional functional space. This function
-#' is using the \code{\link[geometry]{convhulln}} function.
+#' This function identifies species that are vertices of the minimal convex 
+#' hull enclosing a community in a multidimensional functional space. This 
+#' function is using the \code{\link[geometry]{convhulln}} function.
 #'
 #' @param sp_faxes_coord a matrix of species coordinates in a chosen functional
 #'   space. Species coordinates have been retrieved thanks to
 #'   \code{\link{tr.cont.fspace}} or \code{\link{quality.fspaces}}.
 #'
-#' @param order_2D a logical value defining whether vertices names are reordered
-#'   so that they define a convex polygon in 2D which is convenient for 
-#'   plotting. Default is `FALSE`, vertices ordered as in row names of 
-#'   'sp_faxes_coord'
+#' @param order_2D a logical value defining whether vertices names are 
+#'   reordered so that they define a convex polygon in 2D which is convenient 
+#'   for plotting. Default is `FALSE`, vertices ordered as in row names of 
+#'   'sp_faxes_coord'.
 #'
-#' @param check_input a logical value defining whether inputs are checked before
-#'   computation: species names must be put as row.names, there must be no NA
-#'   and species number must be superior to (axes number + 1). Default:
+#' @param check_input a logical value defining whether inputs are checked 
+#'   before computation: species names must be put as row.names, there must be 
+#'   no NA and species number must be superior to (axes number + 1). Default:
 #'   `check_input = TRUE`.
 #'
-#' @return A vector containing names of species being vertices \code{vert_nm}
+#' @return A vector containing names of species being vertices \code{vert_nm}.
 #' 
 #' @author Camille Magneville and Sebastien Villeger
 #' 
@@ -269,7 +269,7 @@ mst.computation <- function(sp_faxes_coord_k) {
 #'                                   fdendro             = "average")
 #'  
 #' # Retrieve species coordinates matrix:
-#'  sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
+#' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 #'
 #' # Compute vertices and order them clockwise:
 #'  vert_nm <- vertices(sp_faxes_coord_fruits[ , c("PC1", "PC2")], 

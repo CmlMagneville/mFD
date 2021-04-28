@@ -2,14 +2,14 @@
 % Please edit documentation in R/dist_to_df.R
 \name{dist.to.df}
 \alias{dist.to.df}
-\title{Merge Distance Object(s) into a Single Data Frame}
+\title{Merge distance object(s) into a single data frame}
 \usage{
 dist.to.df(list_dist)
 }
 \arguments{
 \item{list_dist}{a list of dist object(s). All dist objects should have a
-name (e.g. name of distance metric) and the same labels (i.e. names of sets
-between which distance was computed).}
+name (e.g. name of distance metric) and the same labels (i.e. names of
+sets between which distance was computed).}
 }
 \value{
 A data frame which first and second columns (names \code{x1} and \code{x2})

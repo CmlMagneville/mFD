@@ -5,7 +5,8 @@
 \alias{baskets_fruits_weights}
 \title{Dataset: Baskets Composition in Fruits Species}
 \format{
-A matrix of integers with 10 rows (baskets) and 25 columns (species).
+A matrix of integers with 10 rows (baskets) and 25 columns
+(species).
 }
 \usage{
 baskets_fruits_weights

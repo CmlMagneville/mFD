@@ -2,17 +2,17 @@
 % Please edit documentation in R/cont_tr_fspace.R
 \name{tr.cont.scale}
 \alias{tr.cont.scale}
-\title{Scale Continuous Traits}
+\title{Scale continuous traits}
 \usage{
 tr.cont.scale(sp_tr, std_method = "scale_center")
 }
 \arguments{
-\item{sp_tr}{a data frame of traits values (columns) for each species (rows).
-Note that species names \strong{must be} specified in the row names and traits
-must be \strong{continuous}.}
+\item{sp_tr}{a data frame of traits values (columns) for each species
+(rows). Note that species names \strong{must be} specified in the row names and
+traits must be \strong{continuous}.}
 
-\item{std_method}{a character string referring to the standardization method.
-Possible values:
+\item{std_method}{a character string referring to the standardization
+method. Possible values:
 \code{range} (standardize by the range),
 \code{center} (use the center transformation: \eqn{x' = x - mean(x)}),
 \code{scale} (use the scale transformation: \eqn{x' = \frac{x}{sd(x)}}), or
@@ -26,9 +26,9 @@ A data frame of standardized trait values (columns) for each species
 }
 \description{
 This function standardizes continuous traits. It can be useful before
-computing functional space. You will have to choose which standardized method
-to use based on your data. For this function to work, there must be no NA in
-your \code{sp_tr} data frame.
+computing functional space. You will have to choose which standardized
+method to use based on your data. For this function to work, there must be
+no NA in your \code{sp_tr} data frame.
 }
 \examples{
 \dontrun{
@@ -38,5 +38,5 @@ mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center')
 }
 }
 \author{
-Camille Magneville & Sebastien Villeger
+Camille Magneville and Sebastien Villeger
 }
