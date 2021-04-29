@@ -23,7 +23,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Camille Magneville \email{camille.magneville@umontpellier.fr} (\href{https://orcid.org/0000-0003-0489-3822}{ORCID}) [copyright holder]
+\strong{Maintainer}: Camille Magneville \email{camille.magneville@gmail.com} (\href{https://orcid.org/0000-0003-0489-3822}{ORCID}) [copyright holder]
 
 Authors:
 \itemize{

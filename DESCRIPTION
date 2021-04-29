@@ -4,7 +4,7 @@ Version: 1.0.0
 Authors@R: c(
     person(given   = "Camille",
            family  = "Magneville",
-           email   = "camille.magneville@umontpellier.fr",
+           email   = "camille.magneville@gmail.com",
            role    = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0003-0489-3822")),
     person(given   = "Nicolas",
