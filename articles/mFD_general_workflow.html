@@ -94,7 +94,7 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-04-28</h4>
+            <h4 class="date">2021-04-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -1168,12 +1168,12 @@ Basic framework of the mFD package
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.fd.multidim.html">beta.fd.multidim</a></span><span class="op">(</span>
-      sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,
-      asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>,
-      check_input      <span class="op">=</span> <span class="cn">TRUE</span>,
-      beta_family      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jaccard"</span><span class="op">)</span>,
-      details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># beta_fd_indices_fruits &lt;- mFD::beta.fd.multidim(</span>
+<span class="co">#       sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],</span>
+<span class="co">#       asb_sp_occ       = asb_sp_fruits_occ,</span>
+<span class="co">#       check_input      = TRUE,</span>
+<span class="co">#       beta_family      = c("Jaccard"),</span>
+<span class="co">#       details_returned = TRUE)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li><p><code>sp_faxes_coord</code> is the species coordinates matrix. This dataframe gathers <strong>only</strong> axis of the functional space you have chosen based on <strong>step 4</strong>.</p></li>
@@ -1189,292 +1189,55 @@ Basic framework of the mFD package
 <li>a dist object with beta indices values for each pair of assemblages:</li>
 </ul>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"pairasb_fbd_indices"</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## $jac_diss
-##               basket_1     basket_2     basket_3     basket_4     basket_5
-## basket_2  0.000000e+00                                                    
-## basket_3  0.000000e+00 0.000000e+00                                       
-## basket_4  9.654002e-01 9.654002e-01 9.654002e-01                          
-## basket_5  9.654002e-01 9.654002e-01 9.654002e-01 0.000000e+00             
-## basket_6  8.701848e-01 8.701848e-01 8.701848e-01 9.972695e-01 9.972695e-01
-## basket_7  8.701848e-01 8.701848e-01 8.701848e-01 9.972695e-01 9.972695e-01
-## basket_8  9.797030e-01 9.797030e-01 9.797030e-01 1.000000e+00 1.000000e+00
-## basket_9  9.797030e-01 9.797030e-01 9.797030e-01 1.000000e+00 1.000000e+00
-## basket_10 9.151338e-01 9.151338e-01 9.151338e-01 9.303584e-01 9.303584e-01
-##               basket_6     basket_7     basket_8     basket_9
-## basket_2                                                     
-## basket_3                                                     
-## basket_4                                                     
-## basket_5                                                     
-## basket_6                                                     
-## basket_7  3.922734e-16                                       
-## basket_8  1.000000e+00 1.000000e+00                          
-## basket_9  1.000000e+00 1.000000e+00 0.000000e+00             
-## basket_10 9.983508e-01 9.983508e-01 9.702788e-01 9.702788e-01
-## 
-## $jac_turn
-##               basket_1     basket_2     basket_3     basket_4     basket_5
-## basket_2  0.000000e+00                                                    
-## basket_3  0.000000e+00 0.000000e+00                                       
-## basket_4  4.320333e-01 4.320333e-01 4.320333e-01                          
-## basket_5  4.320333e-01 4.320333e-01 4.320333e-01 0.000000e+00             
-## basket_6  8.627528e-01 8.627528e-01 8.627528e-01 9.723344e-01 9.723344e-01
-## basket_7  8.627528e-01 8.627528e-01 8.627528e-01 9.723344e-01 9.723344e-01
-## basket_8  9.425331e-01 9.425331e-01 9.425331e-01 1.000000e+00 1.000000e+00
-## basket_9  9.425331e-01 9.425331e-01 9.425331e-01 1.000000e+00 1.000000e+00
-## basket_10 5.990146e-01 5.990146e-01 5.990146e-01 8.385233e-01 8.385233e-01
-##               basket_6     basket_7     basket_8     basket_9
-## basket_2                                                     
-## basket_3                                                     
-## basket_4                                                     
-## basket_5                                                     
-## basket_6                                                     
-## basket_7  3.922734e-16                                       
-## basket_8  1.000000e+00 1.000000e+00                          
-## basket_9  1.000000e+00 1.000000e+00 0.000000e+00             
-## basket_10 9.944208e-01 9.944208e-01 9.638833e-01 9.638833e-01
-## 
-## $jac_nest
-##              basket_1    basket_2    basket_3    basket_4    basket_5
-## basket_2  0.000000000                                                
-## basket_3  0.000000000 0.000000000                                    
-## basket_4  0.533366944 0.533366944 0.533366944                        
-## basket_5  0.533366944 0.533366944 0.533366944 0.000000000            
-## basket_6  0.007431956 0.007431956 0.007431956 0.024935183 0.024935183
-## basket_7  0.007431956 0.007431956 0.007431956 0.024935183 0.024935183
-## basket_8  0.037169839 0.037169839 0.037169839 0.000000000 0.000000000
-## basket_9  0.037169839 0.037169839 0.037169839 0.000000000 0.000000000
-## basket_10 0.316119149 0.316119149 0.316119149 0.091835053 0.091835053
-##              basket_6    basket_7    basket_8    basket_9
-## basket_2                                                 
-## basket_3                                                 
-## basket_4                                                 
-## basket_5                                                 
-## basket_6                                                 
-## basket_7  0.000000000                                    
-## basket_8  0.000000000 0.000000000                        
-## basket_9  0.000000000 0.000000000 0.000000000            
-## basket_10 0.003930032 0.003930032 0.006395544 0.006395544</code></pre>
+<code class="sourceCode R"><span class="co"># head(beta_fd_indices_fruits$"pairasb_fbd_indices", 10)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a list containing details such as inputs, vertices of the global pool and of each assemblage and FRic values for each assemblage</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span></code></pre></div>
-<pre><code>## $inputs
-## $inputs$sp_faxes_coord
-##                         PC1           PC2          PC3          PC4
-## apple          0.0055715265  0.0350421604 -0.097471237  0.022402932
-## apricot        0.0051324906  0.1993950375 -0.095659935  0.041498534
-## banana         0.4180172546 -0.1414728845  0.008086992  0.006165812
-## currant       -0.3278449659  0.0536374098  0.049052945 -0.076408888
-## blackberry    -0.3034346496  0.0526909897  0.049135314 -0.142658171
-## blueberry     -0.2815708070 -0.0866665191  0.051316336  0.112502412
-## cherry        -0.0180809780  0.2978695529 -0.029313202  0.111166444
-## grape         -0.2228504050  0.0885963887  0.225751135  0.190718259
-## grapefruit     0.1450603259 -0.0673074635 -0.119455606 -0.084037260
-## kiwifruit     -0.1550698937 -0.0814958746  0.005740138  0.086787104
-## lemon          0.1067949113  0.0007714157 -0.088895714 -0.207026513
-## lime           0.2079695595  0.0199956576  0.099157708 -0.266782185
-## litchi         0.2917434196  0.2537533311  0.202206065  0.041136776
-## mango          0.4393412201  0.0559467870 -0.054626734  0.119804224
-## melon         -0.1493941692 -0.2420723462 -0.151024241  0.070247222
-## orange         0.1236282949 -0.0086604744 -0.050235439 -0.046156784
-## passion_fruit  0.1101264243 -0.1062790540  0.342728218  0.031929461
-## peach          0.0351203321  0.1465415655 -0.199699124  0.049647666
-## pear          -0.0005886084  0.0297927029 -0.105703762  0.010290065
-## pineapple      0.1991811945 -0.4756825960  0.075904777  0.042696533
-## plum           0.0126064681  0.1989177835 -0.084010036  0.058965350
-## raspberry     -0.3070933066  0.0543878274  0.049178225 -0.156730076
-## strawberry    -0.2917242495 -0.0898440618  0.025237344 -0.047647147
-## tangerine      0.1039035285  0.0526165085  0.041894666 -0.048619225
-## water_melon   -0.1465449176 -0.2404738440 -0.149294834  0.080107453
-## 
-## $inputs$asb_sp_occ
-##           apple apricot banana currant blackberry blueberry cherry grape
-## basket_1      1       0      1       0          0         0      1     0
-## basket_2      1       0      1       0          0         0      1     0
-## basket_3      1       0      1       0          0         0      1     0
-## basket_4      1       0      0       0          0         0      0     0
-## basket_5      1       0      0       0          0         0      0     0
-## basket_6      1       0      1       0          0         0      0     0
-## basket_7      1       0      1       0          0         0      0     0
-## basket_8      0       0      0       1          1         1      1     1
-## basket_9      0       0      0       1          1         1      1     1
-## basket_10     1       1      0       0          0         0      0     1
-##           grapefruit kiwifruit lemon lime litchi mango melon orange
-## basket_1           0         0     1    0      0     0     1      0
-## basket_2           0         0     1    0      0     0     1      0
-## basket_3           0         0     1    0      0     0     1      0
-## basket_4           0         1     1    0      0     0     0      1
-## basket_5           0         1     1    0      0     0     0      1
-## basket_6           0         0     0    1      1     1     0      1
-## basket_7           0         0     0    1      1     1     0      1
-## basket_8           0         0     1    0      0     0     0      0
-## basket_9           0         0     1    0      0     0     0      0
-## basket_10          1         0     0    0      0     0     1      0
-##           passion_fruit peach pear pineapple plum raspberry strawberry
-## basket_1              1     0    1         0    0         0          1
-## basket_2              1     0    1         0    0         0          1
-## basket_3              1     0    1         0    0         0          1
-## basket_4              0     1    1         0    1         0          0
-## basket_5              0     1    1         0    1         0          0
-## basket_6              0     0    0         1    0         0          0
-## basket_7              0     0    0         1    0         0          0
-## basket_8              0     0    0         0    0         1          1
-## basket_9              0     0    0         0    0         1          1
-## basket_10             0     0    1         0    1         0          1
-##           tangerine water_melon
-## basket_1          0           0
-## basket_2          0           0
-## basket_3          0           0
-## basket_4          1           0
-## basket_5          1           0
-## basket_6          0           1
-## basket_7          0           1
-## basket_8          0           0
-## basket_9          0           0
-## basket_10         0           0
-## 
-## 
-## $pool_vertices
-##  [1] "grape"         "lemon"         "water_melon"   "banana"       
-##  [5] "raspberry"     "cherry"        "blueberry"     "grapefruit"   
-##  [9] "melon"         "strawberry"    "peach"         "apricot"      
-## [13] "passion_fruit" "litchi"        "lime"          "pineapple"    
-## [17] "mango"         "currant"      
-## 
-## $asb_FRic
-##    basket_1    basket_2    basket_3    basket_4    basket_5    basket_6 
-## 0.162830681 0.162830681 0.162830681 0.007880372 0.007880372 0.147936148 
-##    basket_7    basket_8    basket_9   basket_10 
-## 0.147936148 0.036480112 0.036480112 0.025774304 
-## 
-## $asb_vertices
-## $asb_vertices$basket_1
-## [1] "lemon"         "melon"         "pear"          "apple"        
-## [5] "passion_fruit" "cherry"        "strawberry"    "banana"       
-## 
-## $asb_vertices$basket_2
-## [1] "lemon"         "melon"         "pear"          "apple"        
-## [5] "passion_fruit" "cherry"        "strawberry"    "banana"       
-## 
-## $asb_vertices$basket_3
-## [1] "lemon"         "melon"         "pear"          "apple"        
-## [5] "passion_fruit" "cherry"        "strawberry"    "banana"       
-## 
-## $asb_vertices$basket_4
-## [1] "peach"     "lemon"     "tangerine" "pear"      "plum"      "orange"   
-## [7] "kiwifruit"
-## 
-## $asb_vertices$basket_5
-## [1] "peach"     "lemon"     "tangerine" "pear"      "plum"      "orange"   
-## [7] "kiwifruit"
-## 
-## $asb_vertices$basket_6
-## [1] "litchi"      "lime"        "apple"       "banana"      "orange"     
-## [6] "pineapple"   "mango"       "water_melon"
-## 
-## $asb_vertices$basket_7
-## [1] "litchi"      "lime"        "apple"       "banana"      "orange"     
-## [6] "pineapple"   "mango"       "water_melon"
-## 
-## $asb_vertices$basket_8
-## [1] "strawberry" "blueberry"  "raspberry"  "cherry"     "grape"     
-## [6] "lemon"      "currant"   
-## 
-## $asb_vertices$basket_9
-## [1] "strawberry" "blueberry"  "raspberry"  "cherry"     "grape"     
-## [6] "lemon"      "currant"   
-## 
-## $asb_vertices$basket_10
-## [1] "grape"      "melon"      "plum"       "apricot"    "grapefruit"
-## [6] "strawberry"</code></pre>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># beta_fd_indices_fruits$"details"</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a vector containing the <code>FRic</code> value for each assemblage retrieved through the <code>details_beta</code> list:</li>
 </ul>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span><span class="op">$</span><span class="st">"asb_FRic"</span></code></pre></div>
-<pre><code>##    basket_1    basket_2    basket_3    basket_4    basket_5    basket_6 
-## 0.162830681 0.162830681 0.162830681 0.007880372 0.007880372 0.147936148 
-##    basket_7    basket_8    basket_9   basket_10 
-## 0.147936148 0.036480112 0.036480112 0.025774304</code></pre>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># beta_fd_indices_fruits$"details"$"asb_FRic"</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a list of vectors containing names of species being vertices of the convex hull for each assemblage retrieved through the <code>details_beta</code> list:</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span><span class="op">$</span><span class="st">"asb_vertices"</span></code></pre></div>
-<pre><code>## $basket_1
-## [1] "lemon"         "melon"         "pear"          "apple"        
-## [5] "passion_fruit" "cherry"        "strawberry"    "banana"       
-## 
-## $basket_2
-## [1] "lemon"         "melon"         "pear"          "apple"        
-## [5] "passion_fruit" "cherry"        "strawberry"    "banana"       
-## 
-## $basket_3
-## [1] "lemon"         "melon"         "pear"          "apple"        
-## [5] "passion_fruit" "cherry"        "strawberry"    "banana"       
-## 
-## $basket_4
-## [1] "peach"     "lemon"     "tangerine" "pear"      "plum"      "orange"   
-## [7] "kiwifruit"
-## 
-## $basket_5
-## [1] "peach"     "lemon"     "tangerine" "pear"      "plum"      "orange"   
-## [7] "kiwifruit"
-## 
-## $basket_6
-## [1] "litchi"      "lime"        "apple"       "banana"      "orange"     
-## [6] "pineapple"   "mango"       "water_melon"
-## 
-## $basket_7
-## [1] "litchi"      "lime"        "apple"       "banana"      "orange"     
-## [6] "pineapple"   "mango"       "water_melon"
-## 
-## $basket_8
-## [1] "strawberry" "blueberry"  "raspberry"  "cherry"     "grape"     
-## [6] "lemon"      "currant"   
-## 
-## $basket_9
-## [1] "strawberry" "blueberry"  "raspberry"  "cherry"     "grape"     
-## [6] "lemon"      "currant"   
-## 
-## $basket_10
-## [1] "grape"      "melon"      "plum"       "apricot"    "grapefruit"
-## [6] "strawberry"</code></pre>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># beta_fd_indices_fruits$"details"$"asb_vertices"</span></code></pre></div>
 <p><br></p>
 <p>Then, the package allows the user to illustrate functional beta-diversity indices for a pair of assemblages in a multidimensional space using the <code><a href="../reference/beta.multidim.plot.html">mFD::beta.multidim.plot()</a></code> function. The output of this function is a figure showing the overlap between convex hulls shaping each of the two species assemblages.</p>
 <p><br></p>
 <p>The plotting function has a large number of arguments, allowing the user to chose graphical options. Arguments are listed below:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">beta_plot_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.multidim.plot.html">beta.multidim.plot</a></span><span class="op">(</span>
-  output_beta_fd_multidim <span class="op">=</span> <span class="va">beta_fd_indices_fruits</span>,
-  plot_asb_nm             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_4"</span><span class="op">)</span>,
-  beta_family             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jaccard"</span><span class="op">)</span>,
-  plot_sp_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"lemon"</span>, <span class="st">"pear"</span><span class="op">)</span>,
-  faxes                   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,
-  name_file               <span class="op">=</span> <span class="cn">NULL</span>,
-  faxes_nm                <span class="op">=</span> <span class="cn">NULL</span>,
-  range_faxes             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
-  color_bg                <span class="op">=</span> <span class="st">"grey95"</span>,
-  shape_sp                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pool"</span> <span class="op">=</span> <span class="fl">3.0</span>, asb1 <span class="op">=</span> <span class="fl">22</span>, asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,
-  size_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pool"</span> <span class="op">=</span> <span class="fl">0.8</span>, asb1 <span class="op">=</span>  <span class="fl">1</span>, asb2 <span class="op">=</span>  <span class="fl">1</span><span class="op">)</span>,
-  color_sp                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pool"</span> <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  fill_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pool"</span> <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"white"</span>, asb2 <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,
-  fill_vert               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pool"</span> <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  color_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pool"</span> <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  fill_ch                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pool"</span> <span class="op">=</span> <span class="st">"white"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  alpha_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pool"</span> <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,
-  nm_size                 <span class="op">=</span> <span class="fl">3</span>,
-  nm_color                <span class="op">=</span> <span class="st">"black"</span>,
-  nm_fontface             <span class="op">=</span> <span class="st">"plain"</span>,
-  check_input             <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># beta_plot_fruits &lt;- mFD::beta.multidim.plot(</span>
+<span class="co">#   output_beta_fd_multidim = beta_fd_indices_fruits,</span>
+<span class="co">#   plot_asb_nm             = c("basket_1", "basket_4"),</span>
+<span class="co">#   beta_family             = c("Jaccard"),</span>
+<span class="co">#   plot_sp_nm              = c("apple", "lemon", "pear"),</span>
+<span class="co">#   faxes                   = paste0("PC", 1:4),</span>
+<span class="co">#   name_file               = NULL,</span>
+<span class="co">#   faxes_nm                = NULL,</span>
+<span class="co">#   range_faxes             = c(NA, NA),</span>
+<span class="co">#   color_bg                = "grey95",</span>
+<span class="co">#   shape_sp                = c("pool" = 3.0, asb1 = 22, asb2 = 21),</span>
+<span class="co">#   size_sp                 = c("pool" = 0.8, asb1 =  1, asb2 =  1),</span>
+<span class="co">#   color_sp                = c("pool" = "grey50", asb1 = "blue", asb2 = "red"),</span>
+<span class="co">#   fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),</span>
+<span class="co">#   fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),</span>
+<span class="co">#   color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),</span>
+<span class="co">#   fill_ch                 = c("pool" = "white", asb1 = "blue", asb2 = "red"),</span>
+<span class="co">#   alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),</span>
+<span class="co">#   nm_size                 = 3,</span>
+<span class="co">#   nm_color                = "black",</span>
+<span class="co">#   nm_fontface             = "plain",</span>
+<span class="co">#   check_input             = TRUE)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li><p><code>output_beta_fd_multidim</code> is the output of the <code><a href="../reference/beta.fd.multidim.html">mFD::beta.fd.multidim()</a></code> function retrieved before as <code>beta_fd_indices</code>.</p></li>
@@ -1491,9 +1254,9 @@ Basic framework of the mFD package
 <p><br></p>
 <p>Then, the function returns each graph for each functional axes combination and also a multipanel plot with all combinations of axes and the graph caption. Here is the multipanel for the fruits exaample:</p>
 <p><br></p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">beta_plot_fruits</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
-<p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-45-1.png" width="1536" style="display: block; margin: auto;"><br></p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># beta_plot_fruits$patchwork</span></code></pre></div>
+<p><br></p>
 <p>For each assemblage, the associated convex hull is plotted in a different colour and indices values are printed on the right corner of the plot. Vertices of the convex hull of a given assemblage can be plotted with a different symbol such as in this example. Species of all assemblages are plotted with gray cross and the associated convex hull is plotted in white.</p>
 <p><br></p>
 </div>
