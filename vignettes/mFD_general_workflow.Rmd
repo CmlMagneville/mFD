@@ -1173,12 +1173,12 @@ The `mFD::beta.fd.multidim()` function has the main following arguments:
 **USAGE**
 
 ```{r, results = "hide", message=FALSE}
-beta_fd_indices_fruits <- mFD::beta.fd.multidim(
-      sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
-      asb_sp_occ       = asb_sp_fruits_occ,
-      check_input      = TRUE,
-      beta_family      = c("Jaccard"),
-      details_returned = TRUE)
+# beta_fd_indices_fruits <- mFD::beta.fd.multidim(
+#       sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+#       asb_sp_occ       = asb_sp_fruits_occ,
+#       check_input      = TRUE,
+#       beta_family      = c("Jaccard"),
+#       details_returned = TRUE)
 ```
 
  <br />
@@ -1211,7 +1211,7 @@ The function returns a list containing:
 * a dist object with beta indices values for each pair of assemblages:
 
 ```{r}
-head(beta_fd_indices_fruits$"pairasb_fbd_indices", 10)
+# head(beta_fd_indices_fruits$"pairasb_fbd_indices", 10)
 ```
 
 <br />
@@ -1222,7 +1222,7 @@ each assemblage and FRic values for each assemblage
  <br />
 
 ```{r}
-beta_fd_indices_fruits$"details"
+# beta_fd_indices_fruits$"details"
 ```
 
 <br />
@@ -1231,7 +1231,7 @@ beta_fd_indices_fruits$"details"
 the `details_beta` list:
 
 ```{r}
-beta_fd_indices_fruits$"details"$"asb_FRic"
+# beta_fd_indices_fruits$"details"$"asb_FRic"
 ```
 
 <br />
@@ -1240,7 +1240,7 @@ beta_fd_indices_fruits$"details"$"asb_FRic"
 hull for each assemblage retrieved through the `details_beta` list:
 
 ```{r}
-beta_fd_indices_fruits$"details"$"asb_vertices"
+# beta_fd_indices_fruits$"details"$"asb_vertices"
 ```
 
 <br />
