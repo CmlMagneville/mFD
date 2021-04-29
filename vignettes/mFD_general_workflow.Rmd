@@ -1144,6 +1144,10 @@ plots_alpha$fnnd$patchwork
 
 <br />
 
+**NOTE:** Some Mac OS X 10.15 may encounter some issues with the beta_*() 
+functions.
+
+<br />
 
 `mFD` package allows you to compute beta diversity indices for each assemblage
 pairs following [Villéger _et al._
@@ -1172,13 +1176,13 @@ The `mFD::beta.fd.multidim()` function has the main following arguments:
 
 **USAGE**
 
-```{r, results = "hide", message=FALSE}
-# beta_fd_indices_fruits <- mFD::beta.fd.multidim(
-#       sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
-#       asb_sp_occ       = asb_sp_fruits_occ,
-#       check_input      = TRUE,
-#       beta_family      = c("Jaccard"),
-#       details_returned = TRUE)
+```{r, results = "hide", message=FALSE, eval = FALSE}
+beta_fd_indices_fruits <- mFD::beta.fd.multidim(
+      sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+      asb_sp_occ       = asb_sp_fruits_occ,
+      check_input      = TRUE,
+      beta_family      = c("Jaccard"),
+      details_returned = TRUE)
 ```
 
  <br />
@@ -1210,8 +1214,8 @@ The function returns a list containing:
 
 * a dist object with beta indices values for each pair of assemblages:
 
-```{r}
-# head(beta_fd_indices_fruits$"pairasb_fbd_indices", 10)
+```{r, eval = FALSE}
+head(beta_fd_indices_fruits$"pairasb_fbd_indices", 10)
 ```
 
 <br />
@@ -1221,8 +1225,8 @@ each assemblage and FRic values for each assemblage
 
  <br />
 
-```{r}
-# beta_fd_indices_fruits$"details"
+```{r, eval = FALSE}
+beta_fd_indices_fruits$"details"
 ```
 
 <br />
@@ -1230,8 +1234,8 @@ each assemblage and FRic values for each assemblage
 * a vector containing the `FRic` value for each assemblage retrieved through
 the `details_beta` list:
 
-```{r}
-# beta_fd_indices_fruits$"details"$"asb_FRic"
+```{r, eval = FALSE}
+beta_fd_indices_fruits$"details"$"asb_FRic"
 ```
 
 <br />
@@ -1239,8 +1243,8 @@ the `details_beta` list:
 * a list of vectors containing names of species being vertices of the convex
 hull for each assemblage retrieved through the `details_beta` list:
 
-```{r}
-# beta_fd_indices_fruits$"details"$"asb_vertices"
+```{r, eval = FALSE}
+beta_fd_indices_fruits$"details"$"asb_vertices"
 ```
 
 <br />
@@ -1261,29 +1265,29 @@ chose graphical options. Arguments are listed below:
 
 **USAGE**
 
-```{r, results = "hide"}
-# beta_plot_fruits <- mFD::beta.multidim.plot(
-#   output_beta_fd_multidim = beta_fd_indices_fruits,
-#   plot_asb_nm             = c("basket_1", "basket_4"),
-#   beta_family             = c("Jaccard"),
-#   plot_sp_nm              = c("apple", "lemon", "pear"),
-#   faxes                   = paste0("PC", 1:4),
-#   name_file               = NULL,
-#   faxes_nm                = NULL,
-#   range_faxes             = c(NA, NA),
-#   color_bg                = "grey95",
-#   shape_sp                = c("pool" = 3.0, asb1 = 22, asb2 = 21),
-#   size_sp                 = c("pool" = 0.8, asb1 =  1, asb2 =  1),
-#   color_sp                = c("pool" = "grey50", asb1 = "blue", asb2 = "red"),
-#   fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
-#   fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#   color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
-#   fill_ch                 = c("pool" = "white", asb1 = "blue", asb2 = "red"),
-#   alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
-#   nm_size                 = 3,
-#   nm_color                = "black",
-#   nm_fontface             = "plain",
-#   check_input             = TRUE)
+```{r, results = "hide", eval = FALSE}
+beta_plot_fruits <- mFD::beta.multidim.plot(
+  output_beta_fd_multidim = beta_fd_indices_fruits,
+  plot_asb_nm             = c("basket_1", "basket_4"),
+  beta_family             = c("Jaccard"),
+  plot_sp_nm              = c("apple", "lemon", "pear"),
+  faxes                   = paste0("PC", 1:4),
+  name_file               = NULL,
+  faxes_nm                = NULL,
+  range_faxes             = c(NA, NA),
+  color_bg                = "grey95",
+  shape_sp                = c("pool" = 3.0, asb1 = 22, asb2 = 21),
+  size_sp                 = c("pool" = 0.8, asb1 =  1, asb2 =  1),
+  color_sp                = c("pool" = "grey50", asb1 = "blue", asb2 = "red"),
+  fill_sp                 = c("pool" = NA, asb1 = "white", asb2 = "white"),
+  fill_vert               = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+  color_ch                = c("pool" = NA, asb1 = "blue", asb2 = "red"),
+  fill_ch                 = c("pool" = "white", asb1 = "blue", asb2 = "red"),
+  alpha_ch                = c("pool" = 1, asb1 = 0.3, asb2 = 0.3),
+  nm_size                 = 3,
+  nm_color                = "black",
+  nm_fontface             = "plain",
+  check_input             = TRUE)
 ```
 
 <br />
@@ -1338,8 +1342,8 @@ Here is the multipanel for the fruits exaample:
 
 <br />
 
-```{r, fig.height = 16, fig.width = 16, fig.align = "center", warning = FALSE}
-# beta_plot_fruits$patchwork
+```{r, fig.height = 16, fig.width = 16, fig.align = "center", warning = FALSE, eval = FALSE}
+beta_plot_fruits$patchwork
 ```
 <br />
  
