@@ -107,18 +107,18 @@
 <h1 class="hasAnchor">
 <a href="#about-this-tutorial" class="anchor"></a>About this tutorial</h1>
 <p><br></p>
-<p>This tutorial explains the workflow to use to compute functional space based on continuous traits and it shows how to retrieve species coordinates and species functional distances in the functional space.</p>
+<p>This tutorial explains the workflow used to compute functional space based on continuous traits and it shows how to retrieve species coordinates and species functional distances in the functional space.</p>
 <p><br></p>
-<p>🧩 This tutorial uses a dataset from one of the 80 CESTES database (Jeliazkov &amp; the CESTES consortium (2019)) based on <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679">Villéger <em>et al.</em> 2012</a>. This dataframe contains 45 fish species from the Terminos Lagoon (Gulf of Mexico) gathered into 36 sites considered as assemblages. Each species is described with 16 continuous morphological traits.</p>
+<p>🧩 This tutorial uses a dataset from one of the 80 CESTES database (Jeliazkov &amp; the CESTES consortium (2019)) based on <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679">Villéger <em>et al.</em> 2012</a>. This data frame contains 45 fish species from the Terminos Lagoon (Gulf of Mexico) gathered into 36 sites considered as assemblages. Each species is described with 16 continuous morphological traits.</p>
 <p><br></p>
 <p>When the dataset <strong>only</strong> gathers continuous traits, the functional space can be computed using one trait for one dimension or using Principal Component Analysis (PCA: convert correlations among samples into a 2D plot). 💡 Using a PCoA on continuous traits and euclidean distance is the same than using a PCA (clusters made by minimizing the linear distance (PCoA) are the same as those obtained by maximizing linear correlations (PCA)).</p>
 <p><br></p>
 </div>
 <div id="load-dataset" class="section level1">
 <h1 class="hasAnchor">
-<a href="#load-dataset" class="anchor"></a>1 - Load dataset:</h1>
+<a href="#load-dataset" class="anchor"></a>1. Load dataset</h1>
 <p><br></p>
-<p>The species traits dataframe has rows corresponding to species and columns corresponding to traits. The different traits are summed up in the following table:</p>
+<p>The species traits data frame has rows corresponding to species and columns corresponding to traits. The different traits are summed up in the following table:</p>
 <p><br></p>
 <table class="table">
 <thead><tr class="header">
@@ -194,23 +194,24 @@
 </table>
 <p><br></p>
 <p>To work with <code>mFD</code> with only continuous traits, you must load two objects:</p>
+<p><br></p>
 <ul>
 <li>
-<code>sp_tr</code> : species-trait dataframe:</li>
+<code>sp_tr</code>: species x traits data frame</li>
 </ul>
-<p><br></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load dataset:</span>
 <span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"data_cestes_sp_tr.csv"</span>, 
                               package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>, dec <span class="op">=</span> <span class="st">","</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">Sp</span>
-<span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="va">sp_tr</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">sp_tr</span><span class="op">$</span><span class="st">"Sp"</span>
+<span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="va">sp_tr</span><span class="op">[</span> , <span class="op">-</span><span class="fl">1</span><span class="op">]</span>
 
 <span class="co"># display the table:</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span>, 
-             caption <span class="op">=</span> <span class="st">"Species x traits dataframe based on *CESTES* dataset"</span><span class="op">)</span></code></pre></div>
+             caption <span class="op">=</span> <span class="st">"Species x Traits data frame based on *CESTES* dataset"</span><span class="op">)</span></code></pre></div>
 <table class="table">
-<caption>Species x traits dataframe based on <em>CESTES</em> dataset</caption>
+<caption>Species x Traits data frame based on <em>CESTES</em> dataset</caption>
 <colgroup>
 <col width="22%">
 <col width="4%">
@@ -369,16 +370,16 @@
 <p><br></p>
 <ul>
 <li>
-<code>asb_sp_w</code> : species-assemblage dataframe summarizing biomass recorded in a volume of 4500m^3 per site and per species:</li>
+<code>asb_sp_w</code>: species x assemblages data frame summarizing biomass recorded in a volume of 4500m<sup>3</sup> per site and per species:</li>
 </ul>
-<p><br></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
-<span class="co"># load dataset:</span>
+<code class="sourceCode R"><span class="co"># load dataset:</span>
 <span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"data_cestes_asb_sp_w.csv"</span>, 
                                  package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>, dec <span class="op">=</span> <span class="st">","</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span>
+
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"site"</span>, sep <span class="op">=</span> <span class="st">"_"</span>, <span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Sites</span><span class="op">)</span>
-<span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="va">asb_sp_w</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>
+<span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="va">asb_sp_w</span><span class="op">[</span> , <span class="op">-</span><span class="fl">1</span><span class="op">]</span>
+
 <span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Urobatis_jamaicensis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Urobatis_jamaicensis</span><span class="op">)</span>
 
 <span class="co"># remove sites 12, 23, 35 because FRic can not be computed on it...</span>
@@ -386,11 +387,10 @@
 <span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="va">asb_sp_w</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">22</span>, <span class="fl">33</span><span class="op">)</span>, <span class="op">]</span>
 
 <span class="co"># display the table:</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">]</span>, 
-  caption <span class="op">=</span> <span class="st">"Species x assemblages dataframe based on *CESTES* dataset for 
-  the first six species and first seven sites"</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, 
+             caption <span class="op">=</span> <span class="st">"Species x Assemblages data frame based on *CESTES* dataset for the first six species and first seven sites"</span><span class="op">)</span></code></pre></div>
 <table class="table">
-<caption>Species x assemblages dataframe based on <em>CESTES</em> dataset for the first six species and first seven sites</caption>
+<caption>Species x Assemblages data frame based on <em>CESTES</em> dataset for the first six species and first seven sites</caption>
 <colgroup>
 <col width="5%">
 <col width="13%">
@@ -479,45 +479,46 @@
 </div>
 <div id="compute-the-functional-space" class="section level1">
 <h1 class="hasAnchor">
-<a href="#compute-the-functional-space" class="anchor"></a>2 - Compute the functional space</h1>
+<a href="#compute-the-functional-space" class="anchor"></a>2. Compute the functional space</h1>
 <p><br></p>
-<p>Based on the species-trait dataframe or the species-standardized traits dataframe, <code>mFD</code> allows to build a functional space based on a PCA or using each trait as a dimension. The function used to computed functional space with continuous traits is called <code><a href="../reference/tr.cont.fspace.html">mFD::tr.cont.fspace()</a></code> and is used as follows:</p>
+<p>Based on the species-trait data frame or the species-standardized traits data frame, <code>mFD</code> allows to build a functional space based on a PCA or using each trait as a dimension. The function used to computed functional space with continuous traits is called <code><a href="../reference/tr.cont.fspace.html">mFD::tr.cont.fspace()</a></code> and is used as follows:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/tr.cont.fspace.html">tr.cont.fspace</a></span><span class="op">(</span>
-                  sp_tr        <span class="op">=</span> <span class="va">sp_tr</span>, 
-                  pca          <span class="op">=</span> <span class="cn">TRUE</span>, 
-                  nb_dim       <span class="op">=</span> <span class="fl">7</span>, 
-                  scaling      <span class="op">=</span> <span class="st">"scale_center"</span>,
-                  compute_corr <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></code></pre></div>
+  sp_tr        <span class="op">=</span> <span class="va">sp_tr</span>, 
+  pca          <span class="op">=</span> <span class="cn">TRUE</span>, 
+  nb_dim       <span class="op">=</span> <span class="fl">7</span>, 
+  scaling      <span class="op">=</span> <span class="st">"scale_center"</span>,
+  compute_corr <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <p>It takes as inputs:</p>
 <ul>
-<li>the <em>sp_tr</em> dataframe</li>
-<li>a <em>pca</em> argument that must be set to TRUE if you want to compute a PCA or to FALSE if you want to use each trait as a dimension to construct the multidimensional space</li>
-<li>a <em>nb_dim</em> argument referring to the maximum number of dimensions for multidimensional functional spaces. Final number of dimensions depends on the number of positive eigenvalues obtained with PCA if <em>pca = TRUE</em> or the number of traits used if <em>pca = FALSE</em>. 💡 High value for <em>nb_dim</em> can increase computation time.</li>
-<li>a <em>scaling</em> argument allowing traits values to be standardized. They can be standardized in several ways: standardization by the range value of the trait, center-transformation, scale transformation or scale-center transformation can be used. You can also chose not to standardize traits values. 👉 Scaling ensures that trait-based distances and distances in the functional space have the same maximum. Scaling distances implies that the quality of the functional space accounts for congruence in distances rather than their equality</li>
-<li>a <em>compute_corr</em> argument which refers to a string value to compute Pearson correlation coefficients between traits using <em>“pearson”</em> or not using <em>"none</em>.</li>
+<li><p>the <em>sp_tr</em> data frame</p></li>
+<li><p>a <em>pca</em> argument that must be set to TRUE if you want to compute a PCA or to FALSE if you want to use each trait as a dimension to construct the multidimensional space</p></li>
+<li><p>a <em>nb_dim</em> argument referring to the maximum number of dimensions for multidimensional functional spaces. Final number of dimensions depends on the number of positive eigenvalues obtained with PCA if <em>pca = TRUE</em> or the number of traits used if <em>pca = FALSE</em>. 💡 High value for <em>nb_dim</em> can increase computation time.</p></li>
+<li><p>a <em>scaling</em> argument allowing traits values to be standardized. They can be standardized in several ways: standardization by the range value of the trait, center-transformation, scale transformation or scale-center transformation can be used. You can also chose not to standardize traits values. 👉 Scaling ensures that trait-based distances and distances in the functional space have the same maximum. Scaling distances implies that the quality of the functional space accounts for congruence in distances rather than their equality</p></li>
+<li><p>a <em>compute_corr</em> argument which refers to a string value to compute Pearson correlation coefficients between traits using <em>“pearson”</em> or not using <em>“none”</em>.</p></li>
 </ul>
 <p><br></p>
 <p>In this example, we will compute a PCA based on a maximum number of 7 dimensions and get Pearson’s correlation coefficients:</p>
 <p><br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fspace</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/tr.cont.fspace.html">tr.cont.fspace</a></span><span class="op">(</span>
-                      sp_tr       <span class="op">=</span> <span class="va">sp_tr</span>, 
-                      pca         <span class="op">=</span> <span class="cn">TRUE</span>, 
-                      nb_dim      <span class="op">=</span> <span class="fl">10</span>, 
-                      scaling     <span class="op">=</span> <span class="st">"scale_center"</span>,
-                     compute_corr <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></code></pre></div>
+  sp_tr        <span class="op">=</span> <span class="va">sp_tr</span>, 
+  pca          <span class="op">=</span> <span class="cn">TRUE</span>, 
+  nb_dim       <span class="op">=</span> <span class="fl">10</span>, 
+  scaling      <span class="op">=</span> <span class="st">"scale_center"</span>,
+  compute_corr <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <p>If the PCA is computed, the output contains:</p>
 <ul>
-<li>quality metrics for spaces from 2 dimensions to <em>nb_dim</em> dimensions: 💡 <strong>mean absolute deviation (mad)</strong> reflects the actual magnitude of errors that affect distances, hence FD metrics ; <strong>mean squared deviation (msd)</strong> reflects the potential risk associated with a few species pairs being strongly misplaced in the functional space (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299">Maire <em>et al.</em> (2015)</a>).</li>
+<li>quality metrics for spaces from 2 dimensions to <em>nb_dim</em> dimensions:</li>
 </ul>
+<p>💡 <strong>mean absolute deviation (mad)</strong> reflects the actual magnitude of errors that affect distances, hence FD metrics ; <strong>mean squared deviation (msd)</strong> reflects the potential risk associated with a few species pairs being strongly misplaced in the functional space (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299">Maire <em>et al.</em> (2015)</a>).</p>
 <p><br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="va">`quality_metrics`</span></code></pre></div>
+<code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="st">"quality_metrics"</span></code></pre></div>
 <pre><code>##             mAD          mSD
 ## 2D  0.999172097 9.983449e-01
 ## 3D  0.707790003 5.009667e-01
@@ -536,7 +537,7 @@
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_faxes_coord</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="st">"sp_faxes_coord"</span><span class="op">)</span></code></pre></div>
 <pre><code>##                                  Dim.1      Dim.2     Dim.3       Dim.4
 ## Achirus_lineatus            -3.5468021 -2.2967608 -1.251164 -0.94434329
 ## Anchoa_mitchilli             1.5768146 -0.5190331 -1.916811  0.17507940
@@ -564,8 +565,8 @@
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist</span><span class="op">$</span><span class="va">`6D`</span><span class="op">)</span>
-<span class="va">dist_mat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist</span><span class="op">$</span><span class="st">"6D"</span><span class="op">)</span>
+<span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
 <pre><code>##                             Achirus_lineatus Anchoa_mitchilli
 ## Achirus_lineatus                    0.000000         5.682135
 ## Anchoa_mitchilli                    5.682135         0.000000
@@ -590,7 +591,7 @@
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="va">tr_correl</span></code></pre></div>
+<code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="st">"tr_correl"</span></code></pre></div>
 <pre><code>##       logM  OgSf  OgSh  OgPo  EySz  GrLg  GtLg  EyPo  BdSh  BdSf  PfPo  PfSh
 ## logM  1.00 -0.05 -0.62 -0.41  0.07 -0.27  0.22  0.48 -0.48 -0.69 -0.35 -0.27
 ## OgSf -0.05  1.00  0.19  0.04  0.14  0.28 -0.22  0.03 -0.18 -0.05  0.17 -0.07
@@ -671,16 +672,19 @@
 </div>
 <div id="plot-functional-space-compute-and-illustrate-indices" class="section level1">
 <h1 class="hasAnchor">
-<a href="#plot-functional-space-compute-and-illustrate-indices" class="anchor"></a>4 - Plot functional space, compute and illustrate indices</h1>
+<a href="#plot-functional-space-compute-and-illustrate-indices" class="anchor"></a>3. Plot functional space, compute and illustrate indices</h1>
 <p><br></p>
-<p>Then, based on the species coordinates matrix, steps are similar as those listed in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD: General Workflow</a> , from step 5 till the end.</p>
+<p>Then, based on the species coordinates matrix, steps are similar as those listed in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>, from step 5 till the end.</p>
 <p><br></p>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References:</h1>
+<a href="#references" class="anchor"></a>References</h1>
 <p><br></p>
-<p>Maire <em>et al.</em> (2015) How many dimensions are needed to accurately assess functional diversity? A pragmatic approach for assessing the quality of functional spaces <em>Global Ecology and Biogeography</em>, <strong>24</strong>, 728-740. Villéger <em>et al.</em> (2012) Low Functional β-Diversity Despite High Taxonomic β-Diversity among Tropical Estuarine Fish Communities <em>PLoS ONE</em>, <strong>7</strong>.</p>
+<ul>
+<li><p>Maire <em>et al.</em> (2015) How many dimensions are needed to accurately assess functional diversity? A pragmatic approach for assessing the quality of functional spaces. <em>Global Ecology and Biogeography</em>, <strong>24</strong>, 728-740.</p></li>
+<li><p>Villéger <em>et al.</em> (2012) Low Functional β-Diversity Despite High Taxonomic β-Diversity among Tropical Estuarine Fish Communities. <em>PLoS ONE</em>, <strong>7</strong>, e40679.</p></li>
+</ul>
 </div>
   </div>
 

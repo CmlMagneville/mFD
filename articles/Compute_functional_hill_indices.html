@@ -110,7 +110,7 @@
 <h2 class="hasAnchor">
 <a href="#what-is-this-tutorial-about" class="anchor"></a>What is this tutorial about?</h2>
 <p><br></p>
-<p>This tutorial explains how to compute the family of indices presented in [Chao <em>et al.</em> (2019)] (<a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="uri">https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343</a>) using <code>mFD</code>.</p>
+<p>This tutorial explains how to compute the family of indices presented in <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343">Chao <em>et al.</em> (2019)</a> using <code>mFD</code>.</p>
 <p><br></p>
 </div>
 <div id="lets-load-data-and-compute-functional-distance" class="section level2">
@@ -179,13 +179,14 @@
 </tbody>
 </table>
 <p><br></p>
-<p>We load the three objects used to compute functional framework (for more explanations, see: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD: General Workflow</a>):</p>
+<p>We load the three objects used to compute functional framework (for more explanations, see <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>):</p>
 <p><br></p>
 <ul>
 <li>a <strong>data frame</strong> summarizing traits values for each species called <code>fruits_traits</code> in this tutorial:</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
+
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">)</span>,
       caption <span class="op">=</span> <span class="st">"Species x traits data frame based on the **fruits** dataset"</span><span class="op">)</span></code></pre></div>
 <table class="table">
@@ -276,9 +277,9 @@
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, 
-      centering <span class="op">=</span> <span class="cn">TRUE</span>,
-      caption <span class="op">=</span> <span class="st">"Species x assemblages matrix based on the **fruits** dataset"</span><span class="op">)</span></code></pre></div>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>, 
+             caption <span class="op">=</span> <span class="st">"Species x assemblages matrix based on the **fruits** dataset"</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Species x assemblages matrix based on the <strong>fruits</strong> dataset</caption>
 <thead><tr class="header">
@@ -349,7 +350,7 @@
 </table>
 <p><br></p>
 <ul>
-<li>a <strong>data frame</strong> summarizing traits types called <code>fruits_traits_cat</code> in this tutorial (for details, see: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD: General Workflow</a>):</li>
+<li>a <strong>data frame</strong> summarizing traits types called <code>fruits_traits_cat</code> in this tutorial (for details, see <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>):</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
@@ -411,42 +412,42 @@
 <h1 class="hasAnchor">
 <a href="#generalisation-of-hill-numbers-for-alpha-functional-diversity" class="anchor"></a>Generalisation of Hill numbers for alpha functional diversity</h1>
 <p><br></p>
-<p>The family of indices presented in [Chao <em>et al.</em> (2019)] (<a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="uri">https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343</a>) allows computing FD based on pairwise distance between species and their weights in assemblages. This generalization of Hill numbers framework is based on two parameters:</p>
+<p>The family of indices presented in <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343">Chao <em>et al.</em> (2019)</a> allows computing FD based on pairwise distance between species and their weights in assemblages. This generalization of Hill numbers framework is based on two parameters:</p>
 <ul>
-<li><p><code>q</code> : the importance of species weight compared to species distance. Values allowed in <code>mFD</code> are 0, 1, 2 (the most often used, see below).</p></li>
-<li><p><code>tau</code> : the threshold of functional distinctiveness between any two species (<em>i.e.</em> all species with distance above this threshold are considered as functionally equally distinct). Values allowed in <code>mFD</code> are “min(imum)”, “mean” and “max(imum)”.</p></li>
+<li><p><code>q</code>: the importance of species weight compared to species distance. Values allowed in <code>mFD</code> are 0, 1, 2 (the most often used, see below).</p></li>
+<li><p><code>tau</code>: the threshold of functional distinctiveness between any two species (<em>i.e.</em> all species with distance above this threshold are considered as functionally equally distinct). Values allowed in <code>mFD</code> are “min(imum)”, “mean(imum)” and “max(imum)”.</p></li>
 </ul>
 <p><br></p>
-<p>Indices are expressed as effective number of functionally equally distinct species (or <em>“virtual functional groups”</em>) and could thus be directly compared to taxonomic Hill numbers (including species richness).</p>
+<p>Indices are expressed as effective number of functionally equally distinct species (or <em>virtual functional groups</em>) and could thus be directly compared to taxonomic Hill numbers (including species richness).</p>
 <p><br></p>
-<p>💡 For more details about the properties of Hill numbers FD read [Chao <em>et al.</em> (2019)] (<a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="uri">https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343</a>) and especially its Figures 1 &amp; 2</p>
+<p>💡 For more details about the properties of Hill numbers FD read <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343">Chao <em>et al.</em> (2019)</a> and especially its Figures 1 &amp; 2.</p>
 <p><br></p>
 <p>All these indices can be computed with the function <code><a href="../reference/alpha.fd.hill.html">mFD::alpha.fd.hill()</a></code>.</p>
 <p><br></p>
-<p>Here we start by comparing the <strong>‘classical’ Rao’s quadratic entropy expressed in Hill numbers</strong> following [Ricotta &amp; Szeidl (2009)] (<a href="https://www.sciencedirect.com/science/article/pii/S0040580909001117" class="uri">https://www.sciencedirect.com/science/article/pii/S0040580909001117</a>) which is the special case with <code>q = 2</code> and <code>tau = "max"</code>.</p>
+<p>Here we start by comparing the <strong>‘classical’ Rao’s quadratic entropy expressed in Hill numbers</strong> following <a href="https://www.sciencedirect.com/science/article/pii/S0040580909001117">Ricotta &amp; Szeidl (2009)</a> which is the special case with <code>q = 2</code> and <code>tau = "max"</code>.</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">baskets_FD2max</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span>
-                             asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, 
-                             sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
-                             tau      <span class="op">=</span> <span class="st">"max"</span>, 
-                             q        <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, 
+  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
+  tau      <span class="op">=</span> <span class="st">"max"</span>, 
+  q        <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p><br></p>
-<p>Then, we can compute <strong>Hill numbers FD of order 2</strong> computed with <code>tau = "mean"</code> and <code>q = 2</code> as recommended in [Chao <em>et al.</em> (2019)] (<a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="uri">https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343</a>)</p>
+<p>Then, we can compute <strong>Hill numbers FD of order 2</strong> computed with <code>tau = "mean"</code> and <code>q = 2</code> as recommended in <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343">Chao <em>et al.</em> (2019)</a></p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">baskets_FD2mean</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span>
-                              asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, 
-                              sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
-                              tau      <span class="op">=</span> <span class="st">"mean"</span>, 
-                              q        <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, 
+  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
+  tau      <span class="op">=</span> <span class="st">"mean"</span>, 
+  q        <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <p>We can now compare these two metrics:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>FD2max <span class="op">=</span> <span class="va">baskets_FD2max</span><span class="op">$</span><span class="va">asb_FD_Hill</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, 
-            FD2mean <span class="op">=</span> <span class="va">baskets_FD2mean</span><span class="op">$</span><span class="va">asb_FD_Hill</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>FD2max  <span class="op">=</span> <span class="va">baskets_FD2max</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span>, 
+            FD2mean <span class="op">=</span> <span class="va">baskets_FD2mean</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>##           FD2max FD2mean
 ## basket_1    1.50    2.62
 ## basket_2    1.83    3.97
@@ -466,8 +467,9 @@
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Retrieve species occurrences data:</span>
-<span class="va">baskets_summary</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">)</span>
-<span class="va">baskets_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">baskets_summary</span><span class="op">$</span><span class="va">asb_sp_occ</span>
+<span class="va">baskets_summary</span>    <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">)</span>
+<span class="va">baskets_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_sp_occ"</span>
+
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">baskets_fruits_occ</span><span class="op">)</span></code></pre></div>
 <pre><code>##          apple apricot banana currant blackberry blueberry cherry grape
 ## basket_1     1       0      1       0          0         0      1     0
@@ -500,11 +502,12 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Compute alpha FD Hill with q = 0:</span>
 <span class="va">baskets_FD0mean</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span>
-       asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_occ</span>, 
-       sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
-       tau      <span class="op">=</span> <span class="st">"mean"</span>, 
-       q        <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">baskets_FD0mean</span><span class="op">$</span><span class="va">asb_FD_Hill</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
+  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_occ</span>, 
+  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
+  tau      <span class="op">=</span> <span class="st">"mean"</span>, 
+  q        <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">baskets_FD0mean</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>##           FD_q0
 ## basket_1   4.73
 ## basket_2   4.73
@@ -524,13 +527,13 @@
 <h1 class="hasAnchor">
 <a href="#generalisation-of-hill-numbers-for-beta-functional-diversity" class="anchor"></a>Generalisation of Hill numbers for beta functional diversity</h1>
 <p><br></p>
-<p>Framework of [Chao <em>et al.</em> (2019)] (<a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="uri">https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343</a>) also allows computing beta-diversity, with 2 framework similar to Jaccard and Sorensen ones for taxonomic diversity. The <code>mFD:beta.fd.hill()</code> function computes these indices.</p>
+<p>Framework of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343">Chao <em>et al.</em> (2019)</a> also allows computing beta-diversity, with 2 framework similar to Jaccard and Sorensen ones for taxonomic diversity. The <code>mFD:beta.fd.hill()</code> function computes these indices.</p>
 <p><br></p>
 <p>💡 Note that <strong>total weight of assemblages is affecting computation of functional beta-diversity</strong>. Hence <strong>if it is does not reflect an ecological pattern</strong> (<em>e.g</em>. rather difference in sampling effort), it is recommended to <strong>apply</strong> <code><a href="../reference/beta.fd.hill.html">mFD::beta.fd.hill()</a></code> <strong>to relative weight of species in assemblages</strong>.</p>
 <p><br></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># retrieve total weight per basket:</span>
-<span class="va">baskets_summary</span><span class="op">$</span><span class="va">asb_tot_w</span></code></pre></div>
+<span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_tot_w"</span></code></pre></div>
 <pre><code>##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 
 ##      2000      2000      2000      2000      2000      2000      2000      2000 
 ##  basket_9 basket_10 
@@ -539,7 +542,7 @@
 <code class="sourceCode R"><span class="co"># Here baskets all contain 2000g of fruits, we illustrate how to compute...</span>
 <span class="co"># relative weights using the output of asb.sp.summary:</span>
 
-<span class="va">baskets_fruits_relw</span> <span class="op">&lt;-</span> <span class="va">baskets_fruits_weights</span> <span class="op">/</span> <span class="va">baskets_summary</span><span class="op">$</span><span class="va">asb_tot_w</span>
+<span class="va">baskets_fruits_relw</span> <span class="op">&lt;-</span> <span class="va">baskets_fruits_weights</span> <span class="op">/</span> <span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_tot_w"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">baskets_fruits_relw</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></code></pre></div>
 <pre><code>##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 
 ##         1         1         1         1         1         1         1         1 
@@ -552,14 +555,14 @@
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Compute index:</span>
 <span class="va">baskets_betaq2</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.fd.hill.html">beta.fd.hill</a></span><span class="op">(</span>
-       asb_sp_w  <span class="op">=</span> <span class="va">baskets_fruits_relw</span>, 
-       sp_dist   <span class="op">=</span> <span class="va">fruits_gower</span>, 
-       q         <span class="op">=</span> <span class="fl">2</span>,
-       tau       <span class="op">=</span> <span class="st">"mean"</span>, 
-       beta_type <span class="op">=</span> <span class="st">"Jaccard"</span><span class="op">)</span>
+  asb_sp_w  <span class="op">=</span> <span class="va">baskets_fruits_relw</span>, 
+  sp_dist   <span class="op">=</span> <span class="va">fruits_gower</span>, 
+  q         <span class="op">=</span> <span class="fl">2</span>,
+  tau       <span class="op">=</span> <span class="st">"mean"</span>, 
+  beta_type <span class="op">=</span> <span class="st">"Jaccard"</span><span class="op">)</span>
 
 <span class="co"># Then use the mFD::dist.to.df function to ease visualizing result</span>
-<span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>FDq2 <span class="op">=</span> <span class="va">baskets_betaq2</span><span class="op">$</span><span class="va">beta_fd_q</span><span class="op">$</span><span class="va">q2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"FDq2"</span> <span class="op">=</span> <span class="va">baskets_betaq2</span><span class="op">$</span><span class="st">"beta_fd_q"</span><span class="op">$</span><span class="st">"q2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Registered S3 method overwritten by 'dendextend':
 ##   method     from 
 ##   rev.hclust vegan</code></pre>
@@ -614,9 +617,12 @@
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References:</h1>
+<a href="#references" class="anchor"></a>References</h1>
 <p><br></p>
-<p>Chao <em>et al.</em> (2019) An attribute‐diversity approach to functional diversity, functional beta diversity, and related (dis)similarity measures <em>Ecological Monographs</em>, <strong>89</strong>. Ricotta and Szeidl (2009) Diversity partitioning of Rao’s quadratic entropy <em>Theoretical Population Biology</em>, <strong>76</strong>, 299-302.</p>
+<ul>
+<li><p>Chao <em>et al.</em> (2019) An attribute‐diversity approach to functional diversity, functional beta diversity, and related (dis)similarity measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p></li>
+<li><p>Ricotta &amp; Szeidl (2009) Diversity partitioning of Rao’s quadratic entropy. <em>Theoretical Population Biology</em>, <strong>76</strong>, 299-302.</p></li>
+</ul>
 </div>
   </div>
 

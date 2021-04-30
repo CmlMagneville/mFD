@@ -106,14 +106,14 @@
 <p><br></p>
 <div id="why-functional-entities-fes" class="section level1">
 <h1 class="hasAnchor">
-<a href="#why-functional-entities-fes" class="anchor"></a>1 - Why Functional Entities (FEs)?</h1>
+<a href="#why-functional-entities-fes" class="anchor"></a>1. Why Functional Entities (FEs)?</h1>
 <p><br></p>
-<p><code>mFD</code> allows gathering species into <strong>functional entities (FEs)</strong> <em>ie</em> <strong>groups of species with same trait values</strong> when many species are described with a few categorical or ordinal traits. It is particularly useful when using large datasets with “functionally similar” species. FEs also allow to understand the links between functional diversity and ecological processes as redundant species that are supposed to have similar ecological roles are clustered in this method.</p>
+<p><code>mFD</code> allows gathering species into <strong>functional entities (FEs)</strong> <em>i.e.</em> <strong>groups of species with same trait values</strong> when many species are described with a few categorical or ordinal traits. It is particularly useful when using large datasets with “functionally similar” species. FEs also allow to understand the links between functional diversity and ecological processes as redundant species that are supposed to have similar ecological roles are clustered in this method.</p>
 <p><br></p>
 </div>
 <div id="tutorials-data" class="section level1">
 <h1 class="hasAnchor">
-<a href="#tutorials-data" class="anchor"></a>2 - Tutorial’s data</h1>
+<a href="#tutorials-data" class="anchor"></a>2. Tutorial’s data</h1>
 <p><br></p>
 <p>🧩 The dataset used to illustrate this tutorial is a <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruit baskets (<em>i.e.</em> assemblages). Each fruit is characterized by six trait values summarized in the following table:</p>
 <p><br></p>
@@ -162,40 +162,41 @@
 </tbody>
 </table>
 <p><br></p>
-<p>💡 We reduced the dataset used in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD_general_workflow</a> to only keep ordinal and categorical traits. Categorical traits are restrained to 2 or 3 modalities per traits to limit the number of unique combinations.</p>
+<p>💡 We reduced the dataset used in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> to only keep ordinal and categorical traits. Categorical traits are restrained to 2 or 3 modalities per traits to limit the number of unique combinations.</p>
 <p><br></p>
-<p>The following dataframe and matrix are needed:</p>
+<p>The following data frame and matrix are needed:</p>
 <ul>
-<li>the dataframe summarizing traits values for each species called <em>fruits_traits</em> dataframe in this tutorial:</li>
+<li>the data frame summarizing traits values for each species called <em>fruits_traits</em> data frame in this tutorial:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
 
-<span class="va">fruits_traits</span> <span class="op">&lt;-</span> <span class="va">fruits_traits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span>      <span class="co"># only keep the first 4 traits to illustrate FEs</span>
+<span class="va">fruits_traits</span> <span class="op">&lt;-</span> <span class="va">fruits_traits</span><span class="op">[</span> , <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>      <span class="co"># only keep the first 4 traits to illustrate FEs</span>
 
 <span class="co"># Decrease the number of modalities per trait for convenience ...</span>
 <span class="co"># ... (to have less unique combinations of trait values):</span>
 
 <span class="co"># Size grouped into only 3 categories:</span>
-<span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Size"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Size"</span><span class="op">]</span><span class="op">)</span>
+<span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Size"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Size"</span><span class="op">]</span><span class="op">)</span>
+
 <span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Size"</span><span class="op">]</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0-1cm"</span>, <span class="st">"1-3cm"</span>, <span class="st">"3-5cm"</span><span class="op">)</span><span class="op">)</span>, <span class="st">"Size"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"small"</span>
-<span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Size"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"5-10cm"</span><span class="op">)</span>, <span class="st">"Size"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"medium"</span>
-<span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Size"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"10-20cm"</span><span class="op">)</span>, <span class="st">"Size"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"large"</span>
-<span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Size"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Size"</span><span class="op">]</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"small"</span>, <span class="st">"medium"</span>, <span class="st">"large"</span><span class="op">)</span>,
-                          ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Size"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"5-10cm"</span><span class="op">)</span>, <span class="st">"Size"</span><span class="op">]</span>  <span class="op">&lt;-</span> <span class="st">"medium"</span>
+<span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Size"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"10-20cm"</span><span class="op">)</span>, <span class="st">"Size"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"large"</span>
+
+<span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Size"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Size"</span><span class="op">]</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"small"</span>, <span class="st">"medium"</span>, <span class="st">"large"</span><span class="op">)</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># Plant type grouped into only 2 categories:</span>
-<span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Plant"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Plant"</span><span class="op">]</span><span class="op">)</span>
-<span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Plant"</span><span class="op">]</span> <span class="op">!=</span> <span class="st">"tree"</span><span class="op">)</span>, <span class="st">"Plant"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Not_tree"</span>
-<span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Plant"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Plant"</span><span class="op">]</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Not_tree"</span>, <span class="st">"tree"</span><span class="op">)</span>, 
-                           ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Plant"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Plant"</span><span class="op">]</span><span class="op">)</span>
+
+<span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Plant"</span><span class="op">]</span> <span class="op">!=</span> <span class="st">"tree"</span><span class="op">)</span>, <span class="st">"Plant"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Not_tree"</span>
+<span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Plant"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Plant"</span><span class="op">]</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Not_tree"</span>, <span class="st">"tree"</span><span class="op">)</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># Plant Origin grouped into only 2 categories:</span>
-<span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Climate"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Climate"</span><span class="op">]</span><span class="op">)</span>
-<span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Climate"</span><span class="op">]</span> <span class="op">!=</span> <span class="st">"temperate"</span><span class="op">)</span>, <span class="st">"Climate"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"tropical"</span>
-<span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Climate"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Climate"</span><span class="op">]</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"temperate"</span>, <span class="st">"tropical"</span><span class="op">)</span>,
-                            ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Climate"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Climate"</span><span class="op">]</span><span class="op">)</span>
+
+<span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Climate"</span><span class="op">]</span> <span class="op">!=</span> <span class="st">"temperate"</span><span class="op">)</span>, <span class="st">"Climate"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"tropical"</span>
+<span class="va">fruits_traits</span><span class="op">[</span> , <span class="st">"Climate"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">[</span>, <span class="st">"Climate"</span><span class="op">]</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"temperate"</span>, <span class="st">"tropical"</span><span class="op">)</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># Display the table:</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Species x traits dataframe based on *fruits* dataset"</span><span class="op">)</span></code></pre></div>
@@ -260,7 +261,9 @@
 <p><br></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Species x assemblages dataframe based on *fruits* dataset"</span><span class="op">)</span></code></pre></div>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>, 
+             caption <span class="op">=</span> <span class="st">"Species x assemblages dataframe based on *fruits* dataset"</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Species x assemblages dataframe based on <em>fruits</em> dataset</caption>
 <thead><tr class="header">
@@ -331,7 +334,7 @@
 </table>
 <p><br></p>
 <ul>
-<li>the dataframe summarizing traits categories called <em>fruits_traits_cat</em> in this tutorial: (for details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD_general_workflow</a>)</li>
+<li>the data frame summarizing traits categories called <em>fruits_traits_cat</em> in this tutorial: (for details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>)</li>
 </ul>
 <p><br></p>
 <table class="table">
@@ -365,7 +368,7 @@
 </tbody>
 </table>
 <p><br></p>
-<p>Using the <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code> function, we can sum up the assemblages data and retrieve species occurence data:</p>
+<p>Using the <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code> function, we can sum up the assemblages data and retrieve species occurrence data:</p>
 <p><br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># summarize species assemblages: </span>
@@ -390,12 +393,12 @@
 ## basket_2           0
 ## basket_3           0</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">asb_sp_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="va">asb_sp_occ</span></code></pre></div>
+<code class="sourceCode R"><span class="va">asb_sp_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_occ"</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="gather-species-into-fes" class="section level1">
 <h1 class="hasAnchor">
-<a href="#gather-species-into-fes" class="anchor"></a>3 - Gather species into FEs</h1>
+<a href="#gather-species-into-fes" class="anchor"></a>3. Gather species into FEs</h1>
 <p><br></p>
 <p><code>mFD</code> allows you to gather species into FEs using the <code><a href="../reference/sp.to.fe.html">mFD::sp.to.fe()</a></code> function. It uses the following arguments:</p>
 <p><br></p>
@@ -409,9 +412,9 @@
 <p><br></p>
 <ul>
 <li>
-<em>sp_tr</em> the dataframe of species traits</li>
+<em>sp_tr</em> the data frame of species traits</li>
 <li>
-<em>tr_cat</em> the dataframe summarizing traits categories</li>
+<em>tr_cat</em> the data frame summarizing traits categories</li>
 <li>
 <em>fe_nm_type</em> is a character string referring to the way FEs should be named: they can be named after their decreasing rank in term of number of species (<em>i.e. fe_1 is the one gathering most species</em>) (<em>fe_rank</em>) or they can be named after names of traits</li>
 <li>
@@ -433,7 +436,7 @@
 </li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="va">fe_nm</span></code></pre></div>
+<code class="sourceCode R"><span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"fe_nm"</span></code></pre></div>
 <pre><code>##  [1] "fe_1"  "fe_2"  "fe_3"  "fe_4"  "fe_5"  "fe_6"  "fe_7"  "fe_8"  "fe_9" 
 ## [10] "fe_10" "fe_11" "fe_12" "fe_13" "fe_14"</code></pre>
 <p><br></p>
@@ -442,7 +445,7 @@
 </li>
 </ul>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sp_fe</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="va">sp_fe</span>
+<code class="sourceCode R"><span class="va">sp_fe</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"sp_fe"</span>
 <span class="va">sp_fe</span></code></pre></div>
 <pre><code>##         apple       apricot        banana       currant    blackberry 
 ##        "fe_3"        "fe_2"        "fe_7"        "fe_1"        "fe_1" 
@@ -456,11 +459,11 @@
 ##        "fe_2"        "fe_1"        "fe_1"        "fe_5"        "fe_6"</code></pre>
 <p><br></p>
 <ul>
-<li>a dataframe containing for FEs, the values of traits for each FE: <br>
-</li>
+<li>a data frame containing for FEs, the values of traits for each FE:</li>
 </ul>
+<p><br></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fe_tr</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="va">fe_tr</span>
+<code class="sourceCode R"><span class="va">fe_tr</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"fe_tr"</span>
 <span class="va">fe_tr</span></code></pre></div>
 <pre><code>##         Size    Plant   Climate Seed
 ## fe_1   small Not_tree temperate  pip
@@ -479,11 +482,11 @@
 ## fe_14  large Not_tree  tropical none</code></pre>
 <p><br></p>
 <ul>
-<li>a vector containing the number of species per FE: <br>
-</li>
+<li>a vector containing the number of species per FE:</li>
 </ul>
+<p><br></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fe_nb_sp</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="va">fe_nb_sp</span>
+<code class="sourceCode R"><span class="va">fe_nb_sp</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"fe_nb_sp"</span>
 <span class="va">fe_nb_sp</span></code></pre></div>
 <pre><code>##  fe_1  fe_2  fe_3  fe_4  fe_5  fe_6  fe_7  fe_8  fe_9 fe_10 fe_11 fe_12 fe_13 
 ##     6     3     2     2     2     2     1     1     1     1     1     1     1 
@@ -491,11 +494,11 @@
 ##     1</code></pre>
 <p><br></p>
 <ul>
-<li>a detailed list containing vectors or list with supplementary information about FEs: <br>
-</li>
+<li>a detailed list containing vectors or list with supplementary information about FEs:</li>
 </ul>
+<p><br></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="va">details_fe</span></code></pre></div>
+<code class="sourceCode R"><span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"details_fe"</span></code></pre></div>
 <pre><code>## $fe_codes
 ##                                                fe_1 
 ##  "SIZEsmall_PLANTnot_tree_CLIMATEtemperate_SEEDpip" 
@@ -550,9 +553,9 @@
 </div>
 <div id="compute-alpha-and-beta-functional-indices" class="section level1">
 <h1 class="hasAnchor">
-<a href="#compute-alpha-and-beta-functional-indices" class="anchor"></a>4 - Compute alpha and beta functional indices</h1>
+<a href="#compute-alpha-and-beta-functional-indices" class="anchor"></a>4. Compute alpha and beta functional indices</h1>
 <p><br></p>
-<p>Then based on the dataframe containing the value of traits for each FE, the workflow is the same as the one listed in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD_general_workflow</a> to compute functional trait based distance, multidimensional functional space and associated plots and compute alpha and beta functional indices (step 3 till the end). It will thus not be summed up in this tutorial.</p>
+<p>Then based on the data frame containing the value of traits for each FE, the workflow is the same as the one listed in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> to compute functional trait based distance, multidimensional functional space and associated plots and compute alpha and beta functional indices (step 3 till the end). It will thus not be summed up in this tutorial.</p>
 <p><br></p>
 <p><code>mFD</code> also allows to compute functional indices based on FEs following the framework proposed in <a href="https://www.pnas.org/content/111/38/13757.short">Mouillot <em>et al.</em> 2014</a>) using the <code><a href="../reference/alpha.fd.fe.html">mFD::alpha.fd.fe()</a></code> function. It computes:</p>
 <ul>
@@ -569,11 +572,11 @@
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.fe.html">alpha.fd.fe</a></span><span class="op">(</span>
-    asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>, 
-    sp_to_fe         <span class="op">=</span> <span class="va">sp_to_fe_fruits</span>,
-    ind_nm           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fred"</span>, <span class="st">"fored"</span>, <span class="st">"fvuln"</span><span class="op">)</span>,
-    check_input      <span class="op">=</span> <span class="cn">TRUE</span>,
-    details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
+  asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>, 
+  sp_to_fe         <span class="op">=</span> <span class="va">sp_to_fe_fruits</span>,
+  ind_nm           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fred"</span>, <span class="st">"fored"</span>, <span class="st">"fvuln"</span><span class="op">)</span>,
+  check_input      <span class="op">=</span> <span class="cn">TRUE</span>,
+  details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
 <p><br></p>
 <p>It takes as inputs:</p>
 <ul>
@@ -594,17 +597,17 @@
 <p><br></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alpha_fd_fe_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.fe.html">alpha.fd.fe</a></span><span class="op">(</span>
-     asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>, 
-     sp_to_fe         <span class="op">=</span> <span class="va">sp_to_fe_fruits</span>,
-     ind_nm           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fred"</span>, <span class="st">"fored"</span>, <span class="st">"fvuln"</span><span class="op">)</span>,
-     check_input      <span class="op">=</span> <span class="cn">TRUE</span>,
-     details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
+  asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>, 
+  sp_to_fe         <span class="op">=</span> <span class="va">sp_to_fe_fruits</span>,
+  ind_nm           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fred"</span>, <span class="st">"fored"</span>, <span class="st">"fvuln"</span><span class="op">)</span>,
+  check_input      <span class="op">=</span> <span class="cn">TRUE</span>,
+  details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
 <p><br></p>
 <p>This function returns a dataframe of indices values for each assemblage and a detailed list containing a matrix gathering the number of species per FE in each assemblage:</p>
 <p><br></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># dataframe with indices values for each assemblage:</span>
-<span class="va">alpha_fd_fe_fruits</span><span class="op">$</span><span class="va">asb_fdfe</span></code></pre></div>
+<span class="va">alpha_fd_fe_fruits</span><span class="op">$</span><span class="st">"asb_fdfe"</span></code></pre></div>
 <pre><code>##           nb_sp nb_fe     fred     fored     fvuln
 ## basket_1      8     7 1.142857 0.1071429 0.8571429
 ## basket_2      8     7 1.142857 0.1071429 0.8571429
@@ -618,7 +621,7 @@
 ## basket_10     8     5 1.600000 0.1500000 0.4000000</code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># a matrix gathering the number of species per FE in each assemblage</span>
-<span class="va">alpha_fd_fe_fruits</span><span class="op">$</span><span class="va">details_fdfe</span></code></pre></div>
+<span class="va">alpha_fd_fe_fruits</span><span class="op">$</span><span class="st">"details_fdfe"</span></code></pre></div>
 <pre><code>## $asb_fe_nbsp
 ##           fe_3 fe_2 fe_7 fe_1 fe_8 fe_9 fe_4 fe_5 fe_10 fe_11 fe_6 fe_12 fe_13
 ## basket_1     2    1    1    1    0    0    1    0     0     0    1     1     0
@@ -646,25 +649,25 @@
 </div>
 <div id="plot-functional-indices-based-on-fes" class="section level1">
 <h1 class="hasAnchor">
-<a href="#plot-functional-indices-based-on-fes" class="anchor"></a>5 - Plot functional indices based on FEs</h1>
+<a href="#plot-functional-indices-based-on-fes" class="anchor"></a>5. Plot functional indices based on FEs</h1>
 <p><br></p>
 <p>Then, it is possible to have a graphical representation of FE-based indices for a given assemblage using the <code>mFD::alpha.fe.fd.plot()</code> function:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.fe.plot.html">alpha.fd.fe.plot</a></span><span class="op">(</span>
-                 alpha_fd_fe       <span class="op">=</span> <span class="va">alpha_fd_fe_fruits</span>,
-                 plot_asb_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>,
-                 plot_ind_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fred"</span>, <span class="st">"fored"</span>, <span class="st">"fvuln"</span><span class="op">)</span>,
-                 name_file         <span class="op">=</span> <span class="cn">NULL</span>,
-                 color_fill_fored  <span class="op">=</span> <span class="st">"darkolivegreen2"</span>,
-                 color_line_fred   <span class="op">=</span> <span class="st">"darkolivegreen4"</span>,
-                 color_fill_bar    <span class="op">=</span> <span class="st">"grey80"</span>,
-                 color_fill_fvuln  <span class="op">=</span> <span class="st">"lightcoral"</span>,
-                 color_arrow_fvuln <span class="op">=</span> <span class="st">"indianred4"</span>,
-                 size_line_fred    <span class="op">=</span> <span class="fl">1.5</span>,
-                 size_arrow_fvuln  <span class="op">=</span> <span class="fl">1</span>,
-                 check_input       <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+  alpha_fd_fe       <span class="op">=</span> <span class="va">alpha_fd_fe_fruits</span>,
+  plot_asb_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>,
+  plot_ind_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fred"</span>, <span class="st">"fored"</span>, <span class="st">"fvuln"</span><span class="op">)</span>,
+  name_file         <span class="op">=</span> <span class="cn">NULL</span>,
+  color_fill_fored  <span class="op">=</span> <span class="st">"darkolivegreen2"</span>,
+  color_line_fred   <span class="op">=</span> <span class="st">"darkolivegreen4"</span>,
+  color_fill_bar    <span class="op">=</span> <span class="st">"grey80"</span>,
+  color_fill_fvuln  <span class="op">=</span> <span class="st">"lightcoral"</span>,
+  color_arrow_fvuln <span class="op">=</span> <span class="st">"indianred4"</span>,
+  size_line_fred    <span class="op">=</span> <span class="fl">1.5</span>,
+  size_arrow_fvuln  <span class="op">=</span> <span class="fl">1</span>,
+  check_input       <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <p>This function takes as inputs:</p>
 <ul>
@@ -687,18 +690,18 @@
 <p><br></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.fe.plot.html">alpha.fd.fe.plot</a></span><span class="op">(</span>
-                 alpha_fd_fe       <span class="op">=</span> <span class="va">alpha_fd_fe_fruits</span>,
-                 plot_asb_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>,
-                 plot_ind_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fred"</span>, <span class="st">"fored"</span>, <span class="st">"fvuln"</span><span class="op">)</span>,
-                 name_file         <span class="op">=</span> <span class="cn">NULL</span>,
-                 color_fill_fored  <span class="op">=</span> <span class="st">"darkolivegreen2"</span>,
-                 color_line_fred   <span class="op">=</span> <span class="st">"darkolivegreen4"</span>,
-                 color_fill_bar    <span class="op">=</span> <span class="st">"grey80"</span>,
-                 color_fill_fvuln  <span class="op">=</span> <span class="st">"lightcoral"</span>,
-                 color_arrow_fvuln <span class="op">=</span> <span class="st">"indianred4"</span>,
-                 size_line_fred    <span class="op">=</span> <span class="fl">1.5</span>,
-                 size_arrow_fvuln  <span class="op">=</span> <span class="fl">1</span>,
-                 check_input      <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+  alpha_fd_fe       <span class="op">=</span> <span class="va">alpha_fd_fe_fruits</span>,
+  plot_asb_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>,
+  plot_ind_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fred"</span>, <span class="st">"fored"</span>, <span class="st">"fvuln"</span><span class="op">)</span>,
+  name_file         <span class="op">=</span> <span class="cn">NULL</span>,
+  color_fill_fored  <span class="op">=</span> <span class="st">"darkolivegreen2"</span>,
+  color_line_fred   <span class="op">=</span> <span class="st">"darkolivegreen4"</span>,
+  color_fill_bar    <span class="op">=</span> <span class="st">"grey80"</span>,
+  color_fill_fvuln  <span class="op">=</span> <span class="st">"lightcoral"</span>,
+  color_arrow_fvuln <span class="op">=</span> <span class="st">"indianred4"</span>,
+  size_line_fred    <span class="op">=</span> <span class="fl">1.5</span>,
+  size_arrow_fvuln  <span class="op">=</span> <span class="fl">1</span>,
+  check_input       <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="How_to_deal_with_Functional_Entities_files/figure-html/unnamed-chunk-16-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p>All FE except “fe_3” contain only one species thus FRed and FVuln are close to 1. Only “fe_3” has more species than the average number of species thus the proportion of species in excess in FE richer than average is quite low (FRed = 0.107).</p>
@@ -707,7 +710,10 @@
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
-<p>Mouillot <em>et al.</em> (2014) Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs <em>PNAS</em> <strong>38</strong>, 13757-13762.</p>
+<p><br></p>
+<ul>
+<li>Mouillot <em>et al.</em> (2014) Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs. <em>PNAS</em>, <strong>38</strong>, 13757-13762.</li>
+</ul>
 </div>
   </div>
 

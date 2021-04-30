@@ -418,9 +418,9 @@ Basic framework of the mFD package
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Species traits summary:</span>
 <span class="va">fruits_traits_summ</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/sp.tr.summary.html">sp.tr.summary</a></span><span class="op">(</span>
-                                 tr_cat     <span class="op">=</span> <span class="va">fruits_traits_cat</span>,   
-                                 sp_tr      <span class="op">=</span> <span class="va">fruits_traits</span>, 
-                                 stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+  tr_cat     <span class="op">=</span> <span class="va">fruits_traits_cat</span>,   
+  sp_tr      <span class="op">=</span> <span class="va">fruits_traits</span>, 
+  stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fruits_traits_summ</span><span class="op">$</span><span class="st">"tr_types"</span>                     <span class="co"># Traits types </span></code></pre></div>
 <pre><code>## $Size
@@ -556,13 +556,13 @@ Basic framework of the mFD package
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/funct.dist.html">funct.dist</a></span><span class="op">(</span>
-  sp_tr  <span class="op">=</span> <span class="va">fruits_traits</span>,
-  tr_cat <span class="op">=</span> <span class="va">fruits_traits_cat</span>,
-  metric <span class="op">=</span> <span class="st">"gower"</span>,
+  sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,
+  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,
+  metric        <span class="op">=</span> <span class="st">"gower"</span>,
   scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,
-  ordinal_var <span class="op">=</span> <span class="st">"classic"</span>,
-  weight_type <span class="op">=</span> <span class="st">"equal"</span>,
-  stop_if_NA  <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,
+  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,
+  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <ul>
 <li><p><code>sp_tr</code> is the species x trait data frame</p></li>
 <li><p><code>tr_cat</code> is the data frame summarizing trait type for each trait</p></li>
@@ -802,7 +802,7 @@ Basic framework of the mFD package
   range_dist                 <span class="op">=</span> <span class="cn">NULL</span>,
   range_dev                  <span class="op">=</span> <span class="cn">NULL</span>,
   range_qdev                 <span class="op">=</span> <span class="cn">NULL</span>,
-  gradient_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>neg <span class="op">=</span> <span class="st">"darkblue"</span>, nul <span class="op">=</span> <span class="st">"grey80"</span>, pos <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span>,
+  gradient_deviation         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>neg <span class="op">=</span> <span class="st">"darkblue"</span>, nul <span class="op">=</span> <span class="st">"grey80"</span>, pos <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span>,
   gradient_deviation_quality <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"yellow"</span>, high <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
   x_lab                      <span class="op">=</span> <span class="st">"Trait-based distance"</span><span class="op">)</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-20-1.png" width="1152" style="display: block; margin: auto;"></p>
@@ -843,8 +843,7 @@ Basic framework of the mFD package
 <p><br></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Print traits with significant effect:</span>
-<span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="va">tr_faxes_stat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span>
-                              <span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="va">tr_faxes_stat</span><span class="op">$</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
+<span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_stat"</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_stat"</span><span class="op">$</span><span class="st">"p.value"</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
 <pre><code>##      trait axis           test stat value p.value
 ## 1     Size  PC1 Kruskal-Wallis eta2 0.308  0.0377
 ## 3     Size  PC3 Kruskal-Wallis eta2 0.326  0.0325
@@ -857,7 +856,7 @@ Basic framework of the mFD package
 ## 20   Sugar  PC4   Linear Model   r2 0.682  0.0000</code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Return plots:</span>
-<span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="va">tr_faxes_plot</span></code></pre></div>
+<span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_plot"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-23-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p>We can thus see that <strong>PC1</strong> is mostly driven by <em>Climate</em> (temperate on the left and tropical on the right) and <em>Plant Type</em> (forb &amp; shrub on the left vs tree &amp; vine on the right) and <em>Size</em> (large fruits on the right) with weaker influence of <em>Seed</em> (eta2 &lt; 0.25). Then, <strong>PC2</strong> is mostly driven by <em>Seed</em> (no seed on the left and pit seed on the right) with weaker influence of <em>Plant Type</em>. <strong>PC3</strong> is driven by only one trait, <em>Size</em>. And finally <strong>PC4</strong> is mostly driven by <em>Sugar</em> (high sugar content on the right and low sugar content on the left) with a weaker influence of <em>Plant Type</em>.</p>
@@ -1095,7 +1094,7 @@ Basic framework of the mFD package
 <code>FRic</code> representation: the colored shapes reflect the convex-hull of the studied assemblages and the white shape reflects the convex-hull of the global pool of species:</li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fric</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fric"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-31-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1103,7 +1102,7 @@ Basic framework of the mFD package
 <code>FDiv</code> representation: the gravity centers of <strong>vertices</strong> (i.e. species with the most extreme functional traits) of each assemblages are plotted as a square and a triangle. The two colored circles represent the mean distance of species to the gravity center for each assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fdiv</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fdiv"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-32-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1111,7 +1110,7 @@ Basic framework of the mFD package
 <code>FSpe</code> representation: colored traits represent distances of each species from a given assemblage to the center of gravity of the global pool (i.e center of the functional space). the center of gravity is plotted with a purple diamond. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fspe</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fspe"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-33-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1119,7 +1118,7 @@ Basic framework of the mFD package
 <code>FDis</code> representation: colored traits represent distances of each species from a given assemblage to the center of gravity of species of the assemblage (defined by FIde values). The center of gravity of each assemblage is plotted using a square and a triangle. Species of each assemblage havedifferent size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fdis</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fdis"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-34-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1127,7 +1126,7 @@ Basic framework of the mFD package
 <code>FIde</code> representation:colored lines refer to the weighted average position of species of each assemblage along each axis. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fide</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fide"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-35-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1135,7 +1134,7 @@ Basic framework of the mFD package
 <code>FEve</code> representation: colored traits represent the Minimum Spanning Tree linking species of each assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">feve</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"feve"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-36-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 <ul>
@@ -1143,14 +1142,14 @@ Basic framework of the mFD package
 <code>FOri</code> representation: colored arrows represent the distances of each species from each assemblage to the nearest species in the global species pool. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fori</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fori"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-37-1.png" width="1920" style="display: block; margin: auto;"></p>
 <ul>
 <li>
 <code>FNND</code> representation: colored arrows represent the distances of each species from each assemblage to the nearest species in the studied assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fnnd</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fnnd"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-38-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
@@ -1257,7 +1256,7 @@ Basic framework of the mFD package
 <p>Then, the function returns each graph for each functional axes combination and also a multipanel plot with all combinations of axes and the graph caption. Here is the multipanel for the fruits exaample:</p>
 <p><br></p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">beta_plot_fruits</span><span class="op">$</span><span class="va">patchwork</span></code></pre></div>
+<code class="sourceCode R"><span class="va">beta_plot_fruits</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><br></p>
 <p>For each assemblage, the associated convex hull is plotted in a different colour and indices values are printed on the right corner of the plot. Vertices of the convex hull of a given assemblage can be plotted with a different symbol such as in this example. Species of all assemblages are plotted with gray cross and the associated convex hull is plotted in white.</p>
 <p><br></p>
@@ -1266,7 +1265,13 @@ Basic framework of the mFD package
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
-<p>Johnson <em>et al.</em> (2020) Handling missing values in trait data <em>Global Ecology and Biogeography</em>, <strong>30</strong>, 51-62. Maire <em>et al.</em> (2015) How many dimensions are needed to accurately assess functional diversity? A pragmatic approach for assessing the quality of functional spaces <em>Global Ecology and Biogeography</em>, <strong>24</strong>, 728-740. Mouillot <em>et al.</em> (2013) A functional approach reveals community responses to disturbances <em>Trends in Ecology and Evolution</em> <strong>28</strong>, 167-177. Mouillot <em>et al.</em> (2014) Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs <em>PNAS</em> <strong>38</strong>, 13757-13762.</p>
+<p><br></p>
+<ul>
+<li><p>Johnson <em>et al.</em> (2020) Handling missing values in trait data. <em>Global Ecology and Biogeography</em>, <strong>30</strong>, 51-62.</p></li>
+<li><p>Maire <em>et al.</em> (2015) How many dimensions are needed to accurately assess functional diversity? A pragmatic approach for assessing the quality of functional spaces. <em>Global Ecology and Biogeography</em>, <strong>24</strong>, 728-740.</p></li>
+<li><p>Mouillot <em>et al.</em> (2013) A functional approach reveals community responses to disturbances. <em>Trends in Ecology and Evolution</em>, <strong>28</strong>, 167-177.</p></li>
+<li><p>Mouillot <em>et al.</em> (2014) Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs. <em>PNAS</em>, <strong>38</strong>, 13757-13762.</p></li>
+</ul>
 </div>
   </div>
 
