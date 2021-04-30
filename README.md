@@ -3,16 +3,23 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/CmlMagneville/mFD/workflows/R-CMD-check/badge.svg)](https://github.com/CmlMagneville/mFD/actions)
-[![Website](https://img.shields.io/badge/Website-visit-blue?style=flat&logo=html5)](https://cmlmagneville.github.io/mFD/index.html)
+[![R CMD
+check](https://github.com/CmlMagneville/mFD/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CmlMagneville/mFD/actions/workflows/R-CMD-check.yaml)
+[![Website
+deployment](https://github.com/CmlMagneville/mFD/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/CmlMagneville/mFD/actions/workflows/pkgdown.yaml)
+[![License:
+GPL-2)](https://img.shields.io/badge/License-GPL%202-blue.svg)](https://choosealicense.com/licenses/gpl-2.0/)
+[![LifeCycle](man/figures/lifecycle/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Project Status:
+Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
 ## Introduction
 
 The `mFD` package provides a **“user friendly” interface** to compute a
 **global assessment of functional diversity** by gathering computation
-of alpha, beta functional indices. As no package before, it guides the
-user through functional analysis with one function per action to
+of alpha and beta functional indices. As no package before, it guides
+users through functional analysis with one function per action to
 complete, several arguments that can be changed and allows personalized
 graphical outputs. Various tutorials are available on the mFD website to
 guide the user through the functional workflow.
@@ -51,8 +58,8 @@ To compute functional diversity indices, the user needs:
     of fuzzy traits - if no fuzzy traits: NA).
 
 For a complete understanding of the functional workflow and the packages
-possibilities, please refer to the
-[General\_mFD\_workflow\_vignette](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html).
+possibilities, please refer to the [mFD: General
+workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html).
 
 ## Citation
 
