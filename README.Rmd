@@ -59,7 +59,11 @@ remotes::install_github("CmlMagneville/mFD")
 ```
 
 
-## How to use the `mFD` package?
+## Get started
+
+```{r, eval = FALSE}
+library("mFD")
+```
 
 To compute functional diversity indices, users need:
 
@@ -76,15 +80,31 @@ if no fuzzy traits: NA).
 
 For a complete understanding of the functional workflow and the package 
 possibilities, please refer to the 
-[mFD: General workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html).
+[mFD General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html).
 
 
 ## Citation
 
-To cite package `mFD` in publications use:
+Please cite this package as:
+
+> Magneville C, Loiseau N, Albouy C, Casajus N, Claverie T, Escalas A, Leprieur F, 
+Maire E, Mouillot D & Villéger S (2021) mFD: an R package to compute and 
+illustrate the multiple facets of functional diversity. _Submitted to Ecography_.
+
+You can also run:
 
 ```{r, eval = FALSE}
 citation("mFD")
+
+## A BibTeX entry for LaTeX users is
+## 
+## @Manual{,
+##   title  = {{mFD}: {A} Computation of Functional Spaces and Functional Indices},
+##   author = {Magneville, Camille and Loiseau, Nicolas and Albouy, Camille and Casajus, Nicolas and Claverie, Thomas and Escalas, Arthur and Leprieur, Fabien and Maire, Eva and Mouillot, David and Villéger, Sébastien},
+##   year   = {2021},
+##   note   = {R package version 1.0.0},
+##   url    = {https://github.com/CmlMagneville/mFD},
+## }
 ```
 
 
