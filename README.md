@@ -14,8 +14,6 @@ GPL-2)](https://img.shields.io/badge/License-GPL%202-blue.svg)](https://chooseal
 Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
-## Introduction
-
 The `mFD` package provides a **“user friendly” interface** to compute a
 **global assessment of functional diversity** by gathering computation
 of alpha and beta functional indices. As no package before, it guides
@@ -26,28 +24,34 @@ guide the user through the functional workflow.
 
 ## Installation
 
-The `mFD` package can be installed through CRAN as follow:
+You can install the stable version from
+[CRAN](https://cran.r-project.org/) with:
 
 ``` r
-## Coming soon
+## Install stable version of < mFD > from CRAN ----
+## install.packages("mFD")
 ```
 
-or for the latest development version, the `mFD` Github repository can
-be used:
+Or you can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
-library(remotes)
+## Install < remotes > package (if not already installed) ----
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+
+## Install dev version of < mFD > from GitHub ----
 remotes::install_github("CmlMagneville/mFD")
-library(mFD)
 ```
 
 ## How to use the `mFD` package?
 
-To compute functional diversity indices, the user needs:
+To compute functional diversity indices, users need:
 
 -   a data frame summarizing species traits (species in rows, traits in
     columns). The `mFD` package works with all kind of traits:
-    quantitative, ordinal, nominal, circular and fuzzy-coded.
+    quantitative, ordinal, nominal, circular, and fuzzy-coded.
 
 -   a matrix summarizing species gathering into assemblages (assemblages
     in rows, species in columns). All assemblages must at least contain
@@ -57,7 +61,7 @@ To compute functional diversity indices, the user needs:
     name, second column with traits type, third column with fuzzy name
     of fuzzy traits - if no fuzzy traits: NA).
 
-For a complete understanding of the functional workflow and the packages
+For a complete understanding of the functional workflow and the package
 possibilities, please refer to the [mFD: General
 workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html).
 
