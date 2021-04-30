@@ -87,6 +87,7 @@ Imports:
 Suggests: 
     dplyr,
     knitr,
+    magrittr,
     rmarkdown,
     stringr,
     tibble,

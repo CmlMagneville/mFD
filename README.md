@@ -42,7 +42,7 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 }
 
 ## Install dev version of < mFD > from GitHub ----
-remotes::install_github("CmlMagneville/mFD")
+remotes::install_github("CmlMagneville/mFD", build_vignettes = TRUE)
 ```
 
 ## Get started

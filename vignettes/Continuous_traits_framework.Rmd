@@ -16,7 +16,7 @@ vignette: >
 
 <br />
 
-This tutorial explains the workflow to use to compute functional space based on
+This tutorial explains the workflow used to compute functional space based on
 continuous traits and it shows how to retrieve species coordinates and species
 functional distances in the functional space.
 
@@ -25,7 +25,7 @@ functional distances in the functional space.
 🧩 This tutorial uses a dataset from one of the 80 CESTES database (Jeliazkov &
 the CESTES consortium (2019)) based on [Villéger _et al._
 2012](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679).
-This dataframe contains 45 fish species from the Terminos Lagoon (Gulf of
+This data frame contains 45 fish species from the Terminos Lagoon (Gulf of
 Mexico) gathered into 36 sites considered as assemblages. Each species is
 described with 16 continuous morphological traits.
 
@@ -42,12 +42,12 @@ obtained by maximizing linear correlations (PCA)).
 <br />
 
 
-# 1 - Load dataset:
+# 1. Load dataset
 
 <br />
 
 
-The species traits dataframe has rows corresponding to species and columns
+The species traits data frame has rows corresponding to species and columns
 corresponding to traits. The different traits are summed up in the following
 table:
 
@@ -70,41 +70,44 @@ table:
 | CpHt       | Caudal peduncle throttling       |
 | CfSh       | Aspect ratio of the caudal fin   |
 | FsRt       | Fins surface ratio               |
-| FsSf       | 	Fins surface to body size ratio |
+| FsSf       | Fins surface to body size ratio  |
  
  <br />
  
- To work with `mFD` with only continuous traits, you must load two objects:
-
-  * `sp_tr` :  species-trait dataframe:
-  
- <br />
-
-```{r, warning = FALSE}
-# load dataset:
-sp_tr <- read.csv(system.file("extdata", "data_cestes_sp_tr.csv", 
-                              package = "mFD"), dec = ",", sep = ":")
-rownames(sp_tr) <- sp_tr$Sp
-sp_tr <- sp_tr[, -1]
-
-# display the table:
-knitr::kable(head(sp_tr), 
-             caption = "Species x traits dataframe based on *CESTES* dataset")
-```
-
- <br />
-
-  * `asb_sp_w` : species-assemblage dataframe summarizing biomass recorded in a volume of 4500m^3 per site and per species: 
+To work with `mFD` with only continuous traits, you must load two objects:
 
 <br />
 
+* `sp_tr`:  species x traits data frame
+
+
+```{r, warning=FALSE}
+# load dataset:
+sp_tr <- read.csv(system.file("extdata", "data_cestes_sp_tr.csv", 
+                              package = "mFD"), dec = ",", sep = ":")
+
+rownames(sp_tr) <- sp_tr$"Sp"
+sp_tr <- sp_tr[ , -1]
+
+# display the table:
+knitr::kable(head(sp_tr), 
+             caption = "Species x Traits data frame based on *CESTES* dataset")
+```
+
+<br />
+
+* `asb_sp_w`: species x assemblages data frame summarizing biomass recorded in a volume of 4500m<sup>3</sup> 
+per site and per species:
+
+
 ```{r, warning = FALSE}
-library(knitr)
 # load dataset:
 asb_sp_w <- read.csv(system.file("extdata", "data_cestes_asb_sp_w.csv", 
                                  package = "mFD"), dec = ",", sep = ":")
+
 rownames(asb_sp_w) <- paste0("site", sep = "_", asb_sp_w$Sites)
-asb_sp_w <- asb_sp_w[, -1]
+asb_sp_w <- asb_sp_w[ , -1]
+
 asb_sp_w$Urobatis_jamaicensis <- as.numeric(asb_sp_w$Urobatis_jamaicensis)
 
 # remove sites 12, 23, 35 because FRic can not be computed on it...
@@ -112,22 +115,20 @@ asb_sp_w$Urobatis_jamaicensis <- as.numeric(asb_sp_w$Urobatis_jamaicensis)
 asb_sp_w <- asb_sp_w[-c(11, 22, 33), ]
 
 # display the table:
-knitr::kable(asb_sp_w[c(1:7), c(1:6)], 
-  caption = "Species x assemblages dataframe based on *CESTES* dataset for 
-  the first six species and first seven sites")
+knitr::kable(asb_sp_w[1:7, 1:6], 
+             caption = "Species x Assemblages data frame based on *CESTES* dataset for the first six species and first seven sites")
 ```
-
- <br />
-
-
-
-# 2 - Compute the functional space
 
 <br />
 
 
-Based on the species-trait dataframe or the species-standardized traits
-dataframe, `mFD` allows to build a functional space based on a PCA or using each
+# 2. Compute the functional space
+
+<br />
+
+
+Based on the species-trait data frame or the species-standardized traits
+data frame, `mFD` allows to build a functional space based on a PCA or using each
 trait as a dimension. The function used to computed functional space with
 continuous traits is called `mFD::tr.cont.fspace()` and is used as follows:
 
@@ -137,36 +138,39 @@ continuous traits is called `mFD::tr.cont.fspace()` and is used as follows:
 
 ```{r, results = "hide"}
 mFD::tr.cont.fspace(
-                  sp_tr        = sp_tr, 
-                  pca          = TRUE, 
-                  nb_dim       = 7, 
-                  scaling      = "scale_center",
-                  compute_corr = "pearson")
+  sp_tr        = sp_tr, 
+  pca          = TRUE, 
+  nb_dim       = 7, 
+  scaling      = "scale_center",
+  compute_corr = "pearson")
 ```
 
 <br />
 
 It takes as inputs: 
 
-  * the *sp_tr* dataframe 
-  * a *pca* argument that must be set to TRUE if you want to compute a PCA or to
-  FALSE if you want to use each trait as a dimension to construct the
-  multidimensional space
-  * a *nb_dim* argument referring to the maximum number of dimensions for
-  multidimensional functional spaces. Final number of dimensions depends on the
-  number of positive eigenvalues obtained with PCA if *pca = TRUE*
-  or the number of traits used if *pca = FALSE*. 💡 High value for
-  *nb_dim* can increase computation time.
-  * a *scaling* argument allowing traits values to be standardized. They can be
-  standardized in several ways: standardization by the range value of the trait,
-  center-transformation, scale transformation or scale-center transformation can
-  be used. You can also chose not to standardize traits values.
+* the *sp_tr* data frame 
+
+* a *pca* argument that must be set to TRUE if you want to compute a PCA or to
+FALSE if you want to use each trait as a dimension to construct the
+multidimensional space
+
+* a *nb_dim* argument referring to the maximum number of dimensions for
+multidimensional functional spaces. Final number of dimensions depends on the
+number of positive eigenvalues obtained with PCA if *pca = TRUE*
+or the number of traits used if *pca = FALSE*. 💡 High value for
+*nb_dim* can increase computation time.
+
+* a *scaling* argument allowing traits values to be standardized. They can be
+standardized in several ways: standardization by the range value of the trait,
+center-transformation, scale transformation or scale-center transformation can
+be used. You can also chose not to standardize traits values.
 👉  Scaling ensures that trait-based distances and distances in the functional
 space have the same maximum. Scaling distances implies that the quality of the
 functional space accounts for congruence in distances rather than their equality
-  * a *compute_corr* argument which refers to a string value to compute Pearson
-  correlation coefficients between traits using *"pearson"* or not using
-  *"none*.
+
+* a *compute_corr* argument which refers to a string value to compute Pearson
+correlation coefficients between traits using *"pearson"* or not using *"none"*.
   
 <br />
 
@@ -177,18 +181,19 @@ and get Pearson's correlation coefficients:
 
 ```{r, results = "hide"}
 fspace <- mFD::tr.cont.fspace(
-                      sp_tr       = sp_tr, 
-                      pca         = TRUE, 
-                      nb_dim      = 10, 
-                      scaling     = "scale_center",
-                     compute_corr = "pearson")
+  sp_tr        = sp_tr, 
+  pca          = TRUE, 
+  nb_dim       = 10, 
+  scaling      = "scale_center",
+  compute_corr = "pearson")
 ```
 
 <br />
 
 If the PCA is computed, the output contains:
 
-  * quality metrics for spaces from 2 dimensions to *nb_dim* dimensions:
+* quality metrics for spaces from 2 dimensions to *nb_dim* dimensions:
+
 💡 **mean absolute deviation (mad)** reflects the actual magnitude of errors
 that affect distances, hence FD metrics ;  **mean squared deviation (msd)**
 reflects the potential risk associated with a few species pairs being strongly
@@ -198,7 +203,7 @@ misplaced in the functional space ([Maire _et al._
 <br />
 
 ```{r}
-fspace$`quality_metrics`
+fspace$"quality_metrics"
 ```  
 
 <br />
@@ -213,35 +218,35 @@ computation time.
 
 <br />
 
-  * a matrix of species coordinates in the functional space:
-  
-  <br />
+* a matrix of species coordinates in the functional space:
+
+<br />
 
 ```{r}
-head(fspace$sp_faxes_coord)
+head(fspace$"sp_faxes_coord")
 ```
 
 <br />
 
-  * a dist object containing species euclidean distances in the functional space
-  (here 5D space) for the first five species:
+* a dist object containing species euclidean distances in the functional space
+(here 5D space) for the first five species:
   
 <br />
 
 ```{r}
-dist_mat <- as.matrix(fspace$sp_dist$`6D`)
-dist_mat[c(1:5), c(1:5)]
+dist_mat <- as.matrix(fspace$sp_dist$"6D")
+dist_mat[1:5, 1:5]
 ```
 
 <br />
 
-  * a correlation matrix containing correlation between traits and their
-  associated pvalue:
+* a correlation matrix containing correlation between traits and their
+associated pvalue:
   
 <br />
 
 ```{r}
-fspace$tr_correl
+fspace$"tr_correl"
 ```
 
 <br />
@@ -256,23 +261,27 @@ computed.
 <br />
 
 
-# 4 - Plot functional space, compute and illustrate indices
+# 3. Plot functional space, compute and illustrate indices
 
 <br />
 
 Then, based on the species coordinates matrix, steps are similar as those listed
-in the  [mFD: General
-Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
-, from step 5 till the end.
+in the
+[mFD General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html), 
+from step 5 till the end.
 
 <br />
 
-# References:
+# References
+
 <br />
 
-Maire _et al._ (2015) How many dimensions are needed to accurately assess 
-functional diversity? A pragmatic approach for assessing the quality of 
-functional spaces _Global Ecology and Biogeography_, **24**, 728-740.\cr
-Villéger _et al._ (2012) Low Functional β-Diversity Despite High Taxonomic 
-β-Diversity among Tropical Estuarine Fish Communities _PLoS ONE_, **7**.\cr
+- Maire _et al._ (2015) 
+How many dimensions are needed to accurately assess functional diversity? 
+A pragmatic approach for assessing the quality of functional spaces.
+_Global Ecology and Biogeography_, **24**, 728-740.
+
+- Villéger _et al._ (2012) 
+Low Functional β-Diversity Despite High Taxonomic β-Diversity among Tropical Estuarine Fish Communities.
+_PLoS ONE_, **7**, e40679.
 

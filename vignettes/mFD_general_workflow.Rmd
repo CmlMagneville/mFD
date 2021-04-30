@@ -186,9 +186,9 @@ each fuzzy trait.
 ```{r}
 # Species traits summary:
 fruits_traits_summ <- mFD::sp.tr.summary(
-                                 tr_cat     = fruits_traits_cat,   
-                                 sp_tr      = fruits_traits, 
-                                 stop_if_NA = TRUE)
+  tr_cat     = fruits_traits_cat,   
+  sp_tr      = fruits_traits, 
+  stop_if_NA = TRUE)
 ```
 
 
@@ -325,13 +325,13 @@ which includes the following arguments:
 
 ```{r, results = "hide"}
 sp_dist_fruits <- mFD::funct.dist(
-  sp_tr  = fruits_traits,
-  tr_cat = fruits_traits_cat,
-  metric = "gower",
+  sp_tr         = fruits_traits,
+  tr_cat        = fruits_traits_cat,
+  metric        = "gower",
   scale_euclid  = "scale_center",
-  ordinal_var = "classic",
-  weight_type = "equal",
-  stop_if_NA  = TRUE)
+  ordinal_var   = "classic",
+  weight_type   = "equal",
+  stop_if_NA    = TRUE)
 ```
 
 
@@ -581,7 +581,7 @@ mFD::quality.fspaces.plot(
   range_dist                 = NULL,
   range_dev                  = NULL,
   range_qdev                 = NULL,
-  gradient_deviation = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
+  gradient_deviation         = c(neg = "darkblue", nul = "grey80", pos = "darkred"),
   gradient_deviation_quality = c(low = "yellow", high = "red"),
   x_lab                      = "Trait-based distance")
 ```
@@ -664,11 +664,10 @@ axis and look at the plots:
 
 ```{r, fig.height = 7, fig.width = 12, fig.align = "center"}
 # Print traits with significant effect:
-fruits_tr_faxes$tr_faxes_stat[which(
-                              fruits_tr_faxes$tr_faxes_stat$p.value < 0.05), ]
+fruits_tr_faxes$"tr_faxes_stat"[which(fruits_tr_faxes$"tr_faxes_stat"$"p.value" < 0.05), ]
 
 # Return plots:
-fruits_tr_faxes$tr_faxes_plot
+fruits_tr_faxes$"tr_faxes_plot"
 ```
 
 <br />
@@ -1058,7 +1057,7 @@ studied assemblages and the white shape reflects the convex-hull of the global
 pool of species:
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha$fric$patchwork
+plots_alpha$"fric"$"patchwork"
 ```
 
 <br />
@@ -1071,7 +1070,7 @@ different size given their relative weight into the assemblage.
 
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha$fdiv$patchwork
+plots_alpha$"fdiv"$"patchwork"
 ```
 
 <br />
@@ -1083,7 +1082,7 @@ Species of each assemblage have different size given their relative weight into
 the assemblage.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha$fspe$patchwork
+plots_alpha$"fspe"$"patchwork"
 ```
 
 <br />
@@ -1095,7 +1094,7 @@ using a square and a triangle. Species of each assemblage havedifferent size
 given their relative weight into the assemblage.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha$fdis$patchwork
+plots_alpha$"fdis"$"patchwork"
 ```
 
 <br />
@@ -1105,7 +1104,7 @@ species of each assemblage along each axis. Species of each assemblage have
 different size given their relative weight into the assemblage.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha$fide$patchwork
+plots_alpha$"fide"$"patchwork"
 ```
 
 <br />
@@ -1115,7 +1114,7 @@ linking species of each assemblage. Species of each assemblage have different
 size given their relative weight into the assemblage.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha$feve$patchwork
+plots_alpha$"feve"$"patchwork"
 ```
 
 <br />
@@ -1125,7 +1124,7 @@ from each assemblage to the nearest species in the global species pool. Species
 of each assemblage have different size given their relative weight into the 
 assemblage.
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha$fori$patchwork
+plots_alpha$"fori"$"patchwork"
 ```
 
 * `FNND` representation: colored arrows represent the distances of each species 
@@ -1134,7 +1133,7 @@ of each assemblage have different size given their relative weight into the
 assemblage. 
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
-plots_alpha$fnnd$patchwork
+plots_alpha$"fnnd"$"patchwork"
 ```
 
 <br />
@@ -1343,7 +1342,7 @@ Here is the multipanel for the fruits exaample:
 <br />
 
 ```{r, fig.height = 16, fig.width = 16, fig.align = "center", warning = FALSE, eval = FALSE}
-beta_plot_fruits$patchwork
+beta_plot_fruits$"patchwork"
 ```
 <br />
  
@@ -1358,16 +1357,21 @@ associated convex hull is plotted in white.
 
 # References
 
-Johnson _et al._ (2020) Handling missing values in trait data _Global Ecology
-and Biogeography_, **30**, 51-62.\cr 
-Maire _et al._ (2015) How many dimensions
-are needed to accurately assess functional diversity? A pragmatic approach for
-assessing the quality of functional spaces _Global Ecology and Biogeography_,
-**24**, 728-740.\cr 
-Mouillot _et al._ (2013) A functional approach reveals
-community responses to disturbances _Trends in Ecology and Evolution_ **28**,
-167-177.\cr 
-Mouillot _et al._ (2014) Functional over-redundancy and high
-functional vulnerability in global fish faunas on tropical reefs _PNAS_ **38**,
-13757-13762.\cr
+<br />
 
+- Johnson _et al._ (2020) 
+Handling missing values in trait data.
+_Global Ecology and Biogeography_, **30**, 51-62.
+
+- Maire _et al._ (2015) 
+How many dimensions are needed to accurately assess functional diversity? 
+A pragmatic approach for assessing the quality of functional spaces. 
+_Global Ecology and Biogeography_, **24**, 728-740.
+
+- Mouillot _et al._ (2013)
+A functional approach reveals community responses to disturbances. 
+_Trends in Ecology and Evolution_, **28**, 167-177.
+
+- Mouillot _et al._ (2014) 
+Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs. 
+_PNAS_, **38**, 13757-13762.
