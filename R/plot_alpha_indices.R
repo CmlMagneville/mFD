@@ -262,6 +262,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   # shorten names of main input: ####
   asb_fd_ind <- output_alpha_fd_multidim$functional_diversity_indices
   fd_details <- output_alpha_fd_multidim$details
+  # get coordinates of species:
+  sp_faxes_coord <- fd_details$sp_faxes_coord
   
   
   # Check inputs relative to this function ...
@@ -339,9 +341,6 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
   
   
   # Prepare data for plotting ####
-  
-  # get coordinates of species:
-  sp_faxes_coord <- fd_details$sp_faxes_coord
   
   # create a list of store outputs:
   list_panels <-list()
