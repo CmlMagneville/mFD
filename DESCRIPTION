@@ -80,6 +80,7 @@ Imports:
     Hmisc,
     patchwork,
     reshape2,
+    rlang (>= 0.4.10),
     rstatix,
     stats,
     utils,
