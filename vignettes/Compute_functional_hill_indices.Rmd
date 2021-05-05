@@ -1,10 +1,10 @@
 ---
-title: "Compute Functional Hill Indices"
+title: "Compute Functional Diversity Hill Indices"
 author: "Sébastien Villéger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Compute Functional Hill Indices}
+  %\VignetteIndexEntry{Compute Functional Diversity Hill Indices}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
