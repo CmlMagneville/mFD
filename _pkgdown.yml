@@ -1,7 +1,7 @@
 url: https://cmlmagneville.github.io/mFD
 
 reference:
-- title: Summary functions
+- title: Summarize data
   desc: >
     These two functions are used to summarize up the species-traits and 
     assemblage data.
