@@ -9,7 +9,7 @@ reference:
   - sp.tr.summary
   - asb.sp.summary
 
-- title: Functioanl distances and Functional spaces
+- title: Functional distances and Functional spaces
   desc: >
     These functions compute the functional distances between species, build
     functional spaces (if the data gather only continuous traits or not),
@@ -49,6 +49,15 @@ reference:
   contents:
   - alpha.fd.hill
   - beta.fd.hill
+  
+- subtitle: FUSE index
+  desc: >
+   This function computes FUSE (Functionally Unique, Specialized, and 
+   Endangered) index that combines functional uniqueness, specialisation and 
+   global endangerment to identify threatened species of particular importance 
+   for functional diversity based on `Pimiento et al. (2020)`.
+  contents:
+  - fuse
 
 - subtitle: Based on multidimensional space 
   desc: >
