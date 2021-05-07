@@ -1,0 +1,98 @@
+url: https://cmlmagneville.github.io/mFD
+
+reference:
+- title: Summary functions
+  desc: |
+    These two functions are used to summarize up the species-traits and 
+    assemblage data.
+  contents:
+  - sp.tr.summary
+  - asb.sp.summary
+
+- title: Compute functional distances, assess the quality of functional spaces,
+plot the chosen one and caracterize its functional axes
+  desc: |
+    These functions compute the functional distances between species, build
+    functional spaces (if the data gather only continuous traits or not),
+    assess/plot the quality of functional spaces (and dendrogram if asked),
+    plot the chosen functional space and caracterize its functional axes based
+    on traits correlation with each functional axes.
+  contents:
+  - funct.dist
+  - tr.cont.scale
+  - tr.cont.fspace
+  - quality.fspaces
+  - quality.fspaces.plot
+  - funct.space.plot
+  - traits.faxes.cor
+  
+- title: Compute Functional Entities
+  desc: |
+    This function gathers species into Functional Entities (FEs)
+  contents:
+  - sp.to.fe
+  
+- title: Compute and Plot functional indices
+
+- subtitle: Based on FEs
+  desc: >
+  These functions compute and plot functional indices based on FEs as in 
+  `Mouillot et al. (2014)`. They compute/plot Functional Redundancy, 
+  Functional Overredundancy and Functional Vulnerability.
+  contents:
+  - alpha.fd.fe
+  - alpha.fd.fe.plot
+
+- subtitle: Based on Hill numbers
+  desc: >
+  These functions compute alpha and beta indices based on Hill numbers according
+  to the `Chao et al. (2019)` framework.
+  contents:
+  - alpha.fd.hill
+  - beta.fd.hill
+
+- subtitle: Based on multidimensional space 
+  desc: >
+  These functions compute/plot alpha and beta indices based on a given 
+  multidimensional functional space.
+  contents: 
+  - alpha.fd.multidim
+  - beta.fd.multidim
+  - alpha.multidim.plot
+  - beta.multidim.plot
+  
+- subtitle: Based on multidimensinal space for more complex graphs
+  desc: >
+  These functions return `ggplot` layers for each index allowing users to draw 
+  more complex graphs.
+  contents:
+  - background.plot
+  - fdiv.plot
+  - fdis.plot
+  - feve.plot  
+  - fide.plot
+  - fnnd.plot
+  - fori.plot
+  - fric.plot
+  - fspe.plot
+  - panels.to.patchwork
+  - pool.plot
+
+- title: Other functions
+  desc: |
+  Various functions that can be used by the user for diverse usage
+  contents:
+  - dist.nearneighb
+  - dist.point
+  - dist.to.df
+  - mst.computation
+  - sp.filter
+  - vertices
+  
+- title: Data sets
+  desc: |
+  The three data sets used for examples and tutorials in the `mFD` package.
+  contents:
+  - baskets_fruits_weights
+  - fruits_traits
+  - fruits_traits_cat
