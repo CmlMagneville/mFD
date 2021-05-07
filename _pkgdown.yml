@@ -35,25 +35,25 @@ reference:
 
 - subtitle: Based on FEs
   desc: >
-  These functions compute and plot functional indices based on FEs as in 
-  `Mouillot et al. (2014)`. They compute/plot Functional Redundancy, 
-  Functional Overredundancy and Functional Vulnerability.
+   These functions compute and plot functional indices based on FEs as in 
+   `Mouillot et al. (2014)`. They compute/plot Functional Redundancy, 
+   Functional Overredundancy and Functional Vulnerability.
   contents:
   - alpha.fd.fe
   - alpha.fd.fe.plot
 
 - subtitle: Based on Hill numbers
   desc: >
-  These functions compute alpha and beta indices based on Hill numbers according
-  to the `Chao et al. (2019)` framework.
+   These functions compute alpha and beta indices based on Hill numbers according
+   to the Chao et al. (2019) framework.
   contents:
   - alpha.fd.hill
   - beta.fd.hill
 
 - subtitle: Based on multidimensional space 
   desc: >
-  These functions compute/plot alpha and beta indices based on a given 
-  multidimensional functional space.
+   These functions compute/plot alpha and beta indices based on a given 
+   multidimensional functional space.
   contents: 
   - alpha.fd.multidim
   - beta.fd.multidim
@@ -62,8 +62,8 @@ reference:
   
 - subtitle: Based on multidimensinal space for more complex graphs
   desc: >
-  These functions return `ggplot` layers for each index allowing users to draw 
-  more complex graphs.
+   These functions return `ggplot` layers for each index allowing users to draw 
+   more complex graphs.
   contents:
   - background.plot
   - fdiv.plot
@@ -79,7 +79,7 @@ reference:
 
 - title: Other functions
   desc: >
-  Various functions that can be used by the user for diverse usage
+   Various functions that can be used by the user for diverse usage
   contents:
   - dist.nearneighb
   - dist.point
@@ -90,7 +90,7 @@ reference:
 
 - title: Data sets
   desc: >
-  The three data sets used for examples and tutorials in the `mFD` package.
+   The three data sets used for examples and tutorials in the `mFD` package.
   contents:
   - baskets_fruits_weights
   - fruits_traits
