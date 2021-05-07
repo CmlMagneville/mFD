@@ -327,7 +327,7 @@ quality_fspaces_fruits$"details_fspaces"$"pairsp_fspaces_dist" %>%
   dplyr::filter(sp.x %in% c("cherry", "lime", "lemon") & 
                 sp.y %in% c("cherry", "lime", "lemon")) %>%
   dplyr::select(sp.x, sp.y, tr, pcoa_4d, tree_average) %>%
-  dplyr::mutate(across(where(is.numeric), round, 2))
+  dplyr::mutate(dplyr::across(where(is.numeric), round, 2))
 ```
 
 <br />
@@ -449,7 +449,7 @@ quality_fspaces_fruits$"details_fspaces"$"pairsp_fspaces_dist" %>%
   dplyr::select(sp.x, sp.y, Gower = tr) %>%
   dplyr::mutate(sqrt_Gower = sqrt(Gower)) %>%
   dplyr::filter(sp.x %in% ex_blackberry & sp.y %in% ex_blackberry) %>%
-  dplyr::mutate(across(where(is.numeric), round, 2))
+  dplyr::mutate(dplyr::across(where(is.numeric), round, 2))
 ```
 
 <br />
