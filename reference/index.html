@@ -145,11 +145,119 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <h2 id="section-summary-functions" class="hasAnchor"><a href="#section-summary-functions" class="anchor"></a>Summary functions</h2>
+          <p class="section-desc"><p>These two functions are used to summarize up the species-traits and assemblage data.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="sp.tr.summary.html">sp.tr.summary()</a></code> </p>
+        </td>
+        <td><p>Summarize Species x Traits data frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="asb.sp.summary.html">asb.sp.summary()</a></code> </p>
+        </td>
+        <td><p>Summarize Assemblage x Species data frame</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-functioanl-distances-and-functional-spaces" class="hasAnchor"><a href="#section-functioanl-distances-and-functional-spaces" class="anchor"></a>Functioanl distances and Functional spaces</h2>
+          <p class="section-desc"><p>These functions compute the functional distances between species, build functional spaces (if the data gather only continuous traits or not), assess/plot the quality of functional spaces (and dendrogram if asked), plot the chosen functional space and caracterize its functional axes based on traits correlation with each functional axes.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="funct.dist.html">funct.dist()</a></code> </p>
+        </td>
+        <td><p>Compute functional distance between species</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tr.cont.scale.html">tr.cont.scale()</a></code> </p>
+        </td>
+        <td><p>Scale continuous traits</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tr.cont.fspace.html">tr.cont.fspace()</a></code> </p>
+        </td>
+        <td><p>Build a functional space based on continuous traits only</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="quality.fspaces.html">quality.fspaces()</a></code> </p>
+        </td>
+        <td><p>Compute functional spaces and their quality</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="quality.fspaces.plot.html">quality.fspaces.plot()</a></code> </p>
+        </td>
+        <td><p>Plot functional space quality with a chosen quality metric</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="funct.space.plot.html">funct.space.plot()</a></code> </p>
+        </td>
+        <td><p>Plot species position in a functional space</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="traits.faxes.cor.html">traits.faxes.cor()</a></code> </p>
+        </td>
+        <td><p>Correlation between Traits and Axes</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-compute-functional-entities" class="hasAnchor"><a href="#section-compute-functional-entities" class="anchor"></a>Compute Functional Entities</h2>
+          <p class="section-desc"><p>This function gathers species into Functional Entities (FEs)</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="sp.to.fe.html">sp.to.fe()</a></code> </p>
+        </td>
+        <td><p>Compute Functional Entities composition based on a Species x Traits matrix</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-compute-and-plot-functional-indices" class="hasAnchor"><a href="#section-compute-and-plot-functional-indices" class="anchor"></a>Compute and Plot functional indices</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
       
+      
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-based-on-fes" class="hasAnchor"><a href="#section-based-on-fes" class="anchor"></a>Based on FEs</h3>
+          <p class="section-desc"><p>These functions compute and plot functional indices based on FEs as in <code>Mouillot et al. (2014)</code>. They compute/plot Functional Redundancy, Functional Overredundancy and Functional Vulnerability.</p></p>
+        </th>
+      </tr>
       
     </tbody><tbody>
       
@@ -166,7 +274,20 @@
           <p><code><a href="alpha.fd.fe.plot.html">alpha.fd.fe.plot()</a></code> </p>
         </td>
         <td><p>Illustrate Functional Diversity indices based on Functional Entities</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-based-on-hill-numbers" class="hasAnchor"><a href="#section-based-on-hill-numbers" class="anchor"></a>Based on Hill numbers</h3>
+          <p class="section-desc"><p>These functions compute alpha and beta indices based on Hill numbers according to the Chao et al. (2019) framework.</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="alpha.fd.hill.html">alpha.fd.hill()</a></code> </p>
@@ -175,39 +296,28 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="alpha.fd.multidim.html">alpha.fd.multidim()</a></code> </p>
-        </td>
-        <td><p>Compute a set of alpha functional indices for a set of assemblages</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="alpha.multidim.plot.html">alpha.multidim.plot()</a></code> </p>
-        </td>
-        <td><p>Plot functional space and chosen functional indices</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="asb.sp.summary.html">asb.sp.summary()</a></code> </p>
-        </td>
-        <td><p>Summarize Assemblage x Species data frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="background.plot.html">background.plot()</a></code> </p>
-        </td>
-        <td><p>Plot background of multidimensional plots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="baskets_fruits_weights.html">baskets_fruits_weights</a></code> </p>
-        </td>
-        <td><p>Dataset: Baskets Composition in Fruits Species</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="beta.fd.hill.html">beta.fd.hill()</a></code> </p>
         </td>
         <td><p>Compute Functional beta-Diversity indices based on Hill Numbers</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-based-on-multidimensional-space" class="hasAnchor"><a href="#section-based-on-multidimensional-space" class="anchor"></a>Based on multidimensional space</h3>
+          <p class="section-desc"><p>These functions compute/plot alpha and beta indices based on a given multidimensional functional space.</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="alpha.fd.multidim.html">alpha.fd.multidim()</a></code> </p>
+        </td>
+        <td><p>Compute a set of alpha functional indices for a set of assemblages</p></td>
       </tr><tr>
         
         <td>
@@ -218,41 +328,47 @@ multidimensional space</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="alpha.multidim.plot.html">alpha.multidim.plot()</a></code> </p>
+        </td>
+        <td><p>Plot functional space and chosen functional indices</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="beta.multidim.plot.html">beta.multidim.plot()</a></code> </p>
         </td>
         <td><p>Illustrate Functional beta-Diversity indices for pairs of assemblages in a
 multidimensional space</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-based-on-multidimensinal-space-for-more-complex-graphs" class="hasAnchor"><a href="#section-based-on-multidimensinal-space-for-more-complex-graphs" class="anchor"></a>Based on multidimensinal space for more complex graphs</h3>
+          <p class="section-desc"><p>These functions return <code>ggplot</code> layers for each index allowing users to draw more complex graphs.</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
-          <p><code><a href="dist.nearneighb.html">dist.nearneighb()</a></code> </p>
+          <p><code><a href="background.plot.html">background.plot()</a></code> </p>
         </td>
-        <td><p>Compute distance of a given point to its nearest neighbor in the functional
-space and the identity of the nearest neighbor</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dist.point.html">dist.point()</a></code> </p>
-        </td>
-        <td><p>Compute distances of all points to a given point in the functional space</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dist.to.df.html">dist.to.df()</a></code> </p>
-        </td>
-        <td><p>Merge distance object(s) into a single data frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fdis.plot.html">fdis.plot()</a></code> </p>
-        </td>
-        <td><p>Plot FDis index</p></td>
+        <td><p>Plot background of multidimensional plots</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="fdiv.plot.html">fdiv.plot()</a></code> </p>
         </td>
         <td><p>Plot FDiv indice</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fdis.plot.html">fdis.plot()</a></code> </p>
+        </td>
+        <td><p>Plot FDis index</p></td>
       </tr><tr>
         
         <td>
@@ -286,46 +402,9 @@ space and the identity of the nearest neighbor</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="fruits_traits.html">fruits_traits</a></code> </p>
-        </td>
-        <td><p>Dataset: Traits Values of Fruits Species</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fruits_traits_cat.html">fruits_traits_cat</a></code> </p>
-        </td>
-        <td><p>Dataset: Fruits Traits Informations</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="fspe.plot.html">fspe.plot()</a></code> </p>
         </td>
         <td><p>Plot FSpe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="funct.dist.html">funct.dist()</a></code> </p>
-        </td>
-        <td><p>Compute functional distance between species</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="funct.space.plot.html">funct.space.plot()</a></code> </p>
-        </td>
-        <td><p>Plot species position in a functional space</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fuse.html">fuse()</a></code> </p>
-        </td>
-        <td><p>Compute FUSE (Functionally Unique, Specialized and Endangered)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mst.computation.html">mst.computation()</a></code> </p>
-        </td>
-        <td><p>Compute the Minimum Spanning Tree (MST) linking species of a given
-assemblage</p></td>
       </tr><tr>
         
         <td>
@@ -338,18 +417,45 @@ assemblage</p></td>
           <p><code><a href="pool.plot.html">pool.plot()</a></code> </p>
         </td>
         <td><p>Plot species from the pool</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-other-functions" class="hasAnchor"><a href="#section-other-functions" class="anchor"></a>Other functions</h2>
+          <p class="section-desc"><p>Various functions that can be used by the user for diverse usage</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="dist.nearneighb.html">dist.nearneighb()</a></code> </p>
+        </td>
+        <td><p>Compute distance of a given point to its nearest neighbor in the functional
+space and the identity of the nearest neighbor</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="quality.fspaces.html">quality.fspaces()</a></code> </p>
+          <p><code><a href="dist.point.html">dist.point()</a></code> </p>
         </td>
-        <td><p>Compute functional spaces and their quality</p></td>
+        <td><p>Compute distances of all points to a given point in the functional space</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="quality.fspaces.plot.html">quality.fspaces.plot()</a></code> </p>
+          <p><code><a href="dist.to.df.html">dist.to.df()</a></code> </p>
         </td>
-        <td><p>Plot functional space quality with a chosen quality metric</p></td>
+        <td><p>Merge distance object(s) into a single data frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mst.computation.html">mst.computation()</a></code> </p>
+        </td>
+        <td><p>Compute the Minimum Spanning Tree (MST) linking species of a given
+assemblage</p></td>
       </tr><tr>
         
         <td>
@@ -359,40 +465,41 @@ assemblage</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="sp.to.fe.html">sp.to.fe()</a></code> </p>
-        </td>
-        <td><p>Compute Functional Entities composition based on a Species x Traits matrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sp.tr.summary.html">sp.tr.summary()</a></code> </p>
-        </td>
-        <td><p>Summarize Species x Traits data frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tr.cont.fspace.html">tr.cont.fspace()</a></code> </p>
-        </td>
-        <td><p>Build a functional space based on continuous traits only</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tr.cont.scale.html">tr.cont.scale()</a></code> </p>
-        </td>
-        <td><p>Scale continuous traits</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="traits.faxes.cor.html">traits.faxes.cor()</a></code> </p>
-        </td>
-        <td><p>Correlation between Traits and Axes</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="vertices.html">vertices()</a></code> </p>
         </td>
         <td><p>Compute vertices of the Minimal Convex Hull shaping species from a single
 assemblage in a multidimensional functional space</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-data-sets" class="hasAnchor"><a href="#section-data-sets" class="anchor"></a>Data sets</h2>
+          <p class="section-desc"><p>The three data sets used for examples and tutorials in the <code>mFD</code> package.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="baskets_fruits_weights.html">baskets_fruits_weights</a></code> </p>
+        </td>
+        <td><p>Dataset: Baskets Composition in Fruits Species</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fruits_traits.html">fruits_traits</a></code> </p>
+        </td>
+        <td><p>Dataset: Traits Values of Fruits Species</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fruits_traits_cat.html">fruits_traits_cat</a></code> </p>
+        </td>
+        <td><p>Dataset: Fruits Traits Informations</p></td>
       </tr>
     </tbody>
     </table>
