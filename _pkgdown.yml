@@ -2,16 +2,15 @@ url: https://cmlmagneville.github.io/mFD
 
 reference:
 - title: Summary functions
-  desc: |
+  desc: >
     These two functions are used to summarize up the species-traits and 
     assemblage data.
   contents:
   - sp.tr.summary
   - asb.sp.summary
 
-- title: Compute functional distances, assess the quality of functional spaces,
-plot the chosen one and caracterize its functional axes
-  desc: |
+- title: Functioanl distances and Functional spaces
+  desc: >
     These functions compute the functional distances between species, build
     functional spaces (if the data gather only continuous traits or not),
     assess/plot the quality of functional spaces (and dendrogram if asked),
@@ -27,7 +26,7 @@ plot the chosen one and caracterize its functional axes
   - traits.faxes.cor
   
 - title: Compute Functional Entities
-  desc: |
+  desc: >
     This function gathers species into Functional Entities (FEs)
   contents:
   - sp.to.fe
@@ -79,7 +78,7 @@ plot the chosen one and caracterize its functional axes
   - pool.plot
 
 - title: Other functions
-  desc: |
+  desc: >
   Various functions that can be used by the user for diverse usage
   contents:
   - dist.nearneighb
@@ -88,9 +87,9 @@ plot the chosen one and caracterize its functional axes
   - mst.computation
   - sp.filter
   - vertices
-  
+
 - title: Data sets
-  desc: |
+  desc: >
   The three data sets used for examples and tutorials in the `mFD` package.
   contents:
   - baskets_fruits_weights
