@@ -466,7 +466,7 @@ to **four possible quality metrics**: `mad`, `rmsd`, `mad_scaled` and
 `rmsd_scaled`
 
 * `fdendro` specifies the clustering algorithm to compute a functional
-dendrogram. `NA` means no dendrogram computed. The chosen algorithm must be one
+dendrogram. `NULL` means no dendrogram computed. The chosen algorithm must be one
 of the method recognized by the `stats::hclust()` function from the
 [`stats`](https://www.rdocumentation.org/packages/stats) package.
 
