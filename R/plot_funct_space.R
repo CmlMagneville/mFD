@@ -454,6 +454,10 @@ funct.space.plot <- function(sp_faxes_coord, faxes = NULL,
   
   # merging panels and caption
   patchwork_plots_all <- panels.to.patchwork(panels, plot_caption)
+  patchwork_plots_all <- patchwork_plots_all + 
+    patchwork::plot_annotation(title = 
+                        "Position of species along pairs of functional axes", 
+                              caption = "made with mFD package")
   
   
   #### returning output ####
