@@ -97,7 +97,7 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-05-07</h4>
+            <h4 class="date">2021-05-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -728,7 +728,7 @@ Basic framework of the mFD package
 <p>💡 The combination of <code>deviation_weighting</code> and <code>fdist_scaling</code> arguments leads to <strong>four possible quality metrics</strong>: <code>mad</code>, <code>rmsd</code>, <code>mad_scaled</code> and <code>rmsd_scaled</code></p>
 <ul>
 <li>
-<code>fdendro</code> specifies the clustering algorithm to compute a functional dendrogram. <code>NA</code> means no dendrogram computed. The chosen algorithm must be one of the method recognized by the <code><a href="https://rdrr.io/r/stats/hclust.html">stats::hclust()</a></code> function from the <a href="https://www.rdocumentation.org/packages/stats"><code>stats</code></a> package.</li>
+<code>fdendro</code> specifies the clustering algorithm to compute a functional dendrogram. <code>NULL</code> means no dendrogram computed. The chosen algorithm must be one of the method recognized by the <code><a href="https://rdrr.io/r/stats/hclust.html">stats::hclust()</a></code> function from the <a href="https://www.rdocumentation.org/packages/stats"><code>stats</code></a> package.</li>
 </ul>
 <p><br></p>
 <p>This function returns a list various objects:</p>
