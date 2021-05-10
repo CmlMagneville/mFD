@@ -30,6 +30,11 @@
 #' @param color_signif an R color name or an hexadecimal code referring to 
 #'   the color of points when relationships between the trait and the axis is
 #'   significant. Default is `dark blue`.
+#'   
+#' @param stop_if_NA a logical value to stop or not the process if the
+#'   `sp_tr` data frame contains NA. Functional measures are sensitive to
+#'   missing traits. For further explanations, see the Note section.
+#'   Default is `TRUE`.
 #'
 #' @return 1 data frame with for each combination of trait and axis (rows), the
 #'   name of the test performed, and the corresponding statistics and p-value. 
@@ -83,7 +88,7 @@
 
 traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL, 
                              faxes_nm = NULL, plot = FALSE, name_file = NULL,
-                             color_signif = "darkblue") {
+                             color_signif = "darkblue", stop_if_NA = TRUE) {
   
   
   ## Check inputs ----
@@ -96,7 +101,7 @@ traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL,
     stop("Argument 'sp_faxes_coord' is mandatory.")
   }
   
-  check.sp.tr(sp_tr)
+  check.sp.tr(sp_tr, stop_if_NA = stop_if_NA)
   
   check.sp.faxes.coord(sp_faxes_coord)
 

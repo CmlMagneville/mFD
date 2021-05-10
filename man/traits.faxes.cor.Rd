@@ -11,7 +11,8 @@ traits.faxes.cor(
   faxes_nm = NULL,
   plot = FALSE,
   name_file = NULL,
-  color_signif = "darkblue"
+  color_signif = "darkblue",
+  stop_if_NA = TRUE
 )
 }
 \arguments{
@@ -38,6 +39,11 @@ dpi JPEG file. Default is \code{NULL} which means plot is only displayed. If
 \item{color_signif}{an R color name or an hexadecimal code referring to
 the color of points when relationships between the trait and the axis is
 significant. Default is \verb{dark blue}.}
+
+\item{stop_if_NA}{a logical value to stop or not the process if the
+\code{sp_tr} data frame contains NA. Functional measures are sensitive to
+missing traits. For further explanations, see the Note section.
+Default is \code{TRUE}.}
 }
 \value{
 1 data frame with for each combination of trait and axis (rows), the
