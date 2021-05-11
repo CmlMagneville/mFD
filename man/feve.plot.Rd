@@ -80,10 +80,6 @@ This function plots FEve index for a given pair of functional axes and one
 or several assemblages. It adds Minimum Spanning Tree (MST) of a given
 assemblage on the background plot.
 }
-\note{
-If several assemblages are to be represented, aesthetics inputs should
-be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
-}
 \examples{
 \dontrun{
 # Load Species*Traits dataframe:

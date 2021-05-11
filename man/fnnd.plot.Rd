@@ -76,10 +76,6 @@ A ggplot object with FNND index.
 This function plots FNND index for a given pair of functional axes and for
 one or several assemblages
 }
-\note{
-If several assemblages are to be represented, aesthetics inputs should
-be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
-}
 \examples{
 \dontrun{
 # Load Species*Traits dataframe:

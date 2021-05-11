@@ -106,10 +106,6 @@ This function plots FOri index for a given pair of functional axes and for
 one or several assemblages. It adds the distance of species from the studied
 to their nearest neighbour(s) from the global pool.
 }
-\note{
-If several assemblages are to be represented, aesthetics inputs should
-be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
-}
 \examples{
 \dontrun{
 # Load Species*Traits dataframe:
