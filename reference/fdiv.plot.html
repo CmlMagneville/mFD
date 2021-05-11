@@ -204,60 +204,89 @@ should be plotted or not. Default: <code>plot_sp = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>shape_sp</th>
-      <td><p>a numeric value referring to the shape used to plot species
-belonging to the studied assemblage.
-(filled circle).</p></td>
+      <td><p>a numeric value referring to the shape of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).</p></td>
     </tr>
     <tr>
       <th>color_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage.</p></td>
+of species if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).</p></td>
     </tr>
     <tr>
       <th>fill_sp</th>
-      <td><p>a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if <code>shape_sp</code> &gt; 20).</p></td>
+      <td><p>a R color name or an hexadecimal code referring to the color
+of species symbol filling (if <code>shape_sp</code> &gt; 20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).</p></td>
     </tr>
     <tr>
       <th>shape_vert</th>
-      <td><p>a numeric value referring to the shape used to plot
-vertices if vertices should be plotted in a different way than other
-species. If <code>shape_vert = NA</code>, no vertices plotted.</p></td>
+      <td><p>a numeric value referring to the shape of the symbol used
+for vertices plotting if one assemblage to plot or a vector numeric values
+if several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).</p></td>
     </tr>
     <tr>
       <th>color_vert</th>
       <td><p>a R color name or an hexadecimal code referring to the
-color of vertices if plotted. If color_vert = NA, vertices are not plotted
-(for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA).</p></td>
+color of vertices if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...). If color_vert = NA,
+vertices are not plotted (for shapes only defined by color, ie shape
+inferior to 20. Otherwise <code>fill</code> must also be set to NA).</p></td>
     </tr>
     <tr>
       <th>fill_vert</th>
-      <td><p>a R color name or an hexadecimal code referring to the
-color for filling symbol
-for vertices (if <code>shape_vert</code> &gt;20). If <code>fill = NA</code> and <code>color = NA</code>,
-vertices are not plotted (if <code>shape_vert</code> superior to 20. Otherwise
-<code>color_vert = NULL</code> is enough).</p></td>
+      <td><p>a R color name or an hexadecimal code referring to the color
+of vertices symbol filling  (if <code>shape_vert</code> &gt;20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...). If <code>fill = NA</code> and <code>color = NA</code>, vertices are not plotted (if
+<code>shape_vert</code> superior to 20</p></td>
     </tr>
     <tr>
       <th>shape_vertG</th>
-      <td><p>a numeric value referring to the shape to use to
-plot the center of gravity of vertices.</p></td>
+      <td><p>a numeric value referring to the shape to use to plot the
+center of gravity of vertices if one assemblage to plot or a vector numeric
+values if several assemblages to plot. If more than one assemblage to plot,
+the vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).</p></td>
     </tr>
     <tr>
       <th>size_vertG</th>
-      <td><p>a numeric value referring to the size to use to
-plot the center of gravity of vertices.</p></td>
+      <td><p>a numeric value referring to the size of the symbol used
+for the center of gravity of vertices if one assemblage to plot or a vector
+numeric values if several assemblages to plot. If more than one assemblage
+to plot, the vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+"secondRsize", ...).</p></td>
     </tr>
     <tr>
       <th>color_vertG</th>
       <td><p>a R color name or an hexadecimal code referring to the
-color of the center of gravity of vertices.</p></td>
+color of the center of gravity of vertices. if one assemblage to plot or a
+vector of R color names or hexadecimal codes if several assemblages to
+plot. If more than one assemblage to plot, the vector should be formatted
+as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname", ...).</p></td>
     </tr>
     <tr>
       <th>fill_vertG</th>
-      <td><p>a R color name or an hexadecimal code
-referring to the color to fill the center of gravity of vertices.</p></td>
+      <td><p>a R color name or an hexadecimal code referring to the
+color to fill the center of gravity of vertices (if <code>shape_vert</code> &gt;20)
+if one assemblage to plot or a vector of R color names or hexadecimal codes
+if several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
+"secondRcolorname", ...).</p></td>
     </tr>
     </table>
 
@@ -265,10 +294,6 @@ referring to the color to fill the center of gravity of vertices.</p></td>
 
     <p>A ggplot object plotting background of multidimensional graphs and
 FDiv indice.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>If several assemblages are to be represented, aesthetics inputs should
-be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sebastien Villeger</p>

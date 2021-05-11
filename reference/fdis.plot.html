@@ -198,59 +198,86 @@ should be plotted or not. Default: <code>plot_sp = TRUE</code></p></td>
     </tr>
     <tr>
       <th>shape_sp</th>
-      <td><p>a numeric value referring to the shape used to plot species
-belonging to the studied assemblage.</p></td>
+      <td><p>a numeric value referring to the shape of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).</p></td>
     </tr>
     <tr>
       <th>color_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage. Default: <code>color_sp = "#0072B2"</code>.
-If several assemblages it should be a vector with names as in
-<code>asb_sp_coord2D</code>.</p></td>
+of species if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).</p></td>
     </tr>
     <tr>
       <th>fill_sp</th>
-      <td><p>a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if <code>shape_sp</code> &gt; 20).</p></td>
+      <td><p>a R color name or an hexadecimal code referring to the color
+of species symbol filling (if <code>shape_sp</code> &gt; 20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).</p></td>
     </tr>
     <tr>
       <th>shape_fide</th>
-      <td><p>a numeric value referring to the shape used to
-plot fide centroid of the studied assemblage.</p></td>
+      <td><p>a numeric value referring to the shape of the symbol used
+for fide centroid if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).</p></td>
     </tr>
     <tr>
       <th>size_fide</th>
-      <td><p>a numeric value referring to the size of assemblage
-fide centroid.</p></td>
+      <td><p>a numeric value referring to the size of the symbol used for
+fide centroid plotting if one assemblage to plot or a vector numeric values
+if several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRsize", asb2 = "secondRsize",
+...).</p></td>
     </tr>
     <tr>
       <th>color_fide</th>
-      <td><p>a R color name or an hexadecimal code referring to the
-color of the species fide centroid from the studied assemblage. If several
-assemblages it should be a vector with names as in <code>asb_sp_coord2D</code>.</p></td>
+      <td><p>a R color name or an hexadecimal code referring to the color
+of fide centroid if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).</p></td>
     </tr>
     <tr>
       <th>fill_fide</th>
-      <td><p>a R color name or an hexadecimal code referring to the
-colour to fill assemblage fide centroid symbol
-(if <code>shape_fide</code> &gt; 20).</p></td>
+      <td><p>a R color name or an hexadecimal code referring to the color
+to fill assemblage centroid symbol (if <code>shape_sp</code> &gt; 20) if one
+assemblage to plot or a vector of R color names or hexadecimal codes if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
+"secondRcolorname", ...).</p></td>
     </tr>
     <tr>
       <th>color_segment</th>
       <td><p>a R color name or an hexadecimal code referring to the
-color of the segment linking axes and centroid from the studied assemblage.
-If several assemblages it should be a vector with names as in
-<code>asb_sp_coord2D</code>.</p></td>
+color of of the segment linking axes and centroid from the studied
+assemblage if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).</p></td>
     </tr>
     <tr>
       <th>width_segment</th>
-      <td><p>a numeric value referring to the size of the segment
-linking fide centroid and functional axes.</p></td>
+      <td><p>a numeric value referring to the width of the segment
+linking fide centroid and functional axes if one assemblage to plot or a
+vector numeric values if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRsize", asb2 = "secondRsize", ...).</p></td>
     </tr>
     <tr>
       <th>linetype_segment</th>
-      <td><p>a character string referring to the linetype used to
-draw the segment linking fide centroid and functional axes.</p></td>
+      <td><p>a numeric value referring to the linetype of the
+segment linking fide centroid and functional axes if one assemblage to plot
+or a vector numeric values if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRlinetype", asb2 = "secondRlinetype", ...).</p></td>
     </tr>
     </table>
 
