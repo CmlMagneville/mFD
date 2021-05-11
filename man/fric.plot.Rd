@@ -36,50 +36,78 @@ with names of species being vertices in n dimensions.}
 \item{plot_sp}{a logical value indicating whether species of each assemblage
 should be plotted or not. Default: plot_sp = TRUE.}
 
-\item{color_ch}{a R color name or an hexadecimal code referring to the
-border of the convex hull filled by the pool of species. Default:
-\code{color_ch = "black"}.}
+\item{color_ch}{a R color name or an hexadecimal code referring to the color
+of the border of the convex hull filled by the pool of species if one
+assemblage to plot or a vector of R color names or hexadecimal codes if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
+"secondRcolorname", ...).}
 
-\item{fill_ch}{a R color name or an hexadecimal code referring to the
-filling of the convex hull filled by the pool of species. Default is:
-\code{fill_ch = "white"}.}
+\item{fill_ch}{a R color name or an hexadecimal code referring to the color
+of convex hull filling if one assemblage to plot or a vector of R color
+names or hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{alpha_ch}{a numeric value for transparency of the filling of the
-convex hull (0 = high transparency, 1 = no transparency). Default:
-\code{alpha_ch = 0.3}.}
+\item{alpha_ch}{a numeric value referring to the value of transparency of
+the convex hull filling (0 = high transparency, 1 = no
+transparency) if one assemblage to
+plot or a vector numeric values if several assemblages to plot. If more
+than one assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRtransparency", asb2 = "secondRtransparency", ...).}
 
-\item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage. Default: \code{shape_sp = 16}
-(filled circle).}
+\item{shape_sp}{a numeric value referring to the shape of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
-\item{size_sp}{a numeric value referring to the size of species belonging to
-the plotted assemblage. Default: \code{size_sp = 1}.}
+\item{size_sp}{a numeric value referring to the size of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+"secondRsize", ...).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage.  This color is also used for FRic
-convex hull color.}
+of species if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{fill_sp}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-hull. Default: \code{fill_sp = '#0072B2'}.}
+\item{fill_sp}{a R color name or an hexadecimal code referring to the color
+of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).}
 
-\item{shape_vert}{a numeric value referring to the shape used to plot
-vertices if vertices should be plotted in a different way than other
-species. If \code{shape_vert = NA}, no vertices plotted. Default:
-\code{shape_vert = NA}.}
+\item{shape_vert}{a numeric value referring to the shape of the symbol used
+for vertices plotting if one assemblage to plot or a vector numeric values
+if several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
-\item{size_vert}{a numeric value referring to the size of symbol for
-vertices. Default: \code{size_vert = 1}.}
+\item{size_vert}{a numeric value referring to the size of the symbol used for
+vertices plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+"secondRsize", ...).}
 
 \item{color_vert}{a R color name or an hexadecimal code referring to the
-color of vertices if plotted. If color_vert = NA, vertices are not plotted
-(for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA).}
+color of vertices if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...). If color_vert = NA,
+vertices are not plotted (for shapes only defined by color, ie shape
+inferior to 20. Otherwise \code{fill} must also be set to NA).}
 
-\item{fill_vert}{a character value referring to the color for filling symbol
-for vertices (if \code{shape_vert} >20). If \code{fill = NA} and \code{color = NA},
-vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-\code{color_vert = NULL} is enough). Default is \code{NA}.}
+\item{fill_vert}{a R color name or an hexadecimal code referring to the color
+of vertices symbol filling  (if \code{shape_vert} >20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...). If \code{fill = NA} and \code{color = NA}, vertices are not plotted (if
+\code{shape_vert} superior to 20}
 }
 \value{
 A ggplot object plotting background of multidimensional graphs and

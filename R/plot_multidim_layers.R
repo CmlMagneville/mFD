@@ -634,50 +634,78 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #' @param plot_sp a logical value indicating whether species of each assemblage 
 #'  should be plotted or not. Default: plot_sp = TRUE.
 #' 
-#' @param color_ch a R color name or an hexadecimal code referring to the 
-#'   border of the convex hull filled by the pool of species. Default: 
-#'  `color_ch = "black"`.
+#' @param color_ch a R color name or an hexadecimal code referring to the color
+#'   of the border of the convex hull filled by the pool of species if one
+#'   assemblage to plot or a vector of R color names or hexadecimal codes if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
+#'   "secondRcolorname", ...).
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage.  This color is also used for FRic
-#'  convex hull color. 
+#'   of species if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #'  
 #' @param color_vert a R color name or an hexadecimal code referring to the
-#'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
-#'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-#'   must also be set to NA). 
+#'   color of vertices if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...). If color_vert = NA,
+#'   vertices are not plotted (for shapes only defined by color, ie shape
+#'   inferior to 20. Otherwise `fill` must also be set to NA).
 #'
-#' @param fill_ch a R color name or an hexadecimal code referring to the 
-#'   filling of the convex hull filled by the pool of species. Default is: 
-#'  `fill_ch = "white"`.
+#' @param fill_ch a R color name or an hexadecimal code referring to the color
+#'   of convex hull filling if one assemblage to plot or a vector of R color
+#'   names or hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-#'  hull. Default: `fill_sp = '#0072B2'`.
+#' @param fill_sp a R color name or an hexadecimal code referring to the color
+#'   of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #' 
-#' @param fill_vert a character value referring to the color for filling symbol
-#'   for vertices (if \code{shape_vert} >20). If `fill = NA` and `color = NA`,
-#'   vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-#'   `color_vert = NULL` is enough). Default is `NA`. 
+#' @param fill_vert a R color name or an hexadecimal code referring to the color
+#'   of vertices symbol filling  (if \code{shape_vert} >20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...). If `fill = NA` and `color = NA`, vertices are not plotted (if
+#'   \code{shape_vert} superior to 20
+#'   
+#' @param shape_sp a numeric value referring to the shape of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #' 
-#' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. Default: `shape_sp = 16` 
-#'  (filled circle).
+#' @param shape_vert a numeric value referring to the shape of the symbol used
+#'   for vertices plotting if one assemblage to plot or a vector numeric values
+#'   if several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #' 
-#' @param shape_vert a numeric value referring to the shape used to plot
-#'   vertices if vertices should be plotted in a different way than other
-#'   species. If `shape_vert = NA`, no vertices plotted. Default: 
-#'   `shape_vert = NA`.
+#' @param size_sp a numeric value referring to the size of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+#'   "secondRsize", ...).
 #' 
-#' @param size_sp a numeric value referring to the size of species belonging to
-#'  the plotted assemblage. Default: `size_sp = 1`.
+#' @param size_vert a numeric value referring to the size of the symbol used for
+#'   vertices plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+#'   "secondRsize", ...).
 #' 
-#' @param size_vert a numeric value referring to the size of symbol for 
-#'   vertices. Default: `size_vert = 1`.
-#' 
-#' @param alpha_ch a numeric value for transparency of the filling of the 
-#'   convex hull (0 = high transparency, 1 = no transparency). Default: 
-#'  `alpha_ch = 0.3`.
+#' @param alpha_ch a numeric value referring to the value of transparency of
+#'   the convex hull filling (0 = high transparency, 1 = no
+#'   transparency) if one assemblage to
+#'   plot or a vector numeric values if several assemblages to plot. If more
+#'   than one assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRtransparency", asb2 = "secondRtransparency", ...).
 #'
 #' @return A ggplot object plotting background of multidimensional graphs and
 #' FRic convex hulls.
