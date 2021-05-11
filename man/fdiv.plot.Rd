@@ -44,42 +44,71 @@ given pair of axes}
 \item{plot_sp}{a logical value indicating whether species of each assemblage
 should be plotted or not. Default: \code{plot_sp = TRUE}.}
 
-\item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage.
-(filled circle).}
+\item{shape_sp}{a numeric value referring to the shape of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage.}
+of species if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{fill_sp}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20).}
+\item{fill_sp}{a R color name or an hexadecimal code referring to the color
+of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).}
 
-\item{shape_vert}{a numeric value referring to the shape used to plot
-vertices if vertices should be plotted in a different way than other
-species. If \code{shape_vert = NA}, no vertices plotted.}
+\item{shape_vert}{a numeric value referring to the shape of the symbol used
+for vertices plotting if one assemblage to plot or a vector numeric values
+if several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
 \item{color_vert}{a R color name or an hexadecimal code referring to the
-color of vertices if plotted. If color_vert = NA, vertices are not plotted
-(for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-must also be set to NA).}
+color of vertices if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...). If color_vert = NA,
+vertices are not plotted (for shapes only defined by color, ie shape
+inferior to 20. Otherwise \code{fill} must also be set to NA).}
 
-\item{fill_vert}{a R color name or an hexadecimal code referring to the
-color for filling symbol
-for vertices (if \code{shape_vert} >20). If \code{fill = NA} and \code{color = NA},
-vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-\code{color_vert = NULL} is enough).}
+\item{fill_vert}{a R color name or an hexadecimal code referring to the color
+of vertices symbol filling  (if \code{shape_vert} >20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...). If \code{fill = NA} and \code{color = NA}, vertices are not plotted (if
+\code{shape_vert} superior to 20}
 
-\item{shape_vertG}{a numeric value referring to the shape to use to
-plot the center of gravity of vertices.}
+\item{shape_vertG}{a numeric value referring to the shape to use to plot the
+center of gravity of vertices if one assemblage to plot or a vector numeric
+values if several assemblages to plot. If more than one assemblage to plot,
+the vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
-\item{size_vertG}{a numeric value referring to the size to use to
-plot the center of gravity of vertices.}
+\item{size_vertG}{a numeric value referring to the size of the symbol used
+for the center of gravity of vertices if one assemblage to plot or a vector
+numeric values if several assemblages to plot. If more than one assemblage
+to plot, the vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+"secondRsize", ...).}
 
 \item{color_vertG}{a R color name or an hexadecimal code referring to the
-color of the center of gravity of vertices.}
+color of the center of gravity of vertices. if one assemblage to plot or a
+vector of R color names or hexadecimal codes if several assemblages to
+plot. If more than one assemblage to plot, the vector should be formatted
+as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{fill_vertG}{a R color name or an hexadecimal code
-referring to the color to fill the center of gravity of vertices.}
+\item{fill_vertG}{a R color name or an hexadecimal code referring to the
+color to fill the center of gravity of vertices (if \code{shape_vert} >20)
+if one assemblage to plot or a vector of R color names or hexadecimal codes
+if several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
+"secondRcolorname", ...).}
 }
 \value{
 A ggplot object plotting background of multidimensional graphs and
@@ -89,10 +118,6 @@ FDiv indice.
 This plot fDiv indice for a given pair of functional axes and one or several
 assemblages. This function adds mean distance to center of gravity of
 vertices, points and vertices of 1:N assemblages on the background plot
-}
-\note{
-If several assemblages are to be represented, aesthetics inputs should
-be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{

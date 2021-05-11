@@ -710,9 +710,6 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #' @return A ggplot object plotting background of multidimensional graphs and
 #' FRic convex hulls.
 #' 
-#' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formated as c(pool = ..., asb1 = ..., asb2 = ...).
-#' 
 #' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
@@ -885,47 +882,73 @@ fric.plot <- function(ggplot_bg,
 #'  should be plotted or not. Default: `plot_sp = TRUE`.
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage.  
+#'   of species if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
 #' @param color_vert a R color name or an hexadecimal code referring to the
-#'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
-#'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-#'   must also be set to NA).
+#'   color of vertices if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...). If color_vert = NA,
+#'   vertices are not plotted (for shapes only defined by color, ie shape
+#'   inferior to 20. Otherwise `fill` must also be set to NA).
 #'   
 #' @param color_vertG a R color name or an hexadecimal code referring to the
-#'   color of the center of gravity of vertices.
+#'   color of the center of gravity of vertices. if one assemblage to plot or a
+#'   vector of R color names or hexadecimal codes if several assemblages to
+#'   plot. If more than one assemblage to plot, the vector should be formatted
+#'   as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). 
+#' @param fill_sp a R color name or an hexadecimal code referring to the color
+#'   of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #' 
-#' @param fill_vert a R color name or an hexadecimal code referring to the 
-#'   color for filling symbol
-#'   for vertices (if \code{shape_vert} >20). If `fill = NA` and `color = NA`,
-#'   vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-#'   `color_vert = NULL` is enough).
+#' @param fill_vert a R color name or an hexadecimal code referring to the color
+#'   of vertices symbol filling  (if \code{shape_vert} >20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...). If `fill = NA` and `color = NA`, vertices are not plotted (if
+#'   \code{shape_vert} superior to 20
 #'   
-#' @param fill_vertG a R color name or an hexadecimal code 
-#' referring to the color to fill the center of gravity of vertices.
+#' @param fill_vertG a R color name or an hexadecimal code referring to the
+#'   color to fill the center of gravity of vertices (if \code{shape_vert} >20)
+#'   if one assemblage to plot or a vector of R color names or hexadecimal codes
+#'   if several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
+#'   "secondRcolorname", ...).
 #'  
-#' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. 
-#'  (filled circle).
+#' @param shape_sp a numeric value referring to the shape of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #' 
-#' @param shape_vert a numeric value referring to the shape used to plot
-#'   vertices if vertices should be plotted in a different way than other
-#'   species. If `shape_vert = NA`, no vertices plotted.
+#' @param shape_vert a numeric value referring to the shape of the symbol used
+#'   for vertices plotting if one assemblage to plot or a vector numeric values
+#'   if several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #'   
-#' @param shape_vertG a numeric value referring to the shape to use to
-#' plot the center of gravity of vertices.
-#'  
-#' @param size_vertG a numeric value referring to the size to use to
-#' plot the center of gravity of vertices. 
+#' @param shape_vertG a numeric value referring to the shape to use to plot the
+#'   center of gravity of vertices if one assemblage to plot or a vector numeric
+#'   values if several assemblages to plot. If more than one assemblage to plot,
+#'   the vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
+#'   
+#' @param size_vertG a numeric value referring to the size of the symbol used
+#'   for the center of gravity of vertices if one assemblage to plot or a vector
+#'   numeric values if several assemblages to plot. If more than one assemblage
+#'   to plot, the vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+#'   "secondRsize", ...).
 #'
 #' @return A ggplot object plotting background of multidimensional graphs and
 #'   FDiv indice.
-#' 
-#' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
 #' @author Camille Magneville and Sebastien Villeger
 #' 
