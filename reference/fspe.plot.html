@@ -237,18 +237,28 @@ convex hull.</p></td>
     </tr>
     <tr>
       <th>shape_sp</th>
-      <td><p>a numeric value referring to the shape used to plot species
-belonging to the studied assemblage.</p></td>
+      <td><p>a numeric value referring to the shape of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).</p></td>
     </tr>
     <tr>
       <th>color_sp</th>
       <td><p>a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage.</p></td>
+of species if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).</p></td>
     </tr>
     <tr>
       <th>fill_sp</th>
-      <td><p>a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if <code>shape_sp</code> &gt; 20).</p></td>
+      <td><p>a R color name or an hexadecimal code referring to the color
+of species symbol filling (if <code>shape_sp</code> &gt; 20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).</p></td>
     </tr>
     <tr>
       <th>color_center</th>
@@ -273,29 +283,35 @@ the global pool.</p></td>
     <tr>
       <th>color_segment</th>
       <td><p>a R color name or an hexadecimal code referring to the
-color of the segment linking nearest neighbors in the global pool.
-If several assemblages it should be a vector with names as in
-<code>asb_sp_coord2D</code>.</p></td>
+color of the segments linking each species of a given assemblage to the
+center of functional space if one assemblage to plot or a vector of R color
+names or hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).</p></td>
     </tr>
     <tr>
       <th>width_segment</th>
-      <td><p>a numeric value referring to the size of the segment
-linking nearest neighbors in the global pool.</p></td>
+      <td><p>a numeric value referring to the
+width of the segments linking each species of a given assemblage to the
+center of functional space if one assemblage to plot or a vector of R color
+names or hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRwidth", asb2 = "secondRwidth", ...).</p></td>
     </tr>
     <tr>
       <th>linetype_segment</th>
-      <td><p>a character string referring to the linetype used to
-link nearest neighbors in the global pool.</p></td>
+      <td><p>a character string referring to the
+linetype of the segment linking each species of a given assemblage to the
+center of functional space if one assemblage to plot or a vector of R color
+names or hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRlinetype", asb2 = "secondRlinetype", ...).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A ggplot object with FSpe index on the background plot.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>If several assemblages are to be represented, aesthetics inputs should
-be formatted as c(pool = ..., asb1 = ..., asb2 = ...).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Camille Magneville and Sebastien Villeger</p>
