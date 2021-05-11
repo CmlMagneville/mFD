@@ -274,36 +274,58 @@ pool.plot <- function(ggplot_bg,
 #'   each assemblage. It can be retrieved through the
 #'   \code{\link{alpha.fd.multidim}}.
 #' 
-#' @param size_sp a numeric value referring to the size of species belonging to
-#'  the plotted assemblage. Default: `size_sp = 1`.
+#' @param size_sp a numeric value referring to the size of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+#'   "secondRsize", ...).
 #' 
-#' @param size_vert a numeric value referring to the size of symbol for 
-#'   vertices. Default: `size_vert = 1`. 
+#' @param size_vert a numeric value referring to the size of the symbol used for
+#'   vertices plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRsize", asb2 =
+#'   "secondRsize", ...).
 #' 
-#' @param shape_sp a numeric value referring to the shape of species 
-#' belonging to the plotted assemblage. 
-#' Default: `shape_sp = 16`.
+#' @param @param shape_sp a numeric value referring to the shape of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #' 
-#' @param shape_vert a numeric value referring to the shape of symbol for 
-#' vertices.
+#' @param shape_vert a numeric value referring to the shape of the symbol used
+#'   for vertices plotting if one assemblage to plot or a vector numeric values
+#'   if several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #' 
-#' @param color_sp a R color name or an hexadecimal code referring to the 
-#'   color of species from the studied assemblage.  This color is also used 
-#'   for FRic convex hull color. 
+#' @param color_sp a R color name or an hexadecimal code referring to the color
+#'   of species if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
 #' @param color_vert a R color name or an hexadecimal code referring to the
-#'   color of vertices if plotted. If color_vert = NA, vertices are not plotted
-#'   (for shapes only defined by color, ie shape inferior to 20. Otherwise fill
-#'   must also be set to NA). 
+#'   color of vertices if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...). If color_vert = NA,
+#'   vertices are not plotted (for shapes only defined by color, ie shape
+#'   inferior to 20. Otherwise `fill` must also be set to NA).
 #'
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20) and the assemblage convex
-#'  hull. 
+#' @param fill_sp a R color name or an hexadecimal code referring to the color
+#'   of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #' 
-#' @param fill_vert a character value referring to the color for filling symbol
-#'   for vertices (if \code{shape_vert} >20). If `fill = NA` and `color = NA`,
-#'   vertices are not plotted (if \code{shape_vert} superior to 20. Otherwise
-#'   `color_vert = NULL` is enough).
+#' @param fill_vert a R color name or an hexadecimal code referring to the color
+#'   of vertices symbol filling  (if \code{shape_vert} >20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...). If `fill = NA` and `color = NA`, vertices are not plotted (if
+#'   \code{shape_vert} superior to 20
 #' 
 #' @param limits_relatw a vector of two numbers giving the limits to set for 
 #' the scale of species relative weights.
