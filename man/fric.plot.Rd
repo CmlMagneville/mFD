@@ -118,10 +118,6 @@ This function plots FRic index for a given pair of functional axes and one
 or several assemblages. It adds convex hull(s), points and vertices of
 1:N assemblages on the background plot
 }
-\note{
-If several assemblages are to be represented, aesthetics inputs should
-be formated as c(pool = ..., asb1 = ..., asb2 = ...).
-}
 \examples{
 \dontrun{
 # Load Species*Traits dataframe:
