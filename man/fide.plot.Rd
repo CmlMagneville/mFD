@@ -40,35 +40,68 @@ for a given pair of axes.}
 \item{plot_sp}{a logical value indicating whether species of each assemblage
 should be plotted or not. Default: \code{plot_sp = TRUE}}
 
-\item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage.}
+\item{shape_sp}{a numeric value referring to the shape of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage.}
+of species if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{fill_sp}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20).}
+\item{fill_sp}{a R color name or an hexadecimal code referring to the color
+of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).}
 
-\item{shape_fide}{a numeric value referring to the shape used to
-plot fide centroid of the studied assemblage.}
+\item{shape_fide}{a numeric value referring to the shape of the symbol used
+for fide centroid plotting if one assemblage to plot or a vector numeric
+values if several assemblages to plot. If more than one assemblage to plot,
+the vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
-\item{size_fide}{a numeric value referring to the size of species fide
-centroid but not the plotted assemblage.}
+\item{size_fide}{a numeric value referring to the size of the symbol used for
+fide centroid plotting if one assemblage to plot or a vector numeric values
+if several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRsize", asb2 = "secondRsize",
+...).}
 
 \item{color_fide}{a R color name or an hexadecimal code referring to the
-color of the species centroid from the studied assemblage.}
+color of species centroid for agiven assemblage if one assemblage to plot
+or a vector of R color names or hexadecimal codes if several assemblages to
+plot. If more than one assemblage to plot, the vector should be formatted
+as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{fill_fide}{a R color name or an hexadecimal code referring to
-the colour to fill assemblage centroid symbol (if \code{shape_sp} > 20).}
+\item{fill_fide}{a R color name or an hexadecimal code referring to the color
+o fill assemblage centroid symbol (if \code{shape_sp} > 20) if one
+assemblage to plot or a vector of R color names or hexadecimal codes if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
+"secondRcolorname", ...).}
 
 \item{color_segment}{a R color name or an hexadecimal code referring to the
-color of the segment linking axes and centroid from the studied assemblage.}
+color of of the segment linking axes and centroid from the studied
+assemblage if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{width_segment}{a numeric value referring to the size of the segment
-linking fide centroid and functional axes.}
+\item{width_segment}{a numeric value referring to the width of the segment
+linking fide centroid and functional axes if one assemblage to plot or a
+vector numeric values if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRsize", asb2 = "secondRsize", ...).}
 
-\item{linetype_segment}{a character string referring to the linetype used to
-draw the segment linking fide centroid and functional axes.}
+\item{linetype_segment}{a numeric value referring to the linetype of the
+segment linking fide centroid and functional axes if one assemblage to plot
+or a vector numeric values if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRlinetype", asb2 = "secondRlinetype", ...).}
 }
 \value{
 A ggplot object with FIde index, species and background.
@@ -78,10 +111,6 @@ Plot FIde index given a pair of functional axes for one or several
 assemblages. It adds the centroid of species for each assemblage and
 segments showing centroid coordinates on functional axes on the background
 plot.
-}
-\note{
-If several assemblages are to be represented, aesthetics inputs should
-be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 }
 \examples{
 \dontrun{
