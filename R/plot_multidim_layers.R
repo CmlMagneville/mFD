@@ -1160,7 +1160,7 @@ fdiv.plot <- function(ggplot_bg,
 #'   ...).
 #'  
 #' @param fill_fide a R color name or an hexadecimal code referring to the color
-#'   o fill assemblage centroid symbol (if \code{shape_sp} > 20) if one
+#'   to fill assemblage centroid symbol (if \code{shape_sp} > 20) if one
 #'   assemblage to plot or a vector of R color names or hexadecimal codes if
 #'   several assemblages to plot. If more than one assemblage to plot, the
 #'   vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
@@ -1399,41 +1399,68 @@ fide.plot <-function(ggplot_bg,
 #' @param plot_sp a logical value indicating whether species of each assemblage 
 #'  should be plotted or not. Default: `plot_sp = TRUE`
 #' 
-#' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. 
+#' @param shape_sp a numeric value referring to the shape of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #' 
-#' @param shape_fide a numeric value referring to the shape used to 
-#' plot fide centroid of the studied assemblage.
+#' @param shape_fide a numeric value referring to the shape of the symbol used
+#'   for fide centroid if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage. Default: `color_sp = "#0072B2"`. 
-#'  If several assemblages it should be a vector with names as in 
-#'  `asb_sp_coord2D`.
+#'   of species if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
-#' @param color_fide a R color name or an hexadecimal code referring to the 
-#' color of the species fide centroid from the studied assemblage. If several 
-#' assemblages it should be a vector with names as in `asb_sp_coord2D`.
+#' @param color_fide a R color name or an hexadecimal code referring to the color
+#'   of fide centroid if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
-#' @param color_segment a R color name or an hexadecimal code referring to the 
-#' color of the segment linking axes and centroid from the studied assemblage. 
-#' If several assemblages it should be a vector with names as in 
-#' `asb_sp_coord2D`.
+#' @param color_segment a R color name or an hexadecimal code referring to the
+#'   color of of the segment linking axes and centroid from the studied
+#'   assemblage if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). 
+#' @param fill_sp a R color name or an hexadecimal code referring to the color
+#'   of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #' 
-#' @param fill_fide a R color name or an hexadecimal code referring to the
-#'   colour to fill assemblage fide centroid symbol 
-#'   (if \code{shape_fide} > 20).
+#' @param fill_fide a R color name or an hexadecimal code referring to the color
+#'   to fill assemblage centroid symbol (if \code{shape_sp} > 20) if one
+#'   assemblage to plot or a vector of R color names or hexadecimal codes if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
+#'   "secondRcolorname", ...).
 #' 
-#' @param size_fide a numeric value referring to the size of assemblage 
-#' fide centroid.  
+#' @param size_fide a numeric value referring to the size of the symbol used for
+#'   fide centroid plotting if one assemblage to plot or a vector numeric values
+#'   if several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRsize", asb2 = "secondRsize",
+#'   ...).
+#'   
+#' @param width_segment a numeric value referring to the width of the segment
+#'   linking fide centroid and functional axes if one assemblage to plot or a
+#'   vector numeric values if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRsize", asb2 = "secondRsize", ...).
 #' 
-#' @param width_segment a numeric value referring to the size of the segment 
-#' linking fide centroid and functional axes.  
-#' 
-#' @param linetype_segment a character string referring to the linetype used to 
-#' draw the segment linking fide centroid and functional axes. 
+#' @param linetype_segment a numeric value referring to the linetype of the
+#'   segment linking fide centroid and functional axes if one assemblage to plot
+#'   or a vector numeric values if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRlinetype", asb2 = "secondRlinetype", ...).
 #' 
 #' @return A ggplot object showing FDis index for one or several assemblage(s) 
 #' and a given pair of functional axes.
