@@ -78,7 +78,7 @@ plot. If more than one assemblage to plot, the vector should be formatted
 as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname", ...).}
 
 \item{fill_fide}{a R color name or an hexadecimal code referring to the color
-o fill assemblage centroid symbol (if \code{shape_sp} > 20) if one
+to fill assemblage centroid symbol (if \code{shape_sp} > 20) if one
 assemblage to plot or a vector of R color names or hexadecimal codes if
 several assemblages to plot. If more than one assemblage to plot, the
 vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
