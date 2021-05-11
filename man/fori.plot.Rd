@@ -60,23 +60,43 @@ color of the pool.  This color is also used for FRic convex hull color.}
 colour to fill species symbol (if \code{shape_sp} > 20) and the assemblage
 convex hull.}
 
-\item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage.}
+\item{shape_sp}{a numeric value referring to the shape of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage.}
+of species if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{fill_sp}{a R color name or an hexadecimal code referring to the colour
-to fill species symbol (if \code{shape_sp} > 20).}
+\item{fill_sp}{a R color name or an hexadecimal code referring to the color
+of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).}
 
-\item{color_segment}{a R color name or an hexadecimal code referring to the
-color of the segment linking nearest neighbors in the global pool.}
+\item{color_segment}{color_segment a R color name or an hexadecimal code
+referring to the color of of the segment linking nearest neighbors in the
+global pool or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).}
 
 \item{width_segment}{a numeric value referring to the size of the segment
-linking nearest neighbors in the global pool.}
+linking nearest neighbors in the global pool or a vector of numeric
+values if several assemblages to plot. If more than one assemblage to plot,
+the vector should be formatted as: c(asb1 = "firstRwidth", asb2 =
+"secondRwidth", ...).}
 
 \item{linetype_segment}{a character string referring to the linetype used to
-link nearest neighbors in the global pool.}
+link nearest neighbors in the global pool or a vector of character
+strings if several assemblages to plot. If more than one assemblage to
+plot, the vector should be formatted as: c(asb1 = "firstRlinetype", asb2 =
+"secondRlinetype", ...).}
 }
 \value{
 A ggplot object with FOri index.

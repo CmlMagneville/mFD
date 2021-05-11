@@ -112,10 +112,6 @@ This function plots FDis index for a given pair of functional axes and for
 one or several assemblages. It adds segments between species relative
 weights and assemblage cenntroid on the background plot.
 }
-\note{
-If several assemblages are to be represented, aesthetics inputs should
-be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
-}
 \examples{
 \dontrun{
 # Load Species*Traits dataframe:

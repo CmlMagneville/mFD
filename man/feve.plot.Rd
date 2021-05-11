@@ -36,23 +36,41 @@ studied assemblage.}
 \item{plot_sp}{a logical value indicating whether species of each assemblage
 should be plotted or not. Default: \code{plot_sp = TRUE}}
 
-\item{shape_sp}{a numeric value referring to the shape used to plot species
-belonging to the studied assemblage.}
+\item{shape_sp}{a numeric value referring to the shape of the symbol used for
+species plotting if one assemblage to plot or a vector numeric values if
+several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+"secondRshape", ...).}
 
 \item{color_sp}{a R color name or an hexadecimal code referring to the color
-of species from the studied assemblage.}
+of species if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).}
 
 \item{fill_sp}{a R color name or an hexadecimal code referring to the color
-to fill species symbol (if \code{shape_sp} > 20).}
+of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+plot or a vector of R color names or hexadecimal codes if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+...).}
 
-\item{color_mst}{a R color name or an hexadecimal code referring to the
-color of the MST from the studied assemblage.}
+\item{color_mst}{a R color name or an hexadecimal code referring to the color
+the MST if one assemblage to plot or a vector of R color names or
+hexadecimal codes if several assemblages to plot. If more than one
+assemblage to plot, the vector should be formatted as: c(asb1 =
+"firstRcolorname", asb2 = "secondRcolorname", ...).}
 
-\item{width_mst}{a numeric value referring to the size of the line
-representing MST. .}
+\item{width_mst}{a numeric value referring to the width of segments of the
+MST if one assemblage to plot or a vector numeric values if several
+assemblages to plot. If more than one assemblage to plot, the vector should
+be formatted as: c(asb1 = "firstRsize", asb2 = "secondRsize", ...).}
 
-\item{linetype_mst}{a character string referring to the linetype used to
-draw the MST.}
+\item{linetype_mst}{a numeric value referring to the linetype of the segments
+representing the MST if one assemblage to plot or a vector numeric values
+if several assemblages to plot. If more than one assemblage to plot, the
+vector should be formatted as: c(asb1 = "firstRlinetype", asb2 =
+"secondRlinetype", ...).}
 }
 \value{
 A ggplot object showing FEve index on the background plot.

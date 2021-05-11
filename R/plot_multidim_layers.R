@@ -1465,9 +1465,6 @@ fide.plot <-function(ggplot_bg,
 #' @return A ggplot object showing FDis index for one or several assemblage(s) 
 #' and a given pair of functional axes.
 #' 
-#' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
-#' 
 #' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @export
@@ -1665,28 +1662,43 @@ fdis.plot <- function(ggplot_bg,
 #' @param plot_sp a logical value indicating whether species of each assemblage 
 #'  should be plotted or not. Default: `plot_sp = TRUE`
 #' 
-#' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage.
+#' @param shape_sp a numeric value referring to the shape of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #'  
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage. 
+#'   of species if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #'  
-#' @param color_mst a R color name or an hexadecimal code referring to the 
-#'   color of the MST from the studied assemblage.  
+#' @param color_mst a R color name or an hexadecimal code referring to the color
+#'   the MST if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
 #' @param fill_sp a R color name or an hexadecimal code referring to the color
-#'  to fill species symbol (if \code{shape_sp} > 20). 
+#'   of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #'  
-#' @param width_mst a numeric value referring to the size of the line 
-#' representing MST. .
+#' @param width_mst a numeric value referring to the width of segments of the
+#'   MST if one assemblage to plot or a vector numeric values if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRsize", asb2 = "secondRsize", ...).
 #' 
-#' @param linetype_mst a character string referring to the linetype used to 
-#' draw the MST.  
+#' @param linetype_mst a numeric value referring to the linetype of the segments
+#'   representing the MST if one assemblage to plot or a vector numeric values
+#'   if several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRlinetype", asb2 =
+#'   "secondRlinetype", ...).
 #' 
 #' @return A ggplot object showing FEve index on the background plot.
-#' 
-#' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
 #' @author Camille Magneville and Sebastien Villeger
 #' 
@@ -1857,24 +1869,37 @@ feve.plot <- function(ggplot_bg,
 #'  belonging to the studied assemblage.
 #'  
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#'  of species from the studied assemblage. 
+#'   of species if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #'  
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). 
+#' @param fill_sp a R color name or an hexadecimal code referring to the color
+#'   of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #'  
-#' @param color_segment a R color name or an hexadecimal code referring to the 
-#' color of the segment linking nearest neighbors in the studied assemblage. 
+#' @param color_segment a R color name or an hexadecimal code referring to the
+#'   color of of the segment linking nearest neighbors in a given assemblage or
+#'   a vector of R color names or hexadecimal codes if several assemblages to
+#'   plot. If more than one assemblage to plot, the vector should be formatted
+#'   as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
-#' @param width_segment a numeric value referring to the size of the segment 
-#' linking nearest neighbors in the studied assemblage. 
+#' @param width_segment a numeric value referring to the size of the segment
+#'   linking nearest neighbors in a given assemblage or a vector of numeric
+#'   values if several assemblages to plot. If more than one assemblage to plot,
+#'   the vector should be formatted as: c(asb1 = "firstRwidth", asb2 =
+#'   "secondRwidth", ...).
 #' 
-#' @param linetype_segment a character string referring to the linetype used to 
-#' link nearest neighbors in the studied assemblages. 
+#' @param linetype_segment a character string referring to the linetype used to
+#'   link nearest neighbors in the studied assemblages or a vector of character
+#'   strings if several assemblages to plot. If more than one assemblage to
+#'   plot, the vector should be formatted as: c(asb1 = "firstRlinetype", asb2 =
+#'   "secondRlinetype", ...).
 #' 
 #' @return A ggplot object with FNND index.
-#' 
-#' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
 #' @author Camille Magneville and Sebastien Villeger
 #' 
@@ -2063,37 +2088,54 @@ fnnd.plot <- function(ggplot_bg,
 #' color of the pool.  This color is also used for FRic convex hull color. 
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#' of species from the studied assemblage. 
+#'  of species if one assemblage to plot or a vector of R color names or
+#'  hexadecimal codes if several assemblages to plot. If more than one
+#'  assemblage to plot, the vector should be formatted as: c(asb1 =
+#'  "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
 #' @param fill_pool a R color name or an hexadecimal code referring to the 
 #'   colour to fill species symbol (if \code{shape_sp} > 20) and the assemblage 
 #'   convex hull. 
 #'  
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). 
+#' @param fill_sp a R color name or an hexadecimal code referring to the color
+#'   of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #' 
 #' @param shape_pool a numeric value referring to the shape used to plot species
 #'  pool. 
 #'  
-#' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. 
+#' @param shape_sp a numeric value referring to the shape of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...).
 #' 
 #' @param size_pool a numeric value referring to the size of species belonging 
 #' to the global pool. 
 #' 
-#' @param color_segment a R color name or an hexadecimal code referring to the 
-#' color of the segment linking nearest neighbors in the global pool. 
+#' @param color_segment color_segment a R color name or an hexadecimal code
+#'   referring to the color of of the segment linking nearest neighbors in the
+#'   global pool or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #' 
-#' @param width_segment a numeric value referring to the size of the segment 
-#' linking nearest neighbors in the global pool. 
+#' @param width_segment a numeric value referring to the size of the segment
+#'   linking nearest neighbors in the global pool or a vector of numeric
+#'   values if several assemblages to plot. If more than one assemblage to plot,
+#'   the vector should be formatted as: c(asb1 = "firstRwidth", asb2 =
+#'   "secondRwidth", ...).
 #' 
-#' @param linetype_segment a character string referring to the linetype used to 
-#' link nearest neighbors in the global pool. 
+#' @param linetype_segment a character string referring to the linetype used to
+#'   link nearest neighbors in the global pool or a vector of character
+#'   strings if several assemblages to plot. If more than one assemblage to
+#'   plot, the vector should be formatted as: c(asb1 = "firstRlinetype", asb2 =
+#'   "secondRlinetype", ...). 
 #' 
 #' @return A ggplot object with FOri index.
-#' 
-#' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
 #' 
 #' @author Camille Magneville and Sebastien Villeger
 #' 
@@ -2300,22 +2342,31 @@ fori.plot <- function(ggplot_bg,
 #' Default: `color_pool = "#0072B2"`.
 #' 
 #' @param color_sp a R color name or an hexadecimal code referring to the color
-#' of species from the studied assemblage. 
+#'   of species if one assemblage to plot or a vector of R color names or
+#'   hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
 #' @param color_center a R color name or an hexadecimal code referring to the 
 #' color of the center of the global pool. 
 #' 
-#' @param color_segment a R color name or an hexadecimal code referring to the 
-#' color of the segment linking nearest neighbors in the global pool. 
-#' If several assemblages it should be a vector with names as in 
-#' `asb_sp_coord2D`.
+#' @param color_segment a R color name or an hexadecimal code referring to the
+#'   color of the segments linking each species of a given assemblage to the
+#'   center of functional space if one assemblage to plot or a vector of R color
+#'   names or hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
 #' @param fill_pool a R color name or an hexadecimal code referring to the 
 #' colour to fill species symbol (if \code{shape_sp} > 20) and the assemblage 
 #' convex hull. 
 #'  
-#' @param fill_sp a R color name or an hexadecimal code referring to the colour
-#'  to fill species symbol (if \code{shape_sp} > 20). 
+#' @param fill_sp a R color name or an hexadecimal code referring to the color
+#'   of species symbol filling (if \code{shape_sp} > 20) if one assemblage to
+#'   plot or a vector of R color names or hexadecimal codes if several
+#'   assemblages to plot. If more than one assemblage to plot, the vector should
+#'   be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
+#'   ...).
 #'  
 #' @param fill_center a R color name or an hexadecimal code referring to the 
 #' colour to fill the center of the global pool (if \code{shape_sp} > 20). 
@@ -2323,8 +2374,11 @@ fori.plot <- function(ggplot_bg,
 #' @param shape_pool a numeric value referring to the shape used to plot 
 #'   species pool. 
 #'  
-#' @param shape_sp a numeric value referring to the shape used to plot species
-#'  belonging to the studied assemblage. 
+#' @param shape_sp a numeric value referring to the shape of the symbol used for
+#'   species plotting if one assemblage to plot or a vector numeric values if
+#'   several assemblages to plot. If more than one assemblage to plot, the
+#'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
+#'   "secondRshape", ...). 
 #'  
 #' @param shape_center a numeric value referring to the shape used to plot the 
 #' center of the global pool.
@@ -2335,14 +2389,19 @@ fori.plot <- function(ggplot_bg,
 #' @param size_center a numeric value referring to the size of the center of 
 #'   the global pool. 
 #' 
-#' @param width_segment a numeric value referring to the size of the segment 
-#' linking nearest neighbors in the global pool. 
+#' @param width_segment a numeric value referring to the
+#'   width of the segments linking each species of a given assemblage to the
+#'   center of functional space if one assemblage to plot or a vector of R color
+#'   names or hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRwidth", asb2 = "secondRwidth", ...).
 #' 
-#' @param linetype_segment a character string referring to the linetype used to 
-#' link nearest neighbors in the global pool. 
-#' 
-#' @note If several assemblages are to be represented, aesthetics inputs should
-#' be formatted as c(pool = ..., asb1 = ..., asb2 = ...).
+#' @param linetype_segment a character string referring to the
+#'   linetype of the segment linking each species of a given assemblage to the
+#'   center of functional space if one assemblage to plot or a vector of R color
+#'   names or hexadecimal codes if several assemblages to plot. If more than one
+#'   assemblage to plot, the vector should be formatted as: c(asb1 =
+#'   "firstRlinetype", asb2 = "secondRlinetype", ...).
 #' 
 #' @return A ggplot object with FSpe index on the background plot.
 #' 
