@@ -200,7 +200,9 @@ pool.plot <- function(ggplot_bg,
   
   # if required vertices and convex hull:
   if (! is.null(vertices_nD)) {
+    sp_xyv$vert <- as.character(sp_xyv$vert)
     sp_xyv[vertices_nD, "vert"] <- "vert"
+    sp_xyv$vert <- as.factor(sp_xyv$vert)
     
     # coordinates of species vertices in nD:
     vertnD_xy <- sp_xyv[sp_xyv$vert == "vert", c("x", "y")]
