@@ -236,6 +236,7 @@ asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 
 ```{r}
 head(asb_sp_fruits_summ$"asb_sp_occ", 3)        # Species occurrences for the first 3 assemblages
+asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 ```
 
 <br />
