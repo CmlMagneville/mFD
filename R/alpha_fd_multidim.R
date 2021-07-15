@@ -372,7 +372,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       if ("fric" %in% ind_vect) {
         vert_nm <- fric$vertices_nm
       } else {
-        vert_nm <- NULL
+        vert_nm <- NA
       }
       # compute fdiv value:
       fdiv <- fdiv.computation(sp_faxes_coord_k, 
