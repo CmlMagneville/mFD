@@ -97,7 +97,7 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-07-01</h4>
+            <h4 class="date">2021-07-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -501,8 +501,10 @@ Basic framework of the mFD package
 ## basket_1           0
 ## basket_2           0
 ## basket_3           0</code></pre>
-<p><br></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">asb_sp_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_occ"</span></code></pre></div>
+<p><br></p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"sp_tot_w"</span>              <span class="co"># Species total biomass in all assemblages</span></code></pre></div>
 <pre><code>##         apple       apricot        banana       currant    blackberry 
 ##          1850           200          1400           300           400 
@@ -515,21 +517,21 @@ Basic framework of the mFD package
 ##          plum     raspberry    strawberry     tangerine   water_melon 
 ##           550           900          1650           300           800</code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_tot_w"</span>             <span class="co"># Total biomass per assemblage</span></code></pre></div>
 <pre><code>##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 
 ##      2000      2000      2000      2000      2000      2000      2000      2000 
 ##  basket_9 basket_10 
 ##      2000      2000</code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_richn"</span>           <span class="co"># Species richness per assemblage</span></code></pre></div>
 <pre><code>##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 
 ##         8         8         8         8         8         8         8         8 
 ##  basket_9 basket_10 
 ##         8         8</code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_nm"</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>             <span class="co"># Names of species present in the first assemblage</span></code></pre></div>
 <pre><code>##         apple        banana        cherry         lemon         melon 
 ##             1             1             1             1             1 
@@ -557,7 +559,7 @@ Basic framework of the mFD package
 <p>To compute trait-based distances, we will use the <code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code> function which includes the following arguments:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/funct.dist.html">funct.dist</a></span><span class="op">(</span>
   sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,
   tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,
@@ -585,7 +587,7 @@ Basic framework of the mFD package
 <p>⚠️ <strong>If your data gather a high number of species and/or traits, this function might take time to run (and you might have memory issues).</strong></p>
 <p><br></p>
 <p>This function returns a <code>dist</code> object with traits-based distances between all pairs of species:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">sp_dist_fruits</span>, <span class="fl">3</span><span class="op">)</span>                 <span class="co"># Output of the function mFD::funct.dist()</span></code></pre></div>
 <pre><code>##               apple apricot banana currant blackberry blueberry cherry grape
 ## apricot       0.166                                                         
@@ -700,7 +702,7 @@ Basic framework of the mFD package
 <p>In order to generate a multidimensional space in which functional diversity indices are computed (<a href="https://www.sciencedirect.com/science/article/pii/S0169534712002650">Mouillot <em>et al.</em> 2013</a>, we will perform a PCoA using the trait-based distances (and if required a functional dendrogram). <code>mFD</code> evaluates the quality of PCoA-based multidimensional spaces according to the deviation between trait-based distances and distances in the functional space (extension of <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299">Maire <em>et al.</em> (2015)</a> framework). For that, we will use the <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span>
   sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>,
   maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,
@@ -736,7 +738,7 @@ Basic framework of the mFD package
 <ul>
 <li>a data frame gathering for each space (in rows), values of quality metric(s) (in columns)</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="st">"quality_fspaces"</span>, <span class="fl">3</span><span class="op">)</span>            <span class="co"># Quality metrics of spaces</span></code></pre></div>
 <pre><code>##                mad
 ## pcoa_1d      0.150
@@ -765,7 +767,7 @@ Basic framework of the mFD package
 <p>With the <code>mFD</code> package, it is possible to illustrate the quality of PCoA-based multidimensional spaces according to deviation between trait-based distances and distances in the functional space. For that, we use the <code>mFD::quality.fspace.plot()</code> function with the following arguments:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.plot.html">quality.fspaces.plot</a></span><span class="op">(</span>
   fspaces_quality            <span class="op">=</span> <span class="va">fspaces_quality_fruits</span>,
   quality_metric             <span class="op">=</span> <span class="st">"mad"</span>,
@@ -795,7 +797,7 @@ Basic framework of the mFD package
 <li>on the third row, the y-axis shows the absolute or squared deviation of the (“scaled”) distance in the functional space. It is the deviation that is taken into account for computing the quality metric.</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.plot.html">quality.fspaces.plot</a></span><span class="op">(</span>
   fspaces_quality            <span class="op">=</span> <span class="va">fspaces_quality_fruits</span>,
   quality_metric             <span class="op">=</span> <span class="st">"mad"</span>,
@@ -828,7 +830,7 @@ Basic framework of the mFD package
 <code>sp_faxes_coord</code> is a matrix of species coordinates taken from the outputs of the <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function <strong>with columns representing axes on which functional space must be computed</strong>. For instance, in this tutorial, we will plot the functional space for 4 and 10 dimensions (<em>cf.</em> the two examples below). The whole <code>sp_faxes_coord</code> can be retrieved through the output of the <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function: <br>
 </li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"sp_pc_coord"</span></code></pre></div>
 <p><br></p>
 <ul>
@@ -837,14 +839,14 @@ Basic framework of the mFD package
 </ul>
 <p><code><a href="../reference/traits.faxes.cor.html">mFD::traits.faxes.cor</a></code> works as follows: <br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fruits_tr_faxes</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/traits.faxes.cor.html">traits.faxes.cor</a></span><span class="op">(</span>
   sp_tr          <span class="op">=</span> <span class="va">fruits_traits</span>, 
   sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>, 
   plot           <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><br> We can print only traits with significant effect on position along one of the axis and look at the plots:</p>
 <p><br></p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Print traits with significant effect:</span>
 <span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_stat"</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_stat"</span><span class="op">$</span><span class="st">"p.value"</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
 <pre><code>##      trait axis           test stat value p.value
@@ -857,7 +859,7 @@ Basic framework of the mFD package
 ## 13    Seed  PC1 Kruskal-Wallis eta2 0.201  0.0402
 ## 14    Seed  PC2 Kruskal-Wallis eta2 0.593  0.0005
 ## 20   Sugar  PC4   Linear Model   r2 0.682  0.0000</code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Return plots:</span>
 <span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_plot"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-23-1.png" width="1152" style="display: block; margin: auto;"></p>
@@ -879,7 +881,7 @@ Basic framework of the mFD package
 <code>sp_faxes_coord</code> is a matrix of species coordinates taken from the outputs of the <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function <strong>with columns representing axes on which functional space must be computed</strong>. For instance, in this tutorial, we will plot the functional space for 4 and 10 dimensions (<em>cf.</em> the two examples below). The whole <code>sp_faxes_coord</code> can be retrieved through the output of the <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function:</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"sp_pc_coord"</span></code></pre></div>
 <p><br></p>
 <ul>
@@ -897,7 +899,7 @@ Basic framework of the mFD package
 <p>Here are the plots for the <em>fruits &amp; baskets</em> dataset for the <strong>first four PCoA axis</strong>:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_plot</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/funct.space.plot.html">funct.space.plot</a></span><span class="op">(</span>
   sp_faxes_coord  <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,
   faxes           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span>,
@@ -928,7 +930,7 @@ Basic framework of the mFD package
 <p><br></p>
 <p>Here are the plots for the <em>fruits &amp; baskets</em> dataset for the <strong>first ten PCoA axis</strong>:</p>
 <p><br></p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_plot</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/funct.space.plot.html">funct.space.plot</a></span><span class="op">(</span>
   sp_faxes_coord  <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,
   faxes           <span class="op">=</span> <span class="cn">NULL</span>,
@@ -973,7 +975,7 @@ Basic framework of the mFD package
 <p>The <code><a href="../reference/alpha.fd.multidim.html">mFD::alpha.fd.multidim()</a></code> function allows computing many alpha FD indices:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alpha_fd_indices_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.multidim.html">alpha.fd.multidim</a></span><span class="op">(</span>
   sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,
   asb_sp_w         <span class="op">=</span> <span class="va">baskets_fruits_weights</span>,
@@ -1012,7 +1014,7 @@ Basic framework of the mFD package
 <ul>
 <li>a <strong>data frame gathering indices values in each assemblage</strong> (for <code>FIde</code> values, there are as many columns as there are axes to the studied functional space).</li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fd_ind_values_fruits</span> <span class="op">&lt;-</span> <span class="va">alpha_fd_indices_fruits</span><span class="op">$</span><span class="st">"functional_diversity_indices"</span>
 <span class="va">fd_ind_values_fruits</span></code></pre></div>
 <pre><code>##           sp_richn      fdis      fmpd      fnnd     feve        fric      fdiv
@@ -1041,13 +1043,13 @@ Basic framework of the mFD package
 <ul>
 <li>a <strong>details list</strong> of data frames and sublists gathering information such as coordinates of centroids, distances and identity of the nearest neighbour, distances to the centroid, etc. The user does not have to directly use it but it will be useful if FD indices are then plotted. It can be retrieved through:</li>
 </ul>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">details_list_fruits</span> <span class="op">&lt;-</span> <span class="va">alpha_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span></code></pre></div>
 <p><br></p>
 <p>Then, you can plot functional indices using the <code><a href="../reference/alpha.multidim.plot.html">mFD::alpha.multidim.plot()</a></code> function as follows:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.multidim.plot.html">alpha.multidim.plot</a></span><span class="op">(</span>
   output_alpha_fd_multidim <span class="op">=</span> <span class="va">alpha_fd_indices_fruits</span>,
   plot_asb_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_5"</span><span class="op">)</span>,
@@ -1096,7 +1098,7 @@ Basic framework of the mFD package
 <li>
 <code>FRic</code> representation: the colored shapes reflect the convex-hull of the studied assemblages and the white shape reflects the convex-hull of the global pool of species:</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fric"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-31-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1104,7 +1106,7 @@ Basic framework of the mFD package
 <li>
 <code>FDiv</code> representation: the gravity centers of <strong>vertices</strong> (i.e. species with the most extreme functional traits) of each assemblages are plotted as a square and a triangle. The two colored circles represent the mean distance of species to the gravity center for each assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fdiv"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-32-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1112,7 +1114,7 @@ Basic framework of the mFD package
 <li>
 <code>FSpe</code> representation: colored traits represent distances of each species from a given assemblage to the center of gravity of the global pool (i.e center of the functional space). the center of gravity is plotted with a purple diamond. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fspe"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-33-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1120,7 +1122,7 @@ Basic framework of the mFD package
 <li>
 <code>FDis</code> representation: colored traits represent distances of each species from a given assemblage to the center of gravity of species of the assemblage (defined by FIde values). The center of gravity of each assemblage is plotted using a square and a triangle. Species of each assemblage havedifferent size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fdis"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-34-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1128,7 +1130,7 @@ Basic framework of the mFD package
 <li>
 <code>FIde</code> representation:colored lines refer to the weighted average position of species of each assemblage along each axis. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fide"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-35-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1136,7 +1138,7 @@ Basic framework of the mFD package
 <li>
 <code>FEve</code> representation: colored traits represent the Minimum Spanning Tree linking species of each assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"feve"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-36-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1144,14 +1146,14 @@ Basic framework of the mFD package
 <li>
 <code>FOri</code> representation: colored arrows represent the distances of each species from each assemblage to the nearest species in the global species pool. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fori"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-37-1.png" width="1920" style="display: block; margin: auto;"></p>
 <ul>
 <li>
 <code>FNND</code> representation: colored arrows represent the distances of each species from each assemblage to the nearest species in the studied assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fnnd"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-38-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1171,7 +1173,7 @@ Basic framework of the mFD package
 <p>The <code><a href="../reference/beta.fd.multidim.html">mFD::beta.fd.multidim()</a></code> function has the main following arguments:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.fd.multidim.html">beta.fd.multidim</a></span><span class="op">(</span>
       sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,
       asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>,
@@ -1192,26 +1194,26 @@ Basic framework of the mFD package
 <ul>
 <li>a dist object with beta indices values for each pair of assemblages:</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"pairasb_fbd_indices"</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a list containing details such as inputs, vertices of the global pool and of each assemblage and FRic values for each assemblage</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a vector containing the <code>FRic</code> value for each assemblage retrieved through the <code>details_beta</code> list:</li>
 </ul>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span><span class="op">$</span><span class="st">"asb_FRic"</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a list of vectors containing names of species being vertices of the convex hull for each assemblage retrieved through the <code>details_beta</code> list:</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span><span class="op">$</span><span class="st">"asb_vertices"</span></code></pre></div>
 <p><br></p>
 <p>Then, the package allows the user to illustrate functional beta-diversity indices for a pair of assemblages in a multidimensional space using the <code><a href="../reference/beta.multidim.plot.html">mFD::beta.multidim.plot()</a></code> function. The output of this function is a figure showing the overlap between convex hulls shaping each of the two species assemblages.</p>
@@ -1219,7 +1221,7 @@ Basic framework of the mFD package
 <p>The plotting function has a large number of arguments, allowing the user to chose graphical options. Arguments are listed below:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_plot_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.multidim.plot.html">beta.multidim.plot</a></span><span class="op">(</span>
   output_beta_fd_multidim <span class="op">=</span> <span class="va">beta_fd_indices_fruits</span>,
   plot_asb_nm             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_4"</span><span class="op">)</span>,
@@ -1258,7 +1260,7 @@ Basic framework of the mFD package
 <p><br></p>
 <p>Then, the function returns each graph for each functional axes combination and also a multipanel plot with all combinations of axes and the graph caption. Here is the multipanel for the fruits exaample:</p>
 <p><br></p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_plot_fruits</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><br></p>
 <p>For each assemblage, the associated convex hull is plotted in a different colour and indices values are printed on the right corner of the plot. Vertices of the convex hull of a given assemblage can be plotted with a different symbol such as in this example. Species of all assemblages are plotted with gray cross and the associated convex hull is plotted in white.</p>
