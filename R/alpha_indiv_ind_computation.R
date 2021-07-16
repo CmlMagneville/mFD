@@ -332,7 +332,7 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
     }
     
     if (any(is.na(vert_nm))) {
-      if (nrow(sp_faxes_coord_k) <= ncol(sp_faxes_coord_k)) {
+      if (nrow(sp_faxes_coord_k) < ncol(sp_faxes_coord_k)) {
         stop("Number of species should strictly be higher than number of ", 
              "axes for computing the convex hull. Please check.")
       }
