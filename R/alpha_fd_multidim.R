@@ -339,7 +339,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     # fric:
     if ("fric" %in% ind_vect) {
       if (check_input) {
-        if (nrow(sp_faxes_coord_k) < ncol(sp_faxes_coord_k)) {
+        if (nrow(sp_faxes_coord_k) <= ncol(sp_faxes_coord_k)) {
           stop("Number of species should strictly be higher than the number ", 
                "of axes to compute the convex hull. It is not the case for ", 
                k, ". Remove this assemblage or decrease the number of ", 
@@ -359,7 +359,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     if ("fdiv" %in% ind_vect) {
       
       if (check_input) {
-        if (nrow(sp_faxes_coord_k) < ncol(sp_faxes_coord_k)) {
+        if (nrow(sp_faxes_coord_k) <= ncol(sp_faxes_coord_k)) {
           stop("Number of species should strictly be higher than the number ", 
                "of axes to compute the convex hull. It is not the case for ", 
                k, ". Remove this assemblage or decrease the number of ", 
