@@ -10,7 +10,8 @@ alpha.fd.multidim(
   ind_vect = c("fide", "fdis", "fmpd", "fnnd", "feve", "fric", "fdiv", "fori", "fspe"),
   scaling = TRUE,
   check_input = TRUE,
-  details_returned = TRUE
+  details_returned = TRUE,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -40,6 +41,10 @@ message is returned. Default: \code{check.input = TRUE}.}
 want to store details. Details are used in graphical functions and thus
 must be kept if the user want to have graphical outputs for the computed
 indices.}
+
+\item{verbose}{a logical value indicating whether progress details should be
+printed in the console. If \code{FALSE} does not provide percent progress when
+computing diversity indices.}
 }
 \value{
 The following list is returned: \itemize{
