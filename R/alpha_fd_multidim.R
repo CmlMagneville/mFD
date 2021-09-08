@@ -30,6 +30,10 @@
 #'   want to store details. Details are used in graphical functions and thus
 #'   must be kept if the user want to have graphical outputs for the computed
 #'   indices.
+#'   
+#' @param verbose a logical value indicating whether progress details should be
+#'   printed in the console. If `FALSE` does not provide percent progress when
+#'   computing diversity indices.
 #'
 #' @return The following list is returned: \itemize{
 #'
@@ -112,7 +116,8 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
                               ind_vect = c("fide", "fdis", "fmpd", "fnnd", 
                                            "feve", "fric", "fdiv", "fori", 
                                            "fspe"), scaling = TRUE, 
-                              check_input = TRUE, details_returned = TRUE) {
+                              check_input = TRUE, details_returned = TRUE,
+                              verbose = TRUE) {
   
   
   ## check_input if asked:
@@ -507,8 +512,10 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       asb_ind_values[k, "fspe"] <- fspe
     }
     
-    print(paste0(k, sep = " ", "done ", round((n/nrow(asb_sp_w)) * 
-                                                100, digits = 1), "%"))
+    if (verbose) {
+      print(paste0(k, sep = " ", "done ", round((n/nrow(asb_sp_w)) * 
+                                                  100, digits = 1), "%"))
+    }
   }  # end loop on assemblages
   
   ## scale indices if asked:
