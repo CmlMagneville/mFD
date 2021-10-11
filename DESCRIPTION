@@ -86,7 +86,7 @@ Imports:
     utils,
     vegan
 Suggests: 
-    dplyr,
+    dplyr (>= 1.0.6),
     knitr,
     magrittr,
     rmarkdown (>= 2.6),
