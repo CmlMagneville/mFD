@@ -28,6 +28,7 @@ You can install the stable version from
 [CRAN](https://cran.r-project.org/) with:
 
 ``` r
+## NOT AVAILABLE FOR NOW SO USE THE GITHUB INSTALLATION
 ## Install stable version of < mFD > from CRAN ----
 ## install.packages("mFD")
 ```
