@@ -107,9 +107,12 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'   not to compute correlation coefficient by setting `compute_corr` to 
 #'   `none`.
 #'
-#' @return A list with a data frame containing species coordinates on each 
-#'   functional axis, a species distance matrix, and a correlation coefficients 
-#'   between traits (if asked).
+#' @return A list containing a matrix with `mAD` and `mSD` values for each 
+#' functional space to assess the quality of functional spaces), a data frame 
+#' containing species coordinates on each functional axis, list of distance 
+#' matrices (Euclidean distances based on trait values and coordinates in the
+#' functional spaces) and a matrix of correlation coefficients between traits 
+#' (if required).
 #'
 #' @author Camille Magneville and Sebastien Villeger
 #'
