@@ -12,6 +12,7 @@ traits.faxes.cor(
   plot = FALSE,
   name_file = NULL,
   color_signif = "darkblue",
+  color_non_signif = "gray80",
   stop_if_NA = TRUE
 )
 }
@@ -38,7 +39,11 @@ dpi JPEG file. Default is \code{NULL} which means plot is only displayed. If
 
 \item{color_signif}{an R color name or an hexadecimal code referring to
 the color of points when relationships between the trait and the axis is
-significant. Default is \verb{dark blue}.}
+significant. Default is \code{darkblue}.}
+
+\item{color_non_signif}{an R color name or an hexadecimal code referring to the
+color of points when relationships between the trait and the axis are not
+significant. Default is \code{gray80}.}
 
 \item{stop_if_NA}{a logical value to stop or not the process if the
 \code{sp_tr} data frame contains NA. Functional measures are sensitive to
@@ -95,7 +100,8 @@ mFD::traits.faxes.cor(
   tr_nm          = NULL, 
   faxes_nm       = NULL,
   name_file      = NULL, 
-  color_signif   = "darkblue")
+  color_signif   = "darkblue",
+  color_non_signif = "gray80")
 }
 }
 \author{

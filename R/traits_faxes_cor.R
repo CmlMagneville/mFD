@@ -29,7 +29,11 @@
 #'
 #' @param color_signif an R color name or an hexadecimal code referring to 
 #'   the color of points when relationships between the trait and the axis is
-#'   significant. Default is `dark blue`.
+#'   significant. Default is `darkblue`.
+#'   
+#' @param color_non_signif an R color name or an hexadecimal code referring to the
+#'  color of points when relationships between the trait and the axis are not
+#'  significant. Default is `gray80`.
 #'   
 #' @param stop_if_NA a logical value to stop or not the process if the
 #'   `sp_tr` data frame contains NA. Functional measures are sensitive to
@@ -82,13 +86,16 @@
 #'   tr_nm          = NULL, 
 #'   faxes_nm       = NULL,
 #'   name_file      = NULL, 
-#'   color_signif   = "darkblue")
+#'   color_signif   = "darkblue",
+#'   color_non_signif = "gray80")
 #' }
 
 
 traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL, 
                              faxes_nm = NULL, plot = FALSE, name_file = NULL,
-                             color_signif = "darkblue", stop_if_NA = TRUE) {
+                             color_signif = "darkblue",
+                             color_non_signif = "gray80",
+                             stop_if_NA = TRUE) {
   
   
   ## Check inputs ----
@@ -215,7 +222,7 @@ traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL,
         if (res[flag, "p.value"] < 0.05) {
           col_cor <- color_signif
         } else {
-          col_cor <- "gray90"
+          col_cor <- color_non_signif
         }
         
         # Empty plot
