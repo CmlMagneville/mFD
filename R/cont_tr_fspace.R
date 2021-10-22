@@ -219,6 +219,12 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       sp_faxes_coord <- sp_faxes_coord[, 1:nb_dim]
     }
     
+    # correct the name of columns: Dim -> PC so congruent with mFD package:
+    nb <- 1
+    for(i in (1:ncol(sp_faxes_coord))) {
+      colnames(sp_faxes_coord)[i] <- paste0("PC", nb)
+      nb <- nb + 1
+    }
     
     # matrix to store quality results:
     quality_nbdim <- matrix(NA, nb_dim - 1, 2, 
