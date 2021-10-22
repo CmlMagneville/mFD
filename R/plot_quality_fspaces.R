@@ -253,7 +253,6 @@ quality.fspaces.plot <- function(
     
     # name of Y axes depend on type of functional space: PCoa or dendrogram
     # of scaling of distance and type of deviation
-    # printed only on left column = 1st space
     y_lab_dist_k <- ""
     y_lab_dev_k  <- ""
     y_lab_qdev_k <- ""
@@ -272,12 +271,21 @@ quality.fspaces.plot <- function(
       y_lab_qdev_k <- paste0(nm_dev_qual[quality_metric], " ", y_lab_dist_k)
     }
     
+    # if both tree and pcoa, second column with pcoa
+    if (substr(fspaces_plot[1], 1, 4) == "tree" & pos_k == 2){
+      
+      y_lab_dist_k <- "Eucl. dist."
+      y_lab_dev_k  <- paste0("Dev. of ", y_lab_dist_k)
+      y_lab_qdev_k <- paste0(nm_dev_qual[quality_metric], " ", y_lab_dist_k)
+    }
+    
+    
     # title of plot = name of space
     # subtitle = name of metric + rounded value
     tit_k <- fspaces_nm_plot[k]
     subtit_k <- paste0(nm_qual_metrics[quality_metric], " = ",
                        round(as.numeric(fspaces_quality$quality_fspaces[k, 
-                                                        quality_metric]), 3))
+                                                                        quality_metric]), 3))
     
     # plotting trait-based distance versus raw distance in functional spaces 
     plot_dist_k <- ggplot2::ggplot(data = df_plot_k, 
