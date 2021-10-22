@@ -229,15 +229,26 @@ head(fspace$"sp_faxes_coord")
 <br />
 
 * a dist object containing species euclidean distances in the functional space
-(here 5D space) for the first five species:
+(here 5D space and for the first five species):
   
 <br />
 
 ```{r}
-dist_mat <- as.matrix(fspace$sp_dist$"6D")
+dist_mat <- as.matrix(fspace$sp_dist_multidim$"6D")
 dist_mat[1:5, 1:5]
 ```
 
+<br />
+
+* a dist object containing species distances based on traits
+(here for the first five species):
+  
+<br />
+
+```{r}
+dist_mat <- as.matrix(fspace$sp_dist_init)
+dist_mat[1:5, 1:5]
+```
 <br />
 
 * a correlation matrix containing correlation between traits and their
@@ -256,7 +267,7 @@ However, if some strong correlation is to be found, then one of the two
 correlated trait can be remove from the analysis.
 
 If the PCA is not computed, outputs are the same except that mad and msd are not
-computed.
+computed and that only one distance object is returned.
 
 <br />
 

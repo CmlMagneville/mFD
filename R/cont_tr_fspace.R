@@ -110,9 +110,10 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #' @return A list containing a matrix with `mAD` and `mSD` values for each 
 #' functional space to assess the quality of functional spaces), a data frame 
 #' containing species coordinates on each functional axis, list of distance 
-#' matrices (Euclidean distances based on trait values and coordinates in the
-#' functional spaces) and a matrix of correlation coefficients between traits 
-#' (if required).
+#' matrices in the functional space (Euclidean distances based on trait values 
+#' and coordinates in the functional spaces), a dist object containing initial 
+#' euclidean distances based on traits and a matrix of correlation coefficients 
+#' between traits (if required).
 #'
 #' @author Camille Magneville and Sebastien Villeger
 #'
@@ -245,11 +246,12 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       corr_tr_coeff <- compute.corr.coef(sp_tr)
       
       return_list1 <- list(quality_nbdim, as.matrix(sp_faxes_coord), 
-                           sp_dist_multidim, corr_tr_coeff)
+                           sp_dist_multidim, sp_dist_init, corr_tr_coeff)
       
       names(return_list1) <- c("quality_metrics", 
                                "sp_faxes_coord", 
-                               "sp_dist", 
+                               "sp_dist_multidim",
+                               "sp_dist_init",
                                "tr_correl")
       return(return_list1)
       
@@ -258,11 +260,12 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       # no Pearson correlation
       
       return_list1 <- list(quality_nbdim, sp_faxes_coord, 
-                           sp_dist_multidim)
+                           sp_dist_multidim, sp_dist_init)
       
       names(return_list1) <- c("quality_metrics", 
                                "sp_faxes_coord", 
-                               "sp_dist")
+                               "sp_dist_multidim", 
+                               "sp_dist_init")
       return(return_list1)
     }
     

@@ -45,9 +45,10 @@ not to compute correlation coefficient by setting \code{compute_corr} to
 A list containing a matrix with \code{mAD} and \code{mSD} values for each
 functional space to assess the quality of functional spaces), a data frame
 containing species coordinates on each functional axis, list of distance
-matrices (Euclidean distances based on trait values and coordinates in the
-functional spaces) and a matrix of correlation coefficients between traits
-(if required).
+matrices in the functional space (Euclidean distances based on trait values
+and coordinates in the functional spaces), a dist object containing initial
+euclidean distances based on traits and a matrix of correlation coefficients
+between traits (if required).
 }
 \description{
 This function computes a functional space based on continuous standardized
