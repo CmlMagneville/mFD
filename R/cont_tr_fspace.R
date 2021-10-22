@@ -108,7 +108,9 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'   `none`.
 #'
 #' @return A list containing a matrix with `mAD` and `mSD` values for each 
-#' functional space to assess the quality of functional spaces), a data frame 
+#' functional space to assess the quality of functional spaces), a matrix 
+#' containing eigenvalues for each axis, the percentage of variance explained 
+#' by each axis and the cumulative percentage of variance, a data frame 
 #' containing species coordinates on each functional axis, list of distance 
 #' matrices in the functional space (Euclidean distances based on trait values 
 #' and coordinates in the functional spaces), a dist object containing initial 
@@ -246,15 +248,28 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       names(sp_dist_multidim)[i - 1] <- paste0(i, "D")
     }
     
+    ## add eigenvalues and percentage of variance for interesting axes:
+    
+    # first get eigenv and percent and cut to only have interesting axis:
+    eigenv_varpercent <- pca_analysis$eig[c(1:nb_dim), ]
+    
+    # then rename rownames:
+    nb <- 1
+    for (e in (1:nrow(eigenv_varpercent))){
+      rownames(eigenv_varpercent)[e] <- paste0("PC", nb)
+      nb <- nb + 1
+    }
     
     if (compute_corr == "pearson") {
       
       corr_tr_coeff <- compute.corr.coef(sp_tr)
       
-      return_list1 <- list(quality_nbdim, as.matrix(sp_faxes_coord), 
+      return_list1 <- list(quality_nbdim, eigenv_varpercent,
+                           as.matrix(sp_faxes_coord), 
                            sp_dist_multidim, sp_dist_init, corr_tr_coeff)
       
-      names(return_list1) <- c("quality_metrics", 
+      names(return_list1) <- c("quality_metrics",
+                               "eigenvalues_percentage_var",
                                "sp_faxes_coord", 
                                "sp_dist_multidim",
                                "sp_dist_init",
@@ -265,10 +280,12 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
       
       # no Pearson correlation
       
-      return_list1 <- list(quality_nbdim, sp_faxes_coord, 
+      return_list1 <- list(quality_nbdim, eigenv_varpercent,
+                           as.matrix(sp_faxes_coord), 
                            sp_dist_multidim, sp_dist_init)
       
-      names(return_list1) <- c("quality_metrics", 
+      names(return_list1) <- c("quality_metrics",
+                               "eigenvalues_percentage_var",
                                "sp_faxes_coord", 
                                "sp_dist_multidim", 
                                "sp_dist_init")

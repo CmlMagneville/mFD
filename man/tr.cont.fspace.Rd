@@ -43,7 +43,9 @@ not to compute correlation coefficient by setting \code{compute_corr} to
 }
 \value{
 A list containing a matrix with \code{mAD} and \code{mSD} values for each
-functional space to assess the quality of functional spaces), a data frame
+functional space to assess the quality of functional spaces), a matrix
+containing eigenvalues for each axis, the percentage of variance explained
+by each axis and the cumulative percentage of variance, a data frame
 containing species coordinates on each functional axis, list of distance
 matrices in the functional space (Euclidean distances based on trait values
 and coordinates in the functional spaces), a dist object containing initial

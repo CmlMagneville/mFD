@@ -218,6 +218,16 @@ computation time.
 
 <br />
 
+* eigenvalues, percentage of variance explained and cumulative percentage of variance explained for each axis up to *nb_dim* dimensions:
+
+<br />
+
+```{r}
+fspace$"eigenvalues_percentage_var"
+```  
+
+<br />
+
 * a matrix of species coordinates in the functional space:
 
 <br />
