@@ -97,7 +97,7 @@
       <h1 data-toc-skip>Continuous Traits Framework</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-10-20</h4>
+            <h4 class="date">2021-10-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/Continuous_traits_framework.Rmd"><code>vignettes/Continuous_traits_framework.Rmd</code></a></small>
       <div class="hidden name"><code>Continuous_traits_framework.Rmd</code></div>
@@ -536,26 +536,44 @@
 <p>💡 The lower the quality metric is, the better the quality of your space is. Here, thanks to mAD and mSD value, we can see that as the number of dimensions increases, the quality increases. However, to decrease computation time, we can chose to work with the 6D space which has good quality of functional space. Generally, you must keep in mind a trade-off between the number of axes and quality of functional space. Increasing the number of functional axes increases computation time.</p>
 <p><br></p>
 <ul>
-<li>a matrix of species coordinates in the functional space:</li>
+<li>eigenvalues, percentage of variance explained and cumulative percentage of variance explained for each axis up to <em>nb_dim</em> dimensions:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="st">"eigenvalues_percentage_var"</span></code></pre></div>
+<pre><code>##      eigenvalue percentage of variance cumulative percentage of variance
+## PC1  6.98331220             48.5006669                          48.50067
+## PC2  2.39791799             16.6540774                          65.15474
+## PC3  1.43147508              9.9419150                          75.09666
+## PC4  1.25518478              8.7175394                          83.81420
+## PC5  0.94489478              6.5625058                          90.37670
+## PC6  0.54986970              3.8189682                          94.19567
+## PC7  0.48899139              3.3961547                          97.59183
+## PC8  0.13305486              0.9240958                          98.51592
+## PC9  0.08938364              0.6207894                          99.13671
+## PC10 0.07609657              0.5285077                          99.66522</code></pre>
+<p><br></p>
+<ul>
+<li>a matrix of species coordinates in the functional space:</li>
+</ul>
+<p><br></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="st">"sp_faxes_coord"</span><span class="op">)</span></code></pre></div>
-<pre><code>##                                  Dim.1      Dim.2     Dim.3       Dim.4
+<pre><code>##                                    PC1        PC2       PC3         PC4
 ## Achirus_lineatus            -3.5468021 -2.2967608 -1.251164 -0.94434329
 ## Anchoa_mitchilli             1.5768146 -0.5190331 -1.916811  0.17507940
 ## Archosargus_probatocephalus  1.2488122  0.1995554  1.407921 -0.24268501
 ## Archosargus_rhomboidalis     2.1724589  1.4658850  3.077086 -0.83141781
 ## Ariopsis_felis               0.2493960 -0.7334141  2.091296 -0.06344991
 ## Bagre_marinus                0.6885315 -0.7629772  1.600313 -0.21706433
-##                                  Dim.5      Dim.6      Dim.7      Dim.8
+##                                    PC5        PC6        PC7        PC8
 ## Achirus_lineatus            -0.3551794 -0.7674608  0.6577158 -0.5915840
 ## Anchoa_mitchilli            -1.4102174 -1.0235770  1.7253132  0.8741535
 ## Archosargus_probatocephalus  0.2635153  0.8865692  0.3189349  0.1482548
 ## Archosargus_rhomboidalis     0.5917141  0.8916854  0.2586945 -0.2766138
 ## Ariopsis_felis              -1.6439468 -1.0382383 -0.6405055  0.3789258
 ## Bagre_marinus               -2.0758840 -0.8373182 -0.2436820 -0.6143684
-##                                    Dim.9      Dim.10
+##                                      PC9        PC10
 ## Achirus_lineatus            -0.003361492 -0.14305954
 ## Anchoa_mitchilli            -0.279834057  0.48767139
 ## Archosargus_probatocephalus -0.212999873 -0.42603541
@@ -564,11 +582,11 @@
 ## Bagre_marinus               -0.092163957 -0.10443150</code></pre>
 <p><br></p>
 <ul>
-<li>a dist object containing species euclidean distances in the functional space (here 5D space) for the first five species:</li>
+<li>a dist object containing species euclidean distances in the functional space (here 5D space and for the first five species):</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist</span><span class="op">$</span><span class="st">"6D"</span><span class="op">)</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist_multidim</span><span class="op">$</span><span class="st">"6D"</span><span class="op">)</span>
 <span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
 <pre><code>##                             Achirus_lineatus Anchoa_mitchilli
 ## Achirus_lineatus                    0.000000         5.682135
@@ -590,10 +608,36 @@
 ## Ariopsis_felis                              4.338137       0.000000</code></pre>
 <p><br></p>
 <ul>
+<li>a dist object containing species distances based on traits (here for the first five species):</li>
+</ul>
+<p><br></p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist_init</span><span class="op">)</span>
+<span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
+<pre><code>##                             Achirus_lineatus Anchoa_mitchilli
+## Achirus_lineatus                    0.000000         6.015122
+## Anchoa_mitchilli                    6.015122         0.000000
+## Archosargus_probatocephalus         6.383490         4.660611
+## Archosargus_rhomboidalis            8.346585         6.461733
+## Ariopsis_felis                      5.766932         4.946896
+##                             Archosargus_probatocephalus
+## Achirus_lineatus                               6.383490
+## Anchoa_mitchilli                               4.660611
+## Archosargus_probatocephalus                    0.000000
+## Archosargus_rhomboidalis                       2.479976
+## Ariopsis_felis                                 3.283433
+##                             Archosargus_rhomboidalis Ariopsis_felis
+## Achirus_lineatus                            8.346585       5.766932
+## Anchoa_mitchilli                            6.461733       4.946896
+## Archosargus_probatocephalus                 2.479976       3.283433
+## Archosargus_rhomboidalis                    0.000000       4.506238
+## Ariopsis_felis                              4.506238       0.000000</code></pre>
+<p><br></p>
+<ul>
 <li>a correlation matrix containing correlation between traits and their associated pvalue:</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="st">"tr_correl"</span></code></pre></div>
 <pre><code>##       logM  OgSf  OgSh  OgPo  EySz  GrLg  GtLg  EyPo  BdSh  BdSf  PfPo  PfSh
 ## logM  1.00 -0.05 -0.62 -0.41  0.07 -0.27  0.22  0.48 -0.48 -0.69 -0.35 -0.27
@@ -670,7 +714,7 @@
 ## FsSf 0.1029 0.3267 0.1433 0.0914 0.2563</code></pre>
 <p><br></p>
 <p>Here we can notice that there is no strong correlation between traits. 💡 However, if some strong correlation is to be found, then one of the two correlated trait can be remove from the analysis.</p>
-<p>If the PCA is not computed, outputs are the same except that mad and msd are not computed.</p>
+<p>If the PCA is not computed, outputs are the same except that mad and msd are not computed and that only one distance object is returned.</p>
 <p><br></p>
 </div>
 <div id="plot-functional-space-compute-and-illustrate-indices" class="section level1">
