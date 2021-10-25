@@ -52,7 +52,7 @@ Authors@R: c(
            email   = "sebastien.villeger@cnrs.fr",
            role    = "aut",
            comment = c(ORCID = "0000-0002-2362-7178")))
-Description: A computation of functional traits-based distances between pairs
+Description: Computing functional traits-based distances between pairs
     of species for species gathered in assemblages allowing to build several
     functional spaces. The package allows to compute functional diversity
     indices assessing the distribution of species (and of their dominance) in a
@@ -80,7 +80,6 @@ Imports:
     Hmisc,
     patchwork,
     reshape2,
-    rlang (>= 0.4.10),
     rstatix,
     stats,
     utils,

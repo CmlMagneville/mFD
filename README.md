@@ -54,15 +54,15 @@ library("mFD")
 
 To compute functional diversity indices, users need:
 
-  - a data frame summarizing species traits (species in rows, traits in
+-   a data frame summarizing species traits (species in rows, traits in
     columns). The `mFD` package works with all kind of traits:
     quantitative, ordinal, nominal, circular, and fuzzy-coded.
 
-  - a matrix summarizing species gathering into assemblages (assemblages
+-   a matrix summarizing species gathering into assemblages (assemblages
     in rows, species in columns). All assemblages must at least contain
     one species.
 
-  - a data frame summarizing traits category (first column with traits
+-   a data frame summarizing traits category (first column with traits
     name, second column with traits type, third column with fuzzy name
     of fuzzy traits - if no fuzzy traits: NA).
 
@@ -83,16 +83,6 @@ You can also run:
 
 ``` r
 citation("mFD")
-
-## A BibTeX entry for LaTeX users is
-## 
-## @Manual{,
-##   title  = {{mFD}: {A} Computation of Functional Spaces and Functional Indices},
-##   author = {Magneville, Camille and Loiseau, Nicolas and Albouy, Camille and Casajus, Nicolas and Claverie, Thomas and Escalas, Arthur and Leprieur, Fabien and Maire, Eva and Mouillot, David and Villéger, Sébastien},
-##   year   = {2021},
-##   note   = {R package version 1.0.0},
-##   url    = {https://github.com/CmlMagneville/mFD},
-## }
 ```
 
 ## Contributions

@@ -96,16 +96,6 @@ You can also run:
 
 ```{r, eval = FALSE}
 citation("mFD")
-
-## A BibTeX entry for LaTeX users is
-## 
-## @Manual{,
-##   title  = {{mFD}: {A} Computation of Functional Spaces and Functional Indices},
-##   author = {Magneville, Camille and Loiseau, Nicolas and Albouy, Camille and Casajus, Nicolas and Claverie, Thomas and Escalas, Arthur and Leprieur, Fabien and Maire, Eva and Mouillot, David and Villéger, Sébastien},
-##   year   = {2021},
-##   note   = {R package version 1.0.0},
-##   url    = {https://github.com/CmlMagneville/mFD},
-## }
 ```
 
 

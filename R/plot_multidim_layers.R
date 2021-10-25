@@ -288,7 +288,8 @@ pool.plot <- function(ggplot_bg,
 #'   vector should be formatted as: c(asb1 = "firstRsize", asb2 =
 #'   "secondRsize", ...).
 #' 
-#' @param @param shape_sp a numeric value referring to the shape of the symbol used for
+#' @param @param shape_sp a numeric value referring to the shape of the symbol 
+#' used for
 #'   species plotting if one assemblage to plot or a vector numeric values if
 #'   several assemblages to plot. If more than one assemblage to plot, the
 #'   vector should be formatted as: c(asb1 = "firstRshape", asb2 =
@@ -1441,7 +1442,8 @@ fide.plot <-function(ggplot_bg,
 #'   assemblage to plot, the vector should be formatted as: c(asb1 =
 #'   "firstRcolorname", asb2 = "secondRcolorname", ...).
 #' 
-#' @param color_fide a R color name or an hexadecimal code referring to the color
+#' @param color_fide a R color name or an hexadecimal code referring to the 
+#' color
 #'   of fide centroid if one assemblage to plot or a vector of R color names or
 #'   hexadecimal codes if several assemblages to plot. If more than one
 #'   assemblage to plot, the vector should be formatted as: c(asb1 =

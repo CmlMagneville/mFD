@@ -81,8 +81,9 @@
 #'
 #' @references 
 #' Villeger _et al._ (2013) Decomposing functional ß-diversity reveals that
-#'   low functional ß-diversity is driven by low functional turnover in European
-#'   fish assemblages. _Global Ecology and Biogeography_, **22**, 671-681.
+#'   low functional ß-diversity is driven by low functional turnover in 
+#'   European fish assemblages. _Global Ecology and Biogeography_, **22**, 
+#'   671-681.
 #'   
 #' @author Sebastien Villeger and Camille Magneville
 #'

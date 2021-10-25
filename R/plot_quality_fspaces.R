@@ -285,7 +285,7 @@ quality.fspaces.plot <- function(
     tit_k <- fspaces_nm_plot[k]
     subtit_k <- paste0(nm_qual_metrics[quality_metric], " = ",
                        round(as.numeric(fspaces_quality$quality_fspaces[k, 
-                                                                        quality_metric]), 3))
+                                                        quality_metric]), 3))
     
     # plotting trait-based distance versus raw distance in functional spaces 
     plot_dist_k <- ggplot2::ggplot(data = df_plot_k, 

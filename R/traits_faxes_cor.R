@@ -31,7 +31,8 @@
 #'   the color of points when relationships between the trait and the axis is
 #'   significant. Default is `darkblue`.
 #'   
-#' @param color_non_signif an R color name or an hexadecimal code referring to the
+#' @param color_non_signif an R color name or an hexadecimal code referring to 
+#' the
 #'  color of points when relationships between the trait and the axis are not
 #'  significant. Default is `gray80`.
 #'   

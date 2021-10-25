@@ -6,7 +6,7 @@
 \alias{mFD-package}
 \title{mFD: Compute and Illustrate the Multiple Facets of Functional Diversity}
 \description{
-A computation of functional traits-based distances between pairs
+Computing functional traits-based distances between pairs
     of species for species gathered in assemblages allowing to build several
     functional spaces. The package allows to compute functional diversity
     indices assessing the distribution of species (and of their dominance) in a

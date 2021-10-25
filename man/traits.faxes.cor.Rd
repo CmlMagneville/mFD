@@ -41,7 +41,8 @@ dpi JPEG file. Default is \code{NULL} which means plot is only displayed. If
 the color of points when relationships between the trait and the axis is
 significant. Default is \code{darkblue}.}
 
-\item{color_non_signif}{an R color name or an hexadecimal code referring to the
+\item{color_non_signif}{an R color name or an hexadecimal code referring to
+the
 color of points when relationships between the trait and the axis are not
 significant. Default is \code{gray80}.}
 

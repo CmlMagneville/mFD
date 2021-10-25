@@ -148,8 +148,9 @@ dist.to.df(beta_fd_fruits$pairasb_fbd_indices)
 }
 \references{
 Villeger \emph{et al.} (2013) Decomposing functional ß-diversity reveals that
-low functional ß-diversity is driven by low functional turnover in European
-fish assemblages. \emph{Global Ecology and Biogeography}, \strong{22}, 671-681.
+low functional ß-diversity is driven by low functional turnover in
+European fish assemblages. \emph{Global Ecology and Biogeography}, \strong{22},
+671-681.
 }
 \author{
 Sebastien Villeger and Camille Magneville

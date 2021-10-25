@@ -71,7 +71,8 @@ if several assemblages to plot. If more than one assemblage to plot, the
 vector should be formatted as: c(asb1 = "firstRsize", asb2 = "secondRsize",
 ...).}
 
-\item{color_fide}{a R color name or an hexadecimal code referring to the color
+\item{color_fide}{a R color name or an hexadecimal code referring to the
+color
 of fide centroid if one assemblage to plot or a vector of R color names or
 hexadecimal codes if several assemblages to plot. If more than one
 assemblage to plot, the vector should be formatted as: c(asb1 =
