@@ -31,10 +31,10 @@ that are supposed to have similar ecological roles are clustered in this method.
 <br />
 
 
-🧩 The dataset used to illustrate this tutorial is a **fruits dataset** based on
-25 types of fruits (*i.e.* species) distributed in 10 fruit baskets (*i.e.*
-assemblages). Each fruit is characterized by six trait values summarized in the
-following table:
+**DATA** The dataset used to illustrate this tutorial is a **fruits dataset** 
+based on 25 types of fruits (*i.e.* species) distributed in 10 fruit baskets 
+(*i.e.* assemblages). Each fruit is characterized by six trait values summarized
+in the following table:
 
 <br />
 
@@ -48,7 +48,7 @@ following table:
 <br />
 
 
-💡 We reduced the dataset used in
+**NOTE** We reduced the dataset used in
 [mFD General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
 to only keep ordinal and categorical traits. Categorical traits are restrained
 to 2 or 3 modalities per traits to limit the number of unique combinations.
@@ -181,7 +181,7 @@ they can be named after their decreasing rank in term of number of species
 named after names of traits
 * *check_input* is a logical value reflecting whether inputs should be checked
 or not. Possible error messages will thus be more understandable for the user
-than R error messages 💡 Recommendation: set it as `TRUE`
+than R error messages **NOTE** Recommendation: set it as `TRUE`
   
 Let's use this function with the *fruits dataset*:
 
@@ -312,7 +312,7 @@ Redundancy, *fored* for Functional Overredundancy and *fvuln* for Functional
 Vulnerability.
 * *check_input* is a logical value reflecting whether inputs should be checked
 or not. Possible error messages will thus be more understandable for the user
-than R error messages 💡 Recommendation: set it as `TRUE`.
+than R error messages **NOTE** Recommendation: set it as `TRUE`.
 * *details_returned*  is a logical value indicating whether the user wants to
 details_returned. Details are used in graphical functions and thus must be
 kept if the user want to have graphical outputs for the computed indices.
@@ -396,8 +396,8 @@ to plot functional redundancy (FRed), `fored` to plot functional over-redundancy
 * inputs to personalize the plot (for details: see help file of the
 `mFD::alpha.fd.fe.plot`)
 * *check_input* is a logical value reflecting whether inputs should be checked
-or not. Possible error medevtssages will thus be more understandable for the user
-than R error messages 💡 Recommendation: set it as `TRUE`
+or not. Possible error messages will thus be more understandable for the user
+than R error messages **NOTE** Recommendation: set it as `TRUE`
   
 <br />
 

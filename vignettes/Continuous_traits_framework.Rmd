@@ -22,9 +22,10 @@ functional distances in the functional space.
 
 <br />
 
-🧩 This tutorial uses a dataset from one of the 80 CESTES database (Jeliazkov &
-the CESTES consortium (2019)) based on [Villéger _et al._
-2012](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679).
+**DATA** This tutorial uses a dataset from one of the 80 CESTES database 
+Jeliazkov & the CESTES consortium (2019)) based on [Villeger _et al._
+2012]
+(https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679).
 This data frame contains 45 fish species from the Terminos Lagoon (Gulf of
 Mexico) gathered into 36 sites considered as assemblages. Each species is
 described with 16 continuous morphological traits.
@@ -33,8 +34,8 @@ described with 16 continuous morphological traits.
 
 When the dataset **only** gathers continuous traits, the functional space can
 be computed using one trait for one dimension or using Principal Component
-Analysis (PCA: convert correlations among samples into a 2D plot). 💡 Using a
-PCoA on continuous traits and euclidean distance is the same than using a PCA
+Analysis (PCA: convert correlations among samples into a 2D plot). **NB** Using 
+a PCoA on continuous traits and euclidean distance is the same than using a PCA
 (clusters made by minimizing the linear distance (PCoA) are the same as those
 obtained by maximizing linear correlations (PCA)).
 
@@ -158,14 +159,14 @@ multidimensional space
 * a *nb_dim* argument referring to the maximum number of dimensions for
 multidimensional functional spaces. Final number of dimensions depends on the
 number of positive eigenvalues obtained with PCA if *pca = TRUE*
-or the number of traits used if *pca = FALSE*. 💡 High value for
+or the number of traits used if *pca = FALSE*. **NB** High value for
 *nb_dim* can increase computation time.
 
 * a *scaling* argument allowing traits values to be standardized. They can be
 standardized in several ways: standardization by the range value of the trait,
 center-transformation, scale transformation or scale-center transformation can
 be used. You can also chose not to standardize traits values.
-👉  Scaling ensures that trait-based distances and distances in the functional
+**NOTE**  Scaling ensures that trait-based distances and distances in the functional
 space have the same maximum. Scaling distances implies that the quality of the
 functional space accounts for congruence in distances rather than their equality
 
@@ -194,7 +195,7 @@ If the PCA is computed, the output contains:
 
 * quality metrics for spaces from 2 dimensions to *nb_dim* dimensions:
 
-💡 **mean absolute deviation (mad)** reflects the actual magnitude of errors
+**NB** **mean absolute deviation (mad)** reflects the actual magnitude of errors
 that affect distances, hence FD metrics ;  **mean squared deviation (msd)**
 reflects the potential risk associated with a few species pairs being strongly
 misplaced in the functional space ([Maire _et al._
@@ -208,7 +209,7 @@ fspace$"quality_metrics"
 
 <br />
 
-💡 The lower the quality metric is, the better the quality of your space is.
+**NB** The lower the quality metric is, the better the quality of your space is.
 Here, thanks to mAD and mSD value, we can see that as the number of dimensions
 increases, the quality increases. However, to decrease computation time, we can
 chose to work with the 6D space which has good quality of functional space.
@@ -272,8 +273,8 @@ fspace$"tr_correl"
 
 <br />
 
-Here we can notice that there is no strong correlation between traits. 💡
-However, if some strong correlation is to be found, then one of the two
+Here we can notice that there is no strong correlation between traits. 
+**NB** However, if some strong correlation is to be found, then one of the two
 correlated trait can be remove from the analysis.
 
 If the PCA is not computed, outputs are the same except that mad and msd are not
@@ -302,7 +303,8 @@ How many dimensions are needed to accurately assess functional diversity?
 A pragmatic approach for assessing the quality of functional spaces.
 _Global Ecology and Biogeography_, **24**, 728-740.
 
-- Villéger _et al._ (2012) 
-Low Functional β-Diversity Despite High Taxonomic β-Diversity among Tropical Estuarine Fish Communities.
+- Villeger _et al._ (2012) 
+Low Functional beta Diversity Despite High Taxonomic beta Diversity among 
+Tropical Estuarine Fish Communities.
 _PLoS ONE_, **7**, e40679.
 

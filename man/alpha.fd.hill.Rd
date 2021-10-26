@@ -74,7 +74,7 @@ Simpson diversity.  Note that even when q=0, weights of species are
 accounted for in FD. Hence to compute FD based only on distance between
 species present in an assemblage (i.e. a richness-like index) , asb_sp_w
 has to contain only species presence/absence coded as 0/1 with q=0 and
-tau=”mean”. If asb_sp_w contains only 0/1 and q>0, it means that all
+tau = 'mean'. If asb_sp_w contains only 0/1 and q>0, it means that all
 species have the same contribution to FD.
 }
 \examples{
@@ -105,7 +105,7 @@ alpha.fd.hill(
 }
 }
 \references{
-Chao \emph{et al.} (2019) An attribute‐diversity approach to functional
+Chao \emph{et al.} (2019) An attribute diversity approach to functional
 diversity, functional beta diversity, and related (dis)similarity
 measures. \emph{Ecological Monographs}, \strong{89}, e01343.
 }

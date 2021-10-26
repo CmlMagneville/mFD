@@ -53,7 +53,7 @@
 #' \code{\link{dist.to.df}}
 #'
 #' @references 
-#'   Chao _et al._ (2019) An attribute-diversity approach to functional
+#'   Chao _et al._ (2019) An attribute diversity approach to functional
 #'   diversity, functional beta diversity, and related (dis)similarity 
 #'   measures. _Ecological Monographs_, **89**, e01343.
 #'

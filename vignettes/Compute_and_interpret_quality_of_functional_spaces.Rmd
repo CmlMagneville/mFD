@@ -1,6 +1,6 @@
 ---
 title: "Compute and Interpret Quality of Functional Spaces"
-author: "Sébastien Villéger"
+author: "Sebastien Villeger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -28,7 +28,7 @@ before computing PCoA may be misleading.
 
 <br />
 
-🧩 The dataset used to illustrate this tutorial is *a fruit dataset* based on 25
+**DATA** The dataset used to illustrate this tutorial is *a fruit dataset* based on 25
 types of fruits. Each fruit is characterized by 5 traits summarized in the
 following table:
 
@@ -44,7 +44,7 @@ following table:
 <br />
 
 
-💡 This dataset is a subset of the dataset used in the [mFD: General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
+**NOTE** This dataset is a subset of the dataset used in the [mFD: General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)
 tutorial to keep only non-fuzzy traits.
 
 
@@ -239,7 +239,7 @@ quality_fspaces_fruits$"quality_fspaces" %>%
 <br />
 
 
-💡 The higher the value of metric, the higher the deviations between trait-based
+**NB** The higher the value of metric, the higher the deviations between trait-based
 and space-based distance between species, hence the lower the quality of the
 functional space is.
 
@@ -292,7 +292,7 @@ deviation < 0.1).
 <br />
 
 
-💡 **Many of the pairwise distance on dendrogram deviate by more than 0.3 from
+**NB** **Many of the pairwise distance on dendrogram deviate by more than 0.3 from
 the trait-based distances** (top-left panel of the above figure), particularly
 with some of the highest distances on the dendrogram corresponding to pairs of
 species with actually close trait values (Gower distance < 0.3). The dichotomous

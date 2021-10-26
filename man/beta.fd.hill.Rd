@@ -107,7 +107,7 @@ mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
 }
 }
 \references{
-Chao \emph{et al.} (2019) An attribute-diversity approach to functional
+Chao \emph{et al.} (2019) An attribute diversity approach to functional
 diversity, functional beta diversity, and related (dis)similarity
 measures. \emph{Ecological Monographs}, \strong{89}, e01343.
 }

@@ -20,7 +20,7 @@ functional diversity (FD) indices in a multidimensional space using `mFD`
 package. Other functions are available and their uses are illustrated in others
 tutorials.
 
-🧩 The dataset used to illustrate this tutorial is a **fruits dataset** based on
+**DATA** The dataset used to illustrate this tutorial is a **fruits dataset** based on
 25 types of fruits (*i.e.* species) distributed in 10 fruits baskets (*i.e.*
 assemblages). Each fruit is characterized by five traits values summarized in the
 following table:
@@ -110,7 +110,7 @@ package what type of traits you are using). That is why `mFD` package needs a
 data frame summarizing the type of each trait (*i.e.* each column of the
 `fruits_traits` data frame).
 
-👉 You need to set up a data frame with the same columns names as the below
+**NB** You need to set up a data frame with the same columns names as the below
 example:
 
 
@@ -136,7 +136,7 @@ The **first column** contains **traits name**. The **second column** contains
 
 * **N**: nominal trait (factor variable)
 * **O**: ordinal traits (ordered variable)
-* **C**: circular traits (integer values) (⚠️ circular traits can not be used in
+* **C**: circular traits (integer values) (**NB** circular traits can not be used in
 `mFD` function used to compute functional distance but ok for summary function
 and function to group species into Functional Entities)
 * **Q**: quantitative traits (numeric values)
@@ -150,7 +150,7 @@ column summarizes traits weights).
 
 <br />
 
-💡 The traits types dataframe thus has: **two columns** if **no fuzzy traits and
+**NOTE** The traits types dataframe thus has: **two columns** if **no fuzzy traits and
 no weight given to traits** (columns names: `trait_name` and `trait_type`) ;
 **three columns** if **fuzzy traits** (columns names:  `trait_name`,`trait_type`
 and `fuzzy_name`) **or** if **no fuzzy traits and weight given to traits**
@@ -371,7 +371,7 @@ help file for details).
 * `weight_type` is a character string referring to the type of method to weight
 traits. You can either chose to define weights using the `tr_cat` dataframe (cf
 **step 1.1**) (`user` option) or you can chose to give the same weight to all
-traits (`equal` option). (⚠️ Using `mFD`, you can not define weights for fuzzy
+traits (`equal` option). (**NB** Using `mFD`, you can not define weights for fuzzy
 traits, use
 [`gawdis`](https://cran.r-project.org/package=gawdis) package
 instead)
@@ -385,7 +385,7 @@ missing or extrapolate missing traits (see [Johnson _et al._
 
 <br />
 
-⚠️ **If your data gather a high number of species and/or traits, this function
+**NB** **If your data gather a high number of species and/or traits, this function
 might take time to run (and you might have memory issues).**
 
 <br />
@@ -462,7 +462,7 @@ that trait-based distances and distances in the functional space have the same
 maximum. Scaling distances implies that the quality of the functional space
 accounts for congruence in distances rather than their equality.
 
-💡 The combination of `deviation_weighting` and `fdist_scaling` arguments leads
+**NOTE** The combination of `deviation_weighting` and `fdist_scaling` arguments leads
 to **four possible quality metrics**: `mad`, `rmsd`, `mad_scaled` and
 `rmsd_scaled`
 
@@ -492,7 +492,7 @@ space quality and in **step 5** to plot functional space.
 
 <br />
 
-💡 The space with the best quality has the lowest quality metric. Here, thanks
+**NOTE** The space with the best quality has the lowest quality metric. Here, thanks
 to mad values, we can see that the 4D space is the best one. That is why the
 following of this tutorial will use this multidimensional space.
 
@@ -601,7 +601,7 @@ then the same cophenetic distance on the dendrogram.
 
 <br />
 
-💡 To know more and better understand how to interpret quality of functional
+**NOTE** To know more and better understand how to interpret quality of functional
 spaces, you should read the
 [Compute and Interpret Quality of Functional Space](https://cmlmagneville.github.io/mFD/articles/Compute_and_interpret_quality_of_functional_spaces.html)
 tutorial.
@@ -937,7 +937,7 @@ used in graphical functions. If the user wants to plot FD indices, then
 
 <br />
 
-💡 **Use lowercase letters to enter FD indices names**
+**NB** **Use lowercase letters to enter FD indices names**
 
 <br />
 
@@ -1150,20 +1150,20 @@ functions.
 <br />
 
 `mFD` package allows you to compute beta diversity indices for each assemblage
-pairs following [Villéger _et al._
+pairs following [Villeger _et al._
 2013](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12021). For that we
 will use the `mFD::beta.fd.multidim()` function.
 
 <br />
 
-👉 This function can compute two families of functional beta diversity indices,
+**NOTE** This function can compute two families of functional beta diversity indices,
 either **Jaccard** or **Sorensen**.
 
 <br />
 
 In this example, we will use Jaccard index. For each assemblages pair, the
 dissimilarity index is decomposed into two additive components: **turnover** and
-**nestedness-resultant**. 💡 The **turnover** component is the highest if there
+**nestedness-resultant**. **NB** The **turnover** component is the highest if there
 is no shared traits combination between the two assemblages.
 The **nestedness** component is the highest if one assemblage hosts a small
 subset of the functional strategies present in the other.

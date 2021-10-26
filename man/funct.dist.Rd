@@ -61,8 +61,8 @@ ordinal variables (i.e. ordered).
 Both options convert ordinal variables to ranks. Default is \code{classic}.}
 
 \item{weight_type}{the type of used method to weight traits.
-\code{user} – user defined weights in tr_cat,
-\code{equal} – all traits having the same weight.
+\code{user} user defined weights in tr_cat,
+\code{equal} all traits having the same weight.
 More methods are available using \code{\link[gawdis]{gawdis}} from
 \code{gawdis} package. To compute gower distance with fuzzy trait and
 weight please refer to \code{\link[gawdis]{gawdis}}. Default is \code{equal}.}

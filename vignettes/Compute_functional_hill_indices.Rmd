@@ -1,6 +1,6 @@
 ---
 title: "Compute Functional Diversity Hill Indices"
-author: "Sébastien Villéger"
+author: "Sebastien Villeger"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -122,8 +122,8 @@ fruits_gower <- mFD::funct.dist(
 
 The family of indices presented in 
 [Chao _et al._ (2019)](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343)
-allows computing FD based on pairwise distance between species and their weights in
-assemblages. This generalization of Hill numbers framework is based on two
+allows computing FD based on pairwise distance between species and their weights 
+in assemblages. This generalization of Hill numbers framework is based on two
 parameters:
 
 * `q`: the importance of species weight compared to species distance. Values
@@ -131,8 +131,8 @@ allowed in `mFD` are 0, 1, 2 (the most often used, see below).
 
 * `tau`: the threshold of functional distinctiveness between any two species
 (*i.e.* all species with distance above this threshold are considered as
-functionally equally distinct). Values allowed in `mFD` are "min(imum)", "mean(imum)"
-and "max(imum)".
+functionally equally distinct). Values allowed in `mFD` are "min(imum)", 
+"mean(imum)" and "max(imum)".
 
 <br />
 
@@ -142,7 +142,7 @@ to taxonomic Hill numbers (including species richness).
 
 <br />
 
-💡 For more details about the properties of Hill numbers FD read
+**NOTE** For more details about the properties of Hill numbers FD read
 [Chao _et al._ (2019)](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343)
 and especially its Figures 1 & 2.
 
@@ -206,9 +206,9 @@ species**.
 
 <br />
 
-💡 **Note that even with** `q = 0`**, weights of species are still accounted for
-by FD.** Hence, if the goal is to compute a richness-like index (*i.e.*
-accounting only for distance between species present), function
+**NB** **Note that even with** `q = 0`**, weights of species are still 
+accounted for by FD.** Hence, if the goal is to compute a richness-like index 
+(*i.e.* accounting only for distance between species present), function
 `mFD::alpha.fd.hill()` should be applied to **species occurrence data** (coded
 as 0/1, previously computed using sp.tr.summary) so that all species have the
 same weight). Species occurrence data can be retrieve through the
@@ -251,14 +251,14 @@ values (*e.g* *basket_1*, *basket_2* and *basket_3*)
 
 
 Framework of 
-[Chao _et al._ (2019)](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) 
+[Chao _et al._ (2019)](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343)
 also allows computing beta-diversity, with 2 framework similar to Jaccard and
 Sorensen ones for taxonomic diversity. The `mFD:beta.fd.hill()` function
 computes these indices.
 
 <br />
 
-💡 Note that **total weight of assemblages is affecting computation of
+**NB** Note that **total weight of assemblages is affecting computation of
 functional beta-diversity**. Hence **if it is does not reflect an ecological
 pattern** (*e.g*. rather difference in sampling effort), it is recommended to
 **apply** `mFD::beta.fd.hill()` **to relative weight of species in
@@ -315,7 +315,7 @@ highly dissimilar (beta > 0.8) to *basket 8*.
 <br />
 
 - Chao _et al._ (2019) 
-An attribute‐diversity approach to functional diversity, functional beta 
+An attribute diversity approach to functional diversity, functional beta 
 diversity, and related (dis)similarity measures.
 _Ecological Monographs_, **89**, e01343.
 

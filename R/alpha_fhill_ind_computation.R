@@ -57,11 +57,11 @@
 #'   accounted for in FD. Hence to compute FD based only on distance between 
 #'   species present in an assemblage (i.e. a richness-like index) , asb_sp_w 
 #'   has to contain only species presence/absence coded as 0/1 with q=0 and 
-#'   tau=”mean”. If asb_sp_w contains only 0/1 and q>0, it means that all 
+#'   tau = 'mean'. If asb_sp_w contains only 0/1 and q>0, it means that all 
 #'   species have the same contribution to FD.
 #'   
 #' @references 
-#' Chao _et al._ (2019) An attribute‐diversity approach to functional
+#' Chao _et al._ (2019) An attribute diversity approach to functional
 #'   diversity, functional beta diversity, and related (dis)similarity 
 #'   measures. _Ecological Monographs_, **89**, e01343.
 #'

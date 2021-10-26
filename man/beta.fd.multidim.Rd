@@ -85,7 +85,7 @@ species being vertices of the convex hull}
 Computes a set of indices of pairwise functional beta-diversity
 (dissimilarity and its turnover and nestedness-resultant components) based
 on overlap between convex hulls in a multidimensional space. For details
-about indices formulas see Villéger \emph{et al.} (2013). This functions stands
+about indices formulas see Villeger \emph{et al.} (2013). This functions stands
 on \code{\link[betapart]{functional.betapart.core.pairwise}}.
 }
 \note{
@@ -147,8 +147,8 @@ dist.to.df(beta_fd_fruits$pairasb_fbd_indices)
 }
 }
 \references{
-Villeger \emph{et al.} (2013) Decomposing functional ß-diversity reveals that
-low functional ß-diversity is driven by low functional turnover in
+Villeger \emph{et al.} (2013) Decomposing functional beta-diversity reveals that
+low functional beta-diversity is driven by low functional turnover in
 European fish assemblages. \emph{Global Ecology and Biogeography}, \strong{22},
 671-681.
 }

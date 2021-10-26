@@ -75,7 +75,7 @@ Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html
 Please cite this package as:
 
 > Magneville C, Loiseau N, Albouy C, Casajus N, Claverie T, Escalas A,
-> Leprieur F, Maire E, Mouillot D & Villéger S (2021) mFD: an R package
+> Leprieur F, Maire E, Mouillot D & Villeger S (2021) mFD: an R package
 > to compute and illustrate the multiple facets of functional diversity.
 > *Submitted to Ecography*.
 
