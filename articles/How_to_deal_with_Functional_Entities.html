@@ -97,7 +97,7 @@
       <h1 data-toc-skip>How to Deal With Functional Entities</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-10-25</h4>
+            <h4 class="date">2021-10-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/How_to_deal_with_Functional_Entities.Rmd"><code>vignettes/How_to_deal_with_Functional_Entities.Rmd</code></a></small>
       <div class="hidden name"><code>How_to_deal_with_Functional_Entities.Rmd</code></div>
@@ -118,7 +118,7 @@
 <h1 class="hasAnchor">
 <a href="#tutorials-data" class="anchor"></a>2. Tutorial’s data</h1>
 <p><br></p>
-<p>🧩 The dataset used to illustrate this tutorial is a <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruit baskets (<em>i.e.</em> assemblages). Each fruit is characterized by six trait values summarized in the following table:</p>
+<p><strong>DATA</strong> The dataset used to illustrate this tutorial is a <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruit baskets (<em>i.e.</em> assemblages). Each fruit is characterized by six trait values summarized in the following table:</p>
 <p><br></p>
 <table class="table">
 <thead><tr class="header">
@@ -165,7 +165,7 @@
 </tbody>
 </table>
 <p><br></p>
-<p>💡 We reduced the dataset used in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> to only keep ordinal and categorical traits. Categorical traits are restrained to 2 or 3 modalities per traits to limit the number of unique combinations.</p>
+<p><strong>NOTE</strong> We reduced the dataset used in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> to only keep ordinal and categorical traits. Categorical traits are restrained to 2 or 3 modalities per traits to limit the number of unique combinations.</p>
 <p><br></p>
 <p>The following data frame and matrix are needed:</p>
 <ul>
@@ -421,7 +421,7 @@
 <li>
 <em>fe_nm_type</em> is a character string referring to the way FEs should be named: they can be named after their decreasing rank in term of number of species (<em>i.e. fe_1 is the one gathering most species</em>) (<em>fe_rank</em>) or they can be named after names of traits</li>
 <li>
-<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as <code>TRUE</code>
+<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages <strong>NOTE</strong> Recommendation: set it as <code>TRUE</code>
 </li>
 </ul>
 <p>Let’s use this function with the <em>fruits dataset</em>:</p>
@@ -591,7 +591,7 @@
 <li>
 <em>ind_nm</em> a vector referring to the indices to compute: <em>fred</em> for Functional Redundancy, <em>fored</em> for Functional Overredundancy and <em>fvuln</em> for Functional Vulnerability.</li>
 <li>
-<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as <code>TRUE</code>.</li>
+<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages <strong>NOTE</strong> Recommendation: set it as <code>TRUE</code>.</li>
 <li>
 <em>details_returned</em> is a logical value indicating whether the user wants to details_returned. Details are used in graphical functions and thus must be kept if the user want to have graphical outputs for the computed indices.</li>
 </ul>
@@ -685,7 +685,7 @@
 <em>name_file</em> a character string with name of file to save the figure. If set to <code>NULL</code> the plot is only displayed</li>
 <li>inputs to personalize the plot (for details: see help file of the <code><a href="../reference/alpha.fd.fe.plot.html">mFD::alpha.fd.fe.plot</a></code>)</li>
 <li>
-<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error medevtssages will thus be more understandable for the user than R error messages 💡 Recommendation: set it as <code>TRUE</code>
+<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages <strong>NOTE</strong> Recommendation: set it as <code>TRUE</code>
 </li>
 </ul>
 <p><br></p>

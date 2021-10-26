@@ -95,9 +95,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Compute and Interpret Quality of Functional Spaces</h1>
-                        <h4 class="author">Sébastien Villéger</h4>
+                        <h4 class="author">Sebastien Villeger</h4>
             
-            <h4 class="date">2021-10-25</h4>
+            <h4 class="date">2021-10-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd"><code>vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd</code></a></small>
       <div class="hidden name"><code>Compute_and_interpret_quality_of_functional_spaces.Rmd</code></div>
@@ -117,7 +117,7 @@
 <h1 class="hasAnchor">
 <a href="#tutorials-data" class="anchor"></a>1. Tutorial’s data</h1>
 <p><br></p>
-<p>🧩 The dataset used to illustrate this tutorial is <em>a fruit dataset</em> based on 25 types of fruits. Each fruit is characterized by 5 traits summarized in the following table:</p>
+<p><strong>DATA</strong> The dataset used to illustrate this tutorial is <em>a fruit dataset</em> based on 25 types of fruits. Each fruit is characterized by 5 traits summarized in the following table:</p>
 <table class="table">
 <thead><tr class="header">
 <th align="center">Trait name</th>
@@ -171,7 +171,7 @@
 </tbody>
 </table>
 <p><br></p>
-<p>💡 This dataset is a subset of the dataset used in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD: General Workflow</a> tutorial to keep only non-fuzzy traits.</p>
+<p><strong>NOTE</strong> This dataset is a subset of the dataset used in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD: General Workflow</a> tutorial to keep only non-fuzzy traits.</p>
 <p><br></p>
 <p>The dataframe gathering species traits, looks as follows:</p>
 <p><br></p>
@@ -428,7 +428,7 @@
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <p><img src="Compute_and_interpret_quality_of_functional_spaces_files/figure-html/unnamed-chunk-8-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>💡 The higher the value of metric, the higher the deviations between trait-based and space-based distance between species, hence the lower the quality of the functional space is.</p>
+<p><strong>NB</strong> The higher the value of metric, the higher the deviations between trait-based and space-based distance between species, hence the lower the quality of the functional space is.</p>
 <p><br></p>
 <p>We can here notice that:</p>
 <ul>
@@ -456,7 +456,7 @@
 <h2 class="hasAnchor">
 <a href="#focus-on-dendrograms" class="anchor"></a>3.2. Focus on dendrograms</h2>
 <p><br></p>
-<p>💡 <strong>Many of the pairwise distance on dendrogram deviate by more than 0.3 from the trait-based distances</strong> (top-left panel of the above figure), particularly with some of the highest distances on the dendrogram corresponding to pairs of species with actually close trait values (Gower distance &lt; 0.3). The dichotomous nature of dendrogram implies that many species pairs have the same distance, with especially all species pairs being on different sides of the tree root having all the maximal distance.</p>
+<p><strong>NB</strong> <strong>Many of the pairwise distance on dendrogram deviate by more than 0.3 from the trait-based distances</strong> (top-left panel of the above figure), particularly with some of the highest distances on the dendrogram corresponding to pairs of species with actually close trait values (Gower distance &lt; 0.3). The dichotomous nature of dendrogram implies that many species pairs have the same distance, with especially all species pairs being on different sides of the tree root having all the maximal distance.</p>
 <p><br></p>
 <p>For instance, let’s consider the 3 fruits: lemon, lime and cherry:</p>
 <p><br></p>

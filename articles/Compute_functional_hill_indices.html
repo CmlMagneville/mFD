@@ -95,9 +95,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Compute Functional Diversity Hill Indices</h1>
-                        <h4 class="author">Sébastien Villéger</h4>
+                        <h4 class="author">Sebastien Villeger</h4>
             
-            <h4 class="date">2021-10-25</h4>
+            <h4 class="date">2021-10-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/Compute_functional_hill_indices.Rmd"><code>vignettes/Compute_functional_hill_indices.Rmd</code></a></small>
       <div class="hidden name"><code>Compute_functional_hill_indices.Rmd</code></div>
@@ -423,7 +423,7 @@
 <p><br></p>
 <p>Indices are expressed as effective number of functionally equally distinct species (or <em>virtual functional groups</em>) and could thus be directly compared to taxonomic Hill numbers (including species richness).</p>
 <p><br></p>
-<p>💡 For more details about the properties of Hill numbers FD read <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343">Chao <em>et al.</em> (2019)</a> and especially its Figures 1 &amp; 2.</p>
+<p><strong>NOTE</strong> For more details about the properties of Hill numbers FD read <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343">Chao <em>et al.</em> (2019)</a> and especially its Figures 1 &amp; 2.</p>
 <p><br></p>
 <p>All these indices can be computed with the function <code><a href="../reference/alpha.fd.hill.html">mFD::alpha.fd.hill()</a></code>.</p>
 <p><br></p>
@@ -465,7 +465,7 @@
 <p><br></p>
 <p>We can see that FD computed with <code>tau = "max"</code> is less variable (ranging from 1.50 to only 1.86) than FD computed with <code>tau = "min"</code> (ranging from 1.72 to 4.10) illustrating its <strong>higher sensitivity to functional differences between species</strong>.</p>
 <p><br></p>
-<p>💡 <strong>Note that even with</strong> <code>q = 0</code><strong>, weights of species are still accounted for by FD.</strong> Hence, if the goal is to compute a richness-like index (<em>i.e.</em> accounting only for distance between species present), function <code><a href="../reference/alpha.fd.hill.html">mFD::alpha.fd.hill()</a></code> should be applied to <strong>species occurrence data</strong> (coded as 0/1, previously computed using sp.tr.summary) so that all species have the same weight). Species occurrence data can be retrieve through the <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code> function:</p>
+<p><strong>NB</strong> <strong>Note that even with</strong> <code>q = 0</code><strong>, weights of species are still accounted for by FD.</strong> Hence, if the goal is to compute a richness-like index (<em>i.e.</em> accounting only for distance between species present), function <code><a href="../reference/alpha.fd.hill.html">mFD::alpha.fd.hill()</a></code> should be applied to <strong>species occurrence data</strong> (coded as 0/1, previously computed using sp.tr.summary) so that all species have the same weight). Species occurrence data can be retrieve through the <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code> function:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -532,7 +532,7 @@
 <p><br></p>
 <p>Framework of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343">Chao <em>et al.</em> (2019)</a> also allows computing beta-diversity, with 2 framework similar to Jaccard and Sorensen ones for taxonomic diversity. The <code>mFD:beta.fd.hill()</code> function computes these indices.</p>
 <p><br></p>
-<p>💡 Note that <strong>total weight of assemblages is affecting computation of functional beta-diversity</strong>. Hence <strong>if it is does not reflect an ecological pattern</strong> (<em>e.g</em>. rather difference in sampling effort), it is recommended to <strong>apply</strong> <code><a href="../reference/beta.fd.hill.html">mFD::beta.fd.hill()</a></code> <strong>to relative weight of species in assemblages</strong>.</p>
+<p><strong>NB</strong> Note that <strong>total weight of assemblages is affecting computation of functional beta-diversity</strong>. Hence <strong>if it is does not reflect an ecological pattern</strong> (<em>e.g</em>. rather difference in sampling effort), it is recommended to <strong>apply</strong> <code><a href="../reference/beta.fd.hill.html">mFD::beta.fd.hill()</a></code> <strong>to relative weight of species in assemblages</strong>.</p>
 <p><br></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># retrieve total weight per basket:</span>
@@ -623,7 +623,7 @@
 <a href="#references" class="anchor"></a>References</h1>
 <p><br></p>
 <ul>
-<li><p>Chao <em>et al.</em> (2019) An attribute‐diversity approach to functional diversity, functional beta diversity, and related (dis)similarity measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p></li>
+<li><p>Chao <em>et al.</em> (2019) An attribute diversity approach to functional diversity, functional beta diversity, and related (dis)similarity measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p></li>
 <li><p>Ricotta &amp; Szeidl (2009) Diversity partitioning of Rao’s quadratic entropy. <em>Theoretical Population Biology</em>, <strong>76</strong>, 299-302.</p></li>
 </ul>
 </div>

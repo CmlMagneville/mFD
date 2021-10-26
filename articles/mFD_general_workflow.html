@@ -97,7 +97,7 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-10-25</h4>
+            <h4 class="date">2021-10-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -111,7 +111,7 @@
 <a href="#about-this-tutorial" class="anchor"></a>About this tutorial</h1>
 <p><br></p>
 <p>This tutorial describes the basic workflow showing how to compute step by step functional diversity (FD) indices in a multidimensional space using <code>mFD</code> package. Other functions are available and their uses are illustrated in others tutorials.</p>
-<p>🧩 The dataset used to illustrate this tutorial is a <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruits baskets (<em>i.e.</em> assemblages). Each fruit is characterized by five traits values summarized in the following table:</p>
+<p><strong>DATA</strong> The dataset used to illustrate this tutorial is a <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruits baskets (<em>i.e.</em> assemblages). Each fruit is characterized by five traits values summarized in the following table:</p>
 <p><br></p>
 <table class="table">
 <thead><tr class="header">
@@ -345,7 +345,7 @@ Basic framework of the mFD package
 <a href="#what-types-of-traits-am-i-using" class="anchor"></a>1.1. What types of traits am I using?</h2>
 <p><br></p>
 <p>The first thing to do before starting analyses is to know your data. To do so, you must be able to characterize the traits you are using (<em>i.e.</em> tell the package what type of traits you are using). That is why <code>mFD</code> package needs a data frame summarizing the type of each trait (<em>i.e.</em> each column of the <code>fruits_traits</code> data frame).</p>
-<p>👉 You need to set up a data frame with the same columns names as the below example:</p>
+<p><strong>NB</strong> You need to set up a data frame with the same columns names as the below example:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load data:</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
@@ -394,7 +394,7 @@ Basic framework of the mFD package
 <li>
 <strong>O</strong>: ordinal traits (ordered variable)</li>
 <li>
-<strong>C</strong>: circular traits (integer values) (⚠️ circular traits can not be used in <code>mFD</code> function used to compute functional distance but ok for summary function and function to group species into Functional Entities)</li>
+<strong>C</strong>: circular traits (integer values) (<strong>NB</strong> circular traits can not be used in <code>mFD</code> function used to compute functional distance but ok for summary function and function to group species into Functional Entities)</li>
 <li>
 <strong>Q</strong>: quantitative traits (numeric values)</li>
 <li>
@@ -402,7 +402,7 @@ Basic framework of the mFD package
 </ul>
 <p>You can add a <strong>third column</strong> <strong>if</strong> your dataset use fuzzy traits (then the third column summarizes to which fuzzy trait belongs each column that refers to a fuzzy trait) <strong>or if</strong> you want to give weight to each traits (then the third column summarizes traits weights).</p>
 <p><br></p>
-<p>💡 The traits types dataframe thus has: <strong>two columns</strong> if <strong>no fuzzy traits and no weight given to traits</strong> (columns names: <code>trait_name</code> and <code>trait_type</code>) ; <strong>three columns</strong> if <strong>fuzzy traits</strong> (columns names: <code>trait_name</code>,<code>trait_type</code> and <code>fuzzy_name</code>) <strong>or</strong> if <strong>no fuzzy traits and weight given to traits</strong> (columns names: <code>trait_name</code>,<code>trait_type</code> and <code>trait_weight</code>)</p>
+<p><strong>NOTE</strong> The traits types dataframe thus has: <strong>two columns</strong> if <strong>no fuzzy traits and no weight given to traits</strong> (columns names: <code>trait_name</code> and <code>trait_type</code>) ; <strong>three columns</strong> if <strong>fuzzy traits</strong> (columns names: <code>trait_name</code>,<code>trait_type</code> and <code>fuzzy_name</code>) <strong>or</strong> if <strong>no fuzzy traits and weight given to traits</strong> (columns names: <code>trait_name</code>,<code>trait_type</code> and <code>trait_weight</code>)</p>
 <p><br></p>
 </div>
 <div id="summarize-my-traits" class="section level2">
@@ -580,11 +580,11 @@ Basic framework of the mFD package
 </li>
 <li><p><code>scale_euclid</code> is a character string referring to the way the user wants to scale <strong>euclidean</strong> traits. You can either chose to scale by range <code>range</code>, use the center transformation <code>center</code>, use the scale transformation <code>scale</code>, use the scale-center transformation <code>scale_center</code> or you can chose not to scale <code>noscale</code>.</p></li>
 <li><p><code>ordinal_var</code> is a character string specifying the method to be used for ordinal variables (<em>i.e.</em> ordered). You can either chose to treat ordinal variables as continuous variables (with <code>"classic"</code> option) or to treat ordinal variables as ranks (with <code>metric</code> or <code>podani</code> options, see <code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code> help file for details).</p></li>
-<li><p><code>weight_type</code> is a character string referring to the type of method to weight traits. You can either chose to define weights using the <code>tr_cat</code> dataframe (cf <strong>step 1.1</strong>) (<code>user</code> option) or you can chose to give the same weight to all traits (<code>equal</code> option). (⚠️ Using <code>mFD</code>, you can not define weights for fuzzy traits, use <a href="https://cran.r-project.org/package=gawdis"><code>gawdis</code></a> package instead)</p></li>
+<li><p><code>weight_type</code> is a character string referring to the type of method to weight traits. You can either chose to define weights using the <code>tr_cat</code> dataframe (cf <strong>step 1.1</strong>) (<code>user</code> option) or you can chose to give the same weight to all traits (<code>equal</code> option). (<strong>NB</strong> Using <code>mFD</code>, you can not define weights for fuzzy traits, use <a href="https://cran.r-project.org/package=gawdis"><code>gawdis</code></a> package instead)</p></li>
 <li><p><code>stop_if_NA</code> is a logical value to stop or not the process if the <code>sp_tr</code> data frame contains NA. If the <code>sp_tr</code> data frame contains <code>NA</code> you can either chose to compute anyway functional distances (but keep in mind that <strong>Functional measures are sensitive to missing traits!</strong>) or you can delete species with missing or extrapolate missing traits (see <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.13185">Johnson <em>et al.</em> (2020)</a>).</p></li>
 </ul>
 <p><br></p>
-<p>⚠️ <strong>If your data gather a high number of species and/or traits, this function might take time to run (and you might have memory issues).</strong></p>
+<p><strong>NB</strong> <strong>If your data gather a high number of species and/or traits, this function might take time to run (and you might have memory issues).</strong></p>
 <p><br></p>
 <p>This function returns a <code>dist</code> object with traits-based distances between all pairs of species:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
@@ -727,7 +727,7 @@ Basic framework of the mFD package
 </li>
 <li><p><code>fdist_scaling</code> specifies whether distances in the functional space should be scaled before computing differences with trait-based distances. Scaling ensures that trait-based distances and distances in the functional space have the same maximum. Scaling distances implies that the quality of the functional space accounts for congruence in distances rather than their equality.</p></li>
 </ul>
-<p>💡 The combination of <code>deviation_weighting</code> and <code>fdist_scaling</code> arguments leads to <strong>four possible quality metrics</strong>: <code>mad</code>, <code>rmsd</code>, <code>mad_scaled</code> and <code>rmsd_scaled</code></p>
+<p><strong>NOTE</strong> The combination of <code>deviation_weighting</code> and <code>fdist_scaling</code> arguments leads to <strong>four possible quality metrics</strong>: <code>mad</code>, <code>rmsd</code>, <code>mad_scaled</code> and <code>rmsd_scaled</code></p>
 <ul>
 <li>
 <code>fdendro</code> specifies the clustering algorithm to compute a functional dendrogram. <code>NULL</code> means no dendrogram computed. The chosen algorithm must be one of the method recognized by the <code><a href="https://rdrr.io/r/stats/hclust.html">stats::hclust()</a></code> function from the <a href="https://www.rdocumentation.org/packages/stats"><code>stats</code></a> package.</li>
@@ -757,7 +757,7 @@ Basic framework of the mFD package
 <li>lists with details required for other tasks in <strong>step 4</strong> to plot functional space quality and in <strong>step 5</strong> to plot functional space.</li>
 </ul>
 <p><br></p>
-<p>💡 The space with the best quality has the lowest quality metric. Here, thanks to mad values, we can see that the 4D space is the best one. That is why the following of this tutorial will use this multidimensional space.</p>
+<p><strong>NOTE</strong> The space with the best quality has the lowest quality metric. Here, thanks to mad values, we can see that the 4D space is the best one. That is why the following of this tutorial will use this multidimensional space.</p>
 <p><br></p>
 </div>
 <div id="illustrating-the-quality-of-the-selected-functional-spaces" class="section level2">
@@ -814,7 +814,7 @@ Basic framework of the mFD package
 <p><br></p>
 <p>For the 2D space, on the top row there are a lot of points below the 1:1 lines, meaning that distances are overestimated in this multidimensional space. Looking at panels, we can see that the 4D space is the one in which points are the closest to the 1:1 line on the top row,and the closest to the x-axis for the two bottom rows, which reflects a better quality compared to other functional spaces / dendrogram. For the dendrogram, we can see on the top row that species pairs arrange in horizontal lines, meaning that different trait-based distances have then the same cophenetic distance on the dendrogram.</p>
 <p><br></p>
-<p>💡 To know more and better understand how to interpret quality of functional spaces, you should read the <a href="https://cmlmagneville.github.io/mFD/articles/Compute_and_interpret_quality_of_functional_spaces.html">Compute and Interpret Quality of Functional Space</a> tutorial.</p>
+<p><strong>NOTE</strong> To know more and better understand how to interpret quality of functional spaces, you should read the <a href="https://cmlmagneville.github.io/mFD/articles/Compute_and_interpret_quality_of_functional_spaces.html">Compute and Interpret Quality of Functional Space</a> tutorial.</p>
 <p><br></p>
 </div>
 </div>
@@ -1008,7 +1008,7 @@ Basic framework of the mFD package
 <li><p><code>details_returned</code> is used if the user wants to store information that are used in graphical functions. If the user wants to plot FD indices, then <code>details_returned</code> must be set to <code>TRUE</code>.</p></li>
 </ul>
 <p><br></p>
-<p>💡 <strong>Use lowercase letters to enter FD indices names</strong></p>
+<p><strong>NB</strong> <strong>Use lowercase letters to enter FD indices names</strong></p>
 <p><br></p>
 <p>The function has two main outputs:</p>
 <ul>
@@ -1164,11 +1164,11 @@ Basic framework of the mFD package
 <p><br></p>
 <p><strong>NOTE:</strong> Some Mac OS X 10.15 may encounter some issues with the beta_*() functions.</p>
 <p><br></p>
-<p><code>mFD</code> package allows you to compute beta diversity indices for each assemblage pairs following <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12021">Villéger <em>et al.</em> 2013</a>. For that we will use the <code><a href="../reference/beta.fd.multidim.html">mFD::beta.fd.multidim()</a></code> function.</p>
+<p><code>mFD</code> package allows you to compute beta diversity indices for each assemblage pairs following <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12021">Villeger <em>et al.</em> 2013</a>. For that we will use the <code><a href="../reference/beta.fd.multidim.html">mFD::beta.fd.multidim()</a></code> function.</p>
 <p><br></p>
-<p>👉 This function can compute two families of functional beta diversity indices, either <strong>Jaccard</strong> or <strong>Sorensen</strong>.</p>
+<p><strong>NOTE</strong> This function can compute two families of functional beta diversity indices, either <strong>Jaccard</strong> or <strong>Sorensen</strong>.</p>
 <p><br></p>
-<p>In this example, we will use Jaccard index. For each assemblages pair, the dissimilarity index is decomposed into two additive components: <strong>turnover</strong> and <strong>nestedness-resultant</strong>. 💡 The <strong>turnover</strong> component is the highest if there is no shared traits combination between the two assemblages. The <strong>nestedness</strong> component is the highest if one assemblage hosts a small subset of the functional strategies present in the other.</p>
+<p>In this example, we will use Jaccard index. For each assemblages pair, the dissimilarity index is decomposed into two additive components: <strong>turnover</strong> and <strong>nestedness-resultant</strong>. <strong>NB</strong> The <strong>turnover</strong> component is the highest if there is no shared traits combination between the two assemblages. The <strong>nestedness</strong> component is the highest if one assemblage hosts a small subset of the functional strategies present in the other.</p>
 <p><br></p>
 <p>The <code><a href="../reference/beta.fd.multidim.html">mFD::beta.fd.multidim()</a></code> function has the main following arguments:</p>
 <p><br></p>
