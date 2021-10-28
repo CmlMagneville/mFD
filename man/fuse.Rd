@@ -32,13 +32,10 @@ columns:
 \itemize{
 \item FUSE: functionally unique, specialized and endangered (see
 Pimiento \emph{et al.} (2020);
-\item FDGE: functionally distinctive and endangered
 \item FUn_std: functional uniqueness standardized between 0 and 1 (see
-Mouillot \emph{et al.} (2013) and Griffin \emph{et al.} (2020));
+Mouillot \emph{et al.} (2013);
 \item FSp_std: functional specialization standardized between 0 and 1
-(see Mouillot \emph{et al.} (2013) and Griffin \emph{et al.} (2020));
-\item FDist_std: functional distinctiveness standardized between 0 and 1
-(see Violle \emph{et al.} (2007) and Griffin \emph{et al.} (2020)).
+(see Mouillot \emph{et al.} (2013);
 }
 }
 \description{
@@ -120,9 +117,6 @@ sp_faxes_coord <- Pcoa$li[1:40]
 }
 }
 \references{
-Griffin \emph{et al.} (2020) Functionally unique, specialised, and endangered
-(FUSE) species: towards integrated metrics for the conservation
-prioritisation toolbox. \emph{Biorxiv}, 2020.05.09.084871.\cr
 Mouillot \emph{et al.} (2013) Rare species support vulnerable functions in
 high-diversity ecosystems. \emph{PLoS Biology}, \strong{11}, e1001569.\cr
 Pimiento \emph{et al.} (2020) Functional diversity of marine megafauna in the

@@ -27,19 +27,13 @@
 #'   \itemize{
 #'     \item FUSE: functionally unique, specialized and endangered (see 
 #'     Pimiento _et al._ (2020);
-#'     \item FDGE: functionally distinctive and endangered
 #'     \item FUn_std: functional uniqueness standardized between 0 and 1 (see
-#'       Mouillot _et al._ (2013) and Griffin _et al._ (2020));
+#'       Mouillot _et al._ (2013);
 #'     \item FSp_std: functional specialization standardized between 0 and 1 
-#'       (see Mouillot _et al._ (2013) and Griffin _et al._ (2020));
-#'     \item FDist_std: functional distinctiveness standardized between 0 and 1
-#'       (see Violle _et al._ (2007) and Griffin _et al._ (2020)).
+#'       (see Mouillot _et al._ (2013);
 #'   }
 #' 
 #' @references 
-#' Griffin _et al._ (2020) Functionally unique, specialised, and endangered 
-#'   (FUSE) species: towards integrated metrics for the conservation 
-#'   prioritisation toolbox. _Biorxiv_, 2020.05.09.084871.\cr
 #' Mouillot _et al._ (2013) Rare species support vulnerable functions in 
 #'   high-diversity ecosystems. _PLoS Biology_, **11**, e1001569.\cr
 #' Pimiento _et al._ (2020) Functional diversity of marine megafauna in the 
@@ -167,9 +161,6 @@ fuse <- function(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = FALSE) {
     sum((x - O) ^ 2) ^ 0.5
   })
   
-  # Distinctivness calculation
-  dist_sp   <- as.matrix(sp_dist)
-  Fdistinct <- apply(dist_sp, 1, mean)
   
   # Uniqueness calculation
   uni_res <- get.indicator(sp_dist = as.matrix(sp_dist), nb_NN = nb_NN)
@@ -184,12 +175,9 @@ fuse <- function(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = FALSE) {
   FUGE <- log(1 + (FUn_std * GE))
   FSp_std <- as.vector(vegan::decostand(spe, "range"))
   FSGE <- log(1 + (FSp_std * GE))
-  FDist_std <- as.vector(vegan::decostand(Fdistinct, "range"))
   FUSE <- stats::setNames(FUGE + FSGE, nm = nm)
-  FDGE <- log(1 + (FDist_std * GE))
-  
-  data.frame(cbind(FUSE, FUGE, FDGE, FSGE, FUn_std, FSp_std, 
-                   FDist_std))
+
+  data.frame(cbind(FUSE, FUGE, FSGE, FUn_std, FSp_std))
   
 }
 
