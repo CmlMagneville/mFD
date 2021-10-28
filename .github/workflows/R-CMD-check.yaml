@@ -61,18 +61,10 @@ jobs:
         if: always()
         run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
         shell: bash
-
-      - name: Show 00check.log on failure
-        if: ${{ failure() }}
-        run: |
-          LOG_FILE="D:/a/mFD/mFD/check/mFD.Rcheck/00check.log"
-          cat "${LOG_FILE}"
           
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@main
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
-          path: |
-            check/mFD.Rcheck/00check.log
-            check/mFD.Rcheck/00install.out
+          path: check/mFD.Rcheck
