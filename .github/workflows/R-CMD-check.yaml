@@ -56,28 +56,19 @@ jobs:
       - uses: r-lib/actions/check-r-package@v1
         with:
           args: '"--as-cran"'
-      
-      # - name: 'check-r-package'
-      #   inputs:
-      #     args: '"--as-cran"'
-      #     error-on: '"warning"'
-      #     check-dir: '"check"'
-      #   runs:
-      #     using: "composite"
-      #     steps:
-      #       - name: Check
-      #         env:
-      #           _R_CHECK_CRAN_INCOMING_: false
-      #         run: |
-      #           options(crayon.enabled = TRUE)
-      #           rcmdcheck::rcmdcheck(args = c(${{ inputs.args }}), build_args = c(${{ inputs.build_args }}), error_on = ${{ inputs.error-on }}, check_dir = ${{ inputs.check-dir }})
-      #         shell: Rscript {0}
 
       - name: Show testthat output
         if: always()
         run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
         shell: bash
 
+      - name: Show 00check.log on failure
+        if: ${{ failure() }}
+        run: |
+          LOG_FILE="${HOME}/mFD/mFD/check/mFD.Rcheck/00check.log"
+          [ -r "${LOG_FILE}" ] && cat "${LOG_FILE}"
+          cp "${LOG_FILE}" /tmp
+          
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@main
