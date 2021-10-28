@@ -64,7 +64,6 @@ jobs:
 
       - name: Show 00check.log on failure
         if: ${{ failure() }}
-        if: runner.os == 'Windows'
         run: |
           LOG_FILE="D:/a/mFD/mFD/check/mFD.Rcheck/00check.log"
           cat "${LOG_FILE}"
