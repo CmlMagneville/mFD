@@ -50,8 +50,29 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: rcmdcheck
+          
+      - uses: r-lib/actions/setup-tinytex@v1
 
-      - uses: r-lib/actions/check-r-package@v1
+      # - uses: r-lib/actions/check-r-package@v1
+      
+      - name: 'check-r-package'
+        inputs:
+          args:
+            default: '"--as-cran"'
+          error-on:
+            default: '"warning"'
+          check-dir:
+            default: '"check"'
+        runs:
+          using: "composite"
+          steps:
+            - name: Check
+              env:
+                _R_CHECK_CRAN_INCOMING_: false
+              run: |
+                options(crayon.enabled = TRUE)
+                rcmdcheck::rcmdcheck(args = c(${{ inputs.args }}), build_args = c(${{ inputs.build_args }}), error_on = ${{ inputs.error-on }}, check_dir = ${{ inputs.check-dir }})
+              shell: Rscript {0}
 
       - name: Show testthat output
         if: always()
