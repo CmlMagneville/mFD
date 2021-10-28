@@ -65,9 +65,8 @@ jobs:
       - name: Show 00check.log on failure
         if: ${{ failure() }}
         run: |
-          LOG_FILE="${HOME}/mFD/mFD/check/mFD.Rcheck/00check.log"
-          [ -r "${LOG_FILE}" ] && cat "${LOG_FILE}"
-          cp "${LOG_FILE}" /tmp
+          LOG_FILE="D:\mFD\mFD\check\mFD.Rcheck\00check.log"
+          cat "${LOG_FILE}"
           
       - name: Upload check results
         if: failure()
