@@ -118,7 +118,7 @@ distance between species following the framework from Chao et al. (2019)." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -137,7 +137,7 @@ distance between species following the framework from Chao et al. (2019)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute Functional beta-Diversity indices based on Hill Numbers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/beta_fhill_ind_computation.R'><code>R/beta_fhill_ind_computation.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/beta_fhill_ind_computation.R'><code>R/beta_fhill_ind_computation.R</code></a></small>
     <div class="hidden name"><code>beta.fd.hill.Rd</code></div>
     </div>
 
@@ -235,41 +235,183 @@ measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p>
     <p>Sebastien Villeger and Camille Magneville</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load Species*Traits dataframe:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span>
-
-<span class='co'># Load Traits types dataframe:      </span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits_cat'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span>
-   
-<span class='co'># Compute functional distance </span>
-<span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
-                                  tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
-                                  metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
-                                  scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
-                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
-                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
-                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='co'># Compute beta functional hill indices:</span>
-<span class='va'>baskets_beta</span> <span class='op'>&lt;-</span> <span class='fu'>beta.fd.hill</span><span class='op'>(</span>
-      asb_sp_w         <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span>, 
-      sp_dist          <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
-      q                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>, 
-      tau              <span class='op'>=</span> <span class='st'>'mean'</span>,
-      beta_type        <span class='op'>=</span> <span class='st'>'Jaccard'</span>, 
-      check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-      details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
- 
-<span class='co'># Then use the mFD::dist.to.df function to ease visualizing result:</span>
-<span class='co'>## for q = 0:</span>
-<span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span>list_dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>FDq2 <span class='op'>=</span> <span class='va'>baskets_beta</span><span class='op'>$</span><span class='va'>beta_fd_q</span><span class='op'>$</span><span class='va'>q0</span><span class='op'>)</span><span class='op'>)</span>
-<span class='co'>## for q = 1:</span>
-<span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span>list_dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>FDq2 <span class='op'>=</span> <span class='va'>baskets_beta</span><span class='op'>$</span><span class='va'>beta_fd_q</span><span class='op'>$</span><span class='va'>q1</span><span class='op'>)</span><span class='op'>)</span>
-<span class='co'>## for q = 2:</span>
-<span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span>list_dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>FDq2 <span class='op'>=</span> <span class='va'>baskets_beta</span><span class='op'>$</span><span class='va'>beta_fd_q</span><span class='op'>$</span><span class='va'>q2</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species*Traits dataframe:</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Traits types dataframe:      </span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits_cat'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span></span>
+<span class='r-in'>   </span>
+<span class='r-in'><span class='co'># Compute functional distance </span></span>
+<span class='r-in'><span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,</span>
+<span class='r-in'>                                  tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,</span>
+<span class='r-in'>                                  metric        <span class='op'>=</span> <span class='st'>"gower"</span>,</span>
+<span class='r-in'>                                  scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,</span>
+<span class='r-in'>                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,</span>
+<span class='r-in'>                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,</span>
+<span class='r-in'>                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute beta functional hill indices:</span></span>
+<span class='r-in'><span class='va'>baskets_beta</span> <span class='op'>&lt;-</span> <span class='fu'>beta.fd.hill</span><span class='op'>(</span></span>
+<span class='r-in'>      asb_sp_w         <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span>, </span>
+<span class='r-in'>      sp_dist          <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, </span>
+<span class='r-in'>      q                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>, </span>
+<span class='r-in'>      tau              <span class='op'>=</span> <span class='st'>'mean'</span>,</span>
+<span class='r-in'>      beta_type        <span class='op'>=</span> <span class='st'>'Jaccard'</span>, </span>
+<span class='r-in'>      check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>, </span>
+<span class='r-in'>      details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Then use the mFD::dist.to.df function to ease visualizing result:</span></span>
+<span class='r-in'><span class='co'>## for q = 0:</span></span>
+<span class='r-in'><span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span>list_dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>FDq2 <span class='op'>=</span> <span class='va'>baskets_beta</span><span class='op'>$</span><span class='va'>beta_fd_q</span><span class='op'>$</span><span class='va'>q0</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          x1        x2       FDq2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  basket_1  basket_2 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  basket_1  basket_3 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  basket_1  basket_4 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  basket_1  basket_5 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  basket_1  basket_6 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  basket_1  basket_7 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  basket_1  basket_8 0.12848199</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  basket_1  basket_9 0.12605403</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  basket_1 basket_10 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 basket_2  basket_3 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 basket_2  basket_4 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 basket_2  basket_5 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 basket_2  basket_6 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 basket_2  basket_7 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 basket_2  basket_8 0.10650862</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 basket_2  basket_9 0.10367515</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 basket_2 basket_10 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 basket_3  basket_4 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 basket_3  basket_5 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 basket_3  basket_6 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 basket_3  basket_7 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 basket_3  basket_8 0.10044178</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 basket_3  basket_9 0.09776647</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 basket_3 basket_10 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 basket_4  basket_5 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 basket_4  basket_6 0.18524852</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27 basket_4  basket_7 0.18088474</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28 basket_4  basket_8 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29 basket_4  basket_9 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30 basket_4 basket_10 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31 basket_5  basket_6 0.17793331</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32 basket_5  basket_7 0.17358512</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33 basket_5  basket_8 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 basket_5  basket_9 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35 basket_5 basket_10 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 basket_6  basket_7 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37 basket_6  basket_8 0.13417736</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38 basket_6  basket_9 0.13382527</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39 basket_6 basket_10 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40 basket_7  basket_8 0.13138912</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41 basket_7  basket_9 0.13220347</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42 basket_7 basket_10 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43 basket_8  basket_9 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44 basket_8 basket_10 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45 basket_9 basket_10 0.00000000</span>
+<span class='r-in'><span class='co'>## for q = 1:</span></span>
+<span class='r-in'><span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span>list_dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>FDq2 <span class='op'>=</span> <span class='va'>baskets_beta</span><span class='op'>$</span><span class='va'>beta_fd_q</span><span class='op'>$</span><span class='va'>q1</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          x1        x2         FDq2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  basket_1  basket_2 0.0465649552</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  basket_1  basket_3 0.0633934986</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  basket_1  basket_4 0.0390229310</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  basket_1  basket_5 0.0416185003</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  basket_1  basket_6 0.4025770889</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  basket_1  basket_7 0.2582156175</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  basket_1  basket_8 0.2549851440</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  basket_1  basket_9 0.1703571633</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  basket_1 basket_10 0.0172134140</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 basket_2  basket_3 0.0029886932</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 basket_2  basket_4 0.1315828608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 basket_2  basket_5 0.1434349036</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 basket_2  basket_6 0.2382682836</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 basket_2  basket_7 0.1167463677</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 basket_2  basket_8 0.2909423919</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 basket_2  basket_9 0.2449369402</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 basket_2 basket_10 0.0780014178</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 basket_3  basket_4 0.1417318605</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 basket_3  basket_5 0.1583078065</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 basket_3  basket_6 0.2056050375</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 basket_3  basket_7 0.1045895081</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 basket_3  basket_8 0.3043051662</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 basket_3  basket_9 0.2597238131</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 basket_3 basket_10 0.0987942065</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 basket_4  basket_5 0.0008213232</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 basket_4  basket_6 0.4526919361</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27 basket_4  basket_7 0.3719680099</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28 basket_4  basket_8 0.3961862747</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29 basket_4  basket_9 0.2769826915</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30 basket_4 basket_10 0.0440610254</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31 basket_5  basket_6 0.4788884130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32 basket_5  basket_7 0.3962066363</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33 basket_5  basket_8 0.4087861766</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 basket_5  basket_9 0.2759382080</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35 basket_5 basket_10 0.0404365649</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 basket_6  basket_7 0.0545121456</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37 basket_6  basket_8 0.6639322400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38 basket_6  basket_9 0.5921222975</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39 basket_6 basket_10 0.3977446026</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40 basket_7  basket_8 0.4726732200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41 basket_7  basket_9 0.4300437283</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42 basket_7 basket_10 0.2751488242</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43 basket_8  basket_9 0.0303705511</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44 basket_8 basket_10 0.2652284919</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45 basket_9 basket_10 0.1601080610</span>
+<span class='r-in'><span class='co'>## for q = 2:</span></span>
+<span class='r-in'><span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span>list_dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>FDq2 <span class='op'>=</span> <span class='va'>baskets_beta</span><span class='op'>$</span><span class='va'>beta_fd_q</span><span class='op'>$</span><span class='va'>q2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          x1        x2        FDq2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  basket_1  basket_2 0.058982325</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  basket_1  basket_3 0.078716397</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  basket_1  basket_4 0.029573623</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  basket_1  basket_5 0.027059789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  basket_1  basket_6 0.484115290</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  basket_1  basket_7 0.292594562</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  basket_1  basket_8 0.290545545</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  basket_1  basket_9 0.185475113</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  basket_1 basket_10 0.011136995</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 basket_2  basket_3 0.004420448</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 basket_2  basket_4 0.161833512</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 basket_2  basket_5 0.162571972</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 basket_2  basket_6 0.260541701</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 basket_2  basket_7 0.097053161</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 basket_2  basket_8 0.294504888</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 basket_2  basket_9 0.225897615</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 basket_2 basket_10 0.058298760</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 basket_3  basket_4 0.172877455</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 basket_3  basket_5 0.178123024</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 basket_3  basket_6 0.207102590</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 basket_3  basket_7 0.081951839</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 basket_3  basket_8 0.308336365</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 basket_3  basket_9 0.241482168</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 basket_3 basket_10 0.082649928</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 basket_4  basket_5 0.001049851</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 basket_4  basket_6 0.511165067</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27 basket_4  basket_7 0.421141181</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28 basket_4  basket_8 0.482330219</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29 basket_4  basket_9 0.342926459</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30 basket_4 basket_10 0.050817451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31 basket_5  basket_6 0.532084800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32 basket_5  basket_7 0.438841544</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33 basket_5  basket_8 0.496554512</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 basket_5  basket_9 0.336894275</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35 basket_5 basket_10 0.044052657</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 basket_6  basket_7 0.068382884</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37 basket_6  basket_8 0.759422492</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38 basket_6  basket_9 0.680332414</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39 basket_6 basket_10 0.453325136</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40 basket_7  basket_8 0.478528108</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41 basket_7  basket_9 0.431531941</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42 basket_7 basket_10 0.265928889</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43 basket_8  basket_9 0.020812705</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44 basket_8 basket_10 0.345652088</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45 basket_9 basket_10 0.219780509</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -120,7 +120,7 @@ used to compute FEve index." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -140,7 +140,7 @@ used to compute FEve index." />
     <div class="page-header">
     <h1>Compute the Minimum Spanning Tree (MST) linking species of a given
 assemblage</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/fcts_used_for_ind_comp.R'><code>R/fcts_used_for_ind_comp.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/fcts_used_for_ind_comp.R'><code>R/fcts_used_for_ind_comp.R</code></a></small>
     <div class="hidden name"><code>mst.computation.Rd</code></div>
     </div>
 
@@ -170,41 +170,145 @@ assemblage <code>mst_asb_k</code>.</p>
     <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load Species*Traits dataframe:</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Load Assemblages*Species dataframe:      </span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
-
-<span class='co'># Load Traits categories dataframe:</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
- 
-<span class='co'># Compute functional distance </span>
- <span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
-                                   tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
-                                   metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
-                                   scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
-                                   ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
-                                   weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
-                                   stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-  
-<span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span>
- <span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>
-                                  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
-                                  maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
-                                  deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,
-                                  fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
-                                  fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
- 
-<span class='co'># Retrieve species coordinates matrix:</span>
- <span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
-
-<span class='co'># Compute the distance of "pear" to its nearest neighbor(s):</span>
- <span class='va'>mst_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mst.computation</span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span><span class='op'>)</span>
- <span class='va'>mst_fruits</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species*Traits dataframe:</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Assemblages*Species dataframe:      </span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Traits categories dataframe:</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> </span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Compute functional distance </span></span>
+<span class='r-in'> <span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,</span>
+<span class='r-in'>                                   tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,</span>
+<span class='r-in'>                                   metric        <span class='op'>=</span> <span class='st'>"gower"</span>,</span>
+<span class='r-in'>                                   scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,</span>
+<span class='r-in'>                                   ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,</span>
+<span class='r-in'>                                   weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,</span>
+<span class='r-in'>                                   stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
+<span class='r-in'>  </span>
+<span class='r-in'><span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
+<span class='r-in'> <span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span></span>
+<span class='r-in'>                                  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, </span>
+<span class='r-in'>                                  maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span class='r-in'>                                  deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,</span>
+<span class='r-in'>                                  fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span class='r-in'>                                  fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span></span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Retrieve species coordinates matrix:</span></span>
+<span class='r-in'> <span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute the distance of "pear" to its nearest neighbor(s):</span></span>
+<span class='r-in'> <span class='va'>mst_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mst.computation</span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='va'>mst_fruits</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               apple apricot banana currant blackberry blueberry cherry grape</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> apricot           0                                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> banana            0       0                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> currant           0       0      0                                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blackberry        0       0      0       1                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blueberry         0       0      0       0          0                       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cherry            0       0      0       0          0         0             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> grape             0       0      0       0          0         0      0      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> grapefruit        0       0      1       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> kiwifruit         0       0      0       0          0         0      0     1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lemon             0       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lime              0       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> litchi            0       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> mango             0       0      1       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> melon             0       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> orange            0       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> passion_fruit     0       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> peach             1       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pear              1       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pineapple         0       0      1       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> plum              0       1      0       0          0         0      1     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> raspberry         0       0      0       0          1         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> strawberry        0       0      0       0          0         1      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> tangerine         0       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> water_melon       0       0      0       0          0         0      0     0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               grapefruit kiwifruit lemon lime litchi mango melon orange</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> apricot                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> banana                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> currant                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blackberry                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blueberry                                                              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cherry                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> grape                                                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> grapefruit                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> kiwifruit              0                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lemon                  1         0                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lime                   0         0     1                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> litchi                 0         0     0    0                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> mango                  0         0     0    0      1                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> melon                  0         0     0    0      0     0             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> orange                 1         0     0    0      0     0     0       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> passion_fruit          0         0     0    0      0     0     0      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> peach                  0         0     0    0      0     0     0      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pear                   0         1     0    0      0     0     1      1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pineapple              0         0     0    0      0     0     0      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> plum                   0         0     0    0      0     0     0      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> raspberry              0         0     0    0      0     0     0      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> strawberry             0         0     0    0      0     0     0      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> tangerine              0         0     0    0      0     0     0      1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> water_melon            0         0     0    0      0     0     1      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               passion_fruit peach pear pineapple plum raspberry strawberry</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> apricot                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> banana                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> currant                                                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blackberry                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blueberry                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cherry                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> grape                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> grapefruit                                                                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> kiwifruit                                                                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lemon                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lime                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> litchi                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> mango                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> melon                                                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> orange                                                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> passion_fruit                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> peach                     0                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pear                      0     0                                         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pineapple                 0     0    0                                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> plum                      0     1    0         0                          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> raspberry                 0     0    1         0    0                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> strawberry                0     0    0         0    0         1           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> tangerine                 1     0    0         0    0         0          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> water_melon               0     0    0         0    0         0          0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               tangerine</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> apricot                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> banana                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> currant                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blackberry             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blueberry              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cherry                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> grape                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> grapefruit             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> kiwifruit              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lemon                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lime                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> litchi                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> mango                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> melon                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> orange                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> passion_fruit          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> peach                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pear                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pineapple              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> plum                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> raspberry              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> strawberry             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> tangerine              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> water_melon           0</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

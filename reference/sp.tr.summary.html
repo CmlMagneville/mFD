@@ -119,7 +119,7 @@ your sp_tr data frame." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -138,7 +138,7 @@ your sp_tr data frame." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summarize Species x Traits data frame</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/matrix_summaries.R'><code>R/matrix_summaries.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/matrix_summaries.R'><code>R/matrix_summaries.R</code></a></small>
     <div class="hidden name"><code>sp.tr.summary.Rd</code></div>
     </div>
 
@@ -210,17 +210,68 @@ max, mean, median and quartiles</p></dd>
     <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load Species x Traits data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span>
-
-<span class='co'># Load Traits x Categories data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits_cat'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span>
-
-<span class='co'># Summarize Species x Traits data</span>
-<span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>sp.tr.summary</span><span class='op'>(</span>tr_cat <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>, sp_tr <span class='op'>=</span> <span class='va'>fruits_traits</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species x Traits data</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Traits x Categories data</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits_cat'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Summarize Species x Traits data</span></span>
+<span class='r-in'><span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>sp.tr.summary</span><span class='op'>(</span>tr_cat <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>, sp_tr <span class='op'>=</span> <span class='va'>fruits_traits</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tr_summary_non_fuzzy_list</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       Size     Plant           Climate     Seed        Sugar       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  0-1cm  :2   forb : 5   temperate  :15   none: 2   Min.   : 16.90  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  1-3cm  :6   shrub: 3   subtropical: 4   pip :17   1st Qu.: 73.70  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  3-5cm  :5   tree :14   tropical   : 6   pit : 6   Median : 92.40  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  5-10cm :6   vine : 3                              Mean   : 90.66  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  10-20cm:6                                         3rd Qu.:105.80  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                    Max.   :162.50  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tr_summary_fuzzy_list</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     Use.raw        Use.pastry      Use.jam  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Min.   : 10.0   Min.   : 0.0   Min.   : 0  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  1st Qu.: 40.0   1st Qu.: 0.0   1st Qu.: 0  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Median : 60.0   Median :10.0   Median :10  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Mean   : 61.2   Mean   :16.8   Mean   :22  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  3rd Qu.: 90.0   3rd Qu.:30.0   3rd Qu.:40  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Max.   :100.0   Max.   :60.0   Max.   :80  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tr_types</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tr_types$Size</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "ordered" "factor" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tr_types$Plant</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "factor"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tr_types$Climate</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "ordered" "factor" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tr_types$Seed</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "ordered" "factor" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tr_types$Sugar</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "numeric"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $mod_list</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $mod_list$Size</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 5-10cm  3-5cm   10-20cm 0-1cm   1-3cm  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Levels: 0-1cm &lt; 1-3cm &lt; 3-5cm &lt; 5-10cm &lt; 10-20cm</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $mod_list$Plant</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] tree  shrub forb  vine </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Levels: forb shrub tree vine</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $mod_list$Climate</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] temperate   tropical    subtropical</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Levels: temperate &lt; subtropical &lt; tropical</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $mod_list$Seed</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] pip  pit  none</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Levels: none &lt; pip &lt; pit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

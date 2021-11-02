@@ -120,7 +120,7 @@ through the use of the alpha.fd.fe function." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -139,7 +139,7 @@ through the use of the alpha.fd.fe function." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Illustrate Functional Diversity indices based on Functional Entities</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_FE_multidim.R'><code>R/plot_FE_multidim.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/plot_FE_multidim.R'><code>R/plot_FE_multidim.R</code></a></small>
     <div class="hidden name"><code>alpha.fd.fe.plot.Rd</code></div>
     </div>
 
@@ -265,55 +265,54 @@ vulnerability in global fish faunas on tropical reefs. <em>PNAS</em>, <strong>11
     <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load Species*Traits dataframe</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Load Traits categories dataframe</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Load Assemblages*Species matrix</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Remove continuous trait</span>
-<span class='va'>fruits_traits</span>  <span class='op'>&lt;-</span> <span class='va'>fruits_traits</span><span class='op'>[</span> , <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span>
-<span class='va'>fruits_traits_cat</span> <span class='op'>&lt;-</span> <span class='va'>fruits_traits_cat</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5</span>, <span class='op'>]</span>
-
-<span class='co'># Compute gathering species into FEs</span>
-<span class='va'>sp_to_fe_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='sp.to.fe.html'>sp.to.fe</a></span><span class='op'>(</span>
-  sp_tr       <span class='op'>=</span> <span class='va'>fruits_traits</span>, 
-  tr_cat      <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>, 
-  fe_nm_type  <span class='op'>=</span> <span class='st'>"fe_rank"</span>, 
-  check_input <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
- 
-<span class='co'># Get the occurrence matrix</span>
-<span class='va'>asb_sp_fruits_summ</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='asb.sp.summary.html'>asb.sp.summary</a></span><span class='op'>(</span>asb_sp_w <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span> 
-<span class='va'>asb_sp_fruits_occ</span> <span class='op'>&lt;-</span> <span class='va'>asb_sp_fruits_summ</span><span class='op'>$</span><span class='st'>"asb_sp_occ"</span>
-
-<span class='co'># Compute alpha fd indices</span>
-<span class='va'>alpha_fd_fe_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='alpha.fd.fe.html'>alpha.fd.fe</a></span><span class='op'>(</span>
-  asb_sp_occ       <span class='op'>=</span> <span class='va'>asb_sp_fruits_occ</span>, 
-  sp_to_fe         <span class='op'>=</span> <span class='va'>sp_to_fe_fruits</span>,
-  ind_nm           <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fred"</span>, <span class='st'>"fored"</span>, <span class='st'>"fvuln"</span><span class='op'>)</span>,
-  check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-  details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-  
-<span class='co'># Plot fd fe indices</span>
-<span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>alpha.fd.fe.plot</span><span class='op'>(</span>
-  alpha_fd_fe       <span class='op'>=</span> <span class='va'>alpha_fd_fe_fruits</span>, 
-  plot_asb_nm       <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span><span class='op'>)</span>, 
-  plot_ind_nm       <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fred"</span>, <span class='st'>"fored"</span>, <span class='st'>"fvuln"</span><span class='op'>)</span>,
-  name_file         <span class='op'>=</span> <span class='cn'>NULL</span>,
-  color_fill_fored  <span class='op'>=</span> <span class='st'>"darkolivegreen2"</span>,
-  color_line_fred   <span class='op'>=</span> <span class='st'>"darkolivegreen4"</span>,
-  color_fill_bar    <span class='op'>=</span> <span class='st'>"grey80"</span>,
-  color_fill_fvuln  <span class='op'>=</span> <span class='st'>"lightcoral"</span>,
-  color_arrow_fvuln <span class='op'>=</span> <span class='st'>"indianred4"</span>,
-  size_line_fred    <span class='op'>=</span> <span class='fl'>1.5</span>,
-  size_arrow_fvuln  <span class='op'>=</span> <span class='fl'>1</span>,
-  check_input       <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> 
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species*Traits dataframe</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Traits categories dataframe</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Assemblages*Species matrix</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Remove continuous trait</span></span>
+<span class='r-in'><span class='va'>fruits_traits</span>  <span class='op'>&lt;-</span> <span class='va'>fruits_traits</span><span class='op'>[</span> , <span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>fruits_traits_cat</span> <span class='op'>&lt;-</span> <span class='va'>fruits_traits_cat</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>5</span>, <span class='op'>]</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute gathering species into FEs</span></span>
+<span class='r-in'><span class='va'>sp_to_fe_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='sp.to.fe.html'>sp.to.fe</a></span><span class='op'>(</span></span>
+<span class='r-in'>  sp_tr       <span class='op'>=</span> <span class='va'>fruits_traits</span>, </span>
+<span class='r-in'>  tr_cat      <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>, </span>
+<span class='r-in'>  fe_nm_type  <span class='op'>=</span> <span class='st'>"fe_rank"</span>, </span>
+<span class='r-in'>  check_input <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Get the occurrence matrix</span></span>
+<span class='r-in'><span class='va'>asb_sp_fruits_summ</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='asb.sp.summary.html'>asb.sp.summary</a></span><span class='op'>(</span>asb_sp_w <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span> </span>
+<span class='r-in'><span class='va'>asb_sp_fruits_occ</span> <span class='op'>&lt;-</span> <span class='va'>asb_sp_fruits_summ</span><span class='op'>$</span><span class='st'>"asb_sp_occ"</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute alpha fd indices</span></span>
+<span class='r-in'><span class='va'>alpha_fd_fe_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='alpha.fd.fe.html'>alpha.fd.fe</a></span><span class='op'>(</span></span>
+<span class='r-in'>  asb_sp_occ       <span class='op'>=</span> <span class='va'>asb_sp_fruits_occ</span>, </span>
+<span class='r-in'>  sp_to_fe         <span class='op'>=</span> <span class='va'>sp_to_fe_fruits</span>,</span>
+<span class='r-in'>  ind_nm           <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fred"</span>, <span class='st'>"fored"</span>, <span class='st'>"fvuln"</span><span class='op'>)</span>,</span>
+<span class='r-in'>  check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>, </span>
+<span class='r-in'>  details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'>  </span>
+<span class='r-in'><span class='co'># Plot fd fe indices</span></span>
+<span class='r-in'><span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>alpha.fd.fe.plot</span><span class='op'>(</span></span>
+<span class='r-in'>  alpha_fd_fe       <span class='op'>=</span> <span class='va'>alpha_fd_fe_fruits</span>, </span>
+<span class='r-in'>  plot_asb_nm       <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span><span class='op'>)</span>, </span>
+<span class='r-in'>  plot_ind_nm       <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fred"</span>, <span class='st'>"fored"</span>, <span class='st'>"fvuln"</span><span class='op'>)</span>,</span>
+<span class='r-in'>  name_file         <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
+<span class='r-in'>  color_fill_fored  <span class='op'>=</span> <span class='st'>"darkolivegreen2"</span>,</span>
+<span class='r-in'>  color_line_fred   <span class='op'>=</span> <span class='st'>"darkolivegreen4"</span>,</span>
+<span class='r-in'>  color_fill_bar    <span class='op'>=</span> <span class='st'>"grey80"</span>,</span>
+<span class='r-in'>  color_fill_fvuln  <span class='op'>=</span> <span class='st'>"lightcoral"</span>,</span>
+<span class='r-in'>  color_arrow_fvuln <span class='op'>=</span> <span class='st'>"indianred4"</span>,</span>
+<span class='r-in'>  size_line_fred    <span class='op'>=</span> <span class='fl'>1.5</span>,</span>
+<span class='r-in'>  size_arrow_fvuln  <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span class='r-in'>  check_input       <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> </span>
+<span class='r-plt img'><img src='alpha.fd.fe.plot-1.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

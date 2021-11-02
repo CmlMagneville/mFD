@@ -120,7 +120,7 @@ no NA in your sp_tr data frame." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -139,7 +139,7 @@ no NA in your sp_tr data frame." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Scale continuous traits</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/cont_tr_fspace.R'><code>R/cont_tr_fspace.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/cont_tr_fspace.R'><code>R/cont_tr_fspace.R</code></a></small>
     <div class="hidden name"><code>tr.cont.scale.Rd</code></div>
     </div>
 
@@ -183,12 +183,194 @@ Default is <code>scale_center</code>.</p></td>
     <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'extdata'</span>, <span class='st'>'sp_tr_cestes_df'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>tr.cont.scale</span><span class='op'>(</span>sp_tr <span class='op'>=</span> <span class='va'>sp_tr</span>, std_method <span class='op'>=</span> <span class='st'>'scale_center'</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>'extdata'</span>, <span class='st'>'sp_tr_cestes_df'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>tr.cont.scale</span><span class='op'>(</span>sp_tr <span class='op'>=</span> <span class='va'>sp_tr</span>, std_method <span class='op'>=</span> <span class='st'>'scale_center'</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                     logM       OgSf        OgSh       OgPo</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Achirus_lineatus            -0.458316003 -1.2277343 -1.03445914 -0.9930819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Anchoa_mitchilli            -1.939316003 -1.0167343  0.07254086 -1.4850819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Archosargus_probatocephalus  0.028683997 -1.2177343 -1.22745914 -1.7720819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Archosargus_rhomboidalis     0.681683997 -1.2437343 -1.33345914 -1.7200819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Ariopsis_felis               0.464683997 -1.1267343 -1.46845914 -1.6470819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bagre_marinus               -0.475316003 -1.0517343 -1.46245914 -1.5040819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bairdiella_chrysoura         0.023683997 -1.1487343 -0.89245914 -1.5220819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bairdiella_ronchus           0.972683997 -1.1987343 -1.22545914 -1.6490819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cathorops_melanopus          0.031683997 -1.1657343 -1.35245914 -1.7210819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cetengraulis_edentulus      -0.215316003 -1.1137343  0.25454086 -1.7280819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chaetodipterus_faber         1.309683997 -1.2527343 -1.21345914 -1.6390819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chilomycterus_schoepfii      2.499683997 -1.2507343 -1.72145914 -1.5690819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chloroscombrus_chrysurus    -1.508316003 -1.1727343 -0.18945914 -1.2610819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Citharichthys_spilopterus   -0.522316003 -1.2377343 -1.43845914 -0.9930819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Conodon_nobilis              0.313683997 -1.1737343 -0.87845914 -1.4700819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_arenarius         -0.296316003 -1.0807343 -0.71045914 -1.3330819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_nebulosus          1.171683997 -1.0247343 -1.04845914 -1.3320819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_nothus            -0.267316003 -1.1087343 -0.69045914 -1.3430819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dasyatis_sabina              2.966683997 -1.2477343 -1.51345914 -1.9930819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Diapterus_auratus           -0.426316003 -1.2417343 -0.59945914 -1.5480819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Diapterus_rhombeus          -0.420316003 -1.2507343 -0.94245914 -1.5790819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dorosoma_petenense           0.223683997 -1.1277343 -0.37345914 -1.3760819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_argenteus      -1.631316003 -1.2257343 -0.58345914 -1.5240819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_gula           -0.780316003 -1.2427343 -0.69745914 -1.5150819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_melanopterus   -0.903316003 -1.2167343 -0.51645914 -1.5440819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Gobionellus_oceanicus        0.142683997 -0.9477343 -0.70645914 -1.5080819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Menticirrhus_americanus      0.523683997 -1.1917343 -1.07045914 -1.7680819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Menticirrhus_saxatilis       0.411683997 -1.2037343 -1.23145914 -1.7430819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Micropogonias_undulatus      0.273683997 -1.1917343 -1.04445914 -1.7570819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Opsanus_beta                 1.410683997 -0.8847343 -1.38445914 -1.3870819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Orthopristis_chrysoptera    -0.006316003 -1.1377343 -0.81745914 -1.6870819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Peprilus_paru               -0.313316003 -1.2427343 -0.80245914 -1.5100819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Polydactylus_octonemus       0.602683997 -1.1227343 -1.04745914 -1.7730819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Prionotus_carolinus         -0.618316003 -0.9427343 -1.18245914 -1.7910819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Prionotus_scitulus           0.088683997 -1.0077343 -1.17745914 -1.8120819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selene_setapinnis           -0.938316003 -1.2067343  0.37054086 -1.6190819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selene_vomer                -1.175316003 -1.2137343  0.76954086 -1.5910819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_nephelus         0.837683997 -1.2107343 -1.18945914 -1.5940819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_pachygaster      0.748683997 -1.2067343 -1.04845914 -1.6080819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_testudineus      1.707683997 -1.2527343 -1.47745914 -1.5540819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Stellifer_lanceolatus       -0.603316003 -1.1507343 -1.02145914 -1.5040819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Symphurus_plagiusa          -0.367316003 -1.2457343 -1.20045914 -0.9930819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Synodus_foetens              0.868683997 -0.7107343 -0.33245914 -1.5230819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Trichiurus_lepturus         -0.111316003 -1.0027343 -0.02845914 -1.4870819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Urobatis_jamaicensis         2.869683997 -1.2367343 -1.59345914 -1.9930819</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                  EySz       GrLg        GtLg     EyPo</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Achirus_lineatus            -2.948716 -0.8300723  0.40278635 -4.23651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Anchoa_mitchilli            -2.625716 -0.4490723 -0.69121365 -4.65251</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Archosargus_probatocephalus -2.817716 -0.7950723  1.21178635 -4.58451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Archosargus_rhomboidalis    -2.805716 -0.7980723  2.08778635 -4.58951</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Ariopsis_felis              -2.836716 -0.7020723  0.69878635 -4.58951</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bagre_marinus               -2.742716 -0.6880723  0.77478635 -4.62351</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bairdiella_chrysoura        -2.662716 -0.6220723 -0.35421365 -4.59851</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bairdiella_ronchus          -2.690716 -0.6680723 -0.25621365 -4.56851</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cathorops_melanopus         -2.731716 -0.6450723  0.61578635 -4.59851</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cetengraulis_edentulus      -2.606716 -0.1990723  3.41978635 -4.69551</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chaetodipterus_faber        -2.860716 -0.8090723  4.04478635 -4.61651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chilomycterus_schoepfii     -2.801716 -0.8300723  2.13878635 -4.48251</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chloroscombrus_chrysurus    -2.795716 -0.6630723 -0.77621365 -4.56251</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Citharichthys_spilopterus   -2.653716 -0.8150723 -0.40721365 -4.23651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Conodon_nobilis             -2.690716 -0.6580723 -0.16021365 -4.48751</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_arenarius         -2.654716 -0.5880723 -0.40921365 -4.56451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_nebulosus         -2.733716 -0.6210723 -0.39921365 -4.50251</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_nothus            -2.697716 -0.5950723 -0.48121365 -4.55651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dasyatis_sabina             -2.571716 -0.8300723 -1.04621365 -4.23651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Diapterus_auratus           -2.692716 -0.8100723 -0.38121365 -4.69251</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Diapterus_rhombeus          -2.671716 -0.8100723 -0.05721365 -4.68851</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dorosoma_petenense          -2.616716 -0.6500723  0.41978635 -4.62751</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_argenteus      -2.623716 -0.8100723 -0.15021365 -4.65951</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_gula           -2.679716 -0.8130723 -0.17921365 -4.66251</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_melanopterus   -2.650716 -0.8140723 -0.38121365 -4.70651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Gobionellus_oceanicus       -2.824716 -0.8290723  0.18278635 -4.39651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Menticirrhus_americanus     -2.779716 -0.7810723 -0.43221365 -4.53151</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Menticirrhus_saxatilis      -2.797716 -0.7810723 -0.39921365 -4.51451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Micropogonias_undulatus     -2.743716 -0.7570723 -0.38821365 -4.58451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Opsanus_beta                -2.800716 -0.7950723 -0.12521365 -4.36951</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Orthopristis_chrysoptera    -2.876716 -0.7710723 -0.23621365 -4.50851</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Peprilus_paru               -2.847716 -0.7800723 -0.10221365 -4.70451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Polydactylus_octonemus      -2.632716 -0.4500723 -0.59321365 -4.65451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Prionotus_carolinus         -2.813716 -0.6530723 -0.41221365 -4.45651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Prionotus_scitulus          -2.845716 -0.6570723 -0.30721365 -4.46051</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selene_setapinnis           -2.946716 -0.7460723 -0.83121365 -4.65351</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selene_vomer                -2.941716 -0.7600723 -0.53421365 -4.60651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_nephelus        -2.923716 -0.8300723  0.09478635 -4.43051</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_pachygaster     -2.872716 -0.8300723  0.17378635 -4.48051</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_testudineus     -2.919716 -0.8160723  1.10278635 -4.40051</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Stellifer_lanceolatus       -2.751716 -0.5580723 -0.31421365 -4.56351</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Symphurus_plagiusa          -2.885716 -0.8300723 -0.33821365 -4.23651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Synodus_foetens             -2.671716 -0.8050723 -0.77821365 -4.51151</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Trichiurus_lepturus         -2.593716 -0.7550723 -1.04321365 -4.54851</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Urobatis_jamaicensis        -2.510716 -0.8300723 -0.74121365 -4.23651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                    BdSh       BdSf      PfPo       PfSh</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Achirus_lineatus            -1.10338389 -1.5948589 -2.421871 -2.0429543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Anchoa_mitchilli             2.04561611  0.2111411 -1.648871  0.6650457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Archosargus_probatocephalus  1.84461611 -2.0838589 -1.755871  2.6970457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Archosargus_rhomboidalis     1.85561611 -2.1668589 -1.783871  4.8250457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Ariopsis_felis              -0.22538389 -2.1048589 -1.615871  1.4370457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bagre_marinus               -0.23038389 -1.6758589 -1.759871  1.6310457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bairdiella_chrysoura         1.00561611 -2.0248589 -1.804871  1.7410457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bairdiella_ronchus           0.78261611 -2.1908589 -1.839871  1.4170457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cathorops_melanopus         -0.04238389 -1.8878589 -1.644871  0.7370457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cetengraulis_edentulus       1.55361611 -1.8368589 -1.581871  1.7180457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chaetodipterus_faber         2.82761611 -1.9258589 -1.773871 -0.1549543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chilomycterus_schoepfii     -0.43538389 -2.3178589 -2.053871 -1.3849543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chloroscombrus_chrysurus     3.63061611 -1.3518589 -1.932871  3.7250457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Citharichthys_spilopterus   -1.12038389 -1.3868589 -2.421871 -2.0429543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Conodon_nobilis              0.77561611 -1.8048589 -1.801871  2.0700457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_arenarius          1.06161611 -1.8758589 -1.838871  2.4570457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_nebulosus          0.65361611 -2.3608589 -1.828871  1.4510457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_nothus             0.95561611 -1.9368589 -1.823871  1.4420457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dasyatis_sabina             -1.15338389 -2.3168589 -2.421871  1.3780457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Diapterus_auratus            2.35361611 -1.4238589 -1.749871  3.8680457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Diapterus_rhombeus           2.27261611 -1.4438589 -1.755871  3.6270457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dorosoma_petenense           2.16161611 -1.1698589 -1.620871  1.8060457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_argenteus       1.71761611 -1.1728589 -1.771871  2.8060457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_gula            1.80761611 -1.6038589 -1.785871  3.8580457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_melanopterus    1.23461611 -1.1188589 -1.793871  2.9050457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Gobionellus_oceanicus        0.27561611 -1.9128589 -2.066871  0.5930457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Menticirrhus_americanus      0.56561611 -1.8318589 -1.829871  0.9300457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Menticirrhus_saxatilis       0.55761611 -1.8958589 -1.822871  1.7720457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Micropogonias_undulatus      0.91061611 -1.8058589 -1.834871  2.6350457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Opsanus_beta                -0.41338389 -2.1258589 -2.096871 -0.9209543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Orthopristis_chrysoptera     1.33361611 -2.3388589 -1.811871  0.1660457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Peprilus_paru                4.00361611 -1.4738589 -1.898871  1.5610457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Polydactylus_octonemus       1.24861611 -1.8338589 -1.725871  2.9570457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Prionotus_carolinus         -0.18138389 -0.9658589 -1.830871  0.3210457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Prionotus_scitulus          -0.22738389 -1.4098589 -1.806871  1.3110457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selene_setapinnis            7.61561611 -0.7228589 -1.956871  2.0780457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selene_vomer                 7.59761611 -0.3168589 -1.935871  2.3250457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_nephelus        -0.21938389 -1.5388589 -1.872871 -0.8199543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_pachygaster     -0.03538389 -0.9998589 -1.911871 -1.0519543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_testudineus     -0.09038389 -2.1318589 -1.966871 -1.0519543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Stellifer_lanceolatus        0.66361611 -1.5848589 -1.841871  2.5490457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Symphurus_plagiusa          -1.05538389 -1.8068589 -2.421871 -2.0429543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Synodus_foetens             -0.16238389 -2.1338589 -1.943871  1.3100457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Trichiurus_lepturus          2.01661611 -2.3698589 -1.720871  2.0200457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Urobatis_jamaicensis        -1.13138389 -2.3978589 -2.421871  2.2620457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                    CpHt       CfSh       FsRt        FsSf</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Achirus_lineatus            -0.57082713 -0.8404054 -1.0710775 -0.47972688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Anchoa_mitchilli             0.80117287  1.5005946 -0.5670775  0.98027312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Archosargus_probatocephalus  0.89217287  0.7855946  0.4549225 -0.13372688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Archosargus_rhomboidalis     1.21417287  1.0765946 -0.0110775 -0.13572688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Ariopsis_felis               1.90017287  2.4445946 -0.2900775  0.01027312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bagre_marinus                2.51317287  1.8525946 -0.4460775  0.04027312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bairdiella_chrysoura         0.27117287 -0.3404054 -0.5130775  0.04027312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bairdiella_ronchus           0.34017287 -0.2844054 -0.3340775 -0.00972688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cathorops_melanopus          1.83117287  2.0355946 -0.4160775 -0.25372688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cetengraulis_edentulus       1.02217287  1.5195946 -0.6320775 -0.08072688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chaetodipterus_faber         0.98417287  0.8545946 -0.3990775 -0.77672688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chilomycterus_schoepfii      0.76917287 -0.4944054  1.7029225 -0.73572688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chloroscombrus_chrysurus     4.30017287  1.2935946 -0.1830775  0.18727312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Citharichthys_spilopterus   -0.70082713 -0.8404054 -1.0710775 -0.69072688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Conodon_nobilis              0.04117287 -0.3644054 -0.1640775 -0.14372688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_arenarius          0.20417287 -0.5314054 -0.7000775 -0.25172688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_nebulosus          0.24217287 -0.4274054 -0.5980775 -0.07272688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cynoscion_nothus             0.12717287 -0.5124054 -0.6560775 -0.32772688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dasyatis_sabina             -1.69182713 -1.6074054 -1.0710775  4.20327312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Diapterus_auratus            1.31017287  1.1495946 -0.4800775 -0.00572688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Diapterus_rhombeus           1.20117287  1.0575946 -0.2840775  0.02427312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dorosoma_petenense           1.07017287  0.6185946 -0.6510775  0.19727312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_argenteus       0.83117287  0.6065946 -0.3070775  0.12627312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_gula            1.14117287  1.0815946 -0.4020775 -0.05772688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eucinostomus_melanopterus    1.20717287  0.9485946 -0.4360775 -0.05672688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Gobionellus_oceanicus       -0.74882713 -1.3074054 -0.3170775  2.77327312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Menticirrhus_americanus     -0.11282713 -0.5944054  0.1989225  0.26527312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Menticirrhus_saxatilis      -0.07882713 -0.6004054 -0.1690775  0.15827312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Micropogonias_undulatus      0.28617287 -0.6844054 -0.5310775  0.06727312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Opsanus_beta                -0.29882713 -0.6774054  1.5819225 -0.24572688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Orthopristis_chrysoptera     1.27117287  1.4055946  0.1259225  0.22927312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Peprilus_paru                2.40517287  1.0345946  0.2639225 -0.13872688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Polydactylus_octonemus       0.63617287  0.9975946 -0.5540775  0.87627312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Prionotus_carolinus          0.57917287 -0.5714054  2.9649225  2.65327312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Prionotus_scitulus           0.54117287 -0.6514054  2.6099225  2.36727312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selene_setapinnis            4.70217287  1.3005946  0.0239225  0.19327312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Selene_vomer                 4.82317287  1.9285946 -0.1650775 -0.05572688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_nephelus         0.88517287 -0.3344054  0.3679225 -0.18672688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_pachygaster      0.41517287 -0.4344054  0.5609225 -0.31172688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sphoeroides_testudineus      0.22417287 -0.5534054  0.1269225 -0.14372688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Stellifer_lanceolatus        0.06517287 -0.7004054 -0.2720775 -0.30972688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Symphurus_plagiusa          -1.69182713 -1.6074054 -1.0710775 -1.63772688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Synodus_foetens              1.40217287  0.7835946 -0.4930775  0.05027312</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Trichiurus_lepturus         -1.69182713 -1.6074054 -1.0710775 -0.74672688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Urobatis_jamaicensis        -1.69182713 -1.6074054 -1.0710775  3.98427312</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

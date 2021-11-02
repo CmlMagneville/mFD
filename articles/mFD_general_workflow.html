@@ -76,7 +76,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -97,9 +97,9 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-10-28</h4>
+            <h4 class="date">2021-11-02</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/cmlmagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
 
     </div>
@@ -1088,7 +1088,7 @@ Basic framework of the mFD package
 <li><p><code>faxes_nm</code> is a vector with axes labels if the user ants different axes labels than <code>faxes</code> ones.</p></li>
 <li><p><code>range_faxes</code> is a vector with minimum and maximum values for axes. If <code>range_faxes = c(NA, NA)</code>, the range is computed according to the range of values among all axes, all axes having thus the same range. To have a fair representation of species positions in all plots, all axes must have the same range.</p></li>
 <li><p><code>plot_sp_nm</code> is a vector containing species names to plot. If <code>NULL</code>, then no name is plotted.</p></li>
-<li><p>size, color, fill, and shape arguments for each component of the graphs <em>i.e.</em> species of the global pool, species of the studied assemblage(s), vertices, centroids and segments. If you have to plot two assemblages, then inputs should be formatted as follow: <code><a href="https://rdrr.io/r/base/c.html">c(pool = ..., asb1 = ..., asb2 = ...)</a></code> for inputs used for global pool and studied assemblages and <code><a href="https://rdrr.io/r/base/c.html">c(asb1 = ..., asb2 = ...)</a></code> for inputs used for studied assemblages only.</p></li>
+<li><p>size, color, fill, and shape arguments for each component of the graphs <em>i.e.</em> species of the global pool, species of the studied assemblage(s), vertices, centroids and segments. If you have to plot two assemblages, then inputs should be formatted as follow: <code>c(pool = ..., asb1 = ..., asb2 = ...)</code> for inputs used for global pool and studied assemblages and <code>c(asb1 = ..., asb2 = ...)</code> for inputs used for studied assemblages only.</p></li>
 <li><p><code>check_input</code> is a recurrent argument in <code>mFD</code>. It defines whether inputs should be checked before computation or not. Possible error messages will thus be more understandable for the user than R error messages (<strong>Recommendation:</strong> set it as <code>TRUE</code>.</p></li>
 </ul>
 <p><br></p>
@@ -1253,7 +1253,7 @@ Basic framework of the mFD package
 <li><p><code>faxes</code> is a vector containing the names of the functional axes of the plotted functional space. Here, the figure will be plotted for <em>PC1</em>, <em>PC2</em> and <em>PC3</em>. This function allows you to plot between two and four axes for graphical reasons.</p></li>
 <li><p><code>name_file</code> is a character string with the name of the file to save the figure (without extension). If the user does not want to save the file and only display it, this argument must be set up to <code>NULL</code>.</p></li>
 <li><p><code>faxes_nm</code> is a vector containing the axes labels for the figure if the user wants to set up different labels than those contained in <code>faxes</code>.</p></li>
-<li><p><code>range_faxes</code> is a vector with minimum and maximum values of functional axes. To have a fair representation of the position of species in all plots, axes should have the same range. If the user wants the range to be computed according to the range of values among all axes, this argument must be set up to <code><a href="https://rdrr.io/r/base/c.html">c(NA, NA)</a></code>.</p></li>
+<li><p><code>range_faxes</code> is a vector with minimum and maximum values of functional axes. To have a fair representation of the position of species in all plots, axes should have the same range. If the user wants the range to be computed according to the range of values among all axes, this argument must be set up to <code>c(NA, NA)</code>.</p></li>
 <li><p><code>check_input</code> is a recurrent argument in the <code>mFD</code> package. It defines whether inputs should be checked before computation or not. Possible error messages will thus be more understandable for the user than R error messages (<strong>Recommendation:</strong> set it as <code>TRUE</code>)</p></li>
 <li><p>Others arguments to set up colors, shapes, sizes and, text fonts are also available. For more information about them, read the function help file.</p></li>
 </ul>

@@ -123,7 +123,7 @@ on functional.betapart.core.pairwise." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -143,7 +143,7 @@ on functional.betapart.core.pairwise." />
     <div class="page-header">
     <h1>Compute Functional beta-Diversity indices for pairs of assemblages in a
 multidimensional space</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/beta_ind_computation.R'><code>R/beta_ind_computation.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/beta_ind_computation.R'><code>R/beta_ind_computation.R</code></a></small>
     <div class="hidden name"><code>beta.fd.multidim.Rd</code></div>
     </div>
 
@@ -279,52 +279,108 @@ European fish assemblages. <em>Global Ecology and Biogeography</em>, <strong>22<
     <p>Sebastien Villeger and Camille Magneville</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='co'># Load Species*Traits dataframe:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span>
-
-<span class='co'># Load Assemblages*Species dataframe:      </span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'baskets_fruits_weights'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span> 
-
-<span class='co'># Load Traits categories dataframe:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits_cat'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span> 
- 
-<span class='co'># Compute functional distance </span>
-<span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
-                                  tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
-                                  metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
-                                  scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
-                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
-                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
-                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span>
-<span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>
- sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
- maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
- deviation_weighting <span class='op'>=</span> <span class='st'>'absolute'</span>,
- fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
- fdendro             <span class='op'>=</span> <span class='st'>'average'</span><span class='op'>)</span>
- 
-<span class='co'># Retrieve species coordinates matrix:</span>
-<span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
-
-<span class='co'># Get the occurrence dataframe:</span>
-<span class='va'>asb_sp_fruits_summ</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='asb.sp.summary.html'>asb.sp.summary</a></span><span class='op'>(</span>asb_sp_w <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span> 
-<span class='va'>asb_sp_fruits_occ</span> <span class='op'>&lt;-</span> <span class='va'>asb_sp_fruits_summ</span><span class='op'>$</span><span class='st'>'asb_sp_occ'</span>
-
-<span class='co'># Compute beta diversity indices:</span>
-<span class='va'>beta_fd_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>beta.fd.multidim</span><span class='op'>(</span>
-  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PC1'</span>, <span class='st'>'PC2'</span>, <span class='st'>'PC3'</span>, <span class='st'>'PC4'</span><span class='op'>)</span><span class='op'>]</span>, 
-  asb_sp_occ       <span class='op'>=</span> <span class='va'>asb_sp_fruits_occ</span>,
-  check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  beta_family      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Jaccard'</span><span class='op'>)</span>,
-  details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='co'># merging pairwise beta-diversity indices in a data.frame</span>
-<span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span><span class='va'>beta_fd_fruits</span><span class='op'>$</span><span class='va'>pairasb_fbd_indices</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'> <span class='co'># Load Species*Traits dataframe:</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Assemblages*Species dataframe:      </span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'baskets_fruits_weights'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Traits categories dataframe:</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits_cat'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span> </span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Compute functional distance </span></span>
+<span class='r-in'><span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,</span>
+<span class='r-in'>                                  tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,</span>
+<span class='r-in'>                                  metric        <span class='op'>=</span> <span class='st'>"gower"</span>,</span>
+<span class='r-in'>                                  scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,</span>
+<span class='r-in'>                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,</span>
+<span class='r-in'>                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,</span>
+<span class='r-in'>                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
+<span class='r-in'><span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span></span>
+<span class='r-in'> sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, </span>
+<span class='r-in'> maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span class='r-in'> deviation_weighting <span class='op'>=</span> <span class='st'>'absolute'</span>,</span>
+<span class='r-in'> fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span class='r-in'> fdendro             <span class='op'>=</span> <span class='st'>'average'</span><span class='op'>)</span></span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Retrieve species coordinates matrix:</span></span>
+<span class='r-in'><span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Get the occurrence dataframe:</span></span>
+<span class='r-in'><span class='va'>asb_sp_fruits_summ</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='asb.sp.summary.html'>asb.sp.summary</a></span><span class='op'>(</span>asb_sp_w <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span> </span>
+<span class='r-in'><span class='va'>asb_sp_fruits_occ</span> <span class='op'>&lt;-</span> <span class='va'>asb_sp_fruits_summ</span><span class='op'>$</span><span class='st'>'asb_sp_occ'</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute beta diversity indices:</span></span>
+<span class='r-in'><span class='va'>beta_fd_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>beta.fd.multidim</span><span class='op'>(</span></span>
+<span class='r-in'>  sp_faxes_coord   <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PC1'</span>, <span class='st'>'PC2'</span>, <span class='st'>'PC3'</span>, <span class='st'>'PC4'</span><span class='op'>)</span><span class='op'>]</span>, </span>
+<span class='r-in'>  asb_sp_occ       <span class='op'>=</span> <span class='va'>asb_sp_fruits_occ</span>,</span>
+<span class='r-in'>  check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span class='r-in'>  beta_family      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Jaccard'</span><span class='op'>)</span>,</span>
+<span class='r-in'>  details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Serial computing of convex hulls shaping assemblages with conv1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Serial computing of intersections between pairs of assemblages with inter_geom_coord</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   2%  |                                                                              |===                                                                   |   4%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   9%  |                                                                              |========                                                              |  11%  |                                                                              |=========                                                             |  13%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  18%  |                                                                              |==============                                                        |  20%  |                                                                              |================                                                      |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  31%  |                                                                              |=======================                                               |  33%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  38%  |                                                                              |============================                                          |  40%  |                                                                              |==============================                                        |  42%  |                                                                              |===============================                                       |  44%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |=====================================                                 |  53%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  58%  |                                                                              |==========================================                            |  60%  |                                                                              |============================================                          |  62%  |                                                                              |=============================================                         |  64%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  69%  |                                                                              |==================================================                    |  71%  |                                                                              |===================================================                   |  73%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  78%  |                                                                              |========================================================              |  80%  |                                                                              |==========================================================            |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  87%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  91%  |                                                                              |=================================================================     |  93%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  98%  |                                                                              |======================================================================| 100%</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Serial computing of intersections between pairs of assemblages with inter_rcdd_coord &amp; qhull.opt1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># merging pairwise beta-diversity indices in a data.frame</span></span>
+<span class='r-in'><span class='fu'><a href='dist.to.df.html'>dist.to.df</a></span><span class='op'>(</span><span class='va'>beta_fd_fruits</span><span class='op'>$</span><span class='va'>pairasb_fbd_indices</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          x1        x2     jac_diss     jac_turn     jac_nest</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  basket_1  basket_2 8.197396e-16 8.197396e-16 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  basket_1  basket_3 8.197396e-16 8.197396e-16 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  basket_1  basket_4 9.903938e-01 8.223456e-01 1.680483e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  basket_1  basket_5 9.903938e-01 8.223456e-01 1.680483e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  basket_1  basket_6 9.199830e-01 9.134231e-01 6.559808e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  basket_1  basket_7 9.199830e-01 9.134231e-01 6.559808e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  basket_1  basket_8 9.926040e-01 9.617520e-01 3.085196e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  basket_1  basket_9 9.926040e-01 9.617520e-01 3.085196e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  basket_1 basket_10 9.554245e-01 8.783088e-01 7.711568e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 basket_2  basket_3 8.197396e-16 8.197396e-16 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 basket_2  basket_4 9.903938e-01 8.223456e-01 1.680483e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 basket_2  basket_5 9.903938e-01 8.223456e-01 1.680483e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 basket_2  basket_6 9.199830e-01 9.134231e-01 6.559808e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 basket_2  basket_7 9.199830e-01 9.134231e-01 6.559808e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 basket_2  basket_8 9.926040e-01 9.617520e-01 3.085196e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 basket_2  basket_9 9.926040e-01 9.617520e-01 3.085196e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 basket_2 basket_10 9.554245e-01 8.783088e-01 7.711568e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 basket_3  basket_4 9.903938e-01 8.223456e-01 1.680483e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 basket_3  basket_5 9.903938e-01 8.223456e-01 1.680483e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 basket_3  basket_6 9.199830e-01 9.134231e-01 6.559808e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 basket_3  basket_7 9.199830e-01 9.134231e-01 6.559808e-03</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 basket_3  basket_8 9.926040e-01 9.617520e-01 3.085196e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 basket_3  basket_9 9.926040e-01 9.617520e-01 3.085196e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 basket_3 basket_10 9.554245e-01 8.783088e-01 7.711568e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 basket_4  basket_5 0.000000e+00 0.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 basket_4  basket_6 9.999978e-01 9.999699e-01 2.794322e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27 basket_4  basket_7 9.999978e-01 9.999699e-01 2.794322e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28 basket_4  basket_8 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29 basket_4  basket_9 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30 basket_4 basket_10 9.697201e-01 8.569122e-01 1.128080e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31 basket_5  basket_6 9.999978e-01 9.999699e-01 2.794322e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32 basket_5  basket_7 9.999978e-01 9.999699e-01 2.794322e-05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33 basket_5  basket_8 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 basket_5  basket_9 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35 basket_5 basket_10 9.697201e-01 8.569122e-01 1.128080e-01</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 basket_6  basket_7 4.717176e-16 4.717176e-16 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37 basket_6  basket_8 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38 basket_6  basket_9 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39 basket_6 basket_10 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40 basket_7  basket_8 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41 basket_7  basket_9 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42 basket_7 basket_10 1.000000e+00 1.000000e+00 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43 basket_8  basket_9 9.258455e-16 9.258455e-16 0.000000e+00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44 basket_8 basket_10 9.783752e-01 9.648085e-01 1.356666e-02</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45 basket_9 basket_10 9.783752e-01 9.648085e-01 1.356666e-02</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

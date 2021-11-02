@@ -118,7 +118,7 @@ following the framework from Chao et al.(2019)." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -137,7 +137,7 @@ following the framework from Chao et al.(2019)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute Functional alpha-Diversity indices based on Hill Numbers</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/alpha_fhill_ind_computation.R'><code>R/alpha_fhill_ind_computation.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/alpha_fhill_ind_computation.R'><code>R/alpha_fhill_ind_computation.R</code></a></small>
     <div class="hidden name"><code>alpha.fd.hill.Rd</code></div>
     </div>
 
@@ -180,7 +180,7 @@ diversity to consider, could be 0, 1 and/or 2.</p></td>
       <td><p>a character string with name of function to apply to
 distance matrix (i.e. among all pairs of species) to get the threshold
 used to define 'functionally indistinct set of species'. Could be 'mean'
-(default), 'min' or 'max'. If tau = 'min" and there are null values in
+(default), 'min' or 'max'. If tau = 'min' and there are null values in
 <code>sp_dist</code>, the threshold is the lowest strictly positive value and a
 warning message is displayed.</p></td>
     </tr>
@@ -239,32 +239,106 @@ measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p>
     <p>Sebastien Villeger and Camille Magneville</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load Species*Traits dataframe:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span>
-
-<span class='co'># Load Assemblages*Species dataframe:      </span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'baskets_fruits_weights'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span> 
-  
-<span class='co'># Compute functional distance </span>
-<span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
-                                  tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
-                                  metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
-                                  scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
-                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
-                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
-                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='co'># Compute alpha fd hill indices:</span>
-<span class='fu'>alpha.fd.hill</span><span class='op'>(</span>
-   asb_sp_w         <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span>, 
-   sp_dist          <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
-   q                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span>,
-   tau              <span class='op'>=</span> <span class='st'>'mean'</span>, 
-   check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>, 
-   details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species*Traits dataframe:</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'fruits_traits'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Assemblages*Species dataframe:      </span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'baskets_fruits_weights'</span>, package <span class='op'>=</span> <span class='st'>'mFD'</span><span class='op'>)</span> </span>
+<span class='r-in'>  </span>
+<span class='r-in'><span class='co'># Compute functional distance </span></span>
+<span class='r-in'><span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,</span>
+<span class='r-in'>                                  tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,</span>
+<span class='r-in'>                                  metric        <span class='op'>=</span> <span class='st'>"gower"</span>,</span>
+<span class='r-in'>                                  scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,</span>
+<span class='r-in'>                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,</span>
+<span class='r-in'>                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,</span>
+<span class='r-in'>                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute alpha fd hill indices:</span></span>
+<span class='r-in'><span class='fu'>alpha.fd.hill</span><span class='op'>(</span></span>
+<span class='r-in'>   asb_sp_w         <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span>, </span>
+<span class='r-in'>   sp_dist          <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, </span>
+<span class='r-in'>   q                <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span>,</span>
+<span class='r-in'>   tau              <span class='op'>=</span> <span class='st'>'mean'</span>, </span>
+<span class='r-in'>   check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>, </span>
+<span class='r-in'>   details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $asb_FD_Hill</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>              FD_q0    FD_q1    FD_q2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_1  3.912219 3.082878 2.615626</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_2  4.495517 4.198786 3.972157</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_3  4.493944 4.266210 4.101477</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_4  1.758038 1.740013 1.722964</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_5  1.891440 1.872348 1.853837</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_6  4.513411 4.049255 3.730993</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_7  4.474346 4.175529 3.944302</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_8  3.367259 2.516060 2.156245</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_9  3.393249 3.039767 2.749451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_10 3.378281 3.168822 3.006560</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $tau_dist</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.3593121</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $details</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $details$asb_totw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      2000      2000      2000      2000      2000      2000      2000      2000 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  basket_9 basket_10 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      2000      2000 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $details$asb_sp_relw</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           apple apricot banana currant blackberry blueberry cherry grape</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_1  0.200     0.0   0.05    0.00       0.00      0.00  0.075  0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_2  0.100     0.0   0.20    0.00       0.00      0.00  0.125  0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_3  0.100     0.0   0.25    0.00       0.00      0.00  0.125  0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_4  0.150     0.0   0.00    0.00       0.00      0.00  0.000  0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_5  0.100     0.0   0.00    0.00       0.00      0.00  0.000  0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_6  0.050     0.0   0.10    0.00       0.00      0.00  0.000  0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_7  0.050     0.0   0.10    0.00       0.00      0.00  0.000  0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_8  0.000     0.0   0.00    0.10       0.15      0.10  0.100  0.10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_9  0.000     0.0   0.00    0.05       0.05      0.05  0.050  0.20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_10 0.175     0.1   0.00    0.00       0.00      0.00  0.000  0.15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           grapefruit kiwifruit lemon lime litchi mango melon orange</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_1        0.00      0.00  0.10  0.0   0.00  0.00  0.10   0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_2        0.00      0.00  0.05  0.0   0.00  0.00  0.25   0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_3        0.00      0.00  0.05  0.0   0.00  0.00  0.20   0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_4        0.00      0.05  0.05  0.0   0.00  0.00  0.00   0.20</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_5        0.00      0.15  0.15  0.0   0.00  0.00  0.00   0.15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_6        0.00      0.00  0.00  0.1   0.10  0.25  0.00   0.05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_7        0.00      0.00  0.00  0.1   0.05  0.10  0.00   0.05</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_8        0.00      0.00  0.05  0.0   0.00  0.00  0.00   0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_9        0.00      0.00  0.15  0.0   0.00  0.00  0.00   0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_10       0.15      0.00  0.00  0.0   0.00  0.00  0.20   0.00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           passion_fruit peach pear pineapple  plum raspberry strawberry</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_1           0.05  0.00 0.30      0.00 0.000      0.00      0.125</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_2           0.05  0.00 0.10      0.00 0.000      0.00      0.125</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_3           0.05  0.00 0.10      0.00 0.000      0.00      0.125</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_4           0.00  0.15 0.20      0.00 0.100      0.00      0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_5           0.00  0.15 0.15      0.00 0.100      0.00      0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_6           0.00  0.00 0.00      0.25 0.000      0.00      0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_7           0.00  0.00 0.00      0.25 0.000      0.00      0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_8           0.00  0.00 0.00      0.00 0.000      0.20      0.200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_9           0.00  0.00 0.00      0.00 0.000      0.25      0.200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_10          0.00  0.00 0.10      0.00 0.075      0.00      0.050</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           tangerine water_melon</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_1       0.00         0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_2       0.00         0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_3       0.00         0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_4       0.10         0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_5       0.05         0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_6       0.00         0.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_7       0.00         0.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_8       0.00         0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_9       0.00         0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_10      0.00         0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

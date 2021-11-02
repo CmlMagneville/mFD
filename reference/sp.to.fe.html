@@ -117,7 +117,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -136,7 +136,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute Functional Entities composition based on a Species x Traits matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/sp_to_FE.R'><code>R/sp_to_FE.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/sp_to_FE.R'><code>R/sp_to_FE.R</code></a></small>
     <div class="hidden name"><code>sp.to.fe.Rd</code></div>
     </div>
 
@@ -234,41 +234,77 @@ traits. Trait names are abbreviated to a single letter whenever possible.
     <p>Sebastien Villeger, Nicolas Loiseau, and Camille Magneville</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load species traits data:</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Transform species traits data:</span>
-<span class='co'># Only keep the first 4 traits to illustrate FEs:</span>
- <span class='va'>fruits_traits</span> <span class='op'>&lt;-</span> <span class='va'>fruits_traits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>   
-
-<span class='co'># Load trait types data:</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Transform the trait types data to only keep traits 1 - 4:</span>
- <span class='va'>fruits_traits_cat</span> <span class='op'>&lt;-</span> <span class='va'>fruits_traits_cat</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span>, <span class='op'>]</span>
-
-<span class='co'># Gather species into FEs:</span>
-<span class='co'>## gathering species into FEs (FEs named according to the decreasing...</span>
-<span class='co'>## ...  number of species they gather):</span>
- <span class='va'>sp_FEs</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>sp.to.fe</span><span class='op'>(</span>
-      sp_tr      <span class='op'>=</span> <span class='va'>fruits_traits</span>, 
-      tr_cat     <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>, 
-      fe_nm_type <span class='op'>=</span> <span class='st'>"fe_rank"</span><span class='op'>)</span>
-
-<span class='co'>## display FEs names:</span>
-<span class='va'>sp_FEs</span><span class='op'>$</span><span class='va'>fe_nm</span>
-
-<span class='co'>## display for each species the name of the FE it belongs to:</span>
-<span class='va'>sp_FEs</span><span class='op'>$</span><span class='va'>sp_fe</span>
-
-<span class='co'>## display trait values for each FE:</span>
-<span class='va'>sp_FEs</span><span class='op'>$</span><span class='va'>fe_tr</span>
- 
-<span class='co'>## display the number of species per FEs:</span>
-<span class='va'>sp_FEs</span><span class='op'>$</span><span class='va'>fe_nb_sp</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load species traits data:</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Transform species traits data:</span></span>
+<span class='r-in'><span class='co'># Only keep the first 4 traits to illustrate FEs:</span></span>
+<span class='r-in'> <span class='va'>fruits_traits</span> <span class='op'>&lt;-</span> <span class='va'>fruits_traits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>   </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load trait types data:</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Transform the trait types data to only keep traits 1 - 4:</span></span>
+<span class='r-in'> <span class='va'>fruits_traits_cat</span> <span class='op'>&lt;-</span> <span class='va'>fruits_traits_cat</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span>, <span class='op'>]</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Gather species into FEs:</span></span>
+<span class='r-in'><span class='co'>## gathering species into FEs (FEs named according to the decreasing...</span></span>
+<span class='r-in'><span class='co'>## ...  number of species they gather):</span></span>
+<span class='r-in'> <span class='va'>sp_FEs</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>sp.to.fe</span><span class='op'>(</span></span>
+<span class='r-in'>      sp_tr      <span class='op'>=</span> <span class='va'>fruits_traits</span>, </span>
+<span class='r-in'>      tr_cat     <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>, </span>
+<span class='r-in'>      fe_nm_type <span class='op'>=</span> <span class='st'>"fe_rank"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## display FEs names:</span></span>
+<span class='r-in'><span class='va'>sp_FEs</span><span class='op'>$</span><span class='va'>fe_nm</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] "fe_1"  "fe_2"  "fe_3"  "fe_4"  "fe_5"  "fe_6"  "fe_7"  "fe_8"  "fe_9" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [10] "fe_10" "fe_11" "fe_12" "fe_13" "fe_14" "fe_15" "fe_16" "fe_17" "fe_18"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [19] "fe_19" "fe_20"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## display for each species the name of the FE it belongs to:</span></span>
+<span class='r-in'><span class='va'>sp_FEs</span><span class='op'>$</span><span class='va'>sp_fe</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         apple       apricot        banana       currant    blackberry </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        "fe_1"        "fe_2"        "fe_6"        "fe_7"        "fe_3" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     blueberry        cherry         grape    grapefruit     kiwifruit </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        "fe_8"        "fe_9"       "fe_10"       "fe_11"       "fe_12" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         lemon          lime        litchi         mango         melon </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        "fe_4"       "fe_13"       "fe_14"       "fe_15"        "fe_5" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        orange passion_fruit         peach          pear     pineapple </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        "fe_4"       "fe_16"       "fe_17"        "fe_1"       "fe_18" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          plum     raspberry    strawberry     tangerine   water_melon </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        "fe_2"        "fe_3"       "fe_19"       "fe_20"        "fe_5" </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## display trait values for each FE:</span></span>
+<span class='r-in'><span class='va'>sp_FEs</span><span class='op'>$</span><span class='va'>fe_tr</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          Size Plant     Climate Seed</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_1   5-10cm  tree   temperate  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_2    3-5cm  tree   temperate  pit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_3    1-3cm shrub   temperate  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_4   5-10cm  tree subtropical  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_5  10-20cm  forb   temperate  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_6  10-20cm  tree    tropical none</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_7    0-1cm shrub   temperate  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_8    0-1cm  forb   temperate  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_9    1-3cm  tree   temperate  pit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_10   1-3cm  vine   temperate  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_11 10-20cm  tree subtropical  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_12  5-10cm  vine   temperate  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_13   3-5cm  tree    tropical  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_14   1-3cm  tree    tropical  pit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_15 10-20cm  tree    tropical  pit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_16   3-5cm  vine    tropical  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_17  5-10cm  tree   temperate  pit</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_18 10-20cm  forb    tropical none</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_19   1-3cm  forb   temperate  pip</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_20   3-5cm  tree subtropical  pip</span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'>## display the number of species per FEs:</span></span>
+<span class='r-in'><span class='va'>sp_FEs</span><span class='op'>$</span><span class='va'>fe_nb_sp</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  fe_1  fe_2  fe_3  fe_4  fe_5  fe_6  fe_7  fe_8  fe_9 fe_10 fe_11 fe_12 fe_13 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     2     2     2     2     2     1     1     1     1     1     1     1     1 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> fe_14 fe_15 fe_16 fe_17 fe_18 fe_19 fe_20 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     1     1     1     1     1     1     1 </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

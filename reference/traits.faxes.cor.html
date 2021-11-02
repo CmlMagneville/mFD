@@ -122,7 +122,7 @@ for continuous and non-continuous traits, respectively." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -141,7 +141,7 @@ for continuous and non-continuous traits, respectively." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Correlation between Traits and Axes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/traits_faxes_cor.R'><code>R/traits_faxes_cor.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/traits_faxes_cor.R'><code>R/traits_faxes_cor.R</code></a></small>
     <div class="hidden name"><code>traits.faxes.cor.Rd</code></div>
     </div>
 
@@ -235,44 +235,129 @@ significant the points are colored, else they remain grayish.</p>
     <p>Nicolas Loiseau and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load Species x Traits Data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Load Traits categories dataframe</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Compute Functional Distance</span>
-<span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr  <span class='op'>=</span> <span class='va'>fruits_traits</span>,
- tr_cat <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
- metric <span class='op'>=</span> <span class='st'>"gower"</span>,
- scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
- ordinal_var <span class='op'>=</span> <span class='st'>"classic"</span>,
- weight_type <span class='op'>=</span> <span class='st'>"equal"</span>,
- stop_if_NA  <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-  
-<span class='co'># Compute Functional Spaces Quality (to retrieve species coordinates)</span>
-<span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>
-  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
-  maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
-  deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,
-  fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
-  
-<span class='co'># Retrieve Species Coordinates</span>
-<span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
-
-<span class='co'># Compute Correlation between Traits and Functional Axes</span>
-<span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>traits.faxes.cor</span><span class='op'>(</span>
-  sp_tr          <span class='op'>=</span> <span class='va'>fruits_traits</span>, 
-  sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, 
-  tr_nm          <span class='op'>=</span> <span class='cn'>NULL</span>, 
-  faxes_nm       <span class='op'>=</span> <span class='cn'>NULL</span>,
-  name_file      <span class='op'>=</span> <span class='cn'>NULL</span>, 
-  color_signif   <span class='op'>=</span> <span class='st'>"darkblue"</span>,
-  color_non_signif <span class='op'>=</span> <span class='st'>"gray80"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species x Traits Data</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Traits categories dataframe</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute Functional Distance</span></span>
+<span class='r-in'><span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr  <span class='op'>=</span> <span class='va'>fruits_traits</span>,</span>
+<span class='r-in'> tr_cat <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,</span>
+<span class='r-in'> metric <span class='op'>=</span> <span class='st'>"gower"</span>,</span>
+<span class='r-in'> scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,</span>
+<span class='r-in'> ordinal_var <span class='op'>=</span> <span class='st'>"classic"</span>,</span>
+<span class='r-in'> weight_type <span class='op'>=</span> <span class='st'>"equal"</span>,</span>
+<span class='r-in'> stop_if_NA  <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
+<span class='r-in'>  </span>
+<span class='r-in'><span class='co'># Compute Functional Spaces Quality (to retrieve species coordinates)</span></span>
+<span class='r-in'><span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span></span>
+<span class='r-in'>  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, </span>
+<span class='r-in'>  maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span class='r-in'>  deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,</span>
+<span class='r-in'>  fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span class='r-in'>  fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span></span>
+<span class='r-in'>  </span>
+<span class='r-in'><span class='co'># Retrieve Species Coordinates</span></span>
+<span class='r-in'><span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute Correlation between Traits and Functional Axes</span></span>
+<span class='r-in'><span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'>traits.faxes.cor</span><span class='op'>(</span></span>
+<span class='r-in'>  sp_tr          <span class='op'>=</span> <span class='va'>fruits_traits</span>, </span>
+<span class='r-in'>  sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, </span>
+<span class='r-in'>  tr_nm          <span class='op'>=</span> <span class='cn'>NULL</span>, </span>
+<span class='r-in'>  faxes_nm       <span class='op'>=</span> <span class='cn'>NULL</span>,</span>
+<span class='r-in'>  name_file      <span class='op'>=</span> <span class='cn'>NULL</span>, </span>
+<span class='r-in'>  color_signif   <span class='op'>=</span> <span class='st'>"darkblue"</span>,</span>
+<span class='r-in'>  color_non_signif <span class='op'>=</span> <span class='st'>"gray80"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         trait axis           test stat  value p.value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        Size  PC1 Kruskal-Wallis eta2  0.284  0.0461</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2        Size  PC2 Kruskal-Wallis eta2  0.316  0.0352</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3        Size  PC3 Kruskal-Wallis eta2  0.008  0.3839</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        Size  PC4 Kruskal-Wallis eta2  0.285  0.0459</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5        Size  PC5 Kruskal-Wallis eta2  0.151  0.1349</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6        Size  PC6 Kruskal-Wallis eta2  0.312  0.0366</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7        Size  PC7 Kruskal-Wallis eta2  0.100  0.1990</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8        Size  PC8 Kruskal-Wallis eta2  0.164  0.1216</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9        Size  PC9 Kruskal-Wallis eta2  0.299  0.0408</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10       Size PC10 Kruskal-Wallis eta2  0.132  0.1564</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11      Plant  PC1 Kruskal-Wallis eta2  0.315  0.0222</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12      Plant  PC2 Kruskal-Wallis eta2  0.413  0.0086</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13      Plant  PC3 Kruskal-Wallis eta2  0.197  0.0675</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14      Plant  PC4 Kruskal-Wallis eta2 -0.057  0.6157</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15      Plant  PC5 Kruskal-Wallis eta2  0.266  0.0354</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16      Plant  PC6 Kruskal-Wallis eta2  0.089  0.1818</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17      Plant  PC7 Kruskal-Wallis eta2 -0.087  0.7598</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18      Plant  PC8 Kruskal-Wallis eta2  0.187  0.0745</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19      Plant  PC9 Kruskal-Wallis eta2 -0.014  0.4378</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20      Plant PC10 Kruskal-Wallis eta2 -0.138  0.9927</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21    Climate  PC1 Kruskal-Wallis eta2  0.746  0.0001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22    Climate  PC2 Kruskal-Wallis eta2 -0.048  0.6216</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23    Climate  PC3 Kruskal-Wallis eta2  0.030  0.2636</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24    Climate  PC4 Kruskal-Wallis eta2  0.194  0.0433</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25    Climate  PC5 Kruskal-Wallis eta2 -0.015  0.4334</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26    Climate  PC6 Kruskal-Wallis eta2 -0.032  0.5232</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27    Climate  PC7 Kruskal-Wallis eta2 -0.012  0.4199</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28    Climate  PC8 Kruskal-Wallis eta2 -0.022  0.4706</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29    Climate  PC9 Kruskal-Wallis eta2  0.116  0.1026</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30    Climate PC10 Kruskal-Wallis eta2  0.024  0.2821</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31       Seed  PC1 Kruskal-Wallis eta2  0.111  0.1082</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32       Seed  PC2 Kruskal-Wallis eta2  0.475  0.0020</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33       Seed  PC3 Kruskal-Wallis eta2  0.435  0.0031</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34       Seed  PC4 Kruskal-Wallis eta2  0.057  0.1957</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35       Seed  PC5 Kruskal-Wallis eta2  0.034  0.2524</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36       Seed  PC6 Kruskal-Wallis eta2 -0.074  0.8344</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37       Seed  PC7 Kruskal-Wallis eta2 -0.081  0.8981</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38       Seed  PC8 Kruskal-Wallis eta2 -0.040  0.5700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39       Seed  PC9 Kruskal-Wallis eta2 -0.040  0.5700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40       Seed PC10 Kruskal-Wallis eta2 -0.063  0.7397</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41      Sugar  PC1   Linear Model   r2  0.089  0.1486</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42      Sugar  PC2   Linear Model   r2  0.195  0.0273</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43      Sugar  PC3   Linear Model   r2  0.218  0.0187</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44      Sugar  PC4   Linear Model   r2  0.022  0.4814</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45      Sugar  PC5   Linear Model   r2  0.094  0.1357</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46      Sugar  PC6   Linear Model   r2  0.305  0.0042</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47      Sugar  PC7   Linear Model   r2  0.032  0.3948</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48      Sugar  PC8   Linear Model   r2  0.004  0.7668</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49      Sugar  PC9   Linear Model   r2  0.000  0.9473</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50      Sugar PC10   Linear Model   r2  0.000  0.9252</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51    Use.raw  PC1   Linear Model   r2  0.497  0.0001</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52    Use.raw  PC2   Linear Model   r2  0.004  0.7551</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53    Use.raw  PC3   Linear Model   r2  0.103  0.1168</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54    Use.raw  PC4   Linear Model   r2  0.218  0.0187</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55    Use.raw  PC5   Linear Model   r2  0.002  0.8154</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56    Use.raw  PC6   Linear Model   r2  0.117  0.0947</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57    Use.raw  PC7   Linear Model   r2  0.023  0.4740</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58    Use.raw  PC8   Linear Model   r2  0.000  0.9295</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59    Use.raw  PC9   Linear Model   r2  0.011  0.6154</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60    Use.raw PC10   Linear Model   r2  0.005  0.7474</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61 Use.pastry  PC1   Linear Model   r2  0.031  0.4036</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62 Use.pastry  PC2   Linear Model   r2  0.000  0.9630</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63 Use.pastry  PC3   Linear Model   r2  0.061  0.2349</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64 Use.pastry  PC4   Linear Model   r2  0.360  0.0015</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65 Use.pastry  PC5   Linear Model   r2  0.283  0.0062</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66 Use.pastry  PC6   Linear Model   r2  0.091  0.1432</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67 Use.pastry  PC7   Linear Model   r2  0.100  0.1228</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68 Use.pastry  PC8   Linear Model   r2  0.002  0.8436</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69 Use.pastry  PC9   Linear Model   r2  0.004  0.7750</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 70 Use.pastry PC10   Linear Model   r2  0.010  0.6325</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 71    Use.jam  PC1   Linear Model   r2  0.567  0.0000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 72    Use.jam  PC2   Linear Model   r2  0.006  0.7239</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 73    Use.jam  PC3   Linear Model   r2  0.055  0.2588</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 74    Use.jam  PC4   Linear Model   r2  0.033  0.3835</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 75    Use.jam  PC5   Linear Model   r2  0.082  0.1655</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 76    Use.jam  PC6   Linear Model   r2  0.050  0.2831</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 77    Use.jam  PC7   Linear Model   r2  0.153  0.0533</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 78    Use.jam  PC8   Linear Model   r2  0.003  0.8123</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 79    Use.jam  PC9   Linear Model   r2  0.029  0.4193</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 80    Use.jam PC10   Linear Model   r2  0.000  0.9327</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

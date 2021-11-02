@@ -121,7 +121,7 @@ function is using the convhulln function." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -141,7 +141,7 @@ function is using the convhulln function." />
     <div class="page-header">
     <h1>Compute vertices of the Minimal Convex Hull shaping species from a single
 assemblage in a multidimensional functional space</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/fcts_used_for_ind_comp.R'><code>R/fcts_used_for_ind_comp.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/fcts_used_for_ind_comp.R'><code>R/fcts_used_for_ind_comp.R</code></a></small>
     <div class="hidden name"><code>vertices.Rd</code></div>
     </div>
 
@@ -186,43 +186,49 @@ no NA and species number must be superior to (axes number + 1). Default:
     <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load Species*Traits dataframe:</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Load Assemblages*Species dataframe:      </span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
-
-<span class='co'># Load Traits categories dataframe:</span>
- <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> 
- 
-<span class='co'># Compute functional distance </span>
- <span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
-                                   tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
-                                   metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
-                                   scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
-                                   ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
-                                   weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
-                                   stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-  
-<span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span>
- <span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>
-                                  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
-                                  maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
-                                  deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,
-                                  fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
-                                  fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
- 
-<span class='co'># Retrieve species coordinates matrix:</span>
-<span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
-
-<span class='co'># Compute vertices and order them clockwise:</span>
- <span class='va'>vert_nm</span> <span class='op'>&lt;-</span> <span class='fu'>vertices</span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>, 
-  order_2D <span class='op'>=</span> <span class='cn'>TRUE</span>, check_input <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
- <span class='va'>vert_nm</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species*Traits dataframe:</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Assemblages*Species dataframe:      </span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Traits categories dataframe:</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span> </span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Compute functional distance </span></span>
+<span class='r-in'> <span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,</span>
+<span class='r-in'>                                   tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,</span>
+<span class='r-in'>                                   metric        <span class='op'>=</span> <span class='st'>"gower"</span>,</span>
+<span class='r-in'>                                   scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,</span>
+<span class='r-in'>                                   ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,</span>
+<span class='r-in'>                                   weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,</span>
+<span class='r-in'>                                   stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
+<span class='r-in'>  </span>
+<span class='r-in'><span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
+<span class='r-in'> <span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span></span>
+<span class='r-in'>                                  sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, </span>
+<span class='r-in'>                                  maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span class='r-in'>                                  deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,</span>
+<span class='r-in'>                                  fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span class='r-in'>                                  fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span></span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Retrieve species coordinates matrix:</span></span>
+<span class='r-in'><span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute vertices and order them clockwise:</span></span>
+<span class='r-in'> <span class='va'>vert_nm</span> <span class='op'>&lt;-</span> <span class='fu'>vertices</span><span class='op'>(</span><span class='va'>sp_faxes_coord_fruits</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"PC1"</span>, <span class='st'>"PC2"</span><span class='op'>)</span><span class='op'>]</span>, </span>
+<span class='r-in'>  order_2D <span class='op'>=</span> <span class='cn'>TRUE</span>, check_input <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='va'>vert_nm</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "cherry"      "currant"     "blueberry"   "water_melon" "pineapple"  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [6] "banana"      "mango"       "litchi"     </span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

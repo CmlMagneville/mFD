@@ -120,7 +120,7 @@ functional indices for each community." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/CmlMagneville/mFD/">
+  <a href="https://github.com/cmlmagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -139,7 +139,7 @@ functional indices for each community." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Retrieve information about species in a given assemblage</h1>
-    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/sp_filtering.R'><code>R/sp_filtering.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/sp_filtering.R'><code>R/sp_filtering.R</code></a></small>
     <div class="hidden name"><code>sp.filter.Rd</code></div>
     </div>
 
@@ -185,43 +185,79 @@ containing relative weight of species present in a given assemblage
     <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Load Species*Traits dataframe:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
-
-<span class='co'># Load Assemblages*Species dataframe:      </span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>
- 
-<span class='co'># Load Traits categories dataframe:</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>  
-
-<span class='co'># Compute functional distance </span>
-<span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span>
- sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,
- tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,
- metric        <span class='op'>=</span> <span class='st'>"gower"</span>,
- scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,
- ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,
- weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,
- stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
- 
-<span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span>
-<span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>
- sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, 
- maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,
- deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,
- fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,
- fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span>
- 
-<span class='co'># Retrieve species coordinates matrix:</span>
-<span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span>
-
-<span class='co'># Filter species of basket_1 assemblage:</span>
-<span class='fu'>sp.filter</span><span class='op'>(</span>asb_nm         <span class='op'>=</span> <span class='st'>"basket_1"</span>, 
-          sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, 
-          asb_sp_w       <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species*Traits dataframe:</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Load Assemblages*Species dataframe:      </span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"baskets_fruits_weights"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Load Traits categories dataframe:</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits_cat"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span>  </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Compute functional distance </span></span>
+<span class='r-in'><span class='va'>sp_dist_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='funct.dist.html'>funct.dist</a></span><span class='op'>(</span></span>
+<span class='r-in'> sp_tr         <span class='op'>=</span> <span class='va'>fruits_traits</span>,</span>
+<span class='r-in'> tr_cat        <span class='op'>=</span> <span class='va'>fruits_traits_cat</span>,</span>
+<span class='r-in'> metric        <span class='op'>=</span> <span class='st'>"gower"</span>,</span>
+<span class='r-in'> scale_euclid  <span class='op'>=</span> <span class='st'>"scale_center"</span>,</span>
+<span class='r-in'> ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,</span>
+<span class='r-in'> weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,</span>
+<span class='r-in'> stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
+<span class='r-in'><span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span></span>
+<span class='r-in'> sp_dist             <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, </span>
+<span class='r-in'> maxdim_pcoa         <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span class='r-in'> deviation_weighting <span class='op'>=</span> <span class='st'>"absolute"</span>,</span>
+<span class='r-in'> fdist_scaling       <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span class='r-in'> fdendro             <span class='op'>=</span> <span class='st'>"average"</span><span class='op'>)</span></span>
+<span class='r-in'> </span>
+<span class='r-in'><span class='co'># Retrieve species coordinates matrix:</span></span>
+<span class='r-in'><span class='va'>sp_faxes_coord_fruits</span> <span class='op'>&lt;-</span> <span class='va'>fspaces_quality_fruits</span><span class='op'>$</span><span class='va'>details_fspaces</span><span class='op'>$</span><span class='va'>sp_pc_coord</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Filter species of basket_1 assemblage:</span></span>
+<span class='r-in'><span class='fu'>sp.filter</span><span class='op'>(</span>asb_nm         <span class='op'>=</span> <span class='st'>"basket_1"</span>, </span>
+<span class='r-in'>          sp_faxes_coord <span class='op'>=</span> <span class='va'>sp_faxes_coord_fruits</span>, </span>
+<span class='r-in'>          asb_sp_w       <span class='op'>=</span> <span class='va'>baskets_fruits_weights</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $`species names`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "apple"         "banana"        "cherry"        "lemon"        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [5] "melon"         "passion_fruit" "pear"          "strawberry"   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $`species coordinates`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                         PC1         PC2          PC3         PC4         PC5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> apple          0.0265193144  0.01305413 -0.043717435 -0.02121146 -0.14821854</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> banana        -0.3346937349  0.09137141 -0.070877547  0.06988872 -0.05000085</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cherry         0.1532479527 -0.25099690 -0.135570593  0.05621669  0.02650788</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lemon         -0.1116123197  0.05271882  0.138487467 -0.10319375  0.02307706</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> melon          0.0475710274  0.22821444 -0.009073564 -0.13015462  0.03728241</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> passion_fruit -0.1743734750 -0.09195180  0.051587716  0.22053201 -0.14745293</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pear          -0.0008010876  0.01968943 -0.013204612 -0.07056511 -0.07014583</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> strawberry     0.2743910893  0.09325097  0.046622086  0.09331814  0.04954010</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                        PC6          PC7         PC8          PC9         PC10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> apple          0.040965006  0.039965979 -0.02257727 -0.012017348 -0.010675722</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> banana         0.020752971 -0.041476147 -0.08303923  0.042337245  0.015830902</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> cherry        -0.020780891  0.004803343 -0.04262059  0.030307476 -0.022668724</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lemon          0.101128620  0.044498483 -0.03408272 -0.023135838 -0.021535320</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> melon         -0.136045993  0.036709357  0.01345963 -0.022081148  0.005067072</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> passion_fruit  0.066901090 -0.006120818  0.06645768  0.020143504 -0.008008755</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> pear          -0.004973365  0.023163490 -0.05589114 -0.008962102  0.038038792</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> strawberry     0.001191018  0.094872368  0.01891473  0.012390681 -0.018860955</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $`species weight`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          apple banana cherry lemon melon passion_fruit pear strawberry</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_1   400    100    150   200   200           100  600        250</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $`species relative weight`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          apple banana cherry lemon melon passion_fruit pear strawberry</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> basket_1   0.2   0.05  0.075   0.1   0.1          0.05  0.3      0.125</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
