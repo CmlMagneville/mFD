@@ -146,7 +146,6 @@ functional indices, functional indices values must have been retrieve
 through the use of the} \code{\link{alpha.fd.multidim}} \strong{function}.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -233,7 +232,6 @@ check_input             = TRUE)
 
 # Check FRic plot:
 plots_alpha$fric$patchwork
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

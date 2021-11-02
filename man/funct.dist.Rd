@@ -87,7 +87,6 @@ delete species with missing or extrapolate missing traits (see
 Johnson \emph{et al.} (2020)).
 }
 \examples{
-\dontrun{
 # Load Species x Traits data
 data("fruits_traits", package = "mFD")
 
@@ -107,7 +106,7 @@ sp_dist_fruits <- mFD::funct.dist(sp_tr         = fruits_traits,
                                   ordinal_var   = "classic",
                                   weight_type   = "equal",
                                   stop_if_NA    = TRUE)
-}
+sp_dist_fruits
 }
 \references{
 de Bello \emph{et al.} (2021) Towards a more balanced combination of multiple

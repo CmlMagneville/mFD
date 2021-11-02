@@ -45,7 +45,6 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -75,7 +74,7 @@
 #'    ind_nm           = c('fred', 'fored', 'fvuln'),
 #'    check_input      = TRUE, 
 #'    details_returned = TRUE)
-#' }
+
 
 alpha.fd.fe <- function(asb_sp_occ, sp_to_fe, ind_nm = c("fred", "fored", 
                                                          "fvuln"), 

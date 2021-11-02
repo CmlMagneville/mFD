@@ -67,7 +67,6 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #'
@@ -108,7 +107,7 @@
 #'                                  pos = "darkred"),
 #'   gradient_deviation_quality = c(low ="yellow", high = "red"),
 #'   x_lab                      = "Trait-based distance")
-#' }
+
 
 quality.fspaces.plot <- function(
   fspaces_quality, quality_metric, fspaces_plot,

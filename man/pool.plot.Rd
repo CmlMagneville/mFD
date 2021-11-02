@@ -87,7 +87,6 @@ species from the global pool (associated convex hull if asked).
 Plot all species from the study case and associated convex hull
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -126,17 +125,17 @@ sp_faxes_coord_fruits_2D <-
  
  # Retrieve the background plot:
  ggplot_bg_fruits <- mFD::background.plot(
-                               range_faxes = ranges_faxes_lim, 
+                               range_faxes = range_faxes_lim, 
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
                                
  # Retrieve vertices names:
- vert_nm_fruits <- vertices(sp_faxes_coord_fruits, 
+ vert_nm_fruits <- vertices(sp_faxes_coord_fruits_2D, 
   order_2D = TRUE, check_input = TRUE)
   
  # Plot the pool:
  plot_pool_fruits <- pool.plot(ggplot_bg   = ggplot_bg_fruits,
-           sp_coord2D    = sp_coord_fruits_2D,
+           sp_coord2D    = sp_faxes_coord_fruits_2D,
            vertices_nD   = vert_nm_fruits,
            plot_pool     = TRUE,
            shape_pool    = 3, 
@@ -151,7 +150,6 @@ sp_faxes_coord_fruits_2D <-
            color_vert    = "black", 
            fill_vert     = NA) 
  plot_pool_fruits
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

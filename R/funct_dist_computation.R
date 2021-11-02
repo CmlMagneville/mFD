@@ -84,7 +84,6 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species x Traits data
 #' data("fruits_traits", package = "mFD")
 #'
@@ -104,7 +103,8 @@
 #'                                   ordinal_var   = "classic",
 #'                                   weight_type   = "equal",
 #'                                   stop_if_NA    = TRUE)
-#' }
+#' sp_dist_fruits
+
 
 funct.dist <- function(sp_tr,
                        tr_cat,

@@ -17,7 +17,7 @@
 #' @param tau a character string with name of function to apply to
 #'   distance matrix (i.e. among all pairs of species) to get the threshold 
 #'   used to define 'functionally indistinct set of species'. Could be 'mean'
-#'   (default), 'min' or 'max'. If tau = 'min" and there are null values in
+#'   (default), 'min' or 'max'. If tau = 'min' and there are null values in
 #'   \code{sp_dist}, the threshold is the lowest strictly positive value and a
 #'   warning message is displayed.
 #'
@@ -70,7 +70,6 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -94,7 +93,7 @@
 #'    tau              = 'mean', 
 #'    check_input      = TRUE, 
 #'    details_returned = TRUE)
-#' }
+
 
 alpha.fd.hill <- function(asb_sp_w, sp_dist, 
                           q = c(0, 1, 2), tau = "mean", check_input = TRUE, 

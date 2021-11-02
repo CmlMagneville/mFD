@@ -53,7 +53,6 @@
 #' @importFrom stats summary.lm
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species x Traits Data
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -89,7 +88,6 @@
 #'   name_file      = NULL, 
 #'   color_signif   = "darkblue",
 #'   color_non_signif = "gray80")
-#' }
 
 
 traits.faxes.cor <- function(sp_tr, sp_faxes_coord, tr_nm = NULL, 

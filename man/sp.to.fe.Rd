@@ -83,7 +83,6 @@ traits. Trait names are abbreviated to a single letter whenever possible.
 ("A2_Bx_Cy", "A3_Bf_Cy")
 }
 \examples{
-\dontrun{
 # Load species traits data:
  data("fruits_traits", package = "mFD")
 
@@ -116,7 +115,6 @@ sp_FEs$fe_tr
  
 ## display the number of species per FEs:
 sp_FEs$fe_nb_sp
-}
 }
 \author{
 Sebastien Villeger, Nicolas Loiseau, and Camille Magneville

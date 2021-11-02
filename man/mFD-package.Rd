@@ -6,19 +6,25 @@
 \alias{mFD-package}
 \title{mFD: Compute and Illustrate the Multiple Facets of Functional Diversity}
 \description{
-Computing functional traits-based distances between pairs
-    of species for species gathered in assemblages allowing to build several
+Computing functional traits-based distances between pairs of 
+    species for species gathered in assemblages allowing to build several
     functional spaces. The package allows to compute functional diversity
     indices assessing the distribution of species (and of their dominance) in a
     given functional space for each assemblage and the overlap between
-    assemblages in a given functional space. Graphical outputs included. See
-    the mFD website for more information, documentation and examples.
+    assemblages in a given functional space, see: Chao et al. (2018)
+    <doi:10.1002/ecm.1343>, Maire et al. (2015) <doi:10.1111/geb.12299>,
+    Mouillot et al. (2013) <doi:10.1016/j.tree.2012.10.004>, Mouillot et al.
+    (2014) <doi:10.1073/pnas.1317625111>, Ricotta and Szeidl (2009)
+    <doi:10.1016/j.tpb.2009.10.001>. Graphical outputs are included.
+    Visit the 'mFD' website for more information, documentation and examples:
+    <https://cmlmagneville.github.com/mFD/>.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/CmlMagneville/mFD}
-  \item Report bugs at \url{https://github.com/CmlMagneville/mFD/issues}
+  \item \url{https://cmlmagneville.github.com/mFD/}
+  \item \url{https://github.com/cmlmagneville/mFD}
+  \item Report bugs at \url{https://github.com/cmlmagneville/mFD/issues}
 }
 
 }

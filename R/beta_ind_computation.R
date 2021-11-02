@@ -90,7 +90,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #'  # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -134,7 +133,6 @@
 #' 
 #' # merging pairwise beta-diversity indices in a data.frame
 #' dist.to.df(beta_fd_fruits$pairasb_fbd_indices)
-#' }
 
 
 beta.fd.multidim <- function(sp_faxes_coord, 

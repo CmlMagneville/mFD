@@ -20,7 +20,6 @@ This function computes the MST linking species of a given assemblage and is
 used to compute FEve index.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
@@ -53,7 +52,6 @@ used to compute FEve index.
 # Compute the distance of "pear" to its nearest neighbor(s):
  mst_fruits <- mst.computation(sp_faxes_coord_fruits)
  mst_fruits
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

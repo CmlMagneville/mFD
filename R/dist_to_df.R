@@ -17,7 +17,6 @@
 #' @export
 #' 
 #' @examples 
-#' \dontrun{
 #' # Create dist objects: 
 #' dist_A <- round(dist(matrix(runif(1:100), 5, 2, 
 #'                       dimnames = list(letters[1:5], NULL))), 2)
@@ -31,7 +30,6 @@
 #'
 #' # Second example with 3 distances:
 #' dist.to.df(list(d1 = dist_A, d2 = dist_B, d3 = dist_C))
-#' }
 
 dist.to.df <- function(list_dist) {
   

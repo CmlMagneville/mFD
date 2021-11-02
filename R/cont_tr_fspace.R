@@ -26,11 +26,10 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
 #' mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center')
-#' }
+
 
 tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
   
@@ -122,7 +121,6 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
 #' mFD::tr.cont.fspace(
@@ -131,7 +129,7 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'     nb_dim       = 7, 
 #'     scaling      = 'scale_center',
 #'     compute_corr = 'pearson')
-#' }
+
 
 
 tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7, 

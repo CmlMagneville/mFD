@@ -62,7 +62,6 @@ use \code{\link{tr.cont.scale}} function. Option makes it possible to
 compute correlation between traits.
 }
 \examples{
-\dontrun{
 load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 
 mFD::tr.cont.fspace(
@@ -71,7 +70,6 @@ mFD::tr.cont.fspace(
     nb_dim       = 7, 
     scaling      = 'scale_center',
     compute_corr = 'pearson')
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

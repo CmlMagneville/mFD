@@ -62,7 +62,6 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -95,7 +94,7 @@
 #' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q1))
 #' ## for q = 2:
 #' mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
-#' }
+
 
 beta.fd.hill <- function(asb_sp_w, sp_dist, 
                          q = c(0, 1, 2), tau = "mean", beta_type = "Jaccard", 

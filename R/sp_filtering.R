@@ -26,7 +26,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -61,7 +60,7 @@
 #' sp.filter(asb_nm         = "basket_1", 
 #'           sp_faxes_coord = sp_faxes_coord_fruits, 
 #'           asb_sp_w       = baskets_fruits_weights)
-#' }
+
 
 sp.filter <- function(asb_nm, sp_faxes_coord, asb_sp_w) {
   

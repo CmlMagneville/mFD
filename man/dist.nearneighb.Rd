@@ -24,7 +24,6 @@ list of the distance of the reference point to its nearest neighbor
 This function is used in functional indices computation.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
@@ -57,7 +56,6 @@ This function is used in functional indices computation.
 # Compute the distance of "pear" to its nearest neighbor(s):
  dist_nn_pear <- dist.nearneighb(sp_faxes_coord_fruits, ref_sp = "pear")
  dist_nn_pear
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

@@ -75,7 +75,6 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load species traits data:
 #'  data("fruits_traits", package = "mFD")
 #' 
@@ -108,7 +107,7 @@
 #'  
 #' ## display the number of species per FEs:
 #' sp_FEs$fe_nb_sp
-#' }
+
 
 sp.to.fe <-  function(sp_tr, tr_cat, fe_nm_type = "fe_rank", 
                       check_input = TRUE) {

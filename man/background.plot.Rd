@@ -25,11 +25,10 @@ This function creates a ggplot object with customized axes range
 (same for both), names and background
 }
 \examples{
-\dontrun{
  background <- background.plot(range_faxes = c(-1, 2), 
                                faxes_nm    = c("PC 1", "PC 2"), 
-                               color_bg    = "grey90") 
-}
+                               color_bg    = "grey90")
+ background 
 }
 \author{
 Camille Magneville and Sebastien Villeger

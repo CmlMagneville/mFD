@@ -31,7 +31,6 @@ hull enclosing a community in a multidimensional functional space. This
 function is using the \code{\link[geometry]{convhulln}} function.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
@@ -65,7 +64,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
  vert_nm <- vertices(sp_faxes_coord_fruits[ , c("PC1", "PC2")], 
   order_2D = TRUE, check_input = TRUE)
  vert_nm
-}
 
 }
 \author{

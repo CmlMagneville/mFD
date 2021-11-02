@@ -71,7 +71,6 @@ See below example of how merging distance values in a \emph{dataframe} with
 \code{\link{dist.to.df}}
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -104,7 +103,6 @@ mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q0))
 mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q1))
 ## for q = 2:
 mFD::dist.to.df(list_dist = list(FDq2 = baskets_beta$beta_fd_q$q2))
-}
 }
 \references{
 Chao \emph{et al.} (2019) An attribute diversity approach to functional

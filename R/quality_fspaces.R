@@ -93,7 +93,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Load Species x Traits Data
 #' data("fruits_traits", package = "mFD")
 #'
@@ -117,10 +116,12 @@
 #'   deviation_weighting = "absolute",
 #'   fdist_scaling       = FALSE,
 #'   fdendro             = "average")
+#'  fspaces_quality_fruits
 #'   
 #' # Retrieve Species Coordinates
 #' sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
-#' }
+#' sp_faxes_coord_fruits
+
 
 quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
                             deviation_weighting = "absolute",

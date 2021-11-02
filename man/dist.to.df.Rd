@@ -22,7 +22,6 @@ are pairs of elements and column(s) distance metric(s). It stands on the
 \code{\link[dendextend]{dist_long}} function.
 }
 \examples{
-\dontrun{
 # Create dist objects: 
 dist_A <- round(dist(matrix(runif(1:100), 5, 2, 
                       dimnames = list(letters[1:5], NULL))), 2)
@@ -36,7 +35,6 @@ dist.to.df(list(dA = dist_A))
 
 # Second example with 3 distances:
 dist.to.df(list(d1 = dist_A, d2 = dist_B, d3 = dist_C))
-}
 }
 \author{
 Sebastien Villeger

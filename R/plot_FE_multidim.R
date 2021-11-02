@@ -75,7 +75,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -122,7 +121,7 @@
 #'   size_line_fred    = 1.5,
 #'   size_arrow_fvuln  = 1,
 #'   check_input       = TRUE) 
-#' }
+
 
 alpha.fd.fe.plot <- function(alpha_fd_fe,
                              plot_asb_nm,

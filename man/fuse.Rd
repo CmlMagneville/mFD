@@ -43,7 +43,6 @@ This index takes into account species functional uniqueness (also called
 Functional Originality), species specialisation and species IUCN status.
 }
 \examples{
-\dontrun{
 # Load species traits data:
 sp_tr <- read.csv(system.file('extdata', 'data_traits_MMA_ursus.csv', 
   package = 'mFD'), dec = ',', sep = ';', header = TRUE, row.names = 1,
@@ -100,6 +99,7 @@ sp_faxes_coord <- Pcoa$li[1:40]
     nb_NN          = 5,  
     GE             = sp_tr$IUCN_num,
     standGE        = TRUE)
+ FUSE_res
     
  FUSE_res2 <- mFD::fuse(
     sp_dist        = sp_dist_tr, 
@@ -107,6 +107,7 @@ sp_faxes_coord <- Pcoa$li[1:40]
     nb_NN          = 5,
     GE             = sp_tr$IUCN_50,
     standGE        = TRUE)
+ FUSE_res2
     
  FUSE_res3 <- mFD::fuse(
     sp_dist        = sp_dist_tr, 
@@ -114,7 +115,7 @@ sp_faxes_coord <- Pcoa$li[1:40]
     nb_NN          = 5, 
     GE             = sp_tr$IUCN_100,
     standGE        = TRUE)
-}
+ FUSE_res3
 }
 \references{
 Mouillot \emph{et al.} (2013) Rare species support vulnerable functions in

@@ -22,7 +22,6 @@ This function computes the distances of all species to a reference species.
 It is used in FSpe, FOri and FNND computation.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
@@ -55,7 +54,6 @@ It is used in FSpe, FOri and FNND computation.
 # Retrieve the distances of all species to "pear":
  dist_pear <- dist.point(sp_faxes_coord_fruits, ref_sp = "pear")
  dist_pear
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

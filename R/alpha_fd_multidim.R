@@ -67,7 +67,6 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data('fruits_traits', package = 'mFD')
 #' 
@@ -110,7 +109,7 @@
 #' # Retrieve alpha diversity indices table
 #' fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 #' fd_ind_values_fruits
-#' }
+
 
 alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w, 
                               ind_vect = c("fide", "fdis", "fmpd", "fnnd", 

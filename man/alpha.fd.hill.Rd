@@ -28,7 +28,7 @@ diversity to consider, could be 0, 1 and/or 2.}
 \item{tau}{a character string with name of function to apply to
 distance matrix (i.e. among all pairs of species) to get the threshold
 used to define 'functionally indistinct set of species'. Could be 'mean'
-(default), 'min' or 'max'. If tau = 'min" and there are null values in
+(default), 'min' or 'max'. If tau = 'min' and there are null values in
 \code{sp_dist}, the threshold is the lowest strictly positive value and a
 warning message is displayed.}
 
@@ -78,7 +78,6 @@ tau = 'mean'. If asb_sp_w contains only 0/1 and q>0, it means that all
 species have the same contribution to FD.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -102,7 +101,6 @@ alpha.fd.hill(
    tau              = 'mean', 
    check_input      = TRUE, 
    details_returned = TRUE)
-}
 }
 \references{
 Chao \emph{et al.} (2019) An attribute diversity approach to functional

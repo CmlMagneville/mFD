@@ -149,7 +149,6 @@ This function illustrates the position of species along pairs of axes of a
 functional space
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
@@ -205,7 +204,6 @@ mFD::funct.space.plot(
  nm_color           = "black",
  nm_fontface        = "plain",
  check_input        = TRUE)
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

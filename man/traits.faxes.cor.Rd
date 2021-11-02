@@ -67,7 +67,6 @@ Option allows to plot trait-axis relationships with scatterplot and boxplot
 for continuous and non-continuous traits, respectively.
 }
 \examples{
-\dontrun{
 # Load Species x Traits Data
 data("fruits_traits", package = "mFD")
 
@@ -103,7 +102,6 @@ mFD::traits.faxes.cor(
   name_file      = NULL, 
   color_signif   = "darkblue",
   color_non_signif = "gray80")
-}
 }
 \author{
 Nicolas Loiseau and Sebastien Villeger

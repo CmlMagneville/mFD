@@ -119,7 +119,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #'  data("fruits_traits", package = "mFD")
 #'
@@ -175,7 +174,7 @@
 #'  nm_color           = "black",
 #'  nm_fontface        = "plain",
 #'  check_input        = TRUE)
-#' }
+
 
 funct.space.plot <- function(sp_faxes_coord, faxes = NULL, 
                              name_file = NULL,

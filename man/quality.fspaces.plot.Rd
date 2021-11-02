@@ -85,7 +85,6 @@ as well as type of transformation of distance (scaling) and of deviation
 Plot functional space quality with a chosen quality metric
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -126,7 +125,6 @@ fspaces_quality_fruits <- mFD::quality.fspaces(
                                  pos = "darkred"),
   gradient_deviation_quality = c(low ="yellow", high = "red"),
   x_lab                      = "Trait-based distance")
-}
 }
 \author{
 Sebastien Villeger and Camille Magneville

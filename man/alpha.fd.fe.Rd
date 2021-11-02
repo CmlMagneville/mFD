@@ -51,7 +51,6 @@ This function computes the set of indices based on number of species in
 Functional Entities (FEs) following Mouillot \emph{et al.} (2014).
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -81,7 +80,6 @@ alpha.fd.fe(
    ind_nm           = c('fred', 'fored', 'fvuln'),
    check_input      = TRUE, 
    details_returned = TRUE)
-}
 }
 \references{
 Mouillot \emph{et al.} (2014) Functional over-redundancy and high functional

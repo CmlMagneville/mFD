@@ -100,7 +100,6 @@ The quality metric obtained with deviation_weighting = 'squared' and
 originally suggested in Maire \emph{et al.} (2015).
 }
 \examples{
-\dontrun{
 # Load Species x Traits Data
 data("fruits_traits", package = "mFD")
 
@@ -124,10 +123,11 @@ fspaces_quality_fruits <- mFD::quality.fspaces(
   deviation_weighting = "absolute",
   fdist_scaling       = FALSE,
   fdendro             = "average")
+ fspaces_quality_fruits
   
 # Retrieve Species Coordinates
 sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
-}
+sp_faxes_coord_fruits
 }
 \references{
 Maire \emph{et al.} (2015) How many dimensions are needed to accurately assess

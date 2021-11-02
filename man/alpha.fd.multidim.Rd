@@ -79,7 +79,6 @@ alpha functional diversity. The user can choose which functional indices to
 compute.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -122,7 +121,6 @@ alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
 # Retrieve alpha diversity indices table
 fd_ind_values_fruits <- alpha_fd_indices_fruits$functional_diversity_indices
 fd_ind_values_fruits
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

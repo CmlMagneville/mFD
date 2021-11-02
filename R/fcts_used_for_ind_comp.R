@@ -17,7 +17,6 @@
 #' @author Camille Magneville and Sebastien Villeger
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #'  data("fruits_traits", package = "mFD")
 #' 
@@ -50,7 +49,7 @@
 #' # Retrieve the distances of all species to "pear":
 #'  dist_pear <- dist.point(sp_faxes_coord_fruits, ref_sp = "pear")
 #'  dist_pear
-#' }
+
 
 dist.point <- function(sp_faxes_coord, ref_sp) {
   # build the matrix of distances between species to
@@ -87,7 +86,6 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #'  data("fruits_traits", package = "mFD")
 #' 
@@ -120,7 +118,7 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 #' # Compute the distance of "pear" to its nearest neighbor(s):
 #'  dist_nn_pear <- dist.nearneighb(sp_faxes_coord_fruits, ref_sp = "pear")
 #'  dist_nn_pear
-#' }
+
 
 dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
   
@@ -167,7 +165,6 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #'  data("fruits_traits", package = "mFD")
 #' 
@@ -200,7 +197,7 @@ dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
 #' # Compute the distance of "pear" to its nearest neighbor(s):
 #'  mst_fruits <- mst.computation(sp_faxes_coord_fruits)
 #'  mst_fruits
-#' }
+
 
 mst.computation <- function(sp_faxes_coord_k) {
   
@@ -241,7 +238,6 @@ mst.computation <- function(sp_faxes_coord_k) {
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #'  data("fruits_traits", package = "mFD")
 #' 
@@ -275,7 +271,7 @@ mst.computation <- function(sp_faxes_coord_k) {
 #'  vert_nm <- vertices(sp_faxes_coord_fruits[ , c("PC1", "PC2")], 
 #'   order_2D = TRUE, check_input = TRUE)
 #'  vert_nm
-#' }
+
 #' 
 
 vertices <- function(sp_faxes_coord, order_2D = FALSE, check_input = FALSE) {

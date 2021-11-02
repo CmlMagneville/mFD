@@ -46,7 +46,6 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load species traits data:
 #' sp_tr <- read.csv(system.file('extdata', 'data_traits_MMA_ursus.csv', 
 #'   package = 'mFD'), dec = ',', sep = ';', header = TRUE, row.names = 1,
@@ -103,6 +102,7 @@
 #'     nb_NN          = 5,  
 #'     GE             = sp_tr$IUCN_num,
 #'     standGE        = TRUE)
+#'  FUSE_res
 #'     
 #'  FUSE_res2 <- mFD::fuse(
 #'     sp_dist        = sp_dist_tr, 
@@ -110,6 +110,7 @@
 #'     nb_NN          = 5,
 #'     GE             = sp_tr$IUCN_50,
 #'     standGE        = TRUE)
+#'  FUSE_res2
 #'     
 #'  FUSE_res3 <- mFD::fuse(
 #'     sp_dist        = sp_dist_tr, 
@@ -117,7 +118,8 @@
 #'     nb_NN          = 5, 
 #'     GE             = sp_tr$IUCN_100,
 #'     standGE        = TRUE)
-#' }
+#'  FUSE_res3
+
 
 fuse <- function(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = FALSE) {
   

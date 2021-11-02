@@ -31,7 +31,6 @@ the \code{alpha_FD_multidim} function to filter species and compute each
 functional indices for each community.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -66,7 +65,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
 sp.filter(asb_nm         = "basket_1", 
           sp_faxes_coord = sp_faxes_coord_fruits, 
           asb_sp_w       = baskets_fruits_weights)
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

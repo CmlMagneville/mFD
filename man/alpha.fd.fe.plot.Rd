@@ -88,7 +88,6 @@ functional indices, functional indices values must have been computed first
 through the use of the} \code{\link{alpha.fd.fe}} function.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe
 data("fruits_traits", package = "mFD")
 
@@ -135,7 +134,6 @@ mFD::alpha.fd.fe.plot(
   size_line_fred    = 1.5,
   size_arrow_fvuln  = 1,
   check_input       = TRUE) 
-}
 }
 \references{
 Mouillot \emph{et al.} (2014) Functional over-redundancy and high functional

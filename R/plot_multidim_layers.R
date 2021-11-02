@@ -20,12 +20,10 @@
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #'  background <- background.plot(range_faxes = c(-1, 2), 
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
-#'                                color_bg    = "grey90") 
-#' }
-
+#'                                color_bg    = "grey90")
+#'  background 
 
 
 background.plot <- function(range_faxes, faxes_nm, color_bg) {
@@ -116,7 +114,6 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -155,17 +152,17 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #'  
 #'  # Retrieve the background plot:
 #'  ggplot_bg_fruits <- mFD::background.plot(
-#'                                range_faxes = ranges_faxes_lim, 
+#'                                range_faxes = range_faxes_lim, 
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
 #'  # Retrieve vertices names:
-#'  vert_nm_fruits <- vertices(sp_faxes_coord_fruits, 
+#'  vert_nm_fruits <- vertices(sp_faxes_coord_fruits_2D, 
 #'   order_2D = TRUE, check_input = TRUE)
 #'   
 #'  # Plot the pool:
 #'  plot_pool_fruits <- pool.plot(ggplot_bg   = ggplot_bg_fruits,
-#'            sp_coord2D    = sp_coord_fruits_2D,
+#'            sp_coord2D    = sp_faxes_coord_fruits_2D,
 #'            vertices_nD   = vert_nm_fruits,
 #'            plot_pool     = TRUE,
 #'            shape_pool    = 3, 
@@ -180,7 +177,7 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
 #'            color_vert    = "black", 
 #'            fill_vert     = NA) 
 #'  plot_pool_fruits
-#' }
+
 
 pool.plot <- function(ggplot_bg,
                     sp_coord2D,
@@ -509,7 +506,7 @@ sp.plot <- function(ggplot_bg,
 #'  # Retrieve species coordinates matrix for the assemblage "basket_1":
 #'   sp_filter <- mFD::sp.filter(asb_nm          = c("basket_1"), 
 #'                               sp_faxes_coord = sp_faxes_coord_fruits, 
-#'                               asb_sp_w       = baskets_fruits_weight)
+#'                               asb_sp_w       = baskets_fruits_weights)
 #'   sp_faxes_coord_fruits_b1 <- sp_filter$`species coordinates`
 #'  
 #'  # Reduce it to the two studed axes: PC1 and PC2:
@@ -523,24 +520,24 @@ sp.plot <- function(ggplot_bg,
 #'  
 #'  # Retrieve the background plot:
 #'  ggplot_bg_fruits <- mFD::background.plot(
-#'                                range_faxes = ranges_faxes_lim, 
+#'                                range_faxes = range_faxes_lim, 
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
 #'  # Retrieve vertices names:
-#'  vert_nm_fruits <- vertices(sp_faxes_coord_fruits_b1, 
+#'  vert_nm_fruits <- vertices(sp_faxes_coord_fruits_b1_2D, 
 #'   order_2D = TRUE, check_input = TRUE)
 #'                                
 #'  # Plot in white the convex hull of all fruits species:
 #'  ggplot_fric <- mFD::fric.plot(
 #'            ggplot_bg       = ggplot_bg_fruits,
 #'            asb_sp_coord2D  = list(basket_1 = sp_faxes_coord_fruits_b1_2D),
-#'            asb_vertices_nD = vert_nm_fruits,
+#'            asb_vertices_nD = list(basket_1 = vert_nm_fruits),
 #'            plot_sp         = TRUE,
 #'            color_ch        = "black", 
 #'            fill_ch         = "white", 
 #'            alpha_ch        = 0.3,
-#'            size_sp = 1,
+#'            size_sp = c("basket_1" = 1),
 #'            shape_sp = 16,
 #'            color_sp = "red",
 #'            fill_sp = "red",
