@@ -18,11 +18,11 @@
 #' 
 #' @examples 
 #' # Create dist objects: 
-#' dist_A <- round(dist(matrix(runif(1:100), 5, 2, 
+#' dist_A <- round(dist(matrix(runif(10, 0, 1), 5, 2, 
 #'                       dimnames = list(letters[1:5], NULL))), 2)
-#' dist_B <- round(dist(matrix(runif(1:100), 5, 2, 
+#' dist_B <- round(dist(matrix(runif(10, 0, 1), 5, 2, 
 #'                       dimnames = list(letters[1:5], NULL))), 2)
-#' dist_C <- round(dist(matrix(runif(1:100), 5, 2, 
+#' dist_C <- round(dist(matrix(runif(10, 0, 1), 5, 2, 
 #'                       dimnames = list(letters[1:5], NULL))), 2)
 #'
 #' # First example with only 1 distance:
