@@ -114,6 +114,8 @@
 #' @author Camille Magneville and Sebastien Villeger
 #'
 #' @examples
+#' \donttest{
+#'
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #'
@@ -200,6 +202,7 @@
 #' 
 #' # Check FRic plot:
 #' plots_alpha$fric$patchwork
+#' }
 
 
 alpha.multidim.plot <- function(output_alpha_fd_multidim,
