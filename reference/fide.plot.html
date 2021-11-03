@@ -120,7 +120,7 @@ plot." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/cmlmagneville/mFD/">
+  <a href="https://github.com/CmlMagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -139,7 +139,7 @@ plot." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot FIde index</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cmlmagneville/mFD/blob/master/R/plot_multidim_layers.R'><code>R/plot_multidim_layers.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/CmlMagneville/mFD/blob/master/R/plot_multidim_layers.R'><code>R/plot_multidim_layers.R</code></a></small>
     <div class="hidden name"><code>fide.plot.Rd</code></div>
     </div>
 
@@ -291,8 +291,7 @@ assemblage to plot, the vector should be formatted as: c(asb1 =
     <p>Camille Magneville and Sebastien Villeger</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'><span class='co'># Load Species*Traits dataframe:</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># Load Species*Traits dataframe:</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"fruits_traits"</span>, package <span class='op'>=</span> <span class='st'>"mFD"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># Load Assemblages*Species dataframe:      </span></span>
@@ -309,6 +308,12 @@ assemblage to plot, the vector should be formatted as: c(asb1 =
 <span class='r-in'>                                  ordinal_var   <span class='op'>=</span> <span class='st'>"classic"</span>,</span>
 <span class='r-in'>                                  weight_type   <span class='op'>=</span> <span class='st'>"equal"</span>,</span>
 <span class='r-in'>                                  stop_if_NA    <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
 <span class='r-in'>  </span>
 <span class='r-in'><span class='co'># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
 <span class='r-in'><span class='va'>fspaces_quality_fruits</span> <span class='op'>&lt;-</span> <span class='fu'>mFD</span><span class='fu'>::</span><span class='fu'><a href='quality.fspaces.html'>quality.fspaces</a></span><span class='op'>(</span>sp_dist <span class='op'>=</span> <span class='va'>sp_dist_fruits</span>, </span>
@@ -348,6 +353,16 @@ assemblage to plot, the vector should be formatted as: c(asb1 =
 <span class='r-in'>  scaling          <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
 <span class='r-in'>  check_input      <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
 <span class='r-in'>  details_returned <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_1 done 10%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_2 done 20%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_3 done 30%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_4 done 40%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_5 done 50%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_6 done 60%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_7 done 70%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_8 done 80%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_9 done 90%</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> basket_10 done 100%</span>
 <span class='r-in'>  </span>
 <span class='r-in'> <span class='co'># Retrieve fide values through alpha.fd.multidim outputs:</span></span>
 <span class='r-in'> <span class='va'>fruits_asb_fide_coord2D</span> <span class='op'>&lt;-</span> </span>
@@ -356,8 +371,6 @@ assemblage to plot, the vector should be formatted as: c(asb1 =
 <span class='r-in'> <span class='va'>fruits_asb_fide_coord2D_b1</span> <span class='op'>&lt;-</span> <span class='va'>fruits_asb_fide_coord2D</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"basket_1"</span><span class='op'>)</span>, <span class='op'>]</span></span>
 <span class='r-in'> <span class='va'>fruits_asb_sp_relatw_b1</span> <span class='op'>&lt;-</span> </span>
 <span class='r-in'>         <span class='va'>alpha_fd_indices_fruits</span><span class='op'>$</span><span class='va'>details</span><span class='op'>$</span><span class='va'>asb_sp_relatw</span><span class='op'>[</span><span class='st'>"basket_1"</span>, <span class='op'>]</span></span>
-<span class='r-in'></span>
-<span class='r-in'></span>
 <span class='r-in'> </span>
 <span class='r-in'> <span class='co'># Retrieve FIde plot:</span></span>
 <span class='r-in'> <span class='va'>fide_plot</span> <span class='op'>&lt;-</span> <span class='fu'>fide.plot</span><span class='op'>(</span>ggplot_bg <span class='op'>=</span> <span class='va'>ggplot_bg_fruits</span>,</span>
@@ -377,8 +390,7 @@ assemblage to plot, the vector should be formatted as: c(asb1 =
 <span class='r-in'>           linetype_segment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>basket_1 <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span class='r-in'>           </span>
 <span class='r-in'> <span class='va'>fide_plot</span></span>
-<span class='r-in'> </span>
-<span class='r-in'><span class='op'>}</span></span>
+<span class='r-plt img'><img src='fide.plot-1.png' alt='' width='700' height='433' /></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

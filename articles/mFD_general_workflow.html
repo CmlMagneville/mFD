@@ -76,7 +76,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/cmlmagneville/mFD/">
+  <a href="https://github.com/CmlMagneville/mFD/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -97,9 +97,9 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 class="author">Camille Magneville</h4>
             
-            <h4 class="date">2021-11-02</h4>
+            <h4 class="date">2021-11-03</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/cmlmagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/master/vignettes/mFD_general_workflow.Rmd"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
 
     </div>
@@ -984,6 +984,16 @@ Basic framework of the mFD package
   scaling          <span class="op">=</span> <span class="cn">TRUE</span>,
   check_input      <span class="op">=</span> <span class="cn">TRUE</span>,
   details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## basket_1 done 10%</code></pre>
+<pre><code>## basket_2 done 20%</code></pre>
+<pre><code>## basket_3 done 30%</code></pre>
+<pre><code>## basket_4 done 40%</code></pre>
+<pre><code>## basket_5 done 50%</code></pre>
+<pre><code>## basket_6 done 60%</code></pre>
+<pre><code>## basket_7 done 70%</code></pre>
+<pre><code>## basket_8 done 80%</code></pre>
+<pre><code>## basket_9 done 90%</code></pre>
+<pre><code>## basket_10 done 100%</code></pre>
 <p><br></p>
 <p>The arguments and their use are listed below:</p>
 <ul>
@@ -1014,7 +1024,7 @@ Basic framework of the mFD package
 <ul>
 <li>a <strong>data frame gathering indices values in each assemblage</strong> (for <code>FIde</code> values, there are as many columns as there are axes to the studied functional space).</li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fd_ind_values_fruits</span> <span class="op">&lt;-</span> <span class="va">alpha_fd_indices_fruits</span><span class="op">$</span><span class="st">"functional_diversity_indices"</span>
 <span class="va">fd_ind_values_fruits</span></code></pre></div>
 <pre><code>##           sp_richn      fdis      fmpd      fnnd     feve        fric      fdiv
@@ -1043,13 +1053,13 @@ Basic framework of the mFD package
 <ul>
 <li>a <strong>details list</strong> of data frames and sublists gathering information such as coordinates of centroids, distances and identity of the nearest neighbour, distances to the centroid, etc. The user does not have to directly use it but it will be useful if FD indices are then plotted. It can be retrieved through:</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">details_list_fruits</span> <span class="op">&lt;-</span> <span class="va">alpha_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span></code></pre></div>
 <p><br></p>
 <p>Then, you can plot functional indices using the <code><a href="../reference/alpha.multidim.plot.html">mFD::alpha.multidim.plot()</a></code> function as follows:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.multidim.plot.html">alpha.multidim.plot</a></span><span class="op">(</span>
   output_alpha_fd_multidim <span class="op">=</span> <span class="va">alpha_fd_indices_fruits</span>,
   plot_asb_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_5"</span><span class="op">)</span>,
@@ -1098,7 +1108,7 @@ Basic framework of the mFD package
 <li>
 <code>FRic</code> representation: the colored shapes reflect the convex-hull of the studied assemblages and the white shape reflects the convex-hull of the global pool of species:</li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fric"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-31-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1106,7 +1116,7 @@ Basic framework of the mFD package
 <li>
 <code>FDiv</code> representation: the gravity centers of <strong>vertices</strong> (i.e. species with the most extreme functional traits) of each assemblages are plotted as a square and a triangle. The two colored circles represent the mean distance of species to the gravity center for each assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fdiv"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-32-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1114,7 +1124,7 @@ Basic framework of the mFD package
 <li>
 <code>FSpe</code> representation: colored traits represent distances of each species from a given assemblage to the center of gravity of the global pool (i.e center of the functional space). the center of gravity is plotted with a purple diamond. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fspe"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-33-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1122,7 +1132,7 @@ Basic framework of the mFD package
 <li>
 <code>FDis</code> representation: colored traits represent distances of each species from a given assemblage to the center of gravity of species of the assemblage (defined by FIde values). The center of gravity of each assemblage is plotted using a square and a triangle. Species of each assemblage havedifferent size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fdis"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-34-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1130,7 +1140,7 @@ Basic framework of the mFD package
 <li>
 <code>FIde</code> representation:colored lines refer to the weighted average position of species of each assemblage along each axis. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fide"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-35-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1138,7 +1148,7 @@ Basic framework of the mFD package
 <li>
 <code>FEve</code> representation: colored traits represent the Minimum Spanning Tree linking species of each assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"feve"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-36-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1146,14 +1156,14 @@ Basic framework of the mFD package
 <li>
 <code>FOri</code> representation: colored arrows represent the distances of each species from each assemblage to the nearest species in the global species pool. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fori"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-37-1.png" width="1920" style="display: block; margin: auto;"></p>
 <ul>
 <li>
 <code>FNND</code> representation: colored arrows represent the distances of each species from each assemblage to the nearest species in the studied assemblage. Species of each assemblage have different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fnnd"</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-38-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1173,7 +1183,7 @@ Basic framework of the mFD package
 <p>The <code><a href="../reference/beta.fd.multidim.html">mFD::beta.fd.multidim()</a></code> function has the main following arguments:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.fd.multidim.html">beta.fd.multidim</a></span><span class="op">(</span>
       sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,
       asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>,
@@ -1194,26 +1204,26 @@ Basic framework of the mFD package
 <ul>
 <li>a dist object with beta indices values for each pair of assemblages:</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"pairasb_fbd_indices"</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a list containing details such as inputs, vertices of the global pool and of each assemblage and FRic values for each assemblage</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a vector containing the <code>FRic</code> value for each assemblage retrieved through the <code>details_beta</code> list:</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span><span class="op">$</span><span class="st">"asb_FRic"</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>a list of vectors containing names of species being vertices of the convex hull for each assemblage retrieved through the <code>details_beta</code> list:</li>
 </ul>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span><span class="op">$</span><span class="st">"asb_vertices"</span></code></pre></div>
 <p><br></p>
 <p>Then, the package allows the user to illustrate functional beta-diversity indices for a pair of assemblages in a multidimensional space using the <code><a href="../reference/beta.multidim.plot.html">mFD::beta.multidim.plot()</a></code> function. The output of this function is a figure showing the overlap between convex hulls shaping each of the two species assemblages.</p>
@@ -1221,7 +1231,7 @@ Basic framework of the mFD package
 <p>The plotting function has a large number of arguments, allowing the user to chose graphical options. Arguments are listed below:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_plot_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.multidim.plot.html">beta.multidim.plot</a></span><span class="op">(</span>
   output_beta_fd_multidim <span class="op">=</span> <span class="va">beta_fd_indices_fruits</span>,
   plot_asb_nm             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_4"</span><span class="op">)</span>,
@@ -1260,7 +1270,7 @@ Basic framework of the mFD package
 <p><br></p>
 <p>Then, the function returns each graph for each functional axes combination and also a multipanel plot with all combinations of axes and the graph caption. Here is the multipanel for the fruits exaample:</p>
 <p><br></p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">beta_plot_fruits</span><span class="op">$</span><span class="st">"patchwork"</span></code></pre></div>
 <p><br></p>
 <p>For each assemblage, the associated convex hull is plotted in a different colour and indices values are printed on the right corner of the plot. Vertices of the convex hull of a given assemblage can be plotted with a different symbol such as in this example. Species of all assemblages are plotted with gray cross and the associated convex hull is plotted in white.</p>
