@@ -472,7 +472,6 @@ sp.plot <- function(ggplot_bg,
 #' @export
 #' 
 #' @examples 
-#' \dontrun{
 #' ## Retrieve FRic plot:
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
@@ -514,8 +513,8 @@ sp.plot <- function(ggplot_bg,
 #'
 #' # Set faxes limits:
 #' # set range of axes if c(NA, NA):
-#'  range_sp_coord  <- range(sp_faxes_coord_fruits)
-#'  range_faxes_lim <- range_sp_coord + c(-1, 1)*(range_sp_coord_fruits[2] - 
+#'  range_sp_coord_fruits  <- range(sp_faxes_coord_fruits)
+#'  range_faxes_lim <- range_sp_coord_fruits + c(-1, 1)*(range_sp_coord_fruits[2] - 
 #'  range_sp_coord_fruits[1]) * 0.05
 #'  
 #'  # Retrieve the background plot:
@@ -534,40 +533,54 @@ sp.plot <- function(ggplot_bg,
 #'            asb_sp_coord2D  = list(basket_1 = sp_faxes_coord_fruits_b1_2D),
 #'            asb_vertices_nD = list(basket_1 = vert_nm_fruits),
 #'            plot_sp         = TRUE,
-#'            color_ch        = "black", 
-#'            fill_ch         = "white", 
-#'            alpha_ch        = 0.3,
+#'            color_ch        = c("basket_1" = "black"), 
+#'            fill_ch         = c("basket_1" = "white"), 
+#'            alpha_ch        = c("basket_1" = 0.3),
 #'            size_sp = c("basket_1" = 1),
-#'            shape_sp = 16,
-#'            color_sp = "red",
-#'            fill_sp = "red",
-#'            size_vert = 1,
-#'            color_vert = "red",
-#'            fill_vert = "red",
-#'            shape_vert = 16)
+#'            shape_sp = c("basket_1" = 16),
+#'            color_sp = c("basket_1" = "red"),
+#'            fill_sp = c("basket_1" = "red"),
+#'            size_vert = c("basket_1" = 1),
+#'            color_vert = c("basket_1" = "red"),
+#'            fill_vert = c("basket_1" = "red"),
+#'            shape_vert = c("basket_1" = 16))
 #'  ggplot_fric
 #'  
 #' ## Create a caption summing up FRic values 
 #' # retrieve values to plot:
-#' top_fric <- c("Functional richness", asb1, "")
-#' values_fric <- c(round(asb_fd_ind[asb1, "fric"], 3), "")
+#' top_fric <- c("Functional richness", "basket_1", "")
+#' 
+#' asb_fd_ind <- alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
+#' sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+#' asb_sp_w         = baskets_fruits_weights,
+#' ind_vect         = c("fric"),
+#' scaling          = TRUE,
+#' check_input      = TRUE,
+#' details_returned = TRUE)
+#' 
+#' values_fric <- c(round(asb_fd_ind$functional_diversity_indices["basket_1", 
+#' "fric"], 3), "")
 #'
 #' # customize position of texts in the plot:
-#' spread_faxes <- (range_sp_coord[2] - range_sp_coord[1])
+#' spread_faxes <- (range_sp_coord_fruits[2] - range_sp_coord_fruits[1])
 #' hh <- c(1, 2.5, 4, 5.5)
 #' vv <- 0.3
 #'
 #' # plot window:
 #' x <- NULL
 #' y <- NULL
-#' plot_caption <- ggplot2::ggplot(data.frame(x = range_sp_coord, 
-#'                                           y = range_sp_coord),
+#' plot_caption <- ggplot2::ggplot(data.frame(x = range_sp_coord_fruits, 
+#'                                           y = range_sp_coord_fruits),
 #'                                ggplot2::aes(x = x, y = y)) +
-#'  ggplot2::scale_x_continuous(limits = range_sp_coord, expand = c(0, 0)) +
-#'  ggplot2::scale_y_continuous(limits = range_sp_coord, expand = c(0, 0)) +
+#'  ggplot2::scale_x_continuous(limits = range_sp_coord_fruits, 
+#'  expand = c(0, 0)) +
+#'  ggplot2::scale_y_continuous(limits = range_sp_coord_fruits, 
+#'  expand = c(0, 0)) +
 #'  ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
-#'  ggplot2::geom_rect(xmin = range_sp_coord[1], xmax = range_sp_coord[2],
-#'                     ymin = range_sp_coord[1], ymax = range_sp_coord[2],
+#'  ggplot2::geom_rect(xmin = range_sp_coord_fruits[1], 
+#'                     xmax = range_sp_coord_fruits[2],
+#'                     ymin = range_sp_coord_fruits[1], 
+#'                     ymax = range_sp_coord_fruits[2],
 #'                     fill = "white", colour ="black")
 #'
 #' # plot names of index and of assemblages:
@@ -578,8 +591,8 @@ sp.plot <- function(ggplot_bg,
 #' y <- NULL
 #' plot_caption <- plot_caption +
 #'  ggplot2::geom_text(data = data.frame(
-#'    h = range_sp_coord[1] + spread_faxes * 0.15 * hh[c(1,3:4)],
-#'    v = range_sp_coord[2] - spread_faxes * rep(0.2, 3),
+#'    h = range_sp_coord_fruits[1] + spread_faxes * 0.15 * hh[c(1,3:4)],
+#'    v = range_sp_coord_fruits[2] - spread_faxes * rep(0.2, 3),
 #'    top = top_fric),
 #'    ggplot2::aes(x = h, y = v, label = top),
 #'    size = 3, hjust = 0.5, fontface = "bold")
@@ -587,8 +600,8 @@ sp.plot <- function(ggplot_bg,
 #' # plot FRic values:
 #' values_lab <- NULL
 #' data_caption <- data.frame(
-#'   h = range_sp_coord[1] + spread_faxes * 0.15 * hh[2:4],
-#'   v = range_sp_coord[2] - spread_faxes*rep(vv, 3),
+#'   h = range_sp_coord_fruits[1] + spread_faxes * 0.15 * hh[2:4],
+#'   v = range_sp_coord_fruits[2] - spread_faxes*rep(vv, 3),
 #'   values_lab = c("FRic", values_fric))
 #' plot_caption <- plot_caption +
 #'   ggplot2::geom_text(data = data_caption,
@@ -597,7 +610,8 @@ sp.plot <- function(ggplot_bg,
 #'
 #' ## Create patchwork:
 #' patchwork_fric <- mFD::panels.to.patchwork(list(ggplot_fric), plot_caption)
-#' }
+#' patchwork_fric
+
 
 panels.to.patchwork <- function(panels, plot_caption) {
   
@@ -737,7 +751,6 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -770,7 +783,7 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #'  # Retrieve species coordinates matrix for the assemblage "basket_1":
 #'   sp_filter <- mFD::sp.filter(asb_nm          = c("basket_1"), 
 #'                               sp_faxes_coord = sp_faxes_coord_fruits, 
-#'                               asb_sp_w       = baskets_fruits_weight)
+#'                               asb_sp_w       = baskets_fruits_weights)
 #'   sp_faxes_coord_fruits_b1 <- sp_filter$`species coordinates`
 #'  
 #'  # Reduce it to the two studid axes: PC1 and PC2:
@@ -778,42 +791,39 @@ panels.to.patchwork <- function(panels, plot_caption) {
 #'
 #' # Set faxes limits:
 #' # set range of axes if c(NA, NA):
-#'  range_sp_coord  <- range(sp_faxes_coord_fruits)
-#'  range_faxes_lim <- range_sp_coord + c(-1, 1)*(range_sp_coord_fruits[2] - 
+#'  range_sp_coord_fruits  <- range(sp_faxes_coord_fruits)
+#'  range_faxes_lim <- range_sp_coord_fruits + c(-1, 1)*(range_sp_coord_fruits[2] - 
 #'  range_sp_coord_fruits[1]) * 0.05
 #'  
 #'  # Retrieve the background plot:
 #'  ggplot_bg_fruits <- mFD::background.plot(
-#'                                range_faxes = ranges_faxes_lim, 
+#'                                range_faxes = range_faxes_lim, 
 #'                                faxes_nm    = c("PC 1", "PC 2"), 
 #'                                color_bg    = "grey90") 
 #'                                
 #'  # Retrieve vertices names:
-#'  vert_nm_fruits <- vertices(sp_faxes_coord_fruits_b1, 
+#'  vert_nm_fruits <- vertices(sp_faxes_coord_fruits_b1_2D, 
 #'   order_2D = TRUE, check_input = TRUE)
 #'                                
 #'  # Plot in white the convex hull of all fruits species:
 #'  ggplot_fric <- mFD::fric.plot(
 #'            ggplot_bg       = ggplot_bg_fruits,
 #'            asb_sp_coord2D  = list(basket_1 = sp_faxes_coord_fruits_b1_2D),
-#'            asb_vertices_nD = vert_nm_fruits,
+#'            asb_vertices_nD = list(basket_1 = vert_nm_fruits),
 #'            plot_sp         = TRUE,
-#'            color_ch        = "black", 
-#'            fill_ch         = "white", 
-#'            alpha_ch        = 0.3,
-#'            size_sp = 1,
-#'            shape_sp = 16,
-#'            color_sp = "red",
-#'            fill_sp = "red",
-#'            size_vert = 1,
-#'            color_vert = "red",
-#'            fill_vert = "red",
-#'            shape_vert = 16)
+#'            color_ch        = c("basket_1" = "black"), 
+#'            fill_ch         = c("basket_1" = "white"), 
+#'            alpha_ch        = c("basket_1" = 0.3),
+#'            size_sp = c("basket_1" = 1),
+#'            shape_sp = c("basket_1" = 16),
+#'            color_sp = c("basket_1" = "red"),
+#'            fill_sp = c("basket_1" = "red"),
+#'            size_vert = c("basket_1" = 1),
+#'            color_vert = c("basket_1" = "red"),
+#'            fill_vert = c("basket_1" = "red"),
+#'            shape_vert = c("basket_1" = 16))
 #'  ggplot_fric
-#'
-#' }
-#'
-#'
+
 
 fric.plot <- function(ggplot_bg,
                       asb_sp_coord2D,
@@ -977,7 +987,6 @@ fric.plot <- function(ggplot_bg,
 #' @export
 #' 
 #' @examples
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1027,22 +1036,22 @@ fric.plot <- function(ggplot_bg,
 #'  fruits_asb_sp_coord2D_b1 <- fruits_asb_sp_coord_b1[, c("PC1", "PC2")]
 #'                                
 #'  # Use alpha.fd.multidim() function to get inputs to plot FDiv:
-#'  alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
-#'  sp_faxes_coord    = sp_faxes_coord_fruits[, c("PC1", "PC2", "PC3", "PC4")],
-#'   asb_sp_w         = baskets_fruits_weights,
-#'   ind_vect         = c("fdiv"),
-#'   scaling          = TRUE,
-#'   check_input      = TRUE,
-#'   details_returned = TRUE)
+#'  alpha_fd_ind <- mFD::alpha.fd.multidim(
+#' sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+#' asb_sp_w         = baskets_fruits_weights,
+#' ind_vect         = c("fdiv"),
+#' scaling          = TRUE,
+#' check_input      = TRUE,
+#' details_returned = TRUE)
 #'   
 #'  # Retrieve inputs of the fdiv.plot() function for "basket_1" and PC1, PC2
 #'  # ... through alpha.fd.multidim outputs:
 #'  fruits_asb_sp_relatw_b1 <- 
-#'          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
+#'          alpha_fd_ind$details$asb_sp_relatw["basket_1", ]
 #'  fruits_asb_vertices_nD_b1_2D <- 
-#'                      alpha_fd_indices_fruits$details$asb_vert_nm["basket_1"]
+#'                      alpha_fd_ind$details$asb_vert_nm["basket_1"]
 #'  fruits_asb_vertG_coord_b1 <- 
-#'                      alpha_fd_indices_fruits$details$asb_G_coord["basket_1"]
+#'                      alpha_fd_ind$details$asb_G_coord["basket_1"]
 #'  fruits_asb_vertG_coord_b1_2D <- 
 #'              fruits_asb_vertG_coord_b1[[1]][c("PC1", "PC2")]
 #'  
@@ -1051,11 +1060,11 @@ fric.plot <- function(ggplot_bg,
 #'            ggplot_bg         = ggplot_bg_fruits,
 #'            asb_sp_coord2D    = list(basket_1 = fruits_asb_sp_coord2D_b1),
 #'            asb_sp_relatw     = list(basket_1 = fruits_asb_sp_relatw_b1),
-#'            asb_vertices_nD   = fruits_asb_vertices_nD,
+#'            asb_vertices_nD   = fruits_asb_vertices_nD_b1_2D,
 #'            asb_vertG_coord2D = list(basket_1 = fruits_asb_vertG_coord_b1_2D),
 #'            plot_sp           = TRUE,
 #'            shape_sp          = 16,
-#'            color_sp          = "red",
+#'            color_sp          = c(basket_1 = "red"),
 #'            fill_sp           = "red",
 #'            color_vert        = "red",
 #'            fill_vert         = "red",
@@ -1065,7 +1074,7 @@ fric.plot <- function(ggplot_bg,
 #'            color_vertG       = list(basket_1 = "blue"),
 #'            fill_vertG        = list(basket_1 = "blue"))
 #'  fdiv_plot
-#' }
+
 
 fdiv.plot <- function(ggplot_bg,
                       asb_sp_coord2D,
@@ -1225,7 +1234,6 @@ fdiv.plot <- function(ggplot_bg,
 #' @export
 #' 
 #' @examples 
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1290,8 +1298,6 @@ fdiv.plot <- function(ggplot_bg,
 #'  fruits_asb_fide_coord2D_b1 <- fruits_asb_fide_coord2D[c("basket_1"), ]
 #'  fruits_asb_sp_relatw_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
-#'
-#'
 #'  
 #'  # Retrieve FIde plot:
 #'  fide_plot <- fide.plot(ggplot_bg = ggplot_bg_fruits,
@@ -1311,8 +1317,7 @@ fdiv.plot <- function(ggplot_bg,
 #'            linetype_segment = list(basket_1 = "dashed"))
 #'            
 #'  fide_plot
-#'  
-#' }
+
 
 fide.plot <-function(ggplot_bg,
                     asb_sp_coord2D,
@@ -1493,7 +1498,6 @@ fide.plot <-function(ggplot_bg,
 #' @export
 #' 
 #' @examples 
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1577,7 +1581,7 @@ fide.plot <-function(ggplot_bg,
 #'            linetype_segment = list(basket_1 = "dashed"))
 #'            
 #'  fdis_plot
-#' }
+
 
 fdis.plot <- function(ggplot_bg,
                     asb_sp_coord2D,
@@ -1728,7 +1732,6 @@ fdis.plot <- function(ggplot_bg,
 #' @export
 #' 
 #' @examples 
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1789,7 +1792,11 @@ fdis.plot <- function(ggplot_bg,
 #'  # Retrieve fide values through alpha.fd.multidim outputs:
 #'  fruits_asb_mst_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_mst["basket_1"]
-#'
+#'  fruits_asb_sp_coord_b1 <- sp_filter$`species coordinates`
+#'  fruits_asb_sp_coord2D_b1 <- fruits_asb_sp_coord_b1[, c("PC1", "PC2")]
+#'  fruits_asb_sp_relatw_b1 <- 
+#'          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
+#'          
 #'  # Retrieve FEve plot:
 #'  feve_plot <- feve.plot(ggplot_bg = ggplot_bg_fruits,
 #'            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -1804,7 +1811,7 @@ fdis.plot <- function(ggplot_bg,
 #'            linetype_mst = list(basket_1 = "solid"))
 #'            
 #'  feve_plot
-#' }
+
 
 feve.plot <- function(ggplot_bg,
                       asb_sp_coord2D,
@@ -1929,7 +1936,6 @@ feve.plot <- function(ggplot_bg,
 #' @export
 #' 
 #' @examples 
-#' \dontrun{
 #' # Load Species*Traits dataframe:
 #' data("fruits_traits", package = "mFD")
 #' 
@@ -1987,9 +1993,12 @@ feve.plot <- function(ggplot_bg,
 #'   check_input      = TRUE,
 #'   details_returned = TRUE)
 #'   
-#'  # Retrieve nearest neighbor(s) names through alpha.fd.multidim outputs:
+#'  # Retrieve nearest neighbor(s) names and relative weights ...
+#'  # ... through alpha.fd.multidim outputs:
 #'  fruits_asb_nn_asb_b1 <- 
 #'          alpha_fd_indices_fruits$details$asb_nm_nn_asb["basket_1"]
+#'  fruits_asb_sp_relatw_b1 <- 
+#'          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
 #'
 #'  # Retrieve FNND plot:
 #'  fnnd_plot <- fnnd.plot(ggplot_bg = ggplot_bg_fruits,
@@ -2005,7 +2014,7 @@ feve.plot <- function(ggplot_bg,
 #'            linetype_segment = list(basket_1 = "solid"))
 #'            
 #'  fnnd_plot
-#' }
+
 
 fnnd.plot <- function(ggplot_bg,
                     asb_sp_coord2D,

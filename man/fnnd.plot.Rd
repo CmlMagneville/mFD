@@ -77,7 +77,6 @@ This function plots FNND index for a given pair of functional axes and for
 one or several assemblages
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -135,9 +134,12 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
   check_input      = TRUE,
   details_returned = TRUE)
   
- # Retrieve nearest neighbor(s) names through alpha.fd.multidim outputs:
+ # Retrieve nearest neighbor(s) names and relative weights ...
+ # ... through alpha.fd.multidim outputs:
  fruits_asb_nn_asb_b1 <- 
          alpha_fd_indices_fruits$details$asb_nm_nn_asb["basket_1"]
+ fruits_asb_sp_relatw_b1 <- 
+         alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
 
  # Retrieve FNND plot:
  fnnd_plot <- fnnd.plot(ggplot_bg = ggplot_bg_fruits,
@@ -153,7 +155,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            linetype_segment = list(basket_1 = "solid"))
            
  fnnd_plot
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

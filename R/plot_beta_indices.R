@@ -104,6 +104,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' # Load Species*Traits dataframe:
 #'  data("fruits_traits", package = "mFD")
 #'
@@ -170,6 +171,7 @@
 #'    nm_color                = "black",
 #'    nm_fontface             = "plain",
 #'    check_input             = TRUE)
+#'}
 
 
 beta.multidim.plot <- function(output_beta_fd_multidim,

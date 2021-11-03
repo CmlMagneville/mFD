@@ -16,15 +16,14 @@ Computing functional traits-based distances between pairs of
     Mouillot et al. (2013) <doi:10.1016/j.tree.2012.10.004>, Mouillot et al.
     (2014) <doi:10.1073/pnas.1317625111>, Ricotta and Szeidl (2009)
     <doi:10.1016/j.tpb.2009.10.001>. Graphical outputs are included.
-    Visit the 'mFD' website for more information, documentation and examples:
-    <https://cmlmagneville.github.com/mFD/>.
+    Visit the 'mFD' website for more information, documentation and examples.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://cmlmagneville.github.com/mFD/}
-  \item \url{https://github.com/cmlmagneville/mFD}
-  \item Report bugs at \url{https://github.com/cmlmagneville/mFD/issues}
+  \item \url{https://cmlmagneville.github.io/mFD/}
+  \item \url{https://github.com/CmlMagneville/mFD}
+  \item Report bugs at \url{https://github.com/CmlMagneville/mFD/issues}
 }
 
 }

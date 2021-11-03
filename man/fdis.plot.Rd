@@ -114,7 +114,6 @@ one or several assemblages. It adds segments between species relative
 weights and assemblage cenntroid on the background plot.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -198,7 +197,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            linetype_segment = list(basket_1 = "dashed"))
            
  fdis_plot
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

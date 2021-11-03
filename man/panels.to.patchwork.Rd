@@ -22,7 +22,6 @@ This function gathers panels into a unique \code{patchwork} graph
 with caption.
 }
 \examples{
-\dontrun{
 ## Retrieve FRic plot:
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
@@ -64,8 +63,8 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
 
 # Set faxes limits:
 # set range of axes if c(NA, NA):
- range_sp_coord  <- range(sp_faxes_coord_fruits)
- range_faxes_lim <- range_sp_coord + c(-1, 1)*(range_sp_coord_fruits[2] - 
+ range_sp_coord_fruits  <- range(sp_faxes_coord_fruits)
+ range_faxes_lim <- range_sp_coord_fruits + c(-1, 1)*(range_sp_coord_fruits[2] - 
  range_sp_coord_fruits[1]) * 0.05
  
  # Retrieve the background plot:
@@ -84,40 +83,54 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
            asb_sp_coord2D  = list(basket_1 = sp_faxes_coord_fruits_b1_2D),
            asb_vertices_nD = list(basket_1 = vert_nm_fruits),
            plot_sp         = TRUE,
-           color_ch        = "black", 
-           fill_ch         = "white", 
-           alpha_ch        = 0.3,
+           color_ch        = c("basket_1" = "black"), 
+           fill_ch         = c("basket_1" = "white"), 
+           alpha_ch        = c("basket_1" = 0.3),
            size_sp = c("basket_1" = 1),
-           shape_sp = 16,
-           color_sp = "red",
-           fill_sp = "red",
-           size_vert = 1,
-           color_vert = "red",
-           fill_vert = "red",
-           shape_vert = 16)
+           shape_sp = c("basket_1" = 16),
+           color_sp = c("basket_1" = "red"),
+           fill_sp = c("basket_1" = "red"),
+           size_vert = c("basket_1" = 1),
+           color_vert = c("basket_1" = "red"),
+           fill_vert = c("basket_1" = "red"),
+           shape_vert = c("basket_1" = 16))
  ggplot_fric
  
 ## Create a caption summing up FRic values 
 # retrieve values to plot:
-top_fric <- c("Functional richness", asb1, "")
-values_fric <- c(round(asb_fd_ind[asb1, "fric"], 3), "")
+top_fric <- c("Functional richness", "basket_1", "")
+
+asb_fd_ind <- alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
+sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+asb_sp_w         = baskets_fruits_weights,
+ind_vect         = c("fric"),
+scaling          = TRUE,
+check_input      = TRUE,
+details_returned = TRUE)
+
+values_fric <- c(round(asb_fd_ind$functional_diversity_indices["basket_1", 
+"fric"], 3), "")
 
 # customize position of texts in the plot:
-spread_faxes <- (range_sp_coord[2] - range_sp_coord[1])
+spread_faxes <- (range_sp_coord_fruits[2] - range_sp_coord_fruits[1])
 hh <- c(1, 2.5, 4, 5.5)
 vv <- 0.3
 
 # plot window:
 x <- NULL
 y <- NULL
-plot_caption <- ggplot2::ggplot(data.frame(x = range_sp_coord, 
-                                          y = range_sp_coord),
+plot_caption <- ggplot2::ggplot(data.frame(x = range_sp_coord_fruits, 
+                                          y = range_sp_coord_fruits),
                                ggplot2::aes(x = x, y = y)) +
- ggplot2::scale_x_continuous(limits = range_sp_coord, expand = c(0, 0)) +
- ggplot2::scale_y_continuous(limits = range_sp_coord, expand = c(0, 0)) +
+ ggplot2::scale_x_continuous(limits = range_sp_coord_fruits, 
+ expand = c(0, 0)) +
+ ggplot2::scale_y_continuous(limits = range_sp_coord_fruits, 
+ expand = c(0, 0)) +
  ggplot2::theme_void() + ggplot2::theme(legend.position = "none") +
- ggplot2::geom_rect(xmin = range_sp_coord[1], xmax = range_sp_coord[2],
-                    ymin = range_sp_coord[1], ymax = range_sp_coord[2],
+ ggplot2::geom_rect(xmin = range_sp_coord_fruits[1], 
+                    xmax = range_sp_coord_fruits[2],
+                    ymin = range_sp_coord_fruits[1], 
+                    ymax = range_sp_coord_fruits[2],
                     fill = "white", colour ="black")
 
 # plot names of index and of assemblages:
@@ -128,8 +141,8 @@ x <- NULL
 y <- NULL
 plot_caption <- plot_caption +
  ggplot2::geom_text(data = data.frame(
-   h = range_sp_coord[1] + spread_faxes * 0.15 * hh[c(1,3:4)],
-   v = range_sp_coord[2] - spread_faxes * rep(0.2, 3),
+   h = range_sp_coord_fruits[1] + spread_faxes * 0.15 * hh[c(1,3:4)],
+   v = range_sp_coord_fruits[2] - spread_faxes * rep(0.2, 3),
    top = top_fric),
    ggplot2::aes(x = h, y = v, label = top),
    size = 3, hjust = 0.5, fontface = "bold")
@@ -137,8 +150,8 @@ plot_caption <- plot_caption +
 # plot FRic values:
 values_lab <- NULL
 data_caption <- data.frame(
-  h = range_sp_coord[1] + spread_faxes * 0.15 * hh[2:4],
-  v = range_sp_coord[2] - spread_faxes*rep(vv, 3),
+  h = range_sp_coord_fruits[1] + spread_faxes * 0.15 * hh[2:4],
+  v = range_sp_coord_fruits[2] - spread_faxes*rep(vv, 3),
   values_lab = c("FRic", values_fric))
 plot_caption <- plot_caption +
   ggplot2::geom_text(data = data_caption,
@@ -147,7 +160,7 @@ plot_caption <- plot_caption +
 
 ## Create patchwork:
 patchwork_fric <- mFD::panels.to.patchwork(list(ggplot_fric), plot_caption)
-}
+patchwork_fric
 }
 \author{
 Camille Magneville and Sebastien Villeger

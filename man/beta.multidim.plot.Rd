@@ -131,6 +131,7 @@ diversity indices should have been computed using the}
 \code{\link{beta.fd.multidim}} \strong{function}.
 }
 \examples{
+\donttest{
 # Load Species*Traits dataframe:
  data("fruits_traits", package = "mFD")
 
@@ -197,6 +198,7 @@ diversity indices should have been computed using the}
    nm_color                = "black",
    nm_fontface             = "plain",
    check_input             = TRUE)
+}
 }
 \author{
 Sebastien Villeger and Camille Magneville

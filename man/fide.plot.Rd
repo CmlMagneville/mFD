@@ -113,7 +113,6 @@ segments showing centroid coordinates on functional axes on the background
 plot.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -178,8 +177,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
  fruits_asb_fide_coord2D_b1 <- fruits_asb_fide_coord2D[c("basket_1"), ]
  fruits_asb_sp_relatw_b1 <- 
          alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
-
-
  
  # Retrieve FIde plot:
  fide_plot <- fide.plot(ggplot_bg = ggplot_bg_fruits,
@@ -199,8 +196,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            linetype_segment = list(basket_1 = "dashed"))
            
  fide_plot
- 
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger

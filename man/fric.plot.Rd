@@ -119,7 +119,6 @@ or several assemblages. It adds convex hull(s), points and vertices of
 1:N assemblages on the background plot
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -152,7 +151,7 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
  # Retrieve species coordinates matrix for the assemblage "basket_1":
   sp_filter <- mFD::sp.filter(asb_nm          = c("basket_1"), 
                               sp_faxes_coord = sp_faxes_coord_fruits, 
-                              asb_sp_w       = baskets_fruits_weight)
+                              asb_sp_w       = baskets_fruits_weights)
   sp_faxes_coord_fruits_b1 <- sp_filter$`species coordinates`
  
  # Reduce it to the two studid axes: PC1 and PC2:
@@ -160,42 +159,38 @@ fspaces_quality_fruits <- mFD::quality.fspaces(sp_dist = sp_dist_fruits,
 
 # Set faxes limits:
 # set range of axes if c(NA, NA):
- range_sp_coord  <- range(sp_faxes_coord_fruits)
- range_faxes_lim <- range_sp_coord + c(-1, 1)*(range_sp_coord_fruits[2] - 
+ range_sp_coord_fruits  <- range(sp_faxes_coord_fruits)
+ range_faxes_lim <- range_sp_coord_fruits + c(-1, 1)*(range_sp_coord_fruits[2] - 
  range_sp_coord_fruits[1]) * 0.05
  
  # Retrieve the background plot:
  ggplot_bg_fruits <- mFD::background.plot(
-                               range_faxes = ranges_faxes_lim, 
+                               range_faxes = range_faxes_lim, 
                                faxes_nm    = c("PC 1", "PC 2"), 
                                color_bg    = "grey90") 
                                
  # Retrieve vertices names:
- vert_nm_fruits <- vertices(sp_faxes_coord_fruits_b1, 
+ vert_nm_fruits <- vertices(sp_faxes_coord_fruits_b1_2D, 
   order_2D = TRUE, check_input = TRUE)
                                
  # Plot in white the convex hull of all fruits species:
  ggplot_fric <- mFD::fric.plot(
            ggplot_bg       = ggplot_bg_fruits,
            asb_sp_coord2D  = list(basket_1 = sp_faxes_coord_fruits_b1_2D),
-           asb_vertices_nD = vert_nm_fruits,
+           asb_vertices_nD = list(basket_1 = vert_nm_fruits),
            plot_sp         = TRUE,
-           color_ch        = "black", 
-           fill_ch         = "white", 
-           alpha_ch        = 0.3,
-           size_sp = 1,
-           shape_sp = 16,
-           color_sp = "red",
-           fill_sp = "red",
-           size_vert = 1,
-           color_vert = "red",
-           fill_vert = "red",
-           shape_vert = 16)
+           color_ch        = c("basket_1" = "black"), 
+           fill_ch         = c("basket_1" = "white"), 
+           alpha_ch        = c("basket_1" = 0.3),
+           size_sp = c("basket_1" = 1),
+           shape_sp = c("basket_1" = 16),
+           color_sp = c("basket_1" = "red"),
+           fill_sp = c("basket_1" = "red"),
+           size_vert = c("basket_1" = 1),
+           color_vert = c("basket_1" = "red"),
+           fill_vert = c("basket_1" = "red"),
+           shape_vert = c("basket_1" = 16))
  ggplot_fric
-
-}
-
-
 }
 \author{
 Camille Magneville and Sebastien Villeger

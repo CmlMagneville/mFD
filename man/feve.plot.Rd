@@ -81,7 +81,6 @@ or several assemblages. It adds Minimum Spanning Tree (MST) of a given
 assemblage on the background plot.
 }
 \examples{
-\dontrun{
 # Load Species*Traits dataframe:
 data("fruits_traits", package = "mFD")
 
@@ -142,7 +141,11 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
  # Retrieve fide values through alpha.fd.multidim outputs:
  fruits_asb_mst_b1 <- 
          alpha_fd_indices_fruits$details$asb_mst["basket_1"]
-
+ fruits_asb_sp_coord_b1 <- sp_filter$`species coordinates`
+ fruits_asb_sp_coord2D_b1 <- fruits_asb_sp_coord_b1[, c("PC1", "PC2")]
+ fruits_asb_sp_relatw_b1 <- 
+         alpha_fd_indices_fruits$details$asb_sp_relatw["basket_1", ]
+         
  # Retrieve FEve plot:
  feve_plot <- feve.plot(ggplot_bg = ggplot_bg_fruits,
            asb_sp_coord2D = list(basket_1 = fruits_asb_sp_coord2D_b1),
@@ -157,7 +160,6 @@ sp_faxes_coord_fruits <- fspaces_quality_fruits$details_fspaces$sp_pc_coord
            linetype_mst = list(basket_1 = "solid"))
            
  feve_plot
-}
 }
 \author{
 Camille Magneville and Sebastien Villeger
