@@ -376,7 +376,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
       if ("fric" %in% ind_vect) {
         vert_nm <- fric$vertices_nm
       } else {
-        vert_nm <- NA
+        vert_nm <- NULL
       }
       # compute fdiv value:
       fdiv <- fdiv.computation(sp_faxes_coord_k, 
@@ -512,7 +512,7 @@ alpha.fd.multidim <- function(sp_faxes_coord, asb_sp_w,
     }
     
     if (verbose) {
-      print(paste0(k, sep = " ", "done ", round((n/nrow(asb_sp_w)) * 
+      message(paste0(k, sep = " ", "done ", round((n/nrow(asb_sp_w)) * 
                                                   100, digits = 1), "%"))
     }
   }  # end loop on assemblages
