@@ -324,14 +324,14 @@ fdiv.computation <- function(sp_faxes_coord_k, asb_sp_relatw_k,
            "'sp_faxes_coord_k'.")
     }
     
-    if (any(!is.na(vert_nm))) {
+    if (any(!is.null(vert_nm))) {
       if (any((vert_nm %in% row.names(sp_faxes_coord_k) == FALSE))) {
         stop("Names of the vertices are not all present in species ", 
              "coordinates matrix. Please check.")
       }
     }
     
-    if (any(is.na(vert_nm))) {
+    if (any(is.null(vert_nm))) {
       if (nrow(sp_faxes_coord_k) <= ncol(sp_faxes_coord_k)) {
         stop("Number of species should strictly be higher than number of ", 
              "axes for computing the convex hull. Please check.")
