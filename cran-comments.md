@@ -20,3 +20,11 @@
 ## Downstream dependencies
 
 There are currently no downstream dependencies for this package.
+
+
+## Resubmit comments
+
+* References have been added to the DESCRIPTION file
+* Packages have been written in single quotes in title and description
+* Examples are now executed
+* User messages with print() function have been changed using stop() function
