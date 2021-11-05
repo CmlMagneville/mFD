@@ -3,6 +3,8 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/package=mFD/)
 [![R CMD
 check](https://github.com/CmlMagneville/mFD/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CmlMagneville/mFD/actions/workflows/R-CMD-check.yaml)
 [![Website
@@ -12,6 +14,7 @@ GPL-2)](https://img.shields.io/badge/License-GPL%202-blue.svg)](https://chooseal
 [![LifeCycle](man/figures/lifecycle/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status:
 Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/mFD?color=blue)](https://cran.r-project.org/package=mFD)
 <!-- badges: end -->
 
 The `mFD` package provides a **“user friendly” interface** to compute a
@@ -28,9 +31,8 @@ You can install the stable version from
 [CRAN](https://cran.r-project.org/) with:
 
 ``` r
-## NOT AVAILABLE FOR NOW SO USE THE GITHUB INSTALLATION
-## Install stable version of < mFD > from CRAN ----
-## install.packages("mFD")
+Install stable version of < mFD > from CRAN ----
+install.packages("mFD")
 ```
 
 Or you can install the development version from
