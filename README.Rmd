@@ -19,11 +19,13 @@ mFD <img src="man/figures/hexasticker_mFD.png" height="120" align="right" alt = 
 
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/mFD)](https://CRAN.R-project.org/package=mFD/)
 [![R CMD check](https://github.com/CmlMagneville/mFD/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CmlMagneville/mFD/actions/workflows/R-CMD-check.yaml)
 [![Website deployment](https://github.com/CmlMagneville/mFD/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/CmlMagneville/mFD/actions/workflows/pkgdown.yaml)
 [![License: GPL-2)](https://img.shields.io/badge/License-GPL%202-blue.svg)](https://choosealicense.com/licenses/gpl-2.0/)
 [![LifeCycle](man/figures/lifecycle/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/mFD?color=blue)](https://cran.r-project.org/package=mFD)
 <!-- badges: end -->
 
 
