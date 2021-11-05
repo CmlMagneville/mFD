@@ -31,7 +31,7 @@ You can install the stable version from
 [CRAN](https://cran.r-project.org/) with:
 
 ``` r
-Install stable version of < mFD > from CRAN ----
+# Install stable version of < mFD > from CRAN ----
 install.packages("mFD")
 ```
 
