@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://cmlmagneville.github.io/mFD/404.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/articles/Compute_and_interpret_quality_of_functional_spaces.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/articles/Compute_functional_hill_indices.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/authors.html</loc>
+  </url>
+  <url>
     <loc>https://cmlmagneville.github.io/mFD/index.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/news/index.html</loc>
   </url>
   <url>
     <loc>https://cmlmagneville.github.io/mFD/reference/alpha.fd.fe.html</loc>
@@ -85,6 +115,9 @@
     <loc>https://cmlmagneville.github.io/mFD/reference/fuse.html</loc>
   </url>
   <url>
+    <loc>https://cmlmagneville.github.io/mFD/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://cmlmagneville.github.io/mFD/reference/mFD-package.html</loc>
   </url>
   <url>
@@ -122,20 +155,5 @@
   </url>
   <url>
     <loc>https://cmlmagneville.github.io/mFD/reference/vertices.html</loc>
-  </url>
-  <url>
-    <loc>https://cmlmagneville.github.io/mFD/articles/Compute_and_interpret_quality_of_functional_spaces.html</loc>
-  </url>
-  <url>
-    <loc>https://cmlmagneville.github.io/mFD/articles/Compute_functional_hill_indices.html</loc>
-  </url>
-  <url>
-    <loc>https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html</loc>
-  </url>
-  <url>
-    <loc>https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html</loc>
-  </url>
-  <url>
-    <loc>https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html</loc>
   </url>
 </urlset>
