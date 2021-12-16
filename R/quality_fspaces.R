@@ -304,6 +304,9 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
     dev_distsp_scaled <- data.frame(df_distsp_scaled[ , c("sp.x", "sp.y")],
                      df_distsp_scaled[ , fspaces_nm] - 
                        df_distsp_scaled[ , "tr"])
+    
+    details_deviation <- list(dev_distsp_scaled = dev_distsp_scaled)
+    
     details_deviation$dev_distsp_scaled <- dev_distsp_scaled
 
     # if required based on absolute deviation
