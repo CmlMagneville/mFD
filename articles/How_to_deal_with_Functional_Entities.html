@@ -93,7 +93,7 @@
       <h1 data-toc-skip>How to Deal With Functional Entities</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2021-12-18</h4>
+            <h4 data-toc-skip class="date">2022-01-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/How_to_deal_with_Functional_Entities.Rmd" class="external-link"><code>vignettes/How_to_deal_with_Functional_Entities.Rmd</code></a></small>
       <div class="hidden name"><code>How_to_deal_with_Functional_Entities.Rmd</code></div>
@@ -103,16 +103,16 @@
     
     
 <p><br></p>
-<div class="section level1">
-<h1 id="why-functional-entities-fes">1. Why Functional Entities (FEs)?<a class="anchor" aria-label="anchor" href="#why-functional-entities-fes"></a>
-</h1>
+<div class="section level2">
+<h2 id="why-functional-entities-fes">1. Why Functional Entities (FEs)?<a class="anchor" aria-label="anchor" href="#why-functional-entities-fes"></a>
+</h2>
 <p><br></p>
 <p><code>mFD</code> allows gathering species into <strong>functional entities (FEs)</strong> <em>i.e.</em> <strong>groups of species with same trait values</strong> when many species are described with a few categorical or ordinal traits. It is particularly useful when using large datasets with “functionally similar” species. FEs also allow to understand the links between functional diversity and ecological processes as redundant species that are supposed to have similar ecological roles are clustered in this method.</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="tutorials-data">2. Tutorial’s data<a class="anchor" aria-label="anchor" href="#tutorials-data"></a>
-</h1>
+<div class="section level2">
+<h2 id="tutorials-data">2. Tutorial’s data<a class="anchor" aria-label="anchor" href="#tutorials-data"></a>
+</h2>
 <p><br></p>
 <p><strong>DATA</strong> The dataset used to illustrate this tutorial is a <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruit baskets (<em>i.e.</em> assemblages). Each fruit is characterized by six trait values summarized in the following table:</p>
 <p><br></p>
@@ -395,9 +395,9 @@
 <code class="sourceCode R"><span class="va">asb_sp_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_occ"</span></code></pre></div>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="gather-species-into-fes">3. Gather species into FEs<a class="anchor" aria-label="anchor" href="#gather-species-into-fes"></a>
-</h1>
+<div class="section level2">
+<h2 id="gather-species-into-fes">3. Gather species into FEs<a class="anchor" aria-label="anchor" href="#gather-species-into-fes"></a>
+</h2>
 <p><br></p>
 <p><code>mFD</code> allows you to gather species into FEs using the <code><a href="../reference/sp.to.fe.html">mFD::sp.to.fe()</a></code> function. It uses the following arguments:</p>
 <p><br></p>
@@ -550,9 +550,9 @@
 <span class="co">## [1] 36</span></code></pre>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="compute-alpha-and-beta-functional-indices">4. Compute alpha and beta functional indices<a class="anchor" aria-label="anchor" href="#compute-alpha-and-beta-functional-indices"></a>
-</h1>
+<div class="section level2">
+<h2 id="compute-alpha-and-beta-functional-indices">4. Compute alpha and beta functional indices<a class="anchor" aria-label="anchor" href="#compute-alpha-and-beta-functional-indices"></a>
+</h2>
 <p><br></p>
 <p>Then based on the data frame containing the value of traits for each FE, the workflow is the same as the one listed in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> to compute functional trait based distance, multidimensional functional space and associated plots and compute alpha and beta functional indices (step 3 till the end). It will thus not be summed up in this tutorial.</p>
 <p><br></p>
@@ -646,9 +646,9 @@
 <span class="co">## basket_10     0</span></code></pre>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="plot-functional-indices-based-on-fes">5. Plot functional indices based on FEs<a class="anchor" aria-label="anchor" href="#plot-functional-indices-based-on-fes"></a>
-</h1>
+<div class="section level2">
+<h2 id="plot-functional-indices-based-on-fes">5. Plot functional indices based on FEs<a class="anchor" aria-label="anchor" href="#plot-functional-indices-based-on-fes"></a>
+</h2>
 <p><br></p>
 <p>Then, it is possible to have a graphical representation of FE-based indices for a given assemblage using the <code>mFD::alpha.fe.fd.plot()</code> function:</p>
 <p><br></p>
@@ -706,9 +706,9 @@
 <p>All FE except “fe_3” contain only one species thus FRed and FVuln are close to 1. Only “fe_3” has more species than the average number of species thus the proportion of species in excess in FE richer than average is quite low (FRed = 0.107).</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <p><br></p>
 <ul>
 <li>Mouillot <em>et al.</em> (2014) Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs. <em>PNAS</em>, <strong>38</strong>, 13757-13762.</li>
@@ -733,7 +733,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

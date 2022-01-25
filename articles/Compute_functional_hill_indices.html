@@ -93,7 +93,7 @@
       <h1 data-toc-skip>Compute Functional Diversity Hill Indices</h1>
                         <h4 data-toc-skip class="author">Sebastien Villeger</h4>
             
-            <h4 data-toc-skip class="date">2021-12-18</h4>
+            <h4 data-toc-skip class="date">2022-01-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Compute_functional_hill_indices.Rmd" class="external-link"><code>vignettes/Compute_functional_hill_indices.Rmd</code></a></small>
       <div class="hidden name"><code>Compute_functional_hill_indices.Rmd</code></div>
@@ -102,19 +102,19 @@
 
     
     
-<div class="section level1">
-<h1 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
-</h1>
 <div class="section level2">
-<h2 id="what-is-this-tutorial-about">What is this tutorial about?<a class="anchor" aria-label="anchor" href="#what-is-this-tutorial-about"></a>
+<h2 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
 </h2>
+<div class="section level3">
+<h3 id="what-is-this-tutorial-about">What is this tutorial about?<a class="anchor" aria-label="anchor" href="#what-is-this-tutorial-about"></a>
+</h3>
 <p><br></p>
 <p>This tutorial explains how to compute the family of indices presented in <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="external-link">Chao <em>et al.</em> (2019)</a> using <code>mFD</code>.</p>
 <p><br></p>
 </div>
-<div class="section level2">
-<h2 id="lets-load-data-and-compute-functional-distance">Let’s load data and compute functional distance<a class="anchor" aria-label="anchor" href="#lets-load-data-and-compute-functional-distance"></a>
-</h2>
+<div class="section level3">
+<h3 id="lets-load-data-and-compute-functional-distance">Let’s load data and compute functional distance<a class="anchor" aria-label="anchor" href="#lets-load-data-and-compute-functional-distance"></a>
+</h3>
 <p><br></p>
 <p>The data set used to illustrate this tutorial is the <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruits baskets (<em>i.e.</em> assemblages). Each fruit is characterized by six traits values summarized in the following table:</p>
 <table class="table">
@@ -407,9 +407,9 @@
 <p><br></p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="generalisation-of-hill-numbers-for-alpha-functional-diversity">Generalisation of Hill numbers for alpha functional diversity<a class="anchor" aria-label="anchor" href="#generalisation-of-hill-numbers-for-alpha-functional-diversity"></a>
-</h1>
+<div class="section level2">
+<h2 id="generalisation-of-hill-numbers-for-alpha-functional-diversity">Generalisation of Hill numbers for alpha functional diversity<a class="anchor" aria-label="anchor" href="#generalisation-of-hill-numbers-for-alpha-functional-diversity"></a>
+</h2>
 <p><br></p>
 <p>The family of indices presented in <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="external-link">Chao <em>et al.</em> (2019)</a> allows computing FD based on pairwise distance between species and their weights in assemblages. This generalization of Hill numbers framework is based on two parameters:</p>
 <ul>
@@ -522,9 +522,9 @@
 <p>We can see that baskets with same composition of fruits species have same FD values (<em>e.g</em> <em>basket_1</em>, <em>basket_2</em> and <em>basket_3</em>)</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="generalisation-of-hill-numbers-for-beta-functional-diversity">Generalisation of Hill numbers for beta functional diversity<a class="anchor" aria-label="anchor" href="#generalisation-of-hill-numbers-for-beta-functional-diversity"></a>
-</h1>
+<div class="section level2">
+<h2 id="generalisation-of-hill-numbers-for-beta-functional-diversity">Generalisation of Hill numbers for beta functional diversity<a class="anchor" aria-label="anchor" href="#generalisation-of-hill-numbers-for-beta-functional-diversity"></a>
+</h2>
 <p><br></p>
 <p>Framework of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="external-link">Chao <em>et al.</em> (2019)</a> also allows computing beta-diversity, with 2 framework similar to Jaccard and Sorensen ones for taxonomic diversity. The <code>mFD:beta.fd.hill()</code> function computes these indices.</p>
 <p><br></p>
@@ -614,9 +614,9 @@
 <p>We can see that <em>basket 1</em> is similar (beta &lt; 0.1) to <em>baskets 2,3,4,5,10</em> and that it is the most dissimilar to <em>basket 8 (beta &gt; 0.5)</em>. <em>Baskets 4 and 5</em> are highly dissimilar (beta &gt; 0.8) to <em>basket 8</em>.</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <p><br></p>
 <ul>
 <li><p>Chao <em>et al.</em> (2019) An attribute diversity approach to functional diversity, functional beta diversity, and related (dis)similarity measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p></li>
@@ -642,7 +642,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

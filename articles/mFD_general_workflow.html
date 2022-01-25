@@ -93,7 +93,7 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2021-12-18</h4>
+            <h4 data-toc-skip class="date">2022-01-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/mFD_general_workflow.Rmd" class="external-link"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -102,9 +102,9 @@
 
     
     
-<div class="section level1">
-<h1 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
-</h1>
+<div class="section level2">
+<h2 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
+</h2>
 <p><br></p>
 <p>This tutorial describes the basic workflow showing how to compute step by step functional diversity (FD) indices in a multidimensional space using <code>mFD</code> package. Other functions are available and their uses are illustrated in others tutorials.</p>
 <p><strong>DATA</strong> The dataset used to illustrate this tutorial is a <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruits baskets (<em>i.e.</em> assemblages). Each fruit is characterized by five traits values summarized in the following table:</p>
@@ -163,9 +163,9 @@
 </table>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="overview-of-the-functional-framework">Overview of the functional framework<a class="anchor" aria-label="anchor" href="#overview-of-the-functional-framework"></a>
-</h1>
+<div class="section level2">
+<h2 id="overview-of-the-functional-framework">Overview of the functional framework<a class="anchor" aria-label="anchor" href="#overview-of-the-functional-framework"></a>
+</h2>
 <p><br></p>
 <p>The use of the <code>mFD</code> package is based on two datasets:</p>
 <ul>
@@ -332,13 +332,13 @@ Basic framework of the mFD package
 </div>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="know-your-data">1. Know your data<a class="anchor" aria-label="anchor" href="#know-your-data"></a>
-</h1>
-<p><br></p>
 <div class="section level2">
-<h2 id="what-types-of-traits-am-i-using">1.1. What types of traits am I using?<a class="anchor" aria-label="anchor" href="#what-types-of-traits-am-i-using"></a>
+<h2 id="know-your-data">1. Know your data<a class="anchor" aria-label="anchor" href="#know-your-data"></a>
 </h2>
+<p><br></p>
+<div class="section level3">
+<h3 id="what-types-of-traits-am-i-using">1.1. What types of traits am I using?<a class="anchor" aria-label="anchor" href="#what-types-of-traits-am-i-using"></a>
+</h3>
 <p><br></p>
 <p>The first thing to do before starting analyses is to know your data. To do so, you must be able to characterize the traits you are using (<em>i.e.</em> tell the package what type of traits you are using). That is why <code>mFD</code> package needs a data frame summarizing the type of each trait (<em>i.e.</em> each column of the <code>fruits_traits</code> data frame).</p>
 <p><strong>NB</strong> You need to set up a data frame with the same columns names as the below example:</p>
@@ -401,9 +401,9 @@ Basic framework of the mFD package
 <p><strong>NOTE</strong> The traits types dataframe thus has: <strong>two columns</strong> if <strong>no fuzzy traits and no weight given to traits</strong> (columns names: <code>trait_name</code> and <code>trait_type</code>) ; <strong>three columns</strong> if <strong>fuzzy traits</strong> (columns names: <code>trait_name</code>,<code>trait_type</code> and <code>fuzzy_name</code>) <strong>or</strong> if <strong>no fuzzy traits and weight given to traits</strong> (columns names: <code>trait_name</code>,<code>trait_type</code> and <code>trait_weight</code>)</p>
 <p><br></p>
 </div>
-<div class="section level2">
-<h2 id="summarize-my-traits">1.2. Summarize my traits<a class="anchor" aria-label="anchor" href="#summarize-my-traits"></a>
-</h2>
+<div class="section level3">
+<h3 id="summarize-my-traits">1.2. Summarize my traits<a class="anchor" aria-label="anchor" href="#summarize-my-traits"></a>
+</h3>
 <p><br></p>
 <p>The <code>mFD</code> package helps you to <strong>summarize your data</strong> using two distinct functions: <code><a href="../reference/sp.tr.summary.html">mFD::sp.tr.summary()</a></code> and <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code>.</p>
 <p>The function <code><a href="../reference/sp.tr.summary.html">mFD::sp.tr.summary()</a></code> summarizes the <code>fruits_traits</code> dataframe and returns a list gathering several tables and lists:</p>
@@ -461,9 +461,9 @@ Basic framework of the mFD package
 <span class="co">## [25]  81.2</span></code></pre>
 <p><br></p>
 </div>
-<div class="section level2">
-<h2 id="summarize-my-assemblages">1.3. Summarize my assemblages<a class="anchor" aria-label="anchor" href="#summarize-my-assemblages"></a>
-</h2>
+<div class="section level3">
+<h3 id="summarize-my-assemblages">1.3. Summarize my assemblages<a class="anchor" aria-label="anchor" href="#summarize-my-assemblages"></a>
+</h3>
 <p><br></p>
 <p>The second function helping you to summarize your data in the <code>mFD</code> package is <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code>. It summarizes the <code>baskets_fruits_weights</code> matrix and returns a list gathering a matrix, a list and several vectors:</p>
 <ul>
@@ -537,9 +537,9 @@ Basic framework of the mFD package
 <p><br></p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="gathering-species-into-functional-entities">2. Gathering species into functional entities<a class="anchor" aria-label="anchor" href="#gathering-species-into-functional-entities"></a>
-</h1>
+<div class="section level2">
+<h2 id="gathering-species-into-functional-entities">2. Gathering species into functional entities<a class="anchor" aria-label="anchor" href="#gathering-species-into-functional-entities"></a>
+</h2>
 <p><br></p>
 <p>If you have many species described by few categorical and ordinal traits only, then you might want to group them into Functional Entities (<strong>FE</strong>), <em>i.e</em> <strong>groups of species with same trait values when species are described with categorical and/or ordinal traits</strong>. It is particularly useful when using large datasets with “functionally similar” species.</p>
 <p>In this tutorial, this function is not illustrated (FE for the <strong>fruits</strong> dataset have a single species) and thus functional diversity indices based on FE are not computed. You can have a look to the <a href="https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html">Compute Functional Diversity Indices based on Functional Entities</a> tutorial for further analysis using FE.</p>
@@ -547,9 +547,9 @@ Basic framework of the mFD package
 <p><code>mFD</code> also allows the user to compute FD indices based on Functional Entities (FEs). Computed indices are <strong>Functional Redundancy (FRed)</strong>, <strong>Functional OverRedundancy (FORed)</strong> and <strong>Functional Vulnerability (FVuln)</strong> (<a href="https://www.pnas.org/content/111/38/13757.short" class="external-link">Mouillot <em>et al.</em> 2014</a>). The <strong>fruits &amp; baskets</strong> example does not allow to compute FEs, thus FD indices based on FEs can not be compute. Check the <a href="https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html">Compute functional diversity indices based on Functional Entities</a> tutorial to see how to compute them.</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="computing-distances-between-species-based-on-functional-traits">3. Computing distances between species based on functional traits<a class="anchor" aria-label="anchor" href="#computing-distances-between-species-based-on-functional-traits"></a>
-</h1>
+<div class="section level2">
+<h2 id="computing-distances-between-species-based-on-functional-traits">3. Computing distances between species based on functional traits<a class="anchor" aria-label="anchor" href="#computing-distances-between-species-based-on-functional-traits"></a>
+</h2>
 <p><br></p>
 <p>The next step toward the computation of functional diversity indices is to estimate functional traits-based distances between species in order to build the functional space in which indices will be computed.</p>
 <p>To compute trait-based distances, we will use the <code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code> function which includes the following arguments:</p>
@@ -687,13 +687,13 @@ Basic framework of the mFD package
 <span class="co">## water_melon       0.434</span></code></pre>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="computing-functional-spaces-their-quality">4. Computing functional spaces &amp; their quality<a class="anchor" aria-label="anchor" href="#computing-functional-spaces-their-quality"></a>
-</h1>
-<p><br></p>
 <div class="section level2">
-<h2 id="compute-multimensional-functional-spaces-and-assess-their-quality">4.1. Compute multimensional functional spaces and assess their quality<a class="anchor" aria-label="anchor" href="#compute-multimensional-functional-spaces-and-assess-their-quality"></a>
+<h2 id="computing-functional-spaces-their-quality">4. Computing functional spaces &amp; their quality<a class="anchor" aria-label="anchor" href="#computing-functional-spaces-their-quality"></a>
 </h2>
+<p><br></p>
+<div class="section level3">
+<h3 id="compute-multimensional-functional-spaces-and-assess-their-quality">4.1. Compute multimensional functional spaces and assess their quality<a class="anchor" aria-label="anchor" href="#compute-multimensional-functional-spaces-and-assess-their-quality"></a>
+</h3>
 <p><br></p>
 <p>In order to generate a multidimensional space in which functional diversity indices are computed (<a href="https://www.sciencedirect.com/science/article/pii/S0169534712002650" class="external-link">Mouillot <em>et al.</em> 2013</a>, we will perform a PCoA using the trait-based distances (and if required a functional dendrogram). <code>mFD</code> evaluates the quality of PCoA-based multidimensional spaces according to the deviation between trait-based distances and distances in the functional space (extension of <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299" class="external-link">Maire <em>et al.</em> (2015)</a> framework). For that, we will use the <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function:</p>
 <p><br></p>
@@ -756,9 +756,9 @@ Basic framework of the mFD package
 <p><strong>NOTE</strong> The space with the best quality has the lowest quality metric. Here, thanks to mad values, we can see that the 4D space is the best one. That is why the following of this tutorial will use this multidimensional space.</p>
 <p><br></p>
 </div>
-<div class="section level2">
-<h2 id="illustrating-the-quality-of-the-selected-functional-spaces">4.2. Illustrating the quality of the selected functional spaces<a class="anchor" aria-label="anchor" href="#illustrating-the-quality-of-the-selected-functional-spaces"></a>
-</h2>
+<div class="section level3">
+<h3 id="illustrating-the-quality-of-the-selected-functional-spaces">4.2. Illustrating the quality of the selected functional spaces<a class="anchor" aria-label="anchor" href="#illustrating-the-quality-of-the-selected-functional-spaces"></a>
+</h3>
 <p><br></p>
 <p>With the <code>mFD</code> package, it is possible to illustrate the quality of PCoA-based multidimensional spaces according to deviation between trait-based distances and distances in the functional space. For that, we use the <code>mFD::quality.fspace.plot()</code> function with the following arguments:</p>
 <p><br></p>
@@ -814,9 +814,9 @@ Basic framework of the mFD package
 <p><br></p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="test-correlation-between-functional-axes-and-traits">5. Test correlation between functional axes and traits<a class="anchor" aria-label="anchor" href="#test-correlation-between-functional-axes-and-traits"></a>
-</h1>
+<div class="section level2">
+<h2 id="test-correlation-between-functional-axes-and-traits">5. Test correlation between functional axes and traits<a class="anchor" aria-label="anchor" href="#test-correlation-between-functional-axes-and-traits"></a>
+</h2>
 <p><br></p>
 <p><code>mFD</code> allows to test for correlations between traits and functional axes and then illustrate possible correlations. For continuous traits, a linear model is computed and r2 and associated p-value are returned. For non-continuous traits, a Kruskal-Wallis test is computed and eta2 statistic is returned. The function <code><a href="../reference/traits.faxes.cor.html">mFD::traits.faxes.cor()</a></code> allows to test and plot correlation and needs the following arguments:</p>
 <ul>
@@ -863,9 +863,9 @@ Basic framework of the mFD package
 <p>We can thus see that <strong>PC1</strong> is mostly driven by <em>Climate</em> (temperate on the left and tropical on the right) and <em>Plant Type</em> (forb &amp; shrub on the left vs tree &amp; vine on the right) and <em>Size</em> (large fruits on the right) with weaker influence of <em>Seed</em> (eta2 &lt; 0.25). Then, <strong>PC2</strong> is mostly driven by <em>Seed</em> (no seed on the left and pit seed on the right) with weaker influence of <em>Plant Type</em>. <strong>PC3</strong> is driven by only one trait, <em>Size</em>. And finally <strong>PC4</strong> is mostly driven by <em>Sugar</em> (high sugar content on the right and low sugar content on the left) with a weaker influence of <em>Plant Type</em>.</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="plot-functional-space">6. Plot functional space<a class="anchor" aria-label="anchor" href="#plot-functional-space"></a>
-</h1>
+<div class="section level2">
+<h2 id="plot-functional-space">6. Plot functional space<a class="anchor" aria-label="anchor" href="#plot-functional-space"></a>
+</h2>
 <p><br></p>
 <p>Once the user has selected the dimensionality of the functional space, <code>mFD</code> allows you to plot the given multidimensional functional space and the position of species in all 2-dimensions spaces made by pairs of axes.</p>
 <p><br></p>
@@ -960,13 +960,13 @@ Basic framework of the mFD package
 <p>Here, all the species are vertices compared with the last example with only four dimensions.</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="compute-functional-diversity-indices-plot-them">7. Compute functional diversity indices &amp; plot them<a class="anchor" aria-label="anchor" href="#compute-functional-diversity-indices-plot-them"></a>
-</h1>
-<p><br></p>
 <div class="section level2">
-<h2 id="functional-alpha-diversity-indices-in-a-multidimensional-space">7.1. Functional alpha diversity indices in a multidimensional space<a class="anchor" aria-label="anchor" href="#functional-alpha-diversity-indices-in-a-multidimensional-space"></a>
+<h2 id="compute-functional-diversity-indices-plot-them">7. Compute functional diversity indices &amp; plot them<a class="anchor" aria-label="anchor" href="#compute-functional-diversity-indices-plot-them"></a>
 </h2>
+<p><br></p>
+<div class="section level3">
+<h3 id="functional-alpha-diversity-indices-in-a-multidimensional-space">7.1. Functional alpha diversity indices in a multidimensional space<a class="anchor" aria-label="anchor" href="#functional-alpha-diversity-indices-in-a-multidimensional-space"></a>
+</h3>
 <p><br></p>
 <p>The <code><a href="../reference/alpha.fd.multidim.html">mFD::alpha.fd.multidim()</a></code> function allows computing many alpha FD indices:</p>
 <p><br></p>
@@ -1164,9 +1164,9 @@ Basic framework of the mFD package
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-38-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
-<div class="section level2">
-<h2 id="functional-beta-diversity-indices-based-on-multidimensional-space">7.2. Functional beta diversity indices based on multidimensional space<a class="anchor" aria-label="anchor" href="#functional-beta-diversity-indices-based-on-multidimensional-space"></a>
-</h2>
+<div class="section level3">
+<h3 id="functional-beta-diversity-indices-based-on-multidimensional-space">7.2. Functional beta diversity indices based on multidimensional space<a class="anchor" aria-label="anchor" href="#functional-beta-diversity-indices-based-on-multidimensional-space"></a>
+</h3>
 <p><br></p>
 <p><strong>NOTE:</strong> Some Mac OS X 10.15 may encounter some issues with the beta_*() functions.</p>
 <p><br></p>
@@ -1203,48 +1203,48 @@ Basic framework of the mFD package
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">beta_fd_indices_fruits</span><span class="op">$</span><span class="st">"pairasb_fbd_indices"</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## $jac_diss</span>
-<span class="co">##               basket_1     basket_2     basket_3     basket_4     basket_5</span>
-<span class="co">## basket_2  0.000000e+00                                                    </span>
-<span class="co">## basket_3  0.000000e+00 0.000000e+00                                       </span>
-<span class="co">## basket_4  9.654002e-01 9.654002e-01 9.654002e-01                          </span>
-<span class="co">## basket_5  9.654002e-01 9.654002e-01 9.654002e-01 0.000000e+00             </span>
-<span class="co">## basket_6  8.701848e-01 8.701848e-01 8.701848e-01 9.972695e-01 9.972695e-01</span>
-<span class="co">## basket_7  8.701848e-01 8.701848e-01 8.701848e-01 9.972695e-01 9.972695e-01</span>
-<span class="co">## basket_8  9.797030e-01 9.797030e-01 9.797030e-01 1.000000e+00 1.000000e+00</span>
-<span class="co">## basket_9  9.797030e-01 9.797030e-01 9.797030e-01 1.000000e+00 1.000000e+00</span>
-<span class="co">## basket_10 9.151338e-01 9.151338e-01 9.151338e-01 9.303584e-01 9.303584e-01</span>
-<span class="co">##               basket_6     basket_7     basket_8     basket_9</span>
-<span class="co">## basket_2                                                     </span>
-<span class="co">## basket_3                                                     </span>
-<span class="co">## basket_4                                                     </span>
-<span class="co">## basket_5                                                     </span>
-<span class="co">## basket_6                                                     </span>
-<span class="co">## basket_7  3.922734e-16                                       </span>
-<span class="co">## basket_8  1.000000e+00 1.000000e+00                          </span>
-<span class="co">## basket_9  1.000000e+00 1.000000e+00 0.000000e+00             </span>
-<span class="co">## basket_10 9.983508e-01 9.983508e-01 9.702788e-01 9.702788e-01</span>
+<span class="co">##            basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7</span>
+<span class="co">## basket_2  0.0000000                                                            </span>
+<span class="co">## basket_3  0.0000000 0.0000000                                                  </span>
+<span class="co">## basket_4  0.9654002 0.9654002 0.9654002                                        </span>
+<span class="co">## basket_5  0.9654002 0.9654002 0.9654002 0.0000000                              </span>
+<span class="co">## basket_6  0.8701848 0.8701848 0.8701848 0.9972695 0.9972695                    </span>
+<span class="co">## basket_7  0.8701848 0.8701848 0.8701848 0.9972695 0.9972695 0.0000000          </span>
+<span class="co">## basket_8  0.9797030 0.9797030 0.9797030 1.0000000 1.0000000 1.0000000 1.0000000</span>
+<span class="co">## basket_9  0.9797030 0.9797030 0.9797030 1.0000000 1.0000000 1.0000000 1.0000000</span>
+<span class="co">## basket_10 0.9151338 0.9151338 0.9151338 0.9303584 0.9303584 0.9983508 0.9983508</span>
+<span class="co">##            basket_8  basket_9</span>
+<span class="co">## basket_2                     </span>
+<span class="co">## basket_3                     </span>
+<span class="co">## basket_4                     </span>
+<span class="co">## basket_5                     </span>
+<span class="co">## basket_6                     </span>
+<span class="co">## basket_7                     </span>
+<span class="co">## basket_8                     </span>
+<span class="co">## basket_9  0.0000000          </span>
+<span class="co">## basket_10 0.9702788 0.9702788</span>
 <span class="co">## </span>
 <span class="co">## $jac_turn</span>
-<span class="co">##               basket_1     basket_2     basket_3     basket_4     basket_5</span>
-<span class="co">## basket_2  0.000000e+00                                                    </span>
-<span class="co">## basket_3  0.000000e+00 0.000000e+00                                       </span>
-<span class="co">## basket_4  4.320333e-01 4.320333e-01 4.320333e-01                          </span>
-<span class="co">## basket_5  4.320333e-01 4.320333e-01 4.320333e-01 0.000000e+00             </span>
-<span class="co">## basket_6  8.627528e-01 8.627528e-01 8.627528e-01 9.723344e-01 9.723344e-01</span>
-<span class="co">## basket_7  8.627528e-01 8.627528e-01 8.627528e-01 9.723344e-01 9.723344e-01</span>
-<span class="co">## basket_8  9.425331e-01 9.425331e-01 9.425331e-01 1.000000e+00 1.000000e+00</span>
-<span class="co">## basket_9  9.425331e-01 9.425331e-01 9.425331e-01 1.000000e+00 1.000000e+00</span>
-<span class="co">## basket_10 5.990146e-01 5.990146e-01 5.990146e-01 8.385233e-01 8.385233e-01</span>
-<span class="co">##               basket_6     basket_7     basket_8     basket_9</span>
-<span class="co">## basket_2                                                     </span>
-<span class="co">## basket_3                                                     </span>
-<span class="co">## basket_4                                                     </span>
-<span class="co">## basket_5                                                     </span>
-<span class="co">## basket_6                                                     </span>
-<span class="co">## basket_7  3.922734e-16                                       </span>
-<span class="co">## basket_8  1.000000e+00 1.000000e+00                          </span>
-<span class="co">## basket_9  1.000000e+00 1.000000e+00 0.000000e+00             </span>
-<span class="co">## basket_10 9.944208e-01 9.944208e-01 9.638833e-01 9.638833e-01</span>
+<span class="co">##            basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7</span>
+<span class="co">## basket_2  0.0000000                                                            </span>
+<span class="co">## basket_3  0.0000000 0.0000000                                                  </span>
+<span class="co">## basket_4  0.4320333 0.4320333 0.4320333                                        </span>
+<span class="co">## basket_5  0.4320333 0.4320333 0.4320333 0.0000000                              </span>
+<span class="co">## basket_6  0.8627528 0.8627528 0.8627528 0.9723344 0.9723344                    </span>
+<span class="co">## basket_7  0.8627528 0.8627528 0.8627528 0.9723344 0.9723344 0.0000000          </span>
+<span class="co">## basket_8  0.9425331 0.9425331 0.9425331 1.0000000 1.0000000 1.0000000 1.0000000</span>
+<span class="co">## basket_9  0.9425331 0.9425331 0.9425331 1.0000000 1.0000000 1.0000000 1.0000000</span>
+<span class="co">## basket_10 0.5990146 0.5990146 0.5990146 0.8385233 0.8385233 0.9944208 0.9944208</span>
+<span class="co">##            basket_8  basket_9</span>
+<span class="co">## basket_2                     </span>
+<span class="co">## basket_3                     </span>
+<span class="co">## basket_4                     </span>
+<span class="co">## basket_5                     </span>
+<span class="co">## basket_6                     </span>
+<span class="co">## basket_7                     </span>
+<span class="co">## basket_8                     </span>
+<span class="co">## basket_9  0.0000000          </span>
+<span class="co">## basket_10 0.9638833 0.9638833</span>
 <span class="co">## </span>
 <span class="co">## $jac_nest</span>
 <span class="co">##              basket_1    basket_2    basket_3    basket_4    basket_5</span>
@@ -1510,9 +1510,9 @@ Basic framework of the mFD package
 <p><br></p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <p><br></p>
 <ul>
 <li><p>Johnson <em>et al.</em> (2020) Handling missing values in trait data. <em>Global Ecology and Biogeography</em>, <strong>30</strong>, 51-62.</p></li>
@@ -1540,7 +1540,7 @@ Basic framework of the mFD package
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

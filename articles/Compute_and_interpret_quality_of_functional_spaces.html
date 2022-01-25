@@ -93,7 +93,7 @@
       <h1 data-toc-skip>Compute and Interpret Quality of Functional Spaces</h1>
                         <h4 data-toc-skip class="author">Sebastien Villeger</h4>
             
-            <h4 data-toc-skip class="date">2021-12-18</h4>
+            <h4 data-toc-skip class="date">2022-01-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd" class="external-link"><code>vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd</code></a></small>
       <div class="hidden name"><code>Compute_and_interpret_quality_of_functional_spaces.Rmd</code></div>
@@ -102,16 +102,16 @@
 
     
     
-<div class="section level1">
-<h1 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
-</h1>
+<div class="section level2">
+<h2 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
+</h2>
 <p><br></p>
 <p>This tutorial illustrates how to compute and interpret quality of functional spaces using <code>mFD</code>, with a special emphasis on how functional dendrograms and functional spaces with a low dimension could distort original trait-based distances. This tutorial also explains why square-rooting the original distances before computing PCoA may be misleading.</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="tutorials-data">1. Tutorial’s data<a class="anchor" aria-label="anchor" href="#tutorials-data"></a>
-</h1>
+<div class="section level2">
+<h2 id="tutorials-data">1. Tutorial’s data<a class="anchor" aria-label="anchor" href="#tutorials-data"></a>
+</h2>
 <p><br></p>
 <p><strong>DATA</strong> The dataset used to illustrate this tutorial is <em>a fruit dataset</em> based on 25 types of fruits. Each fruit is characterized by 5 traits summarized in the following table:</p>
 <table class="table">
@@ -266,9 +266,9 @@
 <span class="co">## 5      Sugar          Q</span></code></pre>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="compute-trait-based-distance-between-species">2. Compute trait-based distance between species<a class="anchor" aria-label="anchor" href="#compute-trait-based-distance-between-species"></a>
-</h1>
+<div class="section level2">
+<h2 id="compute-trait-based-distance-between-species">2. Compute trait-based distance between species<a class="anchor" aria-label="anchor" href="#compute-trait-based-distance-between-species"></a>
+</h2>
 <p><br></p>
 <p>First, trait-based distance between species should be computed using <code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code>. Here we use Gower distance.</p>
 <p><br></p>
@@ -368,13 +368,13 @@
 </ul>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="compute-functional-space-quality-metrics-and-plot-them">3. Compute functional space, quality metrics and plot them<a class="anchor" aria-label="anchor" href="#compute-functional-space-quality-metrics-and-plot-them"></a>
-</h1>
-<p><br></p>
 <div class="section level2">
-<h2 id="compute-functional-spaces-and-associated-quality-metrics">3.1. Compute functional spaces and associated quality metrics<a class="anchor" aria-label="anchor" href="#compute-functional-spaces-and-associated-quality-metrics"></a>
+<h2 id="compute-functional-space-quality-metrics-and-plot-them">3. Compute functional space, quality metrics and plot them<a class="anchor" aria-label="anchor" href="#compute-functional-space-quality-metrics-and-plot-them"></a>
 </h2>
+<p><br></p>
+<div class="section level3">
+<h3 id="compute-functional-spaces-and-associated-quality-metrics">3.1. Compute functional spaces and associated quality metrics<a class="anchor" aria-label="anchor" href="#compute-functional-spaces-and-associated-quality-metrics"></a>
+</h3>
 <p><br></p>
 <p>We now compute varying number of functional space from 1 to 9 dimensions based on a PCoA as well as an UPGMA dendrogram using <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function. We also compute 4 quality metrics <em>(= all combinations of deviation weighting and distance scaling)</em> (details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> tutorial, <strong>step 4.1</strong>).</p>
 <p><br></p>
@@ -448,9 +448,9 @@
 <p>2D and 3D spaces bias distance (hence have high deviation, see top row) because some species pairs are closer in those spaces than they have close trait values. In the 4D space most species pairs are accurately represented (absolute deviation &lt; 0.1).</p>
 <p><br></p>
 </div>
-<div class="section level2">
-<h2 id="focus-on-dendrograms">3.2. Focus on dendrograms<a class="anchor" aria-label="anchor" href="#focus-on-dendrograms"></a>
-</h2>
+<div class="section level3">
+<h3 id="focus-on-dendrograms">3.2. Focus on dendrograms<a class="anchor" aria-label="anchor" href="#focus-on-dendrograms"></a>
+</h3>
 <p><br></p>
 <p><strong>NB</strong> <strong>Many of the pairwise distance on dendrogram deviate by more than 0.3 from the trait-based distances</strong> (top-left panel of the above figure), particularly with some of the highest distances on the dendrogram corresponding to pairs of species with actually close trait values (Gower distance &lt; 0.3). The dichotomous nature of dendrogram implies that many species pairs have the same distance, with especially all species pairs being on different sides of the tree root having all the maximal distance.</p>
 <p><br></p>
@@ -506,9 +506,9 @@
 <p>We notice that pineapple is in the ‘outer’ group with other tropical fruits and that lime is as ‘close’ to cherry than to lemon.</p>
 <p><br></p>
 </div>
-<div class="section level2">
-<h2 id="focus-on-the-effect-of-square-rooting-distance-matrix-before-computing-pcoa">3.3. Focus on the effect of square-rooting distance matrix before computing PcoA<a class="anchor" aria-label="anchor" href="#focus-on-the-effect-of-square-rooting-distance-matrix-before-computing-pcoa"></a>
-</h2>
+<div class="section level3">
+<h3 id="focus-on-the-effect-of-square-rooting-distance-matrix-before-computing-pcoa">3.3. Focus on the effect of square-rooting distance matrix before computing PcoA<a class="anchor" aria-label="anchor" href="#focus-on-the-effect-of-square-rooting-distance-matrix-before-computing-pcoa"></a>
+</h3>
 <p><br></p>
 <p>A known ‘issue’ associated with the Gower metric applied to non-continuous traits is that distance matrix is not Euclidean. Let’s have a look:</p>
 <p><br></p>
@@ -609,7 +609,7 @@
 <span class="co">## pcoa_21d 3.900362e-04</span>
 <span class="co">## pcoa_22d 2.266322e-04</span>
 <span class="co">## pcoa_23d 7.579458e-05</span>
-<span class="co">## pcoa_24d 2.817191e-16</span></code></pre>
+<span class="co">## pcoa_24d 3.636906e-16</span></code></pre>
 <p><br></p>
 <p>The inaccuracy (measured with <em>mAD</em> (mean absolute deviation) metric) decreases with the number of axes down to 0.</p>
 <p><br></p>
@@ -698,9 +698,9 @@
 <p><br></p>
 </div>
 </div>
-<div class="section level1">
-<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <ul>
 <li>Maire <em>et al.</em> (2015) How many dimensions are needed to accurately assess functional diversity? A pragmatic approach for assessing the quality of functional spaces. <em>Global Ecology and Biogeography</em>, <strong>24</strong>, 728-740.</li>
 </ul>
@@ -724,7 +724,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

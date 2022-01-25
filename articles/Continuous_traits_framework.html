@@ -93,7 +93,7 @@
       <h1 data-toc-skip>Continuous Traits Framework</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2021-12-18</h4>
+            <h4 data-toc-skip class="date">2022-01-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Continuous_traits_framework.Rmd" class="external-link"><code>vignettes/Continuous_traits_framework.Rmd</code></a></small>
       <div class="hidden name"><code>Continuous_traits_framework.Rmd</code></div>
@@ -102,9 +102,9 @@
 
     
     
-<div class="section level1">
-<h1 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
-</h1>
+<div class="section level2">
+<h2 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
+</h2>
 <p><br></p>
 <p>This tutorial explains the workflow used to compute functional space based on continuous traits and it shows how to retrieve species coordinates and species functional distances in the functional space.</p>
 <p><br></p>
@@ -113,9 +113,9 @@
 <p>When the dataset <strong>only</strong> gathers continuous traits, the functional space can be computed using one trait for one dimension or using Principal Component Analysis (PCA: convert correlations among samples into a 2D plot). <strong>NB</strong> Using a PCoA on continuous traits and euclidean distance is the same than using a PCA (clusters made by minimizing the linear distance (PCoA) are the same as those obtained by maximizing linear correlations (PCA)).</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="load-dataset">1. Load dataset<a class="anchor" aria-label="anchor" href="#load-dataset"></a>
-</h1>
+<div class="section level2">
+<h2 id="load-dataset">1. Load dataset<a class="anchor" aria-label="anchor" href="#load-dataset"></a>
+</h2>
 <p><br></p>
 <p>The species traits data frame has rows corresponding to species and columns corresponding to traits. The different traits are summed up in the following table:</p>
 <p><br></p>
@@ -476,9 +476,9 @@
 </table>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="compute-the-functional-space">2. Compute the functional space<a class="anchor" aria-label="anchor" href="#compute-the-functional-space"></a>
-</h1>
+<div class="section level2">
+<h2 id="compute-the-functional-space">2. Compute the functional space<a class="anchor" aria-label="anchor" href="#compute-the-functional-space"></a>
+</h2>
 <p><br></p>
 <p>Based on the species-trait data frame or the species-standardized traits data frame, <code>mFD</code> allows to build a functional space based on a PCA or using each trait as a dimension. The function used to computed functional space with continuous traits is called <code><a href="../reference/tr.cont.fspace.html">mFD::tr.cont.fspace()</a></code> and is used as follows:</p>
 <p><br></p>
@@ -713,16 +713,16 @@
 <p>If the PCA is not computed, outputs are the same except that mad and msd are not computed and that only one distance object is returned.</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="plot-functional-space-compute-and-illustrate-indices">3. Plot functional space, compute and illustrate indices<a class="anchor" aria-label="anchor" href="#plot-functional-space-compute-and-illustrate-indices"></a>
-</h1>
+<div class="section level2">
+<h2 id="plot-functional-space-compute-and-illustrate-indices">3. Plot functional space, compute and illustrate indices<a class="anchor" aria-label="anchor" href="#plot-functional-space-compute-and-illustrate-indices"></a>
+</h2>
 <p><br></p>
 <p>Then, based on the species coordinates matrix, steps are similar as those listed in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>, from step 5 till the end.</p>
 <p><br></p>
 </div>
-<div class="section level1">
-<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <p><br></p>
 <ul>
 <li><p>Maire <em>et al.</em> (2015) How many dimensions are needed to accurately assess functional diversity? A pragmatic approach for assessing the quality of functional spaces. <em>Global Ecology and Biogeography</em>, <strong>24</strong>, 728-740.</p></li>
@@ -748,7 +748,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
