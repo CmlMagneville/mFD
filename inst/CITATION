@@ -2,13 +2,17 @@ citHeader("To cite mFD in publications use:")
 
 bibentry(
   bibtype = "Manual",
-  title   = "{mFD}: {A} Computation of Functional Spaces and Functional Indices",
+  title   = "{mFD}: mFD: an R package to compute and illustrate the multiple 
+  facets of functional diversity",
   author  = c(person("Camille", "Magneville"), person("Nicolas", "Loiseau"), 
               person("Camille", "Albouy"), person("Nicolas", "Casajus"), 
               person("Thomas", "Claverie"), person("Arthur", "Escalas"), 
               person("Fabien", "Leprieur"), person("Eva", "Maire"), 
               person("David", "Mouillot"), person("Sebastien", "Villeger")),
-  year    = "2021",
-  note    = "R package version 1.0.0",
-  url     = "https://github.com/CmlMagneville/mFD"
+  journal = "Ecography",
+  year    = "2022",
+  volume  = "2022",
+  number  = "1",
+  pages   = "1--15",
+  url     = "https://onlinelibrary.wiley.com/doi/10.1111/ecog.05904?af=R"
 )
