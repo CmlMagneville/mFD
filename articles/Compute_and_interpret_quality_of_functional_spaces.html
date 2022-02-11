@@ -93,7 +93,7 @@
       <h1 data-toc-skip>Compute and Interpret Quality of Functional Spaces</h1>
                         <h4 data-toc-skip class="author">Sebastien Villeger</h4>
             
-            <h4 data-toc-skip class="date">2022-01-25</h4>
+            <h4 data-toc-skip class="date">2022-02-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd" class="external-link"><code>vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd</code></a></small>
       <div class="hidden name"><code>Compute_and_interpret_quality_of_functional_spaces.Rmd</code></div>
@@ -385,7 +385,7 @@
   sp_dist             <span class="op">=</span> <span class="va">dist_fruits</span>,
   fdendro             <span class="op">=</span> <span class="st">"average"</span>,
   maxdim_pcoa         <span class="op">=</span> <span class="fl">9</span>,
-  deviation_weighting <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"absolute"</span>, <span class="st">"squarred"</span><span class="op">)</span>,
+  deviation_weighting <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"absolute"</span>, <span class="st">"squared"</span><span class="op">)</span>,
   fdist_scaling       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Registered S3 method overwritten by 'dendextend':</span>
 <span class="co">##   method     from </span>
@@ -609,7 +609,7 @@
 <span class="co">## pcoa_21d 3.900362e-04</span>
 <span class="co">## pcoa_22d 2.266322e-04</span>
 <span class="co">## pcoa_23d 7.579458e-05</span>
-<span class="co">## pcoa_24d 3.546006e-16</span></code></pre>
+<span class="co">## pcoa_24d 3.636906e-16</span></code></pre>
 <p><br></p>
 <p>The inaccuracy (measured with <em>mAD</em> (mean absolute deviation) metric) decreases with the number of axes down to 0.</p>
 <p><br></p>
