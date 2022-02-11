@@ -204,7 +204,7 @@ quality_fspaces_fruits <- mFD::quality.fspaces(
   sp_dist             = dist_fruits,
   fdendro             = "average",
   maxdim_pcoa         = 9,
-  deviation_weighting = c("absolute", "squarred"),
+  deviation_weighting = c("absolute", "squared"),
   fdist_scaling       = c(TRUE, FALSE))
 
 # display the table gathering quality metrics:

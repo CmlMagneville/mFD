@@ -154,8 +154,8 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
   }
 
   # check that the name of quality metric is correct:
-  if (any(!deviation_weighting %in% c("absolute", "squarred"))) {
-    stop("Input 'deviation_weighting' should be 'absolute' and/or 'squarred'.")
+  if (any(!deviation_weighting %in% c("absolute", "squared"))) {
+    stop("Input 'deviation_weighting' should be 'absolute' and/or 'squared'.")
   }
 
   # check that the scaled_metric input is logical:
@@ -274,7 +274,7 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
     }
 
     # if required based on squared deviation:
-    if ("squarred" %in% deviation_weighting) {
+    if ("squared" %in% deviation_weighting) {
 
       # compute squared deviation and storing:
       sqr_dev_distsp <- data.frame(dev_distsp[ , c("sp.x", "sp.y")], 
@@ -324,7 +324,7 @@ quality.fspaces <- function(sp_dist, fdendro = NULL, maxdim_pcoa = 10,
     }
 
     # if required based on squared deviation:
-    if ("squarred" %in% deviation_weighting) {
+    if ("squared" %in% deviation_weighting) {
 
       # compute squared deviation and storing:
       sqr_dev_distsp_scaled <- data.frame(
