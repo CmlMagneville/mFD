@@ -1,5 +1,5 @@
 
-# mFD <img src="man/figures/hexasticker_mFD.png" height="120" align="right" alt = "hexasticker mFD"/>
+# mFD <img src="man/figures/hexasticker_mFD.png" align="right" style="float:right; height:120px;"/>
 
 <!-- badges: start -->
 
