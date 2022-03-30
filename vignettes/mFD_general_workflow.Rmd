@@ -810,7 +810,7 @@ axis**:
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center"}
 big_plot <- mFD::funct.space.plot(
-  sp_faxes_coord  = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
+  sp_faxes_coord  = sp_faxes_coord_fruits,
   faxes           = NULL,
   name_file       = NULL,
   faxes_nm        = NULL,
