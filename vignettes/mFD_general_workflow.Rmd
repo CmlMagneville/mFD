@@ -881,7 +881,7 @@ The arguments and their use are listed below:
 * `sp_faxes_coord` is the species coordinates matrix. This dataframe gathers
 only axis of the functional space you have chosen based on **step 4**.
 
-* `asb_sp_w` is the data frame linking species and assemblages they belong to
+* `asb_sp_w` is the matrix linking species and assemblages they belong to
 (summarized in **step 1**).
 
 * `ind_vect` is a vector with names of diversity functional indices to compute.
