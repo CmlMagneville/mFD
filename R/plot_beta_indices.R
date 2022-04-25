@@ -361,6 +361,10 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     sp_coord_xy <- as.matrix(sp_faxes_coord_plot[, axes_plot[1:2, k] ])
     colnames(sp_coord_xy) <- c("x", "y")
     
+    # names of axes to plot:
+    # names of axes
+    xy_k <- axes_plot[1:2, k]
+    
     # get a list with dataframe of data to plot:
     asb_sp_coord2D_k <- list(asb1 = sp_coord_xy[sp_asb1, ],
                              asb2 = sp_coord_xy[sp_asb2, ])
@@ -368,7 +372,7 @@ beta.multidim.plot <- function(output_beta_fd_multidim,
     
     
     # plot background = axes defined by range of values and names as specified:
-    plot_k <- background.plot(range_faxes, faxes_nm, color_bg)
+    plot_k <- background.plot(range_faxes, faxes_nm = xy_k, color_bg)
     
     # species pool
     plot_k <- pool.plot(ggplot_bg = plot_k,
