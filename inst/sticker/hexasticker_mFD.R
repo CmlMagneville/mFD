@@ -5,7 +5,7 @@
 
 ## Load the image:
 p <- png::readPNG(here::here("inst", "sticker", "mFD_hexSticker.png"))
-grid_mFD <- grid::rasterGrob(p, width = 0.72, height = 0.82, x = 0.5, y = 0.58,
+grid_mFD <- grid::rasterGrob(p, width = 0.72, height = 0.81, x = 0.5, y = 0.58,
                          interpolate = TRUE)
 
 gg <- ggplot2::ggplot() +
@@ -48,3 +48,4 @@ hexSticker::sticker(
   l_width   = 4,
   l_height  = 4
 )
+
