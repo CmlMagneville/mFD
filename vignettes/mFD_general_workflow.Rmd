@@ -1065,8 +1065,7 @@ plots_alpha$"fric"$"patchwork"
 
 * `FDiv` representation: the gravity centers of **vertices** (i.e. species with the
 most extreme functional traits) of each assemblages are plotted as a square and 
-a triangle. The two colored circles represent the mean distance of species to 
-the gravity center for each assemblage. Species of each assemblage have 
+a triangle. Species of each assemblage have 
 different size given their relative weight into the assemblage.
 
 
