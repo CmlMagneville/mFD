@@ -117,7 +117,7 @@ knitr::kable(as.data.frame(baskets_fruits_weights[1:6, 1:6]),
 
 <br />
 
-```{r, echo = FALSE}
+```{r}
 data("fruits_traits_cat", package = "mFD")
 
 # only keep traits 1 - 4:
