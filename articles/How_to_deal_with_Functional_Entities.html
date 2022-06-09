@@ -93,7 +93,7 @@
       <h1 data-toc-skip>How to Deal With Functional Entities</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2022-05-31</h4>
+            <h4 data-toc-skip class="date">2022-06-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/How_to_deal_with_Functional_Entities.Rmd" class="external-link"><code>vignettes/How_to_deal_with_Functional_Entities.Rmd</code></a></small>
       <div class="hidden name"><code>How_to_deal_with_Functional_Entities.Rmd</code></div>
@@ -336,6 +336,14 @@
 <li>the data frame summarizing traits categories called <em>fruits_traits_cat</em> in this tutorial: (for details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>)</li>
 </ul>
 <p><br></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
+
+<span class="co"># only keep traits 1 - 4:</span>
+<span class="va">fruits_traits_cat</span> <span class="op">&lt;-</span> <span class="va">fruits_traits_cat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits_cat</span><span class="op">)</span>, 
+             caption <span class="op">=</span> <span class="st">"Traits types based on *fruits &amp; baskets* dataset"</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Traits types based on <em>fruits &amp; baskets</em> dataset</caption>
 <thead><tr class="header">
@@ -369,7 +377,7 @@
 <p><br></p>
 <p>Using the <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code> function, we can sum up the assemblages data and retrieve species occurrence data:</p>
 <p><br></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># summarize species assemblages: </span>
 <span class="va">asb_sp_fruits_summ</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">)</span>
 
@@ -391,7 +399,7 @@
 <span class="co">## basket_1           0</span>
 <span class="co">## basket_2           0</span>
 <span class="co">## basket_3           0</span></code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">asb_sp_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_occ"</span></code></pre></div>
 <p><br></p>
 </div>
@@ -402,7 +410,7 @@
 <p><code>mFD</code> allows you to gather species into FEs using the <code><a href="../reference/sp.to.fe.html">mFD::sp.to.fe()</a></code> function. It uses the following arguments:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/sp.to.fe.html">sp.to.fe</a></span><span class="op">(</span>
   sp_tr       <span class="op">=</span> <span class="va">fruits_traits</span>, 
   tr_cat      <span class="op">=</span> <span class="va">fruits_traits_cat</span>, 
@@ -422,7 +430,7 @@
 </ul>
 <p>Let’s use this function with the <em>fruits dataset</em>:</p>
 <p><br></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sp_to_fe_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/sp.to.fe.html">sp.to.fe</a></span><span class="op">(</span>
   sp_tr       <span class="op">=</span> <span class="va">fruits_traits</span>, 
   tr_cat      <span class="op">=</span> <span class="va">fruits_traits_cat</span>, 
@@ -434,7 +442,7 @@
 <li>a vector containing FEs names: <br>
 </li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"fe_nm"</span></code></pre></div>
 <pre><code><span class="co">##  [1] "fe_1"  "fe_2"  "fe_3"  "fe_4"  "fe_5"  "fe_6"  "fe_7"  "fe_8"  "fe_9" </span>
 <span class="co">## [10] "fe_10" "fe_11" "fe_12" "fe_13" "fe_14"</span></code></pre>
@@ -443,7 +451,7 @@
 <li>a vector containing for each species, the FE it belongs to: <br>
 </li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sp_fe</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"sp_fe"</span>
 <span class="va">sp_fe</span></code></pre></div>
 <pre><code><span class="co">##         apple       apricot        banana       currant    blackberry </span>
@@ -461,7 +469,7 @@
 <li>a data frame containing for FEs, the values of traits for each FE:</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fe_tr</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"fe_tr"</span>
 <span class="va">fe_tr</span></code></pre></div>
 <pre><code><span class="co">##         Size    Plant   Climate Seed</span>
@@ -484,7 +492,7 @@
 <li>a vector containing the number of species per FE:</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fe_nb_sp</span> <span class="op">&lt;-</span> <span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"fe_nb_sp"</span>
 <span class="va">fe_nb_sp</span></code></pre></div>
 <pre><code><span class="co">##  fe_1  fe_2  fe_3  fe_4  fe_5  fe_6  fe_7  fe_8  fe_9 fe_10 fe_11 fe_12 fe_13 </span>
@@ -496,7 +504,7 @@
 <li>a detailed list containing vectors or list with supplementary information about FEs:</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sp_to_fe_fruits</span><span class="op">$</span><span class="st">"details_fe"</span></code></pre></div>
 <pre><code><span class="co">## $fe_codes</span>
 <span class="co">##                                                fe_1 </span>
@@ -569,7 +577,7 @@
 <p><code><a href="../reference/alpha.fd.fe.html">mFD::alpha.fd.fe()</a></code> function is used as follows:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.fe.html">alpha.fd.fe</a></span><span class="op">(</span>
   asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>, 
   sp_to_fe         <span class="op">=</span> <span class="va">sp_to_fe_fruits</span>,
@@ -594,7 +602,7 @@
 <p><br></p>
 <p>Let’s apply this function with the <em>fruits</em> dataset:</p>
 <p><br></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">alpha_fd_fe_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.fe.html">alpha.fd.fe</a></span><span class="op">(</span>
   asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>, 
   sp_to_fe         <span class="op">=</span> <span class="va">sp_to_fe_fruits</span>,
@@ -604,7 +612,7 @@
 <p><br></p>
 <p>This function returns a dataframe of indices values for each assemblage and a detailed list containing a matrix gathering the number of species per FE in each assemblage:</p>
 <p><br></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># dataframe with indices values for each assemblage:</span>
 <span class="va">alpha_fd_fe_fruits</span><span class="op">$</span><span class="st">"asb_fdfe"</span></code></pre></div>
 <pre><code><span class="co">##           nb_sp nb_fe     fred     fored     fvuln</span>
@@ -618,7 +626,7 @@
 <span class="co">## basket_8      8     3 2.666667 0.4166667 0.6666667</span>
 <span class="co">## basket_9      8     3 2.666667 0.4166667 0.6666667</span>
 <span class="co">## basket_10     8     5 1.600000 0.1500000 0.4000000</span></code></pre>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># a matrix gathering the number of species per FE in each assemblage</span>
 <span class="va">alpha_fd_fe_fruits</span><span class="op">$</span><span class="st">"details_fdfe"</span></code></pre></div>
 <pre><code><span class="co">## $asb_fe_nbsp</span>
@@ -653,7 +661,7 @@
 <p>Then, it is possible to have a graphical representation of FE-based indices for a given assemblage using the <code>mFD::alpha.fe.fd.plot()</code> function:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.fe.plot.html">alpha.fd.fe.plot</a></span><span class="op">(</span>
   alpha_fd_fe       <span class="op">=</span> <span class="va">alpha_fd_fe_fruits</span>,
   plot_asb_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>,
@@ -687,7 +695,7 @@
 <p><br></p>
 <p>For the studied example, the plot looks as follows:</p>
 <p><br></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.fe.plot.html">alpha.fd.fe.plot</a></span><span class="op">(</span>
   alpha_fd_fe       <span class="op">=</span> <span class="va">alpha_fd_fe_fruits</span>,
   plot_asb_nm       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>,
