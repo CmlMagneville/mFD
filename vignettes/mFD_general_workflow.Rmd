@@ -65,7 +65,8 @@ knitr::kable(head(fruits_traits),
 
 * a **matrix** summarizing species assemblages called `baskets_fruits_weights`
 in this tutorial. Weights in this matrix can be occurrence data, abundance,
-biomass, coverage, etc. The studied example works with biomass (*i.e.* grams of
+biomass, coverage, etc. This matrix must have assemblages names in rownames.
+The studied example works with biomass (*i.e.* grams of
 a fruit in a basket) and this matrix looks as follows:
 
 
