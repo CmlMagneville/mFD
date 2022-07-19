@@ -85,59 +85,78 @@ for continuous and non-continuous traits, respectively.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">traits.faxes.cor</span><span class="op">(</span>
-  <span class="va">sp_tr</span>,
-  <span class="va">sp_faxes_coord</span>,
-  tr_nm <span class="op">=</span> <span class="cn">NULL</span>,
-  faxes_nm <span class="op">=</span> <span class="cn">NULL</span>,
-  plot <span class="op">=</span> <span class="cn">FALSE</span>,
-  name_file <span class="op">=</span> <span class="cn">NULL</span>,
-  color_signif <span class="op">=</span> <span class="st">"darkblue"</span>,
-  color_non_signif <span class="op">=</span> <span class="st">"gray80"</span>,
-  stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">traits.faxes.cor</span><span class="op">(</span></span>
+<span>  <span class="va">sp_tr</span>,</span>
+<span>  <span class="va">sp_faxes_coord</span>,</span>
+<span>  tr_nm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  faxes_nm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  name_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  color_signif <span class="op">=</span> <span class="st">"darkblue"</span>,</span>
+<span>  color_non_signif <span class="op">=</span> <span class="st">"gray80"</span>,</span>
+<span>  stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>sp_tr</dt>
 <dd><p>a data frame containing species as rows and traits as columns.</p></dd>
+
+
 <dt>sp_faxes_coord</dt>
 <dd><p>a matrix of species coordinates in a multidimensional
 functional space. Species coordinates have been retrieved
 thanks to <code><a href="tr.cont.fspace.html">tr.cont.fspace</a></code> or <code><a href="quality.fspaces.html">quality.fspaces</a></code>.</p></dd>
+
+
 <dt>tr_nm</dt>
 <dd><p>a vector gathering the names of traits (as in <code>sp_tr</code>) to
 consider. If <code>NULL</code> all traits are considered.</p></dd>
+
+
 <dt>faxes_nm</dt>
 <dd><p>a vector gathering the names of PCoA axes (as in
 <code>sp_faxes_coord</code>) to consider.</p></dd>
+
+
 <dt>plot</dt>
 <dd><p>a logical value indicating whether plot illustrating relations
 between trait and axes should be drawn. <strong>You can only plot relationships
 for up to 10 traits and/or 10 axes</strong>.</p></dd>
+
+
 <dt>name_file</dt>
 <dd><p>the file name (without extension) to save the plot as a 300
 dpi JPEG file. Default is <code>NULL</code> which means plot is only displayed. If
 <code>plot = FALSE</code> this argument is ignored.</p></dd>
+
+
 <dt>color_signif</dt>
 <dd><p>an R color name or an hexadecimal code referring to
 the color of points when relationships between the trait and the axis is
 significant. Default is <code>darkblue</code>.</p></dd>
+
+
 <dt>color_non_signif</dt>
 <dd><p>an R color name or an hexadecimal code referring to
 the
 color of points when relationships between the trait and the axis are not
 significant. Default is <code>gray80</code>.</p></dd>
+
+
 <dt>stop_if_NA</dt>
 <dd><p>a logical value to stop or not the process if the
 <code>sp_tr</code> data frame contains NA. Functional measures are sensitive to
 missing traits. For further explanations, see the Note section.
 Default is <code>TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>1 data frame with for each combination of trait and axis (rows), the
+    
+
+<p>1 data frame with for each combination of trait and axis (rows), the
 name of the test performed, and the corresponding statistics and p-value.
 If <code>plot = TRUE</code> a multi-panel figure with traits as columns and axes as
 rows is also plotted. When relationships between trait and axis is
@@ -150,47 +169,47 @@ significant the points are colored, else they remain grayish.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Species x Traits Data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits categories dataframe</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute Functional Distance</span></span>
-<span class="r-in"><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr  <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
-<span class="r-in"> tr_cat <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
-<span class="r-in"> metric <span class="op">=</span> <span class="st">"gower"</span>,</span>
-<span class="r-in"> scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span class="r-in"> ordinal_var <span class="op">=</span> <span class="st">"classic"</span>,</span>
-<span class="r-in"> weight_type <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span class="r-in"> stop_if_NA  <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Species x Traits Data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits categories dataframe</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute Functional Distance</span></span></span>
+<span class="r-in"><span><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr  <span class="op">=</span> <span class="va">fruits_traits</span>,</span></span>
+<span class="r-in"><span> tr_cat <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span></span>
+<span class="r-in"><span> metric <span class="op">=</span> <span class="st">"gower"</span>,</span></span>
+<span class="r-in"><span> scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span></span>
+<span class="r-in"><span> ordinal_var <span class="op">=</span> <span class="st">"classic"</span>,</span></span>
+<span class="r-in"><span> weight_type <span class="op">=</span> <span class="st">"equal"</span>,</span></span>
+<span class="r-in"><span> stop_if_NA  <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="co"># Compute Functional Spaces Quality (to retrieve species coordinates)</span></span>
-<span class="r-in"><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span>
-<span class="r-in">  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>, </span>
-<span class="r-in">  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in">  deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span>
-<span class="r-in">  fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">  fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="co"># Retrieve Species Coordinates</span></span>
-<span class="r-in"><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute Correlation between Traits and Functional Axes</span></span>
-<span class="r-in"><span class="fu">mFD</span><span class="fu">::</span><span class="fu">traits.faxes.cor</span><span class="op">(</span></span>
-<span class="r-in">  sp_tr          <span class="op">=</span> <span class="va">fruits_traits</span>, </span>
-<span class="r-in">  sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span>, </span>
-<span class="r-in">  tr_nm          <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span class="r-in">  faxes_nm       <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">  name_file      <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span class="r-in">  color_signif   <span class="op">=</span> <span class="st">"darkblue"</span>,</span>
-<span class="r-in">  color_non_signif <span class="op">=</span> <span class="st">"gray80"</span><span class="op">)</span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="co"># Compute Functional Spaces Quality (to retrieve species coordinates)</span></span></span>
+<span class="r-in"><span><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>, </span></span>
+<span class="r-in"><span>  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span></span>
+<span class="r-in"><span>  fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="co"># Retrieve Species Coordinates</span></span></span>
+<span class="r-in"><span><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute Correlation between Traits and Functional Axes</span></span></span>
+<span class="r-in"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu">traits.faxes.cor</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  sp_tr          <span class="op">=</span> <span class="va">fruits_traits</span>, </span></span>
+<span class="r-in"><span>  sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span>, </span></span>
+<span class="r-in"><span>  tr_nm          <span class="op">=</span> <span class="cn">NULL</span>, </span></span>
+<span class="r-in"><span>  faxes_nm       <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>  name_file      <span class="op">=</span> <span class="cn">NULL</span>, </span></span>
+<span class="r-in"><span>  color_signif   <span class="op">=</span> <span class="st">"darkblue"</span>,</span></span>
+<span class="r-in"><span>  color_non_signif <span class="op">=</span> <span class="st">"gray80"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         trait axis           test stat  value p.value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        Size  PC1 Kruskal-Wallis eta2  0.284  0.0461</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        Size  PC2 Kruskal-Wallis eta2  0.316  0.0352</span>
@@ -286,7 +305,7 @@ significant the points are colored, else they remain grayish.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

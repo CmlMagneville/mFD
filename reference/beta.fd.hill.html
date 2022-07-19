@@ -77,15 +77,15 @@ distance between species following the framework from Chao <em>et al.</em> (2019
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">beta.fd.hill</span><span class="op">(</span>
-  <span class="va">asb_sp_w</span>,
-  <span class="va">sp_dist</span>,
-  q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
-  tau <span class="op">=</span> <span class="st">"mean"</span>,
-  beta_type <span class="op">=</span> <span class="st">"Jaccard"</span>,
-  check_input <span class="op">=</span> <span class="cn">TRUE</span>,
-  details_returned <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">beta.fd.hill</span><span class="op">(</span></span>
+<span>  <span class="va">asb_sp_w</span>,</span>
+<span>  <span class="va">sp_dist</span>,</span>
+<span>  q <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  tau <span class="op">=</span> <span class="st">"mean"</span>,</span>
+<span>  beta_type <span class="op">=</span> <span class="st">"Jaccard"</span>,</span>
+<span>  check_input <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  details_returned <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -94,33 +94,48 @@ distance between species following the framework from Chao <em>et al.</em> (2019
 <dd><p>a matrix with weight of species (columns) in a set
 of assemblages (rows). Rows and columns should have names. NA are not
 allowed.</p></dd>
+
+
 <dt>sp_dist</dt>
 <dd><p>a matrix or dist object with distance between
 species. Species names should be provided and match those in 'asb_sp_w'.
 NA are not allowed.</p></dd>
+
+
 <dt>q</dt>
 <dd><p>a vector containing values referring to the order of
 diversity to use</p></dd>
+
+
 <dt>tau</dt>
 <dd><p>a character string with name of function to apply to
 distance matrix (i.e. among all pairs of species) to get the threshold
 used to define 'functionally indistinct set of species'. Could be qet to
 'mean' (default), 'min' or 'max'.</p></dd>
+
+
 <dt>beta_type</dt>
 <dd><p>a character string with name of framework used for
 computing beta-diversity, either 'Jaccard' (default) or 'Sorensen'.</p></dd>
+
+
 <dt>check_input</dt>
 <dd><p>a logical value indicating whether key features the
 inputs are checked (e.g. class and/or mode of objects, names of rows
 and/or columns, missing values). If an error is detected, a detailed
 message is returned. Default: <code>check_input = TRUE</code>.</p></dd>
+
+
 <dt>details_returned</dt>
 <dd><p>a logical value indicating whether the user
 want to store values used for computing indices (see list below)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list with:</p><ul><li><p><em>asb_FDbeta</em> a list with for each value of q a <em>dist</em>
+    
+
+<p>A list with:</p><ul><li><p><em>asb_FDbeta</em> a list with for each value of q a <em>dist</em>
 object with beta functional diversity indices for all pairs of assemblages
 item if <strong>store.details</strong> turned to TRUE a list <em>details</em> with</p><ul><li><p><em>malpha_fd_q</em> a list with for each value of q a <em>dist</em>
 object with mean alpha functional diversity indices for all pairs of
@@ -152,40 +167,40 @@ measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Species*Traits dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'fruits_traits'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits types dataframe:      </span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'fruits_traits_cat'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span>
-<span class="r-in">   </span>
-<span class="r-in"><span class="co"># Compute functional distance </span></span>
-<span class="r-in"><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
-<span class="r-in">                                  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
-<span class="r-in">                                  metric        <span class="op">=</span> <span class="st">"gower"</span>,</span>
-<span class="r-in">                                  scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span class="r-in">                                  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span>
-<span class="r-in">                                  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span class="r-in">                                  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Species*Traits dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'fruits_traits'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits types dataframe:      </span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'fruits_traits_cat'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   </span></span>
+<span class="r-in"><span><span class="co"># Compute functional distance </span></span></span>
+<span class="r-in"><span><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span></span>
+<span class="r-in"><span>                                  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span></span>
+<span class="r-in"><span>                                  metric        <span class="op">=</span> <span class="st">"gower"</span>,</span></span>
+<span class="r-in"><span>                                  scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span></span>
+<span class="r-in"><span>                                  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span></span>
+<span class="r-in"><span>                                  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span></span>
+<span class="r-in"><span>                                  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute beta functional hill indices:</span></span>
-<span class="r-in"><span class="va">baskets_beta</span> <span class="op">&lt;-</span> <span class="fu">beta.fd.hill</span><span class="op">(</span></span>
-<span class="r-in">      asb_sp_w         <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, </span>
-<span class="r-in">      sp_dist          <span class="op">=</span> <span class="va">sp_dist_fruits</span>, </span>
-<span class="r-in">      q                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, </span>
-<span class="r-in">      tau              <span class="op">=</span> <span class="st">'mean'</span>,</span>
-<span class="r-in">      beta_type        <span class="op">=</span> <span class="st">'Jaccard'</span>, </span>
-<span class="r-in">      check_input      <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">      details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># Then use the mFD::dist.to.df function to ease visualizing result:</span></span>
-<span class="r-in"><span class="co">## for q = 0:</span></span>
-<span class="r-in"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>FDq2 <span class="op">=</span> <span class="va">baskets_beta</span><span class="op">$</span><span class="va">beta_fd_q</span><span class="op">$</span><span class="va">q0</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute beta functional hill indices:</span></span></span>
+<span class="r-in"><span><span class="va">baskets_beta</span> <span class="op">&lt;-</span> <span class="fu">beta.fd.hill</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      asb_sp_w         <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, </span></span>
+<span class="r-in"><span>      sp_dist          <span class="op">=</span> <span class="va">sp_dist_fruits</span>, </span></span>
+<span class="r-in"><span>      q                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>      tau              <span class="op">=</span> <span class="st">'mean'</span>,</span></span>
+<span class="r-in"><span>      beta_type        <span class="op">=</span> <span class="st">'Jaccard'</span>, </span></span>
+<span class="r-in"><span>      check_input      <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>      details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># Then use the mFD::dist.to.df function to ease visualizing result:</span></span></span>
+<span class="r-in"><span><span class="co">## for q = 0:</span></span></span>
+<span class="r-in"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>FDq2 <span class="op">=</span> <span class="va">baskets_beta</span><span class="op">$</span><span class="va">beta_fd_q</span><span class="op">$</span><span class="va">q0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          x1        x2       FDq2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  basket_1  basket_2 0.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  basket_1  basket_3 0.00000000</span>
@@ -232,8 +247,8 @@ measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 43 basket_8  basket_9 0.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 44 basket_8 basket_10 0.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 45 basket_9 basket_10 0.00000000</span>
-<span class="r-in"><span class="co">## for q = 1:</span></span>
-<span class="r-in"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>FDq2 <span class="op">=</span> <span class="va">baskets_beta</span><span class="op">$</span><span class="va">beta_fd_q</span><span class="op">$</span><span class="va">q1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## for q = 1:</span></span></span>
+<span class="r-in"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>FDq2 <span class="op">=</span> <span class="va">baskets_beta</span><span class="op">$</span><span class="va">beta_fd_q</span><span class="op">$</span><span class="va">q1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          x1        x2         FDq2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  basket_1  basket_2 0.0465649552</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  basket_1  basket_3 0.0633934986</span>
@@ -280,8 +295,8 @@ measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 43 basket_8  basket_9 0.0303705511</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 44 basket_8 basket_10 0.2652284919</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 45 basket_9 basket_10 0.1601080610</span>
-<span class="r-in"><span class="co">## for q = 2:</span></span>
-<span class="r-in"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>FDq2 <span class="op">=</span> <span class="va">baskets_beta</span><span class="op">$</span><span class="va">beta_fd_q</span><span class="op">$</span><span class="va">q2</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## for q = 2:</span></span></span>
+<span class="r-in"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>FDq2 <span class="op">=</span> <span class="va">baskets_beta</span><span class="op">$</span><span class="va">beta_fd_q</span><span class="op">$</span><span class="va">q2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          x1        x2        FDq2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  basket_1  basket_2 0.058982325</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  basket_1  basket_3 0.078716397</span>
@@ -342,7 +357,7 @@ measures. <em>Ecological Monographs</em>, <strong>89</strong>, e01343.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

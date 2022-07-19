@@ -93,7 +93,7 @@
       <h1 data-toc-skip>Compute Functional Diversity Hill Indices</h1>
                         <h4 data-toc-skip class="author">Sebastien Villeger</h4>
             
-            <h4 data-toc-skip class="date">2022-06-09</h4>
+            <h4 data-toc-skip class="date">2022-07-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Compute_functional_hill_indices.Rmd" class="external-link"><code>vignettes/Compute_functional_hill_indices.Rmd</code></a></small>
       <div class="hidden name"><code>Compute_functional_hill_indices.Rmd</code></div>
@@ -184,10 +184,10 @@
 <li>a <strong>data frame</strong> summarizing traits values for each species called <code>fruits_traits</code> in this tutorial:</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">)</span>,
-      caption <span class="op">=</span> <span class="st">"Species x traits data frame based on the **fruits** dataset"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">)</span>,</span>
+<span>      caption <span class="op">=</span> <span class="st">"Species x traits data frame based on the **fruits** dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Species x traits data frame based on the <strong>fruits</strong> dataset</caption>
 <thead><tr class="header">
@@ -275,10 +275,10 @@
 <li>a <strong>matrix</strong> summarizing species assemblages called <code>baskets_fruits_weights</code> in this tutorial. Weights in this matrix can be occurrence data, abundance, biomass, coverage, etc. The studied example works with biomass (<em>i.e.</em> grams of a fruit in a basket) and this matrix looks as follows:</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>, 
-             caption <span class="op">=</span> <span class="st">"Species x assemblages matrix based on the **fruits** dataset"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>, </span>
+<span>             caption <span class="op">=</span> <span class="st">"Species x assemblages matrix based on the **fruits** dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Species x assemblages matrix based on the <strong>fruits</strong> dataset</caption>
 <thead><tr class="header">
@@ -352,9 +352,9 @@
 <li>a <strong>data frame</strong> summarizing traits types called <code>fruits_traits_cat</code> in this tutorial (for details, see <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>):</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits_cat</span><span class="op">)</span>, 
-             caption <span class="op">=</span> <span class="st">"Traits types based on **fruits &amp; baskets** dataset"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits_cat</span><span class="op">)</span>, </span>
+<span>             caption <span class="op">=</span> <span class="st">"Traits types based on **fruits &amp; baskets** dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Traits types based on <strong>fruits &amp; baskets</strong> dataset</caption>
 <thead><tr class="header">
@@ -398,12 +398,12 @@
 <p><br></p>
 <p>Then, we can compute functional distance using the <code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code> function as follows:</p>
 <p><strong>USAGE</strong></p>
-<pre><code><span class="co">## [1] "Running w.type=equal on groups=c(Size)"</span>
-<span class="co">## [1] "Running w.type=equal on groups=c(Plant)"</span>
-<span class="co">## [1] "Running w.type=equal on groups=c(Climate)"</span>
-<span class="co">## [1] "Running w.type=equal on groups=c(Seed)"</span>
-<span class="co">## [1] "Running w.type=equal on groups=c(Sugar)"</span>
-<span class="co">## [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span></code></pre>
+<pre><code><span><span class="co">## [1] "Running w.type=equal on groups=c(Size)"</span></span>
+<span><span class="co">## [1] "Running w.type=equal on groups=c(Plant)"</span></span>
+<span><span class="co">## [1] "Running w.type=equal on groups=c(Climate)"</span></span>
+<span><span class="co">## [1] "Running w.type=equal on groups=c(Seed)"</span></span>
+<span><span class="co">## [1] "Running w.type=equal on groups=c(Sugar)"</span></span>
+<span><span class="co">## [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span></span></code></pre>
 <p><br></p>
 </div>
 </div>
@@ -427,37 +427,37 @@
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">baskets_FD2max</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span>
-  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, 
-  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
-  tau      <span class="op">=</span> <span class="st">"max"</span>, 
-  q        <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">baskets_FD2max</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span></span>
+<span>  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, </span>
+<span>  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, </span>
+<span>  tau      <span class="op">=</span> <span class="st">"max"</span>, </span>
+<span>  q        <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <p>Then, we can compute <strong>Hill numbers FD of order 2</strong> computed with <code>tau = "mean"</code> and <code>q = 2</code> as recommended in <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343" class="external-link">Chao <em>et al.</em> (2019)</a></p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">baskets_FD2mean</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span>
-  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, 
-  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
-  tau      <span class="op">=</span> <span class="st">"mean"</span>, 
-  q        <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">baskets_FD2mean</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span></span>
+<span>  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span>, </span>
+<span>  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, </span>
+<span>  tau      <span class="op">=</span> <span class="st">"mean"</span>, </span>
+<span>  q        <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <p>We can now compare these two metrics:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>FD2max  <span class="op">=</span> <span class="va">baskets_FD2max</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span>, 
-            FD2mean <span class="op">=</span> <span class="va">baskets_FD2mean</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##           FD2max FD2mean</span>
-<span class="co">## basket_1    1.50    2.62</span>
-<span class="co">## basket_2    1.83    3.97</span>
-<span class="co">## basket_3    1.86    4.10</span>
-<span class="co">## basket_4    1.27    1.72</span>
-<span class="co">## basket_5    1.30    1.85</span>
-<span class="co">## basket_6    1.74    3.73</span>
-<span class="co">## basket_7    1.82    3.94</span>
-<span class="co">## basket_8    1.40    2.16</span>
-<span class="co">## basket_9    1.53    2.75</span>
-<span class="co">## basket_10   1.53    3.01</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>FD2max  <span class="op">=</span> <span class="va">baskets_FD2max</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span>, </span>
+<span>            FD2mean <span class="op">=</span> <span class="va">baskets_FD2mean</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##           FD2max FD2mean</span></span>
+<span><span class="co">## basket_1    1.50    2.62</span></span>
+<span><span class="co">## basket_2    1.83    3.97</span></span>
+<span><span class="co">## basket_3    1.86    4.10</span></span>
+<span><span class="co">## basket_4    1.27    1.72</span></span>
+<span><span class="co">## basket_5    1.30    1.85</span></span>
+<span><span class="co">## basket_6    1.74    3.73</span></span>
+<span><span class="co">## basket_7    1.82    3.94</span></span>
+<span><span class="co">## basket_8    1.40    2.16</span></span>
+<span><span class="co">## basket_9    1.53    2.75</span></span>
+<span><span class="co">## basket_10   1.53    3.01</span></span></code></pre>
 <p><br></p>
 <p>We can see that FD computed with <code>tau = "max"</code> is less variable (ranging from 1.50 to only 1.86) than FD computed with <code>tau = "min"</code> (ranging from 1.72 to 4.10) illustrating its <strong>higher sensitivity to functional differences between species</strong>.</p>
 <p><br></p>
@@ -465,59 +465,59 @@
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Retrieve species occurrences data:</span>
-<span class="va">baskets_summary</span>    <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">)</span>
-<span class="va">baskets_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_sp_occ"</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">baskets_fruits_occ</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##          apple apricot banana currant blackberry blueberry cherry grape</span>
-<span class="co">## basket_1     1       0      1       0          0         0      1     0</span>
-<span class="co">## basket_2     1       0      1       0          0         0      1     0</span>
-<span class="co">## basket_3     1       0      1       0          0         0      1     0</span>
-<span class="co">## basket_4     1       0      0       0          0         0      0     0</span>
-<span class="co">## basket_5     1       0      0       0          0         0      0     0</span>
-<span class="co">## basket_6     1       0      1       0          0         0      0     0</span>
-<span class="co">##          grapefruit kiwifruit lemon lime litchi mango melon orange</span>
-<span class="co">## basket_1          0         0     1    0      0     0     1      0</span>
-<span class="co">## basket_2          0         0     1    0      0     0     1      0</span>
-<span class="co">## basket_3          0         0     1    0      0     0     1      0</span>
-<span class="co">## basket_4          0         1     1    0      0     0     0      1</span>
-<span class="co">## basket_5          0         1     1    0      0     0     0      1</span>
-<span class="co">## basket_6          0         0     0    1      1     1     0      1</span>
-<span class="co">##          passion_fruit peach pear pineapple plum raspberry strawberry tangerine</span>
-<span class="co">## basket_1             1     0    1         0    0         0          1         0</span>
-<span class="co">## basket_2             1     0    1         0    0         0          1         0</span>
-<span class="co">## basket_3             1     0    1         0    0         0          1         0</span>
-<span class="co">## basket_4             0     1    1         0    1         0          0         1</span>
-<span class="co">## basket_5             0     1    1         0    1         0          0         1</span>
-<span class="co">## basket_6             0     0    0         1    0         0          0         0</span>
-<span class="co">##          water_melon</span>
-<span class="co">## basket_1           0</span>
-<span class="co">## basket_2           0</span>
-<span class="co">## basket_3           0</span>
-<span class="co">## basket_4           0</span>
-<span class="co">## basket_5           0</span>
-<span class="co">## basket_6           1</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># Retrieve species occurrences data:</span></span>
+<span><span class="va">baskets_summary</span>    <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">)</span></span>
+<span><span class="va">baskets_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_sp_occ"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">baskets_fruits_occ</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##          apple apricot banana currant blackberry blueberry cherry grape</span></span>
+<span><span class="co">## basket_1     1       0      1       0          0         0      1     0</span></span>
+<span><span class="co">## basket_2     1       0      1       0          0         0      1     0</span></span>
+<span><span class="co">## basket_3     1       0      1       0          0         0      1     0</span></span>
+<span><span class="co">## basket_4     1       0      0       0          0         0      0     0</span></span>
+<span><span class="co">## basket_5     1       0      0       0          0         0      0     0</span></span>
+<span><span class="co">## basket_6     1       0      1       0          0         0      0     0</span></span>
+<span><span class="co">##          grapefruit kiwifruit lemon lime litchi mango melon orange</span></span>
+<span><span class="co">## basket_1          0         0     1    0      0     0     1      0</span></span>
+<span><span class="co">## basket_2          0         0     1    0      0     0     1      0</span></span>
+<span><span class="co">## basket_3          0         0     1    0      0     0     1      0</span></span>
+<span><span class="co">## basket_4          0         1     1    0      0     0     0      1</span></span>
+<span><span class="co">## basket_5          0         1     1    0      0     0     0      1</span></span>
+<span><span class="co">## basket_6          0         0     0    1      1     1     0      1</span></span>
+<span><span class="co">##          passion_fruit peach pear pineapple plum raspberry strawberry tangerine</span></span>
+<span><span class="co">## basket_1             1     0    1         0    0         0          1         0</span></span>
+<span><span class="co">## basket_2             1     0    1         0    0         0          1         0</span></span>
+<span><span class="co">## basket_3             1     0    1         0    0         0          1         0</span></span>
+<span><span class="co">## basket_4             0     1    1         0    1         0          0         1</span></span>
+<span><span class="co">## basket_5             0     1    1         0    1         0          0         1</span></span>
+<span><span class="co">## basket_6             0     0    0         1    0         0          0         0</span></span>
+<span><span class="co">##          water_melon</span></span>
+<span><span class="co">## basket_1           0</span></span>
+<span><span class="co">## basket_2           0</span></span>
+<span><span class="co">## basket_3           0</span></span>
+<span><span class="co">## basket_4           0</span></span>
+<span><span class="co">## basket_5           0</span></span>
+<span><span class="co">## basket_6           1</span></span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Compute alpha FD Hill with q = 0:</span>
-<span class="va">baskets_FD0mean</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span>
-  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_occ</span>, 
-  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, 
-  tau      <span class="op">=</span> <span class="st">"mean"</span>, 
-  q        <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">baskets_FD0mean</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##           FD_q0</span>
-<span class="co">## basket_1   4.73</span>
-<span class="co">## basket_2   4.73</span>
-<span class="co">## basket_3   4.73</span>
-<span class="co">## basket_4   1.93</span>
-<span class="co">## basket_5   1.93</span>
-<span class="co">## basket_6   4.57</span>
-<span class="co">## basket_7   4.57</span>
-<span class="co">## basket_8   3.67</span>
-<span class="co">## basket_9   3.67</span>
-<span class="co">## basket_10  3.52</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># Compute alpha FD Hill with q = 0:</span></span>
+<span><span class="va">baskets_FD0mean</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.hill.html">alpha.fd.hill</a></span><span class="op">(</span></span>
+<span>  asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_occ</span>, </span>
+<span>  sp_dist  <span class="op">=</span> <span class="va">fruits_gower</span>, </span>
+<span>  tau      <span class="op">=</span> <span class="st">"mean"</span>, </span>
+<span>  q        <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">baskets_FD0mean</span><span class="op">$</span><span class="st">"asb_FD_Hill"</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##           FD_q0</span></span>
+<span><span class="co">## basket_1   4.73</span></span>
+<span><span class="co">## basket_2   4.73</span></span>
+<span><span class="co">## basket_3   4.73</span></span>
+<span><span class="co">## basket_4   1.93</span></span>
+<span><span class="co">## basket_5   1.93</span></span>
+<span><span class="co">## basket_6   4.57</span></span>
+<span><span class="co">## basket_7   4.57</span></span>
+<span><span class="co">## basket_8   3.67</span></span>
+<span><span class="co">## basket_9   3.67</span></span>
+<span><span class="co">## basket_10  3.52</span></span></code></pre>
 <p><br></p>
 <p>We can see that baskets with same composition of fruits species have same FD values (<em>e.g</em> <em>basket_1</em>, <em>basket_2</em> and <em>basket_3</em>)</p>
 <p><br></p>
@@ -531,86 +531,86 @@
 <p><strong>NB</strong> Note that <strong>total weight of assemblages is affecting computation of functional beta-diversity</strong>. Hence <strong>if it is does not reflect an ecological pattern</strong> (<em>e.g</em>. rather difference in sampling effort), it is recommended to <strong>apply</strong> <code><a href="../reference/beta.fd.hill.html">mFD::beta.fd.hill()</a></code> <strong>to relative weight of species in assemblages</strong>.</p>
 <p><br></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># retrieve total weight per basket:</span>
-<span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_tot_w"</span></code></pre></div>
-<pre><code><span class="co">##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 </span>
-<span class="co">##      2000      2000      2000      2000      2000      2000      2000      2000 </span>
-<span class="co">##  basket_9 basket_10 </span>
-<span class="co">##      2000      2000</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># retrieve total weight per basket:</span></span>
+<span><span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_tot_w"</span></span></code></pre></div>
+<pre><code><span><span class="co">##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 </span></span>
+<span><span class="co">##      2000      2000      2000      2000      2000      2000      2000      2000 </span></span>
+<span><span class="co">##  basket_9 basket_10 </span></span>
+<span><span class="co">##      2000      2000</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Here baskets all contain 2000g of fruits, we illustrate how to compute...</span>
-<span class="co"># relative weights using the output of asb.sp.summary:</span>
-
-<span class="va">baskets_fruits_relw</span> <span class="op">&lt;-</span> <span class="va">baskets_fruits_weights</span> <span class="op">/</span> <span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_tot_w"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">baskets_fruits_relw</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 </span>
-<span class="co">##         1         1         1         1         1         1         1         1 </span>
-<span class="co">##  basket_9 basket_10 </span>
-<span class="co">##         1         1</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># Here baskets all contain 2000g of fruits, we illustrate how to compute...</span></span>
+<span><span class="co"># relative weights using the output of asb.sp.summary:</span></span>
+<span></span>
+<span><span class="va">baskets_fruits_relw</span> <span class="op">&lt;-</span> <span class="va">baskets_fruits_weights</span> <span class="op">/</span> <span class="va">baskets_summary</span><span class="op">$</span><span class="st">"asb_tot_w"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">baskets_fruits_relw</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 </span></span>
+<span><span class="co">##         1         1         1         1         1         1         1         1 </span></span>
+<span><span class="co">##  basket_9 basket_10 </span></span>
+<span><span class="co">##         1         1</span></span></code></pre>
 <p><br></p>
 <p>Now we can compute functional beta-diversity of order <code>q = 2</code> (with <code>tau = "mean"</code> for higher sensitivity) with Jaccard-type index:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Compute index:</span>
-<span class="va">baskets_betaq2</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.fd.hill.html">beta.fd.hill</a></span><span class="op">(</span>
-  asb_sp_w  <span class="op">=</span> <span class="va">baskets_fruits_relw</span>, 
-  sp_dist   <span class="op">=</span> <span class="va">fruits_gower</span>, 
-  q         <span class="op">=</span> <span class="fl">2</span>,
-  tau       <span class="op">=</span> <span class="st">"mean"</span>, 
-  beta_type <span class="op">=</span> <span class="st">"Jaccard"</span><span class="op">)</span>
-
-<span class="co"># Then use the mFD::dist.to.df function to ease visualizing result</span>
-<span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"FDq2"</span> <span class="op">=</span> <span class="va">baskets_betaq2</span><span class="op">$</span><span class="st">"beta_fd_q"</span><span class="op">$</span><span class="st">"q2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Registered S3 method overwritten by 'dendextend':</span>
-<span class="co">##   method     from </span>
-<span class="co">##   rev.hclust vegan</span></code></pre>
-<pre><code><span class="co">##          x1        x2        FDq2</span>
-<span class="co">## 1  basket_1  basket_2 0.058982325</span>
-<span class="co">## 2  basket_1  basket_3 0.078716397</span>
-<span class="co">## 3  basket_1  basket_4 0.029573623</span>
-<span class="co">## 4  basket_1  basket_5 0.027059789</span>
-<span class="co">## 5  basket_1  basket_6 0.484115290</span>
-<span class="co">## 6  basket_1  basket_7 0.292594562</span>
-<span class="co">## 7  basket_1  basket_8 0.290545545</span>
-<span class="co">## 8  basket_1  basket_9 0.185475113</span>
-<span class="co">## 9  basket_1 basket_10 0.011136995</span>
-<span class="co">## 10 basket_2  basket_3 0.004420448</span>
-<span class="co">## 11 basket_2  basket_4 0.161833512</span>
-<span class="co">## 12 basket_2  basket_5 0.162571972</span>
-<span class="co">## 13 basket_2  basket_6 0.260541701</span>
-<span class="co">## 14 basket_2  basket_7 0.097053161</span>
-<span class="co">## 15 basket_2  basket_8 0.294504888</span>
-<span class="co">## 16 basket_2  basket_9 0.225897615</span>
-<span class="co">## 17 basket_2 basket_10 0.058298760</span>
-<span class="co">## 18 basket_3  basket_4 0.172877455</span>
-<span class="co">## 19 basket_3  basket_5 0.178123024</span>
-<span class="co">## 20 basket_3  basket_6 0.207102590</span>
-<span class="co">## 21 basket_3  basket_7 0.081951839</span>
-<span class="co">## 22 basket_3  basket_8 0.308336365</span>
-<span class="co">## 23 basket_3  basket_9 0.241482168</span>
-<span class="co">## 24 basket_3 basket_10 0.082649928</span>
-<span class="co">## 25 basket_4  basket_5 0.001049851</span>
-<span class="co">## 26 basket_4  basket_6 0.511165067</span>
-<span class="co">## 27 basket_4  basket_7 0.421141181</span>
-<span class="co">## 28 basket_4  basket_8 0.482330219</span>
-<span class="co">## 29 basket_4  basket_9 0.342926459</span>
-<span class="co">## 30 basket_4 basket_10 0.050817451</span>
-<span class="co">## 31 basket_5  basket_6 0.532084800</span>
-<span class="co">## 32 basket_5  basket_7 0.438841544</span>
-<span class="co">## 33 basket_5  basket_8 0.496554512</span>
-<span class="co">## 34 basket_5  basket_9 0.336894275</span>
-<span class="co">## 35 basket_5 basket_10 0.044052657</span>
-<span class="co">## 36 basket_6  basket_7 0.068382884</span>
-<span class="co">## 37 basket_6  basket_8 0.759422492</span>
-<span class="co">## 38 basket_6  basket_9 0.680332414</span>
-<span class="co">## 39 basket_6 basket_10 0.453325136</span>
-<span class="co">## 40 basket_7  basket_8 0.478528108</span>
-<span class="co">## 41 basket_7  basket_9 0.431531941</span>
-<span class="co">## 42 basket_7 basket_10 0.265928889</span>
-<span class="co">## 43 basket_8  basket_9 0.020812705</span>
-<span class="co">## 44 basket_8 basket_10 0.345652088</span>
-<span class="co">## 45 basket_9 basket_10 0.219780509</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># Compute index:</span></span>
+<span><span class="va">baskets_betaq2</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.fd.hill.html">beta.fd.hill</a></span><span class="op">(</span></span>
+<span>  asb_sp_w  <span class="op">=</span> <span class="va">baskets_fruits_relw</span>, </span>
+<span>  sp_dist   <span class="op">=</span> <span class="va">fruits_gower</span>, </span>
+<span>  q         <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  tau       <span class="op">=</span> <span class="st">"mean"</span>, </span>
+<span>  beta_type <span class="op">=</span> <span class="st">"Jaccard"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Then use the mFD::dist.to.df function to ease visualizing result</span></span>
+<span><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/dist.to.df.html">dist.to.df</a></span><span class="op">(</span>list_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"FDq2"</span> <span class="op">=</span> <span class="va">baskets_betaq2</span><span class="op">$</span><span class="st">"beta_fd_q"</span><span class="op">$</span><span class="st">"q2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Registered S3 method overwritten by 'dendextend':</span></span>
+<span><span class="co">##   method     from </span></span>
+<span><span class="co">##   rev.hclust vegan</span></span></code></pre>
+<pre><code><span><span class="co">##          x1        x2        FDq2</span></span>
+<span><span class="co">## 1  basket_1  basket_2 0.058982325</span></span>
+<span><span class="co">## 2  basket_1  basket_3 0.078716397</span></span>
+<span><span class="co">## 3  basket_1  basket_4 0.029573623</span></span>
+<span><span class="co">## 4  basket_1  basket_5 0.027059789</span></span>
+<span><span class="co">## 5  basket_1  basket_6 0.484115290</span></span>
+<span><span class="co">## 6  basket_1  basket_7 0.292594562</span></span>
+<span><span class="co">## 7  basket_1  basket_8 0.290545545</span></span>
+<span><span class="co">## 8  basket_1  basket_9 0.185475113</span></span>
+<span><span class="co">## 9  basket_1 basket_10 0.011136995</span></span>
+<span><span class="co">## 10 basket_2  basket_3 0.004420448</span></span>
+<span><span class="co">## 11 basket_2  basket_4 0.161833512</span></span>
+<span><span class="co">## 12 basket_2  basket_5 0.162571972</span></span>
+<span><span class="co">## 13 basket_2  basket_6 0.260541701</span></span>
+<span><span class="co">## 14 basket_2  basket_7 0.097053161</span></span>
+<span><span class="co">## 15 basket_2  basket_8 0.294504888</span></span>
+<span><span class="co">## 16 basket_2  basket_9 0.225897615</span></span>
+<span><span class="co">## 17 basket_2 basket_10 0.058298760</span></span>
+<span><span class="co">## 18 basket_3  basket_4 0.172877455</span></span>
+<span><span class="co">## 19 basket_3  basket_5 0.178123024</span></span>
+<span><span class="co">## 20 basket_3  basket_6 0.207102590</span></span>
+<span><span class="co">## 21 basket_3  basket_7 0.081951839</span></span>
+<span><span class="co">## 22 basket_3  basket_8 0.308336365</span></span>
+<span><span class="co">## 23 basket_3  basket_9 0.241482168</span></span>
+<span><span class="co">## 24 basket_3 basket_10 0.082649928</span></span>
+<span><span class="co">## 25 basket_4  basket_5 0.001049851</span></span>
+<span><span class="co">## 26 basket_4  basket_6 0.511165067</span></span>
+<span><span class="co">## 27 basket_4  basket_7 0.421141181</span></span>
+<span><span class="co">## 28 basket_4  basket_8 0.482330219</span></span>
+<span><span class="co">## 29 basket_4  basket_9 0.342926459</span></span>
+<span><span class="co">## 30 basket_4 basket_10 0.050817451</span></span>
+<span><span class="co">## 31 basket_5  basket_6 0.532084800</span></span>
+<span><span class="co">## 32 basket_5  basket_7 0.438841544</span></span>
+<span><span class="co">## 33 basket_5  basket_8 0.496554512</span></span>
+<span><span class="co">## 34 basket_5  basket_9 0.336894275</span></span>
+<span><span class="co">## 35 basket_5 basket_10 0.044052657</span></span>
+<span><span class="co">## 36 basket_6  basket_7 0.068382884</span></span>
+<span><span class="co">## 37 basket_6  basket_8 0.759422492</span></span>
+<span><span class="co">## 38 basket_6  basket_9 0.680332414</span></span>
+<span><span class="co">## 39 basket_6 basket_10 0.453325136</span></span>
+<span><span class="co">## 40 basket_7  basket_8 0.478528108</span></span>
+<span><span class="co">## 41 basket_7  basket_9 0.431531941</span></span>
+<span><span class="co">## 42 basket_7 basket_10 0.265928889</span></span>
+<span><span class="co">## 43 basket_8  basket_9 0.020812705</span></span>
+<span><span class="co">## 44 basket_8 basket_10 0.345652088</span></span>
+<span><span class="co">## 45 basket_9 basket_10 0.219780509</span></span></code></pre>
 <p>We can see that <em>basket 1</em> is similar (beta &lt; 0.1) to <em>baskets 2,3,4,5,10</em> and that it is the most dissimilar to <em>basket 8 (beta &gt; 0.5)</em>. <em>Baskets 4 and 5</em> are highly dissimilar (beta &gt; 0.8) to <em>basket 8</em>.</p>
 <p><br></p>
 </div>
@@ -642,7 +642,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

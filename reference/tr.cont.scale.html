@@ -81,7 +81,7 @@ no NA in your <code>sp_tr</code> data frame.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tr.cont.scale</span><span class="op">(</span><span class="va">sp_tr</span>, std_method <span class="op">=</span> <span class="st">"scale_center"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tr.cont.scale</span><span class="op">(</span><span class="va">sp_tr</span>, std_method <span class="op">=</span> <span class="st">"scale_center"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -90,6 +90,8 @@ no NA in your <code>sp_tr</code> data frame.</p>
 <dd><p>a data frame of traits values (columns) for each species
 (rows). Note that species names <strong>must be</strong> specified in the row names and
 traits must be <strong>continuous</strong>.</p></dd>
+
+
 <dt>std_method</dt>
 <dd><p>a character string referring to the standardization
 method. Possible values:
@@ -99,10 +101,13 @@ method. Possible values:
 <code>scale_center</code> (use the scale-center transformation:
 \(x' = \frac{x - mean(x)}{sd(x)}\)).
 Default is <code>scale_center</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data frame of standardized trait values (columns) for each species
+    
+
+<p>A data frame of standardized trait values (columns) for each species
 (rows).</p>
     </div>
     <div id="author">
@@ -112,9 +117,9 @@ Default is <code>scale_center</code>.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata'</span>, <span class="st">'sp_tr_cestes_df'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">mFD</span><span class="fu">::</span><span class="fu">tr.cont.scale</span><span class="op">(</span>sp_tr <span class="op">=</span> <span class="va">sp_tr</span>, std_method <span class="op">=</span> <span class="st">'scale_center'</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata'</span>, <span class="st">'sp_tr_cestes_df'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu">tr.cont.scale</span><span class="op">(</span>sp_tr <span class="op">=</span> <span class="va">sp_tr</span>, std_method <span class="op">=</span> <span class="st">'scale_center'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     logM       OgSf        OgSh       OgPo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Achirus_lineatus            -0.458316003 -1.2277343 -1.03445914 -0.9930819</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Anchoa_mitchilli            -1.939316003 -1.0167343  0.07254086 -1.4850819</span>
@@ -313,7 +318,7 @@ Default is <code>scale_center</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

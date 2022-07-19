@@ -79,34 +79,34 @@ through the use of the</strong> <code><a href="alpha.fd.multidim.html">alpha.fd.
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">alpha.multidim.plot</span><span class="op">(</span>
-  <span class="va">output_alpha_fd_multidim</span>,
-  <span class="va">plot_asb_nm</span>,
-  ind_nm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fide"</span>, <span class="st">"fric"</span>, <span class="st">"fdiv"</span>, <span class="st">"fdis"</span>, <span class="st">"feve"</span>, <span class="st">"fori"</span>, <span class="st">"fspe"</span>, <span class="st">"fnnd"</span><span class="op">)</span>,
-  faxes <span class="op">=</span> <span class="cn">NULL</span>,
-  faxes_nm <span class="op">=</span> <span class="cn">NULL</span>,
-  range_faxes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
-  color_bg <span class="op">=</span> <span class="st">"grey95"</span>,
-  shape_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">3</span>, asb1 <span class="op">=</span> <span class="fl">21</span>, asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,
-  size_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">0.7</span>, asb1 <span class="op">=</span> <span class="fl">1</span>, asb2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
-  color_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,
-  color_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,
-  fill_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"#FFFFFF30"</span>, asb2 <span class="op">=</span> <span class="st">"#FFFFFF30"</span><span class="op">)</span>,
-  fill_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,
-  color_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,
-  fill_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"white"</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,
-  alpha_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,
-  shape_centroid_fdis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asb1 <span class="op">=</span> <span class="fl">22</span>, asb2 <span class="op">=</span> <span class="fl">22</span><span class="op">)</span>,
-  shape_centroid_fdiv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asb1 <span class="op">=</span> <span class="fl">24</span>, asb2 <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>,
-  shape_centroid_fspe <span class="op">=</span> <span class="fl">23</span>,
-  color_centroid_fspe <span class="op">=</span> <span class="st">"black"</span>,
-  size_sp_nm <span class="op">=</span> <span class="fl">3</span>,
-  color_sp_nm <span class="op">=</span> <span class="st">"black"</span>,
-  plot_sp_nm <span class="op">=</span> <span class="cn">NULL</span>,
-  fontface_sp_nm <span class="op">=</span> <span class="st">"plain"</span>,
-  save_file <span class="op">=</span> <span class="cn">FALSE</span>,
-  check_input <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">alpha.multidim.plot</span><span class="op">(</span></span>
+<span>  <span class="va">output_alpha_fd_multidim</span>,</span>
+<span>  <span class="va">plot_asb_nm</span>,</span>
+<span>  ind_nm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fide"</span>, <span class="st">"fric"</span>, <span class="st">"fdiv"</span>, <span class="st">"fdis"</span>, <span class="st">"feve"</span>, <span class="st">"fori"</span>, <span class="st">"fspe"</span>, <span class="st">"fnnd"</span><span class="op">)</span>,</span>
+<span>  faxes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  faxes_nm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  range_faxes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>  color_bg <span class="op">=</span> <span class="st">"grey95"</span>,</span>
+<span>  shape_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">3</span>, asb1 <span class="op">=</span> <span class="fl">21</span>, asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,</span>
+<span>  size_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">0.7</span>, asb1 <span class="op">=</span> <span class="fl">1</span>, asb2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  color_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,</span>
+<span>  color_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,</span>
+<span>  fill_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"#FFFFFF30"</span>, asb2 <span class="op">=</span> <span class="st">"#FFFFFF30"</span><span class="op">)</span>,</span>
+<span>  fill_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,</span>
+<span>  color_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,</span>
+<span>  fill_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"white"</span>, asb1 <span class="op">=</span> <span class="st">"#0072B2"</span>, asb2 <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,</span>
+<span>  alpha_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span>
+<span>  shape_centroid_fdis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asb1 <span class="op">=</span> <span class="fl">22</span>, asb2 <span class="op">=</span> <span class="fl">22</span><span class="op">)</span>,</span>
+<span>  shape_centroid_fdiv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asb1 <span class="op">=</span> <span class="fl">24</span>, asb2 <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>,</span>
+<span>  shape_centroid_fspe <span class="op">=</span> <span class="fl">23</span>,</span>
+<span>  color_centroid_fspe <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  size_sp_nm <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  color_sp_nm <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  plot_sp_nm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fontface_sp_nm <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>  save_file <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  check_input <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -114,106 +114,159 @@ through the use of the</strong> <code><a href="alpha.fd.multidim.html">alpha.fd.
     <dl><dt>output_alpha_fd_multidim</dt>
 <dd><p>a list of objects retrieved through the
 <code><a href="alpha.fd.multidim.html">alpha.fd.multidim</a></code> function.</p></dd>
+
+
 <dt>plot_asb_nm</dt>
 <dd><p>a vector containing name(s) of assemblage(s) to plot.</p></dd>
+
+
 <dt>ind_nm</dt>
 <dd><p>a vector of character string of the name of functional
 indices to plot. <strong>Indices names must be written in lower case
 letters</strong>. Possible indices to compute are: "fdis", "feve", "fric", "fdiv",
 "fori" and "fspe". Default: all the indices are computed.</p></dd>
+
+
 <dt>faxes</dt>
 <dd><p>a vector with names of axes to plot. <strong>You can only plot
 from 2 to 4 axes for graphical reasons: vector length should be between 2
 and 4</strong>. Default: faxes = NULL (the four first axes will be plotted).</p></dd>
+
+
 <dt>faxes_nm</dt>
 <dd><p>a vector with axes labels if the user want different axes
 labels than <code>faxes</code> ones. Default: faxes_nm = faxes (labels will the
 the same that <code>faxes</code> ones).</p></dd>
+
+
 <dt>range_faxes</dt>
 <dd><p>a vector with minimum and maximum for values for axes.
 Note that to have a fair representation of position of species in all
 plots, all axes must have the same range. Default: faxes_lim = c(NA, NA)
 (the range is computed according to the range of values among all axes, all
 axes having the same range).</p></dd>
+
+
 <dt>color_bg</dt>
 <dd><p>a R color name  or an hexadecimal code used to fill plot
 background. Default: <code>color_bg = "grey95"</code>.</p></dd>
+
+
 <dt>shape_sp</dt>
 <dd><p>a vector gathering numeric values referring to the symbol
 used to draw species from the global pool and the plotted assemblage(s).
 It should be written  as c(pool = "...", asb1 = "...", ...).
 (0 = high transparency, 1 = no transparency).</p></dd>
+
+
 <dt>size_sp</dt>
 <dd><p>a vector gathering numeric values referring to the size of
 species belonging to the global pool and the plotted assemblage(s).
 It should be written  as c(pool = "...", asb1 = "...", ...).</p></dd>
+
+
 <dt>color_sp</dt>
 <dd><p>a vector gathering R color names or hexadecimal codes
 referring to the color of species from the global pool and studied
 assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).</p></dd>
+
+
 <dt>color_vert</dt>
 <dd><p>a vector gathering R color names or hexadecimal codes
 referring to the color of vertices from the global pool and studied
 assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).</p></dd>
+
+
 <dt>fill_sp</dt>
 <dd><p>a vector gathering R color names or hexadecimal codes
 referring to the filled color of species from the global pool and studied
 assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).</p></dd>
+
+
 <dt>fill_vert</dt>
 <dd><p>a vector gathering R color names or hexadecimal codes
 referring to the filled color of vertices from the global pool and studied
 assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).</p></dd>
+
+
 <dt>color_ch</dt>
 <dd><p>a vector gathering R color names or hexadecimal codes
 referring to the color of the convex pool of the global pool and studied
 assemblage(s). It should be written  as c(pool = "...", asb1 = "...", ...).</p></dd>
+
+
 <dt>fill_ch</dt>
 <dd><p>a vector gathering R color names or hexadecimal codes
 referring to the color to fill the convex pool of the global pool and
 studied assemblage(s).
 It should be written as c(pool = "...", asb1 = "...", ...).</p></dd>
+
+
 <dt>alpha_ch</dt>
 <dd><p>a vector gathering numeric values referring to the opacity
 of convex hulls of the global pool and the plotted assemblage(s).
 It should be written  as c(pool = "...", asb1 = "...", ...).
 (0 = high transparency, 1 = no transparency).</p></dd>
+
+
 <dt>shape_centroid_fdis</dt>
 <dd><p>a vector gathering numeric value(s) used to draw
 FDis centroid size.</p></dd>
+
+
 <dt>shape_centroid_fdiv</dt>
 <dd><p>a vector gathering numeric value(s) used to draw
 FDiv centroid size.</p></dd>
+
+
 <dt>shape_centroid_fspe</dt>
 <dd><p>a vector gathering numeric value used to draw
 FSpe centroid (i.e. center of the functional space) size.</p></dd>
+
+
 <dt>color_centroid_fspe</dt>
 <dd><p>a vector gathering R color name or
 hexadecimal code used to draw FSpe centroid (i.e. center of the
 functional space) color.</p></dd>
+
+
 <dt>size_sp_nm</dt>
 <dd><p>a numeric value referring to the size of species names
 if plotted.</p></dd>
+
+
 <dt>color_sp_nm</dt>
 <dd><p>a R color name or hexadecimal code referring to the
 color of names of species if plotted.</p></dd>
+
+
 <dt>plot_sp_nm</dt>
 <dd><p>a vector containing species names that are to be plotted.
 Default: <code>plot_nm_sp = NULL</code> (no name plotted).</p></dd>
+
+
 <dt>fontface_sp_nm</dt>
 <dd><p>a character string for font of species labels (e.g.
 "italic", "bold"). Default: <code>fontface_sp_nm = 'plain'</code>.</p></dd>
+
+
 <dt>save_file</dt>
 <dd><p>a logical value telling if plots should be locally
 saved or not.</p></dd>
+
+
 <dt>check_input</dt>
 <dd><p>a logical value indicating whether key features the
 inputs are checked (e.g. class and/or mode of objects, names of rows
 and/or columns, missing values). If an error is detected, a detailed
 message is returned. Default: <code>check.input = TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If  <code>name_file</code> is <code>NULL</code>, it returns a list of one
+    
+
+<p>If  <code>name_file</code> is <code>NULL</code>, it returns a list of one
 <code>ggplot2</code> plots per functional index containing plots for combinations
 of up to four axes, a <code>patchwork</code> figure gathering all combinations of
 axes and a <code>ggplot2</code> figure showing the plot caption. If
@@ -226,51 +279,51 @@ axes and a <code>ggplot2</code> figure showing the plot caption. If
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Species*Traits dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Assemblages*Species dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits categories dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute functional distance</span></span>
-<span class="r-in"><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
-<span class="r-in">                                  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
-<span class="r-in">                                  metric        <span class="op">=</span> <span class="st">"gower"</span>,</span>
-<span class="r-in">                                  scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span class="r-in">                                  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span>
-<span class="r-in">                                  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span class="r-in">                                  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Species*Traits dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Assemblages*Species dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits categories dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute functional distance</span></span></span>
+<span class="r-in"><span><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span></span>
+<span class="r-in"><span>                                  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span></span>
+<span class="r-in"><span>                                  metric        <span class="op">=</span> <span class="st">"gower"</span>,</span></span>
+<span class="r-in"><span>                                  scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span></span>
+<span class="r-in"><span>                                  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span></span>
+<span class="r-in"><span>                                  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span></span>
+<span class="r-in"><span>                                  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
-<span class="r-in"><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span>sp_dist <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span>
-<span class="r-in"> maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in"> deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span>
-<span class="r-in"> fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Retrieve species coordinates matrix:</span></span>
-<span class="r-in"><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute alpha diversity indices:</span></span>
-<span class="r-in"><span class="va">alpha_fd_indices_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="alpha.fd.multidim.html">alpha.fd.multidim</a></span><span class="op">(</span></span>
-<span class="r-in">  sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span>
-<span class="r-in">  asb_sp_w         <span class="op">=</span> <span class="va">baskets_fruits_weights</span>,</span>
-<span class="r-in">  ind_vect         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fdis"</span>, <span class="st">"fmpd"</span>, <span class="st">"fnnd"</span>, <span class="st">"feve"</span>, <span class="st">"fric"</span>, <span class="st">"fdiv"</span>,</span>
-<span class="r-in">                       <span class="st">"fori"</span>, <span class="st">"fspe"</span><span class="op">)</span>,</span>
-<span class="r-in">  scaling          <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">  check_input      <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">  details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span>sp_dist <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span></span>
+<span class="r-in"><span> maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span> deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span></span>
+<span class="r-in"><span> fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span> fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute alpha diversity indices:</span></span></span>
+<span class="r-in"><span><span class="va">alpha_fd_indices_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="alpha.fd.multidim.html">alpha.fd.multidim</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>  asb_sp_w         <span class="op">=</span> <span class="va">baskets_fruits_weights</span>,</span></span>
+<span class="r-in"><span>  ind_vect         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fdis"</span>, <span class="st">"fmpd"</span>, <span class="st">"fnnd"</span>, <span class="st">"feve"</span>, <span class="st">"fric"</span>, <span class="st">"fdiv"</span>,</span></span>
+<span class="r-in"><span>                       <span class="st">"fori"</span>, <span class="st">"fspe"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  scaling          <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  check_input      <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> basket_1 done 10%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> basket_2 done 20%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> basket_3 done 30%</span>
@@ -281,57 +334,57 @@ axes and a <code>ggplot2</code> figure showing the plot caption. If
 <span class="r-msg co"><span class="r-pr">#&gt;</span> basket_8 done 80%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> basket_9 done 90%</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> basket_10 done 100%</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Plot all fd alpha indices:</span></span>
-<span class="r-in"><span class="va">plots_alpha</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">alpha.multidim.plot</span><span class="op">(</span></span>
-<span class="r-in">output_alpha_fd_multidim <span class="op">=</span> <span class="va">alpha_fd_indices_fruits</span>,</span>
-<span class="r-in">plot_asb_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_5"</span><span class="op">)</span>,</span>
-<span class="r-in">ind_nm                   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fdis"</span>, <span class="st">"fide"</span>, <span class="st">"fnnd"</span>, <span class="st">"feve"</span>, </span>
-<span class="r-in">                             <span class="st">"fric"</span>, <span class="st">"fdiv"</span>, <span class="st">"fori"</span>, </span>
-<span class="r-in">                             <span class="st">"fspe"</span><span class="op">)</span>,</span>
-<span class="r-in">faxes                    <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">faxes_nm                 <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">range_faxes              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
-<span class="r-in">color_bg                 <span class="op">=</span> <span class="st">"grey95"</span>,</span>
-<span class="r-in">shape_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">3</span>, asb1 <span class="op">=</span> <span class="fl">21</span>, </span>
-<span class="r-in">                             asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,</span>
-<span class="r-in">size_sp                  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">0.7</span>, asb1 <span class="op">=</span> <span class="fl">1</span>, </span>
-<span class="r-in">                             asb2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">color_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, </span>
-<span class="r-in">                             asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span>
-<span class="r-in">                             asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span>
-<span class="r-in">color_vert               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, </span>
-<span class="r-in">                             asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span>
-<span class="r-in">                             asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span>
-<span class="r-in">fill_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span>  <span class="cn">NA</span>, </span>
-<span class="r-in">                            asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span>
-<span class="r-in">                            asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span>
-<span class="r-in">fill_vert               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, </span>
-<span class="r-in">                            asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span>
-<span class="r-in">                            asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span>
-<span class="r-in">color_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, </span>
-<span class="r-in">                            asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span>
-<span class="r-in">                            asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span>
-<span class="r-in">fill_ch                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"white"</span>, </span>
-<span class="r-in">                            asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span>
-<span class="r-in">                            asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span>
-<span class="r-in">alpha_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, </span>
-<span class="r-in">                            asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span>
-<span class="r-in">shape_centroid_fdis     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asb1 <span class="op">=</span> <span class="fl">22</span>,  asb2 <span class="op">=</span> <span class="fl">24</span><span class="op">)</span>,</span>
-<span class="r-in">shape_centroid_fdiv     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asb1 <span class="op">=</span> <span class="fl">22</span>,  asb2 <span class="op">=</span> <span class="fl">24</span><span class="op">)</span>,</span>
-<span class="r-in">shape_centroid_fspe     <span class="op">=</span> <span class="fl">23</span>,</span>
-<span class="r-in">color_centroid_fspe     <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span class="r-in">size_sp_nm              <span class="op">=</span> <span class="fl">3</span>, </span>
-<span class="r-in">color_sp_nm             <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span class="r-in">plot_sp_nm              <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">fontface_sp_nm          <span class="op">=</span> <span class="st">"plain"</span>,</span>
-<span class="r-in">save_file               <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">check_input             <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Check FRic plot:</span></span>
-<span class="r-in"><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fric</span><span class="op">$</span><span class="va">patchwork</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Plot all fd alpha indices:</span></span></span>
+<span class="r-in"><span><span class="va">plots_alpha</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">alpha.multidim.plot</span><span class="op">(</span></span></span>
+<span class="r-in"><span>output_alpha_fd_multidim <span class="op">=</span> <span class="va">alpha_fd_indices_fruits</span>,</span></span>
+<span class="r-in"><span>plot_asb_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_5"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>ind_nm                   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fdis"</span>, <span class="st">"fide"</span>, <span class="st">"fnnd"</span>, <span class="st">"feve"</span>, </span></span>
+<span class="r-in"><span>                             <span class="st">"fric"</span>, <span class="st">"fdiv"</span>, <span class="st">"fori"</span>, </span></span>
+<span class="r-in"><span>                             <span class="st">"fspe"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>faxes                    <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>faxes_nm                 <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>range_faxes              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>color_bg                 <span class="op">=</span> <span class="st">"grey95"</span>,</span></span>
+<span class="r-in"><span>shape_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">3</span>, asb1 <span class="op">=</span> <span class="fl">21</span>, </span></span>
+<span class="r-in"><span>                             asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>size_sp                  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">0.7</span>, asb1 <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>                             asb2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>color_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, </span></span>
+<span class="r-in"><span>                             asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span></span>
+<span class="r-in"><span>                             asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>color_vert               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, </span></span>
+<span class="r-in"><span>                             asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span></span>
+<span class="r-in"><span>                             asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>fill_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span>  <span class="cn">NA</span>, </span></span>
+<span class="r-in"><span>                            asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span></span>
+<span class="r-in"><span>                            asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>fill_vert               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, </span></span>
+<span class="r-in"><span>                            asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span></span>
+<span class="r-in"><span>                            asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>color_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, </span></span>
+<span class="r-in"><span>                            asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span></span>
+<span class="r-in"><span>                            asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>fill_ch                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"white"</span>, </span></span>
+<span class="r-in"><span>                            asb1 <span class="op">=</span> <span class="st">"#1F968BFF"</span>,</span></span>
+<span class="r-in"><span>                            asb2 <span class="op">=</span> <span class="st">"#DCE319FF"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>alpha_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, </span></span>
+<span class="r-in"><span>                            asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>shape_centroid_fdis     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asb1 <span class="op">=</span> <span class="fl">22</span>,  asb2 <span class="op">=</span> <span class="fl">24</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>shape_centroid_fdiv     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>asb1 <span class="op">=</span> <span class="fl">22</span>,  asb2 <span class="op">=</span> <span class="fl">24</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>shape_centroid_fspe     <span class="op">=</span> <span class="fl">23</span>,</span></span>
+<span class="r-in"><span>color_centroid_fspe     <span class="op">=</span> <span class="st">"black"</span>,</span></span>
+<span class="r-in"><span>size_sp_nm              <span class="op">=</span> <span class="fl">3</span>, </span></span>
+<span class="r-in"><span>color_sp_nm             <span class="op">=</span> <span class="st">"black"</span>,</span></span>
+<span class="r-in"><span>plot_sp_nm              <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>fontface_sp_nm          <span class="op">=</span> <span class="st">"plain"</span>,</span></span>
+<span class="r-in"><span>save_file               <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>check_input             <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Check FRic plot:</span></span></span>
+<span class="r-in"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="va">fric</span><span class="op">$</span><span class="va">patchwork</span></span></span>
 <span class="r-plt img"><img src="alpha.multidim.plot-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -346,7 +399,7 @@ axes and a <code>ggplot2</code> figure showing the plot caption. If
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

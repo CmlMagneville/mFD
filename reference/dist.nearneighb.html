@@ -78,7 +78,7 @@ space and the identity of the nearest neighbor</h1>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dist.nearneighb</span><span class="op">(</span><span class="va">sp_faxes_coord</span>, <span class="va">ref_sp</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dist.nearneighb</span><span class="op">(</span><span class="va">sp_faxes_coord</span>, <span class="va">ref_sp</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -87,13 +87,18 @@ space and the identity of the nearest neighbor</h1>
 <dd><p>a matrix of species coordinates in a chosen
 functional space. Species coordinates have been retrieved thanks to
 <code><a href="tr.cont.fspace.html">tr.cont.fspace</a></code> or <code><a href="quality.fspaces.html">quality.fspaces</a></code>.</p></dd>
+
+
 <dt>ref_sp</dt>
 <dd><p>a character string referring to the name of the reference
 species.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list containing the nearest neighbor identity <code>nn_id</code> and a
+    
+
+<p>A list containing the nearest neighbor identity <code>nn_id</code> and a
 list of the distance of the reference point to its nearest neighbor
 <code>nn_ref_sp_dist</code>.</p>
     </div>
@@ -104,44 +109,44 @@ list of the distance of the reference point to its nearest neighbor
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Species*Traits dataframe:</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Assemblages*Species dataframe:      </span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits categories dataframe:</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span> </span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># Compute functional distance </span></span>
-<span class="r-in"> <span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
-<span class="r-in">                                   tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
-<span class="r-in">                                   metric        <span class="op">=</span> <span class="st">"gower"</span>,</span>
-<span class="r-in">                                   scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span class="r-in">                                   ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span>
-<span class="r-in">                                   weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span class="r-in">                                   stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Species*Traits dataframe:</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Assemblages*Species dataframe:      </span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits categories dataframe:</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># Compute functional distance </span></span></span>
+<span class="r-in"><span> <span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span></span>
+<span class="r-in"><span>                                   tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span></span>
+<span class="r-in"><span>                                   metric        <span class="op">=</span> <span class="st">"gower"</span>,</span></span>
+<span class="r-in"><span>                                   scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span></span>
+<span class="r-in"><span>                                   ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span></span>
+<span class="r-in"><span>                                   weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span></span>
+<span class="r-in"><span>                                   stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
-<span class="r-in"> <span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span>
-<span class="r-in">                                  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>, </span>
-<span class="r-in">                                  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in">                                  deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span>
-<span class="r-in">                                  fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">                                  fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># Retrieve species coordinates matrix:</span></span>
-<span class="r-in"> <span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute the distance of "pear" to its nearest neighbor(s):</span></span>
-<span class="r-in"> <span class="va">dist_nn_pear</span> <span class="op">&lt;-</span> <span class="fu">dist.nearneighb</span><span class="op">(</span><span class="va">sp_faxes_coord_fruits</span>, ref_sp <span class="op">=</span> <span class="st">"pear"</span><span class="op">)</span></span>
-<span class="r-in"> <span class="va">dist_nn_pear</span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span> <span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>                                  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>, </span></span>
+<span class="r-in"><span>                                  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>                                  deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span></span>
+<span class="r-in"><span>                                  fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                                  fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># Retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span> <span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute the distance of "pear" to its nearest neighbor(s):</span></span></span>
+<span class="r-in"><span> <span class="va">dist_nn_pear</span> <span class="op">&lt;-</span> <span class="fu">dist.nearneighb</span><span class="op">(</span><span class="va">sp_faxes_coord_fruits</span>, ref_sp <span class="op">=</span> <span class="st">"pear"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">dist_nn_pear</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`nearest neighbour identity`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "apple"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -162,7 +167,7 @@ list of the distance of the reference point to its nearest neighbor
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

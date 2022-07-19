@@ -84,29 +84,29 @@ diversity indices should have been computed using the</strong>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">beta.multidim.plot</span><span class="op">(</span>
-  <span class="va">output_beta_fd_multidim</span>,
-  <span class="va">plot_asb_nm</span>,
-  <span class="va">beta_family</span>,
-  plot_sp_nm <span class="op">=</span> <span class="cn">NULL</span>,
-  faxes <span class="op">=</span> <span class="cn">NULL</span>,
-  name_file <span class="op">=</span> <span class="cn">NULL</span>,
-  faxes_nm <span class="op">=</span> <span class="cn">NULL</span>,
-  range_faxes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
-  color_bg <span class="op">=</span> <span class="st">"grey95"</span>,
-  shape_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">3</span>, asb1 <span class="op">=</span> <span class="fl">22</span>, asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,
-  size_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">0.7</span>, asb1 <span class="op">=</span> <span class="fl">1.2</span>, asb2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
-  color_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  fill_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"white"</span>, asb2 <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,
-  fill_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  color_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  fill_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"white"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  alpha_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,
-  nm_size <span class="op">=</span> <span class="fl">3</span>,
-  nm_color <span class="op">=</span> <span class="st">"black"</span>,
-  nm_fontface <span class="op">=</span> <span class="st">"plain"</span>,
-  check_input <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">beta.multidim.plot</span><span class="op">(</span></span>
+<span>  <span class="va">output_beta_fd_multidim</span>,</span>
+<span>  <span class="va">plot_asb_nm</span>,</span>
+<span>  <span class="va">beta_family</span>,</span>
+<span>  plot_sp_nm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  faxes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  name_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  faxes_nm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  range_faxes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>  color_bg <span class="op">=</span> <span class="st">"grey95"</span>,</span>
+<span>  shape_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">3</span>, asb1 <span class="op">=</span> <span class="fl">22</span>, asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,</span>
+<span>  size_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">0.7</span>, asb1 <span class="op">=</span> <span class="fl">1.2</span>, asb2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  color_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
+<span>  fill_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"white"</span>, asb2 <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span>
+<span>  fill_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
+<span>  color_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
+<span>  fill_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"white"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
+<span>  alpha_ch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span>
+<span>  nm_size <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  nm_color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  nm_fontface <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>  check_input <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -117,91 +117,137 @@ diversity indices should have been computed using the</strong>
 Thus, even if this function will illustrate functional beta-diversity for
 a single pair of assemblages, plots will be scaled according to all
 assemblages for which indices were computed.</p></dd>
+
+
 <dt>plot_asb_nm</dt>
 <dd><p>a vector with names of the 2 assemblages for which
 functional beta-diversity will be illustrated.</p></dd>
+
+
 <dt>beta_family</dt>
 <dd><p>a character string for the type of beta-diversity index
 for which values will be printed, <code>'Jaccard'</code> (default) and/or
 <code>'Sorensen'</code>.</p></dd>
+
+
 <dt>plot_sp_nm</dt>
 <dd><p>a vector containing species names that are to be plotted.
 Default: <code>plot_nm_sp = NULL</code> (no name plotted).</p></dd>
+
+
 <dt>faxes</dt>
 <dd><p>a vector with names of axes to plot (as columns names in
 <code>output_beta_fd_multidim$details$input$sp_faxes_coord</code> ). <strong>You
 can only plot from 2 to 4 axes for graphical reasons</strong>.
 Default: <code>faxes = NULL</code> (the four first axes will be plotted).</p></dd>
+
+
 <dt>name_file</dt>
 <dd><p>a character string with name of file to save the figure
 (without extension). Default: <code>name_file = NULL</code> which means plot is
 displayed.</p></dd>
+
+
 <dt>faxes_nm</dt>
 <dd><p>a vector with axes labels for figure. Default: as
 <code>faxes</code>).</p></dd>
+
+
 <dt>range_faxes</dt>
 <dd><p>a vector with minimum and maximum values of axes. Note
 that to have a fair representation of position of species in all plots,
 they should have the same range. Default: <code>faxes_lim = c(NA, NA)</code> (the
 range is computed according to the range of values among all axes).</p></dd>
+
+
 <dt>color_bg</dt>
 <dd><p>a R color name or an hexadecimal code used to fill
 plot background. Default: <code>color_bg = "grey95"</code>.</p></dd>
+
+
 <dt>shape_sp</dt>
 <dd><p>a vector with 3 numeric values referring to the shape of
 symbol used for species from the 'pool' absent from the 2 assemblages, and
 for species present in the 2 assemblages ('asb1', and 'asb2'),
 respectively. Default: <code>shape_sp = c(pool = 3, asb1 = 22, asb2 = 21)</code> so
 cross, square and circle.</p></dd>
+
+
 <dt>size_sp</dt>
 <dd><p>a numeric value referring to the size of symbols for
 species. Default: <code>is size_sp = c(pool = 0.8, asb1 = 1, asb2 = 1)</code>.</p></dd>
+
+
 <dt>color_sp</dt>
 <dd><p>a vector with 3 names or hexadecimal codes referring to the
 colour of symbol for species. Default is:
 <code>color_sp = c(pool = "grey50", asb1 = "blue", asb2 = "red")</code>.</p></dd>
+
+
 <dt>fill_sp</dt>
 <dd><p>a vector with 3 names or hexadecimal codes referring to the
 color to fill symbol (if <code>shape_sp</code> &gt; 20) for species of the pool and
 of the 2 assemblages. Default is:
 <code>fill_sp = c(pool = NA, asb1 = "white", asb2 = "white")</code>.</p></dd>
+
+
 <dt>fill_vert</dt>
 <dd><p>a vector with 3 names or hexadecimal codes
 referring to the colour to fill symbol (if <code>shape_sp</code> &gt; 20) for
 species being vertices of the convex hulls of the pool of species and of
 the 2 assemblages. Default is:
 <code>fill_vert = c(pool = NA, asb1 = "blue", asb2 = "red")</code>.</p></dd>
+
+
 <dt>color_ch</dt>
 <dd><p>a vector with 3 names or hexadecimal codes referring to the
 border of the convex hulls of the pool of species and by the 2 assemblages.
 Default is: <code>color_ch = c(pool = NA, asb1 = "blue", asb2 = "red")</code>.</p></dd>
+
+
 <dt>fill_ch</dt>
 <dd><p>a vector with 3 names or hexadecimal codes referring to the
 filling of the convex hull of the pool of species and of the 2 assemblages.
 Default is <code>fill_ch = c(pool = "white", asb1 = "blue", asb2 = "red")</code>.</p></dd>
+
+
 <dt>alpha_ch</dt>
 <dd><p>a vector with 3 numeric value for transparency of
 the filling of the convex hulls (0 = high transparency, 1 = no
 transparency). Default is:
 <code>alpha_ch = c(pool = 1, asb1 = 0.3, asb2 = 0.3)</code>.</p></dd>
+
+
 <dt>nm_size</dt>
 <dd><p>a numeric value for size of species label. Default is <code>3</code>
 (in points).</p></dd>
+
+
 <dt>nm_color</dt>
 <dd><p>a R color name or an hexadecimal code referring to the color
 of species label. Default is <code>black.</code></p></dd>
+
+
 <dt>nm_fontface</dt>
 <dd><p>a character string for font of species labels (e.g.
 "italic", "bold"). Default is <code>'plain'</code>.</p></dd>
+
+
 <dt>check_input</dt>
 <dd><p>a logical value indicating whether key features the
 inputs are checked (e.g. class and/or mode of objects, names of rows
 and/or columns, missing values). If an error is detected, a detailed
 message is returned. Default: <code>check.input = TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>name_file</code> is <code>NULL</code>, it returns a <code>patchwork</code>figure with overlap between convex hulls projected in 2-dimensional spaces
+    
+
+<p>If <code>name_file</code> is <code>NULL</code>, it returns a <code>patchwork</code></p>
+
+
+<p>figure with overlap between convex hulls projected in 2-dimensional spaces
 for the given pair of assemblages. Values of functional beta-diversity
 indices are shown on top-right corner of the figure. If <code>name_file</code> is
 not <code>NULL</code>, the plot is saved locally.</p>
@@ -213,85 +259,85 @@ not <code>NULL</code>, the plot is saved locally.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="co"># Load Species*Traits dataframe:</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Assemblages*Species dataframe:</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits categories dataframe:</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute functional distance</span></span>
-<span class="r-in"> <span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
-<span class="r-in">                                   tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
-<span class="r-in">                                   metric        <span class="op">=</span> <span class="st">"gower"</span>,</span>
-<span class="r-in">                                   scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span class="r-in">                                   ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span>
-<span class="r-in">                                   weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span class="r-in">                                   stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># Load Species*Traits dataframe:</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Assemblages*Species dataframe:</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits categories dataframe:</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute functional distance</span></span></span>
+<span class="r-in"><span> <span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span></span>
+<span class="r-in"><span>                                   tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span></span>
+<span class="r-in"><span>                                   metric        <span class="op">=</span> <span class="st">"gower"</span>,</span></span>
+<span class="r-in"><span>                                   scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span></span>
+<span class="r-in"><span>                                   ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span></span>
+<span class="r-in"><span>                                   weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span></span>
+<span class="r-in"><span>                                   stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
-<span class="r-in"> <span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span>
-<span class="r-in">                                  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span>
-<span class="r-in">                                  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in">                                  deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span>
-<span class="r-in">                                  fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">                                  fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Retrieve species coordinates matrix:</span></span>
-<span class="r-in"> <span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Get the occurrence dataframe:</span></span>
-<span class="r-in"> <span class="va">asb_sp_fruits_summ</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span>asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span><span class="op">)</span></span>
-<span class="r-in"> <span class="va">asb_sp_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_occ"</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute beta diversity indices:</span></span>
-<span class="r-in"> <span class="va">beta_fd_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="beta.fd.multidim.html">beta.fd.multidim</a></span><span class="op">(</span></span>
-<span class="r-in">  sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span>
-<span class="r-in">  asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>,</span>
-<span class="r-in">  check_input      <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">  beta_family      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Jaccard"</span><span class="op">)</span>,</span>
-<span class="r-in">  details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span> <span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>                                  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span></span>
+<span class="r-in"><span>                                  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>                                  deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span></span>
+<span class="r-in"><span>                                  fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                                  fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span> <span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get the occurrence dataframe:</span></span></span>
+<span class="r-in"><span> <span class="va">asb_sp_fruits_summ</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span>asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">asb_sp_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_occ"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute beta diversity indices:</span></span></span>
+<span class="r-in"><span> <span class="va">beta_fd_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="beta.fd.multidim.html">beta.fd.multidim</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>  asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>,</span></span>
+<span class="r-in"><span>  check_input      <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  beta_family      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Jaccard"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Serial computing of convex hulls shaping assemblages with conv1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Serial computing of intersections between pairs of assemblages with inter_geom_coord</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   2%  |                                                                              |===                                                                   |   4%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   9%  |                                                                              |========                                                              |  11%  |                                                                              |=========                                                             |  13%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  18%  |                                                                              |==============                                                        |  20%  |                                                                              |================                                                      |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  31%  |                                                                              |=======================                                               |  33%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  38%  |                                                                              |============================                                          |  40%  |                                                                              |==============================                                        |  42%  |                                                                              |===============================                                       |  44%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |=====================================                                 |  53%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  58%  |                                                                              |==========================================                            |  60%  |                                                                              |============================================                          |  62%  |                                                                              |=============================================                         |  64%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  69%  |                                                                              |==================================================                    |  71%  |                                                                              |===================================================                   |  73%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  78%  |                                                                              |========================================================              |  80%  |                                                                              |==========================================================            |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  87%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  91%  |                                                                              |=================================================================     |  93%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  98%  |                                                                              |======================================================================| 100%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Serial computing of intersections between pairs of assemblages with inter_rcdd_coord &amp; qhull.opt1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute beta fd plots:</span></span>
-<span class="r-in"> <span class="fu">beta.multidim.plot</span><span class="op">(</span></span>
-<span class="r-in">   output_beta_fd_multidim <span class="op">=</span> <span class="va">beta_fd_fruits</span>,</span>
-<span class="r-in">   plot_asb_nm             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_6"</span><span class="op">)</span>,</span>
-<span class="r-in">   beta_family             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Jaccard"</span><span class="op">)</span>,</span>
-<span class="r-in">   plot_sp_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"cherry"</span>, <span class="st">"lemon"</span><span class="op">)</span>,</span>
-<span class="r-in">   faxes                   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,</span>
-<span class="r-in">   name_file               <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">   faxes_nm                <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">   range_faxes             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
-<span class="r-in">   color_bg                <span class="op">=</span> <span class="st">"grey95"</span>,</span>
-<span class="r-in">   shape_sp                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">3</span>, asb1 <span class="op">=</span> <span class="fl">22</span>, asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,</span>
-<span class="r-in">   size_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">0.8</span>, asb1 <span class="op">=</span> <span class="fl">1</span>, asb2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">   color_sp                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>,</span>
-<span class="r-in">                               asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">   fill_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"white"</span>, asb2 <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span>
-<span class="r-in">   fill_vert               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">   color_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">   fill_ch                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"white"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>,</span>
-<span class="r-in">                               asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">   alpha_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span>
-<span class="r-in">   nm_size                 <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">   nm_color                <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span class="r-in">   nm_fontface             <span class="op">=</span> <span class="st">"plain"</span>,</span>
-<span class="r-in">   check_input             <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute beta fd plots:</span></span></span>
+<span class="r-in"><span> <span class="fu">beta.multidim.plot</span><span class="op">(</span></span></span>
+<span class="r-in"><span>   output_beta_fd_multidim <span class="op">=</span> <span class="va">beta_fd_fruits</span>,</span></span>
+<span class="r-in"><span>   plot_asb_nm             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_6"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   beta_family             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Jaccard"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   plot_sp_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"apple"</span>, <span class="st">"cherry"</span>, <span class="st">"lemon"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   faxes                   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   name_file               <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>   faxes_nm                <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>   range_faxes             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   color_bg                <span class="op">=</span> <span class="st">"grey95"</span>,</span></span>
+<span class="r-in"><span>   shape_sp                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">3</span>, asb1 <span class="op">=</span> <span class="fl">22</span>, asb2 <span class="op">=</span> <span class="fl">21</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   size_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">0.8</span>, asb1 <span class="op">=</span> <span class="fl">1</span>, asb2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   color_sp                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"grey50"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>,</span></span>
+<span class="r-in"><span>                               asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   fill_sp                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"white"</span>, asb2 <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   fill_vert               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   color_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="cn">NA</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>, asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   fill_ch                 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="st">"white"</span>, asb1 <span class="op">=</span> <span class="st">"blue"</span>,</span></span>
+<span class="r-in"><span>                               asb2 <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   alpha_ch                <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>pool <span class="op">=</span> <span class="fl">1</span>, asb1 <span class="op">=</span> <span class="fl">0.3</span>, asb2 <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   nm_size                 <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>   nm_color                <span class="op">=</span> <span class="st">"black"</span>,</span></span>
+<span class="r-in"><span>   nm_fontface             <span class="op">=</span> <span class="st">"plain"</span>,</span></span>
+<span class="r-in"><span>   check_input             <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $PC1_PC2</span>
 <span class="r-plt img"><img src="beta.multidim.plot-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -316,7 +362,7 @@ not <code>NULL</code>, the plot is saved locally.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $patchwork</span>
 <span class="r-plt img"><img src="beta.multidim.plot-8.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -331,7 +377,7 @@ not <code>NULL</code>, the plot is saved locally.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -93,7 +93,7 @@
       <h1 data-toc-skip>Continuous Traits Framework</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2022-06-09</h4>
+            <h4 data-toc-skip class="date">2022-07-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Continuous_traits_framework.Rmd" class="external-link"><code>vignettes/Continuous_traits_framework.Rmd</code></a></small>
       <div class="hidden name"><code>Continuous_traits_framework.Rmd</code></div>
@@ -199,16 +199,16 @@
 <code>sp_tr</code>: species x traits data frame</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load dataset:</span>
-<span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"data_cestes_sp_tr.csv"</span>, 
-                              package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>, dec <span class="op">=</span> <span class="st">","</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">sp_tr</span><span class="op">$</span><span class="st">"Sp"</span>
-<span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="va">sp_tr</span><span class="op">[</span> , <span class="op">-</span><span class="fl">1</span><span class="op">]</span>
-
-<span class="co"># display the table:</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span>, 
-             caption <span class="op">=</span> <span class="st">"Species x Traits data frame based on *CESTES* dataset"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># load dataset:</span></span>
+<span><span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"data_cestes_sp_tr.csv"</span>, </span>
+<span>                              package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>, dec <span class="op">=</span> <span class="st">","</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">sp_tr</span><span class="op">$</span><span class="st">"Sp"</span></span>
+<span><span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="va">sp_tr</span><span class="op">[</span> , <span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># display the table:</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span>, </span>
+<span>             caption <span class="op">=</span> <span class="st">"Species x Traits data frame based on *CESTES* dataset"</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <caption>Species x Traits data frame based on <em>CESTES</em> dataset</caption>
 <colgroup>
@@ -372,22 +372,22 @@
 <code>asb_sp_w</code>: species x assemblages data frame summarizing biomass recorded in a volume of 4500m<sup>3</sup> per site and per species:</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load dataset:</span>
-<span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"data_cestes_asb_sp_w.csv"</span>, 
-                                 package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>, dec <span class="op">=</span> <span class="st">","</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"site"</span>, sep <span class="op">=</span> <span class="st">"_"</span>, <span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Sites</span><span class="op">)</span>
-<span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="va">asb_sp_w</span><span class="op">[</span> , <span class="op">-</span><span class="fl">1</span><span class="op">]</span>
-
-<span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Urobatis_jamaicensis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Urobatis_jamaicensis</span><span class="op">)</span>
-
-<span class="co"># remove sites 12, 23, 35 because FRic can not be computed on it...</span>
-<span class="co"># ... (for a clean example):</span>
-<span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="va">asb_sp_w</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">22</span>, <span class="fl">33</span><span class="op">)</span>, <span class="op">]</span>
-
-<span class="co"># display the table:</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, 
-             caption <span class="op">=</span> <span class="st">"Species x Assemblages data frame based on *CESTES* dataset for the first six species and first seven sites"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># load dataset:</span></span>
+<span><span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"data_cestes_asb_sp_w.csv"</span>, </span>
+<span>                                 package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span>, dec <span class="op">=</span> <span class="st">","</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"site"</span>, sep <span class="op">=</span> <span class="st">"_"</span>, <span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Sites</span><span class="op">)</span></span>
+<span><span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="va">asb_sp_w</span><span class="op">[</span> , <span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Urobatis_jamaicensis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">$</span><span class="va">Urobatis_jamaicensis</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># remove sites 12, 23, 35 because FRic can not be computed on it...</span></span>
+<span><span class="co"># ... (for a clean example):</span></span>
+<span><span class="va">asb_sp_w</span> <span class="op">&lt;-</span> <span class="va">asb_sp_w</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">22</span>, <span class="fl">33</span><span class="op">)</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co"># display the table:</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, </span>
+<span>             caption <span class="op">=</span> <span class="st">"Species x Assemblages data frame based on *CESTES* dataset for the first six species and first seven sites"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Species x Assemblages data frame based on <em>CESTES</em> dataset for the first six species and first seven sites</caption>
 <colgroup>
@@ -484,12 +484,12 @@
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/tr.cont.fspace.html">tr.cont.fspace</a></span><span class="op">(</span>
-  sp_tr        <span class="op">=</span> <span class="va">sp_tr</span>, 
-  pca          <span class="op">=</span> <span class="cn">TRUE</span>, 
-  nb_dim       <span class="op">=</span> <span class="fl">7</span>, 
-  scaling      <span class="op">=</span> <span class="st">"scale_center"</span>,
-  compute_corr <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/tr.cont.fspace.html">tr.cont.fspace</a></span><span class="op">(</span></span>
+<span>  sp_tr        <span class="op">=</span> <span class="va">sp_tr</span>, </span>
+<span>  pca          <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  nb_dim       <span class="op">=</span> <span class="fl">7</span>, </span>
+<span>  scaling      <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
+<span>  compute_corr <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <p>It takes as inputs:</p>
 <ul>
@@ -503,12 +503,12 @@
 <p>In this example, we will compute a PCA based on a maximum number of 7 dimensions and get Pearson’s correlation coefficients:</p>
 <p><br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fspace</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/tr.cont.fspace.html">tr.cont.fspace</a></span><span class="op">(</span>
-  sp_tr        <span class="op">=</span> <span class="va">sp_tr</span>, 
-  pca          <span class="op">=</span> <span class="cn">TRUE</span>, 
-  nb_dim       <span class="op">=</span> <span class="fl">10</span>, 
-  scaling      <span class="op">=</span> <span class="st">"scale_center"</span>,
-  compute_corr <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">fspace</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/tr.cont.fspace.html">tr.cont.fspace</a></span><span class="op">(</span></span>
+<span>  sp_tr        <span class="op">=</span> <span class="va">sp_tr</span>, </span>
+<span>  pca          <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  nb_dim       <span class="op">=</span> <span class="fl">10</span>, </span>
+<span>  scaling      <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
+<span>  compute_corr <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <p>If the PCA is computed, the output contains:</p>
 <ul>
@@ -517,17 +517,17 @@
 <p><strong>NB</strong> <strong>mean absolute deviation (mad)</strong> reflects the actual magnitude of errors that affect distances, hence FD metrics ; <strong>mean squared deviation (msd)</strong> reflects the potential risk associated with a few species pairs being strongly misplaced in the functional space (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299" class="external-link">Maire <em>et al.</em> (2015)</a>).</p>
 <p><br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="st">"quality_metrics"</span></code></pre></div>
-<pre><code><span class="co">##             mAD          mSD</span>
-<span class="co">## 2D  0.999172097 9.983449e-01</span>
-<span class="co">## 3D  0.707790003 5.009667e-01</span>
-<span class="co">## 4D  0.447618543 2.003633e-01</span>
-<span class="co">## 5D  0.249227670 6.211478e-02</span>
-<span class="co">## 6D  0.122568133 1.502303e-02</span>
-<span class="co">## 7D  0.061225618 3.748582e-03</span>
-<span class="co">## 8D  0.033760939 1.139802e-03</span>
-<span class="co">## 9D  0.020479668 4.194212e-04</span>
-<span class="co">## 10D 0.009164095 8.398065e-05</span></code></pre>
+<code class="sourceCode R"><span><span class="va">fspace</span><span class="op">$</span><span class="st">"quality_metrics"</span></span></code></pre></div>
+<pre><code><span><span class="co">##             mAD          mSD</span></span>
+<span><span class="co">## 2D  0.999172097 9.983449e-01</span></span>
+<span><span class="co">## 3D  0.707790003 5.009667e-01</span></span>
+<span><span class="co">## 4D  0.447618543 2.003633e-01</span></span>
+<span><span class="co">## 5D  0.249227670 6.211478e-02</span></span>
+<span><span class="co">## 6D  0.122568133 1.502303e-02</span></span>
+<span><span class="co">## 7D  0.061225618 3.748582e-03</span></span>
+<span><span class="co">## 8D  0.033760939 1.139802e-03</span></span>
+<span><span class="co">## 9D  0.020479668 4.194212e-04</span></span>
+<span><span class="co">## 10D 0.009164095 8.398065e-05</span></span></code></pre>
 <p><br></p>
 <p><strong>NB</strong> The lower the quality metric is, the better the quality of your space is. Here, thanks to mAD and mSD value, we can see that as the number of dimensions increases, the quality increases. However, to decrease computation time, we can chose to work with the 6D space which has good quality of functional space. Generally, you must keep in mind a trade-off between the number of axes and quality of functional space. Increasing the number of functional axes increases computation time.</p>
 <p><br></p>
@@ -536,178 +536,178 @@
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="st">"eigenvalues_percentage_var"</span></code></pre></div>
-<pre><code><span class="co">##      eigenvalue percentage of variance cumulative percentage of variance</span>
-<span class="co">## PC1  6.98331220             48.5006669                          48.50067</span>
-<span class="co">## PC2  2.39791799             16.6540774                          65.15474</span>
-<span class="co">## PC3  1.43147508              9.9419150                          75.09666</span>
-<span class="co">## PC4  1.25518478              8.7175394                          83.81420</span>
-<span class="co">## PC5  0.94489478              6.5625058                          90.37670</span>
-<span class="co">## PC6  0.54986970              3.8189682                          94.19567</span>
-<span class="co">## PC7  0.48899139              3.3961547                          97.59183</span>
-<span class="co">## PC8  0.13305486              0.9240958                          98.51592</span>
-<span class="co">## PC9  0.08938364              0.6207894                          99.13671</span>
-<span class="co">## PC10 0.07609657              0.5285077                          99.66522</span></code></pre>
+<code class="sourceCode R"><span><span class="va">fspace</span><span class="op">$</span><span class="st">"eigenvalues_percentage_var"</span></span></code></pre></div>
+<pre><code><span><span class="co">##      eigenvalue percentage of variance cumulative percentage of variance</span></span>
+<span><span class="co">## PC1  6.98331220             48.5006669                          48.50067</span></span>
+<span><span class="co">## PC2  2.39791799             16.6540774                          65.15474</span></span>
+<span><span class="co">## PC3  1.43147508              9.9419150                          75.09666</span></span>
+<span><span class="co">## PC4  1.25518478              8.7175394                          83.81420</span></span>
+<span><span class="co">## PC5  0.94489478              6.5625058                          90.37670</span></span>
+<span><span class="co">## PC6  0.54986970              3.8189682                          94.19567</span></span>
+<span><span class="co">## PC7  0.48899139              3.3961547                          97.59183</span></span>
+<span><span class="co">## PC8  0.13305486              0.9240958                          98.51592</span></span>
+<span><span class="co">## PC9  0.08938364              0.6207894                          99.13671</span></span>
+<span><span class="co">## PC10 0.07609657              0.5285077                          99.66522</span></span></code></pre>
 <p><br></p>
 <ul>
 <li>a matrix of species coordinates in the functional space:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="st">"sp_faxes_coord"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##                                    PC1        PC2       PC3         PC4</span>
-<span class="co">## Achirus_lineatus            -3.5468021 -2.2967608 -1.251164 -0.94434329</span>
-<span class="co">## Anchoa_mitchilli             1.5768146 -0.5190331 -1.916811  0.17507940</span>
-<span class="co">## Archosargus_probatocephalus  1.2488122  0.1995554  1.407921 -0.24268501</span>
-<span class="co">## Archosargus_rhomboidalis     2.1724589  1.4658850  3.077086 -0.83141781</span>
-<span class="co">## Ariopsis_felis               0.2493960 -0.7334141  2.091296 -0.06344991</span>
-<span class="co">## Bagre_marinus                0.6885315 -0.7629772  1.600313 -0.21706433</span>
-<span class="co">##                                    PC5        PC6        PC7        PC8</span>
-<span class="co">## Achirus_lineatus            -0.3551794 -0.7674608  0.6577158 -0.5915840</span>
-<span class="co">## Anchoa_mitchilli            -1.4102174 -1.0235770  1.7253132  0.8741535</span>
-<span class="co">## Archosargus_probatocephalus  0.2635153  0.8865692  0.3189349  0.1482548</span>
-<span class="co">## Archosargus_rhomboidalis     0.5917141  0.8916854  0.2586945 -0.2766138</span>
-<span class="co">## Ariopsis_felis              -1.6439468 -1.0382383 -0.6405055  0.3789258</span>
-<span class="co">## Bagre_marinus               -2.0758840 -0.8373182 -0.2436820 -0.6143684</span>
-<span class="co">##                                      PC9        PC10</span>
-<span class="co">## Achirus_lineatus            -0.003361492 -0.14305954</span>
-<span class="co">## Anchoa_mitchilli            -0.279834057  0.48767139</span>
-<span class="co">## Archosargus_probatocephalus -0.212999873 -0.42603541</span>
-<span class="co">## Archosargus_rhomboidalis    -0.316020951  0.01968203</span>
-<span class="co">## Ariopsis_felis              -0.048960051 -0.25937975</span>
-<span class="co">## Bagre_marinus               -0.092163957 -0.10443150</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="st">"sp_faxes_coord"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                                    PC1        PC2       PC3         PC4</span></span>
+<span><span class="co">## Achirus_lineatus            -3.5468021 -2.2967608 -1.251164 -0.94434329</span></span>
+<span><span class="co">## Anchoa_mitchilli             1.5768146 -0.5190331 -1.916811  0.17507940</span></span>
+<span><span class="co">## Archosargus_probatocephalus  1.2488122  0.1995554  1.407921 -0.24268501</span></span>
+<span><span class="co">## Archosargus_rhomboidalis     2.1724589  1.4658850  3.077086 -0.83141781</span></span>
+<span><span class="co">## Ariopsis_felis               0.2493960 -0.7334141  2.091296 -0.06344991</span></span>
+<span><span class="co">## Bagre_marinus                0.6885315 -0.7629772  1.600313 -0.21706433</span></span>
+<span><span class="co">##                                    PC5        PC6        PC7        PC8</span></span>
+<span><span class="co">## Achirus_lineatus            -0.3551794 -0.7674608  0.6577158 -0.5915840</span></span>
+<span><span class="co">## Anchoa_mitchilli            -1.4102174 -1.0235770  1.7253132  0.8741535</span></span>
+<span><span class="co">## Archosargus_probatocephalus  0.2635153  0.8865692  0.3189349  0.1482548</span></span>
+<span><span class="co">## Archosargus_rhomboidalis     0.5917141  0.8916854  0.2586945 -0.2766138</span></span>
+<span><span class="co">## Ariopsis_felis              -1.6439468 -1.0382383 -0.6405055  0.3789258</span></span>
+<span><span class="co">## Bagre_marinus               -2.0758840 -0.8373182 -0.2436820 -0.6143684</span></span>
+<span><span class="co">##                                      PC9        PC10</span></span>
+<span><span class="co">## Achirus_lineatus            -0.003361492 -0.14305954</span></span>
+<span><span class="co">## Anchoa_mitchilli            -0.279834057  0.48767139</span></span>
+<span><span class="co">## Archosargus_probatocephalus -0.212999873 -0.42603541</span></span>
+<span><span class="co">## Archosargus_rhomboidalis    -0.316020951  0.01968203</span></span>
+<span><span class="co">## Ariopsis_felis              -0.048960051 -0.25937975</span></span>
+<span><span class="co">## Bagre_marinus               -0.092163957 -0.10443150</span></span></code></pre>
 <p><br></p>
 <ul>
 <li>a dist object containing species euclidean distances in the functional space (here 5D space and for the first five species):</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist_multidim</span><span class="op">$</span><span class="st">"6D"</span><span class="op">)</span>
-<span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code><span class="co">##                             Achirus_lineatus Anchoa_mitchilli</span>
-<span class="co">## Achirus_lineatus                    0.000000         5.682135</span>
-<span class="co">## Anchoa_mitchilli                    5.682135         0.000000</span>
-<span class="co">## Archosargus_probatocephalus         6.317529         4.278126</span>
-<span class="co">## Archosargus_rhomboidalis            8.322459         6.158141</span>
-<span class="co">## Ariopsis_felis                      5.526068         4.240832</span>
-<span class="co">##                             Archosargus_probatocephalus</span>
-<span class="co">## Achirus_lineatus                               6.317529</span>
-<span class="co">## Anchoa_mitchilli                               4.278126</span>
-<span class="co">## Archosargus_probatocephalus                    0.000000</span>
-<span class="co">## Archosargus_rhomboidalis                       2.386875</span>
-<span class="co">## Ariopsis_felis                                 3.116358</span>
-<span class="co">##                             Archosargus_rhomboidalis Ariopsis_felis</span>
-<span class="co">## Achirus_lineatus                            8.322459       5.526068</span>
-<span class="co">## Anchoa_mitchilli                            6.158141       4.240832</span>
-<span class="co">## Archosargus_probatocephalus                 2.386875       3.116358</span>
-<span class="co">## Archosargus_rhomboidalis                    0.000000       4.338137</span>
-<span class="co">## Ariopsis_felis                              4.338137       0.000000</span></code></pre>
+<code class="sourceCode R"><span><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist_multidim</span><span class="op">$</span><span class="st">"6D"</span><span class="op">)</span></span>
+<span><span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##                             Achirus_lineatus Anchoa_mitchilli</span></span>
+<span><span class="co">## Achirus_lineatus                    0.000000         5.682135</span></span>
+<span><span class="co">## Anchoa_mitchilli                    5.682135         0.000000</span></span>
+<span><span class="co">## Archosargus_probatocephalus         6.317529         4.278126</span></span>
+<span><span class="co">## Archosargus_rhomboidalis            8.322459         6.158141</span></span>
+<span><span class="co">## Ariopsis_felis                      5.526068         4.240832</span></span>
+<span><span class="co">##                             Archosargus_probatocephalus</span></span>
+<span><span class="co">## Achirus_lineatus                               6.317529</span></span>
+<span><span class="co">## Anchoa_mitchilli                               4.278126</span></span>
+<span><span class="co">## Archosargus_probatocephalus                    0.000000</span></span>
+<span><span class="co">## Archosargus_rhomboidalis                       2.386875</span></span>
+<span><span class="co">## Ariopsis_felis                                 3.116358</span></span>
+<span><span class="co">##                             Archosargus_rhomboidalis Ariopsis_felis</span></span>
+<span><span class="co">## Achirus_lineatus                            8.322459       5.526068</span></span>
+<span><span class="co">## Anchoa_mitchilli                            6.158141       4.240832</span></span>
+<span><span class="co">## Archosargus_probatocephalus                 2.386875       3.116358</span></span>
+<span><span class="co">## Archosargus_rhomboidalis                    0.000000       4.338137</span></span>
+<span><span class="co">## Ariopsis_felis                              4.338137       0.000000</span></span></code></pre>
 <p><br></p>
 <ul>
 <li>a dist object containing species distances based on traits (here for the first five species):</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist_init</span><span class="op">)</span>
-<span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code><span class="co">##                             Achirus_lineatus Anchoa_mitchilli</span>
-<span class="co">## Achirus_lineatus                    0.000000         6.015122</span>
-<span class="co">## Anchoa_mitchilli                    6.015122         0.000000</span>
-<span class="co">## Archosargus_probatocephalus         6.383490         4.660611</span>
-<span class="co">## Archosargus_rhomboidalis            8.346585         6.461733</span>
-<span class="co">## Ariopsis_felis                      5.766932         4.946896</span>
-<span class="co">##                             Archosargus_probatocephalus</span>
-<span class="co">## Achirus_lineatus                               6.383490</span>
-<span class="co">## Anchoa_mitchilli                               4.660611</span>
-<span class="co">## Archosargus_probatocephalus                    0.000000</span>
-<span class="co">## Archosargus_rhomboidalis                       2.479976</span>
-<span class="co">## Ariopsis_felis                                 3.283433</span>
-<span class="co">##                             Archosargus_rhomboidalis Ariopsis_felis</span>
-<span class="co">## Achirus_lineatus                            8.346585       5.766932</span>
-<span class="co">## Anchoa_mitchilli                            6.461733       4.946896</span>
-<span class="co">## Archosargus_probatocephalus                 2.479976       3.283433</span>
-<span class="co">## Archosargus_rhomboidalis                    0.000000       4.506238</span>
-<span class="co">## Ariopsis_felis                              4.506238       0.000000</span></code></pre>
+<code class="sourceCode R"><span><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist_init</span><span class="op">)</span></span>
+<span><span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##                             Achirus_lineatus Anchoa_mitchilli</span></span>
+<span><span class="co">## Achirus_lineatus                    0.000000         6.015122</span></span>
+<span><span class="co">## Anchoa_mitchilli                    6.015122         0.000000</span></span>
+<span><span class="co">## Archosargus_probatocephalus         6.383490         4.660611</span></span>
+<span><span class="co">## Archosargus_rhomboidalis            8.346585         6.461733</span></span>
+<span><span class="co">## Ariopsis_felis                      5.766932         4.946896</span></span>
+<span><span class="co">##                             Archosargus_probatocephalus</span></span>
+<span><span class="co">## Achirus_lineatus                               6.383490</span></span>
+<span><span class="co">## Anchoa_mitchilli                               4.660611</span></span>
+<span><span class="co">## Archosargus_probatocephalus                    0.000000</span></span>
+<span><span class="co">## Archosargus_rhomboidalis                       2.479976</span></span>
+<span><span class="co">## Ariopsis_felis                                 3.283433</span></span>
+<span><span class="co">##                             Archosargus_rhomboidalis Ariopsis_felis</span></span>
+<span><span class="co">## Achirus_lineatus                            8.346585       5.766932</span></span>
+<span><span class="co">## Anchoa_mitchilli                            6.461733       4.946896</span></span>
+<span><span class="co">## Archosargus_probatocephalus                 2.479976       3.283433</span></span>
+<span><span class="co">## Archosargus_rhomboidalis                    0.000000       4.506238</span></span>
+<span><span class="co">## Ariopsis_felis                              4.506238       0.000000</span></span></code></pre>
 <p><br></p>
 <ul>
 <li>a correlation matrix containing correlation between traits and their associated pvalue:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fspace</span><span class="op">$</span><span class="st">"tr_correl"</span></code></pre></div>
-<pre><code><span class="co">##       logM  OgSf  OgSh  OgPo  EySz  GrLg  GtLg  EyPo  BdSh  BdSf  PfPo  PfSh</span>
-<span class="co">## logM  1.00 -0.05 -0.62 -0.41  0.07 -0.27  0.22  0.48 -0.48 -0.69 -0.35 -0.27</span>
-<span class="co">## OgSf -0.05  1.00  0.19  0.04  0.14  0.28 -0.22  0.03 -0.18 -0.05  0.17 -0.07</span>
-<span class="co">## OgSh -0.62  0.19  1.00  0.14  0.06  0.35 -0.19 -0.48  0.75  0.57  0.31  0.34</span>
-<span class="co">## OgPo -0.41  0.04  0.14  1.00 -0.15 -0.06 -0.11  0.22 -0.05  0.16 -0.30 -0.37</span>
-<span class="co">## EySz  0.07  0.14  0.06 -0.15  1.00  0.34 -0.21 -0.14 -0.21 -0.15  0.12  0.41</span>
-<span class="co">## GrLg -0.27  0.28  0.35 -0.06  0.34  1.00  0.13 -0.38  0.10  0.16  0.50  0.21</span>
-<span class="co">## GtLg  0.22 -0.22 -0.19 -0.11 -0.21  0.13  1.00 -0.18 -0.02 -0.21  0.24 -0.15</span>
-<span class="co">## EyPo  0.48  0.03 -0.48  0.22 -0.14 -0.38 -0.18  1.00 -0.62 -0.31 -0.86 -0.65</span>
-<span class="co">## BdSh -0.48 -0.18  0.75 -0.05 -0.21  0.10 -0.02 -0.62  1.00  0.50  0.35  0.47</span>
-<span class="co">## BdSf -0.69 -0.05  0.57  0.16 -0.15  0.16 -0.21 -0.31  0.50  1.00  0.16  0.05</span>
-<span class="co">## PfPo -0.35  0.17  0.31 -0.30  0.12  0.50  0.24 -0.86  0.35  0.16  1.00  0.50</span>
-<span class="co">## PfSh -0.27 -0.07  0.34 -0.37  0.41  0.21 -0.15 -0.65  0.47  0.05  0.50  1.00</span>
-<span class="co">## CpHt -0.46 -0.07  0.50 -0.05 -0.36  0.12  0.09 -0.61  0.75  0.48  0.41  0.35</span>
-<span class="co">## CfSh -0.44 -0.05  0.37 -0.13 -0.09  0.27  0.28 -0.73  0.53  0.35  0.61  0.40</span>
-<span class="co">## FsRt  0.08  0.25 -0.21 -0.30 -0.42 -0.06  0.11  0.00 -0.05  0.13  0.15 -0.17</span>
-<span class="co">## FsSf  0.32  0.19 -0.13 -0.58  0.29  0.00 -0.28  0.30 -0.19 -0.01 -0.25  0.15</span>
-<span class="co">##       CpHt  CfSh  FsRt  FsSf</span>
-<span class="co">## logM -0.46 -0.44  0.08  0.32</span>
-<span class="co">## OgSf -0.07 -0.05  0.25  0.19</span>
-<span class="co">## OgSh  0.50  0.37 -0.21 -0.13</span>
-<span class="co">## OgPo -0.05 -0.13 -0.30 -0.58</span>
-<span class="co">## EySz -0.36 -0.09 -0.42  0.29</span>
-<span class="co">## GrLg  0.12  0.27 -0.06  0.00</span>
-<span class="co">## GtLg  0.09  0.28  0.11 -0.28</span>
-<span class="co">## EyPo -0.61 -0.73  0.00  0.30</span>
-<span class="co">## BdSh  0.75  0.53 -0.05 -0.19</span>
-<span class="co">## BdSf  0.48  0.35  0.13 -0.01</span>
-<span class="co">## PfPo  0.41  0.61  0.15 -0.25</span>
-<span class="co">## PfSh  0.35  0.40 -0.17  0.15</span>
-<span class="co">## CpHt  1.00  0.81  0.17 -0.22</span>
-<span class="co">## CfSh  0.81  1.00 -0.03 -0.25</span>
-<span class="co">## FsRt  0.17 -0.03  1.00  0.17</span>
-<span class="co">## FsSf -0.22 -0.25  0.17  1.00</span>
-<span class="co">## </span>
-<span class="co">## n= 45 </span>
-<span class="co">## </span>
-<span class="co">## </span>
-<span class="co">## P</span>
-<span class="co">##      logM   OgSf   OgSh   OgPo   EySz   GrLg   GtLg   EyPo   BdSh   BdSf  </span>
-<span class="co">## logM        0.7651 0.0000 0.0057 0.6264 0.0738 0.1394 0.0010 0.0009 0.0000</span>
-<span class="co">## OgSf 0.7651        0.2153 0.7759 0.3746 0.0632 0.1512 0.8559 0.2328 0.7626</span>
-<span class="co">## OgSh 0.0000 0.2153        0.3540 0.7084 0.0196 0.2164 0.0009 0.0000 0.0000</span>
-<span class="co">## OgPo 0.0057 0.7759 0.3540        0.3200 0.6850 0.4850 0.1492 0.7320 0.2970</span>
-<span class="co">## EySz 0.6264 0.3746 0.7084 0.3200        0.0217 0.1688 0.3552 0.1752 0.3416</span>
-<span class="co">## GrLg 0.0738 0.0632 0.0196 0.6850 0.0217        0.4014 0.0092 0.5024 0.3083</span>
-<span class="co">## GtLg 0.1394 0.1512 0.2164 0.4850 0.1688 0.4014        0.2431 0.8801 0.1633</span>
-<span class="co">## EyPo 0.0010 0.8559 0.0009 0.1492 0.3552 0.0092 0.2431        0.0000 0.0365</span>
-<span class="co">## BdSh 0.0009 0.2328 0.0000 0.7320 0.1752 0.5024 0.8801 0.0000        0.0005</span>
-<span class="co">## BdSf 0.0000 0.7626 0.0000 0.2970 0.3416 0.3083 0.1633 0.0365 0.0005       </span>
-<span class="co">## PfPo 0.0198 0.2608 0.0364 0.0465 0.4391 0.0005 0.1170 0.0000 0.0179 0.2825</span>
-<span class="co">## PfSh 0.0713 0.6297 0.0237 0.0129 0.0049 0.1765 0.3167 0.0000 0.0010 0.7222</span>
-<span class="co">## CpHt 0.0017 0.6657 0.0005 0.7423 0.0137 0.4351 0.5597 0.0000 0.0000 0.0008</span>
-<span class="co">## CfSh 0.0027 0.7412 0.0126 0.4075 0.5349 0.0752 0.0648 0.0000 0.0002 0.0168</span>
-<span class="co">## FsRt 0.6006 0.1010 0.1606 0.0483 0.0043 0.6867 0.4784 0.9796 0.7473 0.4052</span>
-<span class="co">## FsSf 0.0344 0.2210 0.3825 0.0000 0.0554 0.9783 0.0604 0.0428 0.2024 0.9353</span>
-<span class="co">##      PfPo   PfSh   CpHt   CfSh   FsRt   FsSf  </span>
-<span class="co">## logM 0.0198 0.0713 0.0017 0.0027 0.6006 0.0344</span>
-<span class="co">## OgSf 0.2608 0.6297 0.6657 0.7412 0.1010 0.2210</span>
-<span class="co">## OgSh 0.0364 0.0237 0.0005 0.0126 0.1606 0.3825</span>
-<span class="co">## OgPo 0.0465 0.0129 0.7423 0.4075 0.0483 0.0000</span>
-<span class="co">## EySz 0.4391 0.0049 0.0137 0.5349 0.0043 0.0554</span>
-<span class="co">## GrLg 0.0005 0.1765 0.4351 0.0752 0.6867 0.9783</span>
-<span class="co">## GtLg 0.1170 0.3167 0.5597 0.0648 0.4784 0.0604</span>
-<span class="co">## EyPo 0.0000 0.0000 0.0000 0.0000 0.9796 0.0428</span>
-<span class="co">## BdSh 0.0179 0.0010 0.0000 0.0002 0.7473 0.2024</span>
-<span class="co">## BdSf 0.2825 0.7222 0.0008 0.0168 0.4052 0.9353</span>
-<span class="co">## PfPo        0.0005 0.0047 0.0000 0.3207 0.1029</span>
-<span class="co">## PfSh 0.0005        0.0181 0.0070 0.2514 0.3267</span>
-<span class="co">## CpHt 0.0047 0.0181        0.0000 0.2722 0.1433</span>
-<span class="co">## CfSh 0.0000 0.0070 0.0000        0.8596 0.0914</span>
-<span class="co">## FsRt 0.3207 0.2514 0.2722 0.8596        0.2563</span>
-<span class="co">## FsSf 0.1029 0.3267 0.1433 0.0914 0.2563</span></code></pre>
+<code class="sourceCode R"><span><span class="va">fspace</span><span class="op">$</span><span class="st">"tr_correl"</span></span></code></pre></div>
+<pre><code><span><span class="co">##       logM  OgSf  OgSh  OgPo  EySz  GrLg  GtLg  EyPo  BdSh  BdSf  PfPo  PfSh</span></span>
+<span><span class="co">## logM  1.00 -0.05 -0.62 -0.41  0.07 -0.27  0.22  0.48 -0.48 -0.69 -0.35 -0.27</span></span>
+<span><span class="co">## OgSf -0.05  1.00  0.19  0.04  0.14  0.28 -0.22  0.03 -0.18 -0.05  0.17 -0.07</span></span>
+<span><span class="co">## OgSh -0.62  0.19  1.00  0.14  0.06  0.35 -0.19 -0.48  0.75  0.57  0.31  0.34</span></span>
+<span><span class="co">## OgPo -0.41  0.04  0.14  1.00 -0.15 -0.06 -0.11  0.22 -0.05  0.16 -0.30 -0.37</span></span>
+<span><span class="co">## EySz  0.07  0.14  0.06 -0.15  1.00  0.34 -0.21 -0.14 -0.21 -0.15  0.12  0.41</span></span>
+<span><span class="co">## GrLg -0.27  0.28  0.35 -0.06  0.34  1.00  0.13 -0.38  0.10  0.16  0.50  0.21</span></span>
+<span><span class="co">## GtLg  0.22 -0.22 -0.19 -0.11 -0.21  0.13  1.00 -0.18 -0.02 -0.21  0.24 -0.15</span></span>
+<span><span class="co">## EyPo  0.48  0.03 -0.48  0.22 -0.14 -0.38 -0.18  1.00 -0.62 -0.31 -0.86 -0.65</span></span>
+<span><span class="co">## BdSh -0.48 -0.18  0.75 -0.05 -0.21  0.10 -0.02 -0.62  1.00  0.50  0.35  0.47</span></span>
+<span><span class="co">## BdSf -0.69 -0.05  0.57  0.16 -0.15  0.16 -0.21 -0.31  0.50  1.00  0.16  0.05</span></span>
+<span><span class="co">## PfPo -0.35  0.17  0.31 -0.30  0.12  0.50  0.24 -0.86  0.35  0.16  1.00  0.50</span></span>
+<span><span class="co">## PfSh -0.27 -0.07  0.34 -0.37  0.41  0.21 -0.15 -0.65  0.47  0.05  0.50  1.00</span></span>
+<span><span class="co">## CpHt -0.46 -0.07  0.50 -0.05 -0.36  0.12  0.09 -0.61  0.75  0.48  0.41  0.35</span></span>
+<span><span class="co">## CfSh -0.44 -0.05  0.37 -0.13 -0.09  0.27  0.28 -0.73  0.53  0.35  0.61  0.40</span></span>
+<span><span class="co">## FsRt  0.08  0.25 -0.21 -0.30 -0.42 -0.06  0.11  0.00 -0.05  0.13  0.15 -0.17</span></span>
+<span><span class="co">## FsSf  0.32  0.19 -0.13 -0.58  0.29  0.00 -0.28  0.30 -0.19 -0.01 -0.25  0.15</span></span>
+<span><span class="co">##       CpHt  CfSh  FsRt  FsSf</span></span>
+<span><span class="co">## logM -0.46 -0.44  0.08  0.32</span></span>
+<span><span class="co">## OgSf -0.07 -0.05  0.25  0.19</span></span>
+<span><span class="co">## OgSh  0.50  0.37 -0.21 -0.13</span></span>
+<span><span class="co">## OgPo -0.05 -0.13 -0.30 -0.58</span></span>
+<span><span class="co">## EySz -0.36 -0.09 -0.42  0.29</span></span>
+<span><span class="co">## GrLg  0.12  0.27 -0.06  0.00</span></span>
+<span><span class="co">## GtLg  0.09  0.28  0.11 -0.28</span></span>
+<span><span class="co">## EyPo -0.61 -0.73  0.00  0.30</span></span>
+<span><span class="co">## BdSh  0.75  0.53 -0.05 -0.19</span></span>
+<span><span class="co">## BdSf  0.48  0.35  0.13 -0.01</span></span>
+<span><span class="co">## PfPo  0.41  0.61  0.15 -0.25</span></span>
+<span><span class="co">## PfSh  0.35  0.40 -0.17  0.15</span></span>
+<span><span class="co">## CpHt  1.00  0.81  0.17 -0.22</span></span>
+<span><span class="co">## CfSh  0.81  1.00 -0.03 -0.25</span></span>
+<span><span class="co">## FsRt  0.17 -0.03  1.00  0.17</span></span>
+<span><span class="co">## FsSf -0.22 -0.25  0.17  1.00</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## n= 45 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## P</span></span>
+<span><span class="co">##      logM   OgSf   OgSh   OgPo   EySz   GrLg   GtLg   EyPo   BdSh   BdSf  </span></span>
+<span><span class="co">## logM        0.7651 0.0000 0.0057 0.6264 0.0738 0.1394 0.0010 0.0009 0.0000</span></span>
+<span><span class="co">## OgSf 0.7651        0.2153 0.7759 0.3746 0.0632 0.1512 0.8559 0.2328 0.7626</span></span>
+<span><span class="co">## OgSh 0.0000 0.2153        0.3540 0.7084 0.0196 0.2164 0.0009 0.0000 0.0000</span></span>
+<span><span class="co">## OgPo 0.0057 0.7759 0.3540        0.3200 0.6850 0.4850 0.1492 0.7320 0.2970</span></span>
+<span><span class="co">## EySz 0.6264 0.3746 0.7084 0.3200        0.0217 0.1688 0.3552 0.1752 0.3416</span></span>
+<span><span class="co">## GrLg 0.0738 0.0632 0.0196 0.6850 0.0217        0.4014 0.0092 0.5024 0.3083</span></span>
+<span><span class="co">## GtLg 0.1394 0.1512 0.2164 0.4850 0.1688 0.4014        0.2431 0.8801 0.1633</span></span>
+<span><span class="co">## EyPo 0.0010 0.8559 0.0009 0.1492 0.3552 0.0092 0.2431        0.0000 0.0365</span></span>
+<span><span class="co">## BdSh 0.0009 0.2328 0.0000 0.7320 0.1752 0.5024 0.8801 0.0000        0.0005</span></span>
+<span><span class="co">## BdSf 0.0000 0.7626 0.0000 0.2970 0.3416 0.3083 0.1633 0.0365 0.0005       </span></span>
+<span><span class="co">## PfPo 0.0198 0.2608 0.0364 0.0465 0.4391 0.0005 0.1170 0.0000 0.0179 0.2825</span></span>
+<span><span class="co">## PfSh 0.0713 0.6297 0.0237 0.0129 0.0049 0.1765 0.3167 0.0000 0.0010 0.7222</span></span>
+<span><span class="co">## CpHt 0.0017 0.6657 0.0005 0.7423 0.0137 0.4351 0.5597 0.0000 0.0000 0.0008</span></span>
+<span><span class="co">## CfSh 0.0027 0.7412 0.0126 0.4075 0.5349 0.0752 0.0648 0.0000 0.0002 0.0168</span></span>
+<span><span class="co">## FsRt 0.6006 0.1010 0.1606 0.0483 0.0043 0.6867 0.4784 0.9796 0.7473 0.4052</span></span>
+<span><span class="co">## FsSf 0.0344 0.2210 0.3825 0.0000 0.0554 0.9783 0.0604 0.0428 0.2024 0.9353</span></span>
+<span><span class="co">##      PfPo   PfSh   CpHt   CfSh   FsRt   FsSf  </span></span>
+<span><span class="co">## logM 0.0198 0.0713 0.0017 0.0027 0.6006 0.0344</span></span>
+<span><span class="co">## OgSf 0.2608 0.6297 0.6657 0.7412 0.1010 0.2210</span></span>
+<span><span class="co">## OgSh 0.0364 0.0237 0.0005 0.0126 0.1606 0.3825</span></span>
+<span><span class="co">## OgPo 0.0465 0.0129 0.7423 0.4075 0.0483 0.0000</span></span>
+<span><span class="co">## EySz 0.4391 0.0049 0.0137 0.5349 0.0043 0.0554</span></span>
+<span><span class="co">## GrLg 0.0005 0.1765 0.4351 0.0752 0.6867 0.9783</span></span>
+<span><span class="co">## GtLg 0.1170 0.3167 0.5597 0.0648 0.4784 0.0604</span></span>
+<span><span class="co">## EyPo 0.0000 0.0000 0.0000 0.0000 0.9796 0.0428</span></span>
+<span><span class="co">## BdSh 0.0179 0.0010 0.0000 0.0002 0.7473 0.2024</span></span>
+<span><span class="co">## BdSf 0.2825 0.7222 0.0008 0.0168 0.4052 0.9353</span></span>
+<span><span class="co">## PfPo        0.0005 0.0047 0.0000 0.3207 0.1029</span></span>
+<span><span class="co">## PfSh 0.0005        0.0181 0.0070 0.2514 0.3267</span></span>
+<span><span class="co">## CpHt 0.0047 0.0181        0.0000 0.2722 0.1433</span></span>
+<span><span class="co">## CfSh 0.0000 0.0070 0.0000        0.8596 0.0914</span></span>
+<span><span class="co">## FsRt 0.3207 0.2514 0.2722 0.8596        0.2563</span></span>
+<span><span class="co">## FsSf 0.1029 0.3267 0.1433 0.0914 0.2563</span></span></code></pre>
 <p><br></p>
 <p>Here we can notice that there is no strong correlation between traits. <strong>NB</strong> However, if some strong correlation is to be found, then one of the two correlated trait can be remove from the analysis.</p>
 <p>If the PCA is not computed, outputs are the same except that mad and msd are not computed and that only one distance object is returned.</p>
@@ -748,7 +748,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

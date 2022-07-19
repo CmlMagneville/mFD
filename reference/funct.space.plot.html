@@ -77,32 +77,32 @@ functional space</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">funct.space.plot</span><span class="op">(</span>
-  <span class="va">sp_faxes_coord</span>,
-  faxes <span class="op">=</span> <span class="cn">NULL</span>,
-  name_file <span class="op">=</span> <span class="cn">NULL</span>,
-  faxes_nm <span class="op">=</span> <span class="cn">NULL</span>,
-  range_faxes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,
-  color_bg <span class="op">=</span> <span class="st">"grey95"</span>,
-  color_pool <span class="op">=</span> <span class="st">"darkturquoise"</span>,
-  fill_pool <span class="op">=</span> <span class="st">"white"</span>,
-  shape_pool <span class="op">=</span> <span class="fl">21</span>,
-  size_pool <span class="op">=</span> <span class="fl">1</span>,
-  plot_ch <span class="op">=</span> <span class="cn">TRUE</span>,
-  color_ch <span class="op">=</span> <span class="st">"darkblue"</span>,
-  fill_ch <span class="op">=</span> <span class="st">"white"</span>,
-  alpha_ch <span class="op">=</span> <span class="fl">1</span>,
-  plot_vertices <span class="op">=</span> <span class="cn">TRUE</span>,
-  color_vert <span class="op">=</span> <span class="st">"darkturquoise"</span>,
-  fill_vert <span class="op">=</span> <span class="st">"darkturquoise"</span>,
-  shape_vert <span class="op">=</span> <span class="fl">22</span>,
-  size_vert <span class="op">=</span> <span class="fl">1</span>,
-  plot_sp_nm <span class="op">=</span> <span class="cn">NULL</span>,
-  nm_size <span class="op">=</span> <span class="fl">3</span>,
-  nm_color <span class="op">=</span> <span class="st">"black"</span>,
-  nm_fontface <span class="op">=</span> <span class="st">"plain"</span>,
-  check_input <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">funct.space.plot</span><span class="op">(</span></span>
+<span>  <span class="va">sp_faxes_coord</span>,</span>
+<span>  faxes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  name_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  faxes_nm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  range_faxes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>  color_bg <span class="op">=</span> <span class="st">"grey95"</span>,</span>
+<span>  color_pool <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span>
+<span>  fill_pool <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>  shape_pool <span class="op">=</span> <span class="fl">21</span>,</span>
+<span>  size_pool <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  plot_ch <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  color_ch <span class="op">=</span> <span class="st">"darkblue"</span>,</span>
+<span>  fill_ch <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>  alpha_ch <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  plot_vertices <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  color_vert <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span>
+<span>  fill_vert <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span>
+<span>  shape_vert <span class="op">=</span> <span class="fl">22</span>,</span>
+<span>  size_vert <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  plot_sp_nm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nm_size <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  nm_color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  nm_fontface <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>  check_input <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -111,18 +111,26 @@ functional space</p>
 <dd><p>a matrix of species coordinates in a
 multidimensional functional space. Species coordinates have been retrieved
 thanks to <code><a href="tr.cont.fspace.html">tr.cont.fspace</a></code> or <code><a href="quality.fspaces.html">quality.fspaces</a></code>.</p></dd>
+
+
 <dt>faxes</dt>
 <dd><p>a vector with names of axes to plot (as columns names in
 <code>sp_faxes_coord</code>). <strong>You can only plot from 2 to 4 axes for
 graphical reasons</strong>. Default: <code>faxes = NULL</code> (the four first axes will be
 plotted).</p></dd>
+
+
 <dt>name_file</dt>
 <dd><p>a character string with name of file to save the
 figure (without extension). Default: <code>name_file = NULL</code> which means plot
 is displayed.</p></dd>
+
+
 <dt>faxes_nm</dt>
 <dd><p>a vector with axes labels for figure. Default: as
 <code>faxes</code>).</p></dd>
+
+
 <dt>range_faxes</dt>
 <dd><p>a vector with minimum and maximum values of axes
 used for all plots to have a fair representation of position of species.
@@ -130,40 +138,60 @@ Default: <code>range_faxes = c(NA, NA)</code> (the range is computed
 according to the range of values among all axes). If at least one of the
 value provided is within the range of coordinates, then convex hull could
 not be plotted so <code>plot_ch</code> should be <code>FALSE</code>.</p></dd>
+
+
 <dt>color_bg</dt>
 <dd><p>a R color name or an hexadecimal code used to fill plot
 background. Default: <code>color_bg = "grey95"</code>.</p></dd>
+
+
 <dt>color_pool</dt>
 <dd><p>a R color name or an hexadecimal code referring to the
 color of symbol for species. Default: <code>color_pool = 'darkgreen'</code>.</p></dd>
+
+
 <dt>fill_pool</dt>
 <dd><p>a R color name or an hexadecimal code referring to the
 color to fill species symbol (if <code>shape_pool</code> &gt;20). Default:
 <code>fill_pool = 'white'</code>.</p></dd>
+
+
 <dt>shape_pool</dt>
 <dd><p>a numeric value referring to the shape of symbol used for
 species. Default: <code>shape_pool = 21</code> (filled circle).</p></dd>
+
+
 <dt>size_pool</dt>
 <dd><p>a numeric value referring to the size of symbol for
 species. Default: <code>size_pool = 1</code>.</p></dd>
+
+
 <dt>plot_ch</dt>
 <dd><p>a logical value indicating whether the convex hull shaping
 the pool of species should be illustrated. If <code>plot_ch = TRUE</code>, convex
 hull of all species in the multidimensional space described in
 <code>sp_faxes_coord</code> is computed and its projection in 2D spaces are
 drawn as polygons. Default: <code>plot_ch = TRUE</code>.</p></dd>
+
+
 <dt>color_ch</dt>
 <dd><p>a R color name or an hexadecimal code referring to the
 border of the convex hull filled by the pool of species. Default:
 <code>color_ch = "darkblue"</code>.</p></dd>
+
+
 <dt>fill_ch</dt>
 <dd><p>a R color name or an hexadecimal code referring to the
 filling of the convex hull filled by the pool of species. Default:
 <code>fill_ch = "white"</code>.</p></dd>
+
+
 <dt>alpha_ch</dt>
 <dd><p>a numeric value for transparency of the filling of the
 convex hull (0 = high transparency, 1 = no transparency). Default:
 <code>alpha_ch = 1</code>.</p></dd>
+
+
 <dt>plot_vertices</dt>
 <dd><p>a logical value defining whether vertices of the convex
 hull shaping the pool of species should be illustrated. If
@@ -172,42 +200,66 @@ multidimensional space from <code>sp_faxes_coord</code> and are plotted with
 aesthetics listed below '..._vert' (species not being vertices are plotted
 with aesthetics described above for '.._sp'. Default:
 <code>plot_vertices = TRUE</code>.</p></dd>
+
+
 <dt>color_vert</dt>
 <dd><p>a character value referring to the color of symbol for
 vertices if <code>plot_vertices = TRUE</code>.
 Default: <code>color_vert = 'darkturquoise'</code>.</p></dd>
+
+
 <dt>fill_vert</dt>
 <dd><p>a character value referring to the color for filling symbol
 for vertices  (if <code>shape_vert</code> &gt;20). Default:
 <code>fill_vert = 'darkturquoise'</code>.</p></dd>
+
+
 <dt>shape_vert</dt>
 <dd><p>a numeric value referring to the symbol used to show
 vertices position if <code>plot_vertices = TRUE</code>. Default: <code>shape_vert = 23</code>
 (filled diamond).</p></dd>
+
+
 <dt>size_vert</dt>
 <dd><p>a numeric value referring to the size of symbol for
 vertices Default: <code>size_vert = 1</code>.</p></dd>
+
+
 <dt>plot_sp_nm</dt>
 <dd><p>a vector containing species names that are to be printed
 near their position. Default: <code>plot_nm_sp = NULL</code> (no name plotted).</p></dd>
+
+
 <dt>nm_size</dt>
 <dd><p>a numeric value for size of species label. Default is <code>3</code>
 (in points).</p></dd>
+
+
 <dt>nm_color</dt>
 <dd><p>a R color name or an hexadecimal code referring to the color
 of species label. Default: <code>nm_color = 'black'</code>.</p></dd>
+
+
 <dt>nm_fontface</dt>
 <dd><p>a character string for font of species labels (e.g.
 "italic", "bold"). Default: <code>nm_fontface = 'plain'</code>.</p></dd>
+
+
 <dt>check_input</dt>
 <dd><p>a logical value indicating whether key features the
 inputs are checked (e.g. class and/or mode of objects, names of rows
 and/or columns, missing values). If an error is detected, a detailed
 message is returned. Default: <code>check_input = TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>name_file</code> is <code>NULL</code>, a list containing <code>ggplot2</code>objects is returned: plots of functional space along all pairs of axes
+    
+
+<p>If <code>name_file</code> is <code>NULL</code>, a list containing <code>ggplot2</code></p>
+
+
+<p>objects is returned: plots of functional space along all pairs of axes
 (named according to axes names, e.g. "PC1_PC2"), figure 'caption', and the
 full figure 'patchwork' built using the library <code>patchwork</code>.
 If <code>name_file</code> is not <code>NULL</code> a 300dpi png file
@@ -227,67 +279,67 @@ on top-right corner of the figure.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Species*Traits dataframe:</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Assemblages*Species dataframe:</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits categories dataframe:</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute functional distance</span></span>
-<span class="r-in"> <span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
-<span class="r-in">                                  tr_cat         <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
-<span class="r-in">                                  metric         <span class="op">=</span> <span class="st">"gower"</span>,</span>
-<span class="r-in">                                  scale_euclid   <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span class="r-in">                                  ordinal_var    <span class="op">=</span> <span class="st">"classic"</span>,</span>
-<span class="r-in">                                  weight_type    <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span class="r-in">                                  stop_if_NA     <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Species*Traits dataframe:</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Assemblages*Species dataframe:</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits categories dataframe:</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute functional distance</span></span></span>
+<span class="r-in"><span> <span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span></span>
+<span class="r-in"><span>                                  tr_cat         <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span></span>
+<span class="r-in"><span>                                  metric         <span class="op">=</span> <span class="st">"gower"</span>,</span></span>
+<span class="r-in"><span>                                  scale_euclid   <span class="op">=</span> <span class="st">"scale_center"</span>,</span></span>
+<span class="r-in"><span>                                  ordinal_var    <span class="op">=</span> <span class="st">"classic"</span>,</span></span>
+<span class="r-in"><span>                                  weight_type    <span class="op">=</span> <span class="st">"equal"</span>,</span></span>
+<span class="r-in"><span>                                  stop_if_NA     <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
-<span class="r-in"> <span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span>
-<span class="r-in">  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span>
-<span class="r-in">  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in">  deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span>
-<span class="r-in">  fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">  fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Retrieve species coordinates matrix:</span></span>
-<span class="r-in"><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Plot functional spaces:</span></span>
-<span class="r-in"><span class="fu">mFD</span><span class="fu">::</span><span class="fu">funct.space.plot</span><span class="op">(</span></span>
-<span class="r-in"> sp_faxes_coord    <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span>
-<span class="r-in">  faxes             <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">  name_file         <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">  faxes_nm          <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">  range_faxes       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
-<span class="r-in">  color_bg          <span class="op">=</span> <span class="st">"grey95"</span>,</span>
-<span class="r-in">  color_pool          <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span>
-<span class="r-in">  fill_pool           <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span class="r-in">  shape_pool          <span class="op">=</span> <span class="fl">21</span>,</span>
-<span class="r-in">  size_pool           <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  plot_ch           <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">  color_ch          <span class="op">=</span> <span class="st">"darkblue"</span>,</span>
-<span class="r-in">  fill_ch           <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span class="r-in">  alpha_ch          <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  plot_vertices     <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">  color_vert        <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span>
-<span class="r-in">  fill_vert         <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span>
-<span class="r-in">  shape_vert        <span class="op">=</span> <span class="fl">22</span>,</span>
-<span class="r-in">  size_vert         <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in"> plot_sp_nm         <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in"> nm_size            <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in"> nm_color           <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span class="r-in"> nm_fontface        <span class="op">=</span> <span class="st">"plain"</span>,</span>
-<span class="r-in"> check_input        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span> <span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span></span>
+<span class="r-in"><span>  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span></span>
+<span class="r-in"><span>  fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Plot functional spaces:</span></span></span>
+<span class="r-in"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu">funct.space.plot</span><span class="op">(</span></span></span>
+<span class="r-in"><span> sp_faxes_coord    <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>  faxes             <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>  name_file         <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>  faxes_nm          <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>  range_faxes       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  color_bg          <span class="op">=</span> <span class="st">"grey95"</span>,</span></span>
+<span class="r-in"><span>  color_pool          <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span></span>
+<span class="r-in"><span>  fill_pool           <span class="op">=</span> <span class="st">"white"</span>,</span></span>
+<span class="r-in"><span>  shape_pool          <span class="op">=</span> <span class="fl">21</span>,</span></span>
+<span class="r-in"><span>  size_pool           <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  plot_ch           <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  color_ch          <span class="op">=</span> <span class="st">"darkblue"</span>,</span></span>
+<span class="r-in"><span>  fill_ch           <span class="op">=</span> <span class="st">"white"</span>,</span></span>
+<span class="r-in"><span>  alpha_ch          <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  plot_vertices     <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  color_vert        <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span></span>
+<span class="r-in"><span>  fill_vert         <span class="op">=</span> <span class="st">"darkturquoise"</span>,</span></span>
+<span class="r-in"><span>  shape_vert        <span class="op">=</span> <span class="fl">22</span>,</span></span>
+<span class="r-in"><span>  size_vert         <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span> plot_sp_nm         <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span> nm_size            <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span> nm_color           <span class="op">=</span> <span class="st">"black"</span>,</span></span>
+<span class="r-in"><span> nm_fontface        <span class="op">=</span> <span class="st">"plain"</span>,</span></span>
+<span class="r-in"><span> check_input        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $PC1_PC2</span>
 <span class="r-plt img"><img src="funct.space.plot-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -326,7 +378,7 @@ on top-right corner of the figure.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

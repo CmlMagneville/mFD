@@ -79,23 +79,23 @@ or several assemblages. It adds convex hull(s), points and vertices of
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fric.plot</span><span class="op">(</span>
-  <span class="va">ggplot_bg</span>,
-  <span class="va">asb_sp_coord2D</span>,
-  <span class="va">asb_vertices_nD</span>,
-  plot_sp <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">color_ch</span>,
-  <span class="va">fill_ch</span>,
-  <span class="va">alpha_ch</span>,
-  <span class="va">shape_sp</span>,
-  <span class="va">size_sp</span>,
-  <span class="va">color_sp</span>,
-  <span class="va">fill_sp</span>,
-  <span class="va">shape_vert</span>,
-  <span class="va">size_vert</span>,
-  <span class="va">color_vert</span>,
-  <span class="va">fill_vert</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fric.plot</span><span class="op">(</span></span>
+<span>  <span class="va">ggplot_bg</span>,</span>
+<span>  <span class="va">asb_sp_coord2D</span>,</span>
+<span>  <span class="va">asb_vertices_nD</span>,</span>
+<span>  plot_sp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">color_ch</span>,</span>
+<span>  <span class="va">fill_ch</span>,</span>
+<span>  <span class="va">alpha_ch</span>,</span>
+<span>  <span class="va">shape_sp</span>,</span>
+<span>  <span class="va">size_sp</span>,</span>
+<span>  <span class="va">color_sp</span>,</span>
+<span>  <span class="va">fill_sp</span>,</span>
+<span>  <span class="va">shape_vert</span>,</span>
+<span>  <span class="va">size_vert</span>,</span>
+<span>  <span class="va">color_vert</span>,</span>
+<span>  <span class="va">fill_vert</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -103,16 +103,24 @@ or several assemblages. It adds convex hull(s), points and vertices of
     <dl><dt>ggplot_bg</dt>
 <dd><p>a ggplot object of the plot background retrieved through
 the <code><a href="background.plot.html">background.plot</a></code> function.</p></dd>
+
+
 <dt>asb_sp_coord2D</dt>
 <dd><p>a list of matrix (ncol = 2) with coordinates of
 species present in each assemblage for a given pair of axes for a given pair
 of functional axes.</p></dd>
+
+
 <dt>asb_vertices_nD</dt>
 <dd><p>a list (with names as in asb_sp_coord2D) of vectors
 with names of species being vertices in n dimensions.</p></dd>
+
+
 <dt>plot_sp</dt>
 <dd><p>a logical value indicating whether species of each assemblage
 should be plotted or not. Default: plot_sp = TRUE.</p></dd>
+
+
 <dt>color_ch</dt>
 <dd><p>a R color name or an hexadecimal code referring to the color
 of the border of the convex hull filled by the pool of species if one
@@ -120,12 +128,16 @@ assemblage to plot or a vector of R color names or hexadecimal codes if
 several assemblages to plot. If more than one assemblage to plot, the
 vector should be formatted as: c(asb1 = "firstRcolorname", asb2 =
 "secondRcolorname", ...).</p></dd>
+
+
 <dt>fill_ch</dt>
 <dd><p>a R color name or an hexadecimal code referring to the color
 of convex hull filling if one assemblage to plot or a vector of R color
 names or hexadecimal codes if several assemblages to plot. If more than one
 assemblage to plot, the vector should be formatted as: c(asb1 =
 "firstRcolorname", asb2 = "secondRcolorname", ...).</p></dd>
+
+
 <dt>alpha_ch</dt>
 <dd><p>a numeric value referring to the value of transparency of
 the convex hull filling (0 = high transparency, 1 = no
@@ -133,24 +145,32 @@ transparency) if one assemblage to
 plot or a vector numeric values if several assemblages to plot. If more
 than one assemblage to plot, the vector should be formatted as: c(asb1 =
 "firstRtransparency", asb2 = "secondRtransparency", ...).</p></dd>
+
+
 <dt>shape_sp</dt>
 <dd><p>a numeric value referring to the shape of the symbol used for
 species plotting if one assemblage to plot or a vector numeric values if
 several assemblages to plot. If more than one assemblage to plot, the
 vector should be formatted as: c(asb1 = "firstRshape", asb2 =
 "secondRshape", ...).</p></dd>
+
+
 <dt>size_sp</dt>
 <dd><p>a numeric value referring to the size of the symbol used for
 species plotting if one assemblage to plot or a vector numeric values if
 several assemblages to plot. If more than one assemblage to plot, the
 vector should be formatted as: c(asb1 = "firstRsize", asb2 =
 "secondRsize", ...).</p></dd>
+
+
 <dt>color_sp</dt>
 <dd><p>a R color name or an hexadecimal code referring to the color
 of species if one assemblage to plot or a vector of R color names or
 hexadecimal codes if several assemblages to plot. If more than one
 assemblage to plot, the vector should be formatted as: c(asb1 =
 "firstRcolorname", asb2 = "secondRcolorname", ...).</p></dd>
+
+
 <dt>fill_sp</dt>
 <dd><p>a R color name or an hexadecimal code referring to the color
 of species symbol filling (if <code>shape_sp</code> &gt; 20) if one assemblage to
@@ -158,18 +178,24 @@ plot or a vector of R color names or hexadecimal codes if several
 assemblages to plot. If more than one assemblage to plot, the vector should
 be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
 ...).</p></dd>
+
+
 <dt>shape_vert</dt>
 <dd><p>a numeric value referring to the shape of the symbol used
 for vertices plotting if one assemblage to plot or a vector numeric values
 if several assemblages to plot. If more than one assemblage to plot, the
 vector should be formatted as: c(asb1 = "firstRshape", asb2 =
 "secondRshape", ...).</p></dd>
+
+
 <dt>size_vert</dt>
 <dd><p>a numeric value referring to the size of the symbol used for
 vertices plotting if one assemblage to plot or a vector numeric values if
 several assemblages to plot. If more than one assemblage to plot, the
 vector should be formatted as: c(asb1 = "firstRsize", asb2 =
 "secondRsize", ...).</p></dd>
+
+
 <dt>color_vert</dt>
 <dd><p>a R color name or an hexadecimal code referring to the
 color of vertices if one assemblage to plot or a vector of R color names or
@@ -178,6 +204,8 @@ assemblage to plot, the vector should be formatted as: c(asb1 =
 "firstRcolorname", asb2 = "secondRcolorname", ...). If color_vert = NA,
 vertices are not plotted (for shapes only defined by color, ie shape
 inferior to 20. Otherwise <code>fill</code> must also be set to NA).</p></dd>
+
+
 <dt>fill_vert</dt>
 <dd><p>a R color name or an hexadecimal code referring to the color
 of vertices symbol filling  (if <code>shape_vert</code> &gt;20) if one assemblage to
@@ -186,10 +214,13 @@ assemblages to plot. If more than one assemblage to plot, the vector should
 be formatted as: c(asb1 = "firstRcolorname", asb2 = "secondRcolorname",
 ...). If <code>fill = NA</code> and <code>color = NA</code>, vertices are not plotted (if
 <code>shape_vert</code> superior to 20</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A ggplot object plotting background of multidimensional graphs and
+    
+
+<p>A ggplot object plotting background of multidimensional graphs and
 FRic convex hulls.</p>
     </div>
     <div id="author">
@@ -199,84 +230,84 @@ FRic convex hulls.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Species*Traits dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Assemblages*Species dataframe:      </span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits categories dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span> </span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># Compute functional distance </span></span>
-<span class="r-in"><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
-<span class="r-in">                                  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
-<span class="r-in">                                  metric        <span class="op">=</span> <span class="st">"gower"</span>,</span>
-<span class="r-in">                                  scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span class="r-in">                                  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span>
-<span class="r-in">                                  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span class="r-in">                                  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Species*Traits dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Assemblages*Species dataframe:      </span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits categories dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># Compute functional distance </span></span></span>
+<span class="r-in"><span><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span></span>
+<span class="r-in"><span>                                  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span></span>
+<span class="r-in"><span>                                  metric        <span class="op">=</span> <span class="st">"gower"</span>,</span></span>
+<span class="r-in"><span>                                  scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span></span>
+<span class="r-in"><span>                                  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span></span>
+<span class="r-in"><span>                                  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span></span>
+<span class="r-in"><span>                                  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
-<span class="r-in"><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span>sp_dist <span class="op">=</span> <span class="va">sp_dist_fruits</span>, </span>
-<span class="r-in"> maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in"> deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span>
-<span class="r-in"> fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># Retrieve species coordinates matrix:</span></span>
-<span class="r-in">  <span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> </span>
-<span class="r-in">    <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span>
-<span class="r-in">    </span>
-<span class="r-in"> <span class="co"># Retrieve species coordinates matrix for the assemblage "basket_1":</span></span>
-<span class="r-in">  <span class="va">sp_filter</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="sp.filter.html">sp.filter</a></span><span class="op">(</span>asb_nm          <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>, </span>
-<span class="r-in">                              sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span>, </span>
-<span class="r-in">                              asb_sp_w       <span class="op">=</span> <span class="va">baskets_fruits_weights</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">sp_faxes_coord_fruits_b1</span> <span class="op">&lt;-</span> <span class="va">sp_filter</span><span class="op">$</span><span class="va">`species coordinates`</span></span>
-<span class="r-in"> </span>
-<span class="r-in"> <span class="co"># Reduce it to the two studid axes: PC1 and PC2:</span></span>
-<span class="r-in"> <span class="va">sp_faxes_coord_fruits_b1_2D</span> <span class="op">&lt;-</span> <span class="va">sp_faxes_coord_fruits_b1</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span><span class="op">)</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Set faxes limits:</span></span>
-<span class="r-in"><span class="co"># set range of axes if c(NA, NA):</span></span>
-<span class="r-in"> <span class="va">range_sp_coord_fruits</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">sp_faxes_coord_fruits</span><span class="op">)</span></span>
-<span class="r-in"> <span class="va">range_faxes_lim</span> <span class="op">&lt;-</span> <span class="va">range_sp_coord_fruits</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="va">range_sp_coord_fruits</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> </span>
-<span class="r-in"> <span class="va">range_sp_coord_fruits</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.05</span></span>
-<span class="r-in"> </span>
-<span class="r-in"> <span class="co"># Retrieve the background plot:</span></span>
-<span class="r-in"> <span class="va">ggplot_bg_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="background.plot.html">background.plot</a></span><span class="op">(</span></span>
-<span class="r-in">                               range_faxes <span class="op">=</span> <span class="va">range_faxes_lim</span>, </span>
-<span class="r-in">                               faxes_nm    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC 1"</span>, <span class="st">"PC 2"</span><span class="op">)</span>, </span>
-<span class="r-in">                               color_bg    <span class="op">=</span> <span class="st">"grey90"</span><span class="op">)</span> </span>
-<span class="r-in">                               </span>
-<span class="r-in"> <span class="co"># Retrieve vertices names:</span></span>
-<span class="r-in"> <span class="va">vert_nm_fruits</span> <span class="op">&lt;-</span> <span class="fu"><a href="vertices.html">vertices</a></span><span class="op">(</span><span class="va">sp_faxes_coord_fruits_b1_2D</span>, </span>
-<span class="r-in">  order_2D <span class="op">=</span> <span class="cn">TRUE</span>, check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in">                               </span>
-<span class="r-in"> <span class="co"># Plot in white the convex hull of all fruits species:</span></span>
-<span class="r-in"> <span class="va">ggplot_fric</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">fric.plot</span><span class="op">(</span></span>
-<span class="r-in">           ggplot_bg       <span class="op">=</span> <span class="va">ggplot_bg_fruits</span>,</span>
-<span class="r-in">           asb_sp_coord2D  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>basket_1 <span class="op">=</span> <span class="va">sp_faxes_coord_fruits_b1_2D</span><span class="op">)</span>,</span>
-<span class="r-in">           asb_vertices_nD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>basket_1 <span class="op">=</span> <span class="va">vert_nm_fruits</span><span class="op">)</span>,</span>
-<span class="r-in">           plot_sp         <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">           color_ch        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>, </span>
-<span class="r-in">           fill_ch         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>, </span>
-<span class="r-in">           alpha_ch        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span>
-<span class="r-in">           size_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">           shape_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>,</span>
-<span class="r-in">           color_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">           fill_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">           size_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">           color_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">           fill_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">           shape_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">16</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"> <span class="va">ggplot_fric</span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span>sp_dist <span class="op">=</span> <span class="va">sp_dist_fruits</span>, </span></span>
+<span class="r-in"><span> maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span> deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span></span>
+<span class="r-in"><span> fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span> fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># Retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span>  <span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> </span></span>
+<span class="r-in"><span>    <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="va">details_fspaces</span><span class="op">$</span><span class="va">sp_pc_coord</span></span></span>
+<span class="r-in"><span>    </span></span>
+<span class="r-in"><span> <span class="co"># Retrieve species coordinates matrix for the assemblage "basket_1":</span></span></span>
+<span class="r-in"><span>  <span class="va">sp_filter</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="sp.filter.html">sp.filter</a></span><span class="op">(</span>asb_nm          <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>                              sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span>, </span></span>
+<span class="r-in"><span>                              asb_sp_w       <span class="op">=</span> <span class="va">baskets_fruits_weights</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">sp_faxes_coord_fruits_b1</span> <span class="op">&lt;-</span> <span class="va">sp_filter</span><span class="op">$</span><span class="va">`species coordinates`</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="co"># Reduce it to the two studid axes: PC1 and PC2:</span></span></span>
+<span class="r-in"><span> <span class="va">sp_faxes_coord_fruits_b1_2D</span> <span class="op">&lt;-</span> <span class="va">sp_faxes_coord_fruits_b1</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Set faxes limits:</span></span></span>
+<span class="r-in"><span><span class="co"># set range of axes if c(NA, NA):</span></span></span>
+<span class="r-in"><span> <span class="va">range_sp_coord_fruits</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">sp_faxes_coord_fruits</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">range_faxes_lim</span> <span class="op">&lt;-</span> <span class="va">range_sp_coord_fruits</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="va">range_sp_coord_fruits</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> </span></span>
+<span class="r-in"><span> <span class="va">range_sp_coord_fruits</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.05</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="co"># Retrieve the background plot:</span></span></span>
+<span class="r-in"><span> <span class="va">ggplot_bg_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="background.plot.html">background.plot</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>                               range_faxes <span class="op">=</span> <span class="va">range_faxes_lim</span>, </span></span>
+<span class="r-in"><span>                               faxes_nm    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC 1"</span>, <span class="st">"PC 2"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>                               color_bg    <span class="op">=</span> <span class="st">"grey90"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>                               </span></span>
+<span class="r-in"><span> <span class="co"># Retrieve vertices names:</span></span></span>
+<span class="r-in"><span> <span class="va">vert_nm_fruits</span> <span class="op">&lt;-</span> <span class="fu"><a href="vertices.html">vertices</a></span><span class="op">(</span><span class="va">sp_faxes_coord_fruits_b1_2D</span>, </span></span>
+<span class="r-in"><span>  order_2D <span class="op">=</span> <span class="cn">TRUE</span>, check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                               </span></span>
+<span class="r-in"><span> <span class="co"># Plot in white the convex hull of all fruits species:</span></span></span>
+<span class="r-in"><span> <span class="va">ggplot_fric</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">fric.plot</span><span class="op">(</span></span></span>
+<span class="r-in"><span>           ggplot_bg       <span class="op">=</span> <span class="va">ggplot_bg_fruits</span>,</span></span>
+<span class="r-in"><span>           asb_sp_coord2D  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>basket_1 <span class="op">=</span> <span class="va">sp_faxes_coord_fruits_b1_2D</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           asb_vertices_nD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>basket_1 <span class="op">=</span> <span class="va">vert_nm_fruits</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           plot_sp         <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>           color_ch        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>           fill_ch         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>           alpha_ch        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           size_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           shape_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           color_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           fill_sp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           size_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           color_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           fill_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           shape_vert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="fl">16</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">ggplot_fric</span></span></span>
 <span class="r-plt img"><img src="fric.plot-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -292,7 +323,7 @@ FRic convex hulls.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

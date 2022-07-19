@@ -79,7 +79,7 @@ your <code>sp_tr</code> data frame.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">sp.tr.summary</span><span class="op">(</span><span class="va">tr_cat</span>, <span class="va">sp_tr</span>, stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sp.tr.summary</span><span class="op">(</span><span class="va">tr_cat</span>, <span class="va">sp_tr</span>, stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -101,38 +101,53 @@ belongs (if trait is not fuzzy, ignored so could be trait name or NA).</p></li>
 <li><p><strong>trait_weight</strong>: weights of each traits if the user wants to
 specify a weight for each trait.</p></li>
 </ul></dd>
+
+
 <dt>sp_tr</dt>
 <dd><p>a data frame of traits values (columns) for each species
 (rows). Note that species names <strong>must be</strong> specified in the row names.</p></dd>
+
+
 <dt>stop_if_NA</dt>
 <dd><p>a logical value indicating whether the process should stop
 if there is some NA in the <code>sp_tr</code> dataframe. If you continue with
 functional analysis, we remind you that functional measures, are
 sensitive to missing traits</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If there is no fuzzy-coded trait, a three-elements list with:</p>
+    
+
+<p>If there is no fuzzy-coded trait, a three-elements list with:</p>
 <dl><dt>tr_summary_list</dt>
 <dd><p>a table summarizing for each trait the
 number of species per modality for non-continuous trait and min, max,
 mean, median, and quartiles for continuous traits.</p></dd>
+
 <dt>tr_types</dt>
 <dd><p>a list containing traits type.</p></dd>
+
 <dt>mod_list</dt>
 <dd><p>a list containing modalities for all traits.</p></dd>
+
+
 </dl><p>If there is fuzzy-coded trait, a four-elements list with:</p>
 <dl><dt>tr_summary_non_fuzzy_list</dt>
 <dd><p>a table summarizing for each trait the
 number of species per modality for non-continuous trait and min, max,
 mean, median, and quartiles for continuous traits.</p></dd>
+
 <dt>tr_summary_fuzzy_list</dt>
 <dd><p>a table summarizing for each subtrait min,
 max, mean, median and quartiles</p></dd>
+
 <dt>tr_types</dt>
 <dd><p>a list containing traits type.</p></dd>
+
 <dt>mod_list</dt>
 <dd><p>a list containing modalities for non-continuous trait.</p></dd>
+
 </dl></div>
     <div id="author">
     <h2>Author</h2>
@@ -141,14 +156,14 @@ max, mean, median and quartiles</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Species x Traits data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'fruits_traits'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits x Categories data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'fruits_traits_cat'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Summarize Species x Traits data</span></span>
-<span class="r-in"><span class="fu">mFD</span><span class="fu">::</span><span class="fu">sp.tr.summary</span><span class="op">(</span>tr_cat <span class="op">=</span> <span class="va">fruits_traits_cat</span>, sp_tr <span class="op">=</span> <span class="va">fruits_traits</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Species x Traits data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'fruits_traits'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits x Categories data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'fruits_traits_cat'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Summarize Species x Traits data</span></span></span>
+<span class="r-in"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu">sp.tr.summary</span><span class="op">(</span>tr_cat <span class="op">=</span> <span class="va">fruits_traits_cat</span>, sp_tr <span class="op">=</span> <span class="va">fruits_traits</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $tr_summary_non_fuzzy_list</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Size     Plant           Climate     Seed        Sugar       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  0-1cm  :2   forb : 5   temperate  :15   none: 2   Min.   : 16.90  </span>
@@ -216,7 +231,7 @@ max, mean, median and quartiles</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

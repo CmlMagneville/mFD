@@ -75,18 +75,18 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">quality.fspaces.plot</span><span class="op">(</span>
-  <span class="va">fspaces_quality</span>,
-  <span class="va">quality_metric</span>,
-  <span class="va">fspaces_plot</span>,
-  name_file <span class="op">=</span> <span class="cn">NULL</span>,
-  range_dist <span class="op">=</span> <span class="cn">NULL</span>,
-  range_dev <span class="op">=</span> <span class="cn">NULL</span>,
-  range_qdev <span class="op">=</span> <span class="cn">NULL</span>,
-  gradient_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>neg <span class="op">=</span> <span class="st">"darkblue"</span>, nul <span class="op">=</span> <span class="st">"grey80"</span>, pos <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span>,
-  gradient_deviation_quality <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"yellow"</span>, high <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  x_lab <span class="op">=</span> <span class="st">"Trait-based distance"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">quality.fspaces.plot</span><span class="op">(</span></span>
+<span>  <span class="va">fspaces_quality</span>,</span>
+<span>  <span class="va">quality_metric</span>,</span>
+<span>  <span class="va">fspaces_plot</span>,</span>
+<span>  name_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  range_dist <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  range_dev <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  range_qdev <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gradient_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>neg <span class="op">=</span> <span class="st">"darkblue"</span>, nul <span class="op">=</span> <span class="st">"grey80"</span>, pos <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span>,</span>
+<span>  gradient_deviation_quality <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"yellow"</span>, high <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
+<span>  x_lab <span class="op">=</span> <span class="st">"Trait-based distance"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -96,6 +96,8 @@
 function, that is a list with all data needed to illustrate quality of
 functional spaces based on deviation between species trait-based distance
 and distance in functional spaces built using PCoA (and dendrogram).</p></dd>
+
+
 <dt>quality_metric</dt>
 <dd><p>a character string with the name of the quality metric
 to illustrate. Should be one of the column names of
@@ -103,29 +105,41 @@ to illustrate. Should be one of the column names of
 <code><a href="quality.fspaces.html">quality.fspaces</a></code> for the meaning of these names regarding
 type of deviation and scaling of distance in functional space. Default:
 <code>'mad'</code> (Mean absolute deviation).</p></dd>
+
+
 <dt>fspaces_plot</dt>
 <dd><p>a vector with names of functional spaces to consider.
 Should be a subset of the row names of
 <code>quality_fspaces$quality_fspaces</code>. Maximum of 10 spaces allowed to
 keep decent plot size.</p></dd>
+
+
 <dt>name_file</dt>
 <dd><p>a character string with name of file to save the
 figure (without extension). Default: <code>NULL</code> which means plot is displayed.</p></dd>
+
+
 <dt>range_dist</dt>
 <dd><p>a vector with minimum and maximum values to
 display for species pairwise distances (x-axis for all panels and y-axes
 of top panel). Default: NULL, which means range is 0 to maximum distance
 among all the functional spaces to plot.</p></dd>
+
+
 <dt>range_dev</dt>
 <dd><p>a vector with minimum and maximum values to display
 for deviation to trait-based distance (y-axis of middle panel). Default:
 NULL, which means range is set to range of deviation among all the
 functional spaces to plot.</p></dd>
+
+
 <dt>range_qdev</dt>
 <dd><p>a vector with minimum and maximum values to
 display for deviation to trait-based distance (y-axis of bottom panel).
 Default:NULL, which means range is from 0 to the maximum of (transformed)
 deviation among all the functional spaces to plot.</p></dd>
+
+
 <dt>gradient_deviation</dt>
 <dd><p>a vector of 3 colors for illustrating raw
 deviation with <code><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_colour_gradient2</a></code>. The first
@@ -133,18 +147,25 @@ value ('neg') is for the lowest negative deviation, the second value
 ('nul')is for null deviation and the third value ('pos') is for the
 highest positive deviation. Default gradient is from darkblue to grey to
 red.</p></dd>
+
+
 <dt>gradient_deviation_quality</dt>
 <dd><p>2 colors (named 'low' and 'high') for
 illustrating transformed deviation used to compute quality metric with
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_colour_gradient2</a></code> (default gradient is from
 yellow to red).</p></dd>
+
+
 <dt>x_lab</dt>
 <dd><p>a character string with title to display below X axis.
 Default is 'Trait-based distance'.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A png file (resolution 300dpi) saved in the current working
+    
+
+<p>A png file (resolution 300dpi) saved in the current working
 directory. Quality of each functional space is illustrated with three
 panels : - top row shows trait-based distance between species vs.
 space-based distance. - middle row shows trait-based distance vs.
@@ -163,52 +184,52 @@ as well as type of transformation of distance (scaling) and of deviation
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Species*Traits dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Assemblages*Species dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load Traits categories dataframe:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute functional distance</span></span>
-<span class="r-in"><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
-<span class="r-in">                                  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
-<span class="r-in">                                  metric        <span class="op">=</span> <span class="st">"gower"</span>,</span>
-<span class="r-in">                                  scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span class="r-in">                                  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span>
-<span class="r-in">                                  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span class="r-in">                                  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Species*Traits dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Assemblages*Species dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"baskets_fruits_weights"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load Traits categories dataframe:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"fruits_traits_cat"</span>, package <span class="op">=</span> <span class="st">"mFD"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute functional distance</span></span></span>
+<span class="r-in"><span><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="funct.dist.html">funct.dist</a></span><span class="op">(</span>sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span></span>
+<span class="r-in"><span>                                  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span></span>
+<span class="r-in"><span>                                  metric        <span class="op">=</span> <span class="st">"gower"</span>,</span></span>
+<span class="r-in"><span>                                  scale_euclid  <span class="op">=</span> <span class="st">"scale_center"</span>,</span></span>
+<span class="r-in"><span>                                  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span></span>
+<span class="r-in"><span>                                  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span></span>
+<span class="r-in"><span>                                  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Size)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Plant)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Climate)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Seed)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Sugar)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Running w.type=equal on groups=c(Use,Use,Use)"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span>
-<span class="r-in"><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span>
-<span class="r-in"> sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span>
-<span class="r-in"> maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in"> deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span>
-<span class="r-in"> fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="co"># Illustrate the quality of functional spaces:</span></span>
-<span class="r-in"> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">quality.fspaces.plot</span><span class="op">(</span></span>
-<span class="r-in">  fspaces_quality            <span class="op">=</span> <span class="va">fspaces_quality_fruits</span>,</span>
-<span class="r-in">  quality_metric             <span class="op">=</span> <span class="st">"mad"</span>,</span>
-<span class="r-in">  fspaces_plot               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tree_average"</span>, <span class="st">"pcoa_2d"</span>, <span class="st">"pcoa_3d"</span>, </span>
-<span class="r-in">                              <span class="st">"pcoa_4d"</span>, <span class="st">"pcoa_5d"</span><span class="op">)</span>,</span>
-<span class="r-in">  name_file                  <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span class="r-in">  range_dist                 <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span class="r-in">  range_dev                  <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span class="r-in">  range_qdev                 <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">  gradient_deviation         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>neg <span class="op">=</span> <span class="st">"darkblue"</span>, nul <span class="op">=</span> <span class="st">"grey80"</span>, </span>
-<span class="r-in">                                 pos <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span>,</span>
-<span class="r-in">  gradient_deviation_quality <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>low <span class="op">=</span><span class="st">"yellow"</span>, high <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span class="r-in">  x_lab                      <span class="op">=</span> <span class="st">"Trait-based distance"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute functional spaces quality to retrieve species coordinates matrix:</span></span></span>
+<span class="r-in"><span><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span></span>
+<span class="r-in"><span> maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span> deviation_weighting <span class="op">=</span> <span class="st">"absolute"</span>,</span></span>
+<span class="r-in"><span> fdist_scaling       <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span> fdendro             <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="co"># Illustrate the quality of functional spaces:</span></span></span>
+<span class="r-in"><span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">quality.fspaces.plot</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  fspaces_quality            <span class="op">=</span> <span class="va">fspaces_quality_fruits</span>,</span></span>
+<span class="r-in"><span>  quality_metric             <span class="op">=</span> <span class="st">"mad"</span>,</span></span>
+<span class="r-in"><span>  fspaces_plot               <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tree_average"</span>, <span class="st">"pcoa_2d"</span>, <span class="st">"pcoa_3d"</span>, </span></span>
+<span class="r-in"><span>                              <span class="st">"pcoa_4d"</span>, <span class="st">"pcoa_5d"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  name_file                  <span class="op">=</span> <span class="cn">NULL</span>, </span></span>
+<span class="r-in"><span>  range_dist                 <span class="op">=</span> <span class="cn">NULL</span>, </span></span>
+<span class="r-in"><span>  range_dev                  <span class="op">=</span> <span class="cn">NULL</span>, </span></span>
+<span class="r-in"><span>  range_qdev                 <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>  gradient_deviation         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>neg <span class="op">=</span> <span class="st">"darkblue"</span>, nul <span class="op">=</span> <span class="st">"grey80"</span>, </span></span>
+<span class="r-in"><span>                                 pos <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  gradient_deviation_quality <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>low <span class="op">=</span><span class="st">"yellow"</span>, high <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  x_lab                      <span class="op">=</span> <span class="st">"Trait-based distance"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="quality.fspaces.plot-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -224,7 +245,7 @@ as well as type of transformation of distance (scaling) and of deviation
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

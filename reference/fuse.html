@@ -77,7 +77,7 @@ Functional Originality), species specialisation and species IUCN status.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fuse</span><span class="op">(</span><span class="va">sp_dist</span>, <span class="va">sp_faxes_coord</span>, nb_NN <span class="op">=</span> <span class="fl">5</span>, <span class="va">GE</span>, standGE <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fuse</span><span class="op">(</span><span class="va">sp_dist</span>, <span class="va">sp_faxes_coord</span>, nb_NN <span class="op">=</span> <span class="fl">5</span>, <span class="va">GE</span>, standGE <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -85,26 +85,37 @@ Functional Originality), species specialisation and species IUCN status.</p>
     <dl><dt>sp_dist</dt>
 <dd><p>a dist object provided by <code><a href="funct.dist.html">funct.dist</a></code>,
 <code><a href="https://rdrr.io/pkg/cluster/man/daisy.html" class="external-link">daisy</a></code> or <code><a href="https://rdrr.io/pkg/ade4/man/dist.ktab.html" class="external-link">dist.ktab</a></code>.</p></dd>
+
+
 <dt>sp_faxes_coord</dt>
 <dd><p>a data frame with the coordinates of the species on a
 multidimensional space based on a selected number of axes derived from a
 Principal Coordinate Analysis (PCoA). The species are in rows and the PCOA
 axes are in column.</p></dd>
+
+
 <dt>nb_NN</dt>
 <dd><p>a numerical value giving the number of nearest neighbor to
 consider. Default: <code>nb_NN = 5</code>.</p></dd>
+
+
 <dt>GE</dt>
 <dd><p>a numerical vector giving the IUCN status rank (DD = NA, LC = 0,
 NT = 1, VU = 2, EN = 3, CR = 4) or the IUCN extinction probability
 associated with each status. See Mooers <em>et al.</em> (2008) for further
 information. For example, DD = NA, LC = 0, NT = 0.1, VU = 0.4, EN = 0.666,
 and CR = 0.999).</p></dd>
+
+
 <dt>standGE</dt>
 <dd><p>a logical value to standardize the GE values.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data frame with species in rows and the following metrics in
+    
+
+<p>A data frame with species in rows and the following metrics in
 columns:</p><ul><li><p>FUSE: functionally unique, specialized and endangered (see
 Pimiento <em>et al.</em> (2020);</p></li>
 <li><p>FUn_std: functional uniqueness standardized between 0 and 1 (see
@@ -128,64 +139,64 @@ Violle <em>et al.</em> (2007) Let the concept of trait be functional! <em>Oikos<
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load species traits data:</span></span>
-<span class="r-in"><span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata'</span>, <span class="st">'data_traits_MMA_ursus.csv'</span>, </span>
-<span class="r-in">  package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span>, dec <span class="op">=</span> <span class="st">','</span>, sep <span class="op">=</span> <span class="st">';'</span>, header <span class="op">=</span> <span class="cn">TRUE</span>, row.names <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  na.strings<span class="op">=</span><span class="st">'NA'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Trait compilation and ordination:</span></span>
-<span class="r-in"><span class="va">dimorphism</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">ordered</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">dimorphism</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">breeding_site</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">ordered</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">breeding_site</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">social_behavior</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">ordered</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">social_behavior</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">weight_max</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">adult_weight_max</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">social_group</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">social_group_mean</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># Trait Matrix construction:</span></span>
-<span class="r-in"><span class="va">sp_tr_end</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  main_diet <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">main_diet</span>, </span>
-<span class="r-in">  foraging_water_depth <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">foraging_water_depth</span>,</span>
-<span class="r-in">  foraging_location <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">foraging_location</span>, </span>
-<span class="r-in">  fasting_strategy <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">fasting_strategy</span>,</span>
-<span class="r-in">  female_sexual_maturity <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">female_sexual_maturity</span>, </span>
-<span class="r-in">  weaning <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">weaning</span>,</span>
-<span class="r-in">  gestation <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">gestation</span>, inter_litter <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">inter_litter</span>,</span>
-<span class="r-in">  breeding_site <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">breeding_site</span>, </span>
-<span class="r-in">  social_group <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">social_group_mean</span>,</span>
-<span class="r-in">  social_behavior <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">social_behavior</span>, </span>
-<span class="r-in">  weight_max <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">adult_weight_max</span>,</span>
-<span class="r-in">  dimorphism <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">dimorphism</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># Function weigthing vector:</span></span>
-<span class="r-in"><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, </span>
-<span class="r-in">  <span class="fl">0.5</span><span class="op">)</span></span>
-<span class="r-in">   </span>
-<span class="r-in"><span class="co"># Gower distance calculation:</span></span>
-<span class="r-in"><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">main_diet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">main_diet</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">foraging_water_depth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">foraging_water_depth</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">foraging_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">foraging_location</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">breeding_site</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">breeding_site</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">social_behavior</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">social_behavior</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">sp_dist_tr</span> <span class="op">&lt;-</span> <span class="fu">cluster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cluster/man/daisy.html" class="external-link">daisy</a></span><span class="op">(</span><span class="va">sp_tr_end</span>, metric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'gower'</span><span class="op">)</span>, </span>
-<span class="r-in">  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>symm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span>, weights <span class="op">=</span> <span class="va">v</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="co"># Principal coordinate analyses</span></span>
-<span class="r-in"><span class="va">Pcoa</span> <span class="op">&lt;-</span> <span class="fu">ade4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ade4/man/dudi.pco.html" class="external-link">dudi.pco</a></span><span class="op">(</span><span class="fu">ade4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ade4/man/quasieuclid.html" class="external-link">quasieuclid</a></span><span class="op">(</span><span class="va">sp_dist_tr</span><span class="op">)</span>, scann <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span class="r-in">                       nf <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load species traits data:</span></span></span>
+<span class="r-in"><span><span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata'</span>, <span class="st">'data_traits_MMA_ursus.csv'</span>, </span></span>
+<span class="r-in"><span>  package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span>, dec <span class="op">=</span> <span class="st">','</span>, sep <span class="op">=</span> <span class="st">';'</span>, header <span class="op">=</span> <span class="cn">TRUE</span>, row.names <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  na.strings<span class="op">=</span><span class="st">'NA'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Trait compilation and ordination:</span></span></span>
+<span class="r-in"><span><span class="va">dimorphism</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">ordered</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">dimorphism</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">breeding_site</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">ordered</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">breeding_site</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">social_behavior</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">ordered</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">social_behavior</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">weight_max</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">adult_weight_max</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">social_group</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">$</span><span class="va">social_group_mean</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># Trait Matrix construction:</span></span></span>
+<span class="r-in"><span><span class="va">sp_tr_end</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  main_diet <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">main_diet</span>, </span></span>
+<span class="r-in"><span>  foraging_water_depth <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">foraging_water_depth</span>,</span></span>
+<span class="r-in"><span>  foraging_location <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">foraging_location</span>, </span></span>
+<span class="r-in"><span>  fasting_strategy <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">fasting_strategy</span>,</span></span>
+<span class="r-in"><span>  female_sexual_maturity <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">female_sexual_maturity</span>, </span></span>
+<span class="r-in"><span>  weaning <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">weaning</span>,</span></span>
+<span class="r-in"><span>  gestation <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">gestation</span>, inter_litter <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">inter_litter</span>,</span></span>
+<span class="r-in"><span>  breeding_site <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">breeding_site</span>, </span></span>
+<span class="r-in"><span>  social_group <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">social_group_mean</span>,</span></span>
+<span class="r-in"><span>  social_behavior <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">social_behavior</span>, </span></span>
+<span class="r-in"><span>  weight_max <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">adult_weight_max</span>,</span></span>
+<span class="r-in"><span>  dimorphism <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">dimorphism</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># Function weigthing vector:</span></span></span>
+<span class="r-in"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, </span></span>
+<span class="r-in"><span>  <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   </span></span>
+<span class="r-in"><span><span class="co"># Gower distance calculation:</span></span></span>
+<span class="r-in"><span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">main_diet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">main_diet</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">foraging_water_depth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">foraging_water_depth</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">foraging_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">foraging_location</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">breeding_site</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">breeding_site</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">social_behavior</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">sp_tr_end</span><span class="op">$</span><span class="va">social_behavior</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">sp_dist_tr</span> <span class="op">&lt;-</span> <span class="fu">cluster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cluster/man/daisy.html" class="external-link">daisy</a></span><span class="op">(</span><span class="va">sp_tr_end</span>, metric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'gower'</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>symm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span>, weights <span class="op">=</span> <span class="va">v</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="co"># Principal coordinate analyses</span></span></span>
+<span class="r-in"><span><span class="va">Pcoa</span> <span class="op">&lt;-</span> <span class="fu">ade4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ade4/man/dudi.pco.html" class="external-link">dudi.pco</a></span><span class="op">(</span><span class="fu">ade4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ade4/man/quasieuclid.html" class="external-link">quasieuclid</a></span><span class="op">(</span><span class="va">sp_dist_tr</span><span class="op">)</span>, scann <span class="op">=</span> <span class="cn">FALSE</span>, </span></span>
+<span class="r-in"><span>                       nf <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Zero distance(s)</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">sp_faxes_coord</span> <span class="op">&lt;-</span> <span class="va">Pcoa</span><span class="op">$</span><span class="va">li</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># FUSE calculation:</span></span>
-<span class="r-in"> <span class="va">FUSE_res</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">fuse</span><span class="op">(</span></span>
-<span class="r-in">    sp_dist        <span class="op">=</span> <span class="va">sp_dist_tr</span>, </span>
-<span class="r-in">    sp_faxes_coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">sp_faxes_coord</span><span class="op">)</span>, </span>
-<span class="r-in">    nb_NN          <span class="op">=</span> <span class="fl">5</span>,  </span>
-<span class="r-in">    GE             <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">IUCN_num</span>,</span>
-<span class="r-in">    standGE        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"> <span class="va">FUSE_res</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">sp_faxes_coord</span> <span class="op">&lt;-</span> <span class="va">Pcoa</span><span class="op">$</span><span class="va">li</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># FUSE calculation:</span></span></span>
+<span class="r-in"><span> <span class="va">FUSE_res</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">fuse</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    sp_dist        <span class="op">=</span> <span class="va">sp_dist_tr</span>, </span></span>
+<span class="r-in"><span>    sp_faxes_coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">sp_faxes_coord</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    nb_NN          <span class="op">=</span> <span class="fl">5</span>,  </span></span>
+<span class="r-in"><span>    GE             <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">IUCN_num</span>,</span></span>
+<span class="r-in"><span>    standGE        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">FUSE_res</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                   FUSE        FUGE        FSGE      FUn_std</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Arctocephalus_australis     0.00000000 0.000000000 0.000000000 0.4066626897</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Arctocephalus_forsteri      0.00000000 0.000000000 0.000000000 0.5170579368</span>
@@ -430,14 +441,14 @@ Violle <em>et al.</em> (2007) Let the concept of trait be functional! <em>Oikos<
 <span class="r-out co"><span class="r-pr">#&gt;</span> Zalophus_californianus      0.62677747</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Zalophus_wollebaeki         0.41799919</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ziphius_cavirostris         0.09353647</span>
-<span class="r-in">    </span>
-<span class="r-in"> <span class="va">FUSE_res2</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">fuse</span><span class="op">(</span></span>
-<span class="r-in">    sp_dist        <span class="op">=</span> <span class="va">sp_dist_tr</span>, </span>
-<span class="r-in">    sp_faxes_coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">sp_faxes_coord</span><span class="op">)</span>, </span>
-<span class="r-in">    nb_NN          <span class="op">=</span> <span class="fl">5</span>,</span>
-<span class="r-in">    GE             <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">IUCN_50</span>,</span>
-<span class="r-in">    standGE        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"> <span class="va">FUSE_res2</span></span>
+<span class="r-in"><span>    </span></span>
+<span class="r-in"><span> <span class="va">FUSE_res2</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">fuse</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    sp_dist        <span class="op">=</span> <span class="va">sp_dist_tr</span>, </span></span>
+<span class="r-in"><span>    sp_faxes_coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">sp_faxes_coord</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    nb_NN          <span class="op">=</span> <span class="fl">5</span>,</span></span>
+<span class="r-in"><span>    GE             <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">IUCN_50</span>,</span></span>
+<span class="r-in"><span>    standGE        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">FUSE_res2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     FUSE         FUGE         FSGE      FUn_std</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Arctocephalus_australis     0.0000000000 0.000000e+00 0.000000e+00 0.4066626897</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Arctocephalus_forsteri      0.0000000000 0.000000e+00 0.000000e+00 0.5170579368</span>
@@ -682,14 +693,14 @@ Violle <em>et al.</em> (2007) Let the concept of trait be functional! <em>Oikos<
 <span class="r-out co"><span class="r-pr">#&gt;</span> Zalophus_californianus      0.62677747</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Zalophus_wollebaeki         0.41799919</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ziphius_cavirostris         0.09353647</span>
-<span class="r-in">    </span>
-<span class="r-in"> <span class="va">FUSE_res3</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">fuse</span><span class="op">(</span></span>
-<span class="r-in">    sp_dist        <span class="op">=</span> <span class="va">sp_dist_tr</span>, </span>
-<span class="r-in">    sp_faxes_coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">sp_faxes_coord</span><span class="op">)</span>, </span>
-<span class="r-in">    nb_NN          <span class="op">=</span> <span class="fl">5</span>, </span>
-<span class="r-in">    GE             <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">IUCN_100</span>,</span>
-<span class="r-in">    standGE        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"> <span class="va">FUSE_res3</span></span>
+<span class="r-in"><span>    </span></span>
+<span class="r-in"><span> <span class="va">FUSE_res3</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu">fuse</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    sp_dist        <span class="op">=</span> <span class="va">sp_dist_tr</span>, </span></span>
+<span class="r-in"><span>    sp_faxes_coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">sp_faxes_coord</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    nb_NN          <span class="op">=</span> <span class="fl">5</span>, </span></span>
+<span class="r-in"><span>    GE             <span class="op">=</span> <span class="va">sp_tr</span><span class="op">$</span><span class="va">IUCN_100</span>,</span></span>
+<span class="r-in"><span>    standGE        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">FUSE_res3</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     FUSE         FUGE         FSGE      FUn_std</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Arctocephalus_australis     0.0000000000 0.000000e+00 0.0000000000 0.4066626897</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Arctocephalus_forsteri      0.0000000000 0.000000e+00 0.0000000000 0.5170579368</span>
@@ -948,7 +959,7 @@ Violle <em>et al.</em> (2007) Let the concept of trait be functional! <em>Oikos<
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

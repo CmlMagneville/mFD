@@ -77,7 +77,7 @@ this function to work, there must be no NA in your <code>asb_sp_w</code> data fr
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">asb.sp.summary</span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">asb.sp.summary</span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -85,25 +85,33 @@ this function to work, there must be no NA in your <code>asb_sp_w</code> data fr
     <dl><dt>asb_sp_w</dt>
 <dd><p>a matrix showing assemblages (rows) composition in species
 (columns). Note that species names <strong>must be</strong> the names of rows.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list with:</p>
+    
+
+<p>A list with:</p>
 <dl><dt>asb_sp_w_occ</dt>
 <dd><p>a matrix with species occurrences in each
 assemblage.</p></dd>
+
 <dt>sp_tot_w</dt>
 <dd><p>a vector gathering species biomass/abundance per
 species.</p></dd>
+
 <dt>asb_tot_w</dt>
 <dd><p>a vector gathering total abundance/biomass per
 assemblage.</p></dd>
+
 <dt>asb_sp_richn</dt>
 <dd><p>a vector gathering species richness per
 assemblage.</p></dd>
+
 <dt>asb_sp_nm</dt>
 <dd><p>a list gathering the names of species of each
 assemblage.</p></dd>
+
 </dl></div>
     <div id="author">
     <h2>Author</h2>
@@ -112,11 +120,11 @@ assemblage.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Load Assemblages x Species Matrix</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'baskets_fruits_weights'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Summarize Assemblages Data</span></span>
-<span class="r-in"><span class="fu">mFD</span><span class="fu">::</span><span class="fu">asb.sp.summary</span><span class="op">(</span>asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load Assemblages x Species Matrix</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'baskets_fruits_weights'</span>, package <span class="op">=</span> <span class="st">'mFD'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Summarize Assemblages Data</span></span></span>
+<span class="r-in"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu">asb.sp.summary</span><span class="op">(</span>asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $asb_sp_occ</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           apple apricot banana currant blackberry blueberry cherry grape</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> basket_1      1       0      1       0          0         0      1     0</span>
@@ -259,7 +267,7 @@ assemblage.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
