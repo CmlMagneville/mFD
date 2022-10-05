@@ -415,7 +415,7 @@ assemblages to plot and then the names of species being vertices.
 
 
 **USAGE** <span style="color: darkturquoise;">Retrieve the coordinates of species 
-belonging to basket_1, basket_4 and basket_10:</span>
+belonging to basket_1, basket_6 and basket_10:</span>
 ```{r}
 # basket_1:
 ## filter species from basket_1:
@@ -465,7 +465,7 @@ vert_nm_basket1 <- mFD::vertices(sp_faxes_coord = sp_faxes_coord_basket1,
                                        order_2D = TRUE, 
                                     check_input = TRUE)
 
-# basket_4:
+# basket_6:
 vert_nm_basket6 <- mFD::vertices(sp_faxes_coord = sp_faxes_coord_basket6,
                                        order_2D = TRUE, 
                                     check_input = TRUE)
@@ -807,7 +807,7 @@ for (k in (1:plot_nb)) {
                                      order_2D = TRUE, 
                                      check_input = TRUE)
     
-    # basket_4:
+    # basket_6:
     vert_nm_basket6 <- mFD::vertices(sp_faxes_coord = sp_faxes_coord_basket6,
                                      order_2D = TRUE, 
                                      check_input = TRUE)
