@@ -96,7 +96,7 @@
       <h1 data-toc-skip>Complex plots</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2022-10-04</h4>
+            <h4 data-toc-skip class="date">2022-10-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Complex_graphs.Rmd" class="external-link"><code>vignettes/Complex_graphs.Rmd</code></a></small>
       <div class="hidden name"><code>Complex_graphs.Rmd</code></div>
@@ -539,7 +539,7 @@
 <p>Convex-hulls from the wanted assemblages can then be added to the <code>plot_k</code> object which now contains the background and the convex-hull from the global pool of species. <strong>Here, we will plot three assemblages: basket 1, basket 4 and basket 10 with different colors</strong> using the <a href="https://cmlmagneville.github.io/mFD/reference/fric.plot.html">fric.plot() function</a>. You can play with colors and opacities of each convex-hull so the graph is easy to read and convex-hulls are easily distinguisable.</p>
 <p><br></p>
 <p><strong>Step 1: Get the coordinates of species of the assemblages to plot</strong> Realised using the <a href="https://cmlmagneville.github.io/mFD/reference/sp.filter.html">sp.filter()</a> and the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">vertices()</a> functions to first retrieve the coordinates of species belonging to the assemblages to plot and then the names of species being vertices.</p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve the coordinates of species belonging to basket_1, basket_4 and basket_10:</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve the coordinates of species belonging to basket_1, basket_6 and basket_10:</span></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># basket_1:</span></span>
 <span><span class="co">## filter species from basket_1:</span></span>
@@ -587,7 +587,7 @@
 <span>                                       order_2D <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                    check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># basket_4:</span></span>
+<span><span class="co"># basket_6:</span></span>
 <span><span class="va">vert_nm_basket6</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/vertices.html">vertices</a></span><span class="op">(</span>sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_basket6</span>,</span>
 <span>                                       order_2D <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                    check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -873,7 +873,7 @@
 <span>                                     order_2D <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                     check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>    </span>
-<span>    <span class="co"># basket_4:</span></span>
+<span>    <span class="co"># basket_6:</span></span>
 <span>    <span class="va">vert_nm_basket6</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/vertices.html">vertices</a></span><span class="op">(</span>sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_basket6</span>,</span>
 <span>                                     order_2D <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                     check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
