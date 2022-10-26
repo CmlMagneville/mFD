@@ -1,10 +1,10 @@
 ---
-title: "Complex plots"
+title: "Customised plots"
 author: "Camille Magneville"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Complex plots}
+  %\VignetteIndexEntry{Customised plots}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
