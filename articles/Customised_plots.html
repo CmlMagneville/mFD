@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Complex plots • mFD</title>
+<title>Customised plots • mFD</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Complex plots">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Customised plots">
 <meta property="og:description" content="mFD">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -50,9 +50,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Complex_graphs.html">Complex plots</a>
-    </li>
-    <li>
       <a href="../articles/Compute_and_interpret_quality_of_functional_spaces.html">Compute and Interpret Quality of Functional Spaces</a>
     </li>
     <li>
@@ -60,6 +57,9 @@
     </li>
     <li>
       <a href="../articles/Continuous_traits_framework.html">Continuous Traits Framework</a>
+    </li>
+    <li>
+      <a href="../articles/Customised_plots.html">Customised plots</a>
     </li>
     <li>
       <a href="../articles/How_to_deal_with_Functional_Entities.html">How to Deal With Functional Entities</a>
@@ -90,16 +90,16 @@
 
       
 
-      </header><script src="Complex_graphs_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Customised_plots_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Complex plots</h1>
+      <h1 data-toc-skip>Customised plots</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2022-10-05</h4>
+            <h4 data-toc-skip class="date">2022-10-26</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Complex_graphs.Rmd" class="external-link"><code>vignettes/Complex_graphs.Rmd</code></a></small>
-      <div class="hidden name"><code>Complex_graphs.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Customised_plots.Rmd" class="external-link"><code>vignettes/Customised_plots.Rmd</code></a></small>
+      <div class="hidden name"><code>Customised_plots.Rmd</code></div>
 
     </div>
 
@@ -461,7 +461,7 @@
 <span>                               faxes_nm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span><span class="op">)</span>,</span>
 <span>                               color_bg <span class="op">=</span> <span class="st">"grey95"</span><span class="op">)</span></span>
 <span><span class="va">plot_k</span></span></code></pre></div>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
 <div class="section level4">
@@ -510,7 +510,7 @@
 <span>                             color_vert <span class="op">=</span> <span class="st">"green"</span>,</span>
 <span>                             fill_vert <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span>
 <span><span class="va">plot_sp_vert</span></span></code></pre></div>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Let’s continue the workflow on how to plot more than two convex-hulls! Thus remove species otherwise the final plot will be difficult to read ;)</span></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_k</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/pool.plot.html">pool.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
@@ -529,7 +529,7 @@
 <span>                             color_vert <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                             fill_vert <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="va">plot_k</span></span></code></pre></div>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
 <div class="section level4">
@@ -635,7 +635,7 @@
 <span>                             color_vert <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                             fill_vert <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the convex-hulls of the three studied assemblages: only convex hulls with coloured surroundings, no species plotted</span></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
@@ -668,7 +668,7 @@
 <span>                             color_vert <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                             fill_vert <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the convex-hulls of the three studied assemblages: only convex hulls with transparent surroundings, species plotted but with no differences between non-vertices and vertices species</span></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
@@ -715,7 +715,7 @@
 <span>                                           <span class="st">"basket_6"</span> <span class="op">=</span> <span class="st">"#67a9cf"</span>,</span>
 <span>                                          <span class="st">"basket_10"</span> <span class="op">=</span> <span class="st">"#d0d1e6"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the convex-hulls of the three studied assemblages: only convex hulls with transparent surroundings, species plotted but with different colour between non-vertices and vertices species</span></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
@@ -762,7 +762,7 @@
 <span>                                            <span class="st">"basket_6"</span> <span class="op">=</span> <span class="st">"#c51b8a"</span>,</span>
 <span>                                           <span class="st">"basket_10"</span> <span class="op">=</span> <span class="st">"#fa9fb5"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p>Now that we have seen the basic workflow of how to add graph components with only two functional axis using the <code>mFD</code> functions which relies on the <code>ggplot2</code> package, let’s compute as many graph as wanted! ;)</p>
 <p><br></p>
@@ -937,22 +937,22 @@
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_FRic</span></span></code></pre></div>
 <pre><code><span><span class="co">## [[1]]</span></span></code></pre>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[2]]</span></span></code></pre>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-20-2.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-2.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[3]]</span></span></code></pre>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-20-3.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-3.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[4]]</span></span></code></pre>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-20-4.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-4.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[5]]</span></span></code></pre>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-20-5.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-5.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[6]]</span></span></code></pre>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-20-6.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-6.png" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
 <div class="section level3">
@@ -969,7 +969,7 @@
 <span>                             widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                             guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span>
 <span><span class="va">patchwork_FRic</span></span></code></pre></div>
-<p><img src="Complex_graphs_files/figure-html/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p><span style="color: darkturquoise;">You can now play with colours, shapes and add as many assemblages as wanted! </span></p>
 <p><br></p>
