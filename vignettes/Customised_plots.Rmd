@@ -505,7 +505,7 @@ indicating whether species from the studied assemblages must be plotted. If
 to customise species shapes/sizes/colours and the arguments `shape_vert`, 
 `size_vert`, `color_vert` and `fill_vert` help to customise vertices.
 For shape/size/colour arguments, each element of the input list reflects a given 
-assemblage and each element must be nammed after the 
+assemblage and each element must be nammed after the
 assemblage *see the function help for more information*
 
 * <span style="color: darkturquoise;">color_ch</span>, 
@@ -513,7 +513,7 @@ assemblage *see the function help for more information*
 <span style="color: darkturquoise;">alpha_ch</span>: are lists containing
 colors and opacity values to caracterise each **c**onvex-**h**ull of the studied
 assemblage. **Note:** each element of these lists reflects a given 
-assemblage and each element must be nammed after the assemblage. Can be set up 
+assemblage and each element must be nammed after the assemblage **and the order in which each assemblage is given must reflect the same order than the asb_sp_coord_2D order**. Can be set up 
 to `NA` if no colors are to be plotted.
 
 
