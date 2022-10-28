@@ -283,12 +283,12 @@ check.fuzzy <- function(tr_cat, sp_tr) {
       
       var_k <- tr_cat$"trait_name"[which(tr_cat$"fuzzy_name" == k)]
       
-      if (length(var_k) < 2) {
+      if (length(as.character(var_k)) < 2) {
         stop("Fuzzy-coded trait '", k, "' is described with a single ",
              "variable. Consider changing its type to 'nominal'.")
       }
       
-      if (!any(apply(sp_tr[ , var_k], 2, is.numeric))) {
+      if (!any(apply(sp_tr[ , as.character(var_k)], 2, is.numeric))) {
         stop("Fuzzy-coded trait '", k, "' is not described with 'numeric' ", 
              "variables.")
       }
