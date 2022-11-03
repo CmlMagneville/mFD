@@ -299,7 +299,7 @@ tutorial for further analysis using FE.
 `mFD` also allows the user to compute FD indices based on Functional Entities
 (FEs). Computed indices are **Functional Redundancy (FRed)**,
 **Functional OverRedundancy (FORed)** and **Functional Vulnerability (FVuln)**
-([Mouillot _et al._ 2014](https://www.pnas.org/content/111/38/13757.short)).
+([Mouillot _et al._ 2014](https://www.pnas.org/doi/abs/10.1073/pnas.1317625111)).
 The **fruits & baskets** example does not allow to compute FEs, thus FD indices
 based on FEs can not be compute. Check the [Compute functional diversity indices
 based on Functional
