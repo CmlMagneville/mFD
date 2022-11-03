@@ -76,10 +76,6 @@ Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html
 
 Please cite this package as:
 
--   Chao *et al.* (2019) An attribute diversity approach to functional
-    diversity, functional beta diversity, and related (dis)similarity
-    measures. *Ecological Monographs*, **89**, e01343.
-
 *Magneville, C., Loiseau, N., Albouy, C., Casajus, N., Claverie, T.,
 Escalas, A., Leprieur, F., Maire, E., Mouillot, D., Villéger, S.*
 (2022). mFD: an R package to compute and illustrate the multiple facets
