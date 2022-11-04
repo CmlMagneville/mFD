@@ -65,12 +65,9 @@
       From: inst/doc/mFD_general_workflow.html
       Status: 503
       Message: Service Unavailable
-    URL: https://www.pnas.org/content/111/38/13757.short (moved to https://www.pnas.org/doi/abs/10.1073/pnas.1317625111)
-      From: inst/doc/How_to_deal_with_Functional_Entities.html
-      Status: 503
-      Message: Service Unavailable
     URL: https://www.pnas.org/doi/abs/10.1073/pnas.1317625111
-      From: inst/doc/mFD_general_workflow.html
+      From: inst/doc/How_to_deal_with_Functional_Entities.html
+            inst/doc/mFD_general_workflow.html
       Status: 503
       Message: Service Unavailable
   
