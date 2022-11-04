@@ -1,9 +1,32 @@
+## Resubmit comments
+
+* Add new vignettes:
+  * `vignettes/Customised_plots.Rmd`
+* Review old vignettes:
+  * fixed typos and missing chunks in the general workflow vignette
+* Fix minor bugs in some functions:
+  * correct beta functional axes names
+  * correct check fuzzy names
+* Review function documentation
+* For a complete overview of the new version, please see `NEWS.md`
+* Add paper citation to the READ.ME file
+
 ## Test environments
 
-* local Windows 11, R 4.0.5
-* Mac OS X 10.15 (on GitHub Actions), r-release (R 4.1.1)
-* Windows Server 2019 (on GitHub Actions), r-release (R 4.1.1)
-* Ubuntu 20.04 (on GitHub Actions), r-release (R 4.1.1)
+* Local
+  * Windows 11, R 4.0.5
+* Github Actions
+  * macOS 11.6.5, R-release (R 4.2.2)
+  * Windows Server 2022, R-release (R 4.2.2)
+  * Ubuntu 18.04.6 LTS, R-devel, R-release (R 4.2.2), R-oldrel
+* WinBuilder
+  * r-devel
+  * r-release
+  * r-oldrel
+* R-hub
+  * Windows Server 2022, R-devel 64 bit
+  * Ubuntu Linux 20.04.1 LTS, R-release, GCC
+  * Fedora Linux, R-devel, clang, gfortran
 
 
 ## R CMD check results
@@ -23,7 +46,7 @@
       From: README.md
       Status: 503
       Message: Service Unavailable
-    URL: https://onlinelibrary.wiley.com/doi/10.1111/ecog.05904?af=R
+    URL: https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.05904
       From: inst/CITATION
       Status: 503
       Message: Service Unavailable
@@ -70,10 +93,3 @@
 
 There are currently no downstream dependencies for this package.
 
-
-## Resubmit comments
-
-* References have been added to the DESCRIPTION file
-* Packages have been written in single quotes in title and description
-* Examples are now executed
-* User messages with print() function have been changed using stop() function
