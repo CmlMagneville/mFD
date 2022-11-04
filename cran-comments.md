@@ -1,5 +1,6 @@
 ## Resubmit comments
 
+* Correct follow moved content ulr 
 * Add new vignettes:
   * `vignettes/Customised_plots.Rmd`
 * Review old vignettes:

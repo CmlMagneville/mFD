@@ -271,7 +271,7 @@ the end). It will thus not be summed up in this tutorial.
 
 `mFD` also allows to compute functional indices based on FEs following the
 framework proposed in [Mouillot _et al._
-2014](https://www.pnas.org/content/111/38/13757.short)) using the
+2014](https://www.pnas.org/doi/abs/10.1073/pnas.1317625111)) using the
 `mFD::alpha.fd.fe()` function. It computes:
 
 * *Functional Redundancy* that reflects the average number of species per FE
