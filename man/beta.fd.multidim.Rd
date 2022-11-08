@@ -100,6 +100,7 @@ See below example of how merging distance values in a \emph{dataframe} with
 \code{dist.to.df}.
 }
 \examples{
+\dontrun{
  # Load Species*Traits dataframe:
 data('fruits_traits', package = 'mFD')
 
@@ -143,6 +144,7 @@ beta_fd_fruits <- mFD::beta.fd.multidim(
 
 # merging pairwise beta-diversity indices in a data.frame
 dist.to.df(beta_fd_fruits$pairasb_fbd_indices)
+}
 }
 \references{
 Villeger \emph{et al.} (2013) Decomposing functional beta-diversity reveals that
