@@ -1,6 +1,7 @@
 ## Resubmit comments
 
-* Correct follow moved content ulr 
+* Correct follow moved content ulr
+* Fixed the M1Mac issue when building vignettes
 * Add new vignettes:
   * `vignettes/Customised_plots.Rmd`
 * Review old vignettes:
