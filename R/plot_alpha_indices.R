@@ -919,8 +919,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
       
       ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                          y = range_faxes[2] - spread_faxes*0.56,
-                         label = paste0("gravity center of", sep = " ", 
-                                        asb1),
+                         label = paste0("gravity center of the vertices of", 
+                                        sep = " ", asb1),
                          colour = color_sp[["asb1"]], size = 3) 
     
     ### if 2nd assemblage:
@@ -949,8 +949,8 @@ alpha.multidim.plot <- function(output_alpha_fd_multidim,
         
         ggplot2::geom_text(x = range_faxes[1] + spread_faxes*0.45,
                            y = range_faxes[2] - spread_faxes*0.73,
-                           label = paste0("gravity center of", sep = " ", 
-                                          asb2),
+                           label = paste0("gravity center of the vertices of", 
+                                          sep = " ", asb2),
                            colour = color_sp[["asb2"]], size = 3)
       
     }
