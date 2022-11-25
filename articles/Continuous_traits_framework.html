@@ -96,7 +96,7 @@
       <h1 data-toc-skip>Continuous Traits Framework</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2022-11-22</h4>
+            <h4 data-toc-skip class="date">2022-11-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Continuous_traits_framework.Rmd" class="external-link"><code>vignettes/Continuous_traits_framework.Rmd</code></a></small>
       <div class="hidden name"><code>Continuous_traits_framework.Rmd</code></div>
@@ -521,16 +521,16 @@
 <p><br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fspace</span><span class="op">$</span><span class="st">"quality_metrics"</span></span></code></pre></div>
-<pre><code><span><span class="co">##             mAD          mSD</span></span>
-<span><span class="co">## 2D  0.999172097 9.983449e-01</span></span>
-<span><span class="co">## 3D  0.707790003 5.009667e-01</span></span>
-<span><span class="co">## 4D  0.447618543 2.003633e-01</span></span>
-<span><span class="co">## 5D  0.249227670 6.211478e-02</span></span>
-<span><span class="co">## 6D  0.122568133 1.502303e-02</span></span>
-<span><span class="co">## 7D  0.061225618 3.748582e-03</span></span>
-<span><span class="co">## 8D  0.033760939 1.139802e-03</span></span>
-<span><span class="co">## 9D  0.020479668 4.194212e-04</span></span>
-<span><span class="co">## 10D 0.009164095 8.398065e-05</span></span></code></pre>
+<pre><code><span><span class="co">##            mAD         mSD</span></span>
+<span><span class="co">## 2D  1.83867581 3.380728750</span></span>
+<span><span class="co">## 3D  1.22034177 1.489235074</span></span>
+<span><span class="co">## 4D  0.90241642 0.814355528</span></span>
+<span><span class="co">## 5D  0.59513109 0.354181166</span></span>
+<span><span class="co">## 6D  0.46267807 0.214071066</span></span>
+<span><span class="co">## 7D  0.33359921 0.111288894</span></span>
+<span><span class="co">## 8D  0.23662790 0.055993113</span></span>
+<span><span class="co">## 9D  0.16252824 0.026415439</span></span>
+<span><span class="co">## 10D 0.09772059 0.009549359</span></span></code></pre>
 <p><br></p>
 <p><strong>NB</strong> The lower the quality metric is, the better the quality of your space is. Here, thanks to mAD and mSD value, we can see that as the number of dimensions increases, the quality increases. However, to decrease computation time, we can chose to work with the 6D space which has good quality of functional space. Generally, you must keep in mind a trade-off between the number of axes and quality of functional space. Increasing the number of functional axes increases computation time.</p>
 <p><br></p>
@@ -541,16 +541,16 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fspace</span><span class="op">$</span><span class="st">"eigenvalues_percentage_var"</span></span></code></pre></div>
 <pre><code><span><span class="co">##      eigenvalue percentage of variance cumulative percentage of variance</span></span>
-<span><span class="co">## PC1  6.98331220             48.5006669                          48.50067</span></span>
-<span><span class="co">## PC2  2.39791799             16.6540774                          65.15474</span></span>
-<span><span class="co">## PC3  1.43147508              9.9419150                          75.09666</span></span>
-<span><span class="co">## PC4  1.25518478              8.7175394                          83.81420</span></span>
-<span><span class="co">## PC5  0.94489478              6.5625058                          90.37670</span></span>
-<span><span class="co">## PC6  0.54986970              3.8189682                          94.19567</span></span>
-<span><span class="co">## PC7  0.48899139              3.3961547                          97.59183</span></span>
-<span><span class="co">## PC8  0.13305486              0.9240958                          98.51592</span></span>
-<span><span class="co">## PC9  0.08938364              0.6207894                          99.13671</span></span>
-<span><span class="co">## PC10 0.07609657              0.5285077                          99.66522</span></span></code></pre>
+<span><span class="co">## PC1   5.0894430              32.531951                          32.53195</span></span>
+<span><span class="co">## PC2   2.3267315              14.872574                          47.40452</span></span>
+<span><span class="co">## PC3   1.9839001              12.681179                          60.08570</span></span>
+<span><span class="co">## PC4   1.6167089              10.334077                          70.41978</span></span>
+<span><span class="co">## PC5   1.4277215               9.126061                          79.54584</span></span>
+<span><span class="co">## PC6   0.7557779               4.830967                          84.37681</span></span>
+<span><span class="co">## PC7   0.6704457               4.285519                          88.66233</span></span>
+<span><span class="co">## PC8   0.5134516               3.282006                          91.94433</span></span>
+<span><span class="co">## PC9   0.3510937               2.244207                          94.18854</span></span>
+<span><span class="co">## PC10  0.2987544               1.909652                          96.09819</span></span></code></pre>
 <p><br></p>
 <ul>
 <li>a matrix of species coordinates in the functional space:</li>
@@ -558,27 +558,27 @@
 <p><br></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="st">"sp_faxes_coord"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##                                    PC1        PC2       PC3         PC4</span></span>
-<span><span class="co">## Achirus_lineatus            -3.5468021 -2.2967608 -1.251164 -0.94434329</span></span>
-<span><span class="co">## Anchoa_mitchilli             1.5768146 -0.5190331 -1.916811  0.17507940</span></span>
-<span><span class="co">## Archosargus_probatocephalus  1.2488122  0.1995554  1.407921 -0.24268501</span></span>
-<span><span class="co">## Archosargus_rhomboidalis     2.1724589  1.4658850  3.077086 -0.83141781</span></span>
-<span><span class="co">## Ariopsis_felis               0.2493960 -0.7334141  2.091296 -0.06344991</span></span>
-<span><span class="co">## Bagre_marinus                0.6885315 -0.7629772  1.600313 -0.21706433</span></span>
-<span><span class="co">##                                    PC5        PC6        PC7        PC8</span></span>
-<span><span class="co">## Achirus_lineatus            -0.3551794 -0.7674608  0.6577158 -0.5915840</span></span>
-<span><span class="co">## Anchoa_mitchilli            -1.4102174 -1.0235770  1.7253132  0.8741535</span></span>
-<span><span class="co">## Archosargus_probatocephalus  0.2635153  0.8865692  0.3189349  0.1482548</span></span>
-<span><span class="co">## Archosargus_rhomboidalis     0.5917141  0.8916854  0.2586945 -0.2766138</span></span>
-<span><span class="co">## Ariopsis_felis              -1.6439468 -1.0382383 -0.6405055  0.3789258</span></span>
-<span><span class="co">## Bagre_marinus               -2.0758840 -0.8373182 -0.2436820 -0.6143684</span></span>
-<span><span class="co">##                                      PC9        PC10</span></span>
-<span><span class="co">## Achirus_lineatus            -0.003361492 -0.14305954</span></span>
-<span><span class="co">## Anchoa_mitchilli            -0.279834057  0.48767139</span></span>
-<span><span class="co">## Archosargus_probatocephalus -0.212999873 -0.42603541</span></span>
-<span><span class="co">## Archosargus_rhomboidalis    -0.316020951  0.01968203</span></span>
-<span><span class="co">## Ariopsis_felis              -0.048960051 -0.25937975</span></span>
-<span><span class="co">## Bagre_marinus               -0.092163957 -0.10443150</span></span></code></pre>
+<pre><code><span><span class="co">##                                    PC1         PC2        PC3        PC4</span></span>
+<span><span class="co">## Achirus_lineatus            -3.1102450 -4.18756669  0.8212298 -0.7162535</span></span>
+<span><span class="co">## Anchoa_mitchilli             3.5220130  0.04037005  2.7468533  0.9280388</span></span>
+<span><span class="co">## Archosargus_probatocephalus  0.5598244  0.56101682 -1.9905123 -0.2138744</span></span>
+<span><span class="co">## Archosargus_rhomboidalis     0.7557227  1.05395885 -2.3524317 -1.0131106</span></span>
+<span><span class="co">## Ariopsis_felis               0.7945539  0.63147268 -1.9667765 -0.6958125</span></span>
+<span><span class="co">## Bagre_marinus                1.1521566  0.25626547 -0.7971292 -0.6188243</span></span>
+<span><span class="co">##                                    PC5        PC6         PC7         PC8</span></span>
+<span><span class="co">## Achirus_lineatus             0.1119252  0.8809080  0.22663165  0.52316085</span></span>
+<span><span class="co">## Anchoa_mitchilli             1.7894441  2.0677051 -0.85219538  0.56621740</span></span>
+<span><span class="co">## Archosargus_probatocephalus -0.5774869 -0.4797906 -0.33549421 -0.31168020</span></span>
+<span><span class="co">## Archosargus_rhomboidalis    -1.2508715 -0.4855985  0.02667960 -0.01979034</span></span>
+<span><span class="co">## Ariopsis_felis               0.5466197 -0.5300129 -0.03313655  1.72467762</span></span>
+<span><span class="co">## Bagre_marinus                0.8995832 -0.3424424 -0.29934540  2.00458491</span></span>
+<span><span class="co">##                                      PC9       PC10</span></span>
+<span><span class="co">## Achirus_lineatus            -0.211572742  0.5211315</span></span>
+<span><span class="co">## Anchoa_mitchilli             0.804586482 -0.8717554</span></span>
+<span><span class="co">## Archosargus_probatocephalus  0.068855803  0.5161352</span></span>
+<span><span class="co">## Archosargus_rhomboidalis     0.089848798  1.3715056</span></span>
+<span><span class="co">## Ariopsis_felis              -0.450194649 -0.5236044</span></span>
+<span><span class="co">## Bagre_marinus                0.007347954  0.2391765</span></span></code></pre>
 <p><br></p>
 <ul>
 <li>a dist object containing species euclidean distances in the functional space (here 5D space and for the first five species):</li>
@@ -588,23 +588,23 @@
 <code class="sourceCode R"><span><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist_multidim</span><span class="op">$</span><span class="st">"6D"</span><span class="op">)</span></span>
 <span><span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##                             Achirus_lineatus Anchoa_mitchilli</span></span>
-<span><span class="co">## Achirus_lineatus                    0.000000         5.682135</span></span>
-<span><span class="co">## Anchoa_mitchilli                    5.682135         0.000000</span></span>
-<span><span class="co">## Archosargus_probatocephalus         6.317529         4.278126</span></span>
-<span><span class="co">## Archosargus_rhomboidalis            8.322459         6.158141</span></span>
-<span><span class="co">## Ariopsis_felis                      5.526068         4.240832</span></span>
+<span><span class="co">## Achirus_lineatus                    0.000000         8.514492</span></span>
+<span><span class="co">## Anchoa_mitchilli                    8.514492         0.000000</span></span>
+<span><span class="co">## Archosargus_probatocephalus         6.819349         6.699577</span></span>
+<span><span class="co">## Archosargus_rhomboidalis            7.503606         7.362973</span></span>
+<span><span class="co">## Ariopsis_felis                      6.958710         6.398155</span></span>
 <span><span class="co">##                             Archosargus_probatocephalus</span></span>
-<span><span class="co">## Achirus_lineatus                               6.317529</span></span>
-<span><span class="co">## Anchoa_mitchilli                               4.278126</span></span>
+<span><span class="co">## Achirus_lineatus                               6.819349</span></span>
+<span><span class="co">## Anchoa_mitchilli                               6.699577</span></span>
 <span><span class="co">## Archosargus_probatocephalus                    0.000000</span></span>
-<span><span class="co">## Archosargus_rhomboidalis                       2.386875</span></span>
-<span><span class="co">## Ariopsis_felis                                 3.116358</span></span>
+<span><span class="co">## Archosargus_rhomboidalis                       1.226627</span></span>
+<span><span class="co">## Ariopsis_felis                                 1.248610</span></span>
 <span><span class="co">##                             Archosargus_rhomboidalis Ariopsis_felis</span></span>
-<span><span class="co">## Achirus_lineatus                            8.322459       5.526068</span></span>
-<span><span class="co">## Anchoa_mitchilli                            6.158141       4.240832</span></span>
-<span><span class="co">## Archosargus_probatocephalus                 2.386875       3.116358</span></span>
-<span><span class="co">## Archosargus_rhomboidalis                    0.000000       4.338137</span></span>
-<span><span class="co">## Ariopsis_felis                              4.338137       0.000000</span></span></code></pre>
+<span><span class="co">## Achirus_lineatus                            7.503606       6.958710</span></span>
+<span><span class="co">## Anchoa_mitchilli                            7.362973       6.398155</span></span>
+<span><span class="co">## Archosargus_probatocephalus                 1.226627       1.248610</span></span>
+<span><span class="co">## Archosargus_rhomboidalis                    0.000000       1.913729</span></span>
+<span><span class="co">## Ariopsis_felis                              1.913729       0.000000</span></span></code></pre>
 <p><br></p>
 <ul>
 <li>a dist object containing species distances based on traits (here for the first five species):</li>
@@ -614,23 +614,23 @@
 <code class="sourceCode R"><span><span class="va">dist_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">fspace</span><span class="op">$</span><span class="va">sp_dist_init</span><span class="op">)</span></span>
 <span><span class="va">dist_mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##                             Achirus_lineatus Anchoa_mitchilli</span></span>
-<span><span class="co">## Achirus_lineatus                    0.000000         6.015122</span></span>
-<span><span class="co">## Anchoa_mitchilli                    6.015122         0.000000</span></span>
-<span><span class="co">## Archosargus_probatocephalus         6.383490         4.660611</span></span>
-<span><span class="co">## Archosargus_rhomboidalis            8.346585         6.461733</span></span>
-<span><span class="co">## Ariopsis_felis                      5.766932         4.946896</span></span>
+<span><span class="co">## Achirus_lineatus                    0.000000         8.810865</span></span>
+<span><span class="co">## Anchoa_mitchilli                    8.810865         0.000000</span></span>
+<span><span class="co">## Archosargus_probatocephalus         6.954479         7.010258</span></span>
+<span><span class="co">## Archosargus_rhomboidalis            7.643421         7.834878</span></span>
+<span><span class="co">## Ariopsis_felis                      7.165968         6.725278</span></span>
 <span><span class="co">##                             Archosargus_probatocephalus</span></span>
-<span><span class="co">## Achirus_lineatus                               6.383490</span></span>
-<span><span class="co">## Anchoa_mitchilli                               4.660611</span></span>
+<span><span class="co">## Achirus_lineatus                               6.954479</span></span>
+<span><span class="co">## Anchoa_mitchilli                               7.010258</span></span>
 <span><span class="co">## Archosargus_probatocephalus                    0.000000</span></span>
-<span><span class="co">## Archosargus_rhomboidalis                       2.479976</span></span>
-<span><span class="co">## Ariopsis_felis                                 3.283433</span></span>
+<span><span class="co">## Archosargus_rhomboidalis                       1.814132</span></span>
+<span><span class="co">## Ariopsis_felis                                 2.780871</span></span>
 <span><span class="co">##                             Archosargus_rhomboidalis Ariopsis_felis</span></span>
-<span><span class="co">## Achirus_lineatus                            8.346585       5.766932</span></span>
-<span><span class="co">## Anchoa_mitchilli                            6.461733       4.946896</span></span>
-<span><span class="co">## Archosargus_probatocephalus                 2.479976       3.283433</span></span>
-<span><span class="co">## Archosargus_rhomboidalis                    0.000000       4.506238</span></span>
-<span><span class="co">## Ariopsis_felis                              4.506238       0.000000</span></span></code></pre>
+<span><span class="co">## Achirus_lineatus                            7.643421       7.165968</span></span>
+<span><span class="co">## Anchoa_mitchilli                            7.834878       6.725278</span></span>
+<span><span class="co">## Archosargus_probatocephalus                 1.814132       2.780871</span></span>
+<span><span class="co">## Archosargus_rhomboidalis                    0.000000       3.371347</span></span>
+<span><span class="co">## Ariopsis_felis                              3.371347       0.000000</span></span></code></pre>
 <p><br></p>
 <ul>
 <li>a correlation matrix containing correlation between traits and their associated pvalue:</li>
