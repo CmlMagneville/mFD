@@ -60,7 +60,7 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
   }
   
   if (std_method == "scale_center") {
-    sp_tr <- apply(sp_tr, 2, function(x) (x - mean(x) / stats::sd(x)))
+    sp_tr <- apply(sp_tr, 2, function(x) ((x - mean(x)) / stats::sd(x)))
   }
   
   return(sp_tr)
