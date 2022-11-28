@@ -1,5 +1,10 @@
 # mFD 1.0.3
 
+* Fix bug: 
+  * scale center traits (parenthesis missing) in `tr.cont.scale` function
+  * correct FDiv legend in plot
+  * correct typo in Functional entities vignette
+
 # mFD 1.0.2
 
 * New vignette: create customised plots

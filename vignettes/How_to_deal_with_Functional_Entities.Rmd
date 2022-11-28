@@ -426,7 +426,7 @@ mFD::alpha.fd.fe.plot(
 
 All FE except "fe_3" contain only one species thus FRed and FVuln are close to
 1. Only "fe_3" has more species than the average number of species thus the
-proportion of species in excess in FE richer than average is quite low (FRed =
+proportion of species in excess in FE richer than average is quite low (FORed =
 0.107).
 
 
