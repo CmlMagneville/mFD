@@ -36,8 +36,9 @@
 0 error | 0 warning | 1 note
 
 * checking CRAN incoming feasibility ... NOTE
-
   Maintainer: 'Camille Magneville <camille.magneville@gmail.com>'
+  
+  Version contains large components (1.0.2.9000)
   
   Found the following (possibly) invalid URLs:
     URL: https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343
