@@ -1,4 +1,4 @@
-# mFD (development version)
+# mFD 1.0.3
 
 # mFD 1.0.2
 
