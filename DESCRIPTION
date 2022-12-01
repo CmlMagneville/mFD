@@ -1,6 +1,6 @@
 Package: mFD
 Title: Compute and Illustrate the Multiple Facets of Functional Diversity
-Version: 1.0.3
+Version: 1.0.3.9000
 Authors@R: c(
     person(given   = "Camille",
            family  = "Magneville",
