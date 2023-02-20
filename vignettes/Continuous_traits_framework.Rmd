@@ -130,8 +130,12 @@ knitr::kable(asb_sp_w[1:7, 1:6],
 
 Based on the species-trait data frame or the species-standardized traits
 data frame, `mFD` allows to build a functional space based on a PCA or using each
-trait as a dimension. The function used to computed functional space with
-continuous traits is called `mFD::tr.cont.fspace()` and is used as follows:
+trait as a dimension. (**NB** Using up to the 1.0.3 version of the `mFD` package 
+does not allow weighting continuous traits, it will be done in a next version of the 
+package.  You can use the [`col.w`](https://rdrr.io/cran/FactoMineR/man/PCA.html) 
+argument of the PCA function of the FactomineR package.). The function used to 
+compute functional space with continuous traits is called `mFD::tr.cont.fspace()`
+and is used as follow:
 
 <br />
 

@@ -163,6 +163,17 @@ funct.dist <- function(sp_tr,
   
   if (metric == "euclidean") {
     
+    if (tr_cat$"trait_type" == rep("Q", nrow(tr_cat))) {
+      if (weight_type == "user") {
+        warning("Using only continuous traits, this function can not ", 
+                "weight you traits. You can use the function FactomineR::PCA ",
+                "and its argument 'col.w' to weight your traits when ",
+                "using only continuous traits. Will be updated in a next ",
+                "version of the mFD package.")
+        
+      }
+    }
+    
     if (any(tr_cat$"trait_type" == "N")){
       stop("At least one trait is nominal.Species x traits data frame must ", 
            "contain only numerical variables.")
