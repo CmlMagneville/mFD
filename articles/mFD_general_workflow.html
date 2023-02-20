@@ -96,7 +96,7 @@
       <h1 data-toc-skip>mFD: General Workflow</h1>
                         <h4 data-toc-skip class="author">Camille Magneville</h4>
             
-            <h4 data-toc-skip class="date">2022-12-01</h4>
+            <h4 data-toc-skip class="date">2023-02-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/mFD_general_workflow.Rmd" class="external-link"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -579,7 +579,7 @@ Basic framework of the mFD package
 </li>
 <li><p><code>scale_euclid</code> is a character string referring to the way the user wants to scale <strong>euclidean</strong> traits. You can either chose to scale by range <code>range</code>, use the center transformation <code>center</code>, use the scale transformation <code>scale</code>, use the scale-center transformation <code>scale_center</code> or you can chose not to scale <code>noscale</code>.</p></li>
 <li><p><code>ordinal_var</code> is a character string specifying the method to be used for ordinal variables (<em>i.e.</em> ordered). You can either chose to treat ordinal variables as continuous variables (with <code>"classic"</code> option) or to treat ordinal variables as ranks (with <code>metric</code> or <code>podani</code> options, see <code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code> help file for details).</p></li>
-<li><p><code>weight_type</code> is a character string referring to the type of method to weight traits. You can either chose to define weights using the <code>tr_cat</code> dataframe (cf <strong>step 1.1</strong>) (<code>user</code> option) or you can chose to give the same weight to all traits (<code>equal</code> option). (<strong>NB</strong> Using <code>mFD</code>, you can not define weights for fuzzy traits, use <a href="https://cran.r-project.org/package=gawdis" class="external-link"><code>gawdis</code></a> package instead)</p></li>
+<li><p><code>weight_type</code> is a character string referring to the type of method to weight traits. You can either chose to define weights using the <code>tr_cat</code> dataframe (cf <strong>step 1.1</strong>) (<code>user</code> option) or you can chose to give the same weight to all traits (<code>equal</code> option). (<strong>NB</strong> Using <code>mFD</code>, you can not define weights for fuzzy traits, use <a href="https://cran.r-project.org/package=gawdis" class="external-link"><code>gawdis</code></a> package instead) (<strong>NB</strong> If you only have continuous traits (see the <a href="https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html">Continuous traits Framework</a>: using up to the 1.0.3 version of the <code>mFD</code> package does not allow weighting, it will be done in a next version of the package. You can use the <a href="https://rdrr.io/cran/FactoMineR/man/PCA.html" class="external-link"><code>col.w</code></a> argument of the PCA function of the FactomineR package.)</p></li>
 <li><p><code>stop_if_NA</code> is a logical value to stop or not the process if the <code>sp_tr</code> data frame contains NA. If the <code>sp_tr</code> data frame contains <code>NA</code> you can either chose to compute anyway functional distances (but keep in mind that <strong>Functional measures are sensitive to missing traits!</strong>) or you can delete species with missing or extrapolate missing traits (see <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.13185" class="external-link">Johnson <em>et al.</em> (2020)</a>).</p></li>
 </ul>
 <p><br></p>
@@ -1289,7 +1289,7 @@ Basic framework of the mFD package
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

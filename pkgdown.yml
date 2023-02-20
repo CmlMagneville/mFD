@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 2.0.6
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   Compute_and_interpret_quality_of_functional_spaces: Compute_and_interpret_quality_of_functional_spaces.html
@@ -8,7 +8,7 @@ articles:
   Customised_plots: Customised_plots.html
   How_to_deal_with_Functional_Entities: How_to_deal_with_Functional_Entities.html
   mFD_general_workflow: mFD_general_workflow.html
-last_built: 2022-12-01T13:04Z
+last_built: 2023-02-20T09:35Z
 urls:
   reference: https://cmlmagneville.github.io/mFD/reference
   article: https://cmlmagneville.github.io/mFD/articles
