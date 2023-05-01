@@ -240,7 +240,7 @@ fric.computation <- function(sp_faxes_coord_k, check_input = check_input) {
   # if vertices have not been computed (coplanearity
   # pbs):
   if (is.character(conv_fa_k)) {
-    vert_nm_k <- NA
+    vert_nm_k <- NULL
     fric <- NA
   }
   

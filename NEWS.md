@@ -3,6 +3,11 @@
 traits, no weighting is realised for now.
 * Add informations in the General Tutorial and in the Continuous Traits,
 no weighting is realised for now.
+* Correct bug when computing FRic and FDiv but not enough species at different
+coordinates in the functional space to compute the convex-hull. Before it 
+stopped with the error "Error in fdiv.computation(): Names of the vertices are 
+not all present in species coordinates matrix. Please check." as FRic vert
+were NA. Now FRic vert are NULL and pas the check.
 
 # mFD 1.0.3
 
