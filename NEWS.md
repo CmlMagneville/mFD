@@ -1,4 +1,4 @@
-# mFD (development version)
+# mFD 1.0.4
 * Add warning messages in `funct.dist` function: when using only continuous 
 traits, no weighting is realised for now.
 * Add informations in the General Tutorial and in the Continuous Traits,
