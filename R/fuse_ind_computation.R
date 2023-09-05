@@ -179,7 +179,7 @@ fuse <- function(sp_dist, sp_faxes_coord, nb_NN = 5, GE, standGE = FALSE) {
   FSGE <- log(1 + (FSp_std * GE))
   FUSE <- stats::setNames(FUGE + FSGE, nm = nm)
 
-  data.frame(cbind(FUSE, FUGE, FSGE, FUn_std, FSp_std))
+  data.frame(cbind(FUSE, FUn_std, FSp_std))
   
 }
 
