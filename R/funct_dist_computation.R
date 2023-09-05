@@ -163,7 +163,7 @@ funct.dist <- function(sp_tr,
   
   if (metric == "euclidean") {
     
-    if (tr_cat$"trait_type" == rep("Q", nrow(tr_cat))) {
+    if (all(tr_cat$trait_type == rep("Q", nrow(tr_cat)))) {
       if (weight_type == "user") {
         warning("Using only continuous traits, this function can not ", 
                 "weight you traits. You can use the function FactomineR::PCA ",
