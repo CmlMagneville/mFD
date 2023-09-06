@@ -18,7 +18,7 @@ Functional Entities (FEs) following Mouillot et al. (2014)."><!-- mathjax --><sc
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mFD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.9000</span>
       </span>
     </div>
 
@@ -164,6 +164,7 @@ vulnerability in global fish faunas on tropical reefs. <em>PNAS</em>, <strong>38
 <span class="r-in"><span><span class="va">sp_to_fe_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="sp.to.fe.html">sp.to.fe</a></span><span class="op">(</span>sp_tr <span class="op">=</span> <span class="va">fruits_traits</span>, </span></span>
 <span class="r-in"><span> tr_cat <span class="op">=</span> <span class="va">fruits_traits_cat</span>, </span></span>
 <span class="r-in"><span> fe_nm_type <span class="op">=</span> <span class="st">'fe_rank'</span>, check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>All Functional Entities have a single species.</span>
 <span class="r-in"><span> </span></span>
 <span class="r-in"><span><span class="co"># Get the occurrence dataframe:</span></span></span>
 <span class="r-in"><span><span class="va">asb_sp_fruits_summ</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span>asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span><span class="op">)</span> </span></span>
@@ -177,42 +178,53 @@ vulnerability in global fish faunas on tropical reefs. <em>PNAS</em>, <strong>38
 <span class="r-in"><span>   check_input      <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
 <span class="r-in"><span>   details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $asb_fdfe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           nb_sp nb_fe     fred     fored     fvuln</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_1      8     7 1.142857 0.1071429 0.8571429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_2      8     7 1.142857 0.1071429 0.8571429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_3      8     7 1.142857 0.1071429 0.8571429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_4      8     7 1.142857 0.1071429 0.8571429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_5      8     7 1.142857 0.1071429 0.8571429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_6      8     8 1.000000 0.0000000 1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_7      8     8 1.000000 0.0000000 1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_8      8     8 1.000000 0.0000000 1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_9      8     8 1.000000 0.0000000 1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_10     8     7 1.142857 0.1071429 0.8571429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           nb_sp nb_fe fred fored fvuln</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_1      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_2      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_3      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_4      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_5      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_6      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_7      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_8      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_9      8     8    1     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_10     8     8    1     0     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $details_fdfe</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $details_fdfe$asb_fe_nbsp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           fe_1 fe_2 fe_3 fe_4 fe_5 fe_6 fe_7 fe_8 fe_9 fe_10 fe_11 fe_12 fe_13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_1     2    0    1    0    0    0    1    0    0     0     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_2     2    0    1    0    0    0    1    0    0     0     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_3     2    0    1    0    0    0    1    0    0     0     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_4     2    0    0    0    0    0    0    0    0     1     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_5     2    0    0    0    0    0    0    0    0     1     1     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_1     1    0    1    0    0    0    1    0    0     0     1     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_2     1    0    1    0    0    0    1    0    0     0     1     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_3     1    0    1    0    0    0    1    0    0     0     1     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_4     1    0    0    0    0    0    0    0    0     1     1     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_5     1    0    0    0    0    0    0    0    0     1     1     0     0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> basket_6     1    0    1    0    0    0    0    0    0     0     0     1     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> basket_7     1    0    1    0    0    0    0    0    0     0     0     1     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> basket_8     0    0    0    1    1    1    1    1    0     0     1     0     0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> basket_9     0    0    0    1    1    1    1    1    0     0     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_10    2    1    0    0    0    0    0    1    1     0     0     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_10    1    1    0    0    0    0    0    1    1     0     0     0     0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           fe_14 fe_15 fe_16 fe_17 fe_18 fe_19 fe_20 fe_21 fe_22 fe_23 fe_24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_1      0     1     0     1     0     0     0     0     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_2      0     1     0     1     0     0     0     0     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_3      0     1     0     1     0     0     0     0     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_4      0     0     1     0     1     0     1     0     0     1     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_5      0     0     1     0     1     0     1     0     0     1     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_6      1     0     1     0     0     1     0     0     0     0     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_7      1     0     1     0     0     1     0     0     0     0     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_8      0     0     0     0     0     0     0     1     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_9      0     0     0     0     0     0     0     1     1     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> basket_10     0     1     0     0     0     0     1     0     1     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_1      0     1     0     1     0     1     0     0     0     1     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_2      0     1     0     1     0     1     0     0     0     1     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_3      0     1     0     1     0     1     0     0     0     1     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_4      0     0     1     0     1     1     0     1     0     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_5      0     0     1     0     1     1     0     1     0     0     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_6      1     0     1     0     0     0     1     0     0     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_7      1     0     1     0     0     0     1     0     0     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_8      0     0     0     0     0     0     0     0     1     1     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_9      0     0     0     0     0     0     0     0     1     1     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_10     0     1     0     0     0     1     0     1     0     1     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           fe_25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_1      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_2      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_3      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_4      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_5      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_6      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_7      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_8      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_9      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> basket_10     0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>

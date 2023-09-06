@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mFD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.9000</span>
       </span>
     </div>
 
@@ -90,13 +90,14 @@
 
       
 
-      </header><script src="Continuous_traits_framework_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Continuous Traits Framework</h1>
-                        <h4 data-toc-skip class="author">Camille Magneville</h4>
+                        <h4 data-toc-skip class="author">Camille
+Magneville</h4>
             
-            <h4 data-toc-skip class="date">2023-02-20</h4>
+            <h4 data-toc-skip class="date">2023-09-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Continuous_traits_framework.Rmd" class="external-link"><code>vignettes/Continuous_traits_framework.Rmd</code></a></small>
       <div class="hidden name"><code>Continuous_traits_framework.Rmd</code></div>
@@ -109,18 +110,34 @@
 <h2 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
 </h2>
 <p><br></p>
-<p>This tutorial explains the workflow used to compute functional space based on continuous traits and it shows how to retrieve species coordinates and species functional distances in the functional space.</p>
+<p>This tutorial explains the workflow used to compute functional space
+based on continuous traits and it shows how to retrieve species
+coordinates and species functional distances in the functional
+space.</p>
 <p><br></p>
-<p><strong>DATA</strong> This tutorial uses a dataset from one of the 80 CESTES database Jeliazkov &amp; the CESTES consortium (2019)) based on [Villeger <em>et al.</em> 2012] (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679" class="external-link uri">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679</a>). This data frame contains 45 fish species from the Terminos Lagoon (Gulf of Mexico) gathered into 36 sites considered as assemblages. Each species is described with 16 continuous morphological traits.</p>
+<p><strong>DATA</strong> This tutorial uses a dataset from one of the 80
+CESTES database Jeliazkov &amp; the CESTES consortium (2019)) based on
+[Villeger <em>et al.</em> 2012] (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679" class="external-link uri">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0040679</a>).
+This data frame contains 45 fish species from the Terminos Lagoon (Gulf
+of Mexico) gathered into 36 sites considered as assemblages. Each
+species is described with 16 continuous morphological traits.</p>
 <p><br></p>
-<p>When the dataset <strong>only</strong> gathers continuous traits, the functional space can be computed using one trait for one dimension or using Principal Component Analysis (PCA: convert correlations among samples into a 2D plot). <strong>NB</strong> Using a PCoA on continuous traits and euclidean distance is the same than using a PCA (clusters made by minimizing the linear distance (PCoA) are the same as those obtained by maximizing linear correlations (PCA)).</p>
+<p>When the dataset <strong>only</strong> gathers continuous traits, the
+functional space can be computed using one trait for one dimension or
+using Principal Component Analysis (PCA: convert correlations among
+samples into a 2D plot). <strong>NB</strong> Using a PCoA on continuous
+traits and euclidean distance is the same than using a PCA (clusters
+made by minimizing the linear distance (PCoA) are the same as those
+obtained by maximizing linear correlations (PCA)).</p>
 <p><br></p>
 </div>
 <div class="section level2">
 <h2 id="load-dataset">1. Load dataset<a class="anchor" aria-label="anchor" href="#load-dataset"></a>
 </h2>
 <p><br></p>
-<p>The species traits data frame has rows corresponding to species and columns corresponding to traits. The different traits are summed up in the following table:</p>
+<p>The species traits data frame has rows corresponding to species and
+columns corresponding to traits. The different traits are summed up in
+the following table:</p>
 <p><br></p>
 <table class="table">
 <thead><tr class="header">
@@ -195,7 +212,8 @@
 </tbody>
 </table>
 <p><br></p>
-<p>To work with <code>mFD</code> with only continuous traits, you must load two objects:</p>
+<p>To work with <code>mFD</code> with only continuous traits, you must
+load two objects:</p>
 <p><br></p>
 <ul>
 <li>
@@ -213,7 +231,8 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sp_tr</span><span class="op">)</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Species x Traits data frame based on *CESTES* dataset"</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
-<caption>Species x Traits data frame based on <em>CESTES</em> dataset</caption>
+<caption>Species x Traits data frame based on <em>CESTES</em>
+dataset</caption>
 <colgroup>
 <col width="22%">
 <col width="4%">
@@ -372,7 +391,9 @@
 <p><br></p>
 <ul>
 <li>
-<code>asb_sp_w</code>: species x assemblages data frame summarizing biomass recorded in a volume of 4500m<sup>3</sup> per site and per species:</li>
+<code>asb_sp_w</code>: species x assemblages data frame summarizing
+biomass recorded in a volume of 4500m<sup>3</sup> per site and per
+species:</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load dataset:</span></span>
@@ -392,7 +413,8 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">asb_sp_w</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Species x Assemblages data frame based on *CESTES* dataset for the first six species and first seven sites"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>Species x Assemblages data frame based on <em>CESTES</em> dataset for the first six species and first seven sites</caption>
+<caption>Species x Assemblages data frame based on <em>CESTES</em>
+dataset for the first six species and first seven sites</caption>
 <colgroup>
 <col width="5%">
 <col width="13%">
@@ -483,7 +505,15 @@
 <h2 id="compute-the-functional-space">2. Compute the functional space<a class="anchor" aria-label="anchor" href="#compute-the-functional-space"></a>
 </h2>
 <p><br></p>
-<p>Based on the species-trait data frame or the species-standardized traits data frame, <code>mFD</code> allows to build a functional space based on a PCA or using each trait as a dimension. (<strong>NB</strong> Using up to the 1.0.3 version of the <code>mFD</code> package does not allow weighting continuous traits, it will be done in a next version of the package. You can use the <a href="https://rdrr.io/cran/FactoMineR/man/PCA.html" class="external-link"><code>col.w</code></a> argument of the PCA function of the FactomineR package.). The function used to compute functional space with continuous traits is called <code><a href="../reference/tr.cont.fspace.html">mFD::tr.cont.fspace()</a></code> and is used as follow:</p>
+<p>Based on the species-trait data frame or the species-standardized
+traits data frame, <code>mFD</code> allows to build a functional space
+based on a PCA or using each trait as a dimension. (<strong>NB</strong>
+Using up to the 1.0.3 version of the <code>mFD</code> package does not
+allow weighting continuous traits, it will be done in a next version of
+the package. You can use the <a href="https://rdrr.io/cran/FactoMineR/man/PCA.html" class="external-link"><code>col.w</code></a>
+argument of the PCA function of the FactomineR package.). The function
+used to compute functional space with continuous traits is called
+<code><a href="../reference/tr.cont.fspace.html">mFD::tr.cont.fspace()</a></code> and is used as follow:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -497,13 +527,31 @@
 <p>It takes as inputs:</p>
 <ul>
 <li><p>the <em>sp_tr</em> data frame</p></li>
-<li><p>a <em>pca</em> argument that must be set to TRUE if you want to compute a PCA or to FALSE if you want to use each trait as a dimension to construct the multidimensional space</p></li>
-<li><p>a <em>nb_dim</em> argument referring to the maximum number of dimensions for multidimensional functional spaces. Final number of dimensions depends on the number of positive eigenvalues obtained with PCA if <em>pca = TRUE</em> or the number of traits used if <em>pca = FALSE</em>. <strong>NB</strong> High value for <em>nb_dim</em> can increase computation time.</p></li>
-<li><p>a <em>scaling</em> argument allowing traits values to be standardized. They can be standardized in several ways: standardization by the range value of the trait, center-transformation, scale transformation or scale-center transformation can be used. You can also chose not to standardize traits values. <strong>NOTE</strong> Scaling ensures that trait-based distances and distances in the functional space have the same maximum. Scaling distances implies that the quality of the functional space accounts for congruence in distances rather than their equality</p></li>
-<li><p>a <em>compute_corr</em> argument which refers to a string value to compute Pearson correlation coefficients between traits using <em>“pearson”</em> or not using <em>“none”</em>.</p></li>
+<li><p>a <em>pca</em> argument that must be set to TRUE if you want to
+compute a PCA or to FALSE if you want to use each trait as a dimension
+to construct the multidimensional space</p></li>
+<li><p>a <em>nb_dim</em> argument referring to the maximum number of
+dimensions for multidimensional functional spaces. Final number of
+dimensions depends on the number of positive eigenvalues obtained with
+PCA if <em>pca = TRUE</em> or the number of traits used if <em>pca =
+FALSE</em>. <strong>NB</strong> High value for <em>nb_dim</em> can
+increase computation time.</p></li>
+<li><p>a <em>scaling</em> argument allowing traits values to be
+standardized. They can be standardized in several ways: standardization
+by the range value of the trait, center-transformation, scale
+transformation or scale-center transformation can be used. You can also
+chose not to standardize traits values. <strong>NOTE</strong> Scaling
+ensures that trait-based distances and distances in the functional space
+have the same maximum. Scaling distances implies that the quality of the
+functional space accounts for congruence in distances rather than their
+equality</p></li>
+<li><p>a <em>compute_corr</em> argument which refers to a string value
+to compute Pearson correlation coefficients between traits using
+<em>“pearson”</em> or not using <em>“none”</em>.</p></li>
 </ul>
 <p><br></p>
-<p>In this example, we will compute a PCA based on a maximum number of 7 dimensions and get Pearson’s correlation coefficients:</p>
+<p>In this example, we will compute a PCA based on a maximum number of 7
+dimensions and get Pearson’s correlation coefficients:</p>
 <p><br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fspace</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/tr.cont.fspace.html">tr.cont.fspace</a></span><span class="op">(</span></span>
@@ -515,9 +563,15 @@
 <p><br></p>
 <p>If the PCA is computed, the output contains:</p>
 <ul>
-<li>quality metrics for spaces from 2 dimensions to <em>nb_dim</em> dimensions:</li>
+<li>quality metrics for spaces from 2 dimensions to <em>nb_dim</em>
+dimensions:</li>
 </ul>
-<p><strong>NB</strong> <strong>mean absolute deviation (mad)</strong> reflects the actual magnitude of errors that affect distances, hence FD metrics ; <strong>mean squared deviation (msd)</strong> reflects the potential risk associated with a few species pairs being strongly misplaced in the functional space (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299" class="external-link">Maire <em>et al.</em> (2015)</a>).</p>
+<p><strong>NB</strong> <strong>mean absolute deviation (mad)</strong>
+reflects the actual magnitude of errors that affect distances, hence FD
+metrics ; <strong>mean squared deviation (msd)</strong> reflects the
+potential risk associated with a few species pairs being strongly
+misplaced in the functional space (<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299" class="external-link">Maire
+<em>et al.</em> (2015)</a>).</p>
 <p><br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fspace</span><span class="op">$</span><span class="st">"quality_metrics"</span></span></code></pre></div>
@@ -532,10 +586,19 @@
 <span><span class="co">## 9D  0.16252824 0.026415439</span></span>
 <span><span class="co">## 10D 0.09772059 0.009549359</span></span></code></pre>
 <p><br></p>
-<p><strong>NB</strong> The lower the quality metric is, the better the quality of your space is. Here, thanks to mAD and mSD value, we can see that as the number of dimensions increases, the quality increases. However, to decrease computation time, we can chose to work with the 6D space which has good quality of functional space. Generally, you must keep in mind a trade-off between the number of axes and quality of functional space. Increasing the number of functional axes increases computation time.</p>
+<p><strong>NB</strong> The lower the quality metric is, the better the
+quality of your space is. Here, thanks to mAD and mSD value, we can see
+that as the number of dimensions increases, the quality increases.
+However, to decrease computation time, we can chose to work with the 6D
+space which has good quality of functional space. Generally, you must
+keep in mind a trade-off between the number of axes and quality of
+functional space. Increasing the number of functional axes increases
+computation time.</p>
 <p><br></p>
 <ul>
-<li>eigenvalues, percentage of variance explained and cumulative percentage of variance explained for each axis up to <em>nb_dim</em> dimensions:</li>
+<li>eigenvalues, percentage of variance explained and cumulative
+percentage of variance explained for each axis up to <em>nb_dim</em>
+dimensions:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -581,7 +644,8 @@
 <span><span class="co">## Bagre_marinus                0.007347954  0.2391765</span></span></code></pre>
 <p><br></p>
 <ul>
-<li>a dist object containing species euclidean distances in the functional space (here 5D space and for the first five species):</li>
+<li>a dist object containing species euclidean distances in the
+functional space (here 5D space and for the first five species):</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -607,7 +671,8 @@
 <span><span class="co">## Ariopsis_felis                              1.913729       0.000000</span></span></code></pre>
 <p><br></p>
 <ul>
-<li>a dist object containing species distances based on traits (here for the first five species):</li>
+<li>a dist object containing species distances based on traits (here for
+the first five species):</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -633,7 +698,8 @@
 <span><span class="co">## Ariopsis_felis                              3.371347       0.000000</span></span></code></pre>
 <p><br></p>
 <ul>
-<li>a correlation matrix containing correlation between traits and their associated pvalue:</li>
+<li>a correlation matrix containing correlation between traits and their
+associated pvalue:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -712,15 +778,21 @@
 <span><span class="co">## FsRt 0.3207 0.2514 0.2722 0.8596        0.2563</span></span>
 <span><span class="co">## FsSf 0.1029 0.3267 0.1433 0.0914 0.2563</span></span></code></pre>
 <p><br></p>
-<p>Here we can notice that there is no strong correlation between traits. <strong>NB</strong> However, if some strong correlation is to be found, then one of the two correlated trait can be remove from the analysis.</p>
-<p>If the PCA is not computed, outputs are the same except that mad and msd are not computed and that only one distance object is returned.</p>
+<p>Here we can notice that there is no strong correlation between
+traits. <strong>NB</strong> However, if some strong correlation is to be
+found, then one of the two correlated trait can be remove from the
+analysis.</p>
+<p>If the PCA is not computed, outputs are the same except that mad and
+msd are not computed and that only one distance object is returned.</p>
 <p><br></p>
 </div>
 <div class="section level2">
 <h2 id="plot-functional-space-compute-and-illustrate-indices">3. Plot functional space, compute and illustrate indices<a class="anchor" aria-label="anchor" href="#plot-functional-space-compute-and-illustrate-indices"></a>
 </h2>
 <p><br></p>
-<p>Then, based on the species coordinates matrix, steps are similar as those listed in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>, from step 5 till the end.</p>
+<p>Then, based on the species coordinates matrix, steps are similar as
+those listed in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD
+General Workflow</a>, from step 5 till the end.</p>
 <p><br></p>
 </div>
 <div class="section level2">
@@ -728,8 +800,13 @@
 </h2>
 <p><br></p>
 <ul>
-<li><p>Maire <em>et al.</em> (2015) How many dimensions are needed to accurately assess functional diversity? A pragmatic approach for assessing the quality of functional spaces. <em>Global Ecology and Biogeography</em>, <strong>24</strong>, 728-740.</p></li>
-<li><p>Villeger <em>et al.</em> (2012) Low Functional beta Diversity Despite High Taxonomic beta Diversity among Tropical Estuarine Fish Communities. <em>PLoS ONE</em>, <strong>7</strong>, e40679.</p></li>
+<li><p>Maire <em>et al.</em> (2015) How many dimensions are needed to
+accurately assess functional diversity? A pragmatic approach for
+assessing the quality of functional spaces. <em>Global Ecology and
+Biogeography</em>, <strong>24</strong>, 728-740.</p></li>
+<li><p>Villeger <em>et al.</em> (2012) Low Functional beta Diversity
+Despite High Taxonomic beta Diversity among Tropical Estuarine Fish
+Communities. <em>PLoS ONE</em>, <strong>7</strong>, e40679.</p></li>
 </ul>
 </div>
   </div>

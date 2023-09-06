@@ -19,7 +19,7 @@ dist_long function."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mFD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.9000</span>
       </span>
     </div>
 
@@ -119,30 +119,30 @@ each dist object (named after its name in <code>list_dist</code>.</p>
 <span class="r-in"><span><span class="co"># First example with only 1 distance:</span></span></span>
 <span class="r-in"><span><span class="fu">dist.to.df</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>dA <span class="op">=</span> <span class="va">dist_A</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    x1 x2   dA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   a  b 0.54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   a  c 0.61</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   a  d 0.30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   a  e 0.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   b  c 0.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   b  d 0.73</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   b  e 0.60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   c  d 0.52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   c  e 0.38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  d  e 0.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   a  b 0.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   a  c 0.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   a  d 0.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   a  e 0.81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   b  c 0.64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   b  d 0.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   b  e 0.57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   c  d 0.37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   c  e 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  d  e 0.50</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Second example with 3 distances:</span></span></span>
 <span class="r-in"><span><span class="fu">dist.to.df</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>d1 <span class="op">=</span> <span class="va">dist_A</span>, d2 <span class="op">=</span> <span class="va">dist_B</span>, d3 <span class="op">=</span> <span class="va">dist_C</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    x1 x2   d1   d2   d3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   a  b 0.54 0.55 0.75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   a  c 0.61 0.63 0.42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   a  d 0.30 0.56 0.20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   a  e 0.29 0.47 0.30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   b  c 0.57 1.17 0.56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   b  d 0.73 0.02 0.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   b  e 0.60 0.89 0.77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   c  d 0.52 1.18 0.23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   c  e 0.38 0.62 0.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  d  e 0.15 0.89 0.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   a  b 0.94 0.54 0.37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   a  c 0.32 0.40 0.59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   a  d 0.32 0.71 0.59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   a  e 0.81 0.28 0.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   b  c 0.64 0.21 0.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   b  d 0.78 0.26 0.83</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   b  e 0.57 0.39 0.40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   c  d 0.37 0.46 0.86</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   c  e 0.67 0.19 0.69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  d  e 0.50 0.63 0.83</span>
 </code></pre></div>
     </div>
   </div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mFD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.9000</span>
       </span>
     </div>
 
@@ -74,20 +74,34 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="development version" id="mfd-development-version">mFD (development version)<a class="anchor" aria-label="anchor" href="#mfd-development-version"></a></h2>
+<ul><li>Fix bug:
+<ul><li>Correct funct.dist() function error when only quantitative traits (ISSUE 34)</li>
+</ul></li>
+<li>Remove FSGE and FUGE from fuse() outputs</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.0.4" id="mfd-104">mFD 1.0.4<small>2023-05-17</small><a class="anchor" aria-label="anchor" href="#mfd-104"></a></h2>
 <ul><li>Add warning messages in <code>funct.dist</code> function: when using only continuous traits, no weighting is realised for now.</li>
 <li>Add informations in the General Tutorial and in the Continuous Traits, no weighting is realised for now.</li>
+<li>Fix bug:
+<ul><li>when computing FRic and FDiv but not enough species at different coordinates in the functional space to compute the convex-hull. Before it stopped with the error “Error in fdiv.computation(): Names of the vertices are not all present in species coordinates matrix. Please check.” as FRic vert were NA. Now FRic vert are NULL and pas the check.</li>
+<li>when computing FEs with fuzzy traits, attribution of species to wrong FEs, so when computing FEs, creating as many FEs as species.</li>
+</ul></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.0.3" id="mfd-103">mFD 1.0.3<small>2022-11-28</small><a class="anchor" aria-label="anchor" href="#mfd-103"></a></h2>
-<ul><li>Fix bug:<ul><li>scale center traits (parenthesis missing) in <code>tr.cont.scale</code> function</li>
+<ul><li>Fix bug:
+<ul><li>scale center traits (parenthesis missing) in <code>tr.cont.scale</code> function</li>
 <li>correct FDiv legend in plot</li>
 <li>correct typo in Functional entities vignette</li>
-</ul></li></ul></div>
+</ul></li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.0.2" id="mfd-102">mFD 1.0.2<small>2022-11-08</small><a class="anchor" aria-label="anchor" href="#mfd-102"></a></h2>
 <ul><li>New vignette: create customised plots</li>
 <li>Review mFD general workflow: fixed typos and missing chunks</li>
-<li>Fix minor bugs in some functions:<ul><li>correct beta functional axes names, <code><a href="../reference/beta.multidim.plot.html">beta.multidim.plot()</a></code> function</li>
+<li>Fix minor bugs in some functions:
+<ul><li>correct beta functional axes names, <code><a href="../reference/beta.multidim.plot.html">beta.multidim.plot()</a></code> function</li>
 <li>correct check fuzzy names, <code>check.fuzzy()</code> function</li>
 </ul></li>
 <li>Review function documentation</li>
@@ -95,7 +109,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.0.1" id="mfd-101">mFD 1.0.1<small>2021-12-16</small><a class="anchor" aria-label="anchor" href="#mfd-101"></a></h2>
-<ul><li>Fix bug with fdist_scaling = TRUE in quality.fspaces function (Issue <a href="https://github.com/CmlMagneville/mFD/issues/19" class="external-link">#19</a>)</li></ul></div>
+<ul><li>Fix bug with fdist_scaling = TRUE in quality.fspaces function (Issue <a href="https://github.com/CmlMagneville/mFD/issues/19" class="external-link">#19</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.0.0" id="mfd-100">mFD 1.0.0<small>2021-11-05</small><a class="anchor" aria-label="anchor" href="#mfd-100"></a></h2>
 <ul><li>First release of the package.</li>

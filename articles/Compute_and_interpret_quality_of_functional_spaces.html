@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mFD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.9000</span>
       </span>
     </div>
 
@@ -90,13 +90,15 @@
 
       
 
-      </header><script src="Compute_and_interpret_quality_of_functional_spaces_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Compute and Interpret Quality of Functional Spaces</h1>
-                        <h4 data-toc-skip class="author">Sebastien Villeger</h4>
+      <h1 data-toc-skip>Compute and Interpret Quality of Functional
+Spaces</h1>
+                        <h4 data-toc-skip class="author">Sebastien
+Villeger</h4>
             
-            <h4 data-toc-skip class="date">2023-02-20</h4>
+            <h4 data-toc-skip class="date">2023-09-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd" class="external-link"><code>vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd</code></a></small>
       <div class="hidden name"><code>Compute_and_interpret_quality_of_functional_spaces.Rmd</code></div>
@@ -109,15 +111,30 @@
 <h2 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
 </h2>
 <p><br></p>
-<p>This tutorial illustrates how to compute and interpret quality of functional spaces using <code>mFD</code>, with a special emphasis on how functional dendrograms and functional spaces with a low dimension could distort original trait-based distances. This tutorial also explains why square-rooting the original distances before computing PCoA may be misleading.</p>
+<p>This tutorial illustrates how to compute and interpret quality of
+functional spaces using <code>mFD</code>, with a special emphasis on how
+functional dendrograms and functional spaces with a low dimension could
+distort original trait-based distances. This tutorial also explains why
+square-rooting the original distances before computing PCoA may be
+misleading.</p>
 <p><br></p>
 </div>
 <div class="section level2">
 <h2 id="tutorials-data">1. Tutorial’s data<a class="anchor" aria-label="anchor" href="#tutorials-data"></a>
 </h2>
 <p><br></p>
-<p><strong>DATA</strong> The dataset used to illustrate this tutorial is <em>a fruit dataset</em> based on 25 types of fruits. Each fruit is characterized by 5 traits summarized in the following table:</p>
+<p><strong>DATA</strong> The dataset used to illustrate this tutorial is
+<em>a fruit dataset</em> based on 25 types of fruits. Each fruit is
+characterized by 5 traits summarized in the following table:</p>
 <table class="table">
+<colgroup>
+<col width="15%">
+<col width="21%">
+<col width="15%">
+<col width="22%">
+<col width="18%">
+<col width="7%">
+</colgroup>
 <thead><tr class="header">
 <th align="center">Trait name</th>
 <th align="center">Trait measurement</th>
@@ -170,7 +187,9 @@
 </tbody>
 </table>
 <p><br></p>
-<p><strong>NOTE</strong> This dataset is a subset of the dataset used in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD: General Workflow</a> tutorial to keep only non-fuzzy traits.</p>
+<p><strong>NOTE</strong> This dataset is a subset of the dataset used in
+the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD:
+General Workflow</a> tutorial to keep only non-fuzzy traits.</p>
 <p><br></p>
 <p>The dataframe gathering species traits, looks as follows:</p>
 <p><br></p>
@@ -184,7 +203,8 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">)</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Species x traits dataframe based on *fruits* dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>Species x traits dataframe based on <em>fruits</em> dataset</caption>
+<caption>Species x traits dataframe based on <em>fruits</em>
+dataset</caption>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="left">Size</th>
@@ -245,7 +265,8 @@
 </tbody>
 </table>
 <p><br></p>
-<p>Thus, this dataset contains 5 traits: 3 ordinal (Size, Climate, Seed), 1 categorical (Plant type), 1 continuous (sugar content):</p>
+<p>Thus, this dataset contains 5 traits: 3 ordinal (Size, Climate,
+Seed), 1 categorical (Plant type), 1 continuous (sugar content):</p>
 <p><br></p>
 <pre><code><span><span class="co">##       Size     Plant           Climate     Seed        Sugar       </span></span>
 <span><span class="co">##  0-1cm  :2   forb : 5   temperate  :15   none: 2   Min.   : 16.90  </span></span>
@@ -255,7 +276,8 @@
 <span><span class="co">##  10-20cm:6                                         3rd Qu.:105.80  </span></span>
 <span><span class="co">##                                                    Max.   :162.50</span></span></code></pre>
 <p><br></p>
-<p>These traits are summed up in the following dataframe (details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD: General Workflow</a> tutorial):</p>
+<p>These traits are summed up in the following dataframe (details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD:
+General Workflow</a> tutorial):</p>
 <p><br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fruits_traits_cat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"O"</span>,<span class="st">"N"</span>,<span class="st">"O"</span>,<span class="st">"O"</span>,<span class="st">"Q"</span><span class="op">)</span><span class="op">)</span></span>
@@ -273,7 +295,8 @@
 <h2 id="compute-trait-based-distance-between-species">2. Compute trait-based distance between species<a class="anchor" aria-label="anchor" href="#compute-trait-based-distance-between-species"></a>
 </h2>
 <p><br></p>
-<p>First, trait-based distance between species should be computed using <code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code>. Here we use Gower distance.</p>
+<p>First, trait-based distance between species should be computed using
+<code><a href="../reference/funct.dist.html">mFD::funct.dist()</a></code>. Here we use Gower distance.</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -339,7 +362,8 @@
 <span><span class="co">##  3rd Qu.:0.4617  </span></span>
 <span><span class="co">##  Max.   :0.7477</span></span></code></pre>
 <p><br></p>
-<p>The Gower distances range from &lt; 0.01 to 0.790. For instance, Gower distances between blackberry and 3 other fruits are:</p>
+<p>The Gower distances range from &lt; 0.01 to 0.790. For instance,
+Gower distances between blackberry and 3 other fruits are:</p>
 <p><br></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># retrieve fruits names:</span></span>
@@ -353,7 +377,8 @@
 <span><span class="co">## cherry           0.41    0.42   0.00   0.56</span></span>
 <span><span class="co">## banana           0.75    0.77   0.56   0.00</span></span></code></pre>
 <p><br></p>
-<p>Those observed differences in values are intuitively related to trait values of these 4 species:</p>
+<p>Those observed differences in values are intuitively related to trait
+values of these 4 species:</p>
 <p><br></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fruits_traits</span><span class="op">[</span><span class="va">ex_blackberry</span>, <span class="op">]</span></span></code></pre></div>
@@ -365,9 +390,16 @@
 <p><br></p>
 <p>Indeed:</p>
 <ul>
-<li><p>blackberry shares 3 traits values with currant and these 2 species have close values for other 2 traits which explains the low distance (&lt; 0.1)</p></li>
-<li><p>blackberry shares 2 traits with cherry (size and climate), differs slightly for seed size (by only 1 order) but is quite different in terms of plant type and sugar content, hence Gower distance is around 0.5</p></li>
-<li><p>blackberry is maximally different to banana for ordinal traits, difference for categorical and sugar content differ by a 2.5 factor, hence Gower distance is high (&gt; 0.8).</p></li>
+<li><p>blackberry shares 3 traits values with currant and these 2
+species have close values for other 2 traits which explains the low
+distance (&lt; 0.1)</p></li>
+<li><p>blackberry shares 2 traits with cherry (size and climate),
+differs slightly for seed size (by only 1 order) but is quite different
+in terms of plant type and sugar content, hence Gower distance is around
+0.5</p></li>
+<li><p>blackberry is maximally different to banana for ordinal traits,
+difference for categorical and sugar content differ by a 2.5 factor,
+hence Gower distance is high (&gt; 0.8).</p></li>
 </ul>
 <p><br></p>
 </div>
@@ -379,7 +411,12 @@
 <h3 id="compute-functional-spaces-and-associated-quality-metrics">3.1. Compute functional spaces and associated quality metrics<a class="anchor" aria-label="anchor" href="#compute-functional-spaces-and-associated-quality-metrics"></a>
 </h3>
 <p><br></p>
-<p>We now compute varying number of functional space from 1 to 9 dimensions based on a PCoA as well as an UPGMA dendrogram using <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function. We also compute 4 quality metrics <em>(= all combinations of deviation weighting and distance scaling)</em> (details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> tutorial, <strong>step 4.1</strong>).</p>
+<p>We now compute varying number of functional space from 1 to 9
+dimensions based on a PCoA as well as an UPGMA dendrogram using
+<code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function. We also compute 4 quality
+metrics <em>(= all combinations of deviation weighting and distance
+scaling)</em> (details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD
+General Workflow</a> tutorial, <strong>step 4.1</strong>).</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -413,8 +450,11 @@
 <pre><code><span><span class="co">##         mad        rmsd  mad_scaled rmsd_scaled </span></span>
 <span><span class="co">##           4           4           4           4</span></span></code></pre>
 <p><br></p>
-<p>The best space (with the minimum deviation between trait-based distance and space-based distance) is the 4D according to all indices.</p>
-<p>Then using the output of <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code>, we plot quality metrics of each space:</p>
+<p>The best space (with the minimum deviation between trait-based
+distance and space-based distance) is the 4D according to all
+indices.</p>
+<p>Then using the output of <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code>, we plot
+quality metrics of each space:</p>
 <p><br></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://magrittr.tidyverse.org" class="external-link">"magrittr"</a></span><span class="op">)</span></span>
@@ -427,18 +467,26 @@
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="Compute_and_interpret_quality_of_functional_spaces_files/figure-html/unnamed-chunk-8-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p><strong>NB</strong> The higher the value of metric, the higher the deviations between trait-based and space-based distance between species, hence the lower the quality of the functional space is.</p>
+<p><strong>NB</strong> The higher the value of metric, the higher the
+deviations between trait-based and space-based distance between species,
+hence the lower the quality of the functional space is.</p>
 <p><br></p>
 <p>We can here notice that:</p>
 <ul>
-<li><p>inaccuracy of dendrogram (shown on the right) is much higher than inaccuracy of spaces made of at least 3 dimensions</p></li>
-<li><p>ranking of spaces is only slightly affected by quality metric, with here higher values for indices based on squared deviation</p></li>
+<li><p>inaccuracy of dendrogram (shown on the right) is much higher than
+inaccuracy of spaces made of at least 3 dimensions</p></li>
+<li><p>ranking of spaces is only slightly affected by quality metric,
+with here higher values for indices based on squared deviation</p></li>
 <li><p>scaling distance increases inaccuracy of dendrogram</p></li>
 </ul>
 <p><br></p>
-<p>As FD indices will eventually be computed on coordinates on space (hence raw distance), we hereafter will consider only the mean absolute-deviation metric.</p>
+<p>As FD indices will eventually be computed on coordinates on space
+(hence raw distance), we hereafter will consider only the mean
+absolute-deviation metric.</p>
 <p><br></p>
-<p>The raw and absolute deviation of distances for only dendrogram and 2, 3, 4D spaces are plotted below thanks to the <code><a href="../reference/quality.fspaces.plot.html">mFD::quality.fspaces.plot()</a></code> function:</p>
+<p>The raw and absolute deviation of distances for only dendrogram and
+2, 3, 4D spaces are plotted below thanks to the
+<code><a href="../reference/quality.fspaces.plot.html">mFD::quality.fspaces.plot()</a></code> function:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
@@ -448,16 +496,27 @@
 <span>  fspaces_plot    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tree_average"</span>, <span class="st">"pcoa_2d"</span>, <span class="st">"pcoa_3d"</span>, <span class="st">"pcoa_4d"</span>, <span class="st">'pcoa_5d'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Compute_and_interpret_quality_of_functional_spaces_files/figure-html/unnamed-chunk-9-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>2D and 3D spaces bias distance (hence have high deviation, see top row) because some species pairs are closer in those spaces than they have close trait values. In the 4D space most species pairs are accurately represented (absolute deviation &lt; 0.1).</p>
+<p>2D and 3D spaces bias distance (hence have high deviation, see top
+row) because some species pairs are closer in those spaces than they
+have close trait values. In the 4D space most species pairs are
+accurately represented (absolute deviation &lt; 0.1).</p>
 <p><br></p>
 </div>
 <div class="section level3">
 <h3 id="focus-on-dendrograms">3.2. Focus on dendrograms<a class="anchor" aria-label="anchor" href="#focus-on-dendrograms"></a>
 </h3>
 <p><br></p>
-<p><strong>NB</strong> <strong>Many of the pairwise distance on dendrogram deviate by more than 0.3 from the trait-based distances</strong> (top-left panel of the above figure), particularly with some of the highest distances on the dendrogram corresponding to pairs of species with actually close trait values (Gower distance &lt; 0.3). The dichotomous nature of dendrogram implies that many species pairs have the same distance, with especially all species pairs being on different sides of the tree root having all the maximal distance.</p>
+<p><strong>NB</strong> <strong>Many of the pairwise distance on
+dendrogram deviate by more than 0.3 from the trait-based
+distances</strong> (top-left panel of the above figure), particularly
+with some of the highest distances on the dendrogram corresponding to
+pairs of species with actually close trait values (Gower distance &lt;
+0.3). The dichotomous nature of dendrogram implies that many species
+pairs have the same distance, with especially all species pairs being on
+different sides of the tree root having all the maximal distance.</p>
 <p><br></p>
-<p>For instance, let’s consider the 3 fruits: lemon, lime and cherry:</p>
+<p>For instance, let’s consider the 3 fruits: lemon, lime and
+cherry:</p>
 <p><br></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get fruits traits:</span></span>
@@ -467,7 +526,10 @@
 <span><span class="co">## lime    3-5cm  tree    tropical  pip  16.9</span></span>
 <span><span class="co">## lemon  5-10cm  tree subtropical  pip  25.0</span></span></code></pre>
 <p><br></p>
-<p>The 2 Citrus fruits have similar trait values and differ from the cherry. Now let’s have a look at their pairwise distances: Gower distance on trait values, Euclidean distance in the 4 dimensions PCoA space and cophenetic distance on the UPGMA dendrogram.</p>
+<p>The 2 Citrus fruits have similar trait values and differ from the
+cherry. Now let’s have a look at their pairwise distances: Gower
+distance on trait values, Euclidean distance in the 4 dimensions PCoA
+space and cophenetic distance on the UPGMA dendrogram.</p>
 <p><br></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -480,9 +542,18 @@
 <span><span class="co">## 2  lime cherry 0.50    0.54         0.34</span></span>
 <span><span class="co">## 3  lime  lemon 0.16    0.22         0.34</span></span></code></pre>
 <p><br></p>
-<p>As expected given trait values, Gower distance between lime and lemon is 2.75 (0.44/0.16 = 2.75) times lower than distance between each of them and cherry. Euclidean distances in the 4D space (pcoa_4d) are very similar to those Gower distance, with only a slight overestimation. Meanwhile, on the UPGMA dendrogram, lime is as distant to lemon than to the cherry and lemon is even closer to the cherry than to the lime. This is an illustration of the usual bias of <strong>dendrogram that overestimates distance between some pairs of species having actually similar trait values</strong>.</p>
+<p>As expected given trait values, Gower distance between lime and lemon
+is 2.75 (0.44/0.16 = 2.75) times lower than distance between each of
+them and cherry. Euclidean distances in the 4D space (pcoa_4d) are very
+similar to those Gower distance, with only a slight overestimation.
+Meanwhile, on the UPGMA dendrogram, lime is as distant to lemon than to
+the cherry and lemon is even closer to the cherry than to the lime. This
+is an illustration of the usual bias of <strong>dendrogram that
+overestimates distance between some pairs of species having actually
+similar trait values</strong>.</p>
 <p><br></p>
-<p>Now let’s have look to the distance between pineapple and other fruits:</p>
+<p>Now let’s have look to the distance between pineapple and other
+fruits:</p>
 <p><br></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -498,7 +569,13 @@
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Compute_and_interpret_quality_of_functional_spaces_files/figure-html/unnamed-chunk-12-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>The cophenetic distance on the dendrogram between pineapple and all species but banana is 0.53 while trait-based Gower distance with those 22 fruits varied by a two-fold magnitude from 0.32 (water melon) to 0.73 (currant). This homogenization of distance is due to the ultrametricity of the dendrogram, <em>i.e.</em> a species is at the same distance to all species not on the same main branch (<em>i.e.</em> descending from the root). Let’s plot of UPGMA dendrogram:</p>
+<p>The cophenetic distance on the dendrogram between pineapple and all
+species but banana is 0.53 while trait-based Gower distance with those
+22 fruits varied by a two-fold magnitude from 0.32 (water melon) to 0.73
+(currant). This homogenization of distance is due to the ultrametricity
+of the dendrogram, <em>i.e.</em> a species is at the same distance to
+all species not on the same main branch (<em>i.e.</em> descending from
+the root). Let’s plot of UPGMA dendrogram:</p>
 <p><br></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"dendro"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -506,23 +583,32 @@
 <span>  <span class="fu">dendextend</span><span class="fu">::</span><span class="fu"><a href="http://talgalili.github.io/dendextend/reference/plot_horiz.dendrogram.html" class="external-link">plot_horiz.dendrogram</a></span><span class="op">(</span>side <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Compute_and_interpret_quality_of_functional_spaces_files/figure-html/unnamed-chunk-13-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>We notice that pineapple is in the ‘outer’ group with other tropical fruits and that lime is as ‘close’ to cherry than to lemon.</p>
+<p>We notice that pineapple is in the ‘outer’ group with other tropical
+fruits and that lime is as ‘close’ to cherry than to lemon.</p>
 <p><br></p>
 </div>
 <div class="section level3">
-<h3 id="focus-on-the-effect-of-square-rooting-distance-matrix-before-computing-pcoa">3.3. Focus on the effect of square-rooting distance matrix before computing PcoA<a class="anchor" aria-label="anchor" href="#focus-on-the-effect-of-square-rooting-distance-matrix-before-computing-pcoa"></a>
+<h3 id="focus-on-the-effect-of-square-rooting-distance-matrix-before-computing-pcoa">3.3. Focus on the effect of square-rooting distance matrix before
+computing PcoA<a class="anchor" aria-label="anchor" href="#focus-on-the-effect-of-square-rooting-distance-matrix-before-computing-pcoa"></a>
 </h3>
 <p><br></p>
-<p>A known ‘issue’ associated with the Gower metric applied to non-continuous traits is that distance matrix is not Euclidean. Let’s have a look:</p>
+<p>A known ‘issue’ associated with the Gower metric applied to
+non-continuous traits is that distance matrix is not Euclidean. Let’s
+have a look:</p>
 <p><br></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># check if distance matrix checks Euclidean properties:</span></span>
 <span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_trdist"</span><span class="op">$</span><span class="st">"trdist_euclidean"</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] FALSE</span></span></code></pre>
 <p><br></p>
-<p>It is <code>FALSE</code> with the fruit case: this is actually intuitive because of the formula of Gower metric for categorical traits that is binary (see example below)</p>
+<p>It is <code>FALSE</code> with the fruit case: this is actually
+intuitive because of the formula of Gower metric for categorical traits
+that is binary (see example below)</p>
 <p><br></p>
-<p>Applying PCoA to a non-Euclidean distance eventually leads to PC axes with negative eigenvalues. Those axes are meaningless and removed by default by the <code><a href="https://rdrr.io/pkg/ape/man/pcoa.html" class="external-link">ape::pcoa()</a></code> function used in the <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function.</p>
+<p>Applying PCoA to a non-Euclidean distance eventually leads to PC axes
+with negative eigenvalues. Those axes are meaningless and removed by
+default by the <code><a href="https://rdrr.io/pkg/ape/man/pcoa.html" class="external-link">ape::pcoa()</a></code> function used in the
+<code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function.</p>
 <p><br></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># retrieve eigen values: </span></span>
@@ -548,11 +634,19 @@
 <span><span class="co">## 8      0.7013685</span></span>
 <span><span class="co">## 9      0.7455613</span></span></code></pre>
 <p><br></p>
-<p>Here, PCoA on the 25 fruits species described with 5 traits produced 9 PC axes with positive eigenvalues.</p>
+<p>Here, PCoA on the 25 fruits species described with 5 traits produced
+9 PC axes with positive eigenvalues.</p>
 <p><br></p>
-<p>To deal with the non-Euclidean ‘issue’, it <strong>has been recommended to square-root the Gower distance matrix before computing the PCoA</strong>. However as Gower distance is by definition between 0 and 1, and as for 0 &lt; x &lt; 1, sqrt(x) &gt; x: <strong>this transformation means that all square-root distances are higher than raw distances and the difference between raw and square-root distances varies non-linearly with raw distances</strong>.</p>
+<p>To deal with the non-Euclidean ‘issue’, it <strong>has been
+recommended to square-root the Gower distance matrix before computing
+the PCoA</strong>. However as Gower distance is by definition between 0
+and 1, and as for 0 &lt; x &lt; 1, sqrt(x) &gt; x: <strong>this
+transformation means that all square-root distances are higher than raw
+distances and the difference between raw and square-root distances
+varies non-linearly with raw distances</strong>.</p>
 <p><br></p>
-<p>If we look at raw and square-rooted Gower distance between blackberry and 3 other species:</p>
+<p>If we look at raw and square-rooted Gower distance between blackberry
+and 3 other species:</p>
 <p><br></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -568,8 +662,14 @@
 <span><span class="co">## 5     cherry    currant  0.42       0.65</span></span>
 <span><span class="co">## 6     cherry blackberry  0.41       0.64</span></span></code></pre>
 <p><br></p>
-<p>Raw Gower distance between blackberry and banana is almost twice higher than distance between blackberry and cherry and 10 times higher than distance between blackberry and currant. Square-root distance between blackberry and banana differs by a 1.5 and 3-fold factor to distance between blackberry and cherry and currant, respectively because of the high slope of the square-root function (close to 0).</p>
-<p>If we apply <code>mFD::quality.fspace()</code> on the square-root of Gower distance:</p>
+<p>Raw Gower distance between blackberry and banana is almost twice
+higher than distance between blackberry and cherry and 10 times higher
+than distance between blackberry and currant. Square-root distance
+between blackberry and banana differs by a 1.5 and 3-fold factor to
+distance between blackberry and cherry and currant, respectively because
+of the high slope of the square-root function (close to 0).</p>
+<p>If we apply <code>mFD::quality.fspace()</code> on the square-root of
+Gower distance:</p>
 <p><br></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute quality metrics with square-root transformed distances:</span></span>
@@ -612,11 +712,14 @@
 <span><span class="co">## pcoa_21d 3.900362e-04</span></span>
 <span><span class="co">## pcoa_22d 2.266322e-04</span></span>
 <span><span class="co">## pcoa_23d 7.579458e-05</span></span>
-<span><span class="co">## pcoa_24d 3.636906e-16</span></span></code></pre>
+<span><span class="co">## pcoa_24d 4.140438e-16</span></span></code></pre>
 <p><br></p>
-<p>The inaccuracy (measured with <em>mAD</em> (mean absolute deviation) metric) decreases with the number of axes down to 0.</p>
+<p>The inaccuracy (measured with <em>mAD</em> (mean absolute deviation)
+metric) decreases with the number of axes down to 0.</p>
 <p><br></p>
-<p>But do not forget that the input used here is the square-root of Gower distance. So let’s compare deviation between trait-based Gower distance and Euclidean distance in the 24D PCoA space:</p>
+<p>But do not forget that the input used here is the square-root of
+Gower distance. So let’s compare deviation between trait-based Gower
+distance and Euclidean distance in the 24D PCoA space:</p>
 <p><br></p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -629,23 +732,39 @@
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Compute_and_interpret_quality_of_functional_spaces_files/figure-html/unnamed-chunk-18-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>As expected, the ranking of distances is ‘perfectly’ kept but with a square-root shape above the 1:1 line.</p>
+<p>As expected, the ranking of distances is ‘perfectly’ kept but with a
+square-root shape above the 1:1 line.</p>
 <p><br></p>
-<p>If we now compute the actual <em>mAD</em> between Gower and Euclidean distances in this apparently perfect 24D space:</p>
+<p>If we now compute the actual <em>mAD</em> between Gower and Euclidean
+distances in this apparently perfect 24D space:</p>
 <p><br></p>
 <pre><code><span><span class="co">## [1] 0.215148</span></span></code></pre>
 <p><br></p>
-<p>We notice that mAD = 0.212: inaccuracy is much higher than the worst space and of the dendrogram computed on the raw Gower distance matrix that does represent the actual difference in trait values</p>
+<p>We notice that mAD = 0.212: inaccuracy is much higher than the worst
+space and of the dendrogram computed on the raw Gower distance matrix
+that does represent the actual difference in trait values</p>
 <p><br></p>
 <p>So to <strong>sum up</strong>:</p>
 <ul>
-<li>non-continuous traits ofteh make Gower distances between species being non-Euclidean</li>
-<li>PCoA on such Gower distance could lead to PCoA axes with negative eigenvalues but the remaining axes always represent accurately Gower distance (for more details see <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299" class="external-link">Maire <em>et al.</em> (2015)</a> and especially <em>Figure 2</em>).</li>
-<li>Square-root transformed Gower distance is apparently increasing the efficiency of the PCoA (no more negative eigenvalue) but Euclidean distance in this space are square-root biased representation of trait-based distances that are the key features to account for when computing FD</li>
+<li>non-continuous traits ofteh make Gower distances between species
+being non-Euclidean</li>
+<li>PCoA on such Gower distance could lead to PCoA axes with negative
+eigenvalues but the remaining axes always represent accurately Gower
+distance (for more details see <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299" class="external-link">Maire
+<em>et al.</em> (2015)</a> and especially <em>Figure 2</em>).</li>
+<li>Square-root transformed Gower distance is apparently increasing the
+efficiency of the PCoA (no more negative eigenvalue) but Euclidean
+distance in this space are square-root biased representation of
+trait-based distances that are the key features to account for when
+computing FD</li>
 </ul>
 <p><br></p>
 <p><strong><em>NOTE:</em></strong></p>
-<p>If you are not convinced about Gower being both intuitive but non-Euclidean consider the following simple case of 8 species described with 3 categorical traits (2 modalities each), so there are 8 unique combinations of trait values and the 28 species pairs are sharing 0, 1, or 2 trait values:</p>
+<p>If you are not convinced about Gower being both intuitive but
+non-Euclidean consider the following simple case of 8 species described
+with 3 categorical traits (2 modalities each), so there are 8 unique
+combinations of trait values and the 28 species pairs are sharing 0, 1,
+or 2 trait values:</p>
 <p><br></p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a new dataset:</span></span>
@@ -682,7 +801,8 @@
 <span><span class="co">## Metric :  mixed ;  Types = N, N, N </span></span>
 <span><span class="co">## Number of objects : 8</span></span></code></pre>
 <p><br></p>
-<p>There are thus only 3 distances values, 0.33, 0.67 or 1, depending on the number of traits with the same values (0, 1 or 2)</p>
+<p>There are thus only 3 distances values, 0.33, 0.67 or 1, depending on
+the number of traits with the same values (0, 1 or 2)</p>
 <p><br></p>
 <pre><code><span><span class="co">## Dissimilarities :</span></span>
 <span><span class="co">##      sp1  sp2  sp3  sp4  sp5  sp6  sp7</span></span>
@@ -697,7 +817,12 @@
 <span><span class="co">## Metric :  mixed ;  Types = N, N, N </span></span>
 <span><span class="co">## Number of objects : 8</span></span></code></pre>
 <p><br></p>
-<p>After applying the squareroot transformation, the (1/0.33) 3-fold difference in Gower distance between pairs of species sharing no trait value and pairs of species sharing 2 traits becomes (1/0.58) &lt; 2. Thus, applying the square-root transformation to Gower distance decreases the magnitude of variation in trait-based distance, by increasing the distances between the most similar species</p>
+<p>After applying the squareroot transformation, the (1/0.33) 3-fold
+difference in Gower distance between pairs of species sharing no trait
+value and pairs of species sharing 2 traits becomes (1/0.58) &lt; 2.
+Thus, applying the square-root transformation to Gower distance
+decreases the magnitude of variation in trait-based distance, by
+increasing the distances between the most similar species</p>
 <p><br></p>
 </div>
 </div>
@@ -705,7 +830,10 @@
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <ul>
-<li>Maire <em>et al.</em> (2015) How many dimensions are needed to accurately assess functional diversity? A pragmatic approach for assessing the quality of functional spaces. <em>Global Ecology and Biogeography</em>, <strong>24</strong>, 728-740.</li>
+<li>Maire <em>et al.</em> (2015) How many dimensions are needed to
+accurately assess functional diversity? A pragmatic approach for
+assessing the quality of functional spaces. <em>Global Ecology and
+Biogeography</em>, <strong>24</strong>, 728-740.</li>
 </ul>
 </div>
   </div>

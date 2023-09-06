@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mFD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.9000</span>
       </span>
     </div>
 
@@ -90,13 +90,14 @@
 
       
 
-      </header><script src="Customised_plots_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Customised plots</h1>
-                        <h4 data-toc-skip class="author">Camille Magneville</h4>
+                        <h4 data-toc-skip class="author">Camille
+Magneville</h4>
             
-            <h4 data-toc-skip class="date">2023-02-20</h4>
+            <h4 data-toc-skip class="date">2023-09-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/Customised_plots.Rmd" class="external-link"><code>vignettes/Customised_plots.Rmd</code></a></small>
       <div class="hidden name"><code>Customised_plots.Rmd</code></div>
@@ -109,14 +110,47 @@
 <h2 id="about-this-tutorial">About this tutorial<a class="anchor" aria-label="anchor" href="#about-this-tutorial"></a>
 </h2>
 <p><br></p>
-<p>The <code>alpha.fd.multim()</code> function of the <code>mFD</code> package computes plots of functional indices for up to two assemblages with no distinction of species shapes. However, it is sometimes interesting to plot more than two assemblages or to plot species with different shapes according to categories of a given non-continuous trait. This tutorial illustrates both cases using functions present in the <code>mFD</code> package.</p>
+<p>The <code>alpha.fd.multim()</code> function of the <code>mFD</code>
+package computes plots of functional indices for up to two assemblages
+with no distinction of species shapes. However, it is sometimes
+interesting to plot more than two assemblages or to plot species with
+different shapes according to categories of a given non-continuous
+trait. This tutorial illustrates both cases using functions present in
+the <code>mFD</code> package.</p>
 <p><br></p>
-<p><span style="color: darkturquoise;">Plots in the <code>mFD</code> package are based on the <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a> philosophy:</span> by adding several layers of graphic contents, you retrieve your global plot. Plotting more than two convex hulls or shaping species according to a trait values thus relies on this technic using basic graphical functions available in <code>mFD</code>. In order to plot an indice for a given pair of functional axes, you need to use:</p>
+<p><span style="color: darkturquoise;">Plots in the <code>mFD</code>
+package are based on the <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a> philosophy:</span> by
+adding several layers of graphic contents, you retrieve your global
+plot. Plotting more than two convex hulls or shaping species according
+to a trait values thus relies on this technic using basic graphical
+functions available in <code>mFD</code>. In order to plot an indice for
+a given pair of functional axes, you need to use:</p>
 <ul>
-<li><p>A first function: <a href="https://cmlmagneville.github.io/mFD/reference/background.plot.html">background.plot()</a> create a ggplot object with customized axis ranges, names and background</p></li>
-<li><p>A second function: <a href="https://cmlmagneville.github.io/mFD/reference/pool.plot.html">pool.plot()</a> plots all species from the study cases with customized shape and colour and the associated convex-hull with customized colour.</p></li>
-<li><p>A third function: <a href="https://cmlmagneville.github.io/mFD/reference/fric.plot.html">fric.plot()</a> plots the convex hulls of all the studied assemblages with customized colours and opacities for each assemblage. It also plots species from each assemblage in a customized colour/shape/ fill. This function can be replaced by any other function to plot other functional indices (<a href="https://cmlmagneville.github.io/mFD/reference/fdiv.plot.html">fdiv.plot()</a>, <a href="https://cmlmagneville.github.io/mFD/reference/fdis.plot.html">fdis.plot()</a>, <a href="https://cmlmagneville.github.io/mFD/reference/feve.plot.html">feve.plot()</a>, <a href="https://cmlmagneville.github.io/mFD/reference/fide.plot.html">fide.plot()</a>, <a href="https://cmlmagneville.github.io/mFD/reference/fnnd.plot.html">fnnd.plot()</a>, <a href="https://cmlmagneville.github.io/mFD/reference/fori.plot.html">fori.plot()</a> or <a href="https://cmlmagneville.github.io/mFD/reference/fspe.plot.html">fspe.plot()</a>). The challenging part of this tutorial is here as these functions need informations such as the species coordinates for each assemblage and the vertices identity which must be retrieved before. <span style="color: darkturquoise;">Don’t worry, we’ll see it step by step thereafter ;)</span></p></li>
-<li><p>Once these functions have been used as many times as needed to plot all the combinations of axis pairs, all the plots are combined into a nice design using the <a href="https://patchwork.data-imaginist.com/" class="external-link">patchwork</a> package.</p></li>
+<li><p>A first function: <a href="https://cmlmagneville.github.io/mFD/reference/background.plot.html">background.plot()</a>
+create a ggplot object with customized axis ranges, names and
+background</p></li>
+<li><p>A second function: <a href="https://cmlmagneville.github.io/mFD/reference/pool.plot.html">pool.plot()</a>
+plots all species from the study cases with customized shape and colour
+and the associated convex-hull with customized colour.</p></li>
+<li><p>A third function: <a href="https://cmlmagneville.github.io/mFD/reference/fric.plot.html">fric.plot()</a>
+plots the convex hulls of all the studied assemblages with customized
+colours and opacities for each assemblage. It also plots species from
+each assemblage in a customized colour/shape/ fill. This function can be
+replaced by any other function to plot other functional indices (<a href="https://cmlmagneville.github.io/mFD/reference/fdiv.plot.html">fdiv.plot()</a>,
+<a href="https://cmlmagneville.github.io/mFD/reference/fdis.plot.html">fdis.plot()</a>,
+<a href="https://cmlmagneville.github.io/mFD/reference/feve.plot.html">feve.plot()</a>,
+<a href="https://cmlmagneville.github.io/mFD/reference/fide.plot.html">fide.plot()</a>,
+<a href="https://cmlmagneville.github.io/mFD/reference/fnnd.plot.html">fnnd.plot()</a>,
+<a href="https://cmlmagneville.github.io/mFD/reference/fori.plot.html">fori.plot()</a>
+or <a href="https://cmlmagneville.github.io/mFD/reference/fspe.plot.html">fspe.plot()</a>).
+The challenging part of this tutorial is here as these functions need
+informations such as the species coordinates for each assemblage and the
+vertices identity which must be retrieved before. <span style="color: darkturquoise;">Don’t worry, we’ll see it step by step
+thereafter ;)</span></p></li>
+<li><p>Once these functions have been used as many times as needed to
+plot all the combinations of axis pairs, all the plots are combined into
+a nice design using the <a href="https://patchwork.data-imaginist.com/" class="external-link">patchwork</a>
+package.</p></li>
 </ul>
 <p><br></p>
 </div>
@@ -124,10 +158,22 @@
 <h2 id="load-data">Load data<a class="anchor" aria-label="anchor" href="#load-data"></a>
 </h2>
 <p><br></p>
-<p>The data used here is the same as the one used in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General workflow tutorial</a>.</p>
-<p>The dataset contains 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruits baskets (<em>i.e.</em> assemblages). Each fruit is characterized by five traits values summarized in the following table:</p>
+<p>The data used here is the same as the one used in the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD
+General workflow tutorial</a>.</p>
+<p>The dataset contains 25 types of fruits (<em>i.e.</em> species)
+distributed in 10 fruits baskets (<em>i.e.</em> assemblages). Each fruit
+is characterized by five traits values summarized in the following
+table:</p>
 <p><br></p>
 <table class="table">
+<colgroup>
+<col width="12%">
+<col width="17%">
+<col width="13%">
+<col width="18%">
+<col width="31%">
+<col width="7%">
+</colgroup>
 <thead><tr class="header">
 <th align="center">Trait name</th>
 <th align="center">Trait measurement</th>
@@ -189,7 +235,8 @@
 <span>      centering <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>      caption <span class="op">=</span> <span class="st">"Species x assemblages matrix based on the **fruits** dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>Species x assemblages matrix based on the <strong>fruits</strong> dataset</caption>
+<caption>Species x assemblages matrix based on the
+<strong>fruits</strong> dataset</caption>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="right">apple</th>
@@ -338,7 +385,8 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits_cat</span><span class="op">)</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Traits types based on **fruits &amp; baskets** dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>Traits types based on <strong>fruits &amp; baskets</strong> dataset</caption>
+<caption>Traits types based on <strong>fruits &amp; baskets</strong>
+dataset</caption>
 <thead><tr class="header">
 <th align="left">trait_name</th>
 <th align="left">trait_type</th>
@@ -376,7 +424,11 @@
 <h3 id="basic-workflow-before-plotting">Basic workflow before plotting<a class="anchor" aria-label="anchor" href="#basic-workflow-before-plotting"></a>
 </h3>
 <p><br></p>
-<p>For more information about the basic workflow before plotting, have a look at the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Worklow</a> Part 3 to 6. We here assume that these steps are ok for you and just compute functional distances and functional indices based on the 4D space which is the best given the data we have.</p>
+<p>For more information about the basic workflow before plotting, have a
+look at the <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD
+General Worklow</a> Part 3 to 6. We here assume that these steps are ok
+for you and just compute functional distances and functional indices
+based on the 4D space which is the best given the data we have.</p>
 <p><br></p>
 <p>Compute functional distances between all the species in the data:</p>
 <p><br></p>
@@ -391,7 +443,8 @@
 <span>  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span>
 <span>  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<p>Compute the quality of the functional spaces and species coordinates in the chosen functional space:</p>
+<p>Compute the quality of the functional spaces and species coordinates
+in the chosen functional space:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -406,7 +459,8 @@
 <span><span class="co"># retrieve species (fruits) coordinates in the 4D space (see General tutorial):</span></span>
 <span><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"sp_pc_coord"</span></span></code></pre></div>
 <p><br></p>
-<p>Compute alpha FD indices (here only Functional Richness but if other indices have to be plotted, then compute them):</p>
+<p>Compute alpha FD indices (here only Functional Richness but if other
+indices have to be plotted, then compute them):</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -422,24 +476,38 @@
 <p><br></p>
 </div>
 <div class="section level3">
-<h3 id="plotting-functional-convex-hulls-for-more-than-two-assemblages-for-one-pair-of-axis">Plotting functional convex-hulls for more than two assemblages for one pair of axis<a class="anchor" aria-label="anchor" href="#plotting-functional-convex-hulls-for-more-than-two-assemblages-for-one-pair-of-axis"></a>
+<h3 id="plotting-functional-convex-hulls-for-more-than-two-assemblages-for-one-pair-of-axis">Plotting functional convex-hulls for more than two assemblages for
+one pair of axis<a class="anchor" aria-label="anchor" href="#plotting-functional-convex-hulls-for-more-than-two-assemblages-for-one-pair-of-axis"></a>
 </h3>
 <p><br></p>
-<p>In this part, we’ll show you how to plot more than two convex-hulls for more than two assemblages. Then, we’ll gather all the information in a loop to do the plots for all pairs of axis.</p>
+<p>In this part, we’ll show you how to plot more than two convex-hulls
+for more than two assemblages. Then, we’ll gather all the information in
+a loop to do the plots for all pairs of axis.</p>
 <p><br></p>
 <div class="section level4">
 <h4 id="a---background">a - Background<a class="anchor" aria-label="anchor" href="#a---background"></a>
 </h4>
 <p><br></p>
-<p>The first step is to compute the background of the plot using the <a href="https://cmlmagneville.github.io/mFD/reference/background.plot.html">background.plot()</a> function. This function needs <span style="color: darkturquoise;">three main inputs</span>:</p>
+<p>The first step is to compute the background of the plot using the <a href="https://cmlmagneville.github.io/mFD/reference/background.plot.html">background.plot()</a>
+function. This function needs <span style="color: darkturquoise;">three
+main inputs</span>:</p>
 <ul>
-<li><p><span style="color: darkturquoise;">range_faxes</span>: a vector containing the minimum and maximum values of axes. <span style="color: darkturquoise;">Note:</span> in order to have a fair representation of species postition in all plots combining different pairs of axes, they should have the same axes ranges. Next, <strong>we will show how to compute ranges according to the range of valus among all axes</strong>.</p></li>
-<li><p><span style="color: darkturquoise;">faxes_nm</span>: a vector containing the axes labels in the figure.</p></li>
-<li><p><span style="color: darkturquoise;">color_bg</span>: a R color name or an hexadecimal code used to fill the plot background.</p></li>
+<li><p><span style="color: darkturquoise;">range_faxes</span>: a vector
+containing the minimum and maximum values of axes. <span style="color: darkturquoise;">Note:</span> in order to have a fair
+representation of species postition in all plots combining different
+pairs of axes, they should have the same axes ranges. Next, <strong>we
+will show how to compute ranges according to the range of valus among
+all axes</strong>.</p></li>
+<li><p><span style="color: darkturquoise;">faxes_nm</span>: a vector
+containing the axes labels in the figure.</p></li>
+<li><p><span style="color: darkturquoise;">color_bg</span>: a R color
+name or an hexadecimal code used to fill the plot background.</p></li>
 </ul>
-<p>Let’s plot the background of the plot for one combination of axis (PC1 and PC2)!</p>
+<p>Let’s plot the background of the plot for one combination of axis
+(PC1 and PC2)!</p>
 <p><br></p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Compute the range of functional axes</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Compute
+the range of functional axes</span></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Compute the range of functional axes:</span></span>
 <span><span class="va">range_sp_coord</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">sp_faxes_coord_fruits</span><span class="op">)</span></span>
@@ -451,7 +519,8 @@
 <span><span class="va">range_faxes</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] -0.5214338  0.4850924</span></span></code></pre>
 <p><br></p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Plot background for PC1 and PC2 plot</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Plot
+background for PC1 and PC2 plot</span></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get species coordinates along the two studied axes:</span></span>
 <span><span class="va">sp_faxes_coord_xy</span> <span class="op">&lt;-</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span><span class="op">)</span><span class="op">]</span></span>
@@ -468,31 +537,90 @@
 <h4 id="b---add-the-global-convex-hull">b - Add the global convex-hull<a class="anchor" aria-label="anchor" href="#b---add-the-global-convex-hull"></a>
 </h4>
 <p><br></p>
-<p>The convex-hull shaping the global pool of species is then added to the background plot. Species can be plotted with a minimal shape and color or even not displayed (what we will do here) thus when plotting species from wanted assemblages, there is not too much information on the graph. There are two steps: first, retrieving the coordinates of species being vertices along the two studied functional axes and second, add species from the global pool to the background plot (called <code>plot_k</code> in this tutorial):</p>
+<p>The convex-hull shaping the global pool of species is then added to
+the background plot. Species can be plotted with a minimal shape and
+color or even not displayed (what we will do here) thus when plotting
+species from wanted assemblages, there is not too much information on
+the graph. There are two steps: first, retrieving the coordinates of
+species being vertices along the two studied functional axes and second,
+add species from the global pool to the background plot (called
+<code>plot_k</code> in this tutorial):</p>
 <p><br></p>
-<p><strong>Step 1: vertices</strong> Realised using the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">vertices() function</a> which identifies species being vertices of the minimal convex-hull enclosing a community. It needs <span style="color: darkturquoise;">three main inputs</span>:</p>
+<p><strong>Step 1: vertices</strong> Realised using the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">vertices()
+function</a> which identifies species being vertices of the minimal
+convex-hull enclosing a community. It needs <span style="color: darkturquoise;">three main inputs</span>:</p>
 <ul>
-<li><p><span style="color: darkturquoise;">sp_faxes_coord</span>: the matrix of species coordinates in the chosen functional space. Here, as we are interested in PC1 and PC2, the <code>sp_faxes_coord</code> matrix only contains coordinates along PC1 and PC2.</p></li>
-<li><p><span style="color: darkturquoise;">order_2D</span>: TRUE/FALSE indicating whether vertices names are reordered so that they define a convex polygon in two dimensions which is convenient for plotting.</p></li>
-<li><p><span style="color: darkturquoise;">check_input</span>: same argument as many of the <code>mFD</code> functions allowing to have customized error messages and not R basic ones.</p></li>
+<li><p><span style="color: darkturquoise;">sp_faxes_coord</span>: the
+matrix of species coordinates in the chosen functional space. Here, as
+we are interested in PC1 and PC2, the <code>sp_faxes_coord</code> matrix
+only contains coordinates along PC1 and PC2.</p></li>
+<li><p><span style="color: darkturquoise;">order_2D</span>: TRUE/FALSE
+indicating whether vertices names are reordered so that they define a
+convex polygon in two dimensions which is convenient for
+plotting.</p></li>
+<li><p><span style="color: darkturquoise;">check_input</span>: same
+argument as many of the <code>mFD</code> functions allowing to have
+customized error messages and not R basic ones.</p></li>
 </ul>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve vertices coordinates along PC1 and PC2</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve
+vertices coordinates along PC1 and PC2</span></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieve vertices coordinates along the two studied functional axes:</span></span>
 <span><span class="va">vert</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/vertices.html">vertices</a></span><span class="op">(</span>sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_xy</span>,  </span>
 <span>                      order_2D <span class="op">=</span> <span class="cn">FALSE</span>, </span>
 <span>                      check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<p><strong>Step 2: Add global convex-hull of species</strong> Realised using the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">pool.plot() function</a> which plot all species from the global pool and the associated convex hull with customized shape and colors for species and customised colours and opacity for the convex-hull. Species being vertices can also be plotted with a different shape or color. It needs <span style="color: darkturquoise;">three main inputs</span>:</p>
+<p><strong>Step 2: Add global convex-hull of species</strong> Realised
+using the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">pool.plot()
+function</a> which plot all species from the global pool and the
+associated convex hull with customized shape and colors for species and
+customised colours and opacity for the convex-hull. Species being
+vertices can also be plotted with a different shape or color. It needs
+<span style="color: darkturquoise;">three main inputs</span>:</p>
 <ul>
-<li><p><span style="color: darkturquoise;">ggplot_bg</span>: the ggplot object created on the step before <em>ie</em> the plot of the background retrieved through the <a href="https://cmlmagneville.github.io/mFD/reference/background.plot.html">background.plot()</a> function.</p></li>
-<li><p><span style="color: darkturquoise;">sp_coord_2D</span>: the matrix of species coordinates but with coordinates <strong>only for the ais to plot</strong> thus here only PC1 and PC2. It corresponds to the <code>sp_faxes_coord_xy</code> object created before.</p></li>
-<li><p><span style="color: darkturquoise;">vertices_nD</span>: a vector containing the name of species being vertices along the two studied dimensions. It correspond to the <code>vert</code> object created before. <strong>We will here first show how to plot vertices with different shape/color. Yet, in order to have a clear plot with more than two convex-hulls (goal of this tutorial) we will then remove vertices shape and color by setting</strong> <code>null</code> <strong>to the</strong> <code>vertices_nD</code> <strong>argument</strong>.</p></li>
-<li><p><span style="color: darkturquoise;">arguments to customise species shape and colours</span>: <code>color_pool</code>, <code>fill_pool</code>, <code>shape_pool</code> and <code>size_pool</code> arguments can be used. <strong>We will here first show how to plot species with customised shape/color. Yet, in order to have a clear plot with more than two convex-hulls (goal of this tutorial) we will then not display species by setting</strong> <code>NA</code> <strong>to the</strong> <code>color_pool</code> <strong>argument</strong>.</p></li>
-<li><p><span style="color: darkturquoise;">arguments to customise vertices shape and colours</span>: <code>color_vert</code>, <code>fill_vert</code>, <code>shape_vert</code> and <code>size_vert</code> arguments can be used. <strong>We will here first show how to plot vertices with different shape/color. Yet, in order to have a clear plot with more than two convex-hulls (goal of this tutorial) we will then remove vertices shape and color by setting aestiteic arguments of vertices to</strong> <code>NA</code>.</p></li>
-<li><p><span style="color: darkturquoise;">arguments to customise the convex hull of the global pool</span>: <code>color_ch</code>, <code>fill_ch</code> and <code>alpha_ch</code> arguments can be used.</p></li>
+<li><p><span style="color: darkturquoise;">ggplot_bg</span>: the ggplot
+object created on the step before <em>ie</em> the plot of the background
+retrieved through the <a href="https://cmlmagneville.github.io/mFD/reference/background.plot.html">background.plot()</a>
+function.</p></li>
+<li><p><span style="color: darkturquoise;">sp_coord_2D</span>: the
+matrix of species coordinates but with coordinates <strong>only for the
+ais to plot</strong> thus here only PC1 and PC2. It corresponds to the
+<code>sp_faxes_coord_xy</code> object created before.</p></li>
+<li><p><span style="color: darkturquoise;">vertices_nD</span>: a vector
+containing the name of species being vertices along the two studied
+dimensions. It correspond to the <code>vert</code> object created
+before. <strong>We will here first show how to plot vertices with
+different shape/color. Yet, in order to have a clear plot with more than
+two convex-hulls (goal of this tutorial) we will then remove vertices
+shape and color by setting</strong> <code>null</code> <strong>to
+the</strong> <code>vertices_nD</code>
+<strong>argument</strong>.</p></li>
+<li><p><span style="color: darkturquoise;">arguments to customise
+species shape and colours</span>: <code>color_pool</code>,
+<code>fill_pool</code>, <code>shape_pool</code> and
+<code>size_pool</code> arguments can be used. <strong>We will here first
+show how to plot species with customised shape/color. Yet, in order to
+have a clear plot with more than two convex-hulls (goal of this
+tutorial) we will then not display species by setting</strong>
+<code>NA</code> <strong>to the</strong> <code>color_pool</code>
+<strong>argument</strong>.</p></li>
+<li><p><span style="color: darkturquoise;">arguments to customise
+vertices shape and colours</span>: <code>color_vert</code>,
+<code>fill_vert</code>, <code>shape_vert</code> and
+<code>size_vert</code> arguments can be used. <strong>We will here first
+show how to plot vertices with different shape/color. Yet, in order to
+have a clear plot with more than two convex-hulls (goal of this
+tutorial) we will then remove vertices shape and color by setting
+aestiteic arguments of vertices to</strong> <code>NA</code>.</p></li>
+<li><p><span style="color: darkturquoise;">arguments to customise the
+convex hull of the global pool</span>: <code>color_ch</code>,
+<code>fill_ch</code> and <code>alpha_ch</code> arguments can be
+used.</p></li>
 </ul>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add convex-hull, species &amp; vertices from the global pool (plot not used in the workflow of this tutorial because it is too complex to be able to easily read the final plot with more than two convex-hulls)</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add
+convex-hull, species &amp; vertices from the global pool (plot not used
+in the workflow of this tutorial because it is too complex to be able to
+easily read the final plot with more than two convex-hulls)</span></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_sp_vert</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/pool.plot.html">pool.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                             sp_coord2D <span class="op">=</span> <span class="va">sp_faxes_coord_xy</span>,</span>
@@ -511,7 +639,10 @@
 <span>                             fill_vert <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span>
 <span><span class="va">plot_sp_vert</span></span></code></pre></div>
 <p><img src="Customised_plots_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;"></p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Let’s continue the workflow on how to plot more than two convex-hulls! Thus remove species otherwise the final plot will be difficult to read ;)</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Let’s
+continue the workflow on how to plot more than two convex-hulls! Thus
+remove species otherwise the final plot will be difficult to read
+;)</span></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_k</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/pool.plot.html">pool.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                             sp_coord2D <span class="op">=</span> <span class="va">sp_faxes_coord_xy</span>,</span>
@@ -536,10 +667,23 @@
 <h4 id="c---add-the-convex-hulls-and-species-of-the-wanted-assemblages">c - Add the convex-hulls and species of the wanted assemblages<a class="anchor" aria-label="anchor" href="#c---add-the-convex-hulls-and-species-of-the-wanted-assemblages"></a>
 </h4>
 <p><br></p>
-<p>Convex-hulls from the wanted assemblages can then be added to the <code>plot_k</code> object which now contains the background and the convex-hull from the global pool of species. <strong>Here, we will plot three assemblages: basket 1, basket 4 and basket 10 with different colors</strong> using the <a href="https://cmlmagneville.github.io/mFD/reference/fric.plot.html">fric.plot() function</a>. You can play with colors and opacities of each convex-hull so the graph is easy to read and convex-hulls are easily distinguisable.</p>
+<p>Convex-hulls from the wanted assemblages can then be added to the
+<code>plot_k</code> object which now contains the background and the
+convex-hull from the global pool of species. <strong>Here, we will plot
+three assemblages: basket 1, basket 4 and basket 10 with different
+colors</strong> using the <a href="https://cmlmagneville.github.io/mFD/reference/fric.plot.html">fric.plot()
+function</a>. You can play with colors and opacities of each convex-hull
+so the graph is easy to read and convex-hulls are easily
+distinguisable.</p>
 <p><br></p>
-<p><strong>Step 1: Get the coordinates of species of the assemblages to plot</strong> Realised using the <a href="https://cmlmagneville.github.io/mFD/reference/sp.filter.html">sp.filter()</a> and the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">vertices()</a> functions to first retrieve the coordinates of species belonging to the assemblages to plot and then the names of species being vertices.</p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve the coordinates of species belonging to basket_1, basket_6 and basket_10:</span></p>
+<p><strong>Step 1: Get the coordinates of species of the assemblages to
+plot</strong> Realised using the <a href="https://cmlmagneville.github.io/mFD/reference/sp.filter.html">sp.filter()</a>
+and the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">vertices()</a>
+functions to first retrieve the coordinates of species belonging to the
+assemblages to plot and then the names of species being vertices.</p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve
+the coordinates of species belonging to basket_1, basket_6 and
+basket_10:</span></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># basket_1:</span></span>
 <span><span class="co">## filter species from basket_1:</span></span>
@@ -567,7 +711,9 @@
 <span><span class="co">## get species coordinates (basket_10):</span></span>
 <span><span class="va">sp_faxes_coord_basket10</span> <span class="op">&lt;-</span> <span class="va">sp_filter_basket10</span><span class="op">$</span><span class="va">`species coordinates`</span></span></code></pre></div>
 <p><br></p>
-<p>Let’s have a look at the coordinates of species from <code>basket_1</code>: note that we are still working with the coordinates along the two studied functional axis PC1 and PC2</p>
+<p>Let’s have a look at the coordinates of species from
+<code>basket_1</code>: note that we are still working with the
+coordinates along the two studied functional axis PC1 and PC2</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sp_faxes_coord_basket1</span></span></code></pre></div>
 <pre><code><span><span class="co">##                         PC1           PC2</span></span>
@@ -580,7 +726,9 @@
 <span><span class="co">## pear          -0.0005886084  0.0297927029</span></span>
 <span><span class="co">## strawberry    -0.2917242495 -0.0898440618</span></span></code></pre>
 <p><br></p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve the names of species being vertices of basket_1, basket_6 and basket_10:</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve
+the names of species being vertices of basket_1, basket_6 and
+basket_10:</span></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># basket_1:</span></span>
 <span><span class="va">vert_nm_basket1</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/vertices.html">vertices</a></span><span class="op">(</span>sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
@@ -597,15 +745,49 @@
 <span>                                       order_2D <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                    check_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<p><strong>Step 2: Adding assemblages convex_hulls and species</strong> Realised using the <a href="https://cmlmagneville.github.io/mFD/reference/fric.plot.html">fric.plot() function</a>. This function has a lot of argument to customise the plot and play with colours, shapes and opacity. Its main inputs are:</p>
+<p><strong>Step 2: Adding assemblages convex_hulls and species</strong>
+Realised using the <a href="https://cmlmagneville.github.io/mFD/reference/fric.plot.html">fric.plot()
+function</a>. This function has a lot of argument to customise the plot
+and play with colours, shapes and opacity. Its main inputs are:</p>
 <ul>
-<li><p><span style="color: darkturquoise;">plot_k</span>: the ggplot object created on the steps before <em>ie</em> the plot of the background retrieved through the <a href="https://cmlmagneville.github.io/mFD/reference/background.plot.html">background.plot()</a> function with the global convex hull added through the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">pool.plot() function</a>.</p></li>
-<li><p><span style="color: darkturquoise;">asb_sp_coord_2D</span>: a list containing the coordinates of species belonging to each assemblage to plot across the two functional ais studied (here PC1 and PC2). <strong>Note:</strong> each element of this list reflects a given assemblage and each element must be nammed after the assemblage.</p></li>
-<li><p><span style="color: darkturquoise;">asb_vertices_nD</span>: a list containing a list (with names as in asb_sp_coord2D) of vectors with names of species being vertices in n dimensions. <strong>Note:</strong> each element of this list reflects a given assemblage and each element must be nammed after the assemblage.</p></li>
-<li><p><span style="color: darkturquoise;">plot_sp</span>: a TRUE/FALSE value indicating whether species from the studied assemblages must be plotted. If <code>TRUE</code>, then the arguments <code>shape_sp</code>, <code>size_sp</code>, <code>color_sp</code> and <code>fill_sp</code> help to customise species shapes/sizes/colours and the arguments <code>shape_vert</code>, <code>size_vert</code>, <code>color_vert</code> and <code>fill_vert</code> help to customise vertices. For shape/size/colour arguments, each element of the input list reflects a given assemblage and each element must be nammed after the assemblage <em>see the function help for more information</em></p></li>
-<li><p><span style="color: darkturquoise;">color_ch</span>, <span style="color: darkturquoise;">fill_ch</span> and <span style="color: darkturquoise;">alpha_ch</span>: are lists containing colors and opacity values to caracterise each <strong>c</strong>onvex-<strong>h</strong>ull of the studied assemblage. <strong>Note:</strong> each element of these lists reflects a given assemblage and each element must be nammed after the assemblage <strong>and the order in which each assemblage is given must reflect the same order than the asb_sp_coord_2D order</strong>. Can be set up to <code>NA</code> if no colors are to be plotted.</p></li>
+<li><p><span style="color: darkturquoise;">plot_k</span>: the ggplot
+object created on the steps before <em>ie</em> the plot of the
+background retrieved through the <a href="https://cmlmagneville.github.io/mFD/reference/background.plot.html">background.plot()</a>
+function with the global convex hull added through the <a href="https://cmlmagneville.github.io/mFD/reference/vertices.html">pool.plot()
+function</a>.</p></li>
+<li><p><span style="color: darkturquoise;">asb_sp_coord_2D</span>: a
+list containing the coordinates of species belonging to each assemblage
+to plot across the two functional ais studied (here PC1 and PC2).
+<strong>Note:</strong> each element of this list reflects a given
+assemblage and each element must be nammed after the
+assemblage.</p></li>
+<li><p><span style="color: darkturquoise;">asb_vertices_nD</span>: a
+list containing a list (with names as in asb_sp_coord2D) of vectors with
+names of species being vertices in n dimensions. <strong>Note:</strong>
+each element of this list reflects a given assemblage and each element
+must be nammed after the assemblage.</p></li>
+<li><p><span style="color: darkturquoise;">plot_sp</span>: a TRUE/FALSE
+value indicating whether species from the studied assemblages must be
+plotted. If <code>TRUE</code>, then the arguments <code>shape_sp</code>,
+<code>size_sp</code>, <code>color_sp</code> and <code>fill_sp</code>
+help to customise species shapes/sizes/colours and the arguments
+<code>shape_vert</code>, <code>size_vert</code>, <code>color_vert</code>
+and <code>fill_vert</code> help to customise vertices. For
+shape/size/colour arguments, each element of the input list reflects a
+given assemblage and each element must be nammed after the assemblage
+<em>see the function help for more information</em></p></li>
+<li><p><span style="color: darkturquoise;">color_ch</span>, <span style="color: darkturquoise;">fill_ch</span> and <span style="color: darkturquoise;">alpha_ch</span>: are lists containing
+colors and opacity values to caracterise each
+<strong>c</strong>onvex-<strong>h</strong>ull of the studied assemblage.
+<strong>Note:</strong> each element of these lists reflects a given
+assemblage and each element must be nammed after the assemblage
+<strong>and the order in which each assemblage is given must reflect the
+same order than the asb_sp_coord_2D order</strong>. Can be set up to
+<code>NA</code> if no colors are to be plotted.</p></li>
 </ul>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the convex-hulls of the three studied assemblages: only convex hulls with transparent surroundings, no species plotted</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the
+convex-hulls of the three studied assemblages: only convex hulls with
+transparent surroundings, no species plotted</span></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                    asb_sp_coord2D <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
@@ -636,7 +818,9 @@
 <span>                             fill_vert <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
 <p><img src="Customised_plots_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the convex-hulls of the three studied assemblages: only convex hulls with coloured surroundings, no species plotted</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the
+convex-hulls of the three studied assemblages: only convex hulls with
+coloured surroundings, no species plotted</span></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                    asb_sp_coord2D <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
@@ -669,7 +853,10 @@
 <span>                             fill_vert <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
 <p><img src="Customised_plots_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;"></p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the convex-hulls of the three studied assemblages: only convex hulls with transparent surroundings, species plotted but with no differences between non-vertices and vertices species</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the
+convex-hulls of the three studied assemblages: only convex hulls with
+transparent surroundings, species plotted but with no differences
+between non-vertices and vertices species</span></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                    asb_sp_coord2D <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
@@ -716,7 +903,10 @@
 <span>                                          <span class="st">"basket_10"</span> <span class="op">=</span> <span class="st">"#d0d1e6"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
 <p><img src="Customised_plots_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;"></p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the convex-hulls of the three studied assemblages: only convex hulls with transparent surroundings, species plotted but with different colour between non-vertices and vertices species</span></p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the
+convex-hulls of the three studied assemblages: only convex hulls with
+transparent surroundings, species plotted but with different colour
+between non-vertices and vertices species</span></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                    asb_sp_coord2D <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
@@ -764,16 +954,23 @@
 <span><span class="va">plot_try</span></span></code></pre></div>
 <p><img src="Customised_plots_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>Now that we have seen the basic workflow of how to add graph components with only two functional axis using the <code>mFD</code> functions which relies on the <code>ggplot2</code> package, let’s compute as many graph as wanted! ;)</p>
+<p>Now that we have seen the basic workflow of how to add graph
+components with only two functional axis using the <code>mFD</code>
+functions which relies on the <code>ggplot2</code> package, let’s
+compute as many graph as wanted! ;)</p>
 <p><br></p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="plotting-functional-convex-hulls-for-more-than-two-assemblages-for-several-pair-of-axis">Plotting functional convex-hulls for more than two assemblages for several pair of axis<a class="anchor" aria-label="anchor" href="#plotting-functional-convex-hulls-for-more-than-two-assemblages-for-several-pair-of-axis"></a>
+<h3 id="plotting-functional-convex-hulls-for-more-than-two-assemblages-for-several-pair-of-axis">Plotting functional convex-hulls for more than two assemblages for
+several pair of axis<a class="anchor" aria-label="anchor" href="#plotting-functional-convex-hulls-for-more-than-two-assemblages-for-several-pair-of-axis"></a>
 </h3>
 <p><br></p>
-<p>For this part, we will shamelessly use a <code>for</code> loop as follow:</p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Structure of the loop to compute as many FRic plots as wanted (combination of functional axes): here plots for PC1, PC2, PC3 and PC4</span></p>
+<p>For this part, we will shamelessly use a <code>for</code> loop as
+follow:</p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Structure
+of the loop to compute as many FRic plots as wanted (combination of
+functional axes): here plots for PC1, PC2, PC3 and PC4</span></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">####### Preliminary steps:</span></span>
 <span></span>
@@ -933,7 +1130,10 @@
 <span>    <span class="va">plot_FRic</span><span class="op">[[</span><span class="va">k</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">plot_k</span></span>
 <span>    </span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Let’s now have a look at the <code>plot_FRic</code> list which contains the FRic plots for the three studied assemblages (basket_1, basket_6 and basket_10). It contains as many element as there are combination of two axis with the four studied axis:</p>
+<p>Let’s now have a look at the <code>plot_FRic</code> list which
+contains the FRic plots for the three studied assemblages (basket_1,
+basket_6 and basket_10). It contains as many element as there are
+combination of two axis with the four studied axis:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_FRic</span></span></code></pre></div>
 <pre><code><span><span class="co">## [[1]]</span></span></code></pre>
@@ -956,11 +1156,14 @@
 <p><br></p>
 </div>
 <div class="section level3">
-<h3 id="gathering-plots-together-using-the-patchwork-package">Gathering plots together using the <code>patchwork</code> package<a class="anchor" aria-label="anchor" href="#gathering-plots-together-using-the-patchwork-package"></a>
+<h3 id="gathering-plots-together-using-the-patchwork-package">Gathering plots together using the <code>patchwork</code>
+package<a class="anchor" aria-label="anchor" href="#gathering-plots-together-using-the-patchwork-package"></a>
 </h3>
 <p><br></p>
-<p>We are now close to the final graph! Using the <a href="https://patchwork.data-imaginist.com/" class="external-link">patchwork package</a>, we then combine the plots altogether:</p>
-<p><strong>USAGE</strong> <span style="color: darkturquoise;">Combine Fric plots into a single graph using the patchwork package</span></p>
+<p>We are now close to the final graph! Using the <a href="https://patchwork.data-imaginist.com/" class="external-link">patchwork package</a>, we
+then combine the plots altogether:</p>
+<p><strong>USAGE</strong> <span style="color: darkturquoise;">Combine
+Fric plots into a single graph using the patchwork package</span></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">patchwork_FRic</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html" class="external-link">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html" class="external-link">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>                  <span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html" class="external-link">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -971,12 +1174,14 @@
 <span><span class="va">patchwork_FRic</span></span></code></pre></div>
 <p><img src="Customised_plots_files/figure-html/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p><span style="color: darkturquoise;">You can now play with colours, shapes and add as many assemblages as wanted! </span></p>
+<p><span style="color: darkturquoise;">You can now play with colours,
+shapes and add as many assemblages as wanted! </span></p>
 <p><br></p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="plotting-species-differently-according-to-one-trait-value-coming-soon">Plotting species differently according to one trait value (coming soon…)<a class="anchor" aria-label="anchor" href="#plotting-species-differently-according-to-one-trait-value-coming-soon"></a>
+<h2 id="plotting-species-differently-according-to-one-trait-value-coming-soon">Plotting species differently according to one trait value (coming
+soon…)<a class="anchor" aria-label="anchor" href="#plotting-species-differently-according-to-one-trait-value-coming-soon"></a>
 </h2>
 <p><br></p>
 </div>

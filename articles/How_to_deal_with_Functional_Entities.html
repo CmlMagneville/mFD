@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mFD</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.9000</span>
       </span>
     </div>
 
@@ -90,13 +90,14 @@
 
       
 
-      </header><script src="How_to_deal_with_Functional_Entities_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How to Deal With Functional Entities</h1>
-                        <h4 data-toc-skip class="author">Camille Magneville</h4>
+                        <h4 data-toc-skip class="author">Camille
+Magneville</h4>
             
-            <h4 data-toc-skip class="date">2023-02-20</h4>
+            <h4 data-toc-skip class="date">2023-09-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/How_to_deal_with_Functional_Entities.Rmd" class="external-link"><code>vignettes/How_to_deal_with_Functional_Entities.Rmd</code></a></small>
       <div class="hidden name"><code>How_to_deal_with_Functional_Entities.Rmd</code></div>
@@ -110,16 +111,35 @@
 <h2 id="why-functional-entities-fes">1. Why Functional Entities (FEs)?<a class="anchor" aria-label="anchor" href="#why-functional-entities-fes"></a>
 </h2>
 <p><br></p>
-<p><code>mFD</code> allows gathering species into <strong>functional entities (FEs)</strong> <em>i.e.</em> <strong>groups of species with same trait values</strong> when many species are described with a few categorical or ordinal traits. It is particularly useful when using large datasets with “functionally similar” species. FEs also allow to understand the links between functional diversity and ecological processes as redundant species that are supposed to have similar ecological roles are clustered in this method.</p>
+<p><code>mFD</code> allows gathering species into <strong>functional
+entities (FEs)</strong> <em>i.e.</em> <strong>groups of species with
+same trait values</strong> when many species are described with a few
+categorical or ordinal traits. It is particularly useful when using
+large datasets with “functionally similar” species. FEs also allow to
+understand the links between functional diversity and ecological
+processes as redundant species that are supposed to have similar
+ecological roles are clustered in this method.</p>
 <p><br></p>
 </div>
 <div class="section level2">
 <h2 id="tutorials-data">2. Tutorial’s data<a class="anchor" aria-label="anchor" href="#tutorials-data"></a>
 </h2>
 <p><br></p>
-<p><strong>DATA</strong> The dataset used to illustrate this tutorial is a <strong>fruits dataset</strong> based on 25 types of fruits (<em>i.e.</em> species) distributed in 10 fruit baskets (<em>i.e.</em> assemblages). Each fruit is characterized by six trait values summarized in the following table:</p>
+<p><strong>DATA</strong> The dataset used to illustrate this tutorial is
+a <strong>fruits dataset</strong> based on 25 types of fruits
+(<em>i.e.</em> species) distributed in 10 fruit baskets (<em>i.e.</em>
+assemblages). Each fruit is characterized by six trait values summarized
+in the following table:</p>
 <p><br></p>
 <table class="table">
+<colgroup>
+<col width="14%">
+<col width="19%">
+<col width="14%">
+<col width="20%">
+<col width="23%">
+<col width="6%">
+</colgroup>
 <thead><tr class="header">
 <th align="center">Trait name</th>
 <th align="center">Trait measurement</th>
@@ -164,11 +184,15 @@
 </tbody>
 </table>
 <p><br></p>
-<p><strong>NOTE</strong> We reduced the dataset used in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> to only keep ordinal and categorical traits. Categorical traits are restrained to 2 or 3 modalities per traits to limit the number of unique combinations.</p>
+<p><strong>NOTE</strong> We reduced the dataset used in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD
+General Workflow</a> to only keep ordinal and categorical traits.
+Categorical traits are restrained to 2 or 3 modalities per traits to
+limit the number of unique combinations.</p>
 <p><br></p>
 <p>The following data frame and matrix are needed:</p>
 <ul>
-<li>the data frame summarizing traits values for each species called <em>fruits_traits</em> data frame in this tutorial:</li>
+<li>the data frame summarizing traits values for each species called
+<em>fruits_traits</em> data frame in this tutorial:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -203,7 +227,8 @@
 <span><span class="co"># Display the table:</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Species x traits dataframe based on *fruits* dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>Species x traits dataframe based on <em>fruits</em> dataset</caption>
+<caption>Species x traits dataframe based on <em>fruits</em>
+dataset</caption>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="left">Size</th>
@@ -258,7 +283,8 @@
 </table>
 <p><br></p>
 <ul>
-<li>the matrix summarizing assemblages called <em>basket_fruits_weights</em> in this tutorial:</li>
+<li>the matrix summarizing assemblages called
+<em>basket_fruits_weights</em> in this tutorial:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -267,7 +293,8 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">baskets_fruits_weights</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Species x assemblages dataframe based on *fruits* dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>Species x assemblages dataframe based on <em>fruits</em> dataset</caption>
+<caption>Species x assemblages dataframe based on <em>fruits</em>
+dataset</caption>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="right">apple</th>
@@ -336,7 +363,9 @@
 </table>
 <p><br></p>
 <ul>
-<li>the data frame summarizing traits categories called <em>fruits_traits_cat</em> in this tutorial: (for details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a>)</li>
+<li>the data frame summarizing traits categories called
+<em>fruits_traits_cat</em> in this tutorial: (for details: <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD
+General Workflow</a>)</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -348,7 +377,8 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fruits_traits_cat</span><span class="op">)</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Traits types based on *fruits &amp; baskets* dataset"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>Traits types based on <em>fruits &amp; baskets</em> dataset</caption>
+<caption>Traits types based on <em>fruits &amp; baskets</em>
+dataset</caption>
 <thead><tr class="header">
 <th align="left">trait_name</th>
 <th align="left">trait_type</th>
@@ -378,7 +408,8 @@
 </tbody>
 </table>
 <p><br></p>
-<p>Using the <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code> function, we can sum up the assemblages data and retrieve species occurrence data:</p>
+<p>Using the <code><a href="../reference/asb.sp.summary.html">mFD::asb.sp.summary()</a></code> function, we can sum up
+the assemblages data and retrieve species occurrence data:</p>
 <p><br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># summarize species assemblages: </span></span>
@@ -410,7 +441,9 @@
 <h2 id="gather-species-into-fes">3. Gather species into FEs<a class="anchor" aria-label="anchor" href="#gather-species-into-fes"></a>
 </h2>
 <p><br></p>
-<p><code>mFD</code> allows you to gather species into FEs using the <code><a href="../reference/sp.to.fe.html">mFD::sp.to.fe()</a></code> function. It uses the following arguments:</p>
+<p><code>mFD</code> allows you to gather species into FEs using the
+<code><a href="../reference/sp.to.fe.html">mFD::sp.to.fe()</a></code> function. It uses the following
+arguments:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -426,9 +459,16 @@
 <li>
 <em>tr_cat</em> the data frame summarizing traits categories</li>
 <li>
-<em>fe_nm_type</em> is a character string referring to the way FEs should be named: they can be named after their decreasing rank in term of number of species (<em>i.e. fe_1 is the one gathering most species</em>) (<em>fe_rank</em>) or they can be named after names of traits</li>
+<em>fe_nm_type</em> is a character string referring to the way FEs
+should be named: they can be named after their decreasing rank in term
+of number of species (<em>i.e. fe_1 is the one gathering most
+species</em>) (<em>fe_rank</em>) or they can be named after names of
+traits</li>
 <li>
-<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages <strong>NOTE</strong> Recommendation: set it as <code>TRUE</code>
+<em>check_input</em> is a logical value reflecting whether inputs
+should be checked or not. Possible error messages will thus be more
+understandable for the user than R error messages <strong>NOTE</strong>
+Recommendation: set it as <code>TRUE</code>
 </li>
 </ul>
 <p>Let’s use this function with the <em>fruits dataset</em>:</p>
@@ -451,7 +491,8 @@
 <span><span class="co">## [10] "fe_10" "fe_11" "fe_12" "fe_13" "fe_14"</span></span></code></pre>
 <p><br></p>
 <ul>
-<li>a vector containing for each species, the FE it belongs to: <br>
+<li>a vector containing for each species, the FE it belongs to:
+<br>
 </li>
 </ul>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -469,7 +510,8 @@
 <span><span class="co">##        "fe_2"        "fe_1"        "fe_1"        "fe_5"        "fe_6"</span></span></code></pre>
 <p><br></p>
 <ul>
-<li>a data frame containing for FEs, the values of traits for each FE:</li>
+<li>a data frame containing for FEs, the values of traits for each
+FE:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -504,7 +546,8 @@
 <span><span class="co">##     1</span></span></code></pre>
 <p><br></p>
 <ul>
-<li>a detailed list containing vectors or list with supplementary information about FEs:</li>
+<li>a detailed list containing vectors or list with supplementary
+information about FEs:</li>
 </ul>
 <p><br></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -565,16 +608,29 @@
 <h2 id="compute-alpha-and-beta-functional-indices">4. Compute alpha and beta functional indices<a class="anchor" aria-label="anchor" href="#compute-alpha-and-beta-functional-indices"></a>
 </h2>
 <p><br></p>
-<p>Then based on the data frame containing the value of traits for each FE, the workflow is the same as the one listed in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD General Workflow</a> to compute functional trait based distance, multidimensional functional space and associated plots and compute alpha and beta functional indices (step 3 till the end). It will thus not be summed up in this tutorial.</p>
+<p>Then based on the data frame containing the value of traits for each
+FE, the workflow is the same as the one listed in <a href="https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html">mFD
+General Workflow</a> to compute functional trait based distance,
+multidimensional functional space and associated plots and compute alpha
+and beta functional indices (step 3 till the end). It will thus not be
+summed up in this tutorial.</p>
 <p><br></p>
-<p><code>mFD</code> also allows to compute functional indices based on FEs following the framework proposed in <a href="https://www.pnas.org/doi/abs/10.1073/pnas.1317625111" class="external-link">Mouillot <em>et al.</em> 2014</a>) using the <code><a href="../reference/alpha.fd.fe.html">mFD::alpha.fd.fe()</a></code> function. It computes:</p>
+<p><code>mFD</code> also allows to compute functional indices based on
+FEs following the framework proposed in <a href="https://www.pnas.org/doi/abs/10.1073/pnas.1317625111" class="external-link">Mouillot
+<em>et al.</em> 2014</a>) using the <code><a href="../reference/alpha.fd.fe.html">mFD::alpha.fd.fe()</a></code>
+function. It computes:</p>
 <ul>
 <li>
-<em>Functional Redundancy</em> that reflects the average number of species per FE</li>
+<em>Functional Redundancy</em> that reflects the average number of
+species per FE</li>
 <li>
-<em>Functional Overredundancy</em> that reflects the proportion of species in excess in species-rich FE <em>ie</em> it represents the percentage of species that fill functional entities above the mean level of functional redundancy</li>
+<em>Functional Overredundancy</em> that reflects the proportion of
+species in excess in species-rich FE <em>ie</em> it represents the
+percentage of species that fill functional entities above the mean level
+of functional redundancy</li>
 <li>
-<em>Functional Vulnerability</em> that reflects the proportion of FE with only one species</li>
+<em>Functional Vulnerability</em> that reflects the proportion of FE
+with only one species</li>
 </ul>
 <p><br></p>
 <p><code><a href="../reference/alpha.fd.fe.html">mFD::alpha.fd.fe()</a></code> function is used as follows:</p>
@@ -591,16 +647,27 @@
 <p>It takes as inputs:</p>
 <ul>
 <li>
-<em>asb_sp_occ</em> the assemblages-species occurrence dataframe retrieved on <strong>step 2</strong> with <code><a href="../reference/sp.tr.summary.html">mFD::sp.tr.summary()</a></code> function</li>
+<em>asb_sp_occ</em> the assemblages-species occurrence dataframe
+retrieved on <strong>step 2</strong> with
+<code><a href="../reference/sp.tr.summary.html">mFD::sp.tr.summary()</a></code> function</li>
 <li>
-<em>sp_to_fe</em> a list with details of species clustering into FE from <code><a href="../reference/sp.to.fe.html">mFD::sp.to.fe()</a></code>
+<em>sp_to_fe</em> a list with details of species clustering into FE
+from <code><a href="../reference/sp.to.fe.html">mFD::sp.to.fe()</a></code>
 </li>
 <li>
-<em>ind_nm</em> a vector referring to the indices to compute: <em>fred</em> for Functional Redundancy, <em>fored</em> for Functional Overredundancy and <em>fvuln</em> for Functional Vulnerability.</li>
+<em>ind_nm</em> a vector referring to the indices to compute:
+<em>fred</em> for Functional Redundancy, <em>fored</em> for Functional
+Overredundancy and <em>fvuln</em> for Functional Vulnerability.</li>
 <li>
-<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages <strong>NOTE</strong> Recommendation: set it as <code>TRUE</code>.</li>
+<em>check_input</em> is a logical value reflecting whether inputs
+should be checked or not. Possible error messages will thus be more
+understandable for the user than R error messages <strong>NOTE</strong>
+Recommendation: set it as <code>TRUE</code>.</li>
 <li>
-<em>details_returned</em> is a logical value indicating whether the user wants to details_returned. Details are used in graphical functions and thus must be kept if the user want to have graphical outputs for the computed indices.</li>
+<em>details_returned</em> is a logical value indicating whether the
+user wants to details_returned. Details are used in graphical functions
+and thus must be kept if the user want to have graphical outputs for the
+computed indices.</li>
 </ul>
 <p><br></p>
 <p>Let’s apply this function with the <em>fruits</em> dataset:</p>
@@ -613,7 +680,9 @@
 <span>  check_input      <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  details_returned <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></code></pre></div>
 <p><br></p>
-<p>This function returns a dataframe of indices values for each assemblage and a detailed list containing a matrix gathering the number of species per FE in each assemblage:</p>
+<p>This function returns a dataframe of indices values for each
+assemblage and a detailed list containing a matrix gathering the number
+of species per FE in each assemblage:</p>
 <p><br></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># dataframe with indices values for each assemblage:</span></span>
@@ -661,7 +730,9 @@
 <h2 id="plot-functional-indices-based-on-fes">5. Plot functional indices based on FEs<a class="anchor" aria-label="anchor" href="#plot-functional-indices-based-on-fes"></a>
 </h2>
 <p><br></p>
-<p>Then, it is possible to have a graphical representation of FE-based indices for a given assemblage using the <code>mFD::alpha.fe.fd.plot()</code> function:</p>
+<p>Then, it is possible to have a graphical representation of FE-based
+indices for a given assemblage using the
+<code>mFD::alpha.fe.fd.plot()</code> function:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
@@ -682,17 +753,28 @@
 <p>This function takes as inputs:</p>
 <ul>
 <li>
-<em>alpha_fe_fe_fruits</em> the output from the function <code><a href="../reference/alpha.fd.fe.html">mFD::alpha.fd.fe()</a></code> applied on assemblage of interest with <code>details_returned = TRUE</code>
+<em>alpha_fe_fe_fruits</em> the output from the function
+<code><a href="../reference/alpha.fd.fe.html">mFD::alpha.fd.fe()</a></code> applied on assemblage of interest with
+<code>details_returned = TRUE</code>
 </li>
 <li>
-<em>plot_asb_nm</em> a vector containing the name of the assemblage to plot</li>
+<em>plot_asb_nm</em> a vector containing the name of the assemblage
+to plot</li>
 <li>
-<em>plot_ind_nm</em> a vector containing the names of the indices to plot. It <code>fred</code> to plot functional redundancy (FRed), <code>fored</code> to plot functional over-redundancy (FOred) and/or <code>fvuln</code> to plot functional vulnerability (FVuln)</li>
+<em>plot_ind_nm</em> a vector containing the names of the indices to
+plot. It <code>fred</code> to plot functional redundancy (FRed),
+<code>fored</code> to plot functional over-redundancy (FOred) and/or
+<code>fvuln</code> to plot functional vulnerability (FVuln)</li>
 <li>
-<em>name_file</em> a character string with name of file to save the figure. If set to <code>NULL</code> the plot is only displayed</li>
-<li>inputs to personalize the plot (for details: see help file of the <code><a href="../reference/alpha.fd.fe.plot.html">mFD::alpha.fd.fe.plot</a></code>)</li>
+<em>name_file</em> a character string with name of file to save the
+figure. If set to <code>NULL</code> the plot is only displayed</li>
+<li>inputs to personalize the plot (for details: see help file of the
+<code><a href="../reference/alpha.fd.fe.plot.html">mFD::alpha.fd.fe.plot</a></code>)</li>
 <li>
-<em>check_input</em> is a logical value reflecting whether inputs should be checked or not. Possible error messages will thus be more understandable for the user than R error messages <strong>NOTE</strong> Recommendation: set it as <code>TRUE</code>
+<em>check_input</em> is a logical value reflecting whether inputs
+should be checked or not. Possible error messages will thus be more
+understandable for the user than R error messages <strong>NOTE</strong>
+Recommendation: set it as <code>TRUE</code>
 </li>
 </ul>
 <p><br></p>
@@ -714,7 +796,10 @@
 <span>  check_input       <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="How_to_deal_with_Functional_Entities_files/figure-html/unnamed-chunk-16-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>All FE except “fe_3” contain only one species thus FRed and FVuln are close to 1. Only “fe_3” has more species than the average number of species thus the proportion of species in excess in FE richer than average is quite low (FORed = 0.107).</p>
+<p>All FE except “fe_3” contain only one species thus FRed and FVuln are
+close to 1. Only “fe_3” has more species than the average number of
+species thus the proportion of species in excess in FE richer than
+average is quite low (FORed = 0.107).</p>
 <p><br></p>
 </div>
 <div class="section level2">
@@ -722,7 +807,9 @@
 </h2>
 <p><br></p>
 <ul>
-<li>Mouillot <em>et al.</em> (2014) Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs. <em>PNAS</em>, <strong>38</strong>, 13757-13762.</li>
+<li>Mouillot <em>et al.</em> (2014) Functional over-redundancy and high
+functional vulnerability in global fish faunas on tropical reefs.
+<em>PNAS</em>, <strong>38</strong>, 13757-13762.</li>
 </ul>
 </div>
   </div>
