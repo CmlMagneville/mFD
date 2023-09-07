@@ -1,4 +1,4 @@
-# mFD (development version)
+# mFD 1.0.5
 * Fix bug:
   * Correct funct.dist() function error when only quantitative traits (ISSUE 34)
 * Remove FSGE and FUGE from fuse() outputs
