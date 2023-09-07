@@ -1,17 +1,14 @@
 ## Resubmit comments
 
-* Add new warning message in funct.dist() function
-* Review old vignettes:
-  * general workflow vignette and continuous traits, information added
-* Fix bugs in some functions:
-  * correct fdiv.computation(), colinearity pb when computing FRic before
-  * correct sp.to.fe(), wrong attribution when fuzzy traits
+* Fix bug in some function:
+  * correct funct.dist() function when only quantitative traits
+* Remove FSGE and FUGE outputs from the fuse() function
 * For a complete overview of the new version, please see `NEWS.md`
 
 ## Test environments
 
 * Local
-  * Windows 11, R 4.2.0
+  * Windows 11, R 4.3.1
 * Github Actions
   * macOS 11.6.5, R-release (R 4.2.2)
   * Windows Server 2022, R-release (R 4.2.2)
@@ -33,7 +30,7 @@
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: 'Camille Magneville <camille.magneville@gmail.com>'
   
-  Version contains large components (1.0.3.9000)
+  Version contains large components (1.0.4.9000)
   
   Found the following (possibly) invalid URLs:
     URL: https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343
@@ -68,20 +65,8 @@
       Status: 403
       Message: Forbidden
   
-  Found the following (possibly) invalid DOIs:
-    DOI: 10.1002/ecm.1343
-      From: DESCRIPTION
-      Status: Forbidden
-      Message: 403
-    DOI: 10.1073/pnas.1317625111
-      From: DESCRIPTION
-      Status: Forbidden
-      Message: 403
-    DOI: 10.1111/geb.12299
-      From: DESCRIPTION
-      Status: Forbidden
-      Message: 403
-
+* checking for future file timestamps ... NOTE
+  unable to verify current time
 
 
 ## Downstream dependencies
