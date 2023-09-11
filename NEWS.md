@@ -1,3 +1,5 @@
+# mFD (development version)
+
 # mFD 1.0.5
 * Fix bug:
   * Correct funct.dist() function error when only quantitative traits (ISSUE 34)
