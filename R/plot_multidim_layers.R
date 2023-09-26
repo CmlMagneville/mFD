@@ -415,14 +415,31 @@ sp.plot <- function(ggplot_bg,
     fill_vert <- fill_sp
   }
   
-  shape_asb_vert <- c(shape_sp, shape_vert)
-  names(shape_asb_vert) <- lev_asb_vert
+  # 2 cases: if one or more than one asb
+  # otherwise the filling of aesthetic fills NA for vertices of asb1:
+  if (length(asb_sp_coord2D) >= 2) {
+    shape_asb_vert <- c(shape_sp, shape_vert)
+    names(shape_asb_vert) <- lev_asb_vert
+    
+    color_asb_vert <- c(color_sp, color_vert)
+    names(color_asb_vert) <- lev_asb_vert
+    
+    fill_asb_vert <- c(fill_sp, fill_vert)
+    names(fill_asb_vert) <- lev_asb_vert
+  }
   
-  color_asb_vert <- c(color_sp, color_vert)
-  names(color_asb_vert) <- lev_asb_vert
+
+  if (length(asb_sp_coord2D) == 1) {
+    shape_asb_vert <- c(shape_sp[1], shape_vert[1])
+    names(shape_asb_vert) <- lev_asb_vert
+    
+    color_asb_vert <- c(color_sp[1], color_vert[1])
+    names(color_asb_vert) <- lev_asb_vert
+    
+    fill_asb_vert <- c(fill_sp[1], fill_vert[1])
+    names(fill_asb_vert) <- lev_asb_vert
+  }
   
-  fill_asb_vert <- c(fill_sp, fill_vert)
-  names(fill_asb_vert) <- lev_asb_vert
   
   # reorder species according to decreasing weight:
   asb_sp_xywv <- asb_sp_xywv[order(asb_sp_xywv$w, decreasing = TRUE), ]
