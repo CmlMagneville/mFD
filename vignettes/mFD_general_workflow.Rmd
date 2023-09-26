@@ -376,7 +376,7 @@ traits (`equal` option). (**NB** Using `mFD`, you can not define weights for fuz
 traits, use
 [`gawdis`](https://cran.r-project.org/package=gawdis) package
 instead) (**NB** If you only have continuous traits (see the 
-[Continuous traits Framework](https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html): using up to the 1.0.3 version of the `mFD` package does not allow 
+[Continuous traits Framework](https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html): using up to the 1.0.5 version of the `mFD` package does not allow 
 weighting, it will be done in a next version of the package. You can use the 
 [`col.w`](https://rdrr.io/cran/FactoMineR/man/PCA.html) argument of the PCA
 function of the FactomineR package.)
