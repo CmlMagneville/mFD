@@ -452,6 +452,15 @@ sp.plot <- function(ggplot_bg,
     ggplot2::scale_size(limits = limits_relatw, range = range_size_relatw)
   
   
+  # Reorder the column with vertices information:
+  # To first plot sp and then vertices (if 2 species same place but one vert
+  # and the other not vert):
+  order_vert_levels <- c("no", "vert")
+  asb_sp_xywv$vert <- factor(as.character(asb_sp_xywv$vert), 
+                             levels = order_vert_levels)
+  asb_sp_xywv <- asb_sp_xywv[order(asb_sp_xywv$vert), ]
+  
+  
   # plot species as points with chosen shape, size and colors:
   ggplot_sp <- ggplot_sp +
     ggplot2::geom_point(data = asb_sp_xywv,
