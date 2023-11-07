@@ -1,3 +1,5 @@
+# mFD (development version)
+
 # mFD 1.0.6
 * Fix bug:
   * Correct the sp.plot() fct when plotting one asb (pb with vertices aes)
