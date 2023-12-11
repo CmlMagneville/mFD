@@ -155,7 +155,9 @@ column summarizes traits weights).
 no weight given to traits** (columns names: `trait_name` and `trait_type`) ;
 **three columns** if **fuzzy traits** (columns names:  `trait_name`,`trait_type`
 and `fuzzy_name`) **or** if **no fuzzy traits and weight given to traits**
-(columns names:  `trait_name`,`trait_type` and `trait_weight`)
+(columns names:  `trait_name`,`trait_type` and `trait_weight`). See the first
+part of the [Compute Functional Diversity Hill Indices](https://cmlmagneville.github.io/mFD/articles/Compute_functional_hill_indices.html) to see how the `fruits_traits` and `fruits_traits_cat` look like with 
+fuzzy traits.
 
 <br />
 
@@ -376,7 +378,7 @@ traits (`equal` option). (**NB** Using `mFD`, you can not define weights for fuz
 traits, use
 [`gawdis`](https://cran.r-project.org/package=gawdis) package
 instead) (**NB** If you only have continuous traits (see the 
-[Continuous traits Framework](https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html): using up to the 1.0.5 version of the `mFD` package does not allow 
+[Continuous traits Framework](https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html): using up to the 1.0.6.9 version of the `mFD` package does not allow 
 weighting, it will be done in a next version of the package. You can use the 
 [`col.w`](https://rdrr.io/cran/FactoMineR/man/PCA.html) argument of the PCA
 function of the FactomineR package.)
