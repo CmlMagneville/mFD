@@ -97,7 +97,7 @@
                         <h4 data-toc-skip class="author">Camille
 Magneville</h4>
             
-            <h4 data-toc-skip class="date">2023-11-07</h4>
+            <h4 data-toc-skip class="date">2023-12-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/HEAD/vignettes/mFD_general_workflow.Rmd" class="external-link"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="hidden name"><code>mFD_general_workflow.Rmd</code></div>
@@ -452,7 +452,10 @@ given to traits</strong> (columns names: <code>trait_name</code> and
 <code>fuzzy_name</code>) <strong>or</strong> if <strong>no fuzzy traits
 and weight given to traits</strong> (columns names:
 <code>trait_name</code>,<code>trait_type</code> and
-<code>trait_weight</code>)</p>
+<code>trait_weight</code>). See the first part of the <a href="https://cmlmagneville.github.io/mFD/articles/Compute_functional_hill_indices.html">Compute
+Functional Diversity Hill Indices</a> to see how the
+<code>fruits_traits</code> and <code>fruits_traits_cat</code> look like
+with fuzzy traits.</p>
 <p><br></p>
 </div>
 <div class="section level3">
@@ -704,7 +707,7 @@ all traits (<code>equal</code> option). (<strong>NB</strong> Using
 <code>mFD</code>, you can not define weights for fuzzy traits, use <a href="https://cran.r-project.org/package=gawdis" class="external-link"><code>gawdis</code></a>
 package instead) (<strong>NB</strong> If you only have continuous traits
 (see the <a href="https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html">Continuous
-traits Framework</a>: using up to the 1.0.5 version of the
+traits Framework</a>: using up to the 1.0.6.9 version of the
 <code>mFD</code> package does not allow weighting, it will be done in a
 next version of the package. You can use the <a href="https://rdrr.io/cran/FactoMineR/man/PCA.html" class="external-link"><code>col.w</code></a>
 argument of the PCA function of the FactomineR package.)</p></li>
