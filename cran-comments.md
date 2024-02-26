@@ -1,8 +1,6 @@
 ## Resubmit comments
 
-* Fix bug in some function:
-  * correct sp.plot() function when plotting one assemblage and several sp 
-  are in same place in the functional space
+* Add a check for the order of traits names in the traits*category dataframe
 * For a complete overview of the new version, please see `NEWS.md`
 
 ## Test environments
