@@ -106,13 +106,10 @@ knitr::include_graphics("basic_framework.PNG")
 <br />
 
 The first thing to do before starting analyses is to know your data. To do so,
-you must be able to characterize the traits you are using (*i.e.* tell the
-package what type of traits you are using). That is why `mFD` package needs a
-data frame summarizing the type of each trait (*i.e.* each column of the
-`fruits_traits` data frame).
+you must be able to characterize the traits you are using (*i.e.* tell the package what type of traits you are using). That is why `mFD` package needs a data frame summarizing the type of each trait (*i.e.* each column of the `fruits_traits` data frame).
 
-**NB** You need to set up a data frame with the same columns names as the below
-example:
+**NB** You need to set up a data frame with the same columns names as the below example and traits names need to be in the same order as in
+the `fruits_traits` data frame:
 
 
 

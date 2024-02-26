@@ -113,9 +113,10 @@ check.sp.tr <- function(sp_tr, tr_cat = NULL, stop_if_NA = TRUE) {
            "traits x category data frame. Please check.")
     }
     
-    if (any(sort(names(sp_tr)) != sort(tr_cat$"trait_name"))) {
+    if (any(names(sp_tr) != tr_cat$"trait_name")) {
       stop("Trait names differ between species x traits data frame and ",
-           "traits x category data frame. Please check.")
+           "traits x category data frame or are not in the ame order. 
+           Please check.")
     }
   }
   
