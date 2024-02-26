@@ -1,4 +1,4 @@
-# mFD (development version)
+# mFD 1.0.7
 * Traits names in the tr_cat dataframe must be the same that in the sp_tr
 dataframe: otherwise can lead to bugs if using weights: check.sp.tr()
 * Add a sentence explaining that in the General Workflow vignette
