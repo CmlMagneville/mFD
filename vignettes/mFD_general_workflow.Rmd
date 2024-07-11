@@ -513,6 +513,13 @@ distances in the functional space. For that, we use the
 
 <br />
 
+**Note**: You might encounter the following error while doing plot with `mFD`:
+`Error in Ops.data.frame(guide_loc, panel_loc) : # ‘==’ only defined for equally-sized data frames}`
+This error is due to a update of the `patchwork` package, to be able to run the
+plots, please update the `patchwork` package to vers. 1.2.0 at least.
+
+<br />
+
 **USAGE**
 
 ```{r,  fig.show = 'hide', results = "hide"}

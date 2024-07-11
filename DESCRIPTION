@@ -82,7 +82,7 @@ Imports:
     ggrepel,
     grid,
     Hmisc,
-    patchwork,
+    patchwork (>= 1.2.0),
     reshape2,
     rstatix,
     stats,
