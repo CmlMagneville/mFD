@@ -1,0 +1,15 @@
+pandoc: 3.1.1
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  Compute_and_interpret_quality_of_functional_spaces: Compute_and_interpret_quality_of_functional_spaces.html
+  Compute_functional_hill_indices: Compute_functional_hill_indices.html
+  Continuous_traits_framework: Continuous_traits_framework.html
+  Customised_plots: Customised_plots.html
+  How_to_deal_with_Functional_Entities: How_to_deal_with_Functional_Entities.html
+  mFD_general_workflow: mFD_general_workflow.html
+last_built: 2024-07-25T14:18Z
+urls:
+  reference: https://cmlmagneville.github.io/mFD/reference
+  article: https://cmlmagneville.github.io/mFD/articles
+

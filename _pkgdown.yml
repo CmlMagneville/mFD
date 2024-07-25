@@ -104,3 +104,24 @@ reference:
   - baskets_fruits_weights
   - fruits_traits
   - fruits_traits_cat
+  
+template:
+  light-switch: true
+  bootstrap: 5
+  bootswatch: yeti
+
+navbar:
+  structure:
+    left:  [reference, articles, news]
+    right: [search, github, lightswitch]
+
+articles:
+- title: Tutorials
+  navbar: ~
+  contents:
+  - mFD_general_workflow
+  - Compute_and_interpret_quality_of_functional_spaces
+  - Continuous_traits_framework
+  - How_to_deal_with_Functional_Entities
+  - Compute_functional_hill_indices
+  - Customised_plots

@@ -82,7 +82,7 @@ if no fuzzy traits: NA).
 
 For a complete understanding of the functional workflow and the package 
 possibilities, please refer to the 
-[mFD General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html).
+[mFD General Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html) and other tutorial on the [mFD website](https://cmlmagneville.github.io/mFD/).
 
 
 ## Citation
