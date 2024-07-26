@@ -106,10 +106,9 @@ reference:
   - fruits_traits_cat
   
 template:
-  light-switch: true
   bootstrap: 5
   bootswatch: yeti
-
+  
 navbar:
   structure:
     left:  [reference, articles, news]
