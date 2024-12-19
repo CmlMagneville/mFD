@@ -8,8 +8,8 @@
 <title>mFD: General Workflow • mFD</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="mFD: General Workflow">
 </head>
 <body>
@@ -39,6 +39,7 @@
     <li><a class="dropdown-item" href="../articles/How_to_deal_with_Functional_Entities.html">How to Deal With Functional Entities</a></li>
     <li><a class="dropdown-item" href="../articles/Compute_functional_hill_indices.html">Compute Functional Diversity Hill Indices</a></li>
     <li><a class="dropdown-item" href="../articles/Customised_plots.html">Customised plots</a></li>
+    <li><a class="dropdown-item" href="../articles/FAQ.html">FAQ</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -65,7 +66,7 @@
                         <h4 data-toc-skip class="author">Camille
 Magneville</h4>
             
-            <h4 data-toc-skip class="date">2024-07-26</h4>
+            <h4 data-toc-skip class="date">2024-12-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/main/vignettes/mFD_general_workflow.Rmd" class="external-link"><code>vignettes/mFD_general_workflow.Rmd</code></a></small>
       <div class="d-none name"><code>mFD_general_workflow.Rmd</code></div>
@@ -457,7 +458,9 @@ traits</p></li>
 <span>  tr_cat     <span class="op">=</span> <span class="va">fruits_traits_cat</span>,   </span>
 <span>  sp_tr      <span class="op">=</span> <span class="va">fruits_traits</span>, </span>
 <span>  stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## Error in get(paste0(generic, ".", class), envir = get_method_env()) : </span></span>
+<span><span class="co">##   object 'type_sum.accel' not found</span></span></code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fruits_traits_summ</span><span class="op">$</span><span class="st">"tr_types"</span>                     <span class="co"># Traits types </span></span></code></pre></div>
 <pre><code><span><span class="co">## $Size</span></span>
 <span><span class="co">## [1] "ordered" "factor" </span></span>
@@ -474,7 +477,7 @@ traits</p></li>
 <span><span class="co">## $Sugar</span></span>
 <span><span class="co">## [1] "numeric"</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fruits_traits_summ</span><span class="op">$</span><span class="st">"mod_list"</span>                     <span class="co"># Traits types for non-continuous and non-fuzzy traits</span></span></code></pre></div>
 <pre><code><span><span class="co">## $Size</span></span>
 <span><span class="co">## [1] 5-10cm  3-5cm   10-20cm 0-1cm   1-3cm  </span></span>
@@ -518,11 +521,11 @@ assemblage</p></li>
 </ul>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Summary of the assemblages * species dataframe:</span></span>
 <span><span class="va">asb_sp_fruits_summ</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/asb.sp.summary.html">asb.sp.summary</a></span><span class="op">(</span>asb_sp_w <span class="op">=</span> <span class="va">baskets_fruits_weights</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_occ"</span>, <span class="fl">3</span><span class="op">)</span>        <span class="co"># Species occurrences for the first 3 assemblages</span></span></code></pre></div>
 <pre><code><span><span class="co">##          apple apricot banana currant blackberry blueberry cherry grape</span></span>
 <span><span class="co">## basket_1     1       0      1       0          0         0      1     0</span></span>
@@ -540,10 +543,10 @@ assemblage</p></li>
 <span><span class="co">## basket_1           0</span></span>
 <span><span class="co">## basket_2           0</span></span>
 <span><span class="co">## basket_3           0</span></span></code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asb_sp_fruits_occ</span> <span class="op">&lt;-</span> <span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_occ"</span></span></code></pre></div>
 <p><br></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"sp_tot_w"</span>              <span class="co"># Species total biomass in all assemblages</span></span></code></pre></div>
 <pre><code><span><span class="co">##         apple       apricot        banana       currant    blackberry </span></span>
 <span><span class="co">##          1850           200          1400           300           400 </span></span>
@@ -556,21 +559,21 @@ assemblage</p></li>
 <span><span class="co">##          plum     raspberry    strawberry     tangerine   water_melon </span></span>
 <span><span class="co">##           550           900          1650           300           800</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_tot_w"</span>             <span class="co"># Total biomass per assemblage</span></span></code></pre></div>
 <pre><code><span><span class="co">##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 </span></span>
 <span><span class="co">##      2000      2000      2000      2000      2000      2000      2000      2000 </span></span>
 <span><span class="co">##  basket_9 basket_10 </span></span>
 <span><span class="co">##      2000      2000</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_richn"</span>           <span class="co"># Species richness per assemblage</span></span></code></pre></div>
 <pre><code><span><span class="co">##  basket_1  basket_2  basket_3  basket_4  basket_5  basket_6  basket_7  basket_8 </span></span>
 <span><span class="co">##         8         8         8         8         8         8         8         8 </span></span>
 <span><span class="co">##  basket_9 basket_10 </span></span>
 <span><span class="co">##         8         8</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asb_sp_fruits_summ</span><span class="op">$</span><span class="st">"asb_sp_nm"</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>             <span class="co"># Names of species present in the first assemblage</span></span></code></pre></div>
 <pre><code><span><span class="co">##         apple        banana        cherry         lemon         melon </span></span>
 <span><span class="co">##             1             1             1             1             1 </span></span>
@@ -623,7 +626,7 @@ computed.</p>
 arguments:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sp_dist_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/funct.dist.html">funct.dist</a></span><span class="op">(</span></span>
 <span>  sp_tr         <span class="op">=</span> <span class="va">fruits_traits</span>,</span>
 <span>  tr_cat        <span class="op">=</span> <span class="va">fruits_traits_cat</span>,</span>
@@ -695,7 +698,7 @@ might have memory issues).</strong></p>
 <p><br></p>
 <p>This function returns a <code>dist</code> object with traits-based
 distances between all pairs of species:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">sp_dist_fruits</span>, <span class="fl">3</span><span class="op">)</span>                 <span class="co"># Output of the function mFD::funct.dist()</span></span></code></pre></div>
 <pre><code><span><span class="co">##               apple apricot banana currant blackberry blueberry cherry grape</span></span>
 <span><span class="co">## apricot       0.166                                                         </span></span>
@@ -819,7 +822,7 @@ functional space (extension of <a href="https://onlinelibrary.wiley.com/doi/full
 <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fspaces_quality_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span>
 <span>  sp_dist             <span class="op">=</span> <span class="va">sp_dist_fruits</span>,</span>
 <span>  maxdim_pcoa         <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -884,7 +887,7 @@ package.</li>
 <li>a data frame gathering for each space (in rows), values of quality
 metric(s) (in columns)</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="st">"quality_fspaces"</span>, <span class="fl">3</span><span class="op">)</span>            <span class="co"># Quality metrics of spaces</span></span></code></pre></div>
 <pre><code><span><span class="co">##                mad</span></span>
 <span><span class="co">## pcoa_1d      0.150</span></span>
@@ -929,7 +932,7 @@ be able to run the plots, please update the <code>patchwork</code>
 package to vers. 1.2.0 at least.</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.plot.html">quality.fspaces.plot</a></span><span class="op">(</span></span>
 <span>  fspaces_quality            <span class="op">=</span> <span class="va">fspaces_quality_fruits</span>,</span>
 <span>  quality_metric             <span class="op">=</span> <span class="st">"mad"</span>,</span>
@@ -988,7 +991,7 @@ of the (“scaled”) distance in the functional space. It is the deviation
 that is taken into account for computing the quality metric.</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.plot.html">quality.fspaces.plot</a></span><span class="op">(</span></span>
 <span>  fspaces_quality            <span class="op">=</span> <span class="va">fspaces_quality_fruits</span>,</span>
 <span>  quality_metric             <span class="op">=</span> <span class="st">"mad"</span>,</span>
@@ -1044,7 +1047,7 @@ the output of the <code><a href="../reference/quality.fspaces.html">mFD::quality
 <br>
 </li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"sp_pc_coord"</span></span></code></pre></div>
 <p><br></p>
 <ul>
@@ -1057,7 +1060,7 @@ traits.</li>
 </ul>
 <p><code><a href="../reference/traits.faxes.cor.html">mFD::traits.faxes.cor</a></code> works as follows: <br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fruits_tr_faxes</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/traits.faxes.cor.html">traits.faxes.cor</a></span><span class="op">(</span></span>
 <span>  sp_tr          <span class="op">=</span> <span class="va">fruits_traits</span>, </span>
 <span>  sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>, </span>
@@ -1065,7 +1068,7 @@ traits.</li>
 <p><br> We can print only traits with significant effect on position
 along one of the axis and look at the plots:</p>
 <p><br></p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Print traits with significant effect:</span></span>
 <span><span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_stat"</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_stat"</span><span class="op">$</span><span class="st">"p.value"</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##      trait axis           test stat value p.value</span></span>
@@ -1078,7 +1081,7 @@ along one of the axis and look at the plots:</p>
 <span><span class="co">## 13    Seed  PC1 Kruskal-Wallis eta2 0.201  0.0402</span></span>
 <span><span class="co">## 14    Seed  PC2 Kruskal-Wallis eta2 0.593  0.0005</span></span>
 <span><span class="co">## 20   Sugar  PC4   Linear Model   r2 0.682  0.0000</span></span></code></pre>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Return plots:</span></span>
 <span><span class="va">fruits_tr_faxes</span><span class="op">$</span><span class="st">"tr_faxes_plot"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-23-1.png" width="1152" style="display: block; margin: auto;"></p>
@@ -1122,7 +1125,7 @@ below). The whole <code>sp_faxes_coord</code> can be retrieved through
 the output of the <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function:</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sp_faxes_coord_fruits</span> <span class="op">&lt;-</span> <span class="va">fspaces_quality_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"sp_pc_coord"</span></span></code></pre></div>
 <p><br></p>
 <ul>
@@ -1167,7 +1170,7 @@ understandable for the user than R error messages
 the <strong>first four PCoA axis</strong>:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">big_plot</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/funct.space.plot.html">funct.space.plot</a></span><span class="op">(</span></span>
 <span>  sp_faxes_coord  <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>  faxes           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span>,</span>
@@ -1201,7 +1204,7 @@ scales. Species beign vertices of the 4D convex hull are in purple.</p>
 <p>Here are the plots for the <em>fruits &amp; baskets</em> dataset for
 the <strong>first ten PCoA axis</strong>:</p>
 <p><br></p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">big_plot</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/funct.space.plot.html">funct.space.plot</a></span><span class="op">(</span></span>
 <span>  sp_faxes_coord  <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span>,</span>
 <span>  faxes           <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -1249,7 +1252,7 @@ space<a class="anchor" aria-label="anchor" href="#functional-alpha-diversity-ind
 many alpha FD indices:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">alpha_fd_indices_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.fd.multidim.html">alpha.fd.multidim</a></span><span class="op">(</span></span>
 <span>  sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>  asb_sp_w         <span class="op">=</span> <span class="va">baskets_fruits_weights</span>,</span>
@@ -1341,7 +1344,7 @@ names</strong></p>
 assemblage</strong> (for <code>FIde</code> values, there are as many
 columns as there are axes to the studied functional space).</li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fd_ind_values_fruits</span> <span class="op">&lt;-</span> <span class="va">alpha_fd_indices_fruits</span><span class="op">$</span><span class="st">"functional_diversity_indices"</span></span>
 <span><span class="va">fd_ind_values_fruits</span></span></code></pre></div>
 <pre><code><span><span class="co">##           sp_richn      fdis      fmpd      fnnd     feve        fric      fdiv</span></span>
@@ -1374,14 +1377,14 @@ identity of the nearest neighbour, distances to the centroid, etc. The
 user does not have to directly use it but it will be useful if FD
 indices are then plotted. It can be retrieved through:</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">details_list_fruits</span> <span class="op">&lt;-</span> <span class="va">alpha_fd_indices_fruits</span><span class="op">$</span><span class="st">"details"</span></span></code></pre></div>
 <p><br></p>
 <p>Then, you can plot functional indices using the
 <code><a href="../reference/alpha.multidim.plot.html">mFD::alpha.multidim.plot()</a></code> function as follows:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/alpha.multidim.plot.html">alpha.multidim.plot</a></span><span class="op">(</span></span>
 <span>  output_alpha_fd_multidim <span class="op">=</span> <span class="va">alpha_fd_indices_fruits</span>,</span>
 <span>  plot_asb_nm              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_5"</span><span class="op">)</span>,</span>
@@ -1461,7 +1464,7 @@ understandable for the user than R error messages
 convex-hull of the studied assemblages and the white shape reflects the
 convex-hull of the global pool of species:</li>
 </ul>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fric"</span><span class="op">$</span><span class="st">"patchwork"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-31-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1473,7 +1476,7 @@ traits) of each assemblages are plotted as a square and a triangle.
 Species of each assemblage have different size given their relative
 weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fdiv"</span><span class="op">$</span><span class="st">"patchwork"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-32-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1485,7 +1488,7 @@ global pool (i.e center of the functional space). the center of gravity
 is plotted with a purple diamond. Species of each assemblage have
 different size given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fspe"</span><span class="op">$</span><span class="st">"patchwork"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-33-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1498,7 +1501,7 @@ gravity of each assemblage is plotted using a square and a triangle.
 Species of each assemblage havedifferent size given their relative
 weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fdis"</span><span class="op">$</span><span class="st">"patchwork"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-34-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1509,7 +1512,7 @@ average position of species of each assemblage along each axis. Species
 of each assemblage have different size given their relative weight into
 the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fide"</span><span class="op">$</span><span class="st">"patchwork"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-35-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1520,7 +1523,7 @@ Minimum Spanning Tree linking species of each assemblage. Species of
 each assemblage have different size given their relative weight into the
 assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"feve"</span><span class="op">$</span><span class="st">"patchwork"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-36-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1531,7 +1534,7 @@ distances of each species from each assemblage to the nearest species in
 the global species pool. Species of each assemblage have different size
 given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fori"</span><span class="op">$</span><span class="st">"patchwork"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-37-1.png" width="1920" style="display: block; margin: auto;"></p>
 <ul>
@@ -1541,7 +1544,7 @@ distances of each species from each assemblage to the nearest species in
 the studied assemblage. Species of each assemblage have different size
 given their relative weight into the assemblage.</li>
 </ul>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plots_alpha</span><span class="op">$</span><span class="st">"fnnd"</span><span class="op">$</span><span class="st">"patchwork"</span></span></code></pre></div>
 <p><img src="mFD_general_workflow_files/figure-html/unnamed-chunk-38-1.png" width="1920" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -1577,7 +1580,7 @@ other.</p>
 following arguments:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">beta_fd_indices_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.fd.multidim.html">beta.fd.multidim</a></span><span class="op">(</span></span>
 <span>      sp_faxes_coord   <span class="op">=</span> <span class="va">sp_faxes_coord_fruits</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>, <span class="st">"PC4"</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>      asb_sp_occ       <span class="op">=</span> <span class="va">asb_sp_fruits_occ</span>,</span>
@@ -1636,7 +1639,7 @@ hulls shaping each of the two species assemblages.</p>
 user to chose graphical options. Arguments are listed below:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">beta_plot_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/beta.multidim.plot.html">beta.multidim.plot</a></span><span class="op">(</span></span>
 <span>  output_beta_fd_multidim <span class="op">=</span> <span class="va">beta_fd_indices_fruits</span>,</span>
 <span>  plot_asb_nm             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span>, <span class="st">"basket_4"</span><span class="op">)</span>,</span>
@@ -1747,7 +1750,7 @@ high functional vulnerability in global fish faunas on tropical reefs.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

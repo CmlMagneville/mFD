@@ -5,6 +5,7 @@
 <url><loc>https://cmlmagneville.github.io/mFD/articles/Compute_functional_hill_indices.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/articles/Continuous_traits_framework.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/articles/Customised_plots.html</loc></url>
+<url><loc>https://cmlmagneville.github.io/mFD/articles/FAQ.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/articles/index.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html</loc></url>
@@ -27,11 +28,14 @@
 <url><loc>https://cmlmagneville.github.io/mFD/reference/dist.to.df.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fdis.plot.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fdiv.plot.html</loc></url>
+<url><loc>https://cmlmagneville.github.io/mFD/reference/fe.sp.df.computation.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/feve.plot.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fide.plot.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fnnd.plot.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fori.plot.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fric.plot.html</loc></url>
+<url><loc>https://cmlmagneville.github.io/mFD/reference/from.fecoord.to.spcoord.html</loc></url>
+<url><loc>https://cmlmagneville.github.io/mFD/reference/from.spfe.to.feasb.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fruits_traits.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fruits_traits_cat.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/fspe.plot.html</loc></url>
@@ -45,6 +49,7 @@
 <url><loc>https://cmlmagneville.github.io/mFD/reference/pool.plot.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/quality.fspaces.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/quality.fspaces.plot.html</loc></url>
+<url><loc>https://cmlmagneville.github.io/mFD/reference/search.sp.nm.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/sp.filter.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/sp.to.fe.html</loc></url>
 <url><loc>https://cmlmagneville.github.io/mFD/reference/sp.tr.summary.html</loc></url>

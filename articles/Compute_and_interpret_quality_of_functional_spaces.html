@@ -8,8 +8,8 @@
 <title>Compute and Interpret Quality of Functional Spaces • mFD</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Compute and Interpret Quality of Functional Spaces">
 </head>
 <body>
@@ -39,6 +39,7 @@
     <li><a class="dropdown-item" href="../articles/How_to_deal_with_Functional_Entities.html">How to Deal With Functional Entities</a></li>
     <li><a class="dropdown-item" href="../articles/Compute_functional_hill_indices.html">Compute Functional Diversity Hill Indices</a></li>
     <li><a class="dropdown-item" href="../articles/Customised_plots.html">Customised plots</a></li>
+    <li><a class="dropdown-item" href="../articles/FAQ.html">FAQ</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -65,7 +66,7 @@
                         <h4 data-toc-skip class="author">Sebastien
 Villeger</h4>
             
-            <h4 data-toc-skip class="date">2024-07-26</h4>
+            <h4 data-toc-skip class="date">2024-12-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/main/vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd" class="external-link"><code>vignettes/Compute_and_interpret_quality_of_functional_spaces.Rmd</code></a></small>
       <div class="d-none name"><code>Compute_and_interpret_quality_of_functional_spaces.Rmd</code></div>
@@ -274,9 +275,11 @@ General Workflow</a> tutorial):</p>
 <span>  scale_euclid  <span class="op">=</span> <span class="st">"noscale"</span>,</span>
 <span>  ordinal_var   <span class="op">=</span> <span class="st">"classic"</span>,</span>
 <span>  weight_type   <span class="op">=</span> <span class="st">"equal"</span>,</span>
-<span>  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># sum up the distance matrix:</span></span>
+<span>  stop_if_NA    <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Error in get(paste0(generic, ".", class), envir = get_method_env()) : </span></span>
+<span><span class="co">##   object 'type_sum.accel' not found</span></span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># sum up the distance matrix:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">dist_fruits</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##      apple           apricot           banana          currant      </span></span>
 <span><span class="co">##  Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  </span></span>
@@ -331,7 +334,7 @@ General Workflow</a> tutorial):</p>
 <p>The Gower distances range from &lt; 0.01 to 0.790. For instance,
 Gower distances between blackberry and 3 other fruits are:</p>
 <p><br></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># retrieve fruits names:</span></span>
 <span><span class="va">ex_blackberry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blackberry"</span>,<span class="st">"currant"</span>,<span class="st">"cherry"</span>,<span class="st">"banana"</span><span class="op">)</span></span>
 <span></span>
@@ -346,7 +349,7 @@ Gower distances between blackberry and 3 other fruits are:</p>
 <p>Those observed differences in values are intuitively related to trait
 values of these 4 species:</p>
 <p><br></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fruits_traits</span><span class="op">[</span><span class="va">ex_blackberry</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##               Size Plant   Climate Seed Sugar</span></span>
 <span><span class="co">## blackberry   1-3cm shrub temperate  pip  48.8</span></span>
@@ -385,7 +388,7 @@ scaling)</em> (details: <a href="https://cmlmagneville.github.io/mFD/articles/mF
 General Workflow</a> tutorial, <strong>step 4.1</strong>).</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># use quality.fpscaes function to compute quality metrics:</span></span>
 <span><span class="va">quality_fspaces_fruits</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span>
 <span>  sp_dist             <span class="op">=</span> <span class="va">dist_fruits</span>,</span>
@@ -396,7 +399,7 @@ General Workflow</a> tutorial, <strong>step 4.1</strong>).</p>
 <pre><code><span><span class="co">## Registered S3 method overwritten by 'dendextend':</span></span>
 <span><span class="co">##   method     from </span></span>
 <span><span class="co">##   rev.hclust vegan</span></span></code></pre>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># display the table gathering quality metrics:</span></span>
 <span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"quality_fspaces"</span></span></code></pre></div>
 <pre><code><span><span class="co">##                     mad       rmsd mad_scaled rmsd_scaled</span></span>
@@ -410,7 +413,7 @@ General Workflow</a> tutorial, <strong>step 4.1</strong>).</p>
 <span><span class="co">## pcoa_8d      0.06353017 0.07314032 0.04796894  0.06039689</span></span>
 <span><span class="co">## pcoa_9d      0.06464350 0.07410817 0.04882052  0.06119030</span></span>
 <span><span class="co">## tree_average 0.08204566 0.10937029 0.19229494  0.22468355</span></span></code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># retrieve the functional space associated with minimal quality metric: </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="va">quality_fspaces</span>, <span class="fl">2</span>, <span class="va">which.min</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##         mad        rmsd  mad_scaled rmsd_scaled </span></span>
@@ -422,7 +425,7 @@ indices.</p>
 <p>Then using the output of <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code>, we plot
 quality metrics of each space:</p>
 <p><br></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://magrittr.tidyverse.org" class="external-link">"magrittr"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"quality_fspaces"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -455,7 +458,7 @@ absolute-deviation metric.</p>
 <code><a href="../reference/quality.fspaces.plot.html">mFD::quality.fspaces.plot()</a></code> function:</p>
 <p><br></p>
 <p><strong>USAGE</strong></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.plot.html">quality.fspaces.plot</a></span><span class="op">(</span></span>
 <span>  fspaces_quality <span class="op">=</span> <span class="va">quality_fspaces_fruits</span>, </span>
 <span>  quality_metric  <span class="op">=</span> <span class="st">"mad"</span>,</span>
@@ -484,7 +487,7 @@ different sides of the tree root having all the maximal distance.</p>
 <p>For instance, let’s consider the 3 fruits: lemon, lime and
 cherry:</p>
 <p><br></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get fruits traits:</span></span>
 <span><span class="va">fruits_traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cherry"</span>, <span class="st">"lime"</span>, <span class="st">"lemon"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##          Size Plant     Climate Seed Sugar</span></span>
@@ -497,7 +500,7 @@ cherry. Now let’s have a look at their pairwise distances: Gower
 distance on trait values, Euclidean distance in the 4 dimensions PCoA
 space and cophenetic distance on the UPGMA dendrogram.</p>
 <p><br></p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sp.x</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cherry"</span>, <span class="st">"lime"</span>, <span class="st">"lemon"</span><span class="op">)</span> <span class="op">&amp;</span> </span>
 <span>                <span class="va">sp.y</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cherry"</span>, <span class="st">"lime"</span>, <span class="st">"lemon"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -521,7 +524,7 @@ similar trait values</strong>.</p>
 <p>Now let’s have look to the distance between pineapple and other
 fruits:</p>
 <p><br></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sp.x</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pineapple"</span><span class="op">)</span> <span class="op">|</span> <span class="va">sp.y</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pineapple"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>fruit <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html" class="external-link">str_replace_all</a></span><span class="op">(</span>string <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">sp.x</span>, <span class="st">""</span>, <span class="va">sp.y</span><span class="op">)</span>,</span>
@@ -543,10 +546,10 @@ of the dendrogram, <em>i.e.</em> a species is at the same distance to
 all species not on the same main branch (<em>i.e.</em> descending from
 the root). Let’s plot of UPGMA dendrogram:</p>
 <p><br></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"dendro"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/dendrogram.html" class="external-link">as.dendrogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">dendextend</span><span class="fu">::</span><span class="fu"><a href="http://talgalili.github.io/dendextend/reference/plot_horiz.dendrogram.html" class="external-link">plot_horiz.dendrogram</a></span><span class="op">(</span>side <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">dendextend</span><span class="fu">::</span><span class="fu"><a href="https://talgalili.github.io/dendextend/reference/plot_horiz.dendrogram.html" class="external-link">plot_horiz.dendrogram</a></span><span class="op">(</span>side <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Compute_and_interpret_quality_of_functional_spaces_files/figure-html/unnamed-chunk-13-1.png" width="1152" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p>We notice that pineapple is in the ‘outer’ group with other tropical
@@ -562,7 +565,7 @@ computing PcoA<a class="anchor" aria-label="anchor" href="#focus-on-the-effect-o
 non-continuous traits is that distance matrix is not Euclidean. Let’s
 have a look:</p>
 <p><br></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># check if distance matrix checks Euclidean properties:</span></span>
 <span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_trdist"</span><span class="op">$</span><span class="st">"trdist_euclidean"</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] FALSE</span></span></code></pre>
@@ -576,7 +579,7 @@ with negative eigenvalues. Those axes are meaningless and removed by
 default by the <code><a href="https://rdrr.io/pkg/ape/man/pcoa.html" class="external-link">ape::pcoa()</a></code> function used in the
 <code><a href="../reference/quality.fspaces.html">mFD::quality.fspaces()</a></code> function.</p>
 <p><br></p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># retrieve eigen values: </span></span>
 <span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pc_eigenvalues"</span></span></code></pre></div>
 <pre><code><span><span class="co">##   Eigenvalues Relative_eig Rel_corr_eig Broken_stick Cum_corr_eig</span></span>
@@ -614,7 +617,7 @@ varies non-linearly with raw distances</strong>.</p>
 <p>If we look at raw and square-rooted Gower distance between blackberry
 and 3 other species:</p>
 <p><br></p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">sp.x</span>, <span class="va">sp.y</span>, Gower <span class="op">=</span> <span class="va">tr</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sqrt_Gower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">Gower</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -637,7 +640,7 @@ of the high slope of the square-root function (close to 0).</p>
 <p>If we apply <code>mFD::quality.fspace()</code> on the square-root of
 Gower distance:</p>
 <p><br></p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute quality metrics with square-root transformed distances:</span></span>
 <span><span class="va">quality_fspaces_fruits_sqrtgower</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/quality.fspaces.html">quality.fspaces</a></span><span class="op">(</span></span>
 <span>  sp_dist             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">dist_fruits</span><span class="op">)</span>,</span>
@@ -649,7 +652,7 @@ Gower distance:</p>
 <span><span class="co"># check if distance matrix checks Euclidean properties:</span></span>
 <span><span class="va">quality_fspaces_fruits_sqrtgower</span><span class="op">$</span><span class="st">"details_trdist"</span><span class="op">$</span><span class="st">"trdist_euclidean"</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># input distance is now Euclidean</span></span>
 <span></span>
 <span><span class="co"># get mean Absolute Deviation:</span></span>
@@ -687,7 +690,7 @@ metric) decreases with the number of axes down to 0.</p>
 Gower distance. So let’s compare deviation between trait-based Gower
 distance and Euclidean distance in the 24D PCoA space:</p>
 <p><br></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">quality_fspaces_fruits</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">sp.x</span>, <span class="va">sp.y</span>, Gower_distance <span class="op">=</span> <span class="va">tr</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Eucli_dist_24D_sqrt <span class="op">=</span> <span class="va">quality_fspaces_fruits_sqrtgower</span><span class="op">$</span><span class="st">"details_fspaces"</span><span class="op">$</span><span class="st">"pairsp_fspaces_dist"</span><span class="op">$</span><span class="st">"pcoa_24d"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -732,7 +735,7 @@ with 3 categorical traits (2 modalities each), so there are 8 unique
 combinations of trait values and the 28 species pairs are sharing 0, 1,
 or 2 trait values:</p>
 <p><br></p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a new dataset:</span></span>
 <span><span class="va">sp_tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  tra <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -750,7 +753,7 @@ or 2 trait values:</p>
 <span><span class="co">## sp6   B   N   Y</span></span>
 <span><span class="co">## sp7   A   N   X</span></span>
 <span><span class="co">## sp8   B   N   X</span></span></code></pre>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute Gower distance between all pairs of species:</span></span>
 <span><span class="va">dist_gower</span> <span class="op">&lt;-</span> <span class="fu">cluster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cluster/man/daisy.html" class="external-link">daisy</a></span><span class="op">(</span><span class="va">sp_tr</span>, metric <span class="op">=</span> <span class="st">"gower"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">dist_gower</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
@@ -813,7 +816,7 @@ Biogeography</em>, <strong>24</strong>, 728-740.</li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
