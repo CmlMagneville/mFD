@@ -16,6 +16,9 @@
     <loc>https://cmlmagneville.github.io/mFD/articles/Customised_plots.html</loc>
   </url>
   <url>
+    <loc>https://cmlmagneville.github.io/mFD/articles/FAQ.html</loc>
+  </url>
+  <url>
     <loc>https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html</loc>
   </url>
   <url>
@@ -85,6 +88,9 @@
     <loc>https://cmlmagneville.github.io/mFD/reference/fdiv.plot.html</loc>
   </url>
   <url>
+    <loc>https://cmlmagneville.github.io/mFD/reference/fe.sp.df.computation.html</loc>
+  </url>
+  <url>
     <loc>https://cmlmagneville.github.io/mFD/reference/feve.plot.html</loc>
   </url>
   <url>
@@ -98,6 +104,12 @@
   </url>
   <url>
     <loc>https://cmlmagneville.github.io/mFD/reference/fric.plot.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/reference/from.fecoord.to.spcoord.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/reference/from.spfe.to.feasb.html</loc>
   </url>
   <url>
     <loc>https://cmlmagneville.github.io/mFD/reference/fruits_traits.html</loc>
@@ -137,6 +149,9 @@
   </url>
   <url>
     <loc>https://cmlmagneville.github.io/mFD/reference/quality.fspaces.plot.html</loc>
+  </url>
+  <url>
+    <loc>https://cmlmagneville.github.io/mFD/reference/search.sp.nm.html</loc>
   </url>
   <url>
     <loc>https://cmlmagneville.github.io/mFD/reference/sp.filter.html</loc>

@@ -1,4 +1,11 @@
 # mFD (development version)
+* Include new functions to deal with FEs:
+* from.spfe.to.feasb() which computes the assemblages × FEs dataframe with outputs of the mFD::sp.to.fe() function
+* fe.sp.df.computation() which creates a dataframe linking FEs names to species names with outputs of the mFD::sp.to.fe() function
+* search.sp.nm() which finds a species name given an FE name
+* from.fecoord.to.spcoord() function which converts the dataframe of FEs coordinates to one with species coordinates.
+* Update the website with a FAQ based on user's questions 
+
 
 # mFD 1.0.7
 * Traits names in the tr_cat dataframe must be the same that in the sp_tr

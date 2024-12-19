@@ -1,0 +1,215 @@
+---
+title: "FAQ"
+author: "Camille Magneville"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FAQ}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+# About this FAQ
+
+<br />
+
+We have compiled the most frequently asked questions we have received since the 
+launch of the package in 2021, about its use and the multidimensional space approach for computing functional diversity indices.
+
+If you have any questions or encounter issues while using the `mFD` package **after** reading this FAQ and the tutorials on our [website](https://cmlmagneville.github.io/`mFD`/index.html), email me (camille.magneville@gmail.com).
+
+**Disclaimer/Reminder:** While designing the package we did our best to code internal checks about key inputs and write detailed warning or error messages which appear in red color in the R console. <span style="color: darkcyan;">They should not alarm (stress) you but rather help you understand what needs attention or what might be wrong with your input.</span>
+
+<br />
+
+# <span style="color: darkcyan;">Functional traits</span>
+
+<br />
+
+## What is the difference between nominal and ordinal traits?
+
+**Nominal traits are used to describe features that could be biologically categorized**, such as growth form in plants or diet for animals. Hence, nominal coding implies all categories are equally distinct from each other.
+
+**Ordinal traits are coded using discrete values like nominal traits, but the categories have a meaningful ranking**, either because the trait is intrinsically continuous (e.g. body size being categorized into small, medium, large bins), or because it is ecologically relevant to consider ordered categories. For example, if the period of activity of animals is coded as “diurnal”, “nocturnal” or “both”, it is relevant to consider that generalist species “both” are functionally intermediate between the two specialists “diurnal” and “nocturnal”.
+
+This distinction is important for calculating functional distances using the Gower metric (e.g., with the `mFD`::funct.dist() function). In fact, using nominal traits species with different trait values will have the same distance between each other, while using ordinal traits, species pairs with neighboring categories (e.g., "small" and "medium" size) will have lower distances than species pairs with distant categories (e.g., "small" and "large"). Ordinal traits are thus treated more similarly to continuous traits than nominal ones.
+
+**Trait coding could vary across case studies** depending on the categories considered. For example, if diet is coded using categories describing main preys (e.g. leaves, seeds, fruits, invertebrates, vertebrates) nominal coding is the most relevant, while if diet is coded using broader categories actually reflecting trophic levels (e.g. plants, plants & animals, animals) it could be considered as an ordinal trait. Note that if there are only two categories, coding the trait as ordinal or ordinal has no impact.
+
+The `mFD::funct.dist()` function, uses the gawdis() function (from the gawdis package)(https://rdrr.io/cran/gawdis/man/gawdis.html) which handles ordinal traits with various methods. Using the `mFD::funct.dist()` function, you are able to choose among three methods commonly used, which can be: `classic` which treats ordinal variables as continuous variables, `metric` which refers to Eq. 3 of Podani (1999), `podani` which refers to Eqs. 2a-b of Podani (1999). The last two options convert ordinal variables to ranks. The `mFD::funct_dist()` default is `classic` for which the final distance between two species doesn’t depend on the traits values of the other species (as it is the case for the two other options).
+
+<br />
+
+## How should I handle my data if it shows correlated traits?
+
+If two traits are highly correlated (> 0.8), we advise removing one of the two traits to not overweight this facet. We suggest removing the trait which is more correlated to the other traits or the one which ecologically makes least sense, if any. If traits are moderately correlated (0.6 < r < 0.8), using a PCA-based functional space will ensure functional axes are not correlated to each other.
+
+<br />
+
+## Intraspecific variation in traits
+
+<span style="color: darkcyan;">**I collected species traits in my studied sites, how can I incorporate these traits data measured at the site level into the `mFD` framework?**</span>
+
+To be able to eventually compare values of FD indices between assemblages, it is compulsory to have all the FD indices computed in the same functional space built on all species present in all your sites (just like when assessing phylogenetic diversity on a single tree linking all species). 
+
+Hence, when a study aims to account for intraspecific variability, you could consider your combinations of species_site as the "functional" units for FD computation. So you will have a `species_site*traits` matrix instead of the `species*traits` in our tutorial example, and similarly a `sites*species_site` matrix with abundance. In these matrices, trait values and abundances should be averaged across replicates for each site.
+
+<br />
+
+## My species*traits data contains NA, what should I do?
+
+If you were not able to measure/get trait values for all the studied species and hence have a `species*traits` dataframe containing NA, some functions of `mFD` will return an error message. Indeed, **while having NA values does not prevent from computing Gower distance, such missing values often yield patterns of species pairwise distance.** In fact, distance between species is computed using only traits which have values for both species within a pair, hence two species could have a distance of 0 if they have the same trait values for traits without NA, while having  different distances to a third species depending on values of traits with shared NA. So we suggest imputing missing trait values using the most relevant methods depending on the study case (cf https://onlinelibrary.wiley.com/doi/full/10.1111/geb.13185). 
+
+If you decide to continue the functional analysis with NA, you will have to set the argument stop_if_NA to FALSE otherwise the process will stop. 
+
+<br />
+
+## PCoA and negative eigenvalues
+
+<span style="color: darkcyan;">**I am computing the Gower distance between species, as my data includes quantitative, categorical, and fuzzy traits. However, applying PCoA with Gower distances can lead to negative eigenvalues, and the `mFD` package does not support corrections like Lingoes or Cailliez. What should I do? **</span>
+
+As ecologists, we know that collecting trait values for all our studied species is time consuming so eventually we want to be sure that **the FD indices are computed in a space that faithfully represents those traits values**, hence the Gower distance computed on them. 
+
+Faithfulness is measured with deviation metrics such as mAD or rmSD which compare raw distances based on traits values and distances in the functional space. Based on simulations, [Maire et al (2015)](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299) demonstrated that there is always a faithful space (with a low mAD) without applying a correction (note that the first PC axes kept to build such faithful spaces have always positive eigenvalues). 
+
+Even if square root transformation of distance before PCoA prevents negative eigenvalues, it actually **alters the actual distances between species that are based on trait values you took a lot of care (and effort/time) to accurately measure/retrieve** .Similarly, Cailliez correction also modifies distances by adding a constant to all values, affecting the relative differences between them.
+Therefore, since our goal is to ensure that FD indices are computed in a space that faithfully represents the raw trait values, we do not recommend applying any corrections.
+
+<br />
+
+# <span style="color: darkcyan;">Functional space</span>
+
+<br />
+
+## Overlaying traits as vectors in the functional space
+
+<span style="color: darkcyan;">**Is there an inbuilt function to overlay traits as vectors in the PCoA representing the multidimensional functional space using `mFD::funct.space.plot()` instead of the boxplot produced by `mFD::trait.faxes.corr()`?**</span>
+
+No, adding vectors to the PCoA space to show how traits relate to axes is not possible in the `mFD` package. This approach is typically used with PCA, but PCoA differs from PCA, making it complex to compute and represent actual vector lengths. To check the correlation between axes and traits in the `mFD` package, we recommend using the `mFD::trait.faxes.corr()` function.
+
+<br />
+
+## Cumulative variance explained by PCoA  axes
+
+<span style="color: darkcyan;">**How can I check the cumulative variance explained by the PCoA axes in the functional space? Where can I access the variance explained by each PCoA axis? (as usually done with a PCA)**</span>
+
+The goal of PCA is to find axes which reflect as best as possible traits variability. Relying on a matrix of correlation between traits, it is looking for axes which best reflect traits variability, and thus reduces the traits number to a lower number of variables, called principal components.
+
+Unlike PCA, the goal of PCoA is to optimize distances between samples - here species. Relying on a distance matrix (here, distances between species based on their traits), it optimizes the representation of these distances, to visualize them in a low-dimensional space, without too much loss of information. As in a PCA, the first axis explains as much of the variation as possible, the second axis explains as much of the remaining variation as possible etc. However, while decomposing distances in principal components, some eigenvalues can have negative values - they represent possible mathematical axes which are difficult to envision. As explained earlier (FAQ - Part “Functional traits”), `mFD` doesn’t include an option to correct for these negative eigenvalues as these options alter trait-based distances, thus the total variation explained by PCoA axes might not faithfully represent the total variation captured by all axes. 
+
+We therefore recommend using the “mad” metric to assess the quality of the functional space, as this metric shows how much trait-based distances are faithfully represented in the multidimensional space.
+
+<br />
+
+## Chosing the number of functional axes
+
+<span style="color: darkcyan;">**The output of the `mFD::quality.fspaces()` function indicates that the best functional space uses 5 axes. However, some of my assemblages have 5 species or fewer, and using the 5D space would require me to exclude these small assemblages. What should I do?**</span>
+
+**Choosing a functional space is always a trade-off between its quality and being able to compute functional indices on most of the assemblages given the number of species they have**. Some indices, like FRic and FDiv, can only be computed if the number of species is greater than the number of functional axes. If you want to compute these indices, the best quality functional space might not be your best option. For example, if the 5D space has the highest quality but some of your assemblages have 5 species or fewer, consider the quality of the 4D space and use it, if it still maintains good quality. While making this trade-off, remember that 2D spaces generally have poor quality (cf. [Maire et al. (2015)](https://onlinelibrary.wiley.com/doi/full/10.1111/geb.12299).
+
+<br />
+
+# <span style="color: darkcyan;">Functional Entities vs Species frameworks</span>
+
+<br />
+
+## How should I choose between working with Functional Entities or Species?
+
+Functional Entities (FEs) are groups of species sharing the same traits combination, in other words, the functional distance between species pairs belonging to a given FE is zero. 
+
+The `mFD::funct.dist()` function returns a warning when at least one species pair has a functional distance which equals zero ("Functional distance between some species is equal to 0. You can choose to gather species into Functional Entities gathering species with similar traits values"). But whether or not you will work with FEs depends on how many species pairs have a functional distance equaling 0. If it doesn’t concern a lot of your species pairs, you can continue working with species, whereas if a substantial number of the species pairs have a functional distance equaling 0, you might want to work with FEs. 
+
+If you decide not to work with FEs but some of your species pairs have a functional distance equaling 0, keep in mind that you might encounter errors while computing functional indices, depending on the distribution of species within your assemblages. In fact, as species belonging to the same FE have the same position in the functional space, it could lead to problems while computing functional indices, for instance not being able to compute the convex-hull of Functional Richness if species delineating the assemblage have the same position in the functional space.
+
+<br />
+
+## Which indices can I compute with the Functional Entities framework and how? 
+
+When using Functional Entities (FEs), you can compute functional indices based on those described by Mouillot et al. (2014) (see our [tutorial](https://cmlmagneville.github.io/mFD/articles/How_to_deal_with_Functional_Entities.html), as well as alpha and beta metrics from [our general workflow tutorial](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html), including FRic, FDiv, FDis, FEve, FSpe, FMPD, FNND, FIde, and FORi.
+
+To work with Functional Entities, you need data frames similar to those used for species but with FEs information. Specifically, you need:
+
+* A FEs × assemblages matrix (assemblages in rows and FEs in columns)
+* A traits × FEs matrix (FEs in rows and traits in columns)
+
+To compute indices based on Functional Entities:
+
+* Use `mFD::sp.to.fe()` to group species into FEs and create the traits × FEs dataframe.
+* Build the assemblage × FEs dataframe using fe_nm, which lists which species belong to each FE, and the species × assemblages dataframe.
+* Compute functional distances between FEs with `mFD::funct.dist()`.
+* Follow the general workflow tutorial with the matrix of functional distances between FEs.
+
+We have added new functions in the development version of the `mFD` package to assist with these steps:
+
+* `mFD::from.spfe.to.feasb()`: Computes the assemblages × FEs dataframe with outputs of the `mFD`::sp.to.fe() function.
+* `mFD::fe.sp.df.computation()`: Creates a dataframe linking FEs names to species names with outputs of the `mFD`::sp.to.fe() function.
+* `mFD::search.sp.nm()`: Finds a species name given an FE name.
+* `mFD::from.fecoord.to.spcoord()`: Converts the dataframe of FEs coordinates to one with species coordinates.
+
+<br />
+
+# <span style="color: darkcyan;">Functional indices</span>
+
+<br />
+
+## Access functional specialisation and origianlity per species
+
+<span style="color: darkcyan;">**I computed functional specialization (FSpe) and originality (FOri) values for my assemblages using the `mFD::alpha.fd.multidim()` function. The outputs are the mean value of these indices per assemblage. How can I access these values per species?**</span>
+
+If you want to retrieve the distance to the nearest species of the global pool, use the output: `details$asb_dist_nn_pool` (which is computed only if you are computing the FOri index). If you want to retrieve the distance to the nearest species from a given assemblage, use the output: `details$asb_dist_nn_asb` (which is computed only if you are computing the FNND index)
+
+<br />
+
+## Fuzzy traits and alpha diversity
+
+<span style="color: darkcyan;">**My dataset includes 2 fuzzy traits and 2 non-fuzzy traits. In the provided tutorials, fuzzy traits are only used when calculating diversity indices based on Hill Numbers or Beta Diversity. Is this because the authors omitted fuzzy traits from the alpha diversity tutorial for simplicity, or is it not advisable to use fuzzy traits for calculating alpha diversity indices?**</span>
+
+We omitted fuzzy traits in the general workflow showing how to compute alpha and beta indices in a multidimensional space to keep the example simple.  The workflow does work with fuzzy traits.
+
+<br />
+
+## Fuzzy traits and Weights
+
+<span style="color: darkcyan;">**I’m using fuzzy traits and giving a weight for each modality. While computing the distance matrix with the `mFD::funct.dist()` function, a warning suggests omitting columns related to fuzzy traits due to uneven distribution. Since these traits are proportional values from 0 to 1 and sum to 1 with other columns for the same fuzzy trait, is it safe to ignore this warning?**</span>
+
+It's a warning message from the gawdis() function of the gawdis package. The warning is made based on a check for each trait modality, you can check the code [here](https://rdrr.io/cran/gawdis/src/R/gawdis.R#google_vignette) (last lines for the warning message). For more information you can read the gawdis package description and the [paper from De Bello](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13537). The `mFD` package, does not (yet) include this corrected-weight approach but if you want to use it, you can use the gawdis::gawdis() function instead of `mFD::funct.dist()` and use its outputs in other `mFD` functions.
+
+<br />
+
+## High beta diversity in functional space & low beta diversity using Hill numbers
+
+<span style="color: darkcyan;">**How can I explain a high beta diversity between assemblages in the multidimensional space and low functional beta diversity using the generalization of Hill numbers?**</span>
+
+The beta-diversity indices based on overlap of convex hulls (computed through `mFD::beta.fd.multidim())` and those based on distance between species (computed through `mFD::beta.fd.hill()`) are measuring different types of dissimilarity. Convex hulls account for the species with the most extreme coordinates, while Hill index accounts for position (and biomass if available) of all species. Hence they provide complementary indicators of how assemblages differ to each other.
+
+<br />
+
+## Beta FD Hill and pairs of sites
+
+<span style="color: darkcyan;">**The output of the `mFD::beta.fd.hill()` function is a distance matrix between assemblages. The [article presenting these indices](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecm.1343) states that one value of the beta metric is defined for all sites together. How can I link the outputs of the `mFD::beta.fd.hill()` functions to the overall values highlighted in the article?**</span>
+
+Gamma=alpha*beta decompositions are presented for the general case of N communities in Chao et al (2019). In the `mFD` package, we have coded the most common use for ecologists, which is N=2. Thus, the beta function calculates values for all possible pairs among the N. Gamma and alpha values are returned if store.details=TRUE is set. 
+
+<br />
+
+## What does "functionally equally dstinct species" mean?
+
+<span style="color: darkcyan;">**While reading the “Compute Functional Diversity Hill Indices”, I am struggling to understand the phrase "functionally equally distinct species". What does it mean?**</span>
+
+The "functionally equally distinct species" refers to the concept of Hill numbers (see Jost (2006) Ecology) that refers "to the number of equivalent species". The main point is that the higher the index, the higher the proportion of biomass on the most distant species. If FDq equals 1, it means that all species are functionally identical so it is like having a single "functional" unit. 
+
+<br />
+
+## Null values of Beta FD Hill
+
+<span style="color: darkcyan;">**I'm using the `mFD::beta.fd.hill()` function with presence-absence data and setting q = 0. However, the output only contains null values (beta_fd_q$q0 = 0). Why is this happening?**</span>
+
+In Chao's framework, the parameter tau is used to indicate that all species with a distance < tau are considered to be in the same functional unit (equivalent to species in taxonomy). You get 0 in your case, as even though the species have different trait values, they are similar to each other. If you want more sensitivity for q=0, you can set tau=min.
+
+<br />
+
+## How to plot species detected in both assemblages with a third color? 
+
+There is currently no option in the `mFD::alpha.multidim.plot()` function to do this directly. However, you can use the functions within `mFD::alpha.multidim.plot()` to achieve this by creating a "false" assemblage that includes species from both assemblages you want to plot. In the [following tutorial we have shown how to use these functions](https://cmlmagneville.github.io/mFD/articles/Customised_plots.html).
+
+

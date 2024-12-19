@@ -37,10 +37,15 @@ reference:
   desc: >
    These functions compute and plot functional indices based on FEs as in 
    `Mouillot et al. (2014)`. They compute/plot Functional Redundancy, 
-   Functional Overredundancy and Functional Vulnerability.
+   Functional Overredundancy and Functional Vulnerability. They also help to
+   work with FEs.
   contents:
   - alpha.fd.fe
   - alpha.fd.fe.plot
+  - fe.sp.df.computation
+  - from.fecoord.to.spcoord
+  - from.spfe.to.feasb
+  - search.sp.nm
 
 - subtitle: Based on Hill numbers
   desc: >
@@ -124,3 +129,4 @@ articles:
   - How_to_deal_with_Functional_Entities
   - Compute_functional_hill_indices
   - Customised_plots
+  - FAQ

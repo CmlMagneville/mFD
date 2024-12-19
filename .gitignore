@@ -7,3 +7,5 @@ doc
 Meta
 .DS_Store
 *.Rproj
+/doc/
+/Meta/
