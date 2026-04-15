@@ -101,7 +101,7 @@ We therefore recommend using the “mad” metric to assess the quality of the f
 
 <br />
 
-## Chosing the number of functional axes
+## Choosing the number of functional axes
 
 <span style="color: darkcyan;">**The output of the `mFD::quality.fspaces()` function indicates that the best functional space uses 5 axes. However, some of my assemblages have 5 species or fewer, and using the 5D space would require me to exclude these small assemblages. What should I do?**</span>
 
@@ -152,7 +152,7 @@ We have added new functions in the development version of the `mFD` package to a
 
 <br />
 
-## Access functional specialisation and origianlity per species
+## Access functional specialisation and originality per species
 
 <span style="color: darkcyan;">**I computed functional specialization (FSpe) and originality (FOri) values for my assemblages using the `mFD::alpha.fd.multidim()` function. The outputs are the mean value of these indices per assemblage. How can I access these values per species?**</span>
 
