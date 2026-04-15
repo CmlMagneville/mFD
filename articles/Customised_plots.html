@@ -66,7 +66,7 @@
                         <h4 data-toc-skip class="author">Camille
 Magneville</h4>
             
-            <h4 data-toc-skip class="date">2024-12-19</h4>
+            <h4 data-toc-skip class="date">2026-04-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/CmlMagneville/mFD/blob/main/vignettes/Customised_plots.Rmd" class="external-link"><code>vignettes/Customised_plots.Rmd</code></a></small>
       <div class="d-none name"><code>Customised_plots.Rmd</code></div>
@@ -496,9 +496,17 @@ background for PC1 and PC2 plot</span></p>
 <span><span class="co"># Plot background with grey backrgound:</span></span>
 <span><span class="va">plot_k</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/background.plot.html">background.plot</a></span><span class="op">(</span>range_faxes <span class="op">=</span> <span class="va">range_faxes</span>, </span>
 <span>                               faxes_nm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PC1"</span>, <span class="st">"PC2"</span><span class="op">)</span>,</span>
-<span>                               color_bg <span class="op">=</span> <span class="st">"grey95"</span><span class="op">)</span></span>
-<span><span class="va">plot_k</span></span></code></pre></div>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;"></p>
+<span>                               color_bg <span class="op">=</span> <span class="st">"grey95"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use the `linewidth` argument instead.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">mFD</span> package.</span></span>
+<span><span class="co">##   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/CmlMagneville/mFD/issues&gt;</span>.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot_k</span></span></code></pre></div>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
 <div class="section level4">
@@ -532,7 +540,7 @@ customized error messages and not R basic ones.</p></li>
 </ul>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve
 vertices coordinates along PC1 and PC2</span></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieve vertices coordinates along the two studied functional axes:</span></span>
 <span><span class="va">vert</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/vertices.html">vertices</a></span><span class="op">(</span>sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_xy</span>,  </span>
 <span>                      order_2D <span class="op">=</span> <span class="cn">FALSE</span>, </span>
@@ -589,7 +597,7 @@ used.</p></li>
 convex-hull, species &amp; vertices from the global pool (plot not used
 in the workflow of this tutorial because it is too complex to be able to
 easily read the final plot with more than two convex-hulls)</span></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_sp_vert</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/pool.plot.html">pool.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                             sp_coord2D <span class="op">=</span> <span class="va">sp_faxes_coord_xy</span>,</span>
 <span>                             vertices_nD <span class="op">=</span> <span class="va">vert</span>,</span>
@@ -606,12 +614,12 @@ easily read the final plot with more than two convex-hulls)</span></p>
 <span>                             color_vert <span class="op">=</span> <span class="st">"green"</span>,</span>
 <span>                             fill_vert <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span>
 <span><span class="va">plot_sp_vert</span></span></code></pre></div>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Let’s
 continue the workflow on how to plot more than two convex-hulls! Thus
 remove species otherwise the final plot will be difficult to read
 ;)</span></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_k</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/pool.plot.html">pool.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                             sp_coord2D <span class="op">=</span> <span class="va">sp_faxes_coord_xy</span>,</span>
 <span>                             vertices_nD <span class="op">=</span> <span class="va">vert</span>,</span>
@@ -628,7 +636,7 @@ remove species otherwise the final plot will be difficult to read
 <span>                             color_vert <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                             fill_vert <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="va">plot_k</span></span></code></pre></div>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
 <div class="section level4">
@@ -652,7 +660,7 @@ assemblages to plot and then the names of species being vertices.</p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve
 the coordinates of species belonging to basket_1, basket_6 and
 basket_10:</span></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># basket_1:</span></span>
 <span><span class="co">## filter species from basket_1:</span></span>
 <span><span class="va">sp_filter_basket1</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/sp.filter.html">sp.filter</a></span><span class="op">(</span>asb_nm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basket_1"</span><span class="op">)</span>,</span>
@@ -682,7 +690,7 @@ basket_10:</span></p>
 <p>Let’s have a look at the coordinates of species from
 <code>basket_1</code>: note that we are still working with the
 coordinates along the two studied functional axis PC1 and PC2</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sp_faxes_coord_basket1</span></span></code></pre></div>
 <pre><code><span><span class="co">##                         PC1           PC2</span></span>
 <span><span class="co">## apple          0.0055715265  0.0350421604</span></span>
@@ -697,7 +705,7 @@ coordinates along the two studied functional axis PC1 and PC2</p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Retrieve
 the names of species being vertices of basket_1, basket_6 and
 basket_10:</span></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># basket_1:</span></span>
 <span><span class="va">vert_nm_basket1</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/vertices.html">vertices</a></span><span class="op">(</span>sp_faxes_coord <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
 <span>                                       order_2D <span class="op">=</span> <span class="cn">TRUE</span>, </span>
@@ -756,7 +764,7 @@ same order than the asb_sp_coord_2D order</strong>. Can be set up to
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the
 convex-hulls of the three studied assemblages: only convex hulls with
 transparent surroundings, no species plotted</span></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                    asb_sp_coord2D <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
 <span>                                          <span class="st">"basket_6"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket6</span>,</span>
@@ -785,11 +793,11 @@ transparent surroundings, no species plotted</span></p>
 <span>                             color_vert <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                             fill_vert <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the
 convex-hulls of the three studied assemblages: only convex hulls with
 coloured surroundings, no species plotted</span></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                    asb_sp_coord2D <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
 <span>                                          <span class="st">"basket_6"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket6</span>,</span>
@@ -820,12 +828,12 @@ coloured surroundings, no species plotted</span></p>
 <span>                             color_vert <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>                             fill_vert <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the
 convex-hulls of the three studied assemblages: only convex hulls with
 transparent surroundings, species plotted but with no differences
 between non-vertices and vertices species</span></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                    asb_sp_coord2D <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
 <span>                                          <span class="st">"basket_6"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket6</span>,</span>
@@ -870,12 +878,12 @@ between non-vertices and vertices species</span></p>
 <span>                                           <span class="st">"basket_6"</span> <span class="op">=</span> <span class="st">"#67a9cf"</span>,</span>
 <span>                                          <span class="st">"basket_10"</span> <span class="op">=</span> <span class="st">"#d0d1e6"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Add the
 convex-hulls of the three studied assemblages: only convex hulls with
 transparent surroundings, species plotted but with different colour
 between non-vertices and vertices species</span></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_try</span> <span class="op">&lt;-</span> <span class="fu">mFD</span><span class="fu">::</span><span class="fu"><a href="../reference/fric.plot.html">fric.plot</a></span><span class="op">(</span>ggplot_bg <span class="op">=</span> <span class="va">plot_k</span>,</span>
 <span>                    asb_sp_coord2D <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"basket_1"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket1</span>,</span>
 <span>                                          <span class="st">"basket_6"</span> <span class="op">=</span> <span class="va">sp_faxes_coord_basket6</span>,</span>
@@ -920,7 +928,7 @@ between non-vertices and vertices species</span></p>
 <span>                                            <span class="st">"basket_6"</span> <span class="op">=</span> <span class="st">"#c51b8a"</span>,</span>
 <span>                                           <span class="st">"basket_10"</span> <span class="op">=</span> <span class="st">"#fa9fb5"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">plot_try</span></span></code></pre></div>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p>Now that we have seen the basic workflow of how to add graph
 components with only two functional axis using the <code>mFD</code>
@@ -939,7 +947,7 @@ follow:</p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Structure
 of the loop to compute as many FRic plots as wanted (combination of
 functional axes): here plots for PC1, PC2, PC3 and PC4</span></p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">####### Preliminary steps:</span></span>
 <span></span>
 <span><span class="co">## Compute the range of functional axes:</span></span>
@@ -1102,25 +1110,25 @@ functional axes): here plots for PC1, PC2, PC3 and PC4</span></p>
 contains the FRic plots for the three studied assemblages (basket_1,
 basket_6 and basket_10). It contains as many element as there are
 combination of two axis with the four studied axis:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_FRic</span></span></code></pre></div>
 <pre><code><span><span class="co">## [[1]]</span></span></code></pre>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[2]]</span></span></code></pre>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-2.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-2.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[3]]</span></span></code></pre>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-3.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-3.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[4]]</span></span></code></pre>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-4.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-4.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[5]]</span></span></code></pre>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-5.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-5.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## [[6]]</span></span></code></pre>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-6.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-20-6.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
 <div class="section level3">
@@ -1132,7 +1140,7 @@ package<a class="anchor" aria-label="anchor" href="#gathering-plots-together-usi
 then combine the plots altogether:</p>
 <p><strong>USAGE</strong> <span style="color: darkturquoise;">Combine
 Fric plots into a single graph using the patchwork package</span></p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">patchwork_FRic</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html" class="external-link">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html" class="external-link">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>                  <span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html" class="external-link">plot_spacer</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>                              <span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">plot_FRic</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1140,7 +1148,7 @@ Fric plots into a single graph using the patchwork package</span></p>
 <span>                             widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                             guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span>
 <span><span class="va">patchwork_FRic</span></span></code></pre></div>
-<p><img src="Customised_plots_files/figure-html/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;"></p>
+<p><img src="Customised_plots_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p><span style="color: darkturquoise;">You can now play with colours,
 shapes and add as many assemblages as wanted! </span></p>
@@ -1164,7 +1172,7 @@ soon…)<a class="anchor" aria-label="anchor" href="#plotting-species-differentl
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

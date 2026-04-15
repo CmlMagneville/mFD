@@ -1,0 +1,61 @@
+# Get the names of species belonging to a specific Functional Entity (FE)
+
+Get the names of species belonging to a specific Functional Entity (FE)
+
+## Usage
+
+``` r
+search.sp.nm(sp_to_fe, nm_fe)
+```
+
+## Arguments
+
+- sp_to_fe:
+
+  a list which is the output of the mFD::sp.to.fe() function
+
+- nm_fe:
+
+  a character string referring to the name of the FE to study
+
+## Value
+
+a vector containing the names of the species belonging to the studied
+FE.
+
+## Author
+
+Camille Magneville
+
+## Examples
+
+``` r
+# Load species traits data:
+ data("fruits_traits", package = "mFD")
+
+# Transform species traits data:
+# Only keep the first 4 traits to illustrate FEs:
+ fruits_traits <- fruits_traits[ , c(1:4)]   
+
+# Load trait types data:
+ data("fruits_traits_cat", package = "mFD")
+
+# Transform the trait types data to only keep traits 1 - 4:
+ fruits_traits_cat <- fruits_traits_cat[c(1:4), ]
+ 
+ # Load Assemblages*Species matrix:
+data('baskets_fruits_weights', package = 'mFD')
+
+# Gather species into FEs:
+## gathering species into FEs (FEs named according to the decreasing...
+## ...  number of species they gather):
+ sp_FEs_fruits <- mFD::sp.to.fe(
+      sp_tr      = fruits_traits, 
+      tr_cat     = fruits_traits_cat, 
+      fe_nm_type = "fe_rank")
+      
+# Look for te names of the species belonging to the FE called "fe_3":
+mFD::search.sp.nm(sp_to_fe = sp_FEs_fruits,
+                 nm_fe = "fe_3")
+#> [1] "blackberry" "raspberry" 
+```
