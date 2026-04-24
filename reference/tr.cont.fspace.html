@@ -72,7 +72,8 @@ compute correlation between traits.</p>
 <span>  pca <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  nb_dim <span class="op">=</span> <span class="fl">7</span>,</span>
 <span>  scaling <span class="op">=</span> <span class="st">"scale_center"</span>,</span>
-<span>  compute_corr <span class="op">=</span> <span class="st">"pearson"</span></span>
+<span>  compute_corr <span class="op">=</span> <span class="st">"pearson"</span>,</span>
+<span>  stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -117,6 +118,13 @@ coefficients between traits (<code>compute_corr = 'pearson'</code>). You can cho
 not to compute correlation coefficient by setting <code>compute_corr</code> to
 <code>none</code>.</p></dd>
 
+
+<dt id="arg-stop-if-na">stop_if_NA<a class="anchor" aria-label="anchor" href="#arg-stop-if-na"></a></dt>
+<dd><p>a logical value to stop or not the process if the
+<code>sp_tr</code> data frame contains NA. Functional measures are sensitive to
+missing traits. For further explanations, see the Note section.
+Default is <code>TRUE</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -144,7 +152,8 @@ between traits (if required).</p>
 <span class="r-in"><span>    pca          <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
 <span class="r-in"><span>    nb_dim       <span class="op">=</span> <span class="fl">7</span>, </span></span>
 <span class="r-in"><span>    scaling      <span class="op">=</span> <span class="st">'scale_center'</span>,</span></span>
-<span class="r-in"><span>    compute_corr <span class="op">=</span> <span class="st">'pearson'</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    compute_corr <span class="op">=</span> <span class="st">'pearson'</span>,</span></span>
+<span class="r-in"><span>    stop_if_NA <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $quality_metrics</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          mAD       mSD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2D 1.8386758 3.3807287</span>

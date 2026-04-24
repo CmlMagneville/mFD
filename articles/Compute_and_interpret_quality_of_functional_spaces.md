@@ -643,7 +643,7 @@ quality_fspaces_fruits_sqrtgower$"quality_fspaces"
     ## pcoa_21d 3.900362e-04
     ## pcoa_22d 2.266322e-04
     ## pcoa_23d 7.579458e-05
-    ## pcoa_24d 2.464926e-16
+    ## pcoa_24d 2.943247e-16
 
   
 

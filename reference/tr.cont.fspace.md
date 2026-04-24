@@ -18,7 +18,8 @@ tr.cont.fspace(
   pca = TRUE,
   nb_dim = 7,
   scaling = "scale_center",
-  compute_corr = "pearson"
+  compute_corr = "pearson",
+  stop_if_NA = TRUE
 )
 ```
 
@@ -60,6 +61,12 @@ tr.cont.fspace(
   traits (`compute_corr = 'pearson'`). You can choose not to compute
   correlation coefficient by setting `compute_corr` to `none`.
 
+- stop_if_NA:
+
+  a logical value to stop or not the process if the `sp_tr` data frame
+  contains NA. Functional measures are sensitive to missing traits. For
+  further explanations, see the Note section. Default is `TRUE`.
+
 ## Value
 
 A list containing a matrix with `mAD` and `mSD` values for each
@@ -86,7 +93,8 @@ mFD::tr.cont.fspace(
     pca          = TRUE, 
     nb_dim       = 7, 
     scaling      = 'scale_center',
-    compute_corr = 'pearson')
+    compute_corr = 'pearson',
+    stop_if_NA = TRUE)
 #> $quality_metrics
 #>          mAD       mSD
 #> 2D 1.8386758 3.3807287

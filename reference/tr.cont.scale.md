@@ -8,7 +8,7 @@ be no NA in your `sp_tr` data frame.
 ## Usage
 
 ``` r
-tr.cont.scale(sp_tr, std_method = "scale_center")
+tr.cont.scale(sp_tr, std_method = "scale_center", stop_if_NA = TRUE)
 ```
 
 ## Arguments
@@ -28,6 +28,12 @@ tr.cont.scale(sp_tr, std_method = "scale_center")
   scale-center transformation: \\x' = \frac{x - mean(x)}{sd(x)}\\).
   Default is `scale_center`.
 
+- stop_if_NA:
+
+  a logical value to stop or not the process if the `sp_tr` data frame
+  contains NA. Functional measures are sensitive to missing traits. For
+  further explanations, see the Note section. Default is `TRUE`.
+
 ## Value
 
 A data frame of standardized trait values (columns) for each species
@@ -42,7 +48,8 @@ Camille Magneville and Sebastien Villeger
 ``` r
 load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 
-mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center')
+mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center', 
+stop_if_NA = TRUE)
 #>                                    logM         OgSf         OgSh         OgPo
 #> Achirus_lineatus            -0.58299801 -0.681449298 -0.263909738  2.554334103
 #> Anchoa_mitchilli            -1.97956543  1.130469237  1.743827528  0.317005423
