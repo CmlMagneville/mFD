@@ -37,7 +37,7 @@ background.plot <- function(range_faxes, faxes_nm, color_bg) {
                    panel.grid.major = ggplot2::element_blank(),
                    panel.background = ggplot2::element_rect(fill = color_bg),
                    axis.line = ggplot2::element_line(colour = "grey50", 
-                                                     size = 1)) +
+                                                     linewidth = 1)) +
     ggplot2::coord_fixed()
   
   return(ggplot_bg)
