@@ -294,17 +294,6 @@ sp_faxes_coord_xy <- sp_faxes_coord_fruits[, c("PC1", "PC2")]
 plot_k <- mFD::background.plot(range_faxes = range_faxes, 
                                faxes_nm = c("PC1", "PC2"),
                                color_bg = "grey95")
-```
-
-    ## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
-    ## ℹ Please use the `linewidth` argument instead.
-    ## ℹ The deprecated feature was likely used in the mFD package.
-    ##   Please report the issue at <https://github.com/CmlMagneville/mFD/issues>.
-    ## This warning is displayed once per session.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
-
-``` r
 plot_k
 ```
 

@@ -50,6 +50,9 @@
 <li>search.sp.nm() which finds a species name given an FE name</li>
 <li>from.fecoord.to.spcoord() function which converts the dataframe of FEs coordinates to one with species coordinates.</li>
 <li>Update the website with a FAQ based on user’s questions</li>
+<li>Correct the dist.nearneighb() function in case of two species in the same FE so it looks for the closest species (dist = 0).</li>
+<li>Change size argument of background.plot() function to linewidth (warning message showing up).</li>
+<li>Add <code>stop.if.NA</code> argument in the call of <code>check.sp.tr()</code> in <code>tr.cont.scales()</code> and <code>tr.cont.fspaces</code> functions (otherwise when <code><a href="../reference/funct.dist.html">funct.dist()</a></code> is called with numerical traits only and NAs, stop_if_NA argument doesn’t work)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.7" id="mfd-107">mFD 1.0.7<a class="anchor" aria-label="anchor" href="#mfd-107"></a></h2><p class="text-muted">CRAN release: 2024-02-26</p>

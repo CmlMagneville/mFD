@@ -1055,14 +1055,6 @@ big_plot <- mFD::funct.space.plot(
   check_input     = TRUE)
 ```
 
-    ## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
-    ## ℹ Please use the `linewidth` argument instead.
-    ## ℹ The deprecated feature was likely used in the mFD package.
-    ##   Please report the issue at <https://github.com/CmlMagneville/mFD/issues>.
-    ## This warning is displayed once per session.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
-
   
 
 Here, the convex-hull of the species pool is plotted in white and axis
@@ -1476,7 +1468,8 @@ plots_alpha$"fori"$"patchwork"
 - `FNND` representation: colored arrows represent the distances of each
   species from each assemblage to the nearest species in the studied
   assemblage. Species of each assemblage have different size given their
-  relative weight into the assemblage.
+  relative weight into the assemblage. If two species are in the same
+  functonal entities, then their distance to the nearest species is 0.
 
 ``` r
 plots_alpha$"fnnd"$"patchwork"
