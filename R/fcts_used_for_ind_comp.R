@@ -123,8 +123,11 @@ dist.point <- function(sp_faxes_coord, ref_sp) {
 dist.nearneighb <- function(sp_faxes_coord, ref_sp) {
   
   dist_sp <- as.matrix(stats::dist(sp_faxes_coord, method = "euclidean"))
-  dist_sp[which(dist_sp == 0)] <- NA
-  
+  # Before it was:
+  # dist_sp[which(dist_sp == 0)] <- NA
+  # replace diagonal elements to NAs:
+  diag(dist_sp) <- NA
+
   # search the nearest neighbor identity of each
   # point:
   nn_id <- dist_sp - apply(dist_sp, 1, min, na.rm = TRUE)

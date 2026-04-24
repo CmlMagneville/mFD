@@ -1141,7 +1141,7 @@ plots_alpha$"fori"$"patchwork"
 * `FNND` representation: colored arrows represent the distances of each species 
 from each assemblage to the nearest species in the studied assemblage. Species 
 of each assemblage have different size given their relative weight into the 
-assemblage. 
+assemblage. If two species are in the same functonal entities, then their distance to the nearest species is 0.
 
 ```{r, fig.height = 15, fig.width = 20, fig.align = "center", warning = FALSE}
 plots_alpha$"fnnd"$"patchwork"
