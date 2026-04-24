@@ -197,7 +197,8 @@ funct.dist <- function(sp_tr,
                                               "scale", "noscale"))
     
     if (scale_euclid != "noscale") {
-      sp_tr <- tr.cont.scale(sp_tr, std_method = scale_euclid)
+      sp_tr <- tr.cont.scale(sp_tr, std_method = scale_euclid,
+                             stop_if_NA)
     }
     
     tab_dist <- stats::dist(sp_tr, method = "euclidean")

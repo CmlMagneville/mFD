@@ -17,6 +17,11 @@
 #'   `scale_center` (use the scale-center transformation: 
 #'   \eqn{x' = \frac{x - mean(x)}{sd(x)}}). 
 #'   Default is `scale_center`.
+#'   
+#' @param stop_if_NA a logical value to stop or not the process if the
+#'   `sp_tr` data frame contains NA. Functional measures are sensitive to
+#'   missing traits. For further explanations, see the Note section.
+#'   Default is `TRUE`.
 #'
 #' @return A data frame of standardized trait values (columns) for each species
 #'   (rows).
@@ -28,14 +33,16 @@
 #' @examples
 #' load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 #' 
-#' mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center')
+#' mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center', 
+#' stop_if_NA = TRUE)
 
 
-tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
+tr.cont.scale <- function(sp_tr, std_method = "scale_center",
+                          stop_if_NA = TRUE) {
   
   ## Check Inputs ----
   
-  check.sp.tr(sp_tr)
+  check.sp.tr(sp_tr, stop_if_NA, tr_cat = NULL)
   
   if (any(!apply(sp_tr, 2, is.numeric))) {
     stop("Species x traits data frame must contain only numerical variables.")
@@ -105,6 +112,11 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'   coefficients between traits (`compute_corr = 'pearson'`). You can choose 
 #'   not to compute correlation coefficient by setting `compute_corr` to 
 #'   `none`.
+#'   
+#' @param stop_if_NA a logical value to stop or not the process if the
+#'   `sp_tr` data frame contains NA. Functional measures are sensitive to
+#'   missing traits. For further explanations, see the Note section.
+#'   Default is `TRUE`.
 #'
 #' @return A list containing a matrix with `mAD` and `mSD` values for each 
 #' functional space to assess the quality of functional spaces), a matrix 
@@ -128,18 +140,20 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center") {
 #'     pca          = TRUE, 
 #'     nb_dim       = 7, 
 #'     scaling      = 'scale_center',
-#'     compute_corr = 'pearson')
+#'     compute_corr = 'pearson',
+#'     stop_if_NA = TRUE)
 
 
 
 tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7, 
                            scaling = "scale_center", 
-                           compute_corr = "pearson") {
+                           compute_corr = "pearson",
+                           stop_if_NA = TRUE) {
   
   
   ## Check Inputs ----
   
-  check.sp.tr(sp_tr)
+  check.sp.tr(sp_tr, stop_if_NA, tr_cat = NULL)
   
   if (any(!apply(sp_tr, 2, is.numeric))) {
     stop("Species x traits data frame must contain only numerical variables.")

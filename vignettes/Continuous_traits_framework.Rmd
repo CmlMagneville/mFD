@@ -147,7 +147,8 @@ mFD::tr.cont.fspace(
   pca          = TRUE, 
   nb_dim       = 7, 
   scaling      = "scale_center",
-  compute_corr = "pearson")
+  compute_corr = "pearson",
+  stop_if_NA = TRUE)
 ```
 
 <br />
@@ -190,7 +191,8 @@ fspace <- mFD::tr.cont.fspace(
   pca          = TRUE, 
   nb_dim       = 10, 
   scaling      = "scale_center",
-  compute_corr = "pearson")
+  compute_corr = "pearson",
+  stop_if_NA = TRUE)
 ```
 
 <br />

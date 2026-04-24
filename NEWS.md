@@ -5,7 +5,9 @@
 * search.sp.nm() which finds a species name given an FE name
 * from.fecoord.to.spcoord() function which converts the dataframe of FEs coordinates to one with species coordinates.
 * Update the website with a FAQ based on user's questions 
-
+* Correct the dist.nearneighb() function in case of two species in the same FE so it looks for the closest species (dist = 0).
+* Change size argument of background.plot() function to linewidth (warning message showing up).
+* Add `stop.if.NA` argument in the call of `check.sp.tr()` in `tr.cont.scales()` and `tr.cont.fspaces` functions (otherwise when `funct.dist()` is called with numerical traits only and NAs, stop_if_NA argument doesn't work)
 
 # mFD 1.0.7
 * Traits names in the tr_cat dataframe must be the same that in the sp_tr
