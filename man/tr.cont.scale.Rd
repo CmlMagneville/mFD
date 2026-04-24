@@ -4,7 +4,7 @@
 \alias{tr.cont.scale}
 \title{Scale continuous traits}
 \usage{
-tr.cont.scale(sp_tr, std_method = "scale_center")
+tr.cont.scale(sp_tr, std_method = "scale_center", stop_if_NA = TRUE)
 }
 \arguments{
 \item{sp_tr}{a data frame of traits values (columns) for each species
@@ -19,6 +19,11 @@ method. Possible values:
 \code{scale_center} (use the scale-center transformation:
 \eqn{x' = \frac{x - mean(x)}{sd(x)}}).
 Default is \code{scale_center}.}
+
+\item{stop_if_NA}{a logical value to stop or not the process if the
+\code{sp_tr} data frame contains NA. Functional measures are sensitive to
+missing traits. For further explanations, see the Note section.
+Default is \code{TRUE}.}
 }
 \value{
 A data frame of standardized trait values (columns) for each species
@@ -33,7 +38,8 @@ no NA in your \code{sp_tr} data frame.
 \examples{
 load(system.file('extdata', 'sp_tr_cestes_df', package = 'mFD'))
 
-mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center')
+mFD::tr.cont.scale(sp_tr = sp_tr, std_method = 'scale_center', 
+stop_if_NA = TRUE)
 }
 \author{
 Camille Magneville and Sebastien Villeger

@@ -9,7 +9,8 @@ tr.cont.fspace(
   pca = TRUE,
   nb_dim = 7,
   scaling = "scale_center",
-  compute_corr = "pearson"
+  compute_corr = "pearson",
+  stop_if_NA = TRUE
 )
 }
 \arguments{
@@ -40,6 +41,11 @@ Default is \code{scale_center}.}
 coefficients between traits (\code{compute_corr = 'pearson'}). You can choose
 not to compute correlation coefficient by setting \code{compute_corr} to
 \code{none}.}
+
+\item{stop_if_NA}{a logical value to stop or not the process if the
+\code{sp_tr} data frame contains NA. Functional measures are sensitive to
+missing traits. For further explanations, see the Note section.
+Default is \code{TRUE}.}
 }
 \value{
 A list containing a matrix with \code{mAD} and \code{mSD} values for each
@@ -69,7 +75,8 @@ mFD::tr.cont.fspace(
     pca          = TRUE, 
     nb_dim       = 7, 
     scaling      = 'scale_center',
-    compute_corr = 'pearson')
+    compute_corr = 'pearson',
+    stop_if_NA = TRUE)
 }
 \author{
 Camille Magneville and Sebastien Villeger
