@@ -3,23 +3,28 @@
 ## mFD (development version)
 
 - Include new functions to deal with FEs:
-- from.spfe.to.feasb() which computes the assemblages × FEs dataframe
-  with outputs of the mFD::sp.to.fe() function
-- fe.sp.df.computation() which creates a dataframe linking FEs names to
-  species names with outputs of the mFD::sp.to.fe() function
-- search.sp.nm() which finds a species name given an FE name
-- from.fecoord.to.spcoord() function which converts the dataframe of FEs
-  coordinates to one with species coordinates.
+  - from.spfe.to.feasb() which computes the assemblages × FEs dataframe
+    with outputs of the mFD::sp.to.fe() function
+  - fe.sp.df.computation() which creates a dataframe linking FEs names
+    to species names with outputs of the mFD::sp.to.fe() function
+  - search.sp.nm() which finds a species name given an FE name
+  - from.fecoord.to.spcoord() function which converts the dataframe of
+    FEs coordinates to one with species coordinates.
 - Update the website with a FAQ based on user’s questions
-- Correct the dist.nearneighb() function in case of two species in the
-  same FE so it looks for the closest species (dist = 0).
-- Change size argument of background.plot() function to linewidth
-  (warning message showing up).
-- Add `stop.if.NA` argument in the call of `check.sp.tr()` in
-  `tr.cont.scales()` and `tr.cont.fspaces` functions (otherwise when
-  [`funct.dist()`](https://cmlmagneville.github.io/mFD/reference/funct.dist.md)
-  is called with numerical traits only and NAs, stop_if_NA argument
-  doesn’t work)
+- Fix bug:
+  - Correct the dist.nearneighb() function in case of two species in the
+    same FE so it looks for the closest species (dist = 0).
+  - Change size argument of background.plot() function to linewidth
+    (warning message showing up).
+  - Add `stop.if.NA` argument in the call of `check.sp.tr()` in
+    `tr.cont.scales()` and `tr.cont.fspaces` functions (otherwise when
+    [`funct.dist()`](https://cmlmagneville.github.io/mFD/reference/funct.dist.md)
+    is called with numerical traits only and NAs, stop_if_NA argument
+    doesn’t work)
+  - Correct `tr.cont.scales()` if NAs and stop_if_NA = FALSE failing
+    because column with NA was transformed while standandardising to be
+    filled with NA (no pb before because FactoMineR::PCA function was
+    then not running).
 
 ## mFD 1.0.7
 

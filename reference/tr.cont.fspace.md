@@ -162,7 +162,7 @@ mFD::tr.cont.fspace(
 #> Trichiurus_lepturus         -0.3123202  0.80526436  2.52162395 -1.20809839
 #> Urobatis_jamaicensis        -5.1426914  3.25588736  1.31369183  0.80902967
 #>                                     PC5         PC6         PC7
-#> Achirus_lineatus             0.11192522  0.88090798  0.22663165
+#> Achirus_lineatus             0.11192522  0.88090798  0.22663164
 #> Anchoa_mitchilli             1.78944412  2.06770511 -0.85219538
 #> Archosargus_probatocephalus -0.57748689 -0.47979061 -0.33549421
 #> Archosargus_rhomboidalis    -1.25087147 -0.48559845  0.02667960
@@ -171,20 +171,20 @@ mFD::tr.cont.fspace(
 #> Bairdiella_chrysoura         0.28737462 -0.21728550 -0.17719998
 #> Bairdiella_ronchus          -0.21299097 -0.25295164 -0.11301996
 #> Cathorops_melanopus          0.55532074  0.15298688 -0.39630651
-#> Cetengraulis_edentulus       2.35139957  2.98102660  1.44439329
-#> Chaetodipterus_faber        -0.25859970  1.12097140  1.01729621
+#> Cetengraulis_edentulus       2.35139957  2.98102660  1.44439328
+#> Chaetodipterus_faber        -0.25859970  1.12097140  1.01729622
 #> Chilomycterus_schoepfii      0.47561168  0.21741779  0.01759690
-#> Chloroscombrus_chrysurus    -0.72548619 -0.39085504  0.46134322
+#> Chloroscombrus_chrysurus    -0.72548619 -0.39085503  0.46134321
 #> Citharichthys_spilopterus   -0.02786054  0.88649207 -0.82961381
-#> Conodon_nobilis              0.22118947 -0.09379706 -0.33304563
+#> Conodon_nobilis              0.22118947 -0.09379706 -0.33304564
 #> Cynoscion_arenarius          0.74822532 -0.39201208  0.02522595
 #> Cynoscion_nebulosus          1.04593891 -0.89567885  0.91268483
 #> Cynoscion_nothus             0.82538310 -0.27036750  0.04086060
 #> Dasyatis_sabina             -2.78425303  1.25588066  0.75267067
 #> Diapterus_auratus           -1.39429480 -0.69210167 -0.69750745
 #> Diapterus_rhombeus          -1.31048799 -0.55341365 -1.02161923
-#> Dorosoma_petenense           0.41659932  0.47668590  0.07623741
-#> Eucinostomus_argenteus      -0.79477284 -0.15824594 -1.41268521
+#> Dorosoma_petenense           0.41659932  0.47668590  0.07623742
+#> Eucinostomus_argenteus      -0.79477284 -0.15824594 -1.41268522
 #> Eucinostomus_gula           -1.23192163 -0.74031877 -0.85982365
 #> Eucinostomus_melanopterus   -0.90087783 -0.33928819 -1.12950376
 #> Gobionellus_oceanicus        0.50537886 -0.02314460  1.17322570
@@ -192,20 +192,20 @@ mFD::tr.cont.fspace(
 #> Menticirrhus_saxatilis      -0.59073373 -0.49899958 -0.58808563
 #> Micropogonias_undulatus     -0.81973630 -0.51146327 -0.45820085
 #> Opsanus_beta                 2.26004785 -1.28617245  0.66623974
-#> Orthopristis_chrysoptera     0.09478793 -0.67561739  0.65367228
+#> Orthopristis_chrysoptera     0.09478793 -0.67561739  0.65367227
 #> Peprilus_paru               -0.98915682 -0.33931067 -0.06504122
-#> Polydactylus_octonemus       0.32836153  0.43052216 -0.07202430
+#> Polydactylus_octonemus       0.32836153  0.43052216 -0.07202429
 #> Prionotus_carolinus          2.32681391  0.47699906 -1.28472453
 #> Prionotus_scitulus           1.67324906  0.12619949 -0.90923868
 #> Selene_setapinnis           -1.80250142  0.24222114  1.48926855
 #> Selene_vomer                -1.85780669  0.66727493  1.58260271
 #> Sphoeroides_nephelus         0.10465307  0.04362108 -0.32795144
-#> Sphoeroides_pachygaster      0.22079586  0.51707256 -0.75068209
+#> Sphoeroides_pachygaster      0.22079586  0.51707256 -0.75068208
 #> Sphoeroides_testudineus     -0.11499459  0.31036436  0.30581938
-#> Stellifer_lanceolatus        0.60901373  0.07370696 -0.81791090
+#> Stellifer_lanceolatus        0.60901373  0.07370696 -0.81791089
 #> Symphurus_plagiusa           0.13246099  0.21549073 -0.27813869
 #> Synodus_foetens              1.76275015 -2.11565953  2.24167159
-#> Trichiurus_lepturus          0.48655686 -1.63118729  0.80256593
+#> Trichiurus_lepturus          0.48655686 -1.63118729  0.80256592
 #> Urobatis_jamaicensis        -2.83164021  1.09070173  0.65640414
 #> 
 #> $sp_dist_multidim
@@ -4533,7 +4533,7 @@ mFD::tr.cont.fspace(
 #> Sphoeroides_nephelus                        4.8273546       3.1208044
 #> Sphoeroides_pachygaster                     4.7201376       3.0201250
 #> Sphoeroides_testudineus                     4.8570041       3.8125604
-#> Stellifer_lanceolatus                       5.2165562       0.7739206
+#> Stellifer_lanceolatus                       5.2165562       0.7739205
 #> Symphurus_plagiusa                          1.4826539       5.7707032
 #> Synodus_foetens                             6.3398976       2.9383116
 #> Trichiurus_lepturus                         5.5875379       2.6085766
@@ -5212,7 +5212,7 @@ mFD::tr.cont.fspace(
 #> Sphoeroides_testudineus            4.3728863        8.3920724
 #> Stellifer_lanceolatus              5.7550970        4.6458443
 #> Symphurus_plagiusa                 1.3409814        9.1553630
-#> Synodus_foetens                    7.0722691        6.6170847
+#> Synodus_foetens                    7.0722691        6.6170846
 #> Trichiurus_lepturus                6.5324321        6.1659176
 #> Urobatis_jamaicensis               8.4260400       10.5862929
 #>                             Archosargus_probatocephalus
@@ -5335,7 +5335,7 @@ mFD::tr.cont.fspace(
 #> Menticirrhus_saxatilis          2.6702073            2.0876791
 #> Micropogonias_undulatus         2.4743660            1.5456646
 #> Opsanus_beta                    4.9142700            4.7881450
-#> Orthopristis_chrysoptera        2.0285358            2.7271113
+#> Orthopristis_chrysoptera        2.0285357            2.7271113
 #> Peprilus_paru                   2.6958380            3.6491906
 #> Polydactylus_octonemus          2.8336770            2.1803733
 #> Prionotus_carolinus             5.4842797            5.7658799
@@ -5392,7 +5392,7 @@ mFD::tr.cont.fspace(
 #> Sphoeroides_testudineus              3.4749320           4.1607722
 #> Stellifer_lanceolatus                1.9848438           2.4166316
 #> Symphurus_plagiusa                   6.2161744           7.3236953
-#> Synodus_foetens                      4.1625112           4.9345414
+#> Synodus_foetens                      4.1625112           4.9345415
 #> Trichiurus_lepturus                  3.3072587           4.6049395
 #> Urobatis_jamaicensis                 6.2462018           8.1776862
 #>                             Cetengraulis_edentulus Chaetodipterus_faber
@@ -5427,7 +5427,7 @@ mFD::tr.cont.fspace(
 #> Opsanus_beta                             8.7290906            6.3495136
 #> Orthopristis_chrysoptera                 6.5130220            3.8004810
 #> Peprilus_paru                            6.7154117            4.3970919
-#> Polydactylus_octonemus                   4.6258365            5.5929868
+#> Polydactylus_octonemus                   4.6258364            5.5929868
 #> Prionotus_carolinus                      8.4755396            7.7686944
 #> Prionotus_scitulus                       8.0320708            6.8807849
 #> Selene_setapinnis                        8.1875012            7.2100903
@@ -5738,7 +5738,7 @@ mFD::tr.cont.fspace(
 #> Gobionellus_oceanicus                       5.2539886                      
 #> Menticirrhus_americanus                     3.2862655             2.9692915
 #> Menticirrhus_saxatilis                      3.1467139             3.2459284
-#> Micropogonias_undulatus                     2.4534397             3.6099500
+#> Micropogonias_undulatus                     2.4534398             3.6099500
 #> Opsanus_beta                                6.4554253             2.9640931
 #> Orthopristis_chrysoptera                    3.4197569             3.5416737
 #> Peprilus_paru                               2.4212303             5.2485723
@@ -5932,7 +5932,7 @@ mFD::tr.cont.fspace(
 #> Sphoeroides_testudineus                  5.7954020           6.1920979
 #> Stellifer_lanceolatus                    2.6250931           5.3021638
 #> Symphurus_plagiusa                       8.3407377           8.6288641
-#> Synodus_foetens                          4.5603368           5.9704697
+#> Synodus_foetens                          4.5603368           5.9704698
 #> Trichiurus_lepturus                      3.8159441           7.0691587
 #> Urobatis_jamaicensis                     7.2666130           8.4520719
 #>                             Prionotus_scitulus Selene_setapinnis Selene_vomer
@@ -6067,7 +6067,7 @@ mFD::tr.cont.fspace(
 #> Sphoeroides_testudineus                                                  
 #> Stellifer_lanceolatus                     4.4783160                      
 #> Symphurus_plagiusa                        4.9270706             6.0589100
-#> Synodus_foetens                           5.8354680             4.1755051
+#> Synodus_foetens                           5.8354680             4.1755050
 #> Trichiurus_lepturus                       5.9193898             3.0884461
 #> Urobatis_jamaicensis                      6.8652037             7.4625882
 #>                             Symphurus_plagiusa Synodus_foetens

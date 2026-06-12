@@ -71,19 +71,20 @@ five traits values summarized in the following table:
 
   
 
-| Trait name | Trait measurement | Trait type  | Number of classes |            Classes code            | Unit |
-|:----------:|:-----------------:|:-----------:|:-----------------:|:----------------------------------:|:----:|
-|    Size    | Maximal diameter  |   Ordinal   |         5         |   0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20   |  cm  |
-|   Plant    |    Growth form    | Categorical |         4         |      tree; shrub; vine; forb       |  NA  |
-|  Climate   |  Climatic niche   |   Ordinal   |         3         | temperate ; subtropical ; tropical |  NA  |
-|    Seed    |     Seed type     |   Ordinal   |         3         |          none ; pip ; pit          |  NA  |
-|   Sugar    |       Sugar       | Continuous  |        NA         |                 NA                 | g/kg |
+| Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Size | Maximal diameter | Ordinal | 5 | 0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20 | cm |
+| Plant | Growth form | Categorical | 4 | tree; shrub; vine; forb | NA |
+| Climate | Climatic niche | Ordinal | 3 | temperate ; subtropical ; tropical | NA |
+| Seed | Seed type | Ordinal | 3 | none ; pip ; pit | NA |
+| Sugar | Sugar | Continuous | NA | NA | g/kg |
 
   
 
 Let’s call the species\*assemblages matrix:
 
 ``` r
+
 # Load data:
 data("baskets_fruits_weights", package = "mFD")
 # Display the table:
@@ -101,11 +102,12 @@ knitr::kable(as.data.frame(baskets_fruits_weights[1:6, 1:6]),
 | basket_5 |   200 |       0 |      0 |       0 |          0 |         0 |
 | basket_6 |   100 |       0 |    200 |       0 |          0 |         0 |
 
-Species x assemblages matrix based on the **fruits** dataset
+Species x assemblages matrix based on the **fruits** dataset {.table}
 
 Let’s call the traits dataframe:
 
 ``` r
+
 # Load data:
 data("fruits_traits", package = "mFD")
 # Remove fuzzy traits in this tutorial:
@@ -124,11 +126,12 @@ knitr::kable(head(fruits_traits),
 | blackberry | 1-3cm   | shrub | temperate | pip  |  48.8 |
 | blueberry  | 0-1cm   | forb  | temperate | pip  | 100.0 |
 
-Species x traits data frame
+Species x traits data frame {.table}
 
 Let’s call the dataframe which summarise the type of each traits:
 
 ``` r
+
 # Load data:
 data("fruits_traits_cat", package = "mFD")
 # Remove fuzzy traits in this tutorial:
@@ -148,7 +151,7 @@ knitr::kable(head(fruits_traits_cat),
 | Seed       | O          |
 | Sugar      | Q          |
 
-Traits types based on **fruits & baskets** dataset
+Traits types based on **fruits & baskets** dataset {.table}
 
   
 
@@ -176,6 +179,7 @@ Compute functional distances between all the species in the data:
 **USAGE**
 
 ``` r
+
 sp_dist_fruits <- mFD::funct.dist(
   sp_tr         = fruits_traits,
   tr_cat        = fruits_traits_cat,
@@ -196,6 +200,7 @@ the chosen functional space:
 **USAGE**
 
 ``` r
+
 # Quality of functional spaces:
 fspaces_quality_fruits <- mFD::quality.fspaces(
   sp_dist             = sp_dist_fruits,
@@ -218,6 +223,7 @@ indices have to be plotted, then compute them):
 **USAGE**
 
 ``` r
+
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
   sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
@@ -270,6 +276,7 @@ and PC2)!
 **USAGE** Compute the range of functional axes
 
 ``` r
+
 # Compute the range of functional axes:
 range_sp_coord  <- range(sp_faxes_coord_fruits)
 
@@ -287,6 +294,7 @@ range_faxes
 **USAGE** Plot background for PC1 and PC2 plot
 
 ``` r
+
 # get species coordinates along the two studied axes:
 sp_faxes_coord_xy <- sp_faxes_coord_fruits[, c("PC1", "PC2")]
 
@@ -335,6 +343,7 @@ enclosing a community. It needs three main inputs:
 **USAGE** Retrieve vertices coordinates along PC1 and PC2
 
 ``` r
+
 # Retrieve vertices coordinates along the two studied functional axes:
 vert <- mFD::vertices(sp_faxes_coord = sp_faxes_coord_xy,  
                       order_2D = FALSE, 
@@ -390,6 +399,7 @@ not used in the workflow of this tutorial because it is too complex to
 be able to easily read the final plot with more than two convex-hulls)
 
 ``` r
+
 plot_sp_vert <- mFD::pool.plot(ggplot_bg = plot_k,
                              sp_coord2D = sp_faxes_coord_xy,
                              vertices_nD = vert,
@@ -415,6 +425,7 @@ convex-hulls! Thus remove species otherwise the final plot will be
 difficult to read ;)
 
 ``` r
+
 plot_k <- mFD::pool.plot(ggplot_bg = plot_k,
                              sp_coord2D = sp_faxes_coord_xy,
                              vertices_nD = vert,
@@ -464,6 +475,7 @@ assemblages to plot and then the names of species being vertices.
 basket_6 and basket_10:
 
 ``` r
+
 # basket_1:
 ## filter species from basket_1:
 sp_filter_basket1 <- mFD::sp.filter(asb_nm = c("basket_1"),
@@ -498,6 +510,7 @@ that we are still working with the coordinates along the two studied
 functional axis PC1 and PC2
 
 ``` r
+
 sp_faxes_coord_basket1
 ```
 
@@ -517,6 +530,7 @@ sp_faxes_coord_basket1
 basket_6 and basket_10:
 
 ``` r
+
 # basket_1:
 vert_nm_basket1 <- mFD::vertices(sp_faxes_coord = sp_faxes_coord_basket1,
                                        order_2D = TRUE, 
@@ -579,6 +593,7 @@ colours, shapes and opacity. Its main inputs are:
 convex hulls with transparent surroundings, no species plotted
 
 ``` r
+
 plot_try <- mFD::fric.plot(ggplot_bg = plot_k,
                     asb_sp_coord2D = list("basket_1" = sp_faxes_coord_basket1,
                                           "basket_6" = sp_faxes_coord_basket6,
@@ -615,6 +630,7 @@ plot_try
 convex hulls with coloured surroundings, no species plotted
 
 ``` r
+
 plot_try <- mFD::fric.plot(ggplot_bg = plot_k,
                     asb_sp_coord2D = list("basket_1" = sp_faxes_coord_basket1,
                                           "basket_6" = sp_faxes_coord_basket6,
@@ -654,6 +670,7 @@ convex hulls with transparent surroundings, species plotted but with no
 differences between non-vertices and vertices species
 
 ``` r
+
 plot_try <- mFD::fric.plot(ggplot_bg = plot_k,
                     asb_sp_coord2D = list("basket_1" = sp_faxes_coord_basket1,
                                           "basket_6" = sp_faxes_coord_basket6,
@@ -707,6 +724,7 @@ convex hulls with transparent surroundings, species plotted but with
 different colour between non-vertices and vertices species
 
 ``` r
+
 plot_try <- mFD::fric.plot(ggplot_bg = plot_k,
                     asb_sp_coord2D = list("basket_1" = sp_faxes_coord_basket1,
                                           "basket_6" = sp_faxes_coord_basket6,
@@ -773,6 +791,7 @@ For this part, we will shamelessly use a `for` loop as follow:
 (combination of functional axes): here plots for PC1, PC2, PC3 and PC4
 
 ``` r
+
 ####### Preliminary steps:
 
 ## Compute the range of functional axes:
@@ -939,6 +958,7 @@ basket_10). It contains as many element as there are combination of two
 axis with the four studied axis:
 
 ``` r
+
 plot_FRic
 ```
 
@@ -985,6 +1005,7 @@ plots altogether:
 package
 
 ``` r
+
 patchwork_FRic <- (plot_FRic[[1]] + patchwork::plot_spacer() + patchwork::plot_spacer() +
                   plot_FRic[[2]] + plot_FRic[[4]] + patchwork::plot_spacer() +
                               plot_FRic[[3]] + plot_FRic[[5]] + plot_FRic[[6]]) +

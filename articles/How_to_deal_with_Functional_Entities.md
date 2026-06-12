@@ -27,12 +27,12 @@ trait values summarized in the following table:
 
   
 
-| Trait name | Trait measurement | Trait type  | Number of classes |      Classes code      | Unit |
-|:----------:|:-----------------:|:-----------:|:-----------------:|:----------------------:|:----:|
-|    Size    | Maximal diameter  |   Ordinal   |         5         | small ; medium ; large |  cm  |
-|   Plant    |    Growth form    | Categorical |         4         |    tree ; not tree     |  NA  |
-|  Climate   |  Climatic niche   |   Ordinal   |         3         |  temperate ; tropical  |  NA  |
-|    Seed    |     Seed type     |   Ordinal   |         3         |    none ; pip ; pit    |  NA  |
+| Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Size | Maximal diameter | Ordinal | 5 | small ; medium ; large | cm |
+| Plant | Growth form | Categorical | 4 | tree ; not tree | NA |
+| Climate | Climatic niche | Ordinal | 3 | temperate ; tropical | NA |
+| Seed | Seed type | Ordinal | 3 | none ; pip ; pit | NA |
 
   
 
@@ -52,6 +52,7 @@ The following data frame and matrix are needed:
   
 
 ``` r
+
 data("fruits_traits", package = "mFD")
 
 fruits_traits <- fruits_traits[ , 1:4]      # only keep the first 4 traits to illustrate FEs
@@ -93,7 +94,7 @@ knitr::kable(head(fruits_traits), caption = "Species x traits dataframe based on
 | blackberry | small  | Not_tree | temperate | pip  |
 | blueberry  | small  | Not_tree | temperate | pip  |
 
-Species x traits dataframe based on *fruits* dataset
+Species x traits dataframe based on *fruits* dataset {.table}
 
   
 
@@ -103,6 +104,7 @@ Species x traits dataframe based on *fruits* dataset
   
 
 ``` r
+
 data("baskets_fruits_weights", package = "mFD")
 
 knitr::kable(as.data.frame(baskets_fruits_weights[1:6, 1:6]), 
@@ -118,7 +120,7 @@ knitr::kable(as.data.frame(baskets_fruits_weights[1:6, 1:6]),
 | basket_5 |   200 |       0 |      0 |       0 |          0 |         0 |
 | basket_6 |   100 |       0 |    200 |       0 |          0 |         0 |
 
-Species x assemblages dataframe based on *fruits* dataset
+Species x assemblages dataframe based on *fruits* dataset {.table}
 
   
 
@@ -129,6 +131,7 @@ Species x assemblages dataframe based on *fruits* dataset
   
 
 ``` r
+
 data("fruits_traits_cat", package = "mFD")
 
 # only keep traits 1 - 4:
@@ -145,7 +148,7 @@ knitr::kable(head(fruits_traits_cat),
 | Climate    | O          | NA         |
 | Seed       | O          | NA         |
 
-Traits types based on *fruits & baskets* dataset
+Traits types based on *fruits & baskets* dataset {.table}
 
   
 
@@ -157,6 +160,7 @@ occurrence data:
   
 
 ``` r
+
 # summarize species assemblages: 
 asb_sp_fruits_summ <- mFD::asb.sp.summary(baskets_fruits_weights)
 
@@ -182,6 +186,7 @@ head(asb_sp_fruits_summ$asb_sp_occ, 3)
     ## basket_3           0
 
 ``` r
+
 asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 ```
 
@@ -200,6 +205,7 @@ function. It uses the following arguments:
 **USAGE**
 
 ``` r
+
 mFD::sp.to.fe(
   sp_tr       = fruits_traits, 
   tr_cat      = fruits_traits_cat, 
@@ -225,6 +231,7 @@ Let’s use this function with the *fruits dataset*:
   
 
 ``` r
+
 sp_to_fe_fruits <- mFD::sp.to.fe(
   sp_tr       = fruits_traits, 
   tr_cat      = fruits_traits_cat, 
@@ -240,6 +247,7 @@ returns:
 - a vector containing FEs names:  
 
 ``` r
+
 sp_to_fe_fruits$"fe_nm"
 ```
 
@@ -251,6 +259,7 @@ sp_to_fe_fruits$"fe_nm"
 - a vector containing for each species, the FE it belongs to:  
 
 ``` r
+
 sp_fe <- sp_to_fe_fruits$"sp_fe"
 sp_fe
 ```
@@ -273,6 +282,7 @@ sp_fe
   
 
 ``` r
+
 fe_tr <- sp_to_fe_fruits$"fe_tr"
 fe_tr
 ```
@@ -300,6 +310,7 @@ fe_tr
   
 
 ``` r
+
 fe_nb_sp <- sp_to_fe_fruits$"fe_nb_sp"
 fe_nb_sp
 ```
@@ -317,6 +328,7 @@ fe_nb_sp
   
 
 ``` r
+
 sp_to_fe_fruits$"details_fe"
 ```
 
@@ -411,6 +423,7 @@ function is used as follows:
 **USAGE**
 
 ``` r
+
 mFD::alpha.fd.fe(
   asb_sp_occ       = asb_sp_fruits_occ, 
   sp_to_fe         = sp_to_fe_fruits,
@@ -448,6 +461,7 @@ Let’s apply this function with the *fruits* dataset:
   
 
 ``` r
+
 alpha_fd_fe_fruits <- mFD::alpha.fd.fe(
   asb_sp_occ       = asb_sp_fruits_occ, 
   sp_to_fe         = sp_to_fe_fruits,
@@ -465,6 +479,7 @@ per FE in each assemblage:
   
 
 ``` r
+
 # dataframe with indices values for each assemblage:
 alpha_fd_fe_fruits$"asb_fdfe"
 ```
@@ -482,6 +497,7 @@ alpha_fd_fe_fruits$"asb_fdfe"
     ## basket_10     8     5 1.600000 0.1500000 0.4000000
 
 ``` r
+
 # a matrix gathering the number of species per FE in each assemblage
 alpha_fd_fe_fruits$"details_fdfe"
 ```
@@ -525,6 +541,7 @@ function:
 **USAGE**
 
 ``` r
+
 mFD::alpha.fd.fe.plot(
   alpha_fd_fe       = alpha_fd_fe_fruits,
   plot_asb_nm       = c("basket_1"),
@@ -568,6 +585,7 @@ For the studied example, the plot looks as follows:
   
 
 ``` r
+
 mFD::alpha.fd.fe.plot(
   alpha_fd_fe       = alpha_fd_fe_fruits,
   plot_asb_nm       = c("basket_1"),

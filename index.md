@@ -14,6 +14,7 @@ You can install the stable version from
 [CRAN](https://cran.r-project.org/) with:
 
 ``` r
+
 # Install stable version of < mFD > from CRAN ----
 install.packages("mFD")
 ```
@@ -22,6 +23,7 @@ Or you can install the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
+
 ## Install < remotes > package (if not already installed) ----
 if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
@@ -34,6 +36,7 @@ remotes::install_github("CmlMagneville/mFD", build_vignettes = TRUE)
 ## Get started
 
 ``` r
+
 library("mFD")
 ```
 
@@ -68,6 +71,7 @@ of functional diversity. *Ecography*
 You can also run:
 
 ``` r
+
 citation("mFD")
 ```
 

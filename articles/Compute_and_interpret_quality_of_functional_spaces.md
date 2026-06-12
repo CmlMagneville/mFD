@@ -21,13 +21,13 @@ misleading.
 dataset* based on 25 types of fruits. Each fruit is characterized by 5
 traits summarized in the following table:
 
-| Trait name | Trait measurement | Trait type  | Number of classes |            Classes code            | Unit |
-|:----------:|:-----------------:|:-----------:|:-----------------:|:----------------------------------:|:----:|
-|    Size    | Maximal diameter  |   Ordinal   |         5         |   0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20   |  cm  |
-|   Plant    |    Growth form    | Categorical |         4         |      tree; schrub; vine; forb      |  NA  |
-|  Climate   |  Climatic niche   |   Ordinal   |         3         | temperate ; subtropical ; tropical |  NA  |
-|    Seed    |     Seed type     |   Ordinal   |         3         |          none ; pip ; pit          |  NA  |
-|   Sugar    |       Sugar       | Continuous  |        NA         |                 NA                 | g/kg |
+| Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Size | Maximal diameter | Ordinal | 5 | 0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20 | cm |
+| Plant | Growth form | Categorical | 4 | tree; schrub; vine; forb | NA |
+| Climate | Climatic niche | Ordinal | 3 | temperate ; subtropical ; tropical | NA |
+| Seed | Seed type | Ordinal | 3 | none ; pip ; pit | NA |
+| Sugar | Sugar | Continuous | NA | NA | g/kg |
 
   
 
@@ -43,6 +43,7 @@ The dataframe gathering species traits, looks as follows:
   
 
 ``` r
+
 data("fruits_traits", package = "mFD")
 
 # remove non-fuzzy traits:
@@ -62,7 +63,7 @@ knitr::kable(head(fruits_traits),
 | blackberry | 1-3cm   | shrub | temperate | pip  |  48.8 |
 | blueberry  | 0-1cm   | forb  | temperate | pip  | 100.0 |
 
-Species x traits dataframe based on *fruits* dataset
+Species x traits dataframe based on *fruits* dataset {.table}
 
   
 
@@ -89,6 +90,7 @@ tutorial):
   
 
 ``` r
+
 fruits_traits_cat <- data.frame(names(fruits_traits), c("O","N","O","O","Q"))
 colnames(fruits_traits_cat) <- c("trait_name", "trait_type")
 fruits_traits_cat
@@ -116,6 +118,7 @@ Here we use Gower distance.
 **USAGE**
 
 ``` r
+
 # compute trait-based distances:
 dist_fruits <- mFD::funct.dist(
   sp_tr         = fruits_traits,
@@ -188,6 +191,7 @@ distances between blackberry and 3 other fruits are:
   
 
 ``` r
+
 # retrieve fruits names:
 ex_blackberry <- c("blackberry","currant","cherry","banana")
 
@@ -209,6 +213,7 @@ values of these 4 species:
   
 
 ``` r
+
 fruits_traits[ex_blackberry, ]
 ```
 
@@ -258,6 +263,7 @@ tutorial, **step 4.1**).
 **USAGE**
 
 ``` r
+
 # use quality.fpscaes function to compute quality metrics:
 quality_fspaces_fruits <- mFD::quality.fspaces(
   sp_dist             = dist_fruits,
@@ -272,6 +278,7 @@ quality_fspaces_fruits <- mFD::quality.fspaces(
     ##   rev.hclust vegan
 
 ``` r
+
 # display the table gathering quality metrics:
 quality_fspaces_fruits$"quality_fspaces"
 ```
@@ -289,6 +296,7 @@ quality_fspaces_fruits$"quality_fspaces"
     ## tree_average 0.08204566 0.10937029 0.19229494  0.22468355
 
 ``` r
+
 # retrieve the functional space associated with minimal quality metric: 
 apply(quality_fspaces_fruits$quality_fspaces, 2, which.min)
 ```
@@ -308,6 +316,7 @@ we plot quality metrics of each space:
   
 
 ``` r
+
 library("magrittr")
 
 quality_fspaces_fruits$"quality_fspaces" %>%
@@ -356,6 +365,7 @@ function:
 **USAGE**
 
 ``` r
+
 mFD::quality.fspaces.plot(
   fspaces_quality = quality_fspaces_fruits, 
   quality_metric  = "mad",
@@ -393,6 +403,7 @@ For instance, let’s consider the 3 fruits: lemon, lime and cherry:
   
 
 ``` r
+
 # get fruits traits:
 fruits_traits[c("cherry", "lime", "lemon"), ]
 ```
@@ -412,6 +423,7 @@ space and cophenetic distance on the UPGMA dendrogram.
   
 
 ``` r
+
 quality_fspaces_fruits$"details_fspaces"$"pairsp_fspaces_dist" %>%
   dplyr::filter(sp.x %in% c("cherry", "lime", "lemon") & 
                 sp.y %in% c("cherry", "lime", "lemon")) %>%
@@ -443,6 +455,7 @@ Now let’s have look to the distance between pineapple and other fruits:
   
 
 ``` r
+
 quality_fspaces_fruits$"details_fspaces"$"pairsp_fspaces_dist" %>%
   dplyr::filter(sp.x %in% c("pineapple") | sp.y %in% c("pineapple")) %>%
   dplyr::mutate(fruit = stringr::str_replace_all(string = paste0(sp.x, "", sp.y),
@@ -471,6 +484,7 @@ Let’s plot of UPGMA dendrogram:
   
 
 ``` r
+
 quality_fspaces_fruits$"details_fspaces"$"dendro" %>%
   as.dendrogram() %>%
   dendextend::plot_horiz.dendrogram(side = TRUE)
@@ -496,6 +510,7 @@ have a look:
   
 
 ``` r
+
 # check if distance matrix checks Euclidean properties:
 quality_fspaces_fruits$"details_trdist"$"trdist_euclidean"
 ```
@@ -520,6 +535,7 @@ function.
   
 
 ``` r
+
 # retrieve eigen values: 
 quality_fspaces_fruits$"details_fspaces"$"pc_eigenvalues"
 ```
@@ -568,6 +584,7 @@ and 3 other species:
   
 
 ``` r
+
 quality_fspaces_fruits$"details_fspaces"$"pairsp_fspaces_dist" %>%
   dplyr::select(sp.x, sp.y, Gower = tr) %>%
   dplyr::mutate(sqrt_Gower = sqrt(Gower)) %>%
@@ -598,6 +615,7 @@ distance:
   
 
 ``` r
+
 # compute quality metrics with square-root transformed distances:
 quality_fspaces_fruits_sqrtgower <- mFD::quality.fspaces(
   sp_dist             = sqrt(dist_fruits),
@@ -613,6 +631,7 @@ quality_fspaces_fruits_sqrtgower$"details_trdist"$"trdist_euclidean"
     ## [1] TRUE
 
 ``` r
+
 # input distance is now Euclidean
 
 # get mean Absolute Deviation:
@@ -659,6 +678,7 @@ and Euclidean distance in the 24D PCoA space:
   
 
 ``` r
+
 quality_fspaces_fruits$"details_fspaces"$"pairsp_fspaces_dist" %>%
   dplyr::select(sp.x, sp.y, Gower_distance = tr) %>%
   dplyr::mutate(Eucli_dist_24D_sqrt = quality_fspaces_fruits_sqrtgower$"details_fspaces"$"pairsp_fspaces_dist"$"pcoa_24d") %>%
@@ -721,6 +741,7 @@ or 2 trait values:
   
 
 ``` r
+
 # create a new dataset:
 sp_tr <- data.frame(
   tra = factor(c(LETTERS[1:2], LETTERS[1:2], LETTERS[1:2], LETTERS[1:2])),
@@ -742,6 +763,7 @@ sp_tr
     ## sp8   B   N   X
 
 ``` r
+
 # compute Gower distance between all pairs of species:
 dist_gower <- cluster::daisy(sp_tr, metric = "gower")
 round(dist_gower, 2)

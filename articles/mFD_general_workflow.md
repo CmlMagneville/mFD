@@ -16,13 +16,13 @@ traits values summarized in the following table:
 
   
 
-| Trait name | Trait measurement | Trait type  | Number of classes |            Classes code            | Unit |
-|:----------:|:-----------------:|:-----------:|:-----------------:|:----------------------------------:|:----:|
-|    Size    | Maximal diameter  |   Ordinal   |         5         |   0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20   |  cm  |
-|   Plant    |    Growth form    | Categorical |         4         |      tree; shrub; vine; forb       |  NA  |
-|  Climate   |  Climatic niche   |   Ordinal   |         3         | temperate ; subtropical ; tropical |  NA  |
-|    Seed    |     Seed type     |   Ordinal   |         3         |          none ; pip ; pit          |  NA  |
-|   Sugar    |       Sugar       | Continuous  |        NA         |                 NA                 | g/kg |
+| Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Size | Maximal diameter | Ordinal | 5 | 0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20 | cm |
+| Plant | Growth form | Categorical | 4 | tree; shrub; vine; forb | NA |
+| Climate | Climatic niche | Ordinal | 3 | temperate ; subtropical ; tropical | NA |
+| Seed | Seed type | Ordinal | 3 | none ; pip ; pit | NA |
+| Sugar | Sugar | Continuous | NA | NA | g/kg |
 
   
 
@@ -36,6 +36,7 @@ The use of the `mFD` package is based on two datasets:
   `fruits_traits` in this tutorial
 
 ``` r
+
 # Load data:
 data("fruits_traits", package = "mFD")
 
@@ -56,7 +57,7 @@ knitr::kable(head(fruits_traits),
 | blackberry | 1-3cm   | shrub | temperate | pip  |  48.8 |
 | blueberry  | 0-1cm   | forb  | temperate | pip  | 100.0 |
 
-Species x traits data frame
+Species x traits data frame {.table}
 
   
 
@@ -68,6 +69,7 @@ Species x traits data frame
   looks as follows:
 
 ``` r
+
 # Load data:
 data("baskets_fruits_weights", package = "mFD")
 
@@ -86,7 +88,7 @@ knitr::kable(as.data.frame(baskets_fruits_weights[1:6, 1:6]),
 | basket_5 |   200 |       0 |      0 |       0 |          0 |         0 |
 | basket_6 |   100 |       0 |    200 |       0 |          0 |         0 |
 
-Species x assemblages matrix based on the **fruits** dataset
+Species x assemblages matrix based on the **fruits** dataset {.table}
 
   
 
@@ -120,6 +122,7 @@ the below example and traits names need to be in the same order as in
 the `fruits_traits` data frame:
 
 ``` r
+
 # Load data:
 data("fruits_traits_cat", package = "mFD")
 
@@ -141,7 +144,7 @@ knitr::kable(head(fruits_traits_cat),
 | Seed       | O          |
 | Sugar      | Q          |
 
-Traits types based on **fruits & baskets** dataset
+Traits types based on **fruits & baskets** dataset {.table}
 
 The **first column** contains **traits name**. The **second column**
 contains **traits type** following this code:
@@ -208,6 +211,7 @@ several tables and lists:
 **USAGE**
 
 ``` r
+
 # Species traits summary:
 fruits_traits_summ <- mFD::sp.tr.summary(
   tr_cat     = fruits_traits_cat,   
@@ -216,6 +220,7 @@ fruits_traits_summ <- mFD::sp.tr.summary(
 ```
 
 ``` r
+
 fruits_traits_summ$"tr_types"                     # Traits types 
 ```
 
@@ -237,6 +242,7 @@ fruits_traits_summ$"tr_types"                     # Traits types
   
 
 ``` r
+
 fruits_traits_summ$"mod_list"                     # Traits types for non-continuous and non-fuzzy traits
 ```
 
@@ -288,6 +294,7 @@ gathering a matrix, a list and several vectors:
 **USAGE**
 
 ``` r
+
 # Summary of the assemblages * species dataframe:
 asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
 ```
@@ -295,6 +302,7 @@ asb_sp_fruits_summ <- mFD::asb.sp.summary(asb_sp_w = baskets_fruits_weights)
   
 
 ``` r
+
 head(asb_sp_fruits_summ$"asb_sp_occ", 3)        # Species occurrences for the first 3 assemblages
 ```
 
@@ -316,12 +324,14 @@ head(asb_sp_fruits_summ$"asb_sp_occ", 3)        # Species occurrences for the fi
     ## basket_3           0
 
 ``` r
+
 asb_sp_fruits_occ <- asb_sp_fruits_summ$"asb_sp_occ"
 ```
 
   
 
 ``` r
+
 asb_sp_fruits_summ$"sp_tot_w"              # Species total biomass in all assemblages
 ```
 
@@ -339,6 +349,7 @@ asb_sp_fruits_summ$"sp_tot_w"              # Species total biomass in all assemb
   
 
 ``` r
+
 asb_sp_fruits_summ$"asb_tot_w"             # Total biomass per assemblage
 ```
 
@@ -350,6 +361,7 @@ asb_sp_fruits_summ$"asb_tot_w"             # Total biomass per assemblage
   
 
 ``` r
+
 asb_sp_fruits_summ$"asb_sp_richn"           # Species richness per assemblage
 ```
 
@@ -361,6 +373,7 @@ asb_sp_fruits_summ$"asb_sp_richn"           # Species richness per assemblage
   
 
 ``` r
+
 asb_sp_fruits_summ$"asb_sp_nm"[[1]]             # Names of species present in the first assemblage
 ```
 
@@ -423,6 +436,7 @@ function which includes the following arguments:
 **USAGE**
 
 ``` r
+
 sp_dist_fruits <- mFD::funct.dist(
   sp_tr         = fruits_traits,
   tr_cat        = fruits_traits_cat,
@@ -500,6 +514,7 @@ This function returns a `dist` object with traits-based distances
 between all pairs of species:
 
 ``` r
+
 round(sp_dist_fruits, 3)                 # Output of the function mFD::funct.dist()
 ```
 
@@ -631,6 +646,7 @@ function:
 **USAGE**
 
 ``` r
+
 fspaces_quality_fruits <- mFD::quality.fspaces(
   sp_dist             = sp_dist_fruits,
   maxdim_pcoa         = 10,
@@ -692,6 +708,7 @@ This function returns a list various objects:
   metric(s) (in columns)
 
 ``` r
+
 round(fspaces_quality_fruits$"quality_fspaces", 3)            # Quality metrics of spaces
 ```
 
@@ -746,6 +763,7 @@ least.
 **USAGE**
 
 ``` r
+
 mFD::quality.fspaces.plot(
   fspaces_quality            = fspaces_quality_fruits,
   quality_metric             = "mad",
@@ -811,6 +829,7 @@ distances. The y-axis is different for each row:
   
 
 ``` r
+
 mFD::quality.fspaces.plot(
   fspaces_quality            = fspaces_quality_fruits,
   quality_metric             = "mad",
@@ -874,6 +893,7 @@ allows to test and plot correlation and needs the following arguments:
   function:  
 
 ``` r
+
 sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 ```
 
@@ -890,6 +910,7 @@ works as follows:
 **USAGE**
 
 ``` r
+
 fruits_tr_faxes <- mFD::traits.faxes.cor(
   sp_tr          = fruits_traits, 
   sp_faxes_coord = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")], 
@@ -903,6 +924,7 @@ of the axis and look at the plots:
   
 
 ``` r
+
 # Print traits with significant effect:
 fruits_tr_faxes$"tr_faxes_stat"[which(fruits_tr_faxes$"tr_faxes_stat"$"p.value" < 0.05), ]
 ```
@@ -919,6 +941,7 @@ fruits_tr_faxes$"tr_faxes_stat"[which(fruits_tr_faxes$"tr_faxes_stat"$"p.value" 
     ## 20   Sugar  PC4   Linear Model   r2 0.682  0.0000
 
 ``` r
+
 # Return plots:
 fruits_tr_faxes$"tr_faxes_plot"
 ```
@@ -975,6 +998,7 @@ arguments:
   
 
 ``` r
+
 sp_faxes_coord_fruits <- fspaces_quality_fruits$"details_fspaces"$"sp_pc_coord"
 ```
 
@@ -1028,6 +1052,7 @@ four PCoA axis**:
 **USAGE**
 
 ``` r
+
 big_plot <- mFD::funct.space.plot(
   sp_faxes_coord  = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
   faxes           = c("PC1", "PC2", "PC3", "PC4"),
@@ -1069,6 +1094,7 @@ ten PCoA axis**:
   
 
 ``` r
+
 big_plot <- mFD::funct.space.plot(
   sp_faxes_coord  = sp_faxes_coord_fruits,
   faxes           = NULL,
@@ -1125,6 +1151,7 @@ function allows computing many alpha FD indices:
 **USAGE**
 
 ``` r
+
 alpha_fd_indices_fruits <- mFD::alpha.fd.multidim(
   sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
   asb_sp_w         = baskets_fruits_weights,
@@ -1233,6 +1260,7 @@ The function has two main outputs:
   studied functional space).
 
 ``` r
+
 fd_ind_values_fruits <- alpha_fd_indices_fruits$"functional_diversity_indices"
 fd_ind_values_fruits
 ```
@@ -1269,6 +1297,7 @@ fd_ind_values_fruits
   plotted. It can be retrieved through:
 
 ``` r
+
 details_list_fruits <- alpha_fd_indices_fruits$"details"
 ```
 
@@ -1283,6 +1312,7 @@ function as follows:
 **USAGE**
 
 ``` r
+
 plots_alpha <- mFD::alpha.multidim.plot(
   output_alpha_fd_multidim = alpha_fd_indices_fruits,
   plot_asb_nm              = c("basket_1", "basket_5"),
@@ -1379,6 +1409,7 @@ Then, using these arguments, here are the output plots for the **fruits
   of the global pool of species:
 
 ``` r
+
 plots_alpha$"fric"$"patchwork"
 ```
 
@@ -1393,6 +1424,7 @@ plots_alpha$"fric"$"patchwork"
   assemblage.
 
 ``` r
+
 plots_alpha$"fdiv"$"patchwork"
 ```
 
@@ -1407,6 +1439,7 @@ plots_alpha$"fdiv"$"patchwork"
   different size given their relative weight into the assemblage.
 
 ``` r
+
 plots_alpha$"fspe"$"patchwork"
 ```
 
@@ -1422,6 +1455,7 @@ plots_alpha$"fspe"$"patchwork"
   assemblage.
 
 ``` r
+
 plots_alpha$"fdis"$"patchwork"
 ```
 
@@ -1435,6 +1469,7 @@ plots_alpha$"fdis"$"patchwork"
   the assemblage.
 
 ``` r
+
 plots_alpha$"fide"$"patchwork"
 ```
 
@@ -1447,6 +1482,7 @@ plots_alpha$"fide"$"patchwork"
   have different size given their relative weight into the assemblage.
 
 ``` r
+
 plots_alpha$"feve"$"patchwork"
 ```
 
@@ -1460,6 +1496,7 @@ plots_alpha$"feve"$"patchwork"
   their relative weight into the assemblage.
 
 ``` r
+
 plots_alpha$"fori"$"patchwork"
 ```
 
@@ -1472,6 +1509,7 @@ plots_alpha$"fori"$"patchwork"
   functonal entities, then their distance to the nearest species is 0.
 
 ``` r
+
 plots_alpha$"fnnd"$"patchwork"
 ```
 
@@ -1521,6 +1559,7 @@ function has the main following arguments:
 **USAGE**
 
 ``` r
+
 beta_fd_indices_fruits <- mFD::beta.fd.multidim(
       sp_faxes_coord   = sp_faxes_coord_fruits[ , c("PC1", "PC2", "PC3", "PC4")],
       asb_sp_occ       = asb_sp_fruits_occ,
@@ -1590,6 +1629,7 @@ to chose graphical options. Arguments are listed below:
 **USAGE**
 
 ``` r
+
 beta_plot_fruits <- mFD::beta.multidim.plot(
   output_beta_fd_multidim = beta_fd_indices_fruits,
   plot_asb_nm             = c("basket_1", "basket_4"),

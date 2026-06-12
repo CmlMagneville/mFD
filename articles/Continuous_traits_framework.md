@@ -69,6 +69,7 @@ objects:
 - `sp_tr`: species x traits data frame
 
 ``` r
+
 # load dataset:
 sp_tr <- read.csv(system.file("extdata", "data_cestes_sp_tr.csv", 
                               package = "mFD"), dec = ",", sep = ":")
@@ -81,16 +82,17 @@ knitr::kable(head(sp_tr),
              caption = "Species x Traits data frame based on *CESTES* dataset")
 ```
 
-|                             |  logM |  OgSf |  OgSh |  OgPo |  EySz |  GrLg |  GtLg |  EyPo |  BdSh |  BdSf |  PfPo |  PfSh |  CpHt |  CfSh |  FsRt |  FsSf |
-|:----------------------------|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|
-| Achirus_lineatus            | 2.187 | 0.072 | 0.947 | 1.000 | 0.151 | 0.000 | 1.782 | 1.000 | 0.143 | 2.168 | 0.000 | 0.000 | 1.121 | 0.767 | 0.000 | 1.158 |
-| Anchoa_mitchilli            | 0.706 | 0.283 | 2.054 | 0.508 | 0.474 | 0.381 | 0.688 | 0.584 | 3.292 | 3.974 | 0.773 | 2.708 | 2.493 | 3.108 | 0.504 | 2.618 |
+|  | logM | OgSf | OgSh | OgPo | EySz | GrLg | GtLg | EyPo | BdSh | BdSf | PfPo | PfSh | CpHt | CfSh | FsRt | FsSf |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Achirus_lineatus | 2.187 | 0.072 | 0.947 | 1.000 | 0.151 | 0.000 | 1.782 | 1.000 | 0.143 | 2.168 | 0.000 | 0.000 | 1.121 | 0.767 | 0.000 | 1.158 |
+| Anchoa_mitchilli | 0.706 | 0.283 | 2.054 | 0.508 | 0.474 | 0.381 | 0.688 | 0.584 | 3.292 | 3.974 | 0.773 | 2.708 | 2.493 | 3.108 | 0.504 | 2.618 |
 | Archosargus_probatocephalus | 2.674 | 0.082 | 0.754 | 0.221 | 0.282 | 0.035 | 2.591 | 0.652 | 3.091 | 1.679 | 0.666 | 4.740 | 2.584 | 2.393 | 1.526 | 1.504 |
-| Archosargus_rhomboidalis    | 3.327 | 0.056 | 0.648 | 0.273 | 0.294 | 0.032 | 3.467 | 0.647 | 3.102 | 1.596 | 0.638 | 6.868 | 2.906 | 2.684 | 1.060 | 1.502 |
-| Ariopsis_felis              | 3.110 | 0.173 | 0.513 | 0.346 | 0.263 | 0.128 | 2.078 | 0.647 | 1.021 | 1.658 | 0.806 | 3.480 | 3.592 | 4.052 | 0.781 | 1.648 |
-| Bagre_marinus               | 2.170 | 0.248 | 0.519 | 0.489 | 0.357 | 0.142 | 2.154 | 0.613 | 1.016 | 2.087 | 0.662 | 3.674 | 4.205 | 3.460 | 0.625 | 1.678 |
+| Archosargus_rhomboidalis | 3.327 | 0.056 | 0.648 | 0.273 | 0.294 | 0.032 | 3.467 | 0.647 | 3.102 | 1.596 | 0.638 | 6.868 | 2.906 | 2.684 | 1.060 | 1.502 |
+| Ariopsis_felis | 3.110 | 0.173 | 0.513 | 0.346 | 0.263 | 0.128 | 2.078 | 0.647 | 1.021 | 1.658 | 0.806 | 3.480 | 3.592 | 4.052 | 0.781 | 1.648 |
+| Bagre_marinus | 2.170 | 0.248 | 0.519 | 0.489 | 0.357 | 0.142 | 2.154 | 0.613 | 1.016 | 2.087 | 0.662 | 3.674 | 4.205 | 3.460 | 0.625 | 1.678 |
 
-Species x Traits data frame based on *CESTES* dataset
+Species x Traits data frame based on *CESTES* dataset {.table
+style="width:100%;"}
 
   
 
@@ -98,6 +100,7 @@ Species x Traits data frame based on *CESTES* dataset
   recorded in a volume of 4500m³ per site and per species:
 
 ``` r
+
 # load dataset:
 asb_sp_w <- read.csv(system.file("extdata", "data_cestes_asb_sp_w.csv", 
                                  package = "mFD"), dec = ",", sep = ":")
@@ -116,18 +119,18 @@ knitr::kable(asb_sp_w[1:7, 1:6],
              caption = "Species x Assemblages data frame based on *CESTES* dataset for the first six species and first seven sites")
 ```
 
-|        | Achirus_lineatus | Anchoa_mitchilli | Archosargus_probatocephalus | Archosargus_rhomboidalis | Ariopsis_felis | Bagre_marinus |
-|:-------|-----------------:|-----------------:|----------------------------:|-------------------------:|---------------:|--------------:|
-| site_1 |                0 |                0 |                           0 |                        0 |          169.8 |          66.5 |
-| site_2 |                0 |                0 |                           0 |                        0 |            0.0 |          29.5 |
-| site_3 |                0 |                0 |                           0 |                        0 |          592.4 |           0.0 |
-| site_5 |                0 |                0 |                           0 |                        0 |            0.0 |           0.0 |
-| site_6 |                0 |                0 |                           0 |                        0 |            0.0 |           0.0 |
-| site_7 |                0 |                0 |                           0 |                        0 |          135.4 |           0.0 |
-| site_8 |                0 |                0 |                           0 |                        0 |            0.0 |           0.0 |
+|  | Achirus_lineatus | Anchoa_mitchilli | Archosargus_probatocephalus | Archosargus_rhomboidalis | Ariopsis_felis | Bagre_marinus |
+|:---|---:|---:|---:|---:|---:|---:|
+| site_1 | 0 | 0 | 0 | 0 | 169.8 | 66.5 |
+| site_2 | 0 | 0 | 0 | 0 | 0.0 | 29.5 |
+| site_3 | 0 | 0 | 0 | 0 | 592.4 | 0.0 |
+| site_5 | 0 | 0 | 0 | 0 | 0.0 | 0.0 |
+| site_6 | 0 | 0 | 0 | 0 | 0.0 | 0.0 |
+| site_7 | 0 | 0 | 0 | 0 | 135.4 | 0.0 |
+| site_8 | 0 | 0 | 0 | 0 | 0.0 | 0.0 |
 
 Species x Assemblages data frame based on *CESTES* dataset for the first
-six species and first seven sites
+six species and first seven sites {.table}
 
   
 
@@ -151,6 +154,7 @@ and is used as follow:
 **USAGE**
 
 ``` r
+
 mFD::tr.cont.fspace(
   sp_tr        = sp_tr, 
   pca          = TRUE, 
@@ -197,6 +201,7 @@ dimensions and get Pearson’s correlation coefficients:
   
 
 ``` r
+
 fspace <- mFD::tr.cont.fspace(
   sp_tr        = sp_tr, 
   pca          = TRUE, 
@@ -222,6 +227,7 @@ species pairs being strongly misplaced in the functional space ([Maire
   
 
 ``` r
+
 fspace$"quality_metrics"
 ```
 
@@ -255,6 +261,7 @@ Increasing the number of functional axes increases computation time.
   
 
 ``` r
+
 fspace$"eigenvalues_percentage_var"
 ```
 
@@ -277,6 +284,7 @@ fspace$"eigenvalues_percentage_var"
   
 
 ``` r
+
 head(fspace$"sp_faxes_coord")
 ```
 
@@ -310,6 +318,7 @@ head(fspace$"sp_faxes_coord")
   
 
 ``` r
+
 dist_mat <- as.matrix(fspace$sp_dist_multidim$"6D")
 dist_mat[1:5, 1:5]
 ```
@@ -341,6 +350,7 @@ dist_mat[1:5, 1:5]
   
 
 ``` r
+
 dist_mat <- as.matrix(fspace$sp_dist_init)
 dist_mat[1:5, 1:5]
 ```
@@ -372,6 +382,7 @@ dist_mat[1:5, 1:5]
   
 
 ``` r
+
 fspace$"tr_correl"
 ```
 

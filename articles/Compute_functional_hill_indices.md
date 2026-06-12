@@ -22,14 +22,14 @@ based on 25 types of fruits (*i.e.* species) distributed in 10 fruits
 baskets (*i.e.* assemblages). Each fruit is characterized by six traits
 values summarized in the following table:
 
-| Trait name | Trait measurement | Trait type  | Number of classes |            Classes code            | Unit |
-|:----------:|:-----------------:|:-----------:|:-----------------:|:----------------------------------:|:----:|
-|    Size    | Maximal diameter  |   Ordinal   |         5         |   0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20   |  cm  |
-|   Plant    |    Growth form    | Categorical |         4         |      tree; shrub; vine; forb       |  NA  |
-|  Climate   |  Climatic niche   |   Ordinal   |         3         | temperate ; subtropical ; tropical |  NA  |
-|    Seed    |     Seed type     |   Ordinal   |         3         |          none ; pip ; pit          |  NA  |
-|   Sugar    |       Sugar       | Continuous  |        NA         |                 NA                 | g/kg |
-|    Use     |    Use as food    |    Fuzzy    |         3         |         raw ; pastry ; jam         |  %   |
+| Trait name | Trait measurement | Trait type | Number of classes | Classes code | Unit |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Size | Maximal diameter | Ordinal | 5 | 0-1 ; 1-3 ; 3-5 ; 5-10 ; 10-20 | cm |
+| Plant | Growth form | Categorical | 4 | tree; shrub; vine; forb | NA |
+| Climate | Climatic niche | Ordinal | 3 | temperate ; subtropical ; tropical | NA |
+| Seed | Seed type | Ordinal | 3 | none ; pip ; pit | NA |
+| Sugar | Sugar | Continuous | NA | NA | g/kg |
+| Use | Use as food | Fuzzy | 3 | raw ; pastry ; jam | % |
 
   
 
@@ -43,6 +43,7 @@ Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html
   `fruits_traits` in this tutorial:
 
 ``` r
+
 data("fruits_traits", package = "mFD")
 
 knitr::kable(head(fruits_traits),
@@ -58,7 +59,7 @@ knitr::kable(head(fruits_traits),
 | blackberry | 1-3cm   | shrub | temperate | pip  |  48.8 |      30 |         10 |      60 |
 | blueberry  | 0-1cm   | forb  | temperate | pip  | 100.0 |      10 |         40 |      50 |
 
-Species x traits data frame based on the **fruits** dataset
+Species x traits data frame based on the **fruits** dataset {.table}
 
   
 
@@ -69,6 +70,7 @@ Species x traits data frame based on the **fruits** dataset
   this matrix looks as follows:
 
 ``` r
+
 data("baskets_fruits_weights", package = "mFD")
 
 knitr::kable(as.data.frame(baskets_fruits_weights[1:6, 1:6]), 
@@ -84,7 +86,7 @@ knitr::kable(as.data.frame(baskets_fruits_weights[1:6, 1:6]),
 | basket_5 |   200 |       0 |      0 |       0 |          0 |         0 |
 | basket_6 |   100 |       0 |    200 |       0 |          0 |         0 |
 
-Species x assemblages matrix based on the **fruits** dataset
+Species x assemblages matrix based on the **fruits** dataset {.table}
 
   
 
@@ -93,6 +95,7 @@ Species x assemblages matrix based on the **fruits** dataset
   Workflow](https://cmlmagneville.github.io/mFD/articles/mFD_general_workflow.html)):
 
 ``` r
+
 data("fruits_traits_cat", package = "mFD")
 knitr::kable(head(fruits_traits_cat), 
              caption = "Traits types based on **fruits & baskets** dataset")
@@ -107,7 +110,7 @@ knitr::kable(head(fruits_traits_cat),
 | Sugar      | Q          | NA         |
 | Use.raw    | F          | Use        |
 
-Traits types based on **fruits & baskets** dataset
+Traits types based on **fruits & baskets** dataset {.table}
 
   
 
@@ -175,6 +178,7 @@ which is the special case with `q = 2` and `tau = "max"`.
 **USAGE**
 
 ``` r
+
 baskets_FD2max <- mFD::alpha.fd.hill(
   asb_sp_w = baskets_fruits_weights, 
   sp_dist  = fruits_gower, 
@@ -193,6 +197,7 @@ Then, we can compute **Hill numbers FD of order 2** computed with
 **USAGE**
 
 ``` r
+
 baskets_FD2mean <- mFD::alpha.fd.hill(
   asb_sp_w = baskets_fruits_weights, 
   sp_dist  = fruits_gower, 
@@ -205,6 +210,7 @@ baskets_FD2mean <- mFD::alpha.fd.hill(
 We can now compare these two metrics:
 
 ``` r
+
 round(cbind(FD2max  = baskets_FD2max$"asb_FD_Hill"[ , 1], 
             FD2mean = baskets_FD2mean$"asb_FD_Hill"[ , 1]), 2)
 ```
@@ -246,6 +252,7 @@ function:
 **USAGE**
 
 ``` r
+
 # Retrieve species occurrences data:
 baskets_summary    <- mFD::asb.sp.summary(baskets_fruits_weights)
 baskets_fruits_occ <- baskets_summary$"asb_sp_occ"
@@ -283,6 +290,7 @@ head(baskets_fruits_occ)
     ## basket_6           1
 
 ``` r
+
 # Compute alpha FD Hill with q = 0:
 baskets_FD0mean <- mFD::alpha.fd.hill(
   asb_sp_w = baskets_fruits_occ, 
@@ -334,6 +342,7 @@ is recommended to **apply**
   
 
 ``` r
+
 # retrieve total weight per basket:
 baskets_summary$"asb_tot_w"
 ```
@@ -344,6 +353,7 @@ baskets_summary$"asb_tot_w"
     ##      2000      2000
 
 ``` r
+
 # Here baskets all contain 2000g of fruits, we illustrate how to compute...
 # relative weights using the output of asb.sp.summary:
 
@@ -366,6 +376,7 @@ Now we can compute functional beta-diversity of order `q = 2` (with
 **USAGE**
 
 ``` r
+
 # Compute index:
 baskets_betaq2 <- mFD::beta.fd.hill(
   asb_sp_w  = baskets_fruits_relw, 
