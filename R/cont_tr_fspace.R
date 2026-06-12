@@ -52,23 +52,53 @@ tr.cont.scale <- function(sp_tr, std_method = "scale_center",
                                         "scale_center"))
   
   
-  ## Standardization ----
-  
-  if (std_method == "range") {
-    sp_tr <- apply(sp_tr, 2, function(x) (x - min(x)) / (max(x) - min(x)))
+  ## Standardization if no NA ----
+  if (! any(is.na(sp_tr))) {
+    
+    if (std_method == "range") {
+      sp_tr <- apply(sp_tr, 2, function(x) (x - min(x)) / (max(x) - min(x)))
+    }
+    
+    if (std_method == "center") {
+      sp_tr <- apply(sp_tr, 2, function(x) x - mean(x))
+    }
+    
+    if (std_method == "scale") {
+      sp_tr <- apply(sp_tr, 2, function(x) x / stats::sd(x))
+    }
+    
+    if (std_method == "scale_center") {
+      sp_tr <- apply(sp_tr, 2, function(x) ((x - mean(x)) / stats::sd(x)))
+    }
+    
   }
   
-  if (std_method == "center") {
-    sp_tr <- apply(sp_tr, 2, function(x) x - mean(x))
+  
+  # Standardization if NA and stop_if_NA == FALSE -----
+  if (any(is.na(sp_tr)) & stop_if_NA == FALSE) {
+    
+    message("Warning: You have set stop_if_NA = FALSE -> NA values will be ignored for trait standardisation. ")
+    
+    if (std_method == "range") {
+      sp_tr <- apply(sp_tr, 2, function(x) (x - min(x, na.rm = TRUE)) / 
+                       (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)))
+    }
+    
+    if (std_method == "center") {
+      sp_tr <- apply(sp_tr, 2, function(x) x - mean(x, na.rm = TRUE))
+    }
+    
+    if (std_method == "scale") {
+      sp_tr <- apply(sp_tr, 2, function(x) x / stats::sd(x, na.rm = TRUE))
+    }
+    
+    if (std_method == "scale_center") {
+      sp_tr <- apply(sp_tr, 2, function(x) ((x - mean(x, na.rm = TRUE)) / 
+                                              stats::sd(x, na.rm = TRUE)))
+    }
+    
   }
   
-  if (std_method == "scale") {
-    sp_tr <- apply(sp_tr, 2, function(x) x / stats::sd(x))
-  }
-  
-  if (std_method == "scale_center") {
-    sp_tr <- apply(sp_tr, 2, function(x) ((x - mean(x)) / stats::sd(x)))
-  }
   
   return(sp_tr)
 }
@@ -212,7 +242,7 @@ tr.cont.fspace <- function(sp_tr, pca = TRUE, nb_dim = 7,
   ## Standardize Traits ----
   
   if (scaling != "no_scale") {
-    sp_tr <- tr.cont.scale(sp_tr, std_method = scaling)
+    sp_tr <- tr.cont.scale(sp_tr, std_method = scaling, stop_if_NA)
   }
   
   
